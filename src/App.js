@@ -1,10 +1,17 @@
 import React, { Component } from 'react'
+import JumbotronCmp from './components/JumbotronCmp'
+import NavbarCmp from './components/NavbarCmp'
 
 export default class App extends Component {
+  state = {
+    title: "Rizqi test"
+  }
+
   render() {
     return (
       <div>
-        <h1>Test</h1>
+        <NavbarCmp/>
+        <JumbotronCmp title={this.state.title}/>
       </div>
     )
   }
