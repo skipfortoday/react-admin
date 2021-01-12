@@ -16,26 +16,22 @@ const DetailUserComponent = (props) => {
         <tr>
           <td width="200">Nama</td>
           <td width="10">:</td>
-          <td>{props.getUserDetail.UserID}</td>
+          <td>{props.getUserDetail.nama}</td>
         </tr>
         <tr>
           <td width="200">Alamat</td>
           <td width="10">:</td>
-          <td>{props.getUserDetail.Nama}</td>
+          <td>{props.getUserDetail.alamat}</td>
         </tr>
         <tr>
           <td width="200">Umur</td>
           <td width="10">:</td>
-          <td>{props.getUserDetail.NamaRole}</td>
+          <td>{props.getUserDetail.umur}</td>
         </tr>
         <tr>
           <td width="200">No HP</td>
           <td width="10">:</td>
-          <td>{props.getUserDetail.NamaCabang}</td>
-        </tr><tr>
-          <td width="200">No HP</td>
-          <td width="10">:</td>
-          <td>{props.getUserDetail.Hari}{props.getUserDetail.Bulan}{props.getUserDetail.Tahun}</td>
+          <td>{props.getUserDetail.nohp}</td>
         </tr>
 
       </tbody>

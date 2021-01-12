@@ -36,7 +36,7 @@ export const getUserDetail = (id) => {
   return (dispatch) => {
     axios
       .get(
-        "localhost:3000/api/user" +
+        "https://my-json-server.typicode.com/afifbasya/reactjs-redux/users/" +
           id
       )
       .then(function (response) {
