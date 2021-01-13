@@ -40,7 +40,9 @@ const mapStateToProps = (state) => {
       Nama : state.users.getUserDetail.Nama,
       RoleUser : state.users.getUserDetail.RoleUser,
       UserID : state.users.getUserDetail.UserID,
-      umur : state.users.getUserDetail.umur,
+      Pass : state.users.getUserDetail.Pass,
+      IdGroups : state.users.getUserDetail.IdGroups,
+      KodeCabang : state.users.getUserDetail.KodeCabang,
     }
   };
 };
@@ -65,9 +67,9 @@ class FormComponent extends Component {
             <FormGroup>
               <Field
                 type="text"
-                name="alamat"
+                name="RoleUser"
                 component={renderField}
-                label="Alamat :"
+                label="Role :"
               />
             </FormGroup>
           </Col>
@@ -76,9 +78,9 @@ class FormComponent extends Component {
             <FormGroup>
               <Field
                 type="text"
-                name="nohp"
+                name="UserID"
                 component={renderField}
-                label="No HP :"
+                label="UserID :"
               />
             </FormGroup>
           </Col>
@@ -87,14 +89,39 @@ class FormComponent extends Component {
             <FormGroup>
               <Field
                 type="text"
-                name="umur"
+                name="Pass"
                 component={renderField}
-                label="Umur :"
+                label="Pass :"
               />
             </FormGroup>
           </Col>
+
+          <Col md={6}>
+            <FormGroup>
+              <Field
+                type="text"
+                name="IdGroups"
+                component={renderField}
+                label="IdGroups :"
+              />
+            </FormGroup>
+          </Col>
+
+          <Col md={6}>
+            <FormGroup>
+              <Field
+                type="text"
+                name="KodeCabang"
+                component={renderField}
+                label="Kode Cabang :"
+              />
+            </FormGroup>
+          </Col>
+
+
+
+
         </FormGroup>
-
         <FormGroup row>
           <Col md="12">
             <FormGroup>

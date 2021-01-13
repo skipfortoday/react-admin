@@ -93,7 +93,7 @@ export const putUserUpdate = (data, UserID) => {
   return (dispatch) => {
     axios
       .put(
-         "http://my-json-server.typicode.com/afifbasya/reactjs-redux/users/"+UserID,
+        "http://192.168.1.100:3001/api/user/"+UserID,
         data
       )
       .then(function (response) {
