@@ -31,9 +31,9 @@ class CreateUserContainer extends Component {
         swal(
             "User Created!",
             "Nama : " +
-              this.props.getResponDataUser.nama +
+              this.props.getResponDataUser.Nama +
               " , Umur : " +
-              this.props.getResponDataUser.umur,
+              this.props.getResponDataUser.Nama,
             "success"
           );
       }

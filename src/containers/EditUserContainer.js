@@ -31,7 +31,7 @@ class EditUserContainer extends Component {
           "User Updated!",
           "Nama : " +
             this.props.getResponDataUser.Nama +
-            " , Umur : " +
+            " , UserID : " +
             this.props.getResponDataUser.Pass,
           "success"
         );

@@ -63,7 +63,7 @@ export const postUserCreate = (data) => {
   return (dispatch) => {
     axios
       .post(
-         "http://my-json-server.typicode.com/afifbasya/reactjs-redux/users",
+         "http://192.168.1.100:3001/api/user/",
         data
       )
       .then(function (response) {
@@ -124,7 +124,7 @@ export const deleteUser = (UserID) => {
   return (dispatch) => {
     axios
       .delete(
-         "http://my-json-server.typicode.com/afifbasya/reactjs-redux/users/"+UserID
+         "http://192.168.1.100:3001/api/user/"+UserID
       )
       .then(function (response) {
         console.log(response);
