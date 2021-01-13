@@ -18,9 +18,9 @@ export default class App extends Component {
 
           <Route path="/create" exact component={CreateUserContainer} />
 
-          <Route path="/detail/:id" exact component={DetailUserContainer} />
+          <Route path="/detail/:UserID" exact component={DetailUserContainer} />
 
-          <Route path="/edit/:id" exact component={EditUserContainer} />
+          <Route path="/edit/:UserID" exact component={EditUserContainer} />
         </BrowserRouter>
       </div>
     );

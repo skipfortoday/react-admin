@@ -17,7 +17,7 @@ import { deleteUser } from "../actions/userAction";
 
 const { SearchBar } = Search;
 
-const handleClick = (dispatch, id) => {
+const handleClick = (dispatch, ID) => {
   
   swal({
     title: "Apakah Anda yakin akan menghapus data ini ?",
@@ -27,7 +27,7 @@ const handleClick = (dispatch, id) => {
   })
   .then((willDelete) => {
     if (willDelete) {
-      dispatch(deleteUser(id))
+      dispatch(deleteUser(ID))
       swal("Data User Sukses dihapus", {
         icon: "success",
       });
@@ -40,7 +40,7 @@ const handleClick = (dispatch, id) => {
 
 const defaultSorted = [
   {
-    dataField: "id",
+    dataField: "UserID",
     order: "asc",
   },
 ];
@@ -56,42 +56,60 @@ const TableComponent = (props) => {
 
   const columns = [
     {
-      dataField: "id",
-      text: "ID",
+      dataField: "UserID",
+      text: "UserID",
       sort: true,
       headerStyle: () => {
-        return { width: "5%" };
+        return { width: "100px" };
       },
     },
     {
-      dataField: "nama",
-      text: "Nama",
+      dataField: "NamaRole",
+      text: "Role",
       sort: true,
+      headerStyle: () => {
+        return { width: "80px" };
+      },
     },
     {
-      dataField: "alamat",
-      text: "Alamat",
+      dataField: "Nama",
+      text: "Nama", 
       sort: true,
+      headerStyle: () => {
+        return { width: "175px" };
+      },
+      
+    },
+    {
+      dataField: "NamaCabang",
+      text: "Cabang",
+      sort: true,
+      headerStyle: () => {
+        return { width: "120px" };
+      },
     },
     {
       dataField: "link",
       text: "Action",
+      headerStyle: () => {
+        return { width: "300px" };
+      },
       formatter: (rowContent, row) => {
         return (
           <div>
-            <Link to={"detail/" + row.id}>
+            <Link to={"detail/" + row.UserID}>
               <Button color="dark" className="mr-2">
                 <FontAwesomeIcon icon={faInfo} /> Detail
               </Button>
             </Link>
   
-            <Link to={"edit/" + row.id}>
+            <Link to={"edit/" + row.UserID}>
               <Button color="dark" className="mr-2">
                 <FontAwesomeIcon icon={faEdit} /> Edit
               </Button>
             </Link>
   
-            <Button color="dark" className="mr-2" onClick={() => handleClick(props.dispatch, row.id)}>
+            <Button color="dark" className="mr-2" onClick={() => handleClick(props.dispatch, row.UserID)}>
               <FontAwesomeIcon icon={faTrash} /> Delete
             </Button>
           </div>
@@ -106,7 +124,7 @@ const TableComponent = (props) => {
       {props.getUsersList ? (
         <ToolkitProvider
           bootstrap4
-          keyField="id"
+          keyField="UserID"
           data={props.getUsersList}
           columns={columns}
           defaultSorted={defaultSorted}

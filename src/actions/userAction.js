@@ -10,7 +10,7 @@ export const PUT_USER_EDIT = "PUT_USER_EDIT";
 export const getUsersList = () => {
   return (dispatch) => {
     axios
-      .get("https://my-json-server.typicode.com/afifbasya/reactjs-redux/users")
+      .get("http://192.168.1.100:3001/api/user")
       .then(function (response) {
         dispatch({
           type: GET_USERS_LIST,
@@ -32,12 +32,11 @@ export const getUsersList = () => {
   };
 };
 
-export const getUserDetail = (id) => {
+export const getUserDetail = (UserID) => {
   return (dispatch) => {
     axios
       .get(
-        "https://my-json-server.typicode.com/afifbasya/reactjs-redux/users/" +
-          id
+        "http://192.168.1.100:3001/api/user/"+UserID
       )
       .then(function (response) {
         dispatch({
@@ -90,11 +89,11 @@ export const postUserCreate = (data) => {
   };
 };
 
-export const putUserUpdate = (data, id) => {
+export const putUserUpdate = (data, UserID) => {
   return (dispatch) => {
     axios
       .put(
-         "http://my-json-server.typicode.com/afifbasya/reactjs-redux/users/"+id,
+         "http://my-json-server.typicode.com/afifbasya/reactjs-redux/users/"+UserID,
         data
       )
       .then(function (response) {
@@ -121,11 +120,11 @@ export const putUserUpdate = (data, id) => {
 };
 
 
-export const deleteUser = (id) => {
+export const deleteUser = (UserID) => {
   return (dispatch) => {
     axios
       .delete(
-         "http://my-json-server.typicode.com/afifbasya/reactjs-redux/users/"+id
+         "http://my-json-server.typicode.com/afifbasya/reactjs-redux/users/"+UserID
       )
       .then(function (response) {
         console.log(response);

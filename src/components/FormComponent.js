@@ -37,7 +37,7 @@ const renderField = ({
 const mapStateToProps = (state) => {
   return {
     initialValues : {
-      nama : state.users.getUserDetail.nama,
+      nama : state.users.getUserDetail.Nama,
       nohp : state.users.getUserDetail.nohp,
       alamat : state.users.getUserDetail.alamat,
       umur : state.users.getUserDetail.umur,

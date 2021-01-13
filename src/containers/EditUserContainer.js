@@ -15,11 +15,11 @@ const mapStateToProps = (state) => {
 
 class EditUserContainer extends Component {
   componentDidMount() {
-    this.props.dispatch(getUserDetail(this.props.match.params.id));
+    this.props.dispatch(getUserDetail(this.props.match.params.UserID));
   }
 
   handleSubmit(data) {
-    this.props.dispatch(putUserUpdate(data, this.props.match.params.id));
+    this.props.dispatch(putUserUpdate(data, this.props.match.params.UserID));
   }
 
   render() {

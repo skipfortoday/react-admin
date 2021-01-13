@@ -7,7 +7,7 @@ import DetailUserComponent from "../components/DetailUserComponent";
 
 class DetailUserContainer extends Component {
   componentDidMount() {
-    this.props.dispatch(getUserDetail(this.props.match.params.id));
+    this.props.dispatch(getUserDetail(this.props.match.params.UserID));
   }
 
   render() {

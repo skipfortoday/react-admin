@@ -14,26 +14,10 @@ const DetailUserComponent = (props) => {
     <Table striped>
       <tbody>
         <tr>
-          <td width="200">Nama</td>
+          <td width="200">UserID</td>
           <td width="10">:</td>
-          <td>{props.getUserDetail.nama}</td>
-        </tr>
-        <tr>
-          <td width="200">Alamat</td>
-          <td width="10">:</td>
-          <td>{props.getUserDetail.alamat}</td>
-        </tr>
-        <tr>
-          <td width="200">Umur</td>
-          <td width="10">:</td>
-          <td>{props.getUserDetail.umur}</td>
-        </tr>
-        <tr>
-          <td width="200">No HP</td>
-          <td width="10">:</td>
-          <td>{props.getUserDetail.nohp}</td>
-        </tr>
-
+          <td>{props.getUserDetail.UserID}</td>
+      </tr>
       </tbody>
     </Table>
   );
