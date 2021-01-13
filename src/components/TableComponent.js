@@ -7,6 +7,7 @@ import {
   faEdit,
   faTrash,
   faUserPlus,
+  faBook,
 } from "@fortawesome/free-solid-svg-icons";
 import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
 import paginationFactory from "react-bootstrap-table2-paginator";
@@ -112,6 +113,12 @@ const TableComponent = (props) => {
             <Button color="dark" className="mr-2" onClick={() => handleClick(props.dispatch, row.UserID)}>
               <FontAwesomeIcon icon={faTrash} /> Delete
             </Button>
+            
+            <Link to={"detail/" + row.UserID}>
+              <Button color="dark" className="mr-2">
+                <FontAwesomeIcon icon={faBook} /> Laporan
+              </Button>
+            </Link>
           </div>
         );
       },
