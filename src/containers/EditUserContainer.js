@@ -30,9 +30,9 @@ class EditUserContainer extends Component {
         swal(
           "User Updated!",
           "Nama : " +
-            this.props.getResponDataUser.nama +
+            this.props.getResponDataUser.Nama +
             " , Umur : " +
-            this.props.getResponDataUser.umur,
+            this.props.getResponDataUser.Pass,
           "success"
         );
       }
