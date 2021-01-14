@@ -28,11 +28,25 @@ const NavbarComponent = (props) => {
                 <NavLink href="/">Home</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href="https://github.com/reactstrap/reactstrap">
-                  About Me
+                <NavLink href="/">
+                  Izin
                 </NavLink>
               </NavItem>
-             
+              <NavItem>
+                <NavLink href="/jamkerja">
+                  Jam Kerja
+                </NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink href="/">
+                  Grup Pegawai
+                </NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink href="/">
+                  Penggajian
+                </NavLink>
+              </NavItem>
             </Nav>
             <NavbarText>Admin</NavbarText>
           </Collapse>

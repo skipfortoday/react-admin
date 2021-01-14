@@ -1,23 +1,27 @@
 const UserValidation = (values) => {
   const errors = {};
 
-  if (!values.nama || values.nama === "") {
-    errors.nama = "Nama harus diisi";
+  if (!values.Nama || values.Nama === "") {
+    errors.Nama = "Nama harus diisi";
   }
 
-  if (!values.umur || values.umur === "") {
-    errors.umur = "Umur harus diisi";
+  if (!values.NamaRole || values.NamaRole === "") {
+    errors.NamaRole = "Role harus diisi";
   }
 
-  if (!values.alamat || values.alamat === "") {
-    errors.alamat = "Alamat harus diisi";
+  if (!values.UserID || values.UserID === "") {
+    errors.UserID = "UserID harus diisi";
   }
 
-  if (!values.nohp || values.nohp === "") {
-    errors.nohp = "No HP harus diisi";
+  if (!values.Pass || values.Pass === "") {
+    errors.Pass = "Password harus diisi";
   }
 
-  return errors
+  if (!values.IdGroups || values.IdGroups === "") {
+    errors.IdGroups = "Id Groups harus diisi";
+  }
+
+  return errors;
 };
 
 export default UserValidation;
