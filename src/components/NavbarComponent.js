@@ -33,18 +33,8 @@ const NavbarComponent = (props) => {
                 </NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href="/jamkerja">
-                  Jam Kerja
-                </NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink href="/">
+                <NavLink href="/Grup Pegawai">
                   Grup Pegawai
-                </NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink href="/">
-                  Penggajian
                 </NavLink>
               </NavItem>
             </Nav>

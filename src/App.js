@@ -6,7 +6,7 @@ import HomeContainer from "./containers/HomeContainer";
 import CreateUserContainer from "./containers/CreateUserContainer";
 import EditUserContainer from "./containers/EditUserContainer";
 import DetailUserContainer from "./containers/DetailUserContainer";
-import JamKerjaContainer from "./containers/JamKerjaContainer";
+
 
 export default class App extends Component {
   render() {
@@ -23,13 +23,13 @@ export default class App extends Component {
 
           <Route path="/edit/:UserID" exact component={EditUserContainer} />
 
-          <Route path="/jamkerja" exact component={JamKerjaContainer} />
+          <Route path="/gruppegawai" exact component={HomeContainer} />
 
-          <Route path="/jamkerja/create" exact component={JamKerjaContainer} />
+          <Route path="/gruppegawai/create" exact component={HomeContainer} />
 
-          <Route path="/jamkerja/detail/:shift" exact component={JamKerjaContainer} />
+          <Route path="/gruppegawai/detail/:GroupID" exact component={HomeContainer} />
 
-          <Route path="/jamkerja/edit/:shift" exact component={JamKerjaContainer} />
+          <Route path="/gruppegawai/edit/:GroupID" exact component={HomeContainer} />
 
         </BrowserRouter>
       </div>
