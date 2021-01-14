@@ -84,13 +84,13 @@ const TableJamKerja = (props) => {
       formatter: (rowContent, row) => {
         return (
           <div>
-            <Link to={"detail/" + row.Shift}>
+            <Link to={"detailjamkerja/" + row.Shift}>
               <Button color="dark" className="mr-2">
                 <FontAwesomeIcon icon={faInfo} /> Detail
               </Button>
             </Link>
 
-            <Link to={"edit/" + row.Shift}>
+            <Link to={"editjamkerja/" + row.Shift}>
               <Button color="dark" className="mr-2">
                 <FontAwesomeIcon icon={faEdit} /> Edit
               </Button>

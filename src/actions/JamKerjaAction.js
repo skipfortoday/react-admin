@@ -10,7 +10,7 @@ export const PUT_JAMKERJA_EDIT = "PUT_JAMKERJA_EDIT";
 export const getJamKerjaList = () => {
   return (dispatch) => {
     axios
-      .get("http://192.168.1.100:3001/api/user")
+      .get("http://192.168.1.100:3001/api/user")    
       .then(function (response) {
         dispatch({
           type: GET_JAMKERJA_LIST,
