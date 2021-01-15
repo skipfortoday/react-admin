@@ -1,9 +1,3 @@
-##  CRUD React JS API dengan Redux
-
-Tutorial CRUD React JS API dengan Redux dari WAHIDEV ACADEMY silahkan selengkapnya dapat dilihat di Channel Youtube kami : https://www.youtube.com/playlist?list=PLIan8aHxsPj1n-fDYopnjbaK55DhZqrmN
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
 ## Available Scripts
 
 In the project directory, you can run:
