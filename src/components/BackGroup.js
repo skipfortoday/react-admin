@@ -16,6 +16,6 @@ const BackGroup = () => {
       </Col>
     </Row>
   );
-};
+}; 
 
 export default BackGroup;
