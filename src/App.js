@@ -6,6 +6,10 @@ import HomeContainer from "./containers/HomeContainer";
 import CreateUserContainer from "./containers/CreateUserContainer";
 import EditUserContainer from "./containers/EditUserContainer";
 import DetailUserContainer from "./containers/DetailUserContainer";
+import GroupContainer from "./containers/GroupContainer";
+import CreateGroupContainer from "./containers/CreateGroupContainer";
+import EditGroupContainer from "./containers/EditGroupContainer";
+import DetailGroupContainer from "./containers/DetailGroupContainer";
 
 
 export default class App extends Component {
@@ -23,13 +27,13 @@ export default class App extends Component {
 
           <Route path="/edit/:UserID" exact component={EditUserContainer} />
 
-          <Route path="/gruppegawai" exact component={HomeContainer} />
+          <Route path="/group" exact component={GroupContainer} />
 
-          <Route path="/gruppegawai/create" exact component={HomeContainer} />
+          <Route path="/group/create" exact component={CreateGroupContainer} />
 
-          <Route path="/gruppegawai/detail/:GroupID" exact component={HomeContainer} />
+          <Route path="/group/detail/:GroupID" exact component={DetailGroupContainer} />
 
-          <Route path="/gruppegawai/edit/:GroupID" exact component={HomeContainer} />
+          <Route path="/group/edit/:GroupID" exact component={EditGroupContainer} />
 
         </BrowserRouter>
       </div>
