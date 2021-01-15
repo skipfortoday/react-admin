@@ -6,7 +6,7 @@ import { getGroupDetail } from "../actions/groupAction";
 import DetailGroupComponent from "../components/DetailGroupComponent";
 
 class DetailGroupContainer extends Component {
-  componentDidMount() {
+  componentDidMountGroup() {
     this.props.dispatch(getGroupDetail(this.props.match.params.GroupID));
   }
 

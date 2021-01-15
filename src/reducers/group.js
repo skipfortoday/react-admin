@@ -1,9 +1,9 @@
-Import {
+import {
     GET_GROUP_LIST,
     GET_GROUP_DETAIL,
     POST_GROUP_CREATE,
     PUT_GROUP_EDIT,
-  } from "../actions/groupAction";
+  } from "../actions/groupAction"
   
   let initialState = {
     getGroupList: false,
@@ -17,32 +17,32 @@ Import {
   
   const Group = (state = initialState, action) => {
     switch (action.type) {
-      case GET_USERS_LIST:
+      case GET_GROUP_LIST:
         return {
           ...state,
-          getUsersList: action.payload.data,
-          errorUsersList: action.payload.errorMessage,
+          getGroupList: action.payload.data,
+          errorGroupList: action.payload.errorMessage,
         };
   
-      case GET_USER_DETAIL:
+      case GET_GROUP_DETAIL:
         return {
           ...state,
-          getUserDetail: action.payload.data,
-          errorUserDetail: action.payload.errorMessage,
+          getGroupDetail: action.payload.data,
+          errorGroupDetail: action.payload.errorMessage,
         };
   
-      case POST_USER_CREATE:
+      case POST_GROUP_CREATE:
         return {
           ...state,
-          getResponDataUser: action.payload.data,
-          errorResponDataUser: action.payload.errorMessage,
+          getResponDataGroup: action.payload.data,
+          errorResponDataGroup: action.payload.errorMessage,
         };
   
-      case PUT_USER_EDIT:
+      case PUT_GROUP_EDIT:
         return {
           ...state,
-          getResponDataUser: action.payload.data,
-          errorResponDataUser: action.payload.errorMessage,
+          getResponDataGroup: action.payload.data,
+          errorResponDataGroup: action.payload.errorMessage,
         };
   
       default:

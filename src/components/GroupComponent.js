@@ -97,13 +97,13 @@ const GroupComponent = (props) => {
       formatter: (rowContent, row) => {
         return (
           <div>
-            <Link to={"detail/" + row.GroupID}>
+            <Link to={"group/detail/" + row.GroupID}>
               <Button color="dark" className="mr-2">
                 <FontAwesomeIcon icon={faInfo} /> Detail
               </Button>
             </Link>
   
-            <Link to={"edit/" + row.GroupID}>
+            <Link to={"group/edit/" + row.GroupID}>
               <Button color="dark" className="mr-2">
                 <FontAwesomeIcon icon={faEdit} /> Edit
               </Button>

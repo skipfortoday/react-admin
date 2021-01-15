@@ -33,7 +33,7 @@ const NavbarComponent = (props) => {
                 </NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href="/Grup Pegawai">
+                <NavLink href="/group">
                   Grup Pegawai
                 </NavLink>
               </NavItem>
