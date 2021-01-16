@@ -159,7 +159,7 @@ const GroupComponent = (props) => {
             <div>
               <Row>
                 <Col>
-                  <Link to="/create">
+                  <Link to="group/create">
                     <Button color="dark" className="mr-2">
                       <FontAwesomeIcon icon={faUserPlus} /> Create Group
                     </Button>

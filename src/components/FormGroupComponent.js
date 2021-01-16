@@ -36,14 +36,26 @@ const renderField = ({
 
 const mapStateToProps = (state) => {
   return {
-    initialValues : {
-      GroupID : state.Group.getGroupDetail.GroupID,
-      Jabatan : state.Group.getGroupDetail.Jabatan,
-      JamDatang : state.Group.getGroupDetail.JamDatang,
-      JamPulang : state.Group.getGroupDetail.JamPulang,
-      MaxJamDatang : state.Group.getGroupDetail.MaxJamDatang,
-      MinJamLembur : state.Group.getGroupDetail.MinJamLembur,
-    }
+    initialValues: {
+      GroupID: state.Group.getGroupDetail.GroupID,
+      Jabatan: state.Group.getGroupDetail.Jabatan,
+      JamDatang: state.Group.getGroupDetail.JamDatang,
+      JamPulang: state.Group.getGroupDetail.JamPulang,
+      MaxJamDatang: state.Group.getGroupDetail.MaxJamDatang,
+      MinJamLembur: state.Group.getGroupDetail.MinJamLembur,
+      JamDatangSiang: state.Group.getGroupDetail.JamDatangSiang,
+      JamPulangSiang: state.Group.getGroupDetail.JamPulangSiang,
+      MaxJamDatangSiang: state.Group.getGroupDetail.MaxJamDatangSiang,
+      MinJamLemburSiang: state.Group.getGroupDetail.MinJamLemburSiang,
+      JamDatangSore: state.Group.getGroupDetail.JamDatangSore,
+      JamPulangSore: state.Group.getGroupDetail.JamPulangSore,
+      MaxJamDatangSore: state.Group.getGroupDetail.MaxJamDatangSore,
+      MinJamLemburSore: state.Group.getGroupDetail.MinJamLemburSore,
+      HariLibur: state.Group.getGroupDetail.HariLibur,
+      RpLemburPerJam: state.Group.getGroupDetail.RpLemburPerJam,
+      RpPotonganTerlambat: state.Group.getGroupDetail.RpPotonganTerlambat,
+      RpPotonganTidakMasuk: state.Group.getGroupDetail.RpPotonganTidakMasuk,
+    },
   };
 };
 
@@ -77,10 +89,10 @@ class FormGroupComponent extends Component {
           <Col md={6}>
             <FormGroup>
               <Field
-                type="text"
+                type="time"
                 name="JamDatang"
                 component={renderField}
-                label="JamDatang :"
+                label="Jam Datang Pagi :"
               />
             </FormGroup>
           </Col>
@@ -88,10 +100,10 @@ class FormGroupComponent extends Component {
           <Col md={6}>
             <FormGroup>
               <Field
-                type="text"
+                type="time"
                 name="JamPulang"
                 component={renderField}
-                label="JamPulang :"
+                label="Jam Pulang Pagi :"
               />
             </FormGroup>
           </Col>
@@ -99,10 +111,10 @@ class FormGroupComponent extends Component {
           <Col md={6}>
             <FormGroup>
               <Field
-                type="text"
+                type="time"
                 name="MaxJamDatang"
                 component={renderField}
-                label="Max Jam Lembur :"
+                label="Max Jam Datang Pagi :"
               />
             </FormGroup>
           </Col>
@@ -110,18 +122,147 @@ class FormGroupComponent extends Component {
           <Col md={6}>
             <FormGroup>
               <Field
-                type="text"
-                name="MaxJamLembur"
+                type="time"
+                name="MinJamLembur"
                 component={renderField}
-                label="Max Jam Lembur :"
+                label="Min Jam Lembur Pagi :"
               />
             </FormGroup>
           </Col>
 
+          <Col md={6}>
+            <FormGroup>
+              <Field
+                type="time"
+                name="JamDatangSiang"
+                component={renderField}
+                label="Jam Datang Siang  :"
+              />
+            </FormGroup>
+          </Col>
 
+          <Col md={6}>
+            <FormGroup>
+              <Field
+                type="time"
+                name="JamPulangSiang"
+                component={renderField}
+                label="Jam Pulang Siang :"
+              />
+            </FormGroup>
+          </Col>
 
+          <Col md={6}>
+            <FormGroup>
+              <Field
+                type="time"
+                name="MaxJamDatangSiang"
+                component={renderField}
+                label="Max Jam Datang Siang :"
+              />
+            </FormGroup>
+          </Col>
 
+          <Col md={6}>
+            <FormGroup>
+              <Field
+                type="time"
+                name="MinJamLemburSiang"
+                component={renderField}
+                label="Min Jam Lembur Siang :"
+              />
+            </FormGroup>
+          </Col>
+
+          <Col md={6}>
+            <FormGroup>
+              <Field
+                type="time"
+                name="JamDatangSore"
+                component={renderField}
+                label="Jam Datang Siang  :"
+              />
+            </FormGroup>
+          </Col>
+
+          <Col md={6}>
+            <FormGroup>
+              <Field
+                type="time"
+                name="JamPulangSore"
+                component={renderField}
+                label="Jam Pulang Siang :"
+              />
+            </FormGroup>
+          </Col>
+
+          <Col md={6}>
+            <FormGroup>
+              <Field
+                type="time"
+                name="MaxJamDatangSore"
+                component={renderField}
+                label="Max Jam Datang Siang :"
+              />
+            </FormGroup>
+          </Col>
+
+          <Col md={6}>
+            <FormGroup>
+              <Field
+                type="time"
+                name="MinJamLemburSore"
+                component={renderField}
+                label="Min Jam Lembur Siang :"
+              />
+            </FormGroup>
+          </Col>
+
+          <Col md={6}>
+            <FormGroup>
+              <Field
+                type="select"
+                name="HariLibur"
+                component={renderField}
+                label="Hari Libur :"
+              />
+            </FormGroup>
+          </Col>
+
+          <Col md={6}>
+            <FormGroup>
+              <Field
+                type="number"
+                name="RpLemburPerJam"
+                component={renderField}
+                label="Lembur Perjam :"
+              />
+            </FormGroup>
+          </Col>
+
+          <Col md={6}>
+            <FormGroup>
+              <Field
+                type="number"
+                name="RpPotonganTerlambat"
+                component={renderField}
+                label="Potongan Terlambat :"
+              />
+            </FormGroup>
+          </Col>
+
+          <Col md={6}>
+            <FormGroup>
+              <Field
+                type="number"
+                name="RpPotonganTidakMasuk"
+                component={renderField}
+                label="Potongan Tidak Masuk :"
+              />
+            </FormGroup>
+          </Col>
         </FormGroup>
+
         <FormGroup row>
           <Col md="12">
             <FormGroup>

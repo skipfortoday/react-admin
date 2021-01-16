@@ -41,7 +41,7 @@ class CreateGroupContainer extends Component {
     return (
       <Container>
         <BackGroup />
-        <h1>Tambah Pegawai</h1>
+        <h1>Tambah User Group</h1>
         <FormGroupComponent onSubmit={(data) => this.handleSubmit(data)} />
       </Container>
     );

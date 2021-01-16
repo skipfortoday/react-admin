@@ -41,7 +41,7 @@ class CreateUserContainer extends Component {
     return (
       <Container>
         <BackComponent />
-        <h1>Tambah Pegawai</h1>
+        <h1>Tambah User Group</h1>
         <FormComponent onSubmit={(data) => this.handleSubmit(data)} />
       </Container>
     );

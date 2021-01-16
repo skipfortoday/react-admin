@@ -14,7 +14,7 @@ const mapStateToProps = (state) => {
 };
 
 class EditGroupContainer extends Component {
-  componentDidMountGroup() {
+  componentDidMount() {
     this.props.dispatch(getGroupDetail(this.props.match.params.GroupID));
   }
 

@@ -36,7 +36,7 @@ export const getGroupDetail = (GroupID) => {
   return (dispatch) => {
     axios
       .get(
-        "http://192.168.1.100:3001/api/user/"+GroupID
+        "http://192.168.1.100:3001/api/group/"+GroupID
       )
       .then(function (response) {
         dispatch({
@@ -63,7 +63,7 @@ export const postGroupCreate = (data) => {
   return (dispatch) => {
     axios
       .post(
-         "http://192.168.1.100:3001/api/user/",
+         "http://192.168.1.100:3001/api/group/",
         data
       )
       .then(function (response) {
