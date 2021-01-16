@@ -221,7 +221,7 @@ class FormGroupComponent extends Component {
           <Col md={6}>
             <FormGroup>
               <Field
-                type="select"
+                type="text"
                 name="HariLibur"
                 component={renderField}
                 label="Hari Libur :"
