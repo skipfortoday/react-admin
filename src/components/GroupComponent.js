@@ -60,7 +60,7 @@ const GroupComponent = (props) => {
       text: "GroupID",
       sort: true,
       headerStyle: () => {
-        return { width: "100px" };
+        return { width: "80px" };
       },
     },
     {
@@ -68,31 +68,56 @@ const GroupComponent = (props) => {
       text: "Nama Group",
       sort: true,
       headerStyle: () => {
-        return { width: "80px" };
+        return { width: "120px" };
       },
     },
     {
       dataField: "JamDatang",
-      text: "PagiDtg", 
+      text: "Pagi Datang", 
       sort: true,
       headerStyle: () => {
-        return { width: "175px" };
+        return { width: "100px" };
       },
       
     },
     {
       dataField: "JamPulang",
-      text: "PagiPlng",
+      text: "Pagi Pulang",
       sort: true,
       headerStyle: () => {
-        return { width: "120px" };
+        return { width: "100px" };
+      },
+    },
+    {
+      dataField: "JamDatangSiang",
+      text: "Siang Datang", 
+      sort: true,
+      headerStyle: () => {
+        return { width: "100px" };
+      },
+      
+    },
+    {
+      dataField: "JamPulangSiang",
+      text: "Siang Pulang",
+      sort: true,
+      headerStyle: () => {
+        return { width: "100px" };
+      },
+    },
+    {
+      dataField: "HariLibur",
+      text: "Hari Libur",
+      sort: true,
+      headerStyle: () => {
+        return { width: "100px" };
       },
     },
     {
       dataField: "link",
       text: "Action",
       headerStyle: () => {
-        return { width: "300px" };
+        return { width: "250px" };
       },
       formatter: (rowContent, row) => {
         return (
