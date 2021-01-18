@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { reduxForm, Field } from "redux-form";
 import { connect } from "react-redux";
-import { FormGroup, Col, Label, Input, Row, Button } from "reactstrap";
+import { FormGroup, Col, Label, Input, Row, Button, Alert } from "reactstrap";
 import GroupValidation from "../validations/GroupValidation";
 
 const renderField = ({
@@ -64,6 +64,12 @@ class FormGroupComponent extends Component {
     return (
       <form onSubmit={this.props.handleSubmit}>
         <FormGroup row>
+          <Col md={12}>
+          <Alert color="danger">
+           Masukkan Group ID untuk Kode & Nama Group / Nama Jabatan (WAJIB)
+          </Alert>
+          </Col>
+
           <Col md={6}>
             <FormGroup>
               <Field
@@ -86,7 +92,13 @@ class FormGroupComponent extends Component {
             </FormGroup>
           </Col>
 
-          <Col md={6}>
+          <Col md={12}>
+          <Alert color="primary">
+           Masukkan Aturan Jadwal Pagi atau Jadwal Shift 1 (WAJIB)
+          </Alert>
+          </Col>
+
+          <Col md={3}>
             <FormGroup>
               <Field
                 type="time"
@@ -97,7 +109,7 @@ class FormGroupComponent extends Component {
             </FormGroup>
           </Col>
 
-          <Col md={6}>
+          <Col md={3}>
             <FormGroup>
               <Field
                 type="time"
@@ -108,7 +120,7 @@ class FormGroupComponent extends Component {
             </FormGroup>
           </Col>
 
-          <Col md={6}>
+          <Col md={3}>
             <FormGroup>
               <Field
                 type="time"
@@ -119,7 +131,7 @@ class FormGroupComponent extends Component {
             </FormGroup>
           </Col>
 
-          <Col md={6}>
+          <Col md={3}>
             <FormGroup>
               <Field
                 type="time"
@@ -130,7 +142,14 @@ class FormGroupComponent extends Component {
             </FormGroup>
           </Col>
 
-          <Col md={6}>
+
+          <Col md={12}>
+          <Alert color="success">
+           Masukkan Aturan Jadwal Siang atau Jadwal Shift 2
+          </Alert>
+          </Col>
+
+          <Col md={3}>
             <FormGroup>
               <Field
                 type="time"
@@ -141,7 +160,7 @@ class FormGroupComponent extends Component {
             </FormGroup>
           </Col>
 
-          <Col md={6}>
+          <Col md={3}>
             <FormGroup>
               <Field
                 type="time"
@@ -152,7 +171,7 @@ class FormGroupComponent extends Component {
             </FormGroup>
           </Col>
 
-          <Col md={6}>
+          <Col md={3}>
             <FormGroup>
               <Field
                 type="time"
@@ -163,7 +182,7 @@ class FormGroupComponent extends Component {
             </FormGroup>
           </Col>
 
-          <Col md={6}>
+          <Col md={3}>
             <FormGroup>
               <Field
                 type="time"
@@ -174,7 +193,14 @@ class FormGroupComponent extends Component {
             </FormGroup>
           </Col>
 
-          <Col md={6}>
+          
+          <Col md={12}>
+          <Alert color="warning">
+           Masukkan Aturan Jadwal Sore atau Jadwal Shift 3
+          </Alert>
+          </Col>
+
+          <Col md={3}>
             <FormGroup>
               <Field
                 type="time"
@@ -185,7 +211,7 @@ class FormGroupComponent extends Component {
             </FormGroup>
           </Col>
 
-          <Col md={6}>
+          <Col md={3}>
             <FormGroup>
               <Field
                 type="time"
@@ -196,7 +222,7 @@ class FormGroupComponent extends Component {
             </FormGroup>
           </Col>
 
-          <Col md={6}>
+          <Col md={3}>
             <FormGroup>
               <Field
                 type="time"
@@ -207,7 +233,7 @@ class FormGroupComponent extends Component {
             </FormGroup>
           </Col>
 
-          <Col md={6}>
+          <Col md={3}>
             <FormGroup>
               <Field
                 type="time"
@@ -218,7 +244,14 @@ class FormGroupComponent extends Component {
             </FormGroup>
           </Col>
 
-          <Col md={6}>
+
+          <Col md={12}>
+          <Alert color="info">
+           Masukkan Hari Libur Dan Komponen Gaji
+          </Alert>
+          </Col>
+
+          <Col md={3}>
             <FormGroup>
               <Field
                 type="text"
@@ -229,7 +262,7 @@ class FormGroupComponent extends Component {
             </FormGroup>
           </Col>
 
-          <Col md={6}>
+          <Col md={3}>
             <FormGroup>
               <Field
                 type="number"
@@ -240,7 +273,7 @@ class FormGroupComponent extends Component {
             </FormGroup>
           </Col>
 
-          <Col md={6}>
+          <Col md={3}>
             <FormGroup>
               <Field
                 type="number"
@@ -251,7 +284,7 @@ class FormGroupComponent extends Component {
             </FormGroup>
           </Col>
 
-          <Col md={6}>
+          <Col md={3}>
             <FormGroup>
               <Field
                 type="number"

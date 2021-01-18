@@ -41,7 +41,7 @@ const mapStateToProps = (state) => {
       RoleUser : state.users.getUserDetail.RoleUser,
       UserID : state.users.getUserDetail.UserID,
       Pass : state.users.getUserDetail.Pass,
-      IdGroups : state.users.getUserDetail.IdGroups,
+      GroupID : state.users.getUserDetail.GroupID,
       KodeCabang : state.users.getUserDetail.KodeCabang,
     }
   };
@@ -100,9 +100,9 @@ class FormComponent extends Component {
             <FormGroup>
               <Field
                 type="text"
-                name="IdGroups"
+                name="GroupID"
                 component={renderField}
-                label="IdGroups :"
+                label="GroupID :"
               />
             </FormGroup>
           </Col>
