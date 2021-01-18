@@ -1,10 +1,11 @@
 import React, { Component } from "react";
-import { Container } from "reactstrap";
+import { Container,Col,Row,Alert } from "reactstrap";
 import BackComponent from "../components/BackComponent";
 import FormComponent from "../components/FormComponent";
 import { connect } from "react-redux";
 import { postUserCreate } from "../actions/userAction";
 import swal from "sweetalert";
+import InfoMenuPegawai from "../components/InfoMenuPegawai";
 
 const mapStateToProps = (state) => {
   return {
@@ -40,9 +41,21 @@ class CreateUserContainer extends Component {
     }
     return (
       <Container>
-        <BackComponent />
-        <h1>Tambah Pegawai</h1>
+           <Row>
+         <Col md={1}>
+          <BackComponent/>
+         </Col>
+         <Col md={11}>
+          <Alert color="warning" >
+           <h4 >Menu Tambah Pegawai</h4>
+          </Alert>
+          </Col>
+        </Row>
+        <InfoMenuPegawai/>
+        <Alert color="warning" ></Alert>        
+        <h4>Form Tambah Pegawai</h4>
         <FormComponent onSubmit={(data) => this.handleSubmit(data)} />
+        <Alert color="warning" ></Alert> 
       </Container>
     );
   }

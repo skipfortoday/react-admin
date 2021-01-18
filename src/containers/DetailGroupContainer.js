@@ -30,6 +30,7 @@ class DetailGroupContainer extends Component {
           </Container>
         </Alert>
         <DetailGroupComponent />
+        <Alert color="warning" ></Alert>
       </Container>
     );
   }

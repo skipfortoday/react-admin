@@ -3,6 +3,8 @@ import { reduxForm, Field } from "redux-form";
 import { connect } from "react-redux";
 import { FormGroup, Col, Label, Input, Row, Button, Alert } from "reactstrap";
 import GroupValidation from "../validations/GroupValidation";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSave } from "@fortawesome/free-solid-svg-icons";
 
 const renderField = ({
   input,
@@ -300,11 +302,11 @@ class FormGroupComponent extends Component {
           <Col md="12">
             <FormGroup>
               <Button
-                color="dark"
+                color="primary"
                 type="submit"
                 disabled={this.props.submitting}
               >
-                Submit
+               <FontAwesomeIcon icon={faSave} /> SIMPAN
               </Button>
             </FormGroup>
           </Col>

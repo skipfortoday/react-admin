@@ -41,7 +41,7 @@ class CreateGroupContainer extends Component {
     }
     return (
       <Container>
-          <Row>
+        <Row>
          <Col md={1}>
           <BackGroup />
          </Col>
@@ -55,6 +55,7 @@ class CreateGroupContainer extends Component {
         <Alert color="warning" ></Alert>        
         <h2>Form Tambah Group Pegawai</h2>
         <FormGroupComponent onSubmit={(data) => this.handleSubmit(data)} />
+        <Alert color="warning" ></Alert>
       </Container>
     );
   }

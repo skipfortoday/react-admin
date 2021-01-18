@@ -3,6 +3,8 @@ import { reduxForm, Field } from "redux-form";
 import { connect } from "react-redux";
 import { FormGroup, Col, Label, Input, Row, Button } from "reactstrap";
 import UserValidation from "../validations/UserValidation";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSave } from "@fortawesome/free-solid-svg-icons";
 
 const renderField = ({
   input,
@@ -58,45 +60,23 @@ class FormComponent extends Component {
                 type="text"
                 name="Nama"
                 component={renderField}
-                label="Nama :"
+                label="Nama Pegawai :"
               />
             </FormGroup>
           </Col>
 
-          <Col md={6}>
+          <Col md={1}>
             <FormGroup>
               <Field
-                type="text"
+                type="number"
                 name="RoleUser"
                 component={renderField}
                 label="Role :"
               />
             </FormGroup>
           </Col>
-
-          <Col md={6}>
-            <FormGroup>
-              <Field
-                type="text"
-                name="UserID"
-                component={renderField}
-                label="UserID :"
-              />
-            </FormGroup>
-          </Col>
-
-          <Col md={6}>
-            <FormGroup>
-              <Field
-                type="text"
-                name="Pass"
-                component={renderField}
-                label="Pass :"
-              />
-            </FormGroup>
-          </Col>
-
-          <Col md={6}>
+          
+          <Col md={2}>
             <FormGroup>
               <Field
                 type="text"
@@ -106,8 +86,8 @@ class FormComponent extends Component {
               />
             </FormGroup>
           </Col>
-
-          <Col md={6}>
+          
+          <Col md={2}>
             <FormGroup>
               <Field
                 type="text"
@@ -118,6 +98,31 @@ class FormComponent extends Component {
             </FormGroup>
           </Col>
 
+          <Col md={6}>
+            <FormGroup>
+              <Field
+                type="text"
+                name="UserID"
+                component={renderField}
+                label="UserID:"
+              />
+            </FormGroup>
+          </Col>
+
+          <Col md={6}>
+            <FormGroup>
+              <Field
+                type="number"
+                name="Pass"
+                component={renderField}
+                label="PIN Password :"
+              />
+            </FormGroup>
+          </Col>
+
+
+          
+
 
 
 
@@ -126,11 +131,11 @@ class FormComponent extends Component {
           <Col md="12">
             <FormGroup>
               <Button
-                color="dark"
+                color="primary"
                 type="submit"
                 disabled={this.props.submitting}
               >
-                Submit
+                <FontAwesomeIcon icon={faSave} /> SIMPAN
               </Button>
             </FormGroup>
           </Col>

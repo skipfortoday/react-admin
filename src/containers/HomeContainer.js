@@ -32,6 +32,7 @@ class HomeContainer extends Component {
         <InfoHomePegawai/>
         <Alert color="warning" ></Alert>
         <TableComponent />
+        <Alert color="warning" ></Alert>
       </Container>
     );
   }

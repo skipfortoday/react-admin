@@ -33,6 +33,7 @@ class GroupContainer extends Component {
         <InfoHomeGroup/>
         <Alert color="warning" ></Alert>
         <GroupComponent />
+        <Alert color="warning" ></Alert>
       </Container>
     );
   }

@@ -54,6 +54,7 @@ class EditGroupContainer extends Component {
         <Alert color="warning" ></Alert>
         <h2>Form Edit Group Pegawai</h2>    
        <FormGroupComponent onSubmit={(data) => this.handleSubmit(data)} />
+       <Alert color="warning" ></Alert>
       </Container>
     );
   }
