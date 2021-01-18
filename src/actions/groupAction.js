@@ -124,7 +124,7 @@ export const deleteGroup = (GroupID) => {
   return (dispatch) => {
     axios
       .delete(
-         "http://192.168.1.100:3001/api/user/"+GroupID
+         "http://192.168.1.100:3001/api/group/"+GroupID
       )
       .then(function (response) {
         console.log(response);
