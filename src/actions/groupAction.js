@@ -93,7 +93,7 @@ export const putGroupUpdate = (data, GroupID) => {
   return (dispatch) => {
     axios
       .put(
-        "http://192.168.1.100:3001/api/user/"+GroupID,
+        "http://192.168.1.100:3001/api/group/"+GroupID,
         data
       )
       .then(function (response) {
