@@ -14,11 +14,15 @@ const GroupValidation = (values) => {
     }
   
     if (!values.JamPulang || values.JamPulang === "") {
-      errors.JamPulang = "Password harus diisi";
+      errors.JamPulang = "Jam Pulang Pagi harus diisi";
     }
   
-    if (!values.HariLibur || values.HariLibur === "") {
-      errors.HariLibur = "Hari Libur harus diisi";
+    if (!values.MaxJamDatang || values.MaxJamDatang === "") {
+      errors.MaxJamDatang = "Max Jam Datang Pagi Harus diisi ";
+    }
+
+    if (!values.MinJamLembur || values.MinJamLembur === "") {
+      errors.MinJamLembur = "Min Jam Lembur Pagi Harus diisi ";
     }
   
     return errors;
