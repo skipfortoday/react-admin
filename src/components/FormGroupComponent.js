@@ -268,7 +268,7 @@ class FormGroupComponent extends Component {
                 type="number"
                 name="RpLemburPerJam"
                 component={renderField}
-                label="Lembur Perjam :"
+                label="Rupiah Lembur Perjam :"
               />
             </FormGroup>
           </Col>
@@ -279,7 +279,7 @@ class FormGroupComponent extends Component {
                 type="number"
                 name="RpPotonganTerlambat"
                 component={renderField}
-                label="Potongan Terlambat :"
+                label="Rupiah Potongan Terlambat :"
               />
             </FormGroup>
           </Col>

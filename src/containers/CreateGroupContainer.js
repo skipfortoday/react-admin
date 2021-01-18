@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import { Container } from "reactstrap";
+import { Container,Alert,Col,Row } from "reactstrap";
 import BackGroup from "../components/BackGroup";
+import InfoMenuGroup from "../components/InfoMenuGroup";
 import FormGroupComponent from "../components/FormGroupComponent";
 import { connect } from "react-redux";
 import { postGroupCreate } from "../actions/groupAction";
@@ -40,8 +41,19 @@ class CreateGroupContainer extends Component {
     }
     return (
       <Container>
-        <BackGroup />
-        <h1>Tambah User Group</h1>
+          <Row>
+         <Col md={1}>
+          <BackGroup />
+         </Col>
+         <Col md={11}>
+          <Alert color="warning" >
+           <h4 >Menu Tambah Group Pegawai</h4>
+          </Alert>
+          </Col>
+        </Row>
+        <InfoMenuGroup/>
+        <Alert color="warning" ></Alert>        
+        <h2>Form Tambah Group Pegawai</h2>
         <FormGroupComponent onSubmit={(data) => this.handleSubmit(data)} />
       </Container>
     );

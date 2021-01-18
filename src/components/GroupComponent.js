@@ -52,6 +52,7 @@ const mapStateToProps = (state) => {
   };
 };
 
+
 const GroupComponent = (props) => {
 
   const columns = [
@@ -89,23 +90,6 @@ const GroupComponent = (props) => {
       },
     },
     {
-      dataField: "JamDatangSiang",
-      text: "Siang Datang", 
-      sort: true,
-      headerStyle: () => {
-        return { width: "100px" };
-      },
-      
-    },
-    {
-      dataField: "JamPulangSiang",
-      text: "Siang Pulang",
-      sort: true,
-      headerStyle: () => {
-        return { width: "100px" };
-      },
-    },
-    {
       dataField: "HariLibur",
       text: "Hari Libur",
       sort: true,
@@ -123,18 +107,18 @@ const GroupComponent = (props) => {
         return (
           <div>
             <Link to={"group/detail/" + row.GroupID}>
-              <Button color="dark" className="mr-2">
+              <Button color="primary" className="mr-2">
                 <FontAwesomeIcon icon={faInfo} /> Detail
               </Button>
             </Link>
   
             <Link to={"group/edit/" + row.GroupID}>
-              <Button color="dark" className="mr-2">
+              <Button color="warning" className="mr-2">
                 <FontAwesomeIcon icon={faEdit} /> Edit
               </Button>
             </Link>
   
-            <Button color="dark" className="mr-2" onClick={() => handleClick(props.dispatch, row.GroupID)}>
+            <Button color="danger" className="mr-2" onClick={() => handleClick(props.dispatch, row.GroupID)}>
               <FontAwesomeIcon icon={faTrash} /> Delete
             </Button>
           </div>
@@ -160,8 +144,8 @@ const GroupComponent = (props) => {
               <Row>
                 <Col>
                   <Link to="group/create">
-                    <Button color="dark" className="mr-2">
-                      <FontAwesomeIcon icon={faUserPlus} /> Create Group
+                    <Button color="danger" className="mr-2">
+                      <FontAwesomeIcon icon={faUserPlus} /> Tambah Group
                     </Button>
                   </Link>
                 </Col>

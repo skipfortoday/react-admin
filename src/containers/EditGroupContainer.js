@@ -1,10 +1,11 @@
 import React, { Component } from "react";
-import { Container } from "reactstrap";
+import { Container,Alert,Col,Row } from "reactstrap";
 import BackGroup from "../components/BackGroup";
 import { connect } from "react-redux";
 import FormGroupComponent from "../components/FormGroupComponent";
 import { getGroupDetail, putGroupUpdate } from "../actions/groupAction";
 import swal from "sweetalert";
+import InfoMenuGroup from "../components/InfoMenuGroup";
 
 const mapStateToProps = (state) => {
   return {
@@ -39,9 +40,20 @@ class EditGroupContainer extends Component {
     }
     return (
       <Container>
-        <BackGroup />
-        <h1>Edit Group</h1>
-        <FormGroupComponent onSubmit={(data) => this.handleSubmit(data)} />
+        <Row>
+         <Col md={1}>
+          <BackGroup />
+         </Col>
+         <Col md={11}>
+          <Alert color="warning" >
+           <h4 >Menu Edit Group Pegawai</h4>
+          </Alert>
+          </Col>
+        </Row>
+        <InfoMenuGroup/>
+        <Alert color="warning" ></Alert>
+        <h2>Form Edit Group Pegawai</h2>    
+       <FormGroupComponent onSubmit={(data) => this.handleSubmit(data)} />
       </Container>
     );
   }

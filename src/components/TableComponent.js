@@ -99,23 +99,23 @@ const TableComponent = (props) => {
         return (
           <div>
             <Link to={"detail/" + row.UserID}>
-              <Button color="dark" className="mr-2">
+              <Button color="primary" className="mr-2">
                 <FontAwesomeIcon icon={faInfo} /> Detail
               </Button>
             </Link>
   
             <Link to={"edit/" + row.UserID}>
-              <Button color="dark" className="mr-2">
+              <Button color="warning" className="mr-2">
                 <FontAwesomeIcon icon={faEdit} /> Edit
               </Button>
             </Link>
   
-            <Button color="dark" className="mr-2" onClick={() => handleClick(props.dispatch, row.UserID)}>
+            <Button color="danger" className="mr-2" onClick={() => handleClick(props.dispatch, row.UserID)}>
               <FontAwesomeIcon icon={faTrash} /> Delete
             </Button>
             
             <Link to={"detail/" + row.UserID}>
-              <Button color="dark" className="mr-2">
+              <Button outline color="primary" className="mr-2">
                 <FontAwesomeIcon icon={faBook} /> Laporan
               </Button>
             </Link>
@@ -142,8 +142,8 @@ const TableComponent = (props) => {
               <Row>
                 <Col>
                   <Link to="/create">
-                    <Button color="dark" className="mr-2">
-                      <FontAwesomeIcon icon={faUserPlus} /> Create User
+                    <Button color="danger" className="mr-2">
+                      <FontAwesomeIcon icon={faUserPlus} /> Tambah Pegawai
                     </Button>
                   </Link>
                 </Col>

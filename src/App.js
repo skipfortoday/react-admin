@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import NavbarComponent from "./components/NavbarComponent";
-import JumbotronComponent from "./components/JumbotronComponent";
+
 import { BrowserRouter, Route } from "react-router-dom";
 import HomeContainer from "./containers/HomeContainer";
 import CreateUserContainer from "./containers/CreateUserContainer";
@@ -17,7 +17,6 @@ export default class App extends Component {
     return (
       <div>
         <NavbarComponent />
-        <JumbotronComponent />
         <BrowserRouter>
           <Route path="/" exact component={HomeContainer} />
 

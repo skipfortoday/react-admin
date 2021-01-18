@@ -20,12 +20,12 @@ const NavbarComponent = (props) => {
     <div>
       <Navbar color="faded" light expand="md">
         <Container>
-          <NavbarBrand href="/">L'viors</NavbarBrand>
+          <NavbarBrand > L'viors Attandance System ~ </NavbarBrand>
           <NavbarToggler onClick={toggle} />
           <Collapse isOpen={isOpen} navbar>
             <Nav className="mr-auto" navbar>
               <NavItem>
-                <NavLink href="/">Home</NavLink>
+                <NavLink href="/">Pegawai</NavLink>
               </NavItem>
               <NavItem>
                 <NavLink href="/">

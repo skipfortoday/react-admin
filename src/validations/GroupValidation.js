@@ -24,6 +24,7 @@ const GroupValidation = (values) => {
     if (!values.MinJamLembur || values.MinJamLembur === "") {
       errors.MinJamLembur = "Min Jam Lembur Pagi Harus diisi ";
     }
+
   
     return errors;
   };
