@@ -16,6 +16,10 @@ import EditIzinContainer from "./containers/EditIzinContainer";
 import DetailIzinContainer from "./containers/DetailIzinContainer";
 import DetailLaporanContainer from "./containers/DetailLaporanContainer";
 import LaporanContainer from "./containers/LaporanContainer";
+import CabangContainer from "./containers/CabangContainer";
+import CreateCabangContainer from "./containers/CreateCabangContainer";
+import EditCabangContainer from "./containers/EditCabangContainer";
+import DetailCabangContainer from "./containers/DetailCabangContainer";
 
 
 export default class App extends Component {
@@ -51,6 +55,14 @@ export default class App extends Component {
           <Route path="/izin/detail/:DatangID" exact component={DetailIzinContainer} />
 
           <Route path="/izin/edit/:DatangID" exact component={EditIzinContainer} />
+
+          <Route path="/cabang" exact component={CabangContainer} />
+
+          <Route path="/cabang/create" exact component={CreateCabangContainer} />
+
+          <Route path="/cabang/detail/:KodeCabang" exact component={DetailCabangContainer} />
+
+          <Route path="/cabang/edit/:KodeCabang" exact component={EditCabangContainer} />
 
         </BrowserRouter>
       </div>
