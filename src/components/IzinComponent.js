@@ -6,7 +6,7 @@ import {
   faInfo,
   faEdit,
   faTrash,
-  faUserPlus,
+  faFire,
 } from "@fortawesome/free-solid-svg-icons";
 import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
 import paginationFactory from "react-bootstrap-table2-paginator";
@@ -137,7 +137,7 @@ const IzinComponent = (props) => {
                 <Col>
                   <Link to="izin/create">
                     <Button color="danger" className="mr-2">
-                      <FontAwesomeIcon icon={faUserPlus} /> Tambah Izin
+                      <FontAwesomeIcon icon={faFire} /> Tambah Izin
                     </Button>
                   </Link>
                 </Col>

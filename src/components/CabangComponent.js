@@ -6,7 +6,7 @@ import {
   faInfo,
   faEdit,
   faTrash,
-  faUserPlus,
+  faSitemap,
 } from "@fortawesome/free-solid-svg-icons";
 import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
 import paginationFactory from "react-bootstrap-table2-paginator";
@@ -128,7 +128,7 @@ const CabangComponent = (props) => {
                 <Col>
                   <Link to="/cabang/create">
                     <Button color="danger" className="mr-2">
-                      <FontAwesomeIcon icon={faUserPlus} /> Tambah Cabang
+                      <FontAwesomeIcon icon={faSitemap} /> Tambah Cabang
                     </Button>
                   </Link>
                 </Col>
