@@ -28,7 +28,7 @@ const NavbarComponent = (props) => {
                 <NavLink href="/">Pegawai</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href="/">
+                <NavLink href="/izin">
                   Izin
                 </NavLink>
               </NavItem>
