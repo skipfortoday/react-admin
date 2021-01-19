@@ -14,7 +14,7 @@ const UserValidation = (values) => {
     }
   
     if (!values.Keterangan || values.Keterangan === "") {
-      errors.Keterangan = "keterangan izin harus diisi";
+      errors.Keterangan = "Keterangan izin harus diisi";
     }
   
     return errors;
