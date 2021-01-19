@@ -1,8 +1,9 @@
 import React, { Component } from "react";
-import { Container } from "reactstrap";
+import { Container,Alert,Row,Col } from "reactstrap";
 import BackComponent from "../components/BackComponent";
 import { connect } from "react-redux";
 import FormComponent from "../components/FormComponent";
+import InfoMenuPegawai from "../components/InfoMenuPegawai";
 import { getUserDetail, putUserUpdate } from "../actions/userAction";
 import swal from "sweetalert";
 
@@ -39,9 +40,21 @@ class EditUserContainer extends Component {
     }
     return (
       <Container>
-        <BackComponent />
-        <h1>Edit User</h1>
+        <Row>
+         <Col md={1}>
+          <BackComponent/>
+         </Col>
+         <Col md={11}>
+          <Alert color="warning" >
+           <h4 >Menu Detail Pegawai</h4>
+          </Alert>
+          </Col>
+        </Row>
+        <InfoMenuPegawai/>
+        <Alert color="warning" ></Alert>        
+        <h4>Table Detail Pegawai</h4>
         <FormComponent onSubmit={(data) => this.handleSubmit(data)} />
+        <Alert color="warning" ></Alert>
       </Container>
     );
   }

@@ -28,6 +28,7 @@ class DetailUserContainer extends Component {
         <Alert color="warning" ></Alert>        
         <h4>Table Detail Pegawai</h4>
         <DetailUserComponent />
+        <Alert color="warning" ></Alert> 
   
       </Container>
     );
