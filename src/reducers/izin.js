@@ -26,7 +26,7 @@ import {
       case GET_IZIN_DETAIL:
         return {
           ...state,
-          getizinDetail: action.payload.data,
+          getIzinDetail: action.payload.data,
           errorIzinDetail: action.payload.errorMessage,
         };
   

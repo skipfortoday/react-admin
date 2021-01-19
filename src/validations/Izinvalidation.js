@@ -1,4 +1,4 @@
-const UserValidation = (values) => {
+const IzinValidation = (values) => {
     const errors = {};
   
     if (!values.Nama || values.Nama === "") {
@@ -20,5 +20,5 @@ const UserValidation = (values) => {
     return errors;
   };
   
-  export default UserValidation;
+  export default IzinValidation;
   
