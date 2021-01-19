@@ -2,36 +2,29 @@ import React from "react";
 import BootstrapTable from "react-bootstrap-table-next";
 import { Container, Button, Row, Col, Spinner } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faInfo,
-  faEdit,
-  faTrash,
-  faUserPlus,
-  faBook,
-} from "@fortawesome/free-solid-svg-icons";
+import {faUserPlus} from "@fortawesome/free-solid-svg-icons";
 import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
 import paginationFactory from "react-bootstrap-table2-paginator";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import swal from "sweetalert";
 
 const { SearchBar } = Search;
 
 const defaultSorted = [
   {
-    dataField: "DatangID",
+    dataField: "UserID",
     order: "asc",
   },
 ];
 
 const mapStateToProps = (state) => {
   return {
-    getLaporanList: state.Laporan.getLaporanList,
-    errorLAporanList: state.Laporan.errorLaporanList,
+    getLaporanDetail: state.Laporan.getLaporanDetail,
+    errorLAporanDetail: state.Laporan.errorLaporanDetail,
   };
 };
 
-const LaporanComponent = (props) => {
+const DetailLaporanComponent = (props) => {
   const columns = [
     {
       dataField: "UserID",
@@ -109,11 +102,11 @@ const LaporanComponent = (props) => {
 
   return (
     <Container>
-      {props.getLaporanList ? (
+      {props.getLaporanDetail ? (
         <ToolkitProvider
           bootstrap4
           keyField="UserID"
-          data={props.getLaporanList}
+          data={props.getLaporanDetail}
           columns={columns}
           defaultSorted={defaultSorted}
           search
@@ -144,8 +137,8 @@ const LaporanComponent = (props) => {
         </ToolkitProvider>
       ) : (
         <div className="text-center">
-          {props.errorLaporanList ? (
-            <h4>{props.errorLaporanList}</h4>
+          {props.errorLaporanDetail ? (
+            <h4>{props.errorLaporanDetail}</h4>
           ) : (
             <Spinner color="dark" />
           )}
@@ -155,4 +148,4 @@ const LaporanComponent = (props) => {
   );
 };
 
-export default connect(mapStateToProps, null)(LaporanComponent);
+export default connect(mapStateToProps, null)(DetailLaporanComponent);
