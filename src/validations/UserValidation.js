@@ -17,8 +17,8 @@ const UserValidation = (values) => {
     errors.Pass = "Password harus diisi";
   }
 
-  if (!values.IdGroups || values.IdGroups === "") {
-    errors.IdGroups = "Id Groups harus diisi";
+  if (!values.GroupID || values.GroupID === "") {
+    errors.GroupID = "Group ID harus diisi";
   }
 
   return errors;
