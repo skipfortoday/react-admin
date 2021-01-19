@@ -1,19 +1,19 @@
 import axios from "axios";
 
-export const GET_GROUP_LIST = "GET_GROUP_LIST";
-export const GET_GROUP_DETAIL = "GET_GROUP_DETAIL";
-export const POST_GROUP_CREATE = "POST_GROUP_CREATE";
-export const PUT_GROUP_EDIT = "PUT_GROUP_EDIT";
+export const GET_CABANG_LIST = "GET_CABANG_LIST";
+export const GET_CABANG_DETAIL = "GET_CABANG_DETAIL";
+export const POST_CABANG_CREATE = "POST_CABANG_CREATE";
+export const PUT_CABANG_EDIT = "PUT_CABANG_EDIT";
 
 
 
-export const getGroupList = () => {
+export const getCabangList = () => {
   return (dispatch) => {
     axios
-      .get("http://192.168.1.100:3001/api/group")
+      .get("http://192.168.1.100:3001/api/cabang")
       .then(function (response) {
         dispatch({
-          type: GET_GROUP_LIST,
+          type: GET_CABANG_LIST,
           payload: {
             data: response.data,
             errorMessage: false,
@@ -22,7 +22,7 @@ export const getGroupList = () => {
       })
       .catch(function (error) {
         dispatch({
-          type: GET_GROUP_LIST,
+          type: GET_CABANG_LIST,
           payload: {
             data: false,
             errorMessage: error.message,
@@ -32,15 +32,15 @@ export const getGroupList = () => {
   };
 };
 
-export const getGroupDetail = (GroupID) => {
+export const getCabangDetail = (KodeCabang) => {
   return (dispatch) => {
     axios
       .get(
-        "http://192.168.1.100:3001/api/group/"+GroupID
+        "http://192.168.1.100:3001/api/cabang/"+KodeCabang
       )
       .then(function (response) {
         dispatch({
-          type: GET_GROUP_DETAIL,
+          type: GET_CABANG_DETAIL,
           payload: {
             data: response.data,
             errorMessage: false,
@@ -49,7 +49,7 @@ export const getGroupDetail = (GroupID) => {
       })
       .catch(function (error) {
         dispatch({
-          type: GET_GROUP_DETAIL,
+          type: GET_CABANG_DETAIL,
           payload: {
             data: false,
             errorMessage: error.message,
@@ -59,18 +59,18 @@ export const getGroupDetail = (GroupID) => {
   };
 };
 
-export const postGroupCreate = (data) => {
+export const postCabangCreate = (data) => {
   return (dispatch) => {
     axios
       .post(
-         "http://192.168.1.100:3001/api/group/",
+         "http://192.168.1.100:3001/api/cabang/",
         data
       )
       .then(function (response) {
         console.log(response);
         
         dispatch({
-          type: POST_GROUP_CREATE,
+          type: POST_CABANG_CREATE,
           payload: {
             data: response.data,
             errorMessage: false,
@@ -79,7 +79,7 @@ export const postGroupCreate = (data) => {
       })
       .catch(function (error) {
         dispatch({
-          type: POST_GROUP_CREATE,
+          type: POST_CABANG_CREATE,
           payload: {
             data: false,
             errorMessage: error.message,
@@ -89,18 +89,18 @@ export const postGroupCreate = (data) => {
   };
 };
 
-export const putGroupUpdate = (data, GroupID) => {
+export const putCabangUpdate = (data, KodeCabang) => {
   return (dispatch) => {
     axios
       .put(
-        "http://192.168.1.100:3001/api/group/"+GroupID,
+        "http://192.168.1.100:3001/api/cabang/"+KodeCabang,
         data
       )
       .then(function (response) {
         console.log(response);
         
         dispatch({
-          type: PUT_GROUP_EDIT,
+          type: PUT_CABANG_EDIT,
           payload: {
             data: response.data,
             errorMessage: false,
@@ -109,7 +109,7 @@ export const putGroupUpdate = (data, GroupID) => {
       })
       .catch(function (error) {
         dispatch({
-          type: PUT_GROUP_EDIT,
+          type: PUT_CABANG_EDIT,
           payload: {
             data: false,
             errorMessage: error.message,
@@ -120,11 +120,11 @@ export const putGroupUpdate = (data, GroupID) => {
 };
 
 
-export const deleteGroup = (GroupID) => {
+export const deleteCabang = (KodeCabang) => {
   return (dispatch) => {
     axios
       .delete(
-         "http://192.168.1.100:3001/api/group/"+GroupID
+         "http://192.168.1.100:3001/api/cabang/"+KodeCabang
       )
       .then(function (response) {
         console.log(response);
@@ -138,10 +138,10 @@ export const deleteGroup = (GroupID) => {
 };
 
 
-export const deleteDataGroup = () => {
+export const deleteDataCabang = () => {
   return (dispatch) => {
     dispatch({
-      type: GET_GROUP_DETAIL,
+      type: GET_CABANG_DETAIL,
       payload: {
         data: false,
         errorMessage: false,
@@ -150,7 +150,7 @@ export const deleteDataGroup = () => {
 
 
     dispatch({
-      type: POST_GROUP_CREATE,
+      type: POST_CABANG_CREATE,
       payload: {
         data: false,
         errorMessage: false,
