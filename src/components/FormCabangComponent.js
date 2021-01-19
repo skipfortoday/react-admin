@@ -53,7 +53,7 @@ class FormCabangComponent extends Component {
     return (
       <form onSubmit={this.props.handleSubmit}>
         <FormGroup row>
-          <Col md={6}>
+          <Col md={2}>
             <FormGroup>
               <Field
                 type="text"
@@ -64,7 +64,7 @@ class FormCabangComponent extends Component {
             </FormGroup>
           </Col>
 
-          <Col md={1}>
+          <Col md={3}>
             <FormGroup>
               <Field
                 type="text"
@@ -75,7 +75,7 @@ class FormCabangComponent extends Component {
             </FormGroup>
           </Col>
 
-          <Col md={2}>
+          <Col md={6}>
             <FormGroup>
               <Field
                 type="text"
@@ -97,7 +97,7 @@ class FormCabangComponent extends Component {
             </FormGroup>
           </Col>
 
-          <Col md={6}>
+          <Col md={2}>
             <FormGroup>
               <Field
                 type="text"

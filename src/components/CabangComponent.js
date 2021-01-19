@@ -7,7 +7,6 @@ import {
   faEdit,
   faTrash,
   faUserPlus,
-  faBook,
 } from "@fortawesome/free-solid-svg-icons";
 import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
 import paginationFactory from "react-bootstrap-table2-paginator";
@@ -61,7 +60,7 @@ const CabangComponent = (props) => {
       text: "KodeCabang",
       sort: true,
       headerStyle: () => {
-        return { width: "100px" };
+        return { width: "75px" };
       },
     },
     {
@@ -69,7 +68,7 @@ const CabangComponent = (props) => {
       text: "Nama Cabang",
       sort: true,
       headerStyle: () => {
-        return { width: "80px" };
+        return { width: "100px" };
       },
     },
     {
@@ -77,7 +76,7 @@ const CabangComponent = (props) => {
       text: "Alamat Cabang", 
       sort: true,
       headerStyle: () => {
-        return { width: "175px" };
+        return { width: "200px" };
       },
       
     },
@@ -85,18 +84,18 @@ const CabangComponent = (props) => {
       dataField: "link",
       text: "Action",
       headerStyle: () => {
-        return { width: "300px" };
+        return { width: "150px" };
       },
       formatter: (rowContent, row) => {
         return (
           <div>
-            <Link to={"detail/" + row.KodeCabang}>
+            <Link to={"cabang/detail/" + row.KodeCabang}>
               <Button color="primary" className="mr-2">
                 <FontAwesomeIcon icon={faInfo} /> Detail
               </Button>
             </Link>
   
-            <Link to={"edit/" + row.KodeCabang}>
+            <Link to={"cabang/edit/" + row.KodeCabang}>
               <Button color="warning" className="mr-2">
                 <FontAwesomeIcon icon={faEdit} /> Edit
               </Button>
@@ -105,12 +104,6 @@ const CabangComponent = (props) => {
             <Button color="danger" className="mr-2" onClick={() => handleClick(props.dispatch, row.KodeCabang)}>
               <FontAwesomeIcon icon={faTrash} /> Delete
             </Button>
-            
-            <Link to={"laporan/" + row.KodeCabang}>
-              <Button outline color="primary" className="mr-2">
-                <FontAwesomeIcon icon={faBook} /> Laporan
-              </Button>
-            </Link>
           </div>
         );
       },
@@ -133,9 +126,9 @@ const CabangComponent = (props) => {
             <div>
               <Row>
                 <Col>
-                  <Link to="/create">
+                  <Link to="/cabang/create">
                     <Button color="danger" className="mr-2">
-                      <FontAwesomeIcon icon={faUserPlus} /> Tambah Pegawai
+                      <FontAwesomeIcon icon={faUserPlus} /> Tambah Cabang
                     </Button>
                   </Link>
                 </Col>
