@@ -48,7 +48,7 @@ const mapStateToProps = (state) => {
   };
 };
 
-class CabangComponent extends Component {
+class FormCabangComponent extends Component {
   render() {
     return (
       <form onSubmit={this.props.handleSubmit}>
@@ -126,9 +126,9 @@ class CabangComponent extends Component {
   }
 }
 
-CabangComponent = reduxForm({
+FormCabangComponent = reduxForm({
   form: "formCreateCabang",
   validate: CabangValidation,
   enableReinitialize: true,
-})(CabangComponent);
-export default connect(mapStateToProps, null)(CabangComponent);
+})(FormCabangComponent);
+export default connect(mapStateToProps, null)(FormCabangComponent);
