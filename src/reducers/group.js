@@ -12,7 +12,6 @@ import {
     errorGroupDetail: false,
     getResponDataGroup: false,
     errorResponDataGroup: false,
-    title: "System Absensi",
   };
   
   const Group = (state = initialState, action) => {
