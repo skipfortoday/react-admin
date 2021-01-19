@@ -14,7 +14,7 @@ class DetailUserContainer extends Component {
   render() {
     return (
       <Container>
-          <Row>
+        <Row>
          <Col md={1}>
           <BackComponent/>
          </Col>

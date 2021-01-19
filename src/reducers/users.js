@@ -12,7 +12,6 @@ let initialState = {
   errorUserDetail: false,
   getResponDataUser: false,
   errorResponDataUser: false,
-  title: "System Absensi",
 };
 
 const users = (state = initialState, action) => {

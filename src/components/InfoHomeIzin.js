@@ -3,7 +3,7 @@ import { Row, Col, Alert} from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faJournalWhills } from "@fortawesome/free-solid-svg-icons";
 
-const InfoHomePegawai = () => {
+const InfoHomeIzin = () => {
   return (
     <Row className="mb-12">
       <Col>
@@ -28,4 +28,4 @@ const InfoHomePegawai = () => {
   );
 }; 
 
-export default InfoHomePegawai;
+export default InfoHomeIzin;
