@@ -13,7 +13,7 @@ import paginationFactory from "react-bootstrap-table2-paginator";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import swal from 'sweetalert';
-import { deleteIzin } from "../actions/IzinAction";
+import { deleteIzin } from "../actions/izinAction";
 
 const { SearchBar } = Search;
 

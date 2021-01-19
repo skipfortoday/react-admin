@@ -3,7 +3,7 @@ import { Container,Alert,Col,Row } from "reactstrap";
 import BackIzin from "../components/BackIzin";
 import { connect } from "react-redux";
 import FormIzinComponent from "../components/FormIzinComponent";
-import { getIzinDetail, putIzinUpdate } from "../actions/IzinAction";
+import { getIzinDetail, putIzinUpdate } from "../actions/izinAction";
 import swal from "sweetalert";
 import InfoMenuIzin from "../components/InfoMenuIzin";
 

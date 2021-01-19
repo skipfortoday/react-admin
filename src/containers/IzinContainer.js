@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faListAlt } from "@fortawesome/free-solid-svg-icons";
 import IzinComponent from "../components/IzinComponent";
 import { connect } from "react-redux";
-import { getIzinList, deleteDataIzin } from "../actions/IzinAction";
+import { getIzinList, deleteDataIzin } from "../actions/izinAction";
 import InfoHomeIzin from "../components/InfoHomeIzin";
 
 class IzinContainer extends Component {

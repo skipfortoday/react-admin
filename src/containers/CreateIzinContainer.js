@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import { Container,Alert,Col,Row } from "reactstrap";
-import BackIzin from "../components/Backizin";
+import BackIzin from "../components/BackIzin";
 import InfoMenuIzin from "../components/InfoMenuIzin";
 import FormIzinComponent from "../components/FormIzinComponent";
 import { connect } from "react-redux";
-import { postIzinCreate } from "../actions/IzinAction";
+import { postIzinCreate } from "../actions/izinAction";
 import swal from "sweetalert";
 
 const mapStateToProps = (state) => {
