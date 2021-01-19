@@ -114,7 +114,7 @@ const TableComponent = (props) => {
               <FontAwesomeIcon icon={faTrash} /> Delete
             </Button>
             
-            <Link to={"detail/" + row.UserID}>
+            <Link to={"laporan/" + row.UserID}>
               <Button outline color="primary" className="mr-2">
                 <FontAwesomeIcon icon={faBook} /> Laporan
               </Button>
