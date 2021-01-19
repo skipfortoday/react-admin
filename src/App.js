@@ -14,6 +14,8 @@ import IzinContainer from "./containers/IzinContainer";
 import CreateIzinContainer from "./containers/CreateIzinContainer";
 import EditIzinContainer from "./containers/EditIzinContainer";
 import DetailIzinContainer from "./containers/DetailIzinContainer";
+import DetailLaporanContainer from "./containers/DetailLaporanContainer";
+import LaporanContainer from "./containers/LaporanContainer";
 
 
 export default class App extends Component {
@@ -29,6 +31,10 @@ export default class App extends Component {
           <Route path="/detail/:UserID" exact component={DetailUserContainer} />
 
           <Route path="/edit/:UserID" exact component={EditUserContainer} />
+
+          <Route path="/laporan/:UserID" exact component={LaporanContainer} />
+
+          <Route path="/laporan/:UserID:TglIn:TglOut" exact component={DetailLaporanContainer} />
 
           <Route path="/group" exact component={GroupContainer} />
 
