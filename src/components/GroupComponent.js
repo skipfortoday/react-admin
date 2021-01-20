@@ -7,6 +7,7 @@ import {
   faEdit,
   faTrash,
   faUsersCog,
+  faPlus,
 } from "@fortawesome/free-solid-svg-icons";
 import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
 import paginationFactory from "react-bootstrap-table2-paginator";
@@ -145,7 +146,7 @@ const GroupComponent = (props) => {
                 <Col>
                   <Link to="group/create">
                     <Button color="danger" className="mr-2">
-                      <FontAwesomeIcon icon={faUsersCog} /> Tambah Group
+                      <FontAwesomeIcon icon={faUsersCog} /> Tambah Group <FontAwesomeIcon icon={faPlus} />
                     </Button>
                   </Link>
                 </Col>

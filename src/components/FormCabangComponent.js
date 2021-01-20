@@ -42,7 +42,7 @@ const mapStateToProps = (state) => {
       KodeCabang: state.Cabang.getCabangDetail.KodeCabang,
       NamaCabang: state.Cabang.getCabangDetail.NamaCabang,
       Alamat: state.Cabang.getCabangDetail.Alamat,
-      GeneralManagerID: state.Cabang.getCabangDetail.Pass,
+      GeneralManagerID: state.Cabang.getCabangDetail.GeneralManagerID,
       hrdID: state.Cabang.getCabangDetail.hrdID,
     },
   };
