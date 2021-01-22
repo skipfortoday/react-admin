@@ -34,11 +34,6 @@ const DetailUserComponent = (props) => {
           <td>{props.getUserDetail.TglMasuk}</td>
         </tr>
         <tr>
-          <td width="200">Role User</td>
-          <td width="10">:</td>
-          <td>{props.getUserDetail.RoleUser}</td>
-        </tr>
-        <tr>
           <td width="200">ID Groups</td>
           <td width="10">:</td>
           <td>{props.getUserDetail.GroupID}</td>

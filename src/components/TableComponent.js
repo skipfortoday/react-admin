@@ -65,30 +65,23 @@ const TableComponent = (props) => {
       },
     },
     {
-      dataField: "Jabatan",
-      text: "Group",
-      sort: true,
-      headerStyle: () => {
-        return { width: "80px" };
-      },
-    },
-    {
       dataField: "Nama",
       text: "Nama", 
       sort: true,
       headerStyle: () => {
-        return { width: "175px" };
+        return { width: "180px" };
       },
       
     },
     {
-      dataField: "NamaCabang",
-      text: "Cabang",
+      dataField: "Jabatan",
+      text: "Group",
       sort: true,
       headerStyle: () => {
-        return { width: "120px" };
+        return { width: "180px" };
       },
     },
+
     {
       dataField: "link",
       text: "Action",

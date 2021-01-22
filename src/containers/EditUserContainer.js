@@ -52,7 +52,7 @@ class EditUserContainer extends Component {
         </Row>
         <InfoMenuPegawai/>
         <Alert color="warning" ></Alert>        
-        <h4>Table Detail Pegawai</h4>
+        <h4>Form Edit Pegawai</h4>
         <FormComponent onSubmit={(data) => this.handleSubmit(data)} />
         <Alert color="warning" ></Alert>
       </Container>

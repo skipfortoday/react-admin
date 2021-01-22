@@ -40,11 +40,11 @@ const mapStateToProps = (state) => {
   return {
     initialValues : {
       Nama : state.users.getUserDetail.Nama,
-      RoleUser : state.users.getUserDetail.RoleUser,
       UserID : state.users.getUserDetail.UserID,
       Pass : state.users.getUserDetail.Pass,
       GroupID : state.users.getUserDetail.GroupID,
       KodeCabang : state.users.getUserDetail.KodeCabang,
+      TglMasuk : state.users.getUserDetail.TglMasuk,
     }
   };
 };
@@ -64,25 +64,14 @@ class FormComponent extends Component {
               />
             </FormGroup>
           </Col>
-
-          <Col md={1}>
-            <FormGroup>
-              <Field
-                type="number"
-                name="RoleUser"
-                component={renderField}
-                label="Role :"
-              />
-            </FormGroup>
-          </Col>
           
-          <Col md={2}>
+          <Col md={1}>
             <FormGroup>
               <Field
                 type="text"
                 name="GroupID"
                 component={renderField}
-                label="GroupID :"
+                label="Group :"
               />
             </FormGroup>
           </Col>
@@ -94,6 +83,17 @@ class FormComponent extends Component {
                 name="KodeCabang"
                 component={renderField}
                 label="Kode Cabang :"
+              />
+            </FormGroup>
+          </Col>
+
+          <Col md={3}>
+            <FormGroup>
+              <Field
+                type="date"
+                name="TglMasuk"
+                component={renderField}
+                label="Tanggal Masuk :"
               />
             </FormGroup>
           </Col>
@@ -119,12 +119,6 @@ class FormComponent extends Component {
               />
             </FormGroup>
           </Col>
-
-
-          
-
-
-
 
         </FormGroup>
         <FormGroup row>
