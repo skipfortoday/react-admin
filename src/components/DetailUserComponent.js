@@ -31,7 +31,7 @@ const DetailUserComponent = (props) => {
         <tr>
           <td width="200">Tanggal Masuk</td>
           <td width="10">:</td>
-          <td>{props.getUserDetail.TglMasuk}</td>
+          <td>{props.getUserDetail.Hari}</td>
         </tr>
         <tr>
           <td width="200">ID Groups</td>
