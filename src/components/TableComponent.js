@@ -65,8 +65,8 @@ const TableComponent = (props) => {
       },
     },
     {
-      dataField: "NamaRole",
-      text: "Role",
+      dataField: "Jabatan",
+      text: "Group",
       sort: true,
       headerStyle: () => {
         return { width: "80px" };
