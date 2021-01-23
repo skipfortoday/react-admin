@@ -108,7 +108,7 @@ const TableComponent = (props) => {
             </Button>
             
             <Link to={"laporan/" + row.UserID}>
-              <Button outline color="primary" className="mr-2">
+              <Button color="info" className="mr-2">
                 <FontAwesomeIcon icon={faBook} /> Laporan
               </Button>
             </Link>

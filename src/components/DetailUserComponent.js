@@ -31,7 +31,7 @@ const DetailUserComponent = (props) => {
         <tr>
           <td width="200">Tanggal Lahir</td>
           <td width="10">:</td>
-          <td>{props.getUserDetail.LahirHari}/{props.getUserDetail.LahirBulan}/{props.getUserDetail.LahirTahun}</td>
+          <td>{props.getUserDetail.FormatTglLahir}</td>
         </tr>
         <tr>
           <td width="200">Alamat</td>
@@ -61,17 +61,17 @@ const DetailUserComponent = (props) => {
         <tr>
           <td width="200">Tanggal Masuk Kerja</td>
           <td width="10">:</td>
-          <td>{props.getUserDetail.MasukHari}/{props.getUserDetail.MasukBulan}/{props.getUserDetail.MasukTahun}</td>
+          <td>{props.getUserDetail.FormatTglMasuk}</td>
         </tr>
         <tr>
           <td width="200">Tanggal Awal Kontrak</td>
           <td width="10">:</td>
-          <td>{props.getUserDetail.KontrakHari}/{props.getUserDetail.KontrakBulan}/{props.getUserDetail.KontrakTahun}</td>
+          <td>{props.getUserDetail.FormatTglAwalKontrakPertama}</td>
         </tr>
         <tr>
           <td width="200">Tanggal Mulai Cuti</td>
           <td width="10">:</td>
-          <td>{props.getUserDetail.CutiHari}/{props.getUserDetail.CutiBulan}/{props.getUserDetail.CutiTahun}</td>
+          <td>{props.getUserDetail.FormatTglMulaiCuti}</td>
         </tr>
         <tr>
           <td width="200">Tampilkan Lembur</td>
@@ -86,7 +86,7 @@ const DetailUserComponent = (props) => {
         <tr>
           <td width="200">Tanggal Keluar</td>
           <td width="10">:</td>
-          <td>{props.getUserDetail.KeluarHari}/{props.getUserDetail.KeluarBulan}/{props.getUserDetail.KeluarTahun}</td>
+          <td>{props.getUserDetail.FormatTglKeluar}</td>
         </tr>
       </tbody>
     </Table>

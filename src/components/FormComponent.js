@@ -43,11 +43,12 @@ const mapStateToProps = (state) => {
       Pass          : state.users.getUserDetail.Pass, 
       Nama          : state.users.getUserDetail.Nama,
       Alamat        : state.users.getUserDetail.Alamat,
-	    TglLahir      : state.users.getUserDetail.TglLahir,
+	    TglLahir      : state.users.getUserDetail.FTglLahir,
     	HP            : state.users.getUserDetail.HP,
-	    TglMasuk      : state.users.getUserDetail.Tglmasuk, 
-	    TglMulaiCuti  : state.users.getUserDetail.TglMulaiCuti, 
-      TglAwalKontrakPertama : state.users.getUserDetail.TglAwalKontrakPertama, 
+      TglMasuk      : state.users.getUserDetail.FTglMasuk, 
+      TglKeluar     : state.users.getUserDetail.FTglKeluar,
+	    TglMulaiCuti  : state.users.getUserDetail.FTglMulaiCuti, 
+      TglAwalKontrakPertama : state.users.getUserDetail.FTglAwalKontrakPertama, 
       GroupID       : state.users.getUserDetail.GroupID, 
       KodeCabang    : state.users.getUserDetail.KodeCabang,   
       Status        : state.users.getUserDetail.Status,   
@@ -62,7 +63,7 @@ class FormComponent extends Component {
     return (
       <form onSubmit={this.props.handleSubmit}>
         <FormGroup row>
-          <Col md={6}>
+          <Col md={4}>
             <FormGroup>
               <Field
                 type="text"
@@ -72,8 +73,42 @@ class FormComponent extends Component {
               />
             </FormGroup>
           </Col>
-          
-          <Col md={1}>
+
+          <Col md={5}>
+            <FormGroup>
+              <Field
+                type="text"
+                name="Alamat"
+                component={renderField}
+                label="Alamat Pegawai :"
+              />
+            </FormGroup>
+          </Col>
+
+          <Col md={3}>
+            <FormGroup>
+              <Field
+                type="date"
+                name="TglLahir"
+                component={renderField}
+                label="Tanggal Lahir :"
+              />
+            </FormGroup>
+          </Col>
+
+          <Col md={2}>
+            <FormGroup>
+              <Field
+                type="number"
+                name="HP"
+                component={renderField}
+                label="Nomor HP Pegawai :"
+              />
+            </FormGroup>
+          </Col>
+
+
+          <Col md={2}>
             <FormGroup>
               <Field
                 type="text"
@@ -95,6 +130,39 @@ class FormComponent extends Component {
             </FormGroup>
           </Col>
 
+          <Col md={2}>
+            <FormGroup>
+              <Field
+                type="text"
+                name="TampilkanLembur"
+                component={renderField}
+                label="Tampilkan Lembur :"
+              />
+            </FormGroup>
+          </Col>
+
+          <Col md={2}>
+            <FormGroup>
+              <Field
+                type="text"
+                name="TampilkanTerlambat"
+                component={renderField}
+                label="Tampilkan Terlambat :"
+              />
+            </FormGroup>
+          </Col>
+
+          <Col md={2}>
+            <FormGroup>
+              <Field
+                type="number"
+                name="Status"
+                component={renderField}
+                label="Status :"
+              />
+            </FormGroup>
+          </Col>
+
           <Col md={3}>
             <FormGroup>
               <Field
@@ -102,6 +170,39 @@ class FormComponent extends Component {
                 name="TglMasuk"
                 component={renderField}
                 label="Tanggal Masuk :"
+              />
+            </FormGroup>
+          </Col>
+
+          <Col md={3}>
+            <FormGroup>
+              <Field
+                type="date"
+                name="TglAwalKontrakPertama"
+                component={renderField}
+                label="Tanggal Awal Kontrak :"
+              />
+            </FormGroup>
+          </Col>
+
+          <Col md={3}>
+            <FormGroup>
+              <Field
+                type="date"
+                name="TglMulaiCuti"
+                component={renderField}
+                label="Tanggal Mulai Cuti:"
+              />
+            </FormGroup>
+          </Col>
+
+          <Col md={3}>
+            <FormGroup>
+              <Field
+                type="date"
+                name="TglKeluar"
+                component={renderField}
+                label="Tanggal Keluar:"
               />
             </FormGroup>
           </Col>
