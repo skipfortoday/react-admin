@@ -45,8 +45,7 @@ const mapStateToProps = (state) => {
       Alamat        : state.users.getUserDetail.Alamat,
 	    TglLahir      : state.users.getUserDetail.FTglLahir,
     	HP            : state.users.getUserDetail.HP,
-      TglMasuk      : state.users.getUserDetail.FTglMasuk, 
-      TglKeluar     : state.users.getUserDetail.FTglKeluar,
+      TglMasuk      : state.users.getUserDetail.FTglMasuk,
 	    TglMulaiCuti  : state.users.getUserDetail.FTglMulaiCuti, 
       TglAwalKontrakPertama : state.users.getUserDetail.FTglAwalKontrakPertama, 
       GroupID       : state.users.getUserDetail.GroupID, 
@@ -155,7 +154,7 @@ class FormComponent extends Component {
           <Col md={2}>
             <FormGroup>
               <Field
-                type="number"
+                type="Text"
                 name="Status"
                 component={renderField}
                 label="Status :"
@@ -163,7 +162,7 @@ class FormComponent extends Component {
             </FormGroup>
           </Col>
 
-          <Col md={3}>
+          <Col md={4}>
             <FormGroup>
               <Field
                 type="date"
@@ -174,7 +173,7 @@ class FormComponent extends Component {
             </FormGroup>
           </Col>
 
-          <Col md={3}>
+          <Col md={4}>
             <FormGroup>
               <Field
                 type="date"
@@ -185,7 +184,7 @@ class FormComponent extends Component {
             </FormGroup>
           </Col>
 
-          <Col md={3}>
+          <Col md={4}>
             <FormGroup>
               <Field
                 type="date"
@@ -196,16 +195,7 @@ class FormComponent extends Component {
             </FormGroup>
           </Col>
 
-          <Col md={3}>
-            <FormGroup>
-              <Field
-                type="date"
-                name="TglKeluar"
-                component={renderField}
-                label="Tanggal Keluar:"
-              />
-            </FormGroup>
-          </Col>
+  
 
           <Col md={6}>
             <FormGroup>

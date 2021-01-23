@@ -5,8 +5,43 @@ const UserValidation = (values) => {
     errors.Nama = "Nama harus diisi";
   }
 
-  if (!values.NamaRole || values.NamaRole === "") {
-    errors.NamaRole = "Role harus diisi";
+  if (!values.Alamat || values.Alamat=== "") {
+    errors.Alamat = "Alamat harus diisi";
+  }
+
+  if (!values.TglLahir || values.TglLahir=== "") {
+    errors.TglLahir = "Tanggal Lahir harus diisi";
+  }
+
+  if (!values.HP|| values.HP=== "") {
+    errors.HP = "Nomor HP harus diisi";
+  }
+  if (!values.KodeCabang || values.KodeCabang=== "") {
+    errors.KodeCabang = "Kode harus diisi";
+  }
+
+  if (!values.TampilkanLembur || values.TampilkanLembur=== "") {
+    errors.TampilkanLembur = "Harus diisi Y/N";
+  }
+
+  if (!values.TampilkanTerlambat || values.TampilkanTerlambat=== "") {
+    errors.TampilkanTerlambat = "Harus diisi Y/N";
+  }
+
+  if (!values.Status || values.Status === "") {
+    errors.Status = "Harus diisi Y/N";
+  }
+
+  if (!values.TglMasuk || values.TglMasuk=== "") {
+    errors.TglMasuk = "Tanggal Masuk harus diisi";
+  }
+
+  if (!values.TglAwalKontrakPertama || values.TglAwalKontrakPertama=== "") {
+    errors.TglAwalKontrakPertama = "Tanggal Awal Kontrak harus diisi";
+  }
+
+  if (!values.TglMulaiCuti || values.TglAwalMulaiCuti=== "") {
+    errors.TglMulaiCuti = "Tanggal Awal Kontrak harus diisi";
   }
 
   if (!values.UserID || values.UserID === "") {
