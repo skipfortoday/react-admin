@@ -39,12 +39,20 @@ const renderField = ({
 const mapStateToProps = (state) => {
   return {
     initialValues : {
-      Nama : state.users.getUserDetail.Nama,
-      UserID : state.users.getUserDetail.UserID,
-      Pass : state.users.getUserDetail.Pass,
-      GroupID : state.users.getUserDetail.GroupID,
-      KodeCabang : state.users.getUserDetail.KodeCabang,
-      TglMasuk : state.users.getUserDetail.TglMasuk,
+      UserID        : state.users.getUserDetail.UserID,
+      Pass          : state.users.getUserDetail.Pass, 
+      Nama          : state.users.getUserDetail.Nama,
+      Alamat        : state.users.getUserDetail.Alamat,
+	    TglLahir      : state.users.getUserDetail.TglLahir,
+    	HP            : state.users.getUserDetail.HP,
+	    TglMasuk      : state.users.getUserDetail.Tglmasuk, 
+	    TglMulaiCuti  : state.users.getUserDetail.TglMulaiCuti, 
+      TglAwalKontrakPertama : state.users.getUserDetail.TglAwalKontrakPertama, 
+      GroupID       : state.users.getUserDetail.GroupID, 
+      KodeCabang    : state.users.getUserDetail.KodeCabang,   
+      Status        : state.users.getUserDetail.Status,   
+	    TampilkanLembur : state.users.getUserDetail.TampilkanLembur, 
+      TampilkanTerlambat : state.users.getUserDetail.TampilkanTerlambat,
     }
   };
 };
