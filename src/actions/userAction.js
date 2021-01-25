@@ -10,7 +10,7 @@ export const PUT_USER_EDIT = "PUT_USER_EDIT";
 export const getUsersList = () => {
   return (dispatch) => {
     axios
-      .get("http://192.168.1.100:3001/api/user")
+      .get("http://192.168.0.25:3001/api/user")
       .then(function (response) {
         dispatch({
           type: GET_USERS_LIST,
@@ -36,7 +36,7 @@ export const getUserDetail = (UserID) => {
   return (dispatch) => {
     axios
       .get(
-        "http://192.168.1.100:3001/api/user/"+UserID
+        "http://192.168.0.25:3001/api/user/"+UserID
       )
       .then(function (response) {
         dispatch({
@@ -63,7 +63,7 @@ export const postUserCreate = (data) => {
   return (dispatch) => {
     axios
       .post(
-         "http://192.168.1.100:3001/api/user/",
+         "http://192.168.0.25:3001/api/user/",
         data
       )
       .then(function (response) {
@@ -93,7 +93,7 @@ export const putUserUpdate = (data, UserID) => {
   return (dispatch) => {
     axios
       .put(
-        "http://192.168.1.100:3001/api/user/"+UserID,
+        "http://192.168.0.25:3001/api/user/"+UserID,
         data
       )
       .then(function (response) {
@@ -124,7 +124,7 @@ export const deleteUser = (UserID) => {
   return (dispatch) => {
     axios
       .delete(
-         "http://192.168.1.100:3001/api/user/"+UserID
+         "http://192.168.0.25:3001/api/user/"+UserID
       )
       .then(function (response) {
         console.log(response);

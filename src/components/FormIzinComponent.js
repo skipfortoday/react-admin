@@ -41,7 +41,7 @@ const mapStateToProps = (state) => {
     initialValues: {
       DatangID: state.Izin.getIzinDetail.DatangID,
       Nama: state.Izin.getIzinDetail.Nama,
-      TanggalScan: state.Izin.getizinDetail.TanggalScan,
+      TanggalScan: state.Izin.getIzinDetail.TanggalScan,
       Status: state.Izin.getIzinDetail.Status,
       Keterangan: state.Izin.getIzinDetail.Keterangan,
     },

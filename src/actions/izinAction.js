@@ -10,7 +10,7 @@ export const PUT_IZIN_EDIT = "PUT_IZIN_EDIT";
 export const getIzinList = () => {
   return (dispatch) => {
     axios
-      .get("http://192.168.1.100:3001/api/izin")
+      .get("http://192.168.0.25:3001/api/izin")
       .then(function (response) {
         dispatch({
           type: GET_IZIN_LIST,
@@ -36,7 +36,7 @@ export const getIzinDetail = (DatangID) => {
   return (dispatch) => {
     axios
       .get(
-        "http://192.168.1.100:3001/api/izin/"+DatangID
+        "http://192.168.0.25:3001/api/izin/"+DatangID
       )
       .then(function (response) {
         dispatch({
@@ -63,7 +63,7 @@ export const postIzinCreate = (data) => {
   return (dispatch) => {
     axios
       .post(
-         "http://192.168.1.100:3001/api/izin",
+         "http://192.168.0.25:3001/api/izin",
         data
       )
       .then(function (response) {
@@ -93,7 +93,7 @@ export const putIzinUpdate = (data, DatangID) => {
   return (dispatch) => {
     axios
       .put(
-        "http://192.168.1.100:3001/api/izin/"+DatangID,
+        "http://192.168.0.25:3001/api/izin/"+DatangID,
         data
       )
       .then(function (response) {
@@ -124,7 +124,7 @@ export const deleteIzin = (DatangID) => {
   return (dispatch) => {
     axios
       .delete(
-         "http://192.168.1.100:3001/api/izin/"+DatangID
+         "http://192.168.0.25:3001/api/izin/"+DatangID
       )
       .then(function (response) {
         console.log(response);

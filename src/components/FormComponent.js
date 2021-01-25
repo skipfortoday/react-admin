@@ -1,13 +1,14 @@
 import React, { Component } from "react";
 import { reduxForm, Field } from "redux-form";
 import { connect } from "react-redux";
-import { FormGroup, Col, Label, Input, Row, Button } from "reactstrap";
+import { FormGroup, Col, Label, Input, Row, Button, } from "reactstrap";
 import UserValidation from "../validations/UserValidation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSave } from "@fortawesome/free-solid-svg-icons";
 
 const renderField = ({
   input,
+  option,
   type,
   placeholder,
   label,
@@ -143,11 +144,17 @@ class FormComponent extends Component {
           <Col md={2}>
             <FormGroup>
               <Field
-                type="text"
+                type="select"
                 name="TampilkanTerlambat"
                 component={renderField}
+                
                 label="Tampilkan Terlambat :"
-              />
+                component="select">
+                <option />
+                <option value="ff0000">Red</option>
+                <option value="00ff00">Green</option>
+                <option value="0000ff">Blue</option>
+                </Field>
             </FormGroup>
           </Col>
 
