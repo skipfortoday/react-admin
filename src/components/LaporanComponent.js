@@ -1,8 +1,7 @@
 import React from "react";
 import BootstrapTable from "react-bootstrap-table-next";
-import { Container, Button, Row, Col, Spinner } from "reactstrap";
+import { Container, Alert, Row, Col, Spinner } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {faUserPlus} from "@fortawesome/free-solid-svg-icons";
 import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
 import paginationFactory from "react-bootstrap-table2-paginator";
 import { Link } from "react-router-dom";
@@ -12,7 +11,7 @@ const { SearchBar } = Search;
 
 const defaultSorted = [
   {
-    dataField: "UserID",
+    dataField: "TanggalScan",
     order: "asc",
   },
 ];
@@ -27,23 +26,15 @@ const mapStateToProps = (state) => {
 const LaporanComponent = (props) => {
   const columns = [
     {
-      dataField: "UserID",
-      text: "UserID",
+      dataField: "TanggalScan",
+      text: "Tanggal",
       sort: true,
       headerStyle: () => {
         return { width: "100px" };
       },
     },
     {
-      dataField: "Tanggal",
-      text: "Tanggal",
-      sort: true,
-      headerStyle: () => {
-        return { width: "80px" };
-      },
-    },
-    {
-      dataField: "Datang",
+      dataField: "ScanMasuk",
       text: "Datang",
       sort: true,
       headerStyle: () => {
@@ -51,7 +42,7 @@ const LaporanComponent = (props) => {
       },
     },
     {
-      dataField: "Pulang",
+      dataField: "ScanPulang",
       text: "Pulang",
       sort: true,
       headerStyle: () => {
@@ -82,20 +73,20 @@ const LaporanComponent = (props) => {
         return { width: "50px" };
       },
     },
-    {
-        dataField: "Status",
-        text: "Status",
-        sort: true,
-        headerStyle: () => {
-          return { width: "80px" };
-        },
-      },
       {
         dataField: "Keterangan",
         text: "Keterangan",
         sort: true,
         headerStyle: () => {
-          return { width: "200px" };
+          return { width: "100px" };
+        },
+      },
+      {
+        dataField: "KetPulang",
+        text: "KetPulang",
+        sort: true,
+        headerStyle: () => {
+          return { width: "100px" };
         },
       },
   ];
@@ -115,11 +106,10 @@ const LaporanComponent = (props) => {
             <div>
               <Row>
                 <Col>
-                  <Link to="/create">
-                    <Button color="danger" className="mr-2">
-                      <FontAwesomeIcon icon={faUserPlus} /> Tambah Pegawai
-                    </Button>
-                  </Link>
+                <Alert color="warning">
+                 Nama 
+                 </Alert>
+             
                 </Col>
                 <Col>
                   <div className="float-right">
