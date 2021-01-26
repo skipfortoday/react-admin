@@ -58,11 +58,11 @@ const IzinComponent = (props) => {
 
   const columns = [
     {
-      dataField: "DatangID",
-      text: "DatangID",
+      dataField: "TanggalIzin",
+      text: "Tanggal Izin",
       sort: true,
       headerStyle: () => {
-        return { width: "80px" };
+        return { width: "100px" };
       },
     },
     {
@@ -87,14 +87,14 @@ const IzinComponent = (props) => {
       text: "Keterangan",
       sort: true,
       headerStyle: () => {
-        return { width: "200px" };
+        return { width: "250px" };
       },
     },
     {
       dataField: "link",
       text: "Action",
       headerStyle: () => {
-        return { width: "250px" };
+        return { width: "220px" };
       },
       formatter: (rowContent, row) => {
         return (
