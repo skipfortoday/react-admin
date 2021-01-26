@@ -1,20 +1,20 @@
 import React, { Component } from "react";
 import { reduxForm, Field } from "redux-form";
 import { connect } from "react-redux";
-import { FormGroup, Col, Label, Input, Row, Button, } from "reactstrap";
+import { FormGroup, Col, Label, Input, Row, Button} from "reactstrap";
+import AsyncVUser from "../validations/AsyncVUser";
 import UserValidation from "../validations/UserValidation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSave } from "@fortawesome/free-solid-svg-icons";
 
 const renderField = ({
   input,
-  option,
   type,
   placeholder,
   label,
   disabled,
   readOnly,
-  meta: { touched, error, warning },
+  meta: { asyncValidating, touched, error, warning },
 }) => (
   <Row>
     <Col md="12">
@@ -28,11 +28,15 @@ const renderField = ({
         type={type}
         placeholder={placeholder}
         disabled={disabled}
-        readOnly={readOnly}
-      ></Input>
+        readOnly={readOnly} 
+      >
+        <option value ="Y">Ya</option>
+        <option value = "N">Tidak</option>
+      </Input>
+      <div className={ asyncValidating ? 'async-validating' : ''}>
       {touched &&
         ((error && <p style={{ color: "red" }}>{error}</p>) ||
-          (warning && <p style={{ color: "brown" }}>{warning}</p>))}
+          (warning && <p style={{ color: "brown" }}>{warning}</p>))}</div>
     </Col>
   </Row>
 );
@@ -133,7 +137,7 @@ class FormComponent extends Component {
           <Col md={2}>
             <FormGroup>
               <Field
-                type="text"
+                type="select"
                 name="TampilkanLembur"
                 component={renderField}
                 label="Tampilkan Lembur :"
@@ -143,25 +147,19 @@ class FormComponent extends Component {
 
           <Col md={2}>
             <FormGroup>
-              <Field
+            <Field
                 type="select"
                 name="TampilkanTerlambat"
                 component={renderField}
-                
                 label="Tampilkan Terlambat :"
-                component="select">
-                <option />
-                <option value="ff0000">Red</option>
-                <option value="00ff00">Green</option>
-                <option value="0000ff">Blue</option>
-                </Field>
+              />
             </FormGroup>
           </Col>
 
           <Col md={2}>
             <FormGroup>
               <Field
-                type="Text"
+                type="select"
                 name="Status"
                 component={renderField}
                 label="Status :"
@@ -248,6 +246,8 @@ class FormComponent extends Component {
 FormComponent = reduxForm({
   form: "formCreateUser",
   validate: UserValidation,
+  asyncValidate: AsyncVUser,
+  asyncBlurFields : ['UserID'] ,
   enableReinitialize: true,
 })(FormComponent);
 export default connect(mapStateToProps, null)(FormComponent);

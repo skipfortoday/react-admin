@@ -4,6 +4,7 @@ export const GET_USERS_LIST = "GET_USERS_LIST";
 export const GET_USER_DETAIL = "GET_USER_DETAIL";
 export const POST_USER_CREATE = "POST_USER_CREATE";
 export const PUT_USER_EDIT = "PUT_USER_EDIT";
+export const GET_USER_V = "GET_USER_V";
 
 
 
@@ -23,6 +24,32 @@ export const getUsersList = () => {
       .catch(function (error) {
         dispatch({
           type: GET_USERS_LIST,
+          payload: {
+            data: false,
+            errorMessage: error.message,
+          },
+        });
+      });
+  };
+};
+
+
+export const getUserV = () => {
+  return (dispatch) => {
+    axios
+      .get("http://192.168.0.25:3001/api/vuser")
+      .then(function (response) {
+        dispatch({
+          type: GET_USER_V,
+          payload: {
+            data: response.data,
+            errorMessage: false,
+          },
+        });
+      })
+      .catch(function (error) {
+        dispatch({
+          type: GET_USER_V,
           payload: {
             data: false,
             errorMessage: error.message,
