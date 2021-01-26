@@ -11,7 +11,7 @@ export const GET_USER_V = "GET_USER_V";
 export const getUsersList = () => {
   return (dispatch) => {
     axios
-      .get("http://192.168.0.25:3001/api/user")
+      .get("http://127.0.0.1:3001/api/user")
       .then(function (response) {
         dispatch({
           type: GET_USERS_LIST,
@@ -37,7 +37,7 @@ export const getUsersList = () => {
 export const getUserV = () => {
   return (dispatch) => {
     axios
-      .get("http://192.168.0.25:3001/api/vuser")
+      .get("http://127.0.0.1:3001/api/vuser")
       .then(function (response) {
         dispatch({
           type: GET_USER_V,
@@ -63,7 +63,7 @@ export const getUserDetail = (UserID) => {
   return (dispatch) => {
     axios
       .get(
-        "http://192.168.0.25:3001/api/user/"+UserID
+        "http://127.0.0.1:3001/api/user/"+UserID
       )
       .then(function (response) {
         dispatch({
@@ -90,7 +90,7 @@ export const postUserCreate = (data) => {
   return (dispatch) => {
     axios
       .post(
-         "http://192.168.0.25:3001/api/user/",
+         "http://127.0.0.1:3001/api/user/",
         data
       )
       .then(function (response) {
@@ -120,7 +120,7 @@ export const putUserUpdate = (data, UserID) => {
   return (dispatch) => {
     axios
       .put(
-        "http://192.168.0.25:3001/api/user/"+UserID,
+        "http://127.0.0.1:3001/api/user/"+UserID,
         data
       )
       .then(function (response) {
