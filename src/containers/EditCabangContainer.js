@@ -30,9 +30,9 @@ class EditCabangContainer extends Component {
       } else {
         swal(
           "Cabang Updated!",
-          "Nama : " +
+          "Kode : " +
             this.props.getResponDataCabang.KodeCabang +
-            " , Kode Cabang : " +
+            " , Nama Cabang: " +
             this.props.getResponDataCabang.NamaCabang,
           "success"
         );

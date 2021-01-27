@@ -31,7 +31,7 @@ class CreateCabangContainer extends Component {
       }else {
         swal(
             "Cabang Created!",
-            "Nama : " +
+            "Kode : " +
               this.props.getResponDataCabang.KodeCabang +
               " , Nama : " +
               this.props.getResponDataCabang.NamaCabang,

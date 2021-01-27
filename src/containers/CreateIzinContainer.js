@@ -31,10 +31,14 @@ class CreateIzinContainer extends Component {
       }else {
         swal(
             "Izin Created!",
-            "Nama : " +
-              this.props.getResponDataIzin.DatangID +
-              " , Umur : " +
-              this.props.getResponDataIzin.Jabatan,
+            " | ID : " +
+              this.props.getResponDataIzin.UserID +
+              "  |  Tanggal :  " +
+              this.props.getResponDataIzin.TanggalScan +
+              "  |   Status :  " +
+              this.props.getResponDataIzin.Status +
+              "  |  Keterangan :       " +
+              this.props.getResponDataIzin.Keterangan,
             "success"
           );
       }
