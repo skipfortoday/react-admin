@@ -29,10 +29,10 @@ const renderField = ({
         disabled={disabled}
         readOnly={readOnly}
       >
-        <option value="OFF">OFF</option>
-        <option value="CUTI">CUTI</option>
-        <option value="TIDAK MASUK">TIDAK MASUK</option>
-        <option value="SAKIT">SAKIT</option>
+        <option value="ACC">Acounting</option>
+        <option value="TER">Terapis</option>
+        <option value="DOC">Dokter</option>
+        <option value="RES">Resepsionis</option>
       </Input>
       {touched &&
         ((error && <p style={{ color: "red" }}>{error}</p>) ||
@@ -45,7 +45,6 @@ const mapStateToProps = (state) => {
   return {
     initialValues: {
       DatangID: state.Izin.getIzinDetail.DatangID,
-      UserID: state.Izin.getIzinDetail.UserID,
       Nama: state.Izin.getIzinDetail.Nama,
       TanggalScan: state.Izin.getIzinDetail.TanggalScan,
       Status: state.Izin.getIzinDetail.Status,
@@ -54,14 +53,14 @@ const mapStateToProps = (state) => {
   };
 };
 
-class FormIzinComponent extends Component {
+class FormIzinGroup extends Component {
   render() {
     return (
       <form onSubmit={this.props.handleSubmit}>
         <FormGroup row>
           <Col md={12}>
             <Alert color="danger">
-              Pilih Tanggal Izin Dan Masukkan ID User
+              Pilih Tanggal Izin Dan Pilih Group Pegawai
             </Alert>
           </Col>
 
@@ -79,10 +78,10 @@ class FormIzinComponent extends Component {
           <Col md={3}>
             <FormGroup>
               <Field
-                type="text"
-                name="UserID"
+                type="select"
+                name="Nama"
                 component={renderField}
-                label="Masukkan ID User :"
+                label="Pilih Group Pegawai:"
               />
             </FormGroup>
           </Col>
@@ -96,11 +95,30 @@ class FormIzinComponent extends Component {
           <Col md={3}>
             <FormGroup>
               <Field
-                type="select"
+                type="radio"
+                value="OFF"
                 name="Status"
                 component={renderField}
                 label="Tipe Izin  :"
-              />
+              /> OFF
+                <Field
+                type="radio"
+                value="CUTI"
+                name="Status"
+                component={renderField}
+              /> CUTI
+                <Field
+                type="radio"
+                value="Tidak Masuk"
+                name="Status"
+                component={renderField}
+              /> TIDAK MASUK
+                <Field
+                type="radio"
+                value="SAKIT"
+                name="Status"
+                component={renderField}
+              /> SAKIT
             </FormGroup>
           </Col>
 
@@ -134,9 +152,9 @@ class FormIzinComponent extends Component {
   }
 }
 
-FormIzinComponent = reduxForm({
+FormIzinGroup = reduxForm({
   form: "formCreateizin",
   validate: IzinValidation,
   enableReinitialize: true,
-})(FormIzinComponent);
-export default connect(mapStateToProps, null)(FormIzinComponent);
+})(FormIzinGroup);
+export default connect(mapStateToProps, null)(FormIzinGroup);

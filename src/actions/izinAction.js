@@ -3,6 +3,7 @@ import axios from "axios";
 export const GET_IZIN_LIST = "GET_IZIN_LIST";
 export const GET_IZIN_DETAIL = "GET_IZIN_DETAIL";
 export const POST_IZIN_CREATE = "POST_IZIN_CREATE";
+export const POST_IZIN_GROUP = "POST_IZIN_GROUP";
 export const PUT_IZIN_EDIT = "PUT_IZIN_EDIT";
 
 
@@ -80,6 +81,36 @@ export const postIzinCreate = (data) => {
       .catch(function (error) {
         dispatch({
           type: POST_IZIN_CREATE,
+          payload: {
+            data: false,
+            errorMessage: error.message,
+          },
+        });
+      });
+  };
+};
+
+export const postIzinGroup= (data) => {
+  return (dispatch) => {
+    axios
+      .post(
+         "http://192.168.0.25:3001/api/izingroup",
+        data
+      )
+      .then(function (response) {
+        console.log(response);
+        
+        dispatch({
+          type: POST_IZIN_GROUP,
+          payload: {
+            data: response.data,
+            errorMessage: false,
+          },
+        });
+      })
+      .catch(function (error) {
+        dispatch({
+          type: POST_IZIN_GROUP,
           payload: {
             data: false,
             errorMessage: error.message,

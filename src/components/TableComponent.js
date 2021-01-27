@@ -1,6 +1,6 @@
 import React from "react";
 import BootstrapTable from "react-bootstrap-table-next";
-import { Container, Button, Row, Col, Spinner } from "reactstrap";
+import { Container, Button, Row, Col, Spinner,Input } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faInfo,
@@ -107,7 +107,7 @@ const TableComponent = (props) => {
               <FontAwesomeIcon icon={faTrash} /> Delete
             </Button>
             
-            <Link to={"laporan/" + row.UserID}>
+            <Link to={"laporan/" + row.UserID + props.mulai + props.akhir}>
               <Button color="info" className="mr-2">
                 <FontAwesomeIcon icon={faBook} /> Laporan
               </Button>
@@ -140,7 +140,20 @@ const TableComponent = (props) => {
                     </Button>
                   </Link>
                 </Col>
+                <Col md={1}>
+                  Mulai
+                </Col>
+                <Col md={2}>
+                <Input type='date' name='mulai'></Input>
+                </Col>
+                <Col md={1}>
+                  Akhir
+                </Col>
+                <Col md={2}>
+                <Input type='date' name='akhir'></Input>
+                </Col>
                 <Col>
+                
                   <div className="float-right">
                     <SearchBar {...props.searchProps} placeholder="Search .." />
                   </div>

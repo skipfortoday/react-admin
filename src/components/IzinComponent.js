@@ -57,12 +57,12 @@ const mapStateToProps = (state) => {
 const IzinComponent = (props) => {
 
   const columns = [
-    {
+  {
       dataField: "TanggalIzin",
       text: "Tanggal Izin",
       sort: true,
       headerStyle: () => {
-        return { width: "100px" };
+        return { width: "120px" };
       },
     },
     {
@@ -138,7 +138,21 @@ const IzinComponent = (props) => {
                 <Col>
                   <Link to="izin/create">
                     <Button color="danger" className="mr-2">
-                      <FontAwesomeIcon icon={faCalendarCheck} /> Tambah Izin <FontAwesomeIcon icon={faPlus} />
+                      <FontAwesomeIcon icon={faCalendarCheck} /> Izin Perorang<FontAwesomeIcon icon={faPlus} />
+                    </Button>
+                  </Link>
+                </Col>
+                <Col>
+                  <Link to="izin/group">
+                    <Button color="danger" className="mr-2">
+                      <FontAwesomeIcon icon={faCalendarCheck} /> Izin Pergroup <FontAwesomeIcon icon={faPlus} />
+                    </Button>
+                  </Link>
+                </Col>
+                <Col>
+                  <Link to="izin/create">
+                    <Button color="danger" className="mr-2">
+                      <FontAwesomeIcon icon={faCalendarCheck} /> Izin Perkantor <FontAwesomeIcon icon={faPlus} />
                     </Button>
                   </Link>
                 </Col>

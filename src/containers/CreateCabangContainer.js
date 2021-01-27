@@ -33,7 +33,7 @@ class CreateCabangContainer extends Component {
             "Cabang Created!",
             "Nama : " +
               this.props.getResponDataCabang.KodeCabang +
-              " , Umur : " +
+              " , Nama : " +
               this.props.getResponDataCabang.NamaCabang,
             "success"
           );

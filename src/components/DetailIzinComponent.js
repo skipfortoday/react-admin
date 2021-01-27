@@ -14,9 +14,9 @@ const DetailIzinComponent = (props) => {
     <Table striped>
       <tbody>
         <tr>
-          <td width="200">DatangID</td>
+          <td width="200">TanggalIzin</td>
           <td width="10">:</td>
-          <td>{props.getIzinDetail.DatangID}</td>
+          <td>{props.getIzinDetail.TanggalIzin}</td>
         </tr>
         <tr>
           <td width="200">Nama</td>
@@ -24,9 +24,24 @@ const DetailIzinComponent = (props) => {
           <td>{props.getIzinDetail.Nama}</td>
         </tr>
         <tr>
-          <td width="200">Tanggal</td>
+          <td width="200">UserID</td>
           <td width="10">:</td>
-          <td>{props.getIzinDetail.TanggalScan}</td>
+          <td>{props.getIzinDetail.UserID}</td>
+        </tr>
+        <tr>
+          <td width="200">Alamat</td>
+          <td width="10">:</td>
+          <td>{props.getIzinDetail.Alamat}</td>
+        </tr>
+        <tr>
+          <td width="200">Group</td>
+          <td width="10">:</td>
+          <td>{props.getIzinDetail.Jabatan}</td>
+        </tr>
+        <tr>
+          <td width="200">Nama Cabang</td>
+          <td width="10">:</td>
+          <td>{props.getIzinDetail.NamaCabang}</td>
         </tr>
         <tr>
           <td width="200">Status</td>
@@ -34,10 +49,12 @@ const DetailIzinComponent = (props) => {
           <td>{props.getIzinDetail.Status}</td>
         </tr>
         <tr>
-          <td width="200">Keterangan</td>
+          <td width="200">Status</td>
           <td width="10">:</td>
           <td>{props.getIzinDetail.Keterangan}</td>
         </tr>
+        
+
       </tbody>
     </Table>
   );

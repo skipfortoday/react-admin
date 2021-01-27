@@ -12,6 +12,7 @@ import EditGroupContainer from "./containers/EditGroupContainer";
 import DetailGroupContainer from "./containers/DetailGroupContainer";
 import IzinContainer from "./containers/IzinContainer";
 import CreateIzinContainer from "./containers/CreateIzinContainer";
+import CreateIzinGroup from "./containers/CreateIzinGroup";
 import EditIzinContainer from "./containers/EditIzinContainer";
 import DetailIzinContainer from "./containers/DetailIzinContainer";
 import DetailLaporanContainer from "./containers/DetailLaporanContainer";
@@ -51,6 +52,8 @@ export default class App extends Component {
           <Route path="/izin" exact component={IzinContainer} />
 
           <Route path="/izin/create" exact component={CreateIzinContainer} />
+
+          <Route path="/izin/group" exact component={CreateIzinGroup} />
 
           <Route path="/izin/detail/:DatangID" exact component={DetailIzinContainer} />
 

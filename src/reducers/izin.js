@@ -2,6 +2,7 @@ import {
     GET_IZIN_LIST,
     GET_IZIN_DETAIL,
     POST_IZIN_CREATE,
+    POST_IZIN_GROUP,
     PUT_IZIN_EDIT,
   } from "../actions/izinAction"
   
@@ -36,6 +37,13 @@ import {
           getResponDataIzin: action.payload.data,
           errorResponDataIzin: action.payload.errorMessage,
         };
+
+        case POST_IZIN_GROUP:
+          return {
+            ...state,
+            getResponDataIzin: action.payload.data,
+            errorResponDataIzin: action.payload.errorMessage,
+      };
   
       case PUT_IZIN_EDIT:
         return {
