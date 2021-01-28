@@ -94,7 +94,7 @@ const IzinComponent = (props) => {
       dataField: "link",
       text: "Action",
       headerStyle: () => {
-        return { width: "220px" };
+        return { width: "145px" };
       },
       formatter: (rowContent, row) => {
         return (
@@ -104,13 +104,6 @@ const IzinComponent = (props) => {
                 <FontAwesomeIcon icon={faInfo} /> Detail
               </Button>
             </Link>
-  
-            <Link to={"izin/edit/" + row.DatangID}>
-              <Button color="warning" className="mr-2">
-                <FontAwesomeIcon icon={faEdit} /> Edit
-              </Button>
-            </Link>
-  
             <Button color="danger" className="mr-2" onClick={() => handleClick(props.dispatch, row.DatangID)}>
               <FontAwesomeIcon icon={faTrash} /> Delete
             </Button>
