@@ -4,7 +4,7 @@ import BackIzin from "../components/BackIzin";
 import InfoMenuIzin from "../components/InfoMenuIzin";
 import FormIzinComponent from "../components/FormIzinComponent";
 import { connect } from "react-redux";
-import { postIzinCreate } from "../actions/izinAction";
+import { getIzinDetail, postIzinCreate } from "../actions/izinAction";
 import swal from "sweetalert";
 
 const mapStateToProps = (state) => {
@@ -15,6 +15,10 @@ const mapStateToProps = (state) => {
 };
 
 class CreateIzinContainer extends Component {
+  componentDidMount() {
+    this.props.dispatch(getIzinDetail(this.props.match.params.DatangID));
+  }
+  
   handleSubmit(data) {
     this.props.dispatch(postIzinCreate(data));
   }
@@ -22,7 +26,7 @@ class CreateIzinContainer extends Component {
   render() {
     if (this.props.getResponDataIzin || this.props.errorResponDataIzin) {
       if(this.props.errorResponDataIzin)
-      {
+      {  
         swal(
             "Failed!",
             this.props.errorResponDataIzin,

@@ -53,7 +53,7 @@ const ListUserIzin = (props) => {
       },
     },
     {
-      dataField: "TanggalMulaiCuti",
+      dataField: "TglMulaiCuti",
       text: "Start Cuti",
       sort: true,
       headerStyle: () => {
@@ -78,7 +78,7 @@ const ListUserIzin = (props) => {
       formatter: (rowContent, row) => {
         return (
           <div>
-            <Link to={"edit/" + row.UserID}>
+            <Link to={"create/" + row.UserID}>
               <Button color="info" className="mr-2">
                 <FontAwesomeIcon icon={faClipboardList} /> Add
               </Button>

@@ -129,7 +129,7 @@ const IzinComponent = (props) => {
             <div>
               <Row>
                 <Col>
-                  <Link to="izin/create">
+                  <Link to="izin/list">
                     <Button color="danger" className="mr-2">
                       <FontAwesomeIcon icon={faCalendarCheck} /> Izin Perorang<FontAwesomeIcon icon={faPlus} />
                     </Button>
