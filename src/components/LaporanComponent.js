@@ -1,10 +1,8 @@
 import React from "react";
 import BootstrapTable from "react-bootstrap-table-next";
 import { Container, Alert, Row, Col, Spinner } from "reactstrap";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
 import paginationFactory from "react-bootstrap-table2-paginator";
-import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
 const { SearchBar } = Search;

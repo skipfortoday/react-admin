@@ -4,7 +4,6 @@ import { Container, Button, Row, Col, Spinner } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faInfo,
-  faEdit,
   faTrash,
   faCalendarCheck,
   faPlus,

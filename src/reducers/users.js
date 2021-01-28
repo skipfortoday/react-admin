@@ -2,7 +2,7 @@ import {
   GET_USERS_LIST,
   GET_USER_DETAIL,
   POST_USER_CREATE,
-  PUT_USER_EDIT,s
+  PUT_USER_EDIT,
 } from "../actions/userAction";
 
 let initialState = {

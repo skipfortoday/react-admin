@@ -9,7 +9,6 @@ import {
   NavItem,
   NavLink,
   NavbarText,
-  Container,
   UncontrolledDropdown,
   DropdownToggle,
   DropdownMenu,
@@ -24,29 +23,28 @@ const NavbarComponent = (props) => {
   return (
     <div>
       <Navbar color="faded" light expand="md">
-        <Container>
           <NavbarBrand> L'viors Attandance System ~ </NavbarBrand>
           <NavbarToggler onClick={toggle} />
           <Collapse isOpen={isOpen} navbar>
             <Nav className="mr-auto" navbar>
               <NavItem>
                 <Link to="/">
-                  <NavLink>Pegawai</NavLink>
+                  <NavLink>| Pegawai |</NavLink>
                 </Link>
               </NavItem>
               <NavItem>
                 <Link to="/izin">
-                  <NavLink>Status Absensi</NavLink>
+                  <NavLink>| Status Absensi |</NavLink>
                 </Link>
               </NavItem>
               <NavItem>
                 <Link to="/group">
-                  <NavLink>Group Pegawai</NavLink>
+                  <NavLink>| Group Pegawai |</NavLink>
                 </Link>
               </NavItem>
               <NavItem>
                 <Link to="/cabang">
-                  <NavLink>Cabang</NavLink>
+                  <NavLink>| Cabang |</NavLink>
                 </Link>
               </NavItem>
             </Nav>
@@ -75,7 +73,7 @@ const NavbarComponent = (props) => {
             </Nav>
             <NavbarText>Admin</NavbarText>
           </Collapse>
-        </Container>
+
       </Navbar>
     </div>
   );

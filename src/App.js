@@ -1,6 +1,4 @@
 import React, { Component } from "react";
-import NavbarComponent from "./components/NavbarComponent";
-
 import { BrowserRouter, Route } from "react-router-dom";
 import HomeContainer from "./containers/HomeContainer";
 import CreateUserContainer from "./containers/CreateUserContainer";
