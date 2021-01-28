@@ -134,18 +134,9 @@ const IzinComponent = (props) => {
                       <FontAwesomeIcon icon={faCalendarCheck} /> Izin Perorang<FontAwesomeIcon icon={faPlus} />
                     </Button>
                   </Link>
-                </Col>
-                <Col>
                   <Link to="izin/group">
                     <Button color="danger" className="mr-2">
                       <FontAwesomeIcon icon={faCalendarCheck} /> Izin Pergroup <FontAwesomeIcon icon={faPlus} />
-                    </Button>
-                  </Link>
-                </Col>
-                <Col>
-                  <Link to="izin/create">
-                    <Button color="danger" className="mr-2">
-                      <FontAwesomeIcon icon={faCalendarCheck} /> Izin Perkantor <FontAwesomeIcon icon={faPlus} />
                     </Button>
                   </Link>
                 </Col>

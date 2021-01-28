@@ -6,6 +6,7 @@ import { faListAlt } from "@fortawesome/free-solid-svg-icons";
 import { connect } from "react-redux";
 import { getUsersList, deleteDataUser } from '../actions/userAction'
 import InfoHomePegawai from "../components/InfoHomePegawai";
+import NavbarComponent from "../components/NavbarComponent";
 
 class HomeContainer extends Component {
   componentDidMount() {
@@ -16,7 +17,10 @@ class HomeContainer extends Component {
   render() {
     
     return (
+      
+     
       <Container>
+         <NavbarComponent/> 
         <Row>
          <Col md={1}>
           <Button color="info">

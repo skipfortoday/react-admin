@@ -28,8 +28,8 @@ export default class App extends Component {
   render() {
     return (
       <div>
-        <NavbarComponent />
         <BrowserRouter>
+      
           <Route path="/" exact component={HomeContainer} />
 
           <Route path="/create" exact component={CreateUserContainer} />

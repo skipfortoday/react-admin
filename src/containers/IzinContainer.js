@@ -6,6 +6,7 @@ import IzinComponent from "../components/IzinComponent";
 import { connect } from "react-redux";
 import { getIzinList, deleteDataIzin } from "../actions/izinAction";
 import InfoHomeIzin from "../components/InfoHomeIzin";
+import NavbarComponent from "../components/NavbarComponent";
 
 class IzinContainer extends Component {
   componentDidMount() {
@@ -18,6 +19,7 @@ class IzinContainer extends Component {
     return (
       
       <Container>
+        <NavbarComponent/> 
         <Row>
          <Col md={1}>
           <Button color="info">

@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import InfoMenuPegawai from "../components/InfoMenuPegawai";
 import { getLaporanDetail } from "../actions/laporanAction";
 import DetailLaporanComponent from "../components/DetailLaporanComponent";
+import NavbarComponent from "../components/NavbarComponent";
 
 class DetailLaporanContainer extends Component {
   componentDidMount() {
@@ -16,6 +17,7 @@ class DetailLaporanContainer extends Component {
   render() {
     return (
       <Container>
+        <NavbarComponent/>
         <Row>
          <Col md={1}>
           <BackComponent/>

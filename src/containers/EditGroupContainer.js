@@ -6,6 +6,7 @@ import FormGroupComponent from "../components/FormGroupComponent";
 import { getGroupDetail, putGroupUpdate } from "../actions/groupAction";
 import swal from "sweetalert";
 import InfoMenuGroup from "../components/InfoMenuGroup";
+import NavbarComponent from "../components/NavbarComponent";
 
 const mapStateToProps = (state) => {
   return {
@@ -40,6 +41,7 @@ class EditGroupContainer extends Component {
     }
     return (
       <Container>
+        <NavbarComponent/>
         <Row>
          <Col md={1}>
           <BackGroup />

@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import InfoMenuPegawai from "../components/InfoMenuPegawai";
 import { getUserDetail } from "../actions/userAction";
 import DetailUserComponent from "../components/DetailUserComponent";
+import NavbarComponent from "../components/NavbarComponent";
 
 class DetailUserContainer extends Component {
   componentDidMount() {
@@ -14,6 +15,7 @@ class DetailUserContainer extends Component {
   render() {
     return (
       <Container>
+        <NavbarComponent/>
         <Row>
          <Col md={1}>
           <BackComponent/>

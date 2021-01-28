@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import { getCabangDetail } from "../actions/cabangAction";
 import DetailCabangComponent from "../components/DetailCabangComponent";
 import InfoMenuCabang from "../components/InfoMenuCabang";
+import NavbarComponent from "../components/NavbarComponent";
 
 class DetailCabangContainer extends Component {
   componentDidMount() {
@@ -14,6 +15,7 @@ class DetailCabangContainer extends Component {
   render() {
     return (
       <Container>
+        <NavbarComponent/>
         <Row>
          <Col md={1}>
           <BackCabang />

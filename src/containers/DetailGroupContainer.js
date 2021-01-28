@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import { getGroupDetail } from "../actions/groupAction";
 import DetailGroupComponent from "../components/DetailGroupComponent";
 import InfoMenuGroup from "../components/InfoMenuGroup";
+import NavbarComponent from "../components/NavbarComponent";
 
 class DetailGroupContainer extends Component {
   componentDidMount() {
@@ -14,6 +15,7 @@ class DetailGroupContainer extends Component {
   render() {
     return (
       <Container>
+        <NavbarComponent/>
         <Row>
          <Col md={1}>
           <BackGroup />

@@ -6,6 +6,7 @@ import GroupComponent from "../components/GroupComponent";
 import { connect } from "react-redux";
 import { getGroupList, deleteDataGroup } from "../actions/groupAction";
 import InfoHomeGroup from "../components/InfoHomeGroup";
+import NavbarComponent from "../components/NavbarComponent";
 
 class GroupContainer extends Component {
   componentDidMount() {
@@ -18,6 +19,7 @@ class GroupContainer extends Component {
     return (
       
       <Container>
+        <NavbarComponent/>
         <Row>
          <Col md={1}>
           <Button color="info">

@@ -6,6 +6,7 @@ import FormGroupComponent from "../components/FormGroupComponent";
 import { connect } from "react-redux";
 import { postGroupCreate } from "../actions/groupAction";
 import swal from "sweetalert";
+import NavbarComponent from "../components/NavbarComponent";
 
 const mapStateToProps = (state) => {
   return {
@@ -41,6 +42,7 @@ class CreateGroupContainer extends Component {
     }
     return (
       <Container>
+        <NavbarComponent/>
         <Row>
          <Col md={1}>
           <BackGroup />

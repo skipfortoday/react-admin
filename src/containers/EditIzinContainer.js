@@ -6,6 +6,7 @@ import FormIzinComponent from "../components/FormIzinComponent";
 import { getIzinDetail, putIzinUpdate } from "../actions/izinAction";
 import swal from "sweetalert";
 import InfoMenuIzin from "../components/InfoMenuIzin";
+import NavbarComponent from "../components/NavbarComponent";
 
 const mapStateToProps = (state) => {
   return {
@@ -40,6 +41,7 @@ class EditIzinContainer extends Component {
     }
     return (
       <Container>
+        <NavbarComponent/>
         <Row>
          <Col md={1}>
           <BackIzin />

@@ -6,6 +6,7 @@ import CabangComponent from "../components/CabangComponent";
 import { connect } from "react-redux";
 import { getCabangList, deleteDataCabang } from "../actions/cabangAction";
 import InfoHomeCabang from "../components/InfoHomeCabang";
+import NavbarComponent from "../components/NavbarComponent";
 
 class CabangContainer extends Component {
   componentDidMount() {
@@ -18,6 +19,7 @@ class CabangContainer extends Component {
     return (
       
       <Container>
+        <NavbarComponent/>
         <Row>
          <Col md={1}>
           <Button color="info">

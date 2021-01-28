@@ -6,6 +6,7 @@ import { connect } from "react-redux";
 import { postUserCreate } from "../actions/userAction";
 import swal from "sweetalert";
 import InfoMenuPegawai from "../components/InfoMenuPegawai";
+import NavbarComponent from "../components/NavbarComponent";
 
 const mapStateToProps = (state) => {
   return {
@@ -41,6 +42,7 @@ class CreateUserContainer extends Component {
     }
     return (
       <Container>
+        <NavbarComponent/>
            <Row>
          <Col md={1}>
           <BackComponent/>

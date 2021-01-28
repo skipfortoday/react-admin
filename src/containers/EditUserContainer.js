@@ -6,6 +6,7 @@ import FormComponent from "../components/FormComponent";
 import InfoMenuPegawai from "../components/InfoMenuPegawai";
 import { getUserDetail, putUserUpdate } from "../actions/userAction";
 import swal from "sweetalert";
+import NavbarComponent from "../components/NavbarComponent";
 
 const mapStateToProps = (state) => {
   return {
@@ -40,6 +41,7 @@ class EditUserContainer extends Component {
     }
     return (
       <Container>
+        <NavbarComponent/>
         <Row>
          <Col md={1}>
           <BackComponent/>

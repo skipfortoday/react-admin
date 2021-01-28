@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import { getIzinDetail } from "../actions/izinAction";
 import DetailIzinComponent from "../components/DetailIzinComponent";
 import InfoMenuIzin from "../components/InfoMenuIzin";
+import NavbarComponent from "../components/NavbarComponent";
 
 class DetailIzinContainer extends Component {
   componentDidMount() {
@@ -14,6 +15,7 @@ class DetailIzinContainer extends Component {
   render() {
     return (
       <Container>
+        <NavbarComponent/>
         <Row>
          <Col md={1}>
           <BackIzin />

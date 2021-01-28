@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import {
   Collapse,
   Navbar,
@@ -29,33 +30,49 @@ const NavbarComponent = (props) => {
           <Collapse isOpen={isOpen} navbar>
             <Nav className="mr-auto" navbar>
               <NavItem>
-                <NavLink href="/">Pegawai</NavLink>
+                <Link to="/">
+                  <NavLink>Pegawai</NavLink>
+                </Link>
               </NavItem>
               <NavItem>
-                <NavLink href="/izin">Status Absensi</NavLink>
+                <Link to="/izin">
+                  <NavLink>Status Absensi</NavLink>
+                </Link>
               </NavItem>
               <NavItem>
-                <NavLink href="/group">Group Pegawai</NavLink>
+                <Link to="/group">
+                  <NavLink>Group Pegawai</NavLink>
+                </Link>
               </NavItem>
               <NavItem>
-                <NavLink href="/cabang">Cabang</NavLink>
+                <Link to="/cabang">
+                  <NavLink>Cabang</NavLink>
+                </Link>
               </NavItem>
             </Nav>
             <Nav navbar>
-            <UncontrolledDropdown nav inNavbar>
+              <UncontrolledDropdown nav inNavbar>
                 <DropdownToggle nav caret>
                   Portal Menu
                 </DropdownToggle>
                 <DropdownMenu right>
-                  <DropdownItem href="/create">Tambah Pegawai</DropdownItem>
+                  <Link to="/create">
+                    <DropdownItem>Tambah Pegawai</DropdownItem>
+                  </Link>
                   <DropdownItem divider />
-                  <DropdownItem href="/izin/list">Lengkapi Absensi Perorang</DropdownItem>
-                  <DropdownItem href="/izin/group">Lengkapi Absensi Pergroup</DropdownItem>
+                  <Link to="/izin/list">
+                    <DropdownItem>Lengkapi Absensi Perorang</DropdownItem>
+                  </Link>
+                  <Link to="/izin/group">
+                    <DropdownItem>Lengkapi Absensi Pergroup</DropdownItem>
+                  </Link>
                   <DropdownItem divider />
-                  <DropdownItem href="/group/create">Tambah Group Pegawai</DropdownItem>
+                  <Link to="/group/create">
+                    <DropdownItem>Tambah Group Pegawai</DropdownItem>
+                  </Link>
                 </DropdownMenu>
               </UncontrolledDropdown>
-              </Nav>
+            </Nav>
             <NavbarText>Admin</NavbarText>
           </Collapse>
         </Container>

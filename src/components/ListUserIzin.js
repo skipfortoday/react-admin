@@ -33,7 +33,7 @@ const ListUserIzin = (props) => {
       text: "UserID",
       sort: true,
       headerStyle: () => {
-        return { width: "100px" };
+        return { width: "75px" };
       },
     },
     {
@@ -104,7 +104,7 @@ const ListUserIzin = (props) => {
             <div>
               <Row>
                 <Col>
-                  <div className="float-right">
+                  <div className="float-xl-right">
                     <SearchBar {...props.searchProps} placeholder="Search .." />
                   </div>
                 </Col>

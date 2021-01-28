@@ -6,6 +6,7 @@ import FormCabangComponent from "../components/FormCabangComponent";
 import { getCabangDetail, putCabangUpdate } from "../actions/cabangAction";
 import swal from "sweetalert";
 import InfoMenuCabang from "../components/InfoMenuCabang";
+import NavbarComponent from "../components/NavbarComponent";
 
 const mapStateToProps = (state) => {
   return {
@@ -40,6 +41,7 @@ class EditCabangContainer extends Component {
     }
     return (
       <Container>
+        <NavbarComponent/>
         <Row>
          <Col md={1}>
           <BackCabang />

@@ -6,6 +6,7 @@ import { connect } from "react-redux";
 import { postIzinGroup } from "../actions/izinAction";
 import swal from "sweetalert";
 import FormIzinGroup from "../components/FormIzinGroup";
+import NavbarComponent from "../components/NavbarComponent";
 
 const mapStateToProps = (state) => {
   return {
@@ -41,6 +42,7 @@ class CreateIzinGroup extends Component {
     }
     return (
       <Container>
+        <NavbarComponent/>
         <Row>
          <Col md={1}>
           <BackIzin />

@@ -6,6 +6,7 @@ import FormCabangComponent from "../components/FormCabangComponent";
 import { connect } from "react-redux";
 import { postCabangCreate } from "../actions/cabangAction";
 import swal from "sweetalert";
+import NavbarComponent from "../components/NavbarComponent";
 
 const mapStateToProps = (state) => {
   return {
@@ -41,6 +42,7 @@ class CreateCabangContainer extends Component {
     }
     return (
       <Container>
+        <NavbarComponent/>
         <Row>
          <Col md={1}>
           <BackCabang />
