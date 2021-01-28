@@ -33,11 +33,11 @@ export const getIzinList = () => {
   };
 };
 
-export const getIzinDetail = (DatangID) => {
+export const getIzinDetail = (UserID) => {
   return (dispatch) => {
     axios
       .get(
-        "http://192.168.0.25:3001/api/izin/"+DatangID
+        "http://192.168.0.25:3001/api/user/"+UserID
       )
       .then(function (response) {
         dispatch({

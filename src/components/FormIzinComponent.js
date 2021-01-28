@@ -47,6 +47,8 @@ const mapStateToProps = (state) => {
       DatangID: state.Izin.getIzinDetail.DatangID,
       UserID: state.Izin.getIzinDetail.UserID,
       Nama: state.Izin.getIzinDetail.Nama,
+      Jabatan: state.Izin.getIzinDetail.Jabatan,
+      FTglMulaiCuti: state.Izin.getIzinDetail.FTglMulaiCuti,
       TanggalScan: state.Izin.getIzinDetail.TanggalScan,
       Status: state.Izin.getIzinDetail.Status,
       Keterangan: state.Izin.getIzinDetail.Keterangan,
@@ -61,7 +63,64 @@ class FormIzinComponent extends Component {
         <FormGroup row>
           <Col md={12}>
             <Alert color="danger">
-              Pilih Tanggal Izin Dan Masukkan ID User
+              Detail Data User
+            </Alert>
+          </Col>
+
+
+          <Col md={3}>
+            <FormGroup>
+              <Field
+                type="text"
+                name="UserID"
+                disabled
+                component={renderField}
+                label="ID :"
+              />
+            </FormGroup>
+          </Col>
+
+        
+
+          <Col md={3}>
+            <FormGroup>
+              <Field
+                type="text"
+                name="Nama"
+                disabled
+                component={renderField}
+                label="Nama:"
+              />
+            </FormGroup>
+          </Col>
+
+          <Col md={3}>
+            <FormGroup>
+              <Field
+                type="text"
+                name="Jabatan"
+                disabled
+                component={renderField}
+                label="Jabatan:"
+              />
+            </FormGroup>
+          </Col>
+
+          <Col md={3}>
+            <FormGroup>
+              <Field
+                type="text"
+                name="FTglMulaiCuti"
+                disabled
+                component={renderField}
+                label="Tanggal Mulai Cuti:"
+              />
+            </FormGroup>
+          </Col>
+
+          <Col md={12}>
+            <Alert color="primary">
+              Masukkan Tipe Izin Tanggal Izin dan Keterangan Untuk Izin
             </Alert>
           </Col>
 
@@ -74,23 +133,6 @@ class FormIzinComponent extends Component {
                 label="Tanggal:"
               />
             </FormGroup>
-          </Col>
-
-          <Col md={3}>
-            <FormGroup>
-              <Field
-                type="text"
-                name="UserID"
-                component={renderField}
-                label="Masukkan ID User :"
-              />
-            </FormGroup>
-          </Col>
-
-          <Col md={12}>
-            <Alert color="primary">
-              Masukkan Tipe Izin dan Keterangan Untuk Izin
-            </Alert>
           </Col>
 
           <Col md={3}>

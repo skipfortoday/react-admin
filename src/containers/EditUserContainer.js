@@ -29,11 +29,11 @@ class EditUserContainer extends Component {
         swal("Failed!", this.props.errorResponDataUser, "error");
       } else {
         swal(
-          "User Updated!",
-          "Nama : " +
+          "User " +
             this.props.getResponDataUser.Nama +
-            " , UserID : " +
-            this.props.getResponDataUser.Pass,
+            " Updated!",
+            " UserID : " +
+            this.props.getResponDataUser.UserID,
           "success"
         );
       }

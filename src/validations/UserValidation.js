@@ -24,18 +24,6 @@ const UserValidation = (values) => {
     errors.KodeCabang = 'Masukan Kode Cabang Yang Benar Contoh SB1';
   } 
 
-  if (!values.TampilkanLembur || values.TampilkanLembur=== "") {
-    errors.TampilkanLembur = "Harus diisi Y/N";
-  }
-
-  if (!values.TampilkanTerlambat || values.TampilkanTerlambat=== "") {
-    errors.TampilkanTerlambat = "Harus diisi Y/N";
-  }
-
-  if (!values.Status || values.Status === "") {
-    errors.Status = "Harus diisi Y/N";
-  }
-
   if (!values.TglMasuk || values.TglMasuk=== "") {
     errors.TglMasuk = "Tanggal Masuk harus diisi";
   }

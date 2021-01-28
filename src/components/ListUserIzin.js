@@ -3,11 +3,7 @@ import BootstrapTable from "react-bootstrap-table-next";
 import { Container, Button, Row, Col, Spinner } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faInfo,
-  faEdit,
-  faTrash,
-  faUserPlus,
-  faBook,
+  faClipboardList,
 } from "@fortawesome/free-solid-svg-icons";
 import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
 import paginationFactory from "react-bootstrap-table2-paginator";
@@ -83,8 +79,8 @@ const ListUserIzin = (props) => {
         return (
           <div>
             <Link to={"edit/" + row.UserID}>
-              <Button color="warning" className="mr-2">
-                <FontAwesomeIcon icon={faEdit} /> Edit
+              <Button color="info" className="mr-2">
+                <FontAwesomeIcon icon={faClipboardList} /> Add
               </Button>
             </Link>
           </div>
