@@ -9,6 +9,10 @@ import {
   NavLink,
   NavbarText,
   Container,
+  UncontrolledDropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem,
 } from "reactstrap";
 
 const NavbarComponent = (props) => {
@@ -20,7 +24,7 @@ const NavbarComponent = (props) => {
     <div>
       <Navbar color="faded" light expand="md">
         <Container>
-          <NavbarBrand > L'viors Attandance System ~ </NavbarBrand>
+          <NavbarBrand> L'viors Attandance System ~ </NavbarBrand>
           <NavbarToggler onClick={toggle} />
           <Collapse isOpen={isOpen} navbar>
             <Nav className="mr-auto" navbar>
@@ -28,21 +32,30 @@ const NavbarComponent = (props) => {
                 <NavLink href="/">Pegawai</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href="/izin">
-                  Izin
-                </NavLink>
+                <NavLink href="/izin">Status Absensi</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href="/group">
-                  Group Pegawai
-                </NavLink>
+                <NavLink href="/group">Group Pegawai</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href="/cabang">
-                  Cabang
-                </NavLink>
+                <NavLink href="/cabang">Cabang</NavLink>
               </NavItem>
             </Nav>
+            <Nav navbar>
+            <UncontrolledDropdown nav inNavbar>
+                <DropdownToggle nav caret>
+                  Portal Menu
+                </DropdownToggle>
+                <DropdownMenu right>
+                  <DropdownItem href="/create">Tambah Pegawai</DropdownItem>
+                  <DropdownItem divider />
+                  <DropdownItem href="/izin/list">Lengkapi Absensi Perorang</DropdownItem>
+                  <DropdownItem href="/izin/group">Lengkapi Absensi Pergroup</DropdownItem>
+                  <DropdownItem divider />
+                  <DropdownItem href="/group/create">Tambah Group Pegawai</DropdownItem>
+                </DropdownMenu>
+              </UncontrolledDropdown>
+              </Nav>
             <NavbarText>Admin</NavbarText>
           </Collapse>
         </Container>
