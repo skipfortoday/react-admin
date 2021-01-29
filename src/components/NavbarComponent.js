@@ -74,13 +74,13 @@ const NavbarComponent = (props) => {
                     <DropdownItem>Tambah Group Pegawai</DropdownItem>
                   </Link>
                   <DropdownItem divider />
-                  <Link to="/cabang/create">
+                  <Link to="/group/create">
                     <DropdownItem>Tambah Cabang</DropdownItem>
                   </Link>
                 </DropdownMenu>
               </UncontrolledDropdown>
             </Nav>
-            <NavbarText>Admin</NavbarText>
+            <NavbarText>as</NavbarText><NavbarBrand> Admin</NavbarBrand>
           </Collapse>
 
       </Navbar>

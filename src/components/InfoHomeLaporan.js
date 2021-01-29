@@ -7,6 +7,13 @@ const InfoHomeLaporan = () => {
   return (
     <Row className="mb-12">
       <Col>
+        <Alert color="danger">
+             <FontAwesomeIcon icon={faJournalWhills} />
+            
+             <Col>
+                Pilih Tanggal Mulai Dan Akhir Untuk Filter Data Laporan yang akan Diambil
+            </Col>
+         </Alert>
         <Alert color="info">
          <FontAwesomeIcon icon={faJournalWhills} />
             <Col>
@@ -15,9 +22,7 @@ const InfoHomeLaporan = () => {
             <Col>
                 Data karyawan bisa diurutkan sesuai table yang kamu inginkan, cukup icon klik arah panah keatas dan kebawah pada table
             </Col>
-            <Col>
-                Pilih Tanggal Mulai Dan Akhir Untuk Filter Data Laporan yang akan Diambil
-            </Col>
+          
         </Alert>
       </Col>
     </Row>
