@@ -8,6 +8,7 @@ import { getLaporanList } from "../actions/laporanAction";
 import InfoHomePegawai from "../components/InfoHomePegawai";
 import NavbarComponent from "../components/NavbarComponent";
 import RekapLaporan from "../components/RekapLaporan";
+import BackLaporan from "../components/BackLaporan";
 
 class LaporanContainer extends Component {
   componentDidMount() {
@@ -18,6 +19,16 @@ class LaporanContainer extends Component {
     return (
       <Container>
         <NavbarComponent/>
+        <Row>
+         <Col md={1}>
+          <BackLaporan/>
+         </Col>
+         <Col md={11}>
+          <Alert color="warning" >
+           <h4 >Detail Laporan</h4>
+          </Alert>
+          </Col>
+        </Row>
         <LaporanComponent />
         <RekapLaporan/>
       </Container>
