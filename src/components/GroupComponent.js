@@ -102,7 +102,7 @@ const GroupComponent = (props) => {
       dataField: "link",
       text: "Action",
       headerStyle: () => {
-        return { width: "250px" };
+        return { width: "200px" };
       },
       formatter: (rowContent, row) => {
         return (

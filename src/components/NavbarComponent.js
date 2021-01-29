@@ -73,6 +73,10 @@ const NavbarComponent = (props) => {
                   <Link to="/group/create">
                     <DropdownItem>Tambah Group Pegawai</DropdownItem>
                   </Link>
+                  <DropdownItem divider />
+                  <Link to="/cabang/create">
+                    <DropdownItem>Tambah Cabang</DropdownItem>
+                  </Link>
                 </DropdownMenu>
               </UncontrolledDropdown>
             </Nav>

@@ -26,7 +26,7 @@ class ListLaporanContainer extends Component {
           </Col>
           <Col md={11}>
             <Alert color="warning">
-              <h4>List Laporan</h4>
+              <h4>Menu List Laporan</h4>
             </Alert>
           </Col>
         </Row>
