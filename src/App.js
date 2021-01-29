@@ -14,8 +14,8 @@ import CreateIzinContainer from "./containers/CreateIzinContainer";
 import CreateIzinGroup from "./containers/CreateIzinGroup";
 import EditIzinContainer from "./containers/EditIzinContainer";
 import DetailIzinContainer from "./containers/DetailIzinContainer";
-import DetailLaporanContainer from "./containers/DetailLaporanContainer";
 import LaporanContainer from "./containers/LaporanContainer";
+import ListLaporanContainer from "./containers/ListLaporanContainer";
 import CabangContainer from "./containers/CabangContainer";
 import CreateCabangContainer from "./containers/CreateCabangContainer";
 import EditCabangContainer from "./containers/EditCabangContainer";
@@ -36,9 +36,9 @@ export default class App extends Component {
 
           <Route path="/edit/:UserID" exact component={EditUserContainer} />
 
-          <Route path="/laporan/:UserID" exact component={LaporanContainer} />
+          <Route path="/laporan" exact component={ListLaporanContainer} />
 
-          <Route path="/laporan/:UserID:TglIn:TglOut" exact component={DetailLaporanContainer} />
+          <Route path="/laporan/:UserID" exact component={LaporanContainer} />
 
           <Route path="/group" exact component={GroupContainer} />
 

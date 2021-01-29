@@ -13,30 +13,9 @@ import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
 import paginationFactory from "react-bootstrap-table2-paginator";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import swal from 'sweetalert';
-import { deleteUser } from "../actions/userAction";
 
 const { SearchBar } = Search;
 
-const handleClick = (dispatch, ID) => {
-  
-  swal({
-    title: "Apakah Anda yakin akan menghapus data ini ?",
-    icon: "warning",
-    buttons: true,
-    dangerMode: true,
-  })
-  .then((willDelete) => {
-    if (willDelete) {
-      dispatch(deleteUser(ID))
-      swal("Data User Sukses dihapus", {
-        icon: "success",
-      });
-    } else {
-      swal("Data gagal dihapus");
-    }
-  });
-}
 
 
 const defaultSorted = [
@@ -86,26 +65,16 @@ const TableComponent = (props) => {
       dataField: "link",
       text: "Action",
       headerStyle: () => {
-        return { width: "180px" };
+        return { width: "90px" };
       },
       formatter: (rowContent, row) => {
         return (
-          <div>
-            <Link to={"detail/" + row.UserID}>
-              <Button color="primary" className="mr-2">
-                <FontAwesomeIcon icon={faInfo} /> Detail
+          <div>  
+            <Link to={"laporan/" + row.UserID}>
+              <Button color="info" className="mr-2">
+                <FontAwesomeIcon icon={faBook} /> Laporan
               </Button>
             </Link>
-  
-            <Link to={"edit/" + row.UserID}>
-              <Button color="warning" className="mr-2">
-                <FontAwesomeIcon icon={faEdit} /> Edit
-              </Button>
-            </Link>
-  
-            <Button color="danger" className="mr-2" onClick={() => handleClick(props.dispatch, row.UserID)}>
-              <FontAwesomeIcon icon={faTrash} /> Delete
-            </Button>
           </div>
         );
       },
@@ -127,17 +96,18 @@ const TableComponent = (props) => {
           {(props) => (
             <div>
               <Row>
-                <Col>
-                  <Link to="/create">
-                    <Button color="danger" className="mr-2">
-                      <FontAwesomeIcon icon={faUserPlus} /> Tambah Pegawai
-                    </Button>
-                  </Link>
+                <Col md={1}>
+                  Mulai
                 </Col>
-              
-               
-              
-              
+                <Col md={2}>
+                <Input type='date' name='mulai'></Input>
+                </Col>
+                <Col md={1}>
+                  Akhir
+                </Col>
+                <Col md={2}>
+                <Input type='date' name='akhir'></Input>
+                </Col>
                 <Col>
                 
                   <div className="float-right">

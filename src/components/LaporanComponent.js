@@ -28,7 +28,7 @@ const LaporanComponent = (props) => {
       text: "Tanggal",
       sort: true,
       headerStyle: () => {
-        return { width: "100px" };
+        return { width: "90px" };
       },
     },
     {
@@ -36,7 +36,7 @@ const LaporanComponent = (props) => {
       text: "Datang",
       sort: true,
       headerStyle: () => {
-        return { width: "80px" };
+        return { width: "65px" };
       },
     },
     {
@@ -44,15 +44,15 @@ const LaporanComponent = (props) => {
       text: "Pulang",
       sort: true,
       headerStyle: () => {
-        return { width: "80px" };
+        return { width: "65px" };
       },
     },
     {
-      dataField: "Terlambat",
-      text: "Terlambat",
+      dataField: "Tlambat",
+      text: "Tlambat",
       sort: true,
       headerStyle: () => {
-        return { width: "80px" };
+        return { width: "70px" };
       },
     },
     {
@@ -60,7 +60,7 @@ const LaporanComponent = (props) => {
       text: "Lembur",
       sort: true,
       headerStyle: () => {
-        return { width: "80px" };
+        return { width: "65px" };
       },
     },
     {
@@ -71,22 +71,54 @@ const LaporanComponent = (props) => {
         return { width: "50px" };
       },
     },
-      {
-        dataField: "Keterangan",
-        text: "Keterangan",
-        sort: true,
-        headerStyle: () => {
-          return { width: "100px" };
-        },
+    {
+      dataField: "Break",
+      text: "Break",
+      sort: true,
+      headerStyle: () => {
+        return { width: "50px" };
       },
-      {
-        dataField: "KetPulang",
-        text: "KetPulang",
-        sort: true,
-        headerStyle: () => {
-          return { width: "100px" };
-        },
+    },
+    {
+      dataField: "Kmbl",
+      text: "Kmbl",
+      sort: true,
+      headerStyle: () => {
+        return { width: "50px" };
       },
+    },
+    {
+      dataField: "Tlambat",
+      text: "Tlambat",
+      sort: true,
+      headerStyle: () => {
+        return { width: "70px" };
+      },
+    },
+    {
+      dataField: "Status",
+      text: "Status",
+      sort: true,
+      headerStyle: () => {
+        return { width: "70px" };
+      },
+    },
+    {
+      dataField: "Keterangan",
+      text: "Keterangan",
+      sort: true,
+      headerStyle: () => {
+        return { width: "100px" };
+      },
+    },
+    {
+      dataField: "KetPulang",
+      text: "KetPulang",
+      sort: true,
+      headerStyle: () => {
+        return { width: "100px" };
+      },
+    },
   ];
 
   return (
@@ -104,15 +136,11 @@ const LaporanComponent = (props) => {
             <div>
               <Row>
                 <Col>
-                <Alert color="warning">
-                 Nama 
-                 </Alert>
-             
-                </Col>
-                <Col>
-                  <div className="float-right">
-                    <SearchBar {...props.searchProps} placeholder="Search .." />
-                  </div>
+                  <Alert color="info">
+                    <Row> Periode : </Row>
+                    <Row> Nama    : </Row>
+                    <Row> Posisi  : </Row>
+                  </Alert>
                 </Col>
               </Row>
 

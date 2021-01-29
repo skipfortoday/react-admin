@@ -7,6 +7,7 @@ import { connect } from "react-redux";
 import { getLaporanList } from "../actions/laporanAction";
 import InfoHomePegawai from "../components/InfoHomePegawai";
 import NavbarComponent from "../components/NavbarComponent";
+import RekapLaporan from "../components/RekapLaporan";
 
 class LaporanContainer extends Component {
   componentDidMount() {
@@ -17,22 +18,8 @@ class LaporanContainer extends Component {
     return (
       <Container>
         <NavbarComponent/>
-        <Row>
-          <Col md={1}>
-            <Button color="info">
-              <FontAwesomeIcon icon={faListAlt} /> List
-            </Button>
-          </Col>
-          <Col md={11}>
-            <Alert color="warning">
-              <h4>Menu Laporan</h4>
-            </Alert>
-          </Col>
-        </Row>
-        <InfoHomePegawai />
-        <Alert color="warning"></Alert>
         <LaporanComponent />
-        <Alert color="warning"></Alert>
+        <RekapLaporan/>
       </Container>
     );
   }

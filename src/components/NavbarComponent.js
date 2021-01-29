@@ -47,6 +47,11 @@ const NavbarComponent = (props) => {
                   <NavLink>| Cabang |</NavLink>
                 </Link>
               </NavItem>
+              <NavItem>
+                <Link to="/laporan">
+                  <NavLink>| Laporan |</NavLink>
+                </Link>
+              </NavItem>
             </Nav>
             <Nav navbar>
               <UncontrolledDropdown nav inNavbar>
