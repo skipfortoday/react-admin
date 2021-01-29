@@ -31,11 +31,11 @@ export const getLaporanList = (UserID) => {
   };
 };
 
-export const getLaporanDetail = (UserID,TglIn,TglOut) => {
+export const getLaporanDetail = (UserID,TglMasuk,TglSelesai) => {
   return (dispatch) => {
     axios
       .get(
-        "http://192.168.0.25:3001/api/lapdet/"+UserID+"&"+TglIn+"&"+TglOut)
+        "http://192.168.0.25:3001/api/apprecentscan/"+UserID+"&"+TglMasuk+"&"+TglSelesai)
       .then(function (response) {
         dispatch({
           type: GET_LAPORAN_DETAIL,
