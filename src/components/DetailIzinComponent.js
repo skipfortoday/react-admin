@@ -14,7 +14,7 @@ const DetailIzinComponent = (props) => {
     <Table striped>
       <tbody>
         <tr>
-          <td width="200">TanggalIzin</td>
+          <td width="200">Tanggal</td>
           <td width="10">:</td>
           <td>{props.getIzinDetail.TanggalIzin}</td>
         </tr>
@@ -49,7 +49,7 @@ const DetailIzinComponent = (props) => {
           <td>{props.getIzinDetail.Status}</td>
         </tr>
         <tr>
-          <td width="200">Status</td>
+          <td width="200">Keterangan</td>
           <td width="10">:</td>
           <td>{props.getIzinDetail.Keterangan}</td>
         </tr>

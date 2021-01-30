@@ -1,7 +1,5 @@
 import React from "react";
 import { Row, Col, Alert } from "reactstrap";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faJournalWhills } from "@fortawesome/free-solid-svg-icons";
 
 const RekapLaporan = () => {
   return (
