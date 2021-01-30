@@ -7,6 +7,7 @@ import DetailUserContainer from "./containers/DetailUserContainer";
 import GroupContainer from "./containers/GroupContainer";
 import CreateGroupContainer from "./containers/CreateGroupContainer";
 import EditGroupContainer from "./containers/EditGroupContainer";
+import TerlambatBertingkatContainer from "./containers/TerlambatBertingkatContainer";
 import DetailGroupContainer from "./containers/DetailGroupContainer";
 import IzinContainer from "./containers/IzinContainer";
 import ListUserIzinContainer from "./containers/ListUserIzinContainer";
@@ -47,6 +48,8 @@ export default class App extends Component {
           <Route path="/group/detail/:GroupID" exact component={DetailGroupContainer} />
 
           <Route path="/group/edit/:GroupID" exact component={EditGroupContainer} />
+
+          <Route path="/group/terlambatbertingkat/:GroupID" exact component={TerlambatBertingkatContainer} />
 
           <Route path="/izin" exact component={IzinContainer} />
 

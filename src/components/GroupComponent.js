@@ -8,27 +8,26 @@ import {
   faTrash,
   faUsersCog,
   faPlus,
+  faClock,
 } from "@fortawesome/free-solid-svg-icons";
 import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
 import paginationFactory from "react-bootstrap-table2-paginator";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import swal from 'sweetalert';
+import swal from "sweetalert";
 import { deleteGroup } from "../actions/groupAction";
 
 const { SearchBar } = Search;
 
 const handleClick = (dispatch, GroupID) => {
-  
   swal({
     title: "Apakah Anda yakin akan menghapus data ini ?",
     icon: "warning",
     buttons: true,
     dangerMode: true,
-  })
-  .then((willDelete) => {
+  }).then((willDelete) => {
     if (willDelete) {
-      dispatch(deleteGroup(GroupID))
+      dispatch(deleteGroup(GroupID));
       swal("Data Group Sukses dihapus", {
         icon: "success",
       });
@@ -36,8 +35,7 @@ const handleClick = (dispatch, GroupID) => {
       swal("Data gagal dihapus");
     }
   });
-}
-
+};
 
 const defaultSorted = [
   {
@@ -53,9 +51,7 @@ const mapStateToProps = (state) => {
   };
 };
 
-
 const GroupComponent = (props) => {
-
   const columns = [
     {
       dataField: "GroupID",
@@ -74,35 +70,10 @@ const GroupComponent = (props) => {
       },
     },
     {
-      dataField: "JamDatang",
-      text: "Pagi Datang", 
-      sort: true,
-      headerStyle: () => {
-        return { width: "100px" };
-      },
-      
-    },
-    {
-      dataField: "JamPulang",
-      text: "Pagi Pulang",
-      sort: true,
-      headerStyle: () => {
-        return { width: "100px" };
-      },
-    },
-    {
-      dataField: "HariLibur",
-      text: "Hari Libur",
-      sort: true,
-      headerStyle: () => {
-        return { width: "100px" };
-      },
-    },
-    {
       dataField: "link",
       text: "Action",
       headerStyle: () => {
-        return { width: "200px" };
+        return { width: "170px" };
       },
       formatter: (rowContent, row) => {
         return (
@@ -112,23 +83,32 @@ const GroupComponent = (props) => {
                 <FontAwesomeIcon icon={faInfo} /> Detail
               </Button>
             </Link>
-  
+
             <Link to={"group/edit/" + row.GroupID}>
               <Button color="warning" className="mr-2">
                 <FontAwesomeIcon icon={faEdit} /> Edit
               </Button>
             </Link>
-  
-            <Button color="danger" className="mr-2" onClick={() => handleClick(props.dispatch, row.GroupID)}>
+
+            <Button
+              color="danger"
+              className="mr-2"
+              onClick={() => handleClick(props.dispatch, row.GroupID)}
+            >
               <FontAwesomeIcon icon={faTrash} /> Delete
             </Button>
+
+            <Link to={"group/terlambatbertingkat/" + row.GroupID}>
+              <Button color="info" className="mr-2">
+                <FontAwesomeIcon icon={faClock} /> Terlambat Bertingkat
+              </Button>
+            </Link>
           </div>
         );
       },
     },
   ];
 
-  
   return (
     <Container>
       {props.getGroupList ? (
@@ -146,7 +126,8 @@ const GroupComponent = (props) => {
                 <Col>
                   <Link to="group/create">
                     <Button color="danger" className="mr-2">
-                      <FontAwesomeIcon icon={faUsersCog} /> Tambah Group <FontAwesomeIcon icon={faPlus} />
+                      <FontAwesomeIcon icon={faUsersCog} /> Tambah Group{" "}
+                      <FontAwesomeIcon icon={faPlus} />
                     </Button>
                   </Link>
                 </Col>
