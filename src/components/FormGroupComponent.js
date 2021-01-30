@@ -28,7 +28,16 @@ const renderField = ({
         placeholder={placeholder}
         disabled={disabled}
         readOnly={readOnly}
-      ></Input>
+      >
+        <option value="0">-</option>
+        <option value="MONDAY">SENIN</option>
+        <option value="TUESDAY">SELASA</option>
+        <option value="WEDNESDAY">RABU</option>
+        <option value="THURSDAY">KAMIS</option>
+        <option value="FRIDAY">JUMAT</option>
+        <option value="SATURDAY">SABTU</option>
+        <option value="SUNDAY">MINGGU</option>
+      </Input>
       {touched &&
         ((error && <p style={{ color: "red" }}>{error}</p>) ||
           (warning && <p style={{ color: "brown" }}>{warning}</p>))}
@@ -67,12 +76,12 @@ class FormGroupComponent extends Component {
       <form onSubmit={this.props.handleSubmit}>
         <FormGroup row>
           <Col md={12}>
-          <Alert color="danger">
-           Masukkan Group ID untuk Kode & Nama Group / Nama Jabatan (WAJIB)
-          </Alert>
+            <Alert color="danger">
+              Masukkan Group ID untuk Kode & Nama Group / Nama Jabatan (WAJIB)
+            </Alert>
           </Col>
 
-          <Col md={6}>
+          <Col md={4}>
             <FormGroup>
               <Field
                 type="text"
@@ -83,7 +92,7 @@ class FormGroupComponent extends Component {
             </FormGroup>
           </Col>
 
-          <Col md={6}>
+          <Col md={4}>
             <FormGroup>
               <Field
                 type="text"
@@ -95,173 +104,59 @@ class FormGroupComponent extends Component {
           </Col>
 
           <Col md={12}>
-          <Alert color="primary">
-           Masukkan Aturan Jadwal Pagi atau Jadwal Shift 1 (WAJIB)
-          </Alert>
+            <Alert color="info">Masukkan Hari Libur Dan Komponen Gaji</Alert>
           </Col>
 
-          <Col md={3}>
+          <Col md={1}>
+            <FormGroup></FormGroup>
+          </Col>
+
+          <Col md={2}>
             <FormGroup>
-              <Field
-                type="time"
-                name="JamDatang"
-                component={renderField}
-                label="Jam Datang Pagi :"
-              />
+              <Field type="checkbox" name="AdaLibur" component={renderField} />
+              Ada Hari Libur Mingguan
             </FormGroup>
           </Col>
 
           <Col md={3}>
             <FormGroup>
               <Field
-                type="time"
-                name="JamPulang"
-                component={renderField}
-                label="Jam Pulang Pagi :"
-              />
-            </FormGroup>
-          </Col>
-
-          <Col md={3}>
-            <FormGroup>
-              <Field
-                type="time"
-                name="MaxJamDatang"
-                component={renderField}
-                label="Max Jam Datang Pagi :"
-              />
-            </FormGroup>
-          </Col>
-
-          <Col md={3}>
-            <FormGroup>
-              <Field
-                type="time"
-                name="MinJamLembur"
-                component={renderField}
-                label="Min Jam Lembur Pagi :"
-              />
-            </FormGroup>
-          </Col>
-
-
-          <Col md={12}>
-          <Alert color="success">
-           Masukkan Aturan Jadwal Siang atau Jadwal Shift 2
-          </Alert>
-          </Col>
-
-          <Col md={3}>
-            <FormGroup>
-              <Field
-                type="time"
-                name="JamDatangSiang"
-                component={renderField}
-                label="Jam Datang Siang  :"
-              />
-            </FormGroup>
-          </Col>
-
-          <Col md={3}>
-            <FormGroup>
-              <Field
-                type="time"
-                name="JamPulangSiang"
-                component={renderField}
-                label="Jam Pulang Siang :"
-              />
-            </FormGroup>
-          </Col>
-
-          <Col md={3}>
-            <FormGroup>
-              <Field
-                type="time"
-                name="MaxJamDatangSiang"
-                component={renderField}
-                label="Max Jam Datang Siang :"
-              />
-            </FormGroup>
-          </Col>
-
-          <Col md={3}>
-            <FormGroup>
-              <Field
-                type="time"
-                name="MinJamLemburSiang"
-                component={renderField}
-                label="Min Jam Lembur Siang :"
-              />
-            </FormGroup>
-          </Col>
-
-          
-          <Col md={12}>
-          <Alert color="warning">
-           Masukkan Aturan Jadwal Sore atau Jadwal Shift 3
-          </Alert>
-          </Col>
-
-          <Col md={3}>
-            <FormGroup>
-              <Field
-                type="time"
-                name="JamDatangSore"
-                component={renderField}
-                label="Jam Datang Siang  :"
-              />
-            </FormGroup>
-          </Col>
-
-          <Col md={3}>
-            <FormGroup>
-              <Field
-                type="time"
-                name="JamPulangSore"
-                component={renderField}
-                label="Jam Pulang Siang :"
-              />
-            </FormGroup>
-          </Col>
-
-          <Col md={3}>
-            <FormGroup>
-              <Field
-                type="time"
-                name="MaxJamDatangSore"
-                component={renderField}
-                label="Max Jam Datang Siang :"
-              />
-            </FormGroup>
-          </Col>
-
-          <Col md={3}>
-            <FormGroup>
-              <Field
-                type="time"
-                name="MinJamLemburSore"
-                component={renderField}
-                label="Min Jam Lembur Siang :"
-              />
-            </FormGroup>
-          </Col>
-
-
-          <Col md={12}>
-          <Alert color="info">
-           Masukkan Hari Libur Dan Komponen Gaji
-          </Alert>
-          </Col>
-
-          <Col md={3}>
-            <FormGroup>
-              <Field
-                type="text"
+                type="select"
                 name="HariLibur"
                 component={renderField}
                 label="Hari Libur :"
               />
             </FormGroup>
+          </Col>
+
+          <Col md={1}>
+            <FormGroup></FormGroup>
+          </Col>
+
+          <Col md={2}>
+            <FormGroup>
+              <Field
+                type="checkbox"
+                name="CekJamKembali"
+                component={renderField}
+              />
+              Cek Jam Kembali Istirahat
+            </FormGroup>
+          </Col>
+
+          <Col md={2}>
+            <FormGroup>
+              <Field type="checkbox" name="Terlamb" component={renderField} />
+              Menggunakan Terlambat Bertingkat
+            </FormGroup>
+          </Col>
+
+          <Col md={1}>
+            <FormGroup></FormGroup>
+          </Col>
+
+          <Col md={1}>
+            <FormGroup></FormGroup>
           </Col>
 
           <Col md={3}>
@@ -296,6 +191,255 @@ class FormGroupComponent extends Component {
               />
             </FormGroup>
           </Col>
+
+          <Col md={12}>
+            <Alert color="primary">
+              Masukkan Aturan Jadwal Pagi atau Jadwal Shift 1 (WAJIB)
+            </Alert>
+          </Col>
+
+          <Col md={3}>
+            <FormGroup>
+              <Field
+                type="time"
+                name="JamDatang"
+                component={renderField}
+                label="Jam Datang Pagi :"
+              />
+            </FormGroup>
+          </Col>
+
+          <Col md={3}>
+            <FormGroup>
+              <Field
+                type="time"
+                name="JamPulang"
+                component={renderField}
+                label="Jam Pulang Pagi :"
+              />
+            </FormGroup>
+          </Col>
+
+          <Col md={2}>
+            <FormGroup>
+              <Field
+                type="time"
+                name="MaxJamDatang"
+                component={renderField}
+                label="Max Jam Datang Pagi :"
+              />
+            </FormGroup>
+          </Col>
+
+          <Col md={2}>
+            <FormGroup>
+              <Field
+                type="time"
+                name="MinJamLembur"
+                component={renderField}
+                label="Min Jam Lembur:"
+              />
+            </FormGroup>
+          </Col>
+
+          <Col md={2}>
+            <FormGroup>
+              <Field
+                type="time"
+                name="JamMulaiLembur"
+                component={renderField}
+                label="Jam Mulai Lembur :"
+              />
+            </FormGroup>
+          </Col>
+
+          <Col md={3}>
+            <FormGroup>
+              <Field
+                type="time"
+                name="JamMulaiIstirahat"
+                component={renderField}
+                label="Jam Mulai Istirahat :"
+              />
+            </FormGroup>
+          </Col>
+
+          <Col md={3}>
+            <FormGroup>
+              <Field
+                type="time"
+                name="MaxJamKembali"
+                component={renderField}
+                label="Max Kembali Istirahat :"
+              />
+            </FormGroup>
+          </Col>
+
+          <Col md={12}>
+            <Alert color="success">
+              Masukkan Aturan Jadwal Siang atau Jadwal Shift 2
+            </Alert>
+          </Col>
+
+          <Col md={3}>
+            <FormGroup>
+              <Field
+                type="time"
+                name="JamDatangSiang"
+                component={renderField}
+                label="Jam Datang Siang  :"
+              />
+            </FormGroup>
+          </Col>
+
+          <Col md={3}>
+            <FormGroup>
+              <Field
+                type="time"
+                name="JamPulangSiang"
+                component={renderField}
+                label="Jam Pulang Siang :"
+              />
+            </FormGroup>
+          </Col>
+
+          <Col md={2}>
+            <FormGroup>
+              <Field
+                type="time"
+                name="MaxJamDatangSiang"
+                component={renderField}
+                label="MaxJam DtngSiang :"
+              />
+            </FormGroup>
+          </Col>
+
+          <Col md={2}>
+            <FormGroup>
+              <Field
+                type="time"
+                name="MinJamLemburSiang"
+                component={renderField}
+                label="MinJam LemburSiang :"
+              />
+            </FormGroup>
+          </Col>
+
+          <Col md={2}>
+            <FormGroup>
+              <Field
+                type="time"
+                name="JamMulaiLembur"
+                component={renderField}
+                label="Jam Mulai Lembur :"
+              />
+            </FormGroup>
+          </Col>
+
+          <Col md={3}>
+            <FormGroup>
+              <Field
+                type="time"
+                name="JamMulaiIstirahat"
+                component={renderField}
+                label="Jam Mulai Istirahat :"
+              />
+            </FormGroup>
+          </Col>
+
+          <Col md={3}>
+            <FormGroup>
+              <Field
+                type="time"
+                name="MaxJamKembali"
+                component={renderField}
+                label="Max Kembali Istirahat :"
+              />
+            </FormGroup>
+          </Col>
+
+          <Col md={12}>
+            <Alert color="warning">
+              Masukkan Aturan Jadwal Sore atau Jadwal Shift 3
+            </Alert>
+          </Col>
+
+          <Col md={3}>
+            <FormGroup>
+              <Field
+                type="time"
+                name="JamDatangSore"
+                component={renderField}
+                label="Jam Datang Sore  :"
+              />
+            </FormGroup>
+          </Col>
+
+          <Col md={3}>
+            <FormGroup>
+              <Field
+                type="time"
+                name="JamPulangSore"
+                component={renderField}
+                label="Jam Pulang Sore :"
+              />
+            </FormGroup>
+          </Col>
+
+          <Col md={2}>
+            <FormGroup>
+              <Field
+                type="time"
+                name="MaxJamDatangSore"
+                component={renderField}
+                label="MaxJam DtgSore:"
+              />
+            </FormGroup>
+          </Col>
+
+          <Col md={2}>
+            <FormGroup>
+              <Field
+                type="time"
+                name="MinJamLemburSore"
+                component={renderField}
+                label="MinJam LemburSore:"
+              />
+            </FormGroup>
+          </Col>
+
+          <Col md={2}>
+            <FormGroup>
+              <Field
+                type="time"
+                name="JamMulaiLembur"
+                component={renderField}
+                label="Jam Mulai Lembur :"
+              />
+            </FormGroup>
+          </Col>
+
+          <Col md={3}>
+            <FormGroup>
+              <Field
+                type="time"
+                name="JamMulaiIstirahat"
+                component={renderField}
+                label="Jam Mulai Istirahat :"
+              />
+            </FormGroup>
+          </Col>
+
+          <Col md={3}>
+            <FormGroup>
+              <Field
+                type="time"
+                name="MaxJamKembali"
+                component={renderField}
+                label="Max Kembali Istirahat :"
+              />
+            </FormGroup>
+          </Col>
         </FormGroup>
 
         <FormGroup row>
@@ -306,7 +450,7 @@ class FormGroupComponent extends Component {
                 type="submit"
                 disabled={this.props.submitting}
               >
-               <FontAwesomeIcon icon={faSave} /> SIMPAN
+                <FontAwesomeIcon icon={faSave} /> SIMPAN
               </Button>
             </FormGroup>
           </Col>

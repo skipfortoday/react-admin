@@ -31,8 +31,12 @@ const renderField = ({
       >
         <option value="OFF">OFF</option>
         <option value="CUTI">CUTI</option>
-        <option value="TIDAK MASUK">TIDAK MASUK</option>
+        <option value="TIDAK MASUK">IZIN TIDAK MASUK</option>
         <option value="SAKIT">SAKIT</option>
+        <option value="DINAS LUAR">DINAS LUAR</option>
+        <option value="CUTI BERSAMA">CUTI BERSAMA</option>
+        <option value="CUTI KHUSUS">CUTI KHUSUS</option>
+        <option value="LIBUR">LIBUR</option>
       </Input>
       {touched &&
         ((error && <p style={{ color: "red" }}>{error}</p>) ||
