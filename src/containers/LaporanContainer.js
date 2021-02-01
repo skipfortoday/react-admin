@@ -2,15 +2,17 @@ import React, { Component } from "react";
 import LaporanComponent from "../components/LaporanComponent";
 import { Container, Alert, Col, Row, Button } from "reactstrap";
 import { connect } from "react-redux";
-import { getLaporanList } from "../actions/laporanAction";
+import { getLaporanList} from "../actions/laporanAction";
 import NavbarComponent from "../components/NavbarComponent";
 import RekapLaporan from "../components/RekapLaporan";
 import BackLaporan from "../components/BackLaporan";
 import FormLaporan from "../components/FormLaporan";
+import { getUserDetail } from "../actions/userAction";
 
 class LaporanContainer extends Component {
   componentDidMount() {
     this.props.dispatch(getLaporanList(this.props.match.params.UserID));
+    this.props.dispatch(getUserDetail(this.props.match.params.UserID));
   }
 
   render() {

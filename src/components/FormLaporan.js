@@ -2,9 +2,9 @@ import React, { Component } from "react";
 import { reduxForm, Field } from "redux-form";
 import { connect } from "react-redux";
 import { FormGroup, Col, Label, Input, Row, Button, Alert } from "reactstrap";
-import IzinValidation from "../validations/IzinValidation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSave } from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-router-dom";
 
 const renderField = ({
   input,
@@ -29,14 +29,6 @@ const renderField = ({
         disabled={disabled}
         readOnly={readOnly}
       >
-        <option value="OFF">OFF</option>
-        <option value="CUTI">CUTI</option>
-        <option value="TIDAK MASUK">IZIN TIDAK MASUK</option>
-        <option value="SAKIT">SAKIT</option>
-        <option value="DINAS LUAR">DINAS LUAR</option>
-        <option value="CUTI BERSAMA">CUTI BERSAMA</option>
-        <option value="CUTI KHUSUS">CUTI KHUSUS</option>
-        <option value="LIBUR">LIBUR</option>
       </Input>
       {touched &&
         ((error && <p style={{ color: "red" }}>{error}</p>) ||
@@ -48,14 +40,8 @@ const renderField = ({
 const mapStateToProps = (state) => {
   return {
     initialValues: {
-      DatangID: state.Izin.getIzinDetail.DatangID,
-      UserID: state.Izin.getIzinDetail.UserID,
-      Nama: state.Izin.getIzinDetail.Nama,
-      Jabatan: state.Izin.getIzinDetail.Jabatan,
-      FTglMulaiCuti: state.Izin.getIzinDetail.FTglMulaiCuti,
-      TanggalScan: state.Izin.getIzinDetail.TanggalScan,
-      Status: state.Izin.getIzinDetail.Status,
-      Keterangan: state.Izin.getIzinDetail.Keterangan,
+      UserID: state.users.getUserDetail.UserID,
+      Nama: state.users.getUserDetail.Nama
     },
   };
 };
@@ -63,7 +49,7 @@ const mapStateToProps = (state) => {
 class FormLaporan extends Component {
   render() {
     return (
-      <form onSubmit={this.props.handleSubmit}>
+      <form onSubmit={this.props.detaillap}>
         <FormGroup row>
           <Col md={12}>
             <Alert color="danger">
@@ -101,36 +87,6 @@ class FormLaporan extends Component {
           <Col md={3}>
             <FormGroup>
               <Field
-                type="text"
-                name="Jabatan"
-                disabled
-                component={renderField}
-                label="Jabatan:"
-              />
-            </FormGroup>
-          </Col>
-
-          <Col md={3}>
-            <FormGroup>
-              <Field
-                type="text"
-                name="FTglMulaiCuti"
-                disabled
-                component={renderField}
-                label="Tanggal Mulai Cuti:"
-              />
-            </FormGroup>
-          </Col>
-
-          <Col md={12}>
-            <Alert color="primary">
-              Masukkan Tipe Izin Tanggal Izin dan Keterangan Untuk Izin
-            </Alert>
-          </Col>
-
-          <Col md={3}>
-            <FormGroup>
-              <Field
                 type="date"
                 name="TanggalAwal"
                 component={renderField}
@@ -150,18 +106,20 @@ class FormLaporan extends Component {
             </FormGroup>
           </Col>
 
+
+         
+
         </FormGroup>
 
         <FormGroup row>
           <Col md="12">
             <FormGroup>
-              <Button
-                color="primary"
-                type="submit"
-                disabled={this.props.submitting}
-              >
-                <FontAwesomeIcon icon={faSave} /> CETAK
+
+              <Link to={"laporan/"}>
+              <Button color="warning" className="mr-2">
+                <FontAwesomeIcon icon={faSave} /> Print
               </Button>
+            </Link>
             </FormGroup>
           </Col>
         </FormGroup>
