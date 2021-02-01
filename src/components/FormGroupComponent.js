@@ -118,7 +118,7 @@ class FormGroupComponent extends Component {
             </FormGroup>
           </Col>
 
-          <Col md={3}>
+          <Col md={2}>
             <FormGroup>
               <Field
                 type="select"
@@ -150,14 +150,12 @@ class FormGroupComponent extends Component {
               Menggunakan Terlambat Bertingkat
             </FormGroup>
           </Col>
+   
 
-          <Col md={1}>
+          <Col md={2}>
             <FormGroup></FormGroup>
           </Col>
 
-          <Col md={1}>
-            <FormGroup></FormGroup>
-          </Col>
 
           <Col md={3}>
             <FormGroup>
