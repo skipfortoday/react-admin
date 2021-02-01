@@ -1,14 +1,12 @@
 import React, { Component } from "react";
 import LaporanComponent from "../components/LaporanComponent";
 import { Container, Alert, Col, Row, Button } from "reactstrap";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faListAlt } from "@fortawesome/free-solid-svg-icons";
 import { connect } from "react-redux";
 import { getLaporanList } from "../actions/laporanAction";
-import InfoHomePegawai from "../components/InfoHomePegawai";
 import NavbarComponent from "../components/NavbarComponent";
 import RekapLaporan from "../components/RekapLaporan";
 import BackLaporan from "../components/BackLaporan";
+import FormLaporan from "../components/FormLaporan";
 
 class LaporanContainer extends Component {
   componentDidMount() {
@@ -28,6 +26,7 @@ class LaporanContainer extends Component {
            <h4 >Detail Laporan</h4>
           </Alert>
           </Col>
+          <FormLaporan/>
         </Row>
         <LaporanComponent />
         <RekapLaporan/>

@@ -1,18 +1,14 @@
 import React from "react";
 import BootstrapTable from "react-bootstrap-table-next";
-import { Container, Button, Row, Col, Spinner,Input } from "reactstrap";
+import { Container, Button, Row, Col, Spinner, Input } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faBook,
-} from "@fortawesome/free-solid-svg-icons";
+import { faBook } from "@fortawesome/free-solid-svg-icons";
 import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
 import paginationFactory from "react-bootstrap-table2-paginator";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
 const { SearchBar } = Search;
-
-
 
 const defaultSorted = [
   {
@@ -29,31 +25,31 @@ const mapStateToProps = (state) => {
 };
 
 const TableComponent = (props) => {
-
   const columns = [
     {
       dataField: "UserID",
       text: "UserID",
       sort: true,
       headerStyle: () => {
-        return { width: "100px" };
+        return { width: "80px" };
       },
     },
     {
       dataField: "Nama",
-      text: "Nama", 
+      text: "Nama",
       sort: true,
       headerStyle: () => {
-        return { width: "180px" };
+        return { width: "100px" };
       },
-      
     },
+
+
     {
       dataField: "Jabatan",
       text: "Group",
       sort: true,
       headerStyle: () => {
-        return { width: "180px" };
+        return { width: "80px" };
       },
     },
 
@@ -61,11 +57,11 @@ const TableComponent = (props) => {
       dataField: "link",
       text: "Action",
       headerStyle: () => {
-        return { width: "90px" };
+        return { width: "40px" };
       },
       formatter: (rowContent, row) => {
         return (
-          <div>  
+          <div>
             <Link to={"laporan/" + row.UserID}>
               <Button color="info" className="mr-2">
                 <FontAwesomeIcon icon={faBook} /> Laporan
@@ -77,7 +73,6 @@ const TableComponent = (props) => {
     },
   ];
 
-  
   return (
     <Container>
       {props.getUsersList ? (
@@ -92,20 +87,16 @@ const TableComponent = (props) => {
           {(props) => (
             <div>
               <Row>
-                <Col md={1}>
-                  Mulai
-                </Col>
+                
+                <Col md={1}>Mulai</Col>
                 <Col md={2}>
-                <Input type='date' name='mulai'></Input>
+                  <Input type="date" name="awal" id="awal"></Input>
                 </Col>
-                <Col md={1}>
-                  Akhir
-                </Col>
+                <Col md={1}>Akhir</Col>
                 <Col md={2}>
-                <Input type='date' name='akhir'></Input>
+                  <Input type="date" name="akhir" id="akhir"></Input>
                 </Col>
                 <Col>
-                
                   <div className="float-right">
                     <SearchBar {...props.searchProps} placeholder="Search .." />
                   </div>
