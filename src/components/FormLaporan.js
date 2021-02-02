@@ -1,9 +1,18 @@
 import React, { Component } from "react";
 import { reduxForm, Field } from "redux-form";
 import { connect } from "react-redux";
-import { FormGroup, Col, Label, Input, Row, Button, Alert } from "reactstrap";
+import {
+  FormGroup,
+  Col,
+  Label,
+  Input,
+  Row,
+  Button,
+  Alert,
+  Container,
+} from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSave } from "@fortawesome/free-solid-svg-icons";
+import { faPrint} from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 
 const renderField = ({
@@ -28,8 +37,7 @@ const renderField = ({
         placeholder={placeholder}
         disabled={disabled}
         readOnly={readOnly}
-      >
-      </Input>
+      ></Input>
       {touched &&
         ((error && <p style={{ color: "red" }}>{error}</p>) ||
           (warning && <p style={{ color: "brown" }}>{warning}</p>))}
@@ -41,7 +49,7 @@ const mapStateToProps = (state) => {
   return {
     initialValues: {
       UserID: state.users.getUserDetail.UserID,
-      Nama: state.users.getUserDetail.Nama
+      Nama: state.users.getUserDetail.Nama,
     },
   };
 };
@@ -49,80 +57,71 @@ const mapStateToProps = (state) => {
 class FormLaporan extends Component {
   render() {
     return (
-      <form onSubmit={this.props.detaillap}>
-        <FormGroup row>
-          <Col md={12}>
-            <Alert color="danger">
-              Detail Data User
-            </Alert>
-          </Col>
+      <form onSubmit={this.props.handleSubmit}>
+        <Container>
+          <FormGroup row>
+            <Col md={3}>
+              <FormGroup>
+                <Field
+                  type="text"
+                  name="UserID"
+                  disabled
+                  component={renderField}
+                  label="ID :"
+                />
+              </FormGroup>
+            </Col>
 
+            <Col md={3}>
+              <FormGroup>
+                <Field
+                  type="text"
+                  name="Nama"
+                  disabled
+                  component={renderField}
+                  label="Nama:"
+                />
+              </FormGroup>
+            </Col>
 
-          <Col md={3}>
-            <FormGroup>
-              <Field
-                type="text"
-                name="UserID"
-                disabled
-                component={renderField}
-                label="ID :"
-              />
-            </FormGroup>
-          </Col>
+            <Col md={3}>
+              <FormGroup>
+                <Field
+                  type="date"
+                  name="TglAwal"
+                  component={renderField}
+                  label="Tanggal Awal:"
+                />
+              </FormGroup>
+            </Col>
 
-        
+            <Col md={3}>
+              <FormGroup>
+                <Field
+                  type="date"
+                  name="TglAkhir"
+                  component={renderField}
+                  label="Tanggal Akhir :"
+                />
+              </FormGroup>
+            </Col>
+          </FormGroup>
 
-          <Col md={3}>
-            <FormGroup>
-              <Field
-                type="text"
-                name="Nama"
-                disabled
-                component={renderField}
-                label="Nama:"
-              />
-            </FormGroup>
-          </Col>
-
-          <Col md={3}>
-            <FormGroup>
-              <Field
-                type="date"
-                name="TanggalAwal"
-                component={renderField}
-                label="Tanggal Awal:"
-              />
-            </FormGroup>
-          </Col>
-
-          <Col md={3}>
-            <FormGroup>
-              <Field
-                type="date"
-                name="TanggalAkhir"
-                component={renderField}
-                label="Tanggal Akhir :"
-              />
-            </FormGroup>
-          </Col>
-
-
-         
-
-        </FormGroup>
-
-        <FormGroup row>
-          <Col md="12">
-            <FormGroup>
-
-              <Link to={"laporan/"}>
-              <Button color="warning" className="mr-2">
-                <FontAwesomeIcon icon={faSave} /> Print
-              </Button>
-            </Link>
-            </FormGroup>
-          </Col>
-        </FormGroup>
+          <FormGroup row>
+            <Col md="12">
+              <FormGroup>
+                
+                  <Button
+                    color="warning"
+                    type="submit"
+                    disabled={this.props.submitting}
+                  >
+                    <FontAwesomeIcon icon={faPrint} /> Print
+                  </Button>
+              </FormGroup>
+            </Col>
+          </FormGroup>
+        </Container>
       </form>
     );
   }

@@ -64,7 +64,7 @@ const TableComponent = (props) => {
           <div>
             <Link to={"laporan/" + row.UserID}>
               <Button color="info" className="mr-2">
-                <FontAwesomeIcon icon={faBook} /> Laporan
+                <FontAwesomeIcon icon={faBook} /> Scan
               </Button>
             </Link>
           </div>
@@ -87,15 +87,6 @@ const TableComponent = (props) => {
           {(props) => (
             <div>
               <Row>
-                
-                <Col md={1}>Mulai</Col>
-                <Col md={2}>
-                  <Input type="date" name="awal" id="awal"></Input>
-                </Col>
-                <Col md={1}>Akhir</Col>
-                <Col md={2}>
-                  <Input type="date" name="akhir" id="akhir"></Input>
-                </Col>
                 <Col>
                   <div className="float-right">
                     <SearchBar {...props.searchProps} placeholder="Search .." />

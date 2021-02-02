@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import LaporanComponent from "../components/LaporanComponent";
 import { Container, Alert, Col, Row, Button } from "reactstrap";
 import { connect } from "react-redux";
-import { getLaporanList} from "../actions/laporanAction";
+import { getLaporanDetail, getLaporanList} from "../actions/laporanAction";
 import NavbarComponent from "../components/NavbarComponent";
 import RekapLaporan from "../components/RekapLaporan";
 import BackLaporan from "../components/BackLaporan";
@@ -15,6 +15,12 @@ class LaporanContainer extends Component {
     this.props.dispatch(getUserDetail(this.props.match.params.UserID));
   }
 
+  handleSubmit(data) {
+    this.props.dispatch(getLaporanDetail(data, this.props.match.params.UserID));
+    this.props.dispatch(getLaporanDetail(data, this.props.match.params.TglAwal));
+    this.props.dispatch(getLaporanDetail(data, this.props.match.params.TglAkhir));
+  }
+
   render() {
     return (
       <Container>
@@ -25,13 +31,12 @@ class LaporanContainer extends Component {
          </Col>
          <Col md={11}>
           <Alert color="warning" >
-           <h4 >Detail Laporan</h4>
+           <h4 >Detail Scan</h4>
           </Alert>
           </Col>
           <FormLaporan/>
         </Row>
         <LaporanComponent />
-        <RekapLaporan/>
       </Container>
     );
   }
