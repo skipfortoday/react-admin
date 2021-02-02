@@ -55,7 +55,7 @@ class CreateGroupContainer extends Component {
         </Row>
         <InfoMenuGroup/>
         <Alert color="warning" ></Alert>        
-        <h2>Form Tambah Group Pegawai</h2>
+        <h4>Form Tambah Group Pegawai</h4>
         <FormGroupComponent onSubmit={(data) => this.handleSubmit(data)} />
         <Alert color="warning" ></Alert>
       </Container>

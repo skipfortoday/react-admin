@@ -24,6 +24,8 @@ const mapStateToProps = (state) => {
   };
 };
 
+
+
 const TableComponent = (props) => {
   const columns = [
     {

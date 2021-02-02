@@ -105,119 +105,40 @@ class TerlambatBertingkatComponent extends Component {
             </FormGroup>
           </Col>
 
-          <Col md={12}>
+          
+          <Col md={4}>
+          </Col>
+
+          <Col md={4}>
             <Alert color="info">Terlambat Bertingkat Shift 1</Alert>
           </Col>
 
-          <Col md={1}>
-            <FormGroup></FormGroup>
+          <Col md={4}>
+            <Alert color="warning">Terlambat Bertingkat Shift 2</Alert>
+          </Col>
+
+          <Col md={4}>
+            <Alert color="danger">Terlambat Bertingkat Shift 3</Alert>
           </Col>
 
           <Col md={2}>
-            <FormGroup>
-              <Field type="text" name="AdaLibur" component={renderField} />
-              Ada Hari Libur Mingguan
-            </FormGroup>
-          </Col>
-
-          <Col md={3}>
-            <FormGroup>
-              <Field
-                type="select"
-                name="HariLibur"
-                component={renderField}
-                label="Hari Libur :"
-              />
-            </FormGroup>
-          </Col>
-
-          <Col md={1}>
-            <FormGroup></FormGroup>
-          </Col>
-
-          <Col md={2}>
-            <FormGroup>
-              <Field
-                type="checkbox"
-                name="CekJamKembali"
-                component={renderField}
-              />
-              Cek Jam Kembali Istirahat
-            </FormGroup>
-          </Col>
-
-          <Col md={2}>
-            <FormGroup>
-              <Field type="checkbox" name="Terlamb" component={renderField} />
-              Menggunakan Terlambat Bertingkat
-            </FormGroup>
-          </Col>
-
-          <Col md={1}>
-            <FormGroup></FormGroup>
-          </Col>
-
-          <Col md={1}>
-            <FormGroup></FormGroup>
-          </Col>
-
-          <Col md={3}>
-            <FormGroup>
-              <Field
-                type="number"
-                name="RpLemburPerJam"
-                component={renderField}
-                label="Rupiah Lembur Perjam :"
-              />
-            </FormGroup>
-          </Col>
-
-          <Col md={3}>
-            <FormGroup>
-              <Field
-                type="number"
-                name="RpPotonganTerlambat"
-                component={renderField}
-                label="Rupiah Potongan Terlambat :"
-              />
-            </FormGroup>
-          </Col>
-
-          <Col md={3}>
-            <FormGroup>
-              <Field
-                type="number"
-                name="RpPotonganTidakMasuk"
-                component={renderField}
-                label="Potongan Tidak Masuk :"
-              />
-            </FormGroup>
-          </Col>
-
-          <Col md={12}>
-            <Alert color="primary">
-              Masukkan Aturan Jadwal Pagi atau Jadwal Shift 1 (WAJIB)
-            </Alert>
-          </Col>
-
-          <Col md={3}>
             <FormGroup>
               <Field
                 type="time"
                 name="JamDatang"
                 component={renderField}
-                label="Jam Datang Pagi :"
+                label="Jam :"
               />
             </FormGroup>
           </Col>
 
-          <Col md={3}>
+          <Col md={2}>
             <FormGroup>
               <Field
-                type="time"
-                name="JamPulang"
+                type="number"
+                name="JamDatang"
                 component={renderField}
-                label="Jam Pulang Pagi :"
+                label="Potongan :"
               />
             </FormGroup>
           </Col>
@@ -226,9 +147,20 @@ class TerlambatBertingkatComponent extends Component {
             <FormGroup>
               <Field
                 type="time"
-                name="MaxJamDatang"
+                name="JamDatang"
                 component={renderField}
-                label="Max Jam Datang Pagi :"
+                label="Jam :"
+              />
+            </FormGroup>
+          </Col>
+
+          <Col md={2}>
+            <FormGroup>
+              <Field
+                type="number"
+                name="JamDatang"
+                component={renderField}
+                label="Potongan :"
               />
             </FormGroup>
           </Col>
@@ -237,9 +169,20 @@ class TerlambatBertingkatComponent extends Component {
             <FormGroup>
               <Field
                 type="time"
-                name="MinJamLembur"
+                name="JamDatang"
                 component={renderField}
-                label="Min Jam Lembur:"
+                label="Jam :"
+              />
+            </FormGroup>
+          </Col>
+
+          <Col md={2}>
+            <FormGroup>
+              <Field
+                type="number"
+                name="JamDatang"
+                component={renderField}
+                label="Potongan :"
               />
             </FormGroup>
           </Col>
@@ -248,59 +191,20 @@ class TerlambatBertingkatComponent extends Component {
             <FormGroup>
               <Field
                 type="time"
-                name="JamMulaiLembur"
+                name="JamDatang"
                 component={renderField}
-                label="Jam Mulai Lembur :"
+                label="Jam :"
               />
             </FormGroup>
           </Col>
 
-          <Col md={3}>
+          <Col md={2}>
             <FormGroup>
               <Field
-                type="time"
-                name="JamMulaiIstirahat"
+                type="number"
+                name="JamDatang"
                 component={renderField}
-                label="Jam Mulai Istirahat :"
-              />
-            </FormGroup>
-          </Col>
-
-          <Col md={3}>
-            <FormGroup>
-              <Field
-                type="time"
-                name="MaxJamKembali"
-                component={renderField}
-                label="Max Kembali Istirahat :"
-              />
-            </FormGroup>
-          </Col>
-
-          <Col md={12}>
-            <Alert color="success">
-              Masukkan Aturan Jadwal Siang atau Jadwal Shift 2
-            </Alert>
-          </Col>
-
-          <Col md={3}>
-            <FormGroup>
-              <Field
-                type="time"
-                name="JamDatangSiang"
-                component={renderField}
-                label="Jam Datang Siang  :"
-              />
-            </FormGroup>
-          </Col>
-
-          <Col md={3}>
-            <FormGroup>
-              <Field
-                type="time"
-                name="JamPulangSiang"
-                component={renderField}
-                label="Jam Pulang Siang :"
+                label="Potongan :"
               />
             </FormGroup>
           </Col>
@@ -309,9 +213,20 @@ class TerlambatBertingkatComponent extends Component {
             <FormGroup>
               <Field
                 type="time"
-                name="MaxJamDatangSiang"
+                name="JamDatang"
                 component={renderField}
-                label="MaxJam DtngSiang :"
+                label="Jam :"
+              />
+            </FormGroup>
+          </Col>
+
+          <Col md={2}>
+            <FormGroup>
+              <Field
+                type="number"
+                name="JamDatang"
+                component={renderField}
+                label="Potongan :"
               />
             </FormGroup>
           </Col>
@@ -320,9 +235,43 @@ class TerlambatBertingkatComponent extends Component {
             <FormGroup>
               <Field
                 type="time"
-                name="MinJamLemburSiang"
+                name="JamDatang"
                 component={renderField}
-                label="MinJam LemburSiang :"
+                label="Jam :"
+              />
+            </FormGroup>
+          </Col>
+
+          <Col md={2}>
+            <FormGroup>
+              <Field
+                type="number"
+                name="JamDatang"
+                component={renderField}
+                label="Potongan :"
+              />
+            </FormGroup>
+          </Col>
+
+
+          <Col md={2}>
+            <FormGroup>
+              <Field
+                type="time"
+                name="JamDatang"
+                component={renderField}
+                label="Jam :"
+              />
+            </FormGroup>
+          </Col>
+
+          <Col md={2}>
+            <FormGroup>
+              <Field
+                type="number"
+                name="JamDatang"
+                component={renderField}
+                label="Potongan :"
               />
             </FormGroup>
           </Col>
@@ -331,31 +280,240 @@ class TerlambatBertingkatComponent extends Component {
             <FormGroup>
               <Field
                 type="time"
-                name="JamMulaiLembur"
+                name="JamDatang"
                 component={renderField}
-                label="Jam Mulai Lembur :"
+                label="Jam :"
               />
             </FormGroup>
           </Col>
 
-          <Col md={3}>
+          <Col md={2}>
             <FormGroup>
               <Field
-                type="time"
-                name="JamMulaiIstirahat"
+                type="number"
+                name="JamDatang"
                 component={renderField}
-                label="Jam Mulai Istirahat :"
+                label="Potongan :"
               />
             </FormGroup>
           </Col>
 
-          <Col md={3}>
+          <Col md={2}>
             <FormGroup>
               <Field
                 type="time"
-                name="MaxJamKembali"
+                name="JamDatang"
                 component={renderField}
-                label="Max Kembali Istirahat :"
+                label="Jam :"
+              />
+            </FormGroup>
+          </Col>
+
+          <Col md={2}>
+            <FormGroup>
+              <Field
+                type="number"
+                name="JamDatang"
+                component={renderField}
+                label="Potongan :"
+              />
+            </FormGroup>
+          </Col>
+
+          <Col md={2}>
+            <FormGroup>
+              <Field
+                type="time"
+                name="JamDatang"
+                component={renderField}
+                label="Jam :"
+              />
+            </FormGroup>
+          </Col>
+
+          <Col md={2}>
+            <FormGroup>
+              <Field
+                type="number"
+                name="JamDatang"
+                component={renderField}
+                label="Potongan :"
+              />
+            </FormGroup>
+          </Col>
+
+          <Col md={2}>
+            <FormGroup>
+              <Field
+                type="time"
+                name="JamDatang"
+                component={renderField}
+                label="Jam :"
+              />
+            </FormGroup>
+          </Col>
+
+          <Col md={2}>
+            <FormGroup>
+              <Field
+                type="number"
+                name="JamDatang"
+                component={renderField}
+                label="Potongan :"
+              />
+            </FormGroup>
+          </Col>
+
+          <Col md={2}>
+            <FormGroup>
+              <Field
+                type="time"
+                name="JamDatang"
+                component={renderField}
+                label="Jam :"
+              />
+            </FormGroup>
+          </Col>
+
+          <Col md={2}>
+            <FormGroup>
+              <Field
+                type="number"
+                name="JamDatang"
+                component={renderField}
+                label="Potongan :"
+              />
+            </FormGroup>
+          </Col>
+
+          <Col md={2}>
+            <FormGroup>
+              <Field
+                type="time"
+                name="JamDatang"
+                component={renderField}
+                label="Jam :"
+              />
+            </FormGroup>
+          </Col>
+
+          <Col md={2}>
+            <FormGroup>
+              <Field
+                type="number"
+                name="JamDatang"
+                component={renderField}
+                label="Potongan :"
+              />
+            </FormGroup>
+          </Col>
+
+          <Col md={2}>
+            <FormGroup>
+              <Field
+                type="time"
+                name="JamDatang"
+                component={renderField}
+                label="Jam :"
+              />
+            </FormGroup>
+          </Col>
+
+          <Col md={2}>
+            <FormGroup>
+              <Field
+                type="number"
+                name="JamDatang"
+                component={renderField}
+                label="Potongan :"
+              />
+            </FormGroup>
+          </Col>
+
+          <Col md={2}>
+            <FormGroup>
+              <Field
+                type="time"
+                name="JamDatang"
+                component={renderField}
+                label="Jam :"
+              />
+            </FormGroup>
+          </Col>
+
+          <Col md={2}>
+            <FormGroup>
+              <Field
+                type="number"
+                name="JamDatang"
+                component={renderField}
+                label="Potongan :"
+              />
+            </FormGroup>
+          </Col>
+
+          <Col md={2}>
+            <FormGroup>
+              <Field
+                type="time"
+                name="JamDatang"
+                component={renderField}
+                label="Jam :"
+              />
+            </FormGroup>
+          </Col>
+
+          <Col md={2}>
+            <FormGroup>
+              <Field
+                type="number"
+                name="JamDatang"
+                component={renderField}
+                label="Potongan :"
+              />
+            </FormGroup>
+          </Col>
+
+          <Col md={2}>
+            <FormGroup>
+              <Field
+                type="time"
+                name="JamDatang"
+                component={renderField}
+                label="Jam :"
+              />
+            </FormGroup>
+          </Col>
+
+          <Col md={2}>
+            <FormGroup>
+              <Field
+                type="number"
+                name="JamDatang"
+                component={renderField}
+                label="Potongan :"
+              />
+            </FormGroup>
+          </Col>
+
+          <Col md={2}>
+            <FormGroup>
+              <Field
+                type="time"
+                name="JamDatang"
+                component={renderField}
+                label="Jam :"
+              />
+            </FormGroup>
+          </Col>
+
+          <Col md={2}>
+            <FormGroup>
+              <Field
+                type="number"
+                name="JamDatang"
+                component={renderField}
+                label="Potongan :"
               />
             </FormGroup>
           </Col>
