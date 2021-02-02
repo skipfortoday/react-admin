@@ -31,11 +31,7 @@ const LaporanComponent = (props) => {
       text: "Tanggal",
       sort: true,
       headerStyle: () => {
-<<<<<<< Updated upstream
         return { width: "115px" };
-=======
-        return { width: "75px" };
->>>>>>> Stashed changes
       },
     },
     {
