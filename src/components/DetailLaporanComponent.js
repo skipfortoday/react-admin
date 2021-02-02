@@ -20,7 +20,7 @@ const defaultSorted = [
 const mapStateToProps = (state) => {
   return {
     getLaporanDetail: state.Laporan.getLaporanDetail,
-    errorLAporanDetail: state.Laporan.errorLaporanDetail,
+    errorLaporanDetail: state.Laporan.errorLaporanDetail,
   };
 };
 

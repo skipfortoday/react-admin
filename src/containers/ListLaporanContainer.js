@@ -3,15 +3,15 @@ import { Container, Alert, Col, Row, Button } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faListAlt } from "@fortawesome/free-solid-svg-icons";
 import { connect } from "react-redux";
-import { getUsersList, deleteDataUser } from "../actions/userAction";
+import { getUsersList, getUserDetail } from "../actions/userAction";
 import NavbarComponent from "../components/NavbarComponent";
 import ListUserLaporan from "../components/ListUserLaporan";
 import InfoHomeLaporan from "../components/InfoHomeLaporan";
 
+
 class ListLaporanContainer extends Component {
   componentDidMount() {
     this.props.dispatch(getUsersList());
-    this.props.dispatch(deleteDataUser());
   }
 
   render() {

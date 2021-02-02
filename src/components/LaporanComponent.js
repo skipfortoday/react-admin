@@ -23,6 +23,7 @@ const mapStateToProps = (state) => {
   };
 };
 
+
 const LaporanComponent = (props) => {
   const columns = [
     {
@@ -121,6 +122,7 @@ const LaporanComponent = (props) => {
         return { width: "100px" };
       },
     },
+    
   ];
 
   const dtColumns = [
@@ -216,16 +218,7 @@ TotalKeluar: null*/
           search
         >
           {(props) => (
-            <div>
-              <Row>
-                <Col>
-                  <Alert color="info">
-                    <Row> Periode : </Row>
-                    <Row> Nama    : </Row>
-                    <Row> Posisi  : </Row>
-                  </Alert>
-                </Col>
-              </Row>
+            <div >
 
 
               <BootstrapTable

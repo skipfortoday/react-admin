@@ -1,18 +1,24 @@
 import React, { Component } from "react";
 import LaporanComponent from "../components/LaporanComponent";
 import { Container, Alert, Col, Row, Button } from "reactstrap";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faListAlt } from "@fortawesome/free-solid-svg-icons";
 import { connect } from "react-redux";
-import { getLaporanList } from "../actions/laporanAction";
-import InfoHomePegawai from "../components/InfoHomePegawai";
+import { getLaporanDetail, getLaporanList} from "../actions/laporanAction";
 import NavbarComponent from "../components/NavbarComponent";
 import RekapLaporan from "../components/RekapLaporan";
 import BackLaporan from "../components/BackLaporan";
+import FormLaporan from "../components/FormLaporan";
+import { getUserDetail } from "../actions/userAction";
 
 class LaporanContainer extends Component {
   componentDidMount() {
     this.props.dispatch(getLaporanList(this.props.match.params.UserID));
+    this.props.dispatch(getUserDetail(this.props.match.params.UserID));
+  }
+
+  handleSubmit(data) {
+    this.props.dispatch(getLaporanDetail(data, this.props.match.params.UserID));
+    this.props.dispatch(getLaporanDetail(data, this.props.match.params.TglAwal));
+    this.props.dispatch(getLaporanDetail(data, this.props.match.params.TglAkhir));
   }
 
   render() {
@@ -25,12 +31,12 @@ class LaporanContainer extends Component {
          </Col>
          <Col md={11}>
           <Alert color="warning" >
-           <h4 >Detail Laporan</h4>
+           <h4 >Detail Scan</h4>
           </Alert>
           </Col>
+          <FormLaporan/>
         </Row>
         <LaporanComponent />
-        <RekapLaporan/>
       </Container>
     );
   }
