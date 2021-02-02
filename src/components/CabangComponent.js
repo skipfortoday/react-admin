@@ -101,10 +101,12 @@ const CabangComponent = (props) => {
                 <FontAwesomeIcon icon={faEdit} /> Edit
               </Button>
             </Link>
-  
+
+            <Link to={"/cabang#"}>
             <Button color="danger" className="mr-2" onClick={() => handleClick(props.dispatch, row.KodeCabang)}>
               <FontAwesomeIcon icon={faTrash} /> Delete
             </Button>
+            </Link>
           </div>
         );
       },
