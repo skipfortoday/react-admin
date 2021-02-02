@@ -1,6 +1,7 @@
+import a from "../css/printlaporan.css";
 import React from "react";
 import BootstrapTable from "react-bootstrap-table-next";
-import { Container, Alert, Row, Col, Spinner } from "reactstrap";
+import { Container, Alert, Row, Col, Spinner, Table } from "reactstrap";
 import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
 import paginationFactory from "react-bootstrap-table2-paginator";
 import { connect } from "react-redux";
@@ -17,6 +18,7 @@ const defaultSorted = [
 const mapStateToProps = (state) => {
   return {
     getLaporanList: state.Laporan.getLaporanList,
+    getExpandKey: state.Laporan.getExpandKey,
     errorLAporanList: state.Laporan.errorLaporanList,
   };
 };
@@ -24,11 +26,11 @@ const mapStateToProps = (state) => {
 const LaporanComponent = (props) => {
   const columns = [
     {
-      dataField: "TanggalScan",
+      dataField: "Tanggal",
       text: "Tanggal",
       sort: true,
       headerStyle: () => {
-        return { width: "90px" };
+        return { width: "115px" };
       },
     },
     {
@@ -48,7 +50,7 @@ const LaporanComponent = (props) => {
       },
     },
     {
-      dataField: "Tlambat",
+      dataField: "Terlambat",
       text: "Tlambat",
       sort: true,
       headerStyle: () => {
@@ -88,7 +90,7 @@ const LaporanComponent = (props) => {
       },
     },
     {
-      dataField: "Tlambat",
+      dataField: "Terlambat",
       text: "Tlambat",
       sort: true,
       headerStyle: () => {
@@ -121,7 +123,88 @@ const LaporanComponent = (props) => {
     },
   ];
 
+  const dtColumns = [
+
+    {
+      dataField: "k",
+      text: "",
+      sort: true,
+      headerStyle: () => {
+        return { width: "90px" };
+      },
+    },
+    {
+      dataField: "KelKan",
+      text: "",
+      sort: true,
+      headerStyle: () => {
+        return { width: "90px" };
+      },
+    },
+    {
+      dataField: "Durasi",
+      text: "",
+      sort: true,
+      headerStyle: () => {
+        return { width: "90px" };
+      },
+    },
+    {
+      dataField: "Ket",
+      text: "",
+      sort: true,
+      headerStyle: () => {
+        return { width: "90px" };
+      },
+    },
+    {
+      dataField: "KetKembali",
+      text: "",
+      sort: true,
+      headerStyle: () => {
+        return { width: "90px" };
+      },
+    },
+    
+  ]
+
+  /*DatangID: 105
+JamKeluar: "11:31:00"
+JamKembali: "12:31:00"
+KeluarID: 1
+Keterangan: "undefined"
+KeteranganKembali: null
+TotalKeluar: null*/
+
+  const expandRow = {
+    renderer: (row, rowIndex) => (
+      <div>
+        <BootstrapTable 
+          classes='rDetail'
+          keyField='DatangID' 
+          data={ row.detail } 
+          columns={ dtColumns } 
+          />
+
+      </div>
+    ),
+    expanded:props.getExpandKey[0],
+    nonExpandable:props.getExpandKey[1]
+  };
+
+  console.log(props.getLaporanList);
+
   return (
+    <BootstrapTable 
+      keyField='Tanggal' 
+      data={ props.getLaporanList } 
+      columns={ columns } 
+      expandRow={ expandRow }
+
+      pagination={paginationFactory()}
+    />
+  );
+  /*return (
     <Container>
       {props.getLaporanList ? (
         <ToolkitProvider
@@ -144,6 +227,7 @@ const LaporanComponent = (props) => {
                 </Col>
               </Row>
 
+
               <BootstrapTable
                 {...props.baseProps}
                 pagination={paginationFactory()}
@@ -161,7 +245,7 @@ const LaporanComponent = (props) => {
         </div>
       )}
     </Container>
-  );
+  );*/
 };
 
 export default connect(mapStateToProps, null)(LaporanComponent);

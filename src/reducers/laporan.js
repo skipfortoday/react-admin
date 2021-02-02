@@ -5,6 +5,7 @@ import {
   
   let initialState = {
     getLaporanList: false,
+    getExpandKey: false,
     errorLaporanList: false,
     getLaporanDetail: false,
     errorLAporanDetail: false,
@@ -17,6 +18,7 @@ import {
         return {
           ...state,
           getLaporanList: action.payload.data,
+          getExpandKey: action.payload.expandKey,
           errorLaporanList: action.payload.errorMessage,
         };
   
