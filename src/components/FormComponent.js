@@ -30,6 +30,7 @@ const renderField = ({
         disabled={disabled}
         readOnly={readOnly} 
       >
+        <option value ="">-</option>
         <option value ="Y">Ya</option>
         <option value = "N">Tidak</option>
       </Input>

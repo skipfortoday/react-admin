@@ -50,22 +50,35 @@ const mapStateToProps = (state) => {
     initialValues: {
       GroupID: state.Group.getGroupDetail.GroupID,
       Jabatan: state.Group.getGroupDetail.Jabatan,
+      AdaOff: state.Group.getGroupDetail.AdaOff,
+      CekJamKembali: state.Group.getGroupDetail.CekJamKembali,
+      RuleTerlambatBertingkat: state.Group.getGroupDetail.RuleTerlambatBertingkat,
       JamDatang: state.Group.getGroupDetail.JamDatang,
-      JamPulang: state.Group.getGroupDetail.JamPulang,
       MaxJamDatang: state.Group.getGroupDetail.MaxJamDatang,
+      JamPulang: state.Group.getGroupDetail.JamPulang,
       MinJamLembur: state.Group.getGroupDetail.MinJamLembur,
-      JamDatangSiang: state.Group.getGroupDetail.JamDatangSiang,
-      JamPulangSiang: state.Group.getGroupDetail.JamPulangSiang,
-      MaxJamDatangSiang: state.Group.getGroupDetail.MaxJamDatangSiang,
-      MinJamLemburSiang: state.Group.getGroupDetail.MinJamLemburSiang,
-      JamDatangSore: state.Group.getGroupDetail.JamDatangSore,
-      JamPulangSore: state.Group.getGroupDetail.JamPulangSore,
-      MaxJamDatangSore: state.Group.getGroupDetail.MaxJamDatangSore,
-      MinJamLemburSore: state.Group.getGroupDetail.MinJamLemburSore,
-      HariLibur: state.Group.getGroupDetail.HariLibur,
-      RpLemburPerJam: state.Group.getGroupDetail.RpLemburPerJam,
+      JamMulaiLembur: state.Group.getGroupDetail.JamMulaiLembur,
       RpPotonganTerlambat: state.Group.getGroupDetail.RpPotonganTerlambat,
+      JamDatangSiang: state.Group.getGroupDetail.JamDatangSiang,
+      MaxJamDatangSiang: state.Group.getGroupDetail.MaxJamDatangSiang,
+      JamPulangSiang: state.Group.getGroupDetail.JamPulangSiang,
+      JamMulaiLemburSiang: state.Group.getGroupDetail.JamMulaiLemburSiang,
+      MinJamLemburSiang: state.Group.getGroupDetail.MinJamLemburSiang,
+      HariLibur: state.Group.getGroupDetail.HariLibur,
+      RpPotonganTerlambatKembali: state.Group.getGroupDetail.RpPotonganTerlambatKembali,
       RpPotonganTidakMasuk: state.Group.getGroupDetail.RpPotonganTidakMasuk,
+      RpLemburPerJam: state.Group.getGroupDetail.RpLemburPerJam,
+      JamDatangSore: state.Group.getGroupDetail.JamDatangSore,
+      MaxJamDatangSore: state.Group.getGroupDetail.MaxJamDatangSore,
+      JamPulangSore: state.Group.getGroupDetail.JamPulangSore,
+      MinJamLemburSore: state.Group.getGroupDetail.MinJamLemburSore,
+      JamMulaiLemburSore: state.Group.getGroupDetail.JamMulaiLemburSore,
+      JamMulaiPagi: state.Group.getGroupDetail.JamMulaiPagi,
+      MaxJamKembali: state.Group.getGroupDetail.MaxJamKembali,
+      JamMulaiSiang: state.Group.getGroupDetail.JamMulaiSiang,
+      MaxJamKembaliSiang: state.Group.getGroupDetail.MaxJamKembaliSiang,
+      JamMulaiSore: state.Group.getGroupDetail.JamMulaiSore,
+      MaxJamKembaliSore: state.Group.getGroupDetail.MaxJamKembaliSore,
     },
   };
 };
@@ -113,7 +126,7 @@ class FormGroupComponent extends Component {
 
           <Col md={2}>
             <FormGroup>
-              <Field type="checkbox" name="AdaLibur" component={renderField} />
+              <Field type="checkbox" name="AdaOff" component={renderField} />
               Ada Hari Libur Mingguan
             </FormGroup>
           </Col>
@@ -146,7 +159,7 @@ class FormGroupComponent extends Component {
 
           <Col md={2}>
             <FormGroup>
-              <Field type="checkbox" name="Terlamb" component={renderField} />
+              <Field type="checkbox" name="RuleTerlambatBertingkat" component={renderField} />
               Menggunakan Terlambat Bertingkat
             </FormGroup>
           </Col>
@@ -175,6 +188,17 @@ class FormGroupComponent extends Component {
                 name="RpPotonganTerlambat"
                 component={renderField}
                 label="Rupiah Potongan Terlambat :"
+              />
+            </FormGroup>
+          </Col>
+
+          <Col md={3}>
+            <FormGroup>
+              <Field
+                type="number"
+                name="RpPotonganTerlambatKembali"
+                component={renderField}
+                label="Rp Potongan Terlambat Kembali:"
               />
             </FormGroup>
           </Col>
@@ -255,7 +279,7 @@ class FormGroupComponent extends Component {
             <FormGroup>
               <Field
                 type="time"
-                name="JamMulaiIstirahat"
+                name="JamMulaiPagi"
                 component={renderField}
                 label="Jam Mulai Istirahat :"
               />
@@ -327,7 +351,7 @@ class FormGroupComponent extends Component {
             <FormGroup>
               <Field
                 type="time"
-                name="JamMulaiLembur"
+                name="JamMulaiLemburSiang"
                 component={renderField}
                 label="Jam Mulai Lembur :"
               />
@@ -338,7 +362,7 @@ class FormGroupComponent extends Component {
             <FormGroup>
               <Field
                 type="time"
-                name="JamMulaiIstirahat"
+                name="JamMulaiSiang"
                 component={renderField}
                 label="Jam Mulai Istirahat :"
               />
@@ -349,7 +373,7 @@ class FormGroupComponent extends Component {
             <FormGroup>
               <Field
                 type="time"
-                name="MaxJamKembali"
+                name="MaxJamKembaliSiang"
                 component={renderField}
                 label="Max Kembali Istirahat :"
               />
@@ -410,7 +434,7 @@ class FormGroupComponent extends Component {
             <FormGroup>
               <Field
                 type="time"
-                name="JamMulaiLembur"
+                name="JamMulaiLemburSore"
                 component={renderField}
                 label="Jam Mulai Lembur :"
               />
@@ -421,7 +445,7 @@ class FormGroupComponent extends Component {
             <FormGroup>
               <Field
                 type="time"
-                name="JamMulaiIstirahat"
+                name="JamMulaiSore"
                 component={renderField}
                 label="Jam Mulai Istirahat :"
               />
@@ -432,7 +456,7 @@ class FormGroupComponent extends Component {
             <FormGroup>
               <Field
                 type="time"
-                name="MaxJamKembali"
+                name="MaxJamKembaliSore"
                 component={renderField}
                 label="Max Kembali Istirahat :"
               />
