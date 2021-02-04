@@ -40,13 +40,6 @@ const UserValidation = (values) => {
     errors.TglMasuk = "Tanggal Masuk harus diisi";
   }
 
-  if (!values.TglAwalKontrakPertama || values.TglAwalKontrakPertama=== "") {
-    errors.TglAwalKontrakPertama = "Tanggal Awal Kontrak harus diisi";
-  }
-
-  if (!values.TglMulaiCuti || values.TglAwalMulaiCuti=== "") {
-    errors.TglMulaiCuti = "Tanggal Awal Kontrak harus diisi";
-  }
 
   if (!values.UserID || values.UserID === "") {
     errors.UserID = "UserID harus diisi"; 

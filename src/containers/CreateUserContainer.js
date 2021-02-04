@@ -31,11 +31,11 @@ class CreateUserContainer extends Component {
           );
       }else {
         swal(
-            "User Created!",
+            "User Berhasil Dibuat!",
             "Nama : " +
               this.props.getResponDataUser.Nama +
-              " , Umur : " +
-              this.props.getResponDataUser.Nama,
+              " | ID : " +
+              this.props.getResponDataUser.UserID,
             "success"
           );
       }

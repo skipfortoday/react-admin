@@ -22,8 +22,8 @@ const mapStateToProps = (state) => {
         TglAwalKontrakPertama : state.users.getUserDetail.FTglAwalKontrakPertama, 
         GroupID       : state.users.getUserDetail.GroupID, 
         KodeCabang    : state.users.getUserDetail.KodeCabang,   
-        Status        : state.users.getUserDetail.Status,   
-          TampilkanLembur : state.users.getUserDetail.TampilkanLembur, 
+        Status          : state.users.getUserDetail.Status,   
+        TampilkanLembur : state.users.getUserDetail.TampilkanLembur, 
         TampilkanTerlambat : state.users.getUserDetail.TampilkanTerlambat,
       }
     };
