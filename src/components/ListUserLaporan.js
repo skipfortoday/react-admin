@@ -41,7 +41,7 @@ const TableComponent = (props) => {
       text: "Nama",
       sort: true,
       headerStyle: () => {
-        return { width: "100px" };
+        return { width: "80px" };
       },
     },
 
@@ -51,7 +51,7 @@ const TableComponent = (props) => {
       text: "Group",
       sort: true,
       headerStyle: () => {
-        return { width: "80px" };
+        return { width: "120px" };
       },
     },
 
@@ -59,14 +59,14 @@ const TableComponent = (props) => {
       dataField: "link",
       text: "Action",
       headerStyle: () => {
-        return { width: "40px" };
+        return { width: "45px" };
       },
       formatter: (rowContent, row) => {
         return (
           <div>
             <Link to={"laporan/" + row.UserID}>
               <Button color="info" className="mr-2">
-                <FontAwesomeIcon icon={faBook} /> Scan
+                <FontAwesomeIcon icon={faBook} />Lihat Scan
               </Button>
             </Link>
           </div>

@@ -13,12 +13,15 @@ import {
   DropdownToggle,
   DropdownMenu,
   DropdownItem,
+  Button,
+  ButtonDropdown,
 } from "reactstrap";
 
 const NavbarComponent = (props) => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [dropdownOpen, isOpen] = useState(false);
 
-  const toggle = () => setIsOpen(!isOpen);
+  const toggle = () => isOpen(!dropdownOpen);
+  
 
   return (
     <div>
@@ -29,35 +32,36 @@ const NavbarComponent = (props) => {
             <Nav className="mr-auto" navbar>
               <NavItem>
                 <Link to="/">
-                  <NavLink>| Pegawai |</NavLink>
+                <Button color="info"> Pegawai</Button>
                 </Link>
               </NavItem>
               <NavItem>
                 <Link to="/izin">
-                  <NavLink>| Status Absensi |</NavLink>
+                <Button color="info">Status Absensi</Button>
                 </Link>
               </NavItem>
               <NavItem>
                 <Link to="/group">
-                  <NavLink>| Group Pegawai |</NavLink>
+                <Button color="info">Group Pegawai</Button>
                 </Link>
               </NavItem>
               <NavItem>
                 <Link to="/cabang">
-                  <NavLink>| Cabang |</NavLink>
+                <Button color="info">Cabang</Button>
                 </Link>
               </NavItem>
               <NavItem>
                 <Link to="/laporan">
-                  <NavLink>| Laporan |</NavLink>
+                <Button color="info"> Laporan</Button>
                 </Link>
               </NavItem>
             </Nav>
             <Nav navbar>
               <UncontrolledDropdown nav inNavbar>
-                <DropdownToggle nav caret>
-                  Portal Menu
-                </DropdownToggle>
+              <ButtonDropdown isOpen={dropdownOpen} toggle={toggle}>
+                  <DropdownToggle caret color="info">
+                    Portal
+                  </DropdownToggle>
                 <DropdownMenu right>
                   <Link to="/create">
                     <DropdownItem>Tambah Pegawai</DropdownItem>
@@ -78,6 +82,7 @@ const NavbarComponent = (props) => {
                     <DropdownItem>Tambah Cabang</DropdownItem>
                   </Link>
                 </DropdownMenu>
+                </ButtonDropdown>
               </UncontrolledDropdown>
             </Nav>
             <NavbarText>as</NavbarText><NavbarBrand> Admin</NavbarBrand>

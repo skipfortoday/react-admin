@@ -31,7 +31,7 @@ const handleClick = (dispatch, KodeCabang) => {
       dispatch(deleteCabang(KodeCabang))
       swal("Data Cabang Sukses dihapus", {
         icon: "success",
-      });
+      });window.location.reload();
     } else {
       swal("Data gagal dihapus");
     }

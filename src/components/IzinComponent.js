@@ -30,7 +30,7 @@ const handleClick = (dispatch, DatangID) => {
       dispatch(deleteIzin(DatangID))
       swal("Data Izin Sukses dihapus", {
         icon: "success",
-      });
+      }); window.location.reload();
     } else {
       swal("Data gagal dihapus");
     }

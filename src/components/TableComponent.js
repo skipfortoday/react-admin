@@ -31,7 +31,7 @@ const handleClick = (dispatch, ID) => {
       swal("Data User Sukses dihapus", {
         icon: "success",
       });
-    } else {
+      window.location.reload();} else {
       swal("Data gagal dihapus");
     }
   });

@@ -30,7 +30,7 @@ const handleClick = (dispatch, GroupID) => {
       dispatch(deleteGroup(GroupID));
       swal("Data Group Sukses dihapus", {
         icon: "success",
-      });
+      });window.location.reload();
     } else {
       swal("Data gagal dihapus");
     }
