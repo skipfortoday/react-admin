@@ -169,6 +169,24 @@ export const deleteUser = (UserID) => {
 };
 
 
+export const resetUser = (UserID) => {
+  return (dispatch) => {
+    axios
+      .put(
+         "http://192.168.0.25:3001/api/resetdevice/"+UserID
+      )
+      .then(function (response) {
+        console.log(response);
+        
+      })
+      .catch(function (error) {
+        console.log(error);
+        
+      });
+  };
+};
+
+
 export const deleteDataUser = () => {
   return (dispatch) => {
     dispatch({

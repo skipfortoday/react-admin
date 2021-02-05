@@ -15,7 +15,7 @@ import paginationFactory from "react-bootstrap-table2-paginator";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import swal from 'sweetalert';
-import { deleteUser } from "../actions/userAction";
+import { deleteUser,resetUser } from "../actions/userAction";
 
 const { SearchBar } = Search;
 
@@ -35,6 +35,26 @@ const handleClick = (dispatch, ID) => {
       });
       window.location.reload();} else {
       swal("Data gagal dihapus");
+    }
+  });
+}
+
+const handleClick2 = (dispatch, ID) => {
+  
+  swal({
+    title: "Reset Device Login Karyawan ?",
+    icon: "warning",
+    buttons: true,
+    dangerMode: true,
+  })
+  .then((willReset) => {
+    if (willReset) {
+      dispatch(resetUser(ID))
+      swal("Berhasil, Karyawan Bisa Login Di Device Baru", {
+        icon: "success",
+      });
+      } else {
+      swal("Device tidak jadi di Reset");
     }
   });
 }
@@ -92,6 +112,11 @@ const TableComponent = (props) => {
       formatter: (rowContent, row) => {
         return (
           <div>
+
+            <Button color="info" className="mr-2" onClick={() => handleClick2(props.dispatch, row.UserID)}>
+              <FontAwesomeIcon icon={faRetweet} /> Reset Device
+            </Button>
+
             <Link to={"detail/" + row.UserID}>
               <Button color="primary" className="mr-2">
                 <FontAwesomeIcon icon={faInfo} /> Detail
@@ -108,9 +133,7 @@ const TableComponent = (props) => {
               <FontAwesomeIcon icon={faTrash} /> Delete
             </Button>
 
-            <Button color="info" className="mr-2" onClick={() => handleClick(props.dispatch, row.UserID)}>
-              <FontAwesomeIcon icon={faRetweet} /> Reset Device
-            </Button>
+          
           </div>
         );
       },
