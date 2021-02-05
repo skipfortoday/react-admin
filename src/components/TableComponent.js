@@ -7,6 +7,8 @@ import {
   faEdit,
   faTrash,
   faUserPlus,
+  retweet,
+  faRetweet,
 } from "@fortawesome/free-solid-svg-icons";
 import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
 import paginationFactory from "react-bootstrap-table2-paginator";
@@ -107,7 +109,7 @@ const TableComponent = (props) => {
             </Button>
 
             <Button color="info" className="mr-2" onClick={() => handleClick(props.dispatch, row.UserID)}>
-              <FontAwesomeIcon icon={faTrash} /> Reset Device
+              <FontAwesomeIcon icon={faRetweet} /> Reset Device
             </Button>
           </div>
         );
