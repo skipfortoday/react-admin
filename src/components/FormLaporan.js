@@ -58,6 +58,7 @@ class FormLaporan extends Component {
   render() {
     return (
       <form onSubmit={this.props.handleSubmit}>
+          
         <Container>
           <FormGroup row>
             <Col md={3}>
@@ -110,12 +111,10 @@ class FormLaporan extends Component {
           <FormGroup row>
             <Col md="12">
               <FormGroup>
-                
-                  <Button
+                <Button
                     color="warning"
-                    type="submit"
-                    disabled={this.props.submitting}
-                  >
+                    onclick="window.print()"
+                    >
                     <FontAwesomeIcon icon={faPrint} /> Print
                   </Button>
               </FormGroup>
