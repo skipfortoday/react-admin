@@ -60,7 +60,7 @@ const TableComponent = (props) => {
       text: "UserID",
       sort: true,
       headerStyle: () => {
-        return { width: "100px" };
+        return { width: "80px" };
       },
     },
     {
@@ -68,7 +68,7 @@ const TableComponent = (props) => {
       text: "Nama", 
       sort: true,
       headerStyle: () => {
-        return { width: "180px" };
+        return { width: "110px" };
       },
       
     },
@@ -77,7 +77,7 @@ const TableComponent = (props) => {
       text: "Group",
       sort: true,
       headerStyle: () => {
-        return { width: "180px" };
+        return { width: "160px" };
       },
     },
 
@@ -85,7 +85,7 @@ const TableComponent = (props) => {
       dataField: "link",
       text: "Action",
       headerStyle: () => {
-        return { width: "180px" };
+        return { width: "250px" };
       },
       formatter: (rowContent, row) => {
         return (
@@ -104,6 +104,10 @@ const TableComponent = (props) => {
   
             <Button color="danger" className="mr-2" onClick={() => handleClick(props.dispatch, row.UserID)}>
               <FontAwesomeIcon icon={faTrash} /> Delete
+            </Button>
+
+            <Button color="info" className="mr-2" onClick={() => handleClick(props.dispatch, row.UserID)}>
+              <FontAwesomeIcon icon={faTrash} /> Reset Device
             </Button>
           </div>
         );
