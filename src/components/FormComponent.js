@@ -31,8 +31,8 @@ const renderField = ({
         readOnly={readOnly} 
       >
         <option value ="">-</option>
-        <option value ="Y">Ya</option>
-        <option value = "N">Tidak</option>
+        <option value ="Admin">Ya</option>
+        <option value = "User">Tidak</option>
       </Input>
       <div className={ asyncValidating ? 'async-validating' : ''}>
       {touched &&
