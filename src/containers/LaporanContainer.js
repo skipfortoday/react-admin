@@ -36,7 +36,9 @@ class LaporanContainer extends Component {
           </Col>
           <FormLaporan/>
         </Row>
+        <RekapLaporan/>
         <LaporanComponent />
+
       </Container>
     );
   }

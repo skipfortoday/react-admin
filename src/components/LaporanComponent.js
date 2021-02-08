@@ -86,7 +86,7 @@ const LaporanComponent = (props) => {
     },
     {
       dataField: "Shift",
-      text: "S.",
+      text: "S",
       sort: true,
       headerStyle: () => {
         return { width: "5px"  , fontSize: '12px' };
@@ -136,7 +136,7 @@ const LaporanComponent = (props) => {
       text: "Status",
       sort: true,
       headerStyle: () => {
-        return { width: "53px" , fontSize: '12px' };
+        return { width: "70px" , fontSize: '12px' };
       },
       style: () => {
         return { fontSize: '12px' };
@@ -158,7 +158,7 @@ const LaporanComponent = (props) => {
       text: "KetPulang",
       sort: true,
       headerStyle: () => {
-        return { width: "50px", fontSize: '12px'  };
+        return { width: "70px", fontSize: '12px'  };
       },
 
       style: () => {

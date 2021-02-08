@@ -1,43 +1,31 @@
 import React from "react";
-import { Row, Col, Alert } from "reactstrap";
+import { connect } from "react-redux";
+import { Table } from "reactstrap";
 
-const RekapLaporan = () => {
+const mapStateToProps = (state) => {
+  return {
+    getUserDetail: state.users.getUserDetail,
+    errorUserDetail: state.users.errorUserDetail,
+  };
+};
+
+const RekapLaporan = (props) => {
   return (
-    <Row className="mb-12">
-      <Col>
-        <Alert color="danger">
-          <Row>Ijin Terlambat :</Row>
-          <Row>Jumlah Terlambat :</Row>
-          <Row>Ijin Teidak Masuk :</Row>
-          <Row>Terlambat Kembali Istirahat :</Row>
-          <Row>Total Potongan :</Row>
-        </Alert>
-      </Col>
-      <Col>
-        <Alert color="warning">
-          <Row>Jumlah Sakit Bulan Ini :</Row>
-          <Row>Jumlah Cuti Bulan Ini:</Row>
-          <Row>Ijin Tidak Masuk :</Row>
-          <Row>Total Tidak Masuk :</Row>
-          <Row>Total Cuti Thn Ini:</Row>
-          <Row>Sisa Cuti :</Row>
-          <Row>Cuti Khusus Bulan Ini :</Row>
-        </Alert>
-      </Col>
-      <Col>
-        <Alert color="info">
-          <Row>Jumlah Lembur :</Row>
-          <Row>Total Lembur:</Row>
-          <Row>Ijin Tidak Masuk :</Row>
-          <Row>------</Row>
-          <Row> </Row>
-          <Row>OFF: </Row>
-          <Row>Jml Masuk Kantor : </Row>
-          <Row>Jml Dinas Luar :</Row>
-        </Alert>
-      </Col>
-    </Row>
+    <Table striped>
+      <tbody>
+        <tr>
+          <td width="200">Nama</td>
+          <td width="10">:</td>
+          <td>{props.getUserDetail.Nama}</td>
+        </tr> 
+        <tr>
+          <td width="200">Jabatan</td>
+          <td width="10">:</td>
+          <td>{props.getUserDetail.Jabatan}</td>
+        </tr>
+      </tbody>
+    </Table>
   );
 };
 
-export default RekapLaporan;
+export default connect(mapStateToProps, null)(RekapLaporan);

@@ -1,6 +1,7 @@
 import {
     GET_LAPORAN_LIST,
     GET_LAPORAN_DETAIL,
+    GET_LAPORAN_REKAP,
   } from "../actions/laporanAction";
   
   let initialState = {
@@ -8,7 +9,9 @@ import {
     getExpandKey: false,
     errorLaporanList: false,
     getLaporanDetail: false,
-    errorLAporanDetail: false,
+    errorLaporanDetail: false,
+    getLaporanRekap:false,
+    errorLaporanRekap:false,
 
   };
   
@@ -28,6 +31,13 @@ import {
           getLaporanDetail: action.payload.data,
           errorLaporanDetail: action.payload.errorMessage,
         };
+
+        case GET_LAPORAN_REKAP:
+          return {
+            ...state,
+            getLaporanRekap: action.payload.data,
+            errorLaporanRekap: action.payload.errorMessage,
+          };
   
       default:
         return state;

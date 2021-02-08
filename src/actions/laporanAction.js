@@ -2,7 +2,7 @@ import axios from "axios";
 
 export const GET_LAPORAN_LIST = "GET_LAPORAN_LIST";
 export const GET_LAPORAN_DETAIL = "GET_LAPORAN_DETAIL";
-
+export const GET_LAPORAN_REKAP = "GET_LAPORAN_REKAP";
 
 
 
@@ -59,6 +59,32 @@ export const getLaporanDetail = (UserID,TglAwal,TglAkhir) => {
       .catch(function (error) {
         dispatch({
           type: GET_LAPORAN_DETAIL,
+          payload: {
+            data: false,
+            errorMessage: error.message,
+          },
+        });
+      });
+  };
+};
+
+export const getLaporanRekap = (UserID) => {
+  return (dispatch) => {
+    axios
+      .get(
+        "http://192.168.0.25:3001/api/sumreport/"+UserID)
+      .then(function (response) {
+        dispatch({
+          type: GET_LAPORAN_REKAP,
+          payload: {
+            data: response.data,
+            errorMessage: false,
+          },
+        });
+      })
+      .catch(function (error) {
+        dispatch({
+          type: GET_LAPORAN_REKAP,
           payload: {
             data: false,
             errorMessage: error.message,
