@@ -60,14 +60,6 @@ const ListUserIzin = (props) => {
         return { width: "90px" };
       },
     },
-    {
-      dataField: "Sisa Cuti",
-      text: "Sisa Cuti",
-      sort: true,
-      headerStyle: () => {
-        return { width: "90px" };
-      },
-    },
 
     {
       dataField: "link",

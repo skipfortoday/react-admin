@@ -56,6 +56,7 @@ const mapStateToProps = (state) => {
       TanggalScan: state.Izin.getIzinDetail.TanggalScan,
       Status: state.Izin.getIzinDetail.Status,
       Keterangan: state.Izin.getIzinDetail.Keterangan,
+      SisaCuti : state.Izin.getIzinDetail.SisaCuti,
     },
   };
 };
@@ -72,7 +73,7 @@ class FormIzinComponent extends Component {
           </Col>
 
 
-          <Col md={3}>
+          <Col md={2}>
             <FormGroup>
               <Field
                 type="text"
@@ -110,7 +111,7 @@ class FormIzinComponent extends Component {
             </FormGroup>
           </Col>
 
-          <Col md={3}>
+          <Col md={2}>
             <FormGroup>
               <Field
                 type="text"
@@ -118,6 +119,18 @@ class FormIzinComponent extends Component {
                 disabled
                 component={renderField}
                 label="Tanggal Mulai Cuti:"
+              />
+            </FormGroup>
+          </Col>
+
+          <Col md={2}>
+            <FormGroup>
+              <Field
+                type="text"
+                name="SisaCuti"
+                disabled
+                component={renderField}
+                label="Sisa Cuti:"
               />
             </FormGroup>
           </Col>

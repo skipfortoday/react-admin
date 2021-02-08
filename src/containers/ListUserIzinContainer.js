@@ -1,10 +1,9 @@
 import React, { Component } from "react";
 import { Container, Alert, Col, Row, Button } from "reactstrap";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faListAlt } from "@fortawesome/free-solid-svg-icons";
 import { connect } from "react-redux";
 import { getUsersList, deleteDataUser } from "../actions/userAction";
 import InfoHomePegawai from "../components/InfoHomePegawai";
+import BackIzin from "../components/BackIzin";
 import ListUserIzin from "../components/ListUserIzin";
 import NavbarComponent from "../components/NavbarComponent";
 
@@ -20,9 +19,7 @@ class ListUserIzinContainer extends Component {
         <NavbarComponent />
         <Row>
           <Col md={1}>
-            <Button color="info">
-              <FontAwesomeIcon icon={faListAlt} /> List
-            </Button>
+            <BackIzin/>
           </Col>
           <Col md={11}>
             <Alert color="warning">
