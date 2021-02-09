@@ -29,6 +29,7 @@ import {
         return {
           ...state,
           getLaporanDetail: action.payload.data,
+          getExpandKey: action.payload.expandKey,
           errorLaporanDetail: action.payload.errorMessage,
         };
 

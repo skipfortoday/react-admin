@@ -11,7 +11,7 @@ const CetakComponent = ({ values }) => {
   return (
     <Row className="mb-2">
       <Col>
-        <Link to={"/laporandetail/"+values.UserID+"&"+values.TglAwal+"&"+values.TglAkhir}>
+        <Link to={"/laporandetail/"+values.UserID+"/"+values.TglAwal+"/"+values.TglAkhir}>
           <Button color="info">
             <FontAwesomeIcon icon={faPrint} /> Print
           </Button>

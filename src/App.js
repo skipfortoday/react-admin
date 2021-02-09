@@ -21,6 +21,7 @@ import CabangContainer from "./containers/CabangContainer";
 import CreateCabangContainer from "./containers/CreateCabangContainer";
 import EditCabangContainer from "./containers/EditCabangContainer";
 import DetailCabangContainer from "./containers/DetailCabangContainer";
+import LaporanDetailContainer from "./containers/LaporanDetailContainer";
 
 
 export default class App extends Component {
@@ -41,7 +42,7 @@ export default class App extends Component {
 
           <Route path="/laporan/:UserID" exact component={LaporanContainer} />
 
-          <Route path="/laporandetail/:values.UserID:TglAwal:TglAkhir" exact component={LaporanContainer} />
+          <Route path="/laporandetail/:UserID/:TglAwal/:TglAkhir" exact component={LaporanDetailContainer} />
 
           <Route path="/group" exact component={GroupContainer} />
 
