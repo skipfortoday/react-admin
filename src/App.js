@@ -41,6 +41,8 @@ export default class App extends Component {
 
           <Route path="/laporan/:UserID" exact component={LaporanContainer} />
 
+          <Route path="/laporandetail/:UserID:TglAwal:TglAkhir" exact component={LaporanContainer} />
+
           <Route path="/group" exact component={GroupContainer} />
 
           <Route path="/group/create" exact component={CreateGroupContainer} />
