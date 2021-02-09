@@ -3,7 +3,7 @@ import { Container, Alert, Col, Row, Button } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faListAlt } from "@fortawesome/free-solid-svg-icons";
 import { connect } from "react-redux";
-import { getUsersList, getUserDetail } from "../actions/userAction";
+import { getUsersList } from "../actions/userAction";
 import NavbarComponent from "../components/NavbarComponent";
 import ListUserLaporan from "../components/ListUserLaporan";
 import InfoHomeLaporan from "../components/InfoHomeLaporan";
