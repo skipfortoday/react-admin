@@ -8,6 +8,7 @@ import RekapLaporan from "../components/RekapLaporan";
 import BackLaporan from "../components/BackLaporan";
 import FormLaporan from "../components/FormLaporan";
 import { getUserDetail } from "../actions/userAction";
+import CetakComponent from "../components/CetakComponent";
 
 class LaporanContainer extends Component {
   componentDidMount() {
@@ -36,6 +37,7 @@ class LaporanContainer extends Component {
           </Col>
           <FormLaporan/>
         </Row>
+        <CetakComponent/>
         <RekapLaporan/>
         <LaporanComponent />
 

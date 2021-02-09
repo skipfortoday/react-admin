@@ -10,7 +10,7 @@ export const PUT_GROUP_EDIT = "PUT_GROUP_EDIT";
 export const getGroupList = () => {
   return (dispatch) => {
     axios
-      .get("http://192.168.0.25:3001/api/group")
+      .get("http://192.168.1.30:3001/api/group")
       .then(function (response) {
         dispatch({
           type: GET_GROUP_LIST,
@@ -36,7 +36,7 @@ export const getGroupDetail = (GroupID) => {
   return (dispatch) => {
     axios
       .get(
-        "http://192.168.0.25:3001/api/group/"+GroupID
+        "http://192.168.1.30:3001/api/group/"+GroupID
       )
       .then(function (response) {
         dispatch({
@@ -63,7 +63,7 @@ export const postGroupCreate = (data) => {
   return (dispatch) => {
     axios
       .post(
-         "http://192.168.0.25:3001/api/group/",
+         "http://192.168.1.30:3001/api/group/",
         data
       )
       .then(function (response) {
@@ -93,7 +93,7 @@ export const putGroupUpdate = (data, GroupID) => {
   return (dispatch) => {
     axios
       .put(
-        "http://192.168.0.25:3001/api/group/"+GroupID,
+        "http://192.168.1.30:3001/api/group/"+GroupID,
         data
       )
       .then(function (response) {
@@ -124,7 +124,7 @@ export const deleteGroup = (GroupID) => {
   return (dispatch) => {
     axios
       .delete(
-         "http://192.168.0.25:3001/api/group/"+GroupID
+         "http://192.168.1.30:3001/api/group/"+GroupID
       )
       .then(function (response) {
         console.log(response);

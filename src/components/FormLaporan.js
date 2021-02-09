@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { reduxForm, Field } from "redux-form";
+import { reduxForm, Field, getFormValues , form} from "redux-form";
 import { connect } from "react-redux";
 import {
   FormGroup,
@@ -12,7 +12,7 @@ import {
   Container,
 } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPrint} from "@fortawesome/free-solid-svg-icons";
+import { faPrint, faTractor} from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 
 const renderField = ({
@@ -104,19 +104,6 @@ class FormLaporan extends Component {
                   component={renderField}
                   label="Tanggal Akhir :"
                 />
-              </FormGroup>
-            </Col>
-          </FormGroup>
-
-          <FormGroup row>
-            <Col md="12">
-              <FormGroup>
-                <Button
-                    color="warning"
-                    onclick="window.print()"
-                    >
-                    <FontAwesomeIcon icon={faPrint} /> Print
-                  </Button>
               </FormGroup>
             </Col>
           </FormGroup>

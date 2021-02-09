@@ -10,7 +10,7 @@ export const PUT_CABANG_EDIT = "PUT_CABANG_EDIT";
 export const getCabangList = () => {
   return (dispatch) => {
     axios
-      .get("http://192.168.0.25:3001/api/cabang")
+      .get("http://192.168.1.30:3001/api/cabang")
       .then(function (response) {
         dispatch({
           type: GET_CABANG_LIST,
@@ -36,7 +36,7 @@ export const getCabangDetail = (KodeCabang) => {
   return (dispatch) => {
     axios
       .get(
-        "http://192.168.0.25:3001/api/cabang/"+KodeCabang
+        "http://192.168.1.30:3001/api/cabang/"+KodeCabang
       )
       .then(function (response) {
         dispatch({
@@ -63,7 +63,7 @@ export const postCabangCreate = (data) => {
   return (dispatch) => {
     axios
       .post(
-         "http://192.168.0.25:3001/api/cabang/",
+         "http://192.168.1.30:3001/api/cabang/",
         data
       )
       .then(function (response) {
@@ -93,7 +93,7 @@ export const putCabangUpdate = (data, KodeCabang) => {
   return (dispatch) => {
     axios
       .put(
-        "http://192.168.0.25:3001/api/cabang/"+KodeCabang,
+        "http://192.168.1.30:3001/api/cabang/"+KodeCabang,
         data
       )
       .then(function (response) {
@@ -124,7 +124,7 @@ export const deleteCabang = (KodeCabang) => {
   return (dispatch) => {
     axios
       .delete(
-         "http://192.168.0.25:3001/api/cabang/"+KodeCabang
+         "http://192.168.1.30:3001/api/cabang/"+KodeCabang
       )
       .then(function (response) {
         console.log(response);

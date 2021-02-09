@@ -9,7 +9,7 @@ export const GET_LAPORAN_REKAP = "GET_LAPORAN_REKAP";
 export const getLaporanList = (UserID) => {
   return (dispatch) => {
     axios
-      .get("http://192.168.0.25:3001/api/laporan/"+UserID)
+      .get("http://192.168.1.30:3001/api/laporan/"+UserID)
       .then(function (response) {
         var res = [];
         var expand = [];
@@ -46,7 +46,7 @@ export const getLaporanDetail = (UserID,TglAwal,TglAkhir) => {
   return (dispatch) => {
     axios
       .get(
-        "http://192.168.0.25:3001/api/apprecentscan/"+UserID+"&"+TglAwal+"&"+TglAkhir)
+        "http://192.168.1.30:3001/api/apprecentscan/"+UserID+"&"+TglAwal+"&"+TglAkhir)
       .then(function (response) {
         dispatch({
           type: GET_LAPORAN_DETAIL,
@@ -72,7 +72,7 @@ export const getLaporanRekap = (UserID) => {
   return (dispatch) => {
     axios
       .get(
-        "http://192.168.0.25:3001/api/sumreport/"+UserID)
+        "http://192.168.1.30:3001/api/sumreport/"+UserID)
       .then(function (response) {
         dispatch({
           type: GET_LAPORAN_REKAP,

@@ -1,8 +1,7 @@
 
 import React from "react";
 import BootstrapTable from "react-bootstrap-table-next";
-import { Container, Alert, Row, Col, Spinner, Table } from "reactstrap";
-import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
+import  { Search } from "react-bootstrap-table2-toolkit";
 import paginationFactory from "react-bootstrap-table2-paginator";
 import { connect } from "react-redux"
 
@@ -31,7 +30,7 @@ const LaporanComponent = (props) => {
       text: "Tanggal",
       sort: true,
       headerStyle: () => {
-        return { width: "85px" , fontSize: '12px'  };
+        return { width: "85px" , fontSize: '12px' ,lineHeight: '10%' , backgroundColor:'#dbdbdb' };
       },
       style: () => {
         return { fontSize: '12px' };
@@ -42,7 +41,7 @@ const LaporanComponent = (props) => {
       text: "Datang",
       sort: true,
       headerStyle: () => {
-        return { width: "38px" , fontSize: '12px' };
+        return { width: "38px" , fontSize: '12px' , lineHeight: '10%', backgroundColor:'#dbdbdb' };
       },
       style: () => {
         return { fontSize: '12px' };
@@ -55,7 +54,7 @@ const LaporanComponent = (props) => {
       text: "Pulang",
       sort: true,
       headerStyle: () => {
-        return { width: "38px" , fontSize: '12px' };
+        return { width: "38px" , fontSize: '12px', lineHeight: '10%', backgroundColor:'#dbdbdb' };
       },
       style: () => {
         return { fontSize: '12px' };
@@ -66,7 +65,7 @@ const LaporanComponent = (props) => {
       text: "Tlmbat",
       sort: true,
       headerStyle: () => {
-        return { width: "38px" , fontSize: '12px' };
+        return { width: "38px" , fontSize: '12px', lineHeight: '10%', backgroundColor:'#dbdbdb' };
       },
       style: () => {
         return { color: 'red', fontSize: '12px' };
@@ -78,10 +77,10 @@ const LaporanComponent = (props) => {
       text: "Lembur",
       sort: true,
       headerStyle: () => {
-        return { width: "38px" , fontSize: '12px'  };
+        return { width: "38px" , fontSize: '12px' , lineHeight: '10%', backgroundColor:'#dbdbdb' };
       },
       style: () => {
-        return { fontSize: '12px' };
+        return { fontSize: '12px' , color: '#017580' };
       },
     },
     {
@@ -89,7 +88,7 @@ const LaporanComponent = (props) => {
       text: "S",
       sort: true,
       headerStyle: () => {
-        return { width: "5px"  , fontSize: '12px' };
+        return { width: "5px"  , fontSize: '12px', lineHeight: '10%', backgroundColor:'#dbdbdb' };
       },
       style: () => {
         return { fontSize: '12px' };
@@ -100,7 +99,7 @@ const LaporanComponent = (props) => {
       text: "Break",
       sort: true,
       headerStyle: () => {
-        return { width: "38px" , fontSize: '10px'  };
+        return { width: "38px" , fontSize: '10px' , lineHeight: '10%' , backgroundColor:'#dbdbdb'};
       },
       style: () => {
         return { fontSize: '12px' };
@@ -111,7 +110,7 @@ const LaporanComponent = (props) => {
       text: "Kmbl",
       sort: true,
       headerStyle: () => {
-        return { width: "38px" , fontSize: '10px'  };
+        return { width: "38px" , fontSize: '10px' , lineHeight: '10%' , backgroundColor:'#dbdbdb'};
       },
       style: () => {
         return { fontSize: '12px' };
@@ -122,13 +121,10 @@ const LaporanComponent = (props) => {
       text: "Tlmbat",
       sort: true,
       headerStyle: () => {
-        return { width: "38px" , fontSize: '12px'  };
+        return { width: "38px" , fontSize: '10px' , lineHeight: '10%', backgroundColor:'#dbdbdb' };
       },
       style: () => {
-        return { color: 'red' , fontSize: '12px'  };
-      },
-      style: () => {
-        return { fontSize: '12px' };
+        return { color: 'red' , fontSize: '12px' , lineHeight: '10%' };
       },
     },
     {
@@ -136,10 +132,10 @@ const LaporanComponent = (props) => {
       text: "Status",
       sort: true,
       headerStyle: () => {
-        return { width: "70px" , fontSize: '12px' };
+        return { width: "60px" , fontSize: '12px' , lineHeight: '10%' , backgroundColor:'#dbdbdb'};
       },
       style: () => {
-        return { fontSize: '12px' };
+        return { fontSize: '10px' };
       },
     },
     {
@@ -147,10 +143,10 @@ const LaporanComponent = (props) => {
       text: "Keterangan",
       sort: true,
       headerStyle: () => {
-        return { width: "100px" , fontSize: '12px'  };
+        return { width: "100px" , fontSize: '12px' , lineHeight: '10%' , backgroundColor:'#dbdbdb'};
       },
       style: () => {
-        return { fontSize: '12px' };
+        return { fontSize: '10px' };
       },
     },
     {
@@ -158,11 +154,11 @@ const LaporanComponent = (props) => {
       text: "KetPulang",
       sort: true,
       headerStyle: () => {
-        return { width: "70px", fontSize: '12px'  };
+        return { width: "70px", fontSize: '12px' ,lineHeight: '10%' , backgroundColor:'#dbdbdb' };
       },
 
       style: () => {
-        return { fontSize: '12px' };
+        return { fontSize: '10px' };
       },
     },
     
@@ -211,7 +207,7 @@ const LaporanComponent = (props) => {
         return { width: "120px" , fontSize: '12px'  };
       },
       style: () => {
-        return { fontSize: '12px' ,width: "100px"};
+        return { fontSize: '10px' ,width: "100px"};
       },
     },
     {
@@ -222,7 +218,7 @@ const LaporanComponent = (props) => {
         return { width: "120px" , fontSize: '12px'  };
       },
       style: () => {
-        return { fontSize: '12px' , width: "100px" };
+        return { fontSize: '10px' , width: "100px" };
       },
     },
     
@@ -261,7 +257,7 @@ TotalKeluar: null*/
       data={ props.getLaporanList } 
       columns={ columns } 
       expandRow={ expandRow }
-      rowStyle={ { lineHeight: '10%' } } 
+      rowStyle={ { lineHeight : '9px' } } 
       pagination={paginationFactory()}
     />
   );
