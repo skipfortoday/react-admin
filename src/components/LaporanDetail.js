@@ -241,7 +241,7 @@ TotalKeluar: null*/
 
   return (
     <BootstrapTable 
-      keyField='Urutan' 
+      keyField='Tanggal' 
       data={ props.getLaporanDetail } 
       columns={ columns } 
       expandRow={ expandRow }

@@ -7,12 +7,7 @@ import { connect } from "react-redux"
 
 const { SearchBar } = Search;
 
-const defaultSorted = [
-  {
-    dataField: "TanggalScan",
-    order: "asc",
-  },
-];
+
 
 const mapStateToProps = (state) => {
   return {
@@ -231,6 +226,12 @@ KeluarID: 1
 Keterangan: "undefined"
 KeteranganKembali: null
 TotalKeluar: null*/
+const defaultSorted = [
+  {
+    dataField: "Tanggal",
+    order: "asc",
+  },
+];
 
   const expandRow = {
     renderer: (row, rowIndex) => (
@@ -241,6 +242,8 @@ TotalKeluar: null*/
           data={ row.detail } 
           rowStyle={ { lineHeight: '80%' } } 
           columns={ dtColumns } 
+          defaultSortDirection="asc"
+          defaultSorted={ defaultSorted } 
           />
 
       </div>
@@ -249,7 +252,7 @@ TotalKeluar: null*/
     nonExpandable:props.getExpandKey[1]
   };
 
-  console.log(props.getLaporanList);
+
 
   return (
     <BootstrapTable 
