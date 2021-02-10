@@ -3,31 +3,49 @@ import { connect } from "react-redux";
 import { Table } from "reactstrap";
 
 const mapStateToProps = (state) => {
-  return {
-    getUserDetail: state.users.getUserDetail,
-    errorUserDetail: state.users.errorUserDetail,
-  };
+    return {
+      getLaporanRekap: state.Laporan.getLaporanRekap,
+      errorLaporanRekap: state.Laporan.errorLaporanRekap,
+    };
 };
 
+  
 const RekapLeft = (props) => {
   return (
-    <Table striped>
+    <Table size="sm">
       <tbody>
         <tr>
-          <td width="120">Ijin Terlambat</td>
-          <td width="10">:</td>
-          <td width="10">{props.getUserDetail.Nama}</td>
-          <td width="100">Jumlah Sakit Bulan Ini</td>
-          <td width="10">:</td>
-          <td>{props.getUserDetail.Nama}</td>
-          <td width="200">Jumlah Lembur</td>
-          <td width="10">:</td>
-          <td>{props.getUserDetail.Nama}</td>
+          <td>Ijin Terlambat</td>
+          <td>:</td>
+          <td>{props.getLaporanRekap.JumTerlambat}</td>
         </tr> 
         <tr>
-          <td width="100">Jabatan</td>
-          <td width="10">:</td>
-          <td>{props.getUserDetail.Jabatan}</td>
+          <td >Jumlah Terlambat</td>
+          <td >:</td>
+          <td>{props.getLaporanRekap.JumTerlambat}</td>
+          <td >=</td>
+          <td >{props.getLaporanRekap.RpPotonganTerlambat}</td>
+        </tr>
+        <tr>
+          <td >Ijin Tidak Masuk</td>
+          <td >:</td>
+          <td>{props.getLaporanRekap.JumTerlambat}</td>
+          <td >=</td>
+          <td >{props.getLaporanRekap.RpPotonganTerlambat}</td>
+        </tr>
+        <tr>
+          <td >Trlmbt Kmbl Istrht</td>
+          <td >:</td>
+          <td>{props.getLaporanRekap.JumTerlambat}</td>
+          <td >=</td>
+          <td >{props.getLaporanRekap.RpPotonganTerlambat}</td>
+        </tr>
+        <tr>
+          <td >Total Potongan</td>
+          <td ></td>
+          <td ></td>
+          <td >=</td>
+          <td>{props.getLaporanRekap.JumTerlambat}</td>
         </tr>
       </tbody>
     </Table>
