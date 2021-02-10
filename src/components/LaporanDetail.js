@@ -14,11 +14,14 @@ const mapStateToProps = (state) => {
 };
 
 
+
+
 const LaporanDetail = (props) => {
   const columns = [
     {
       dataField: "Tanggal",
       text: "Tanggal",
+      sort: true,
       headerStyle: () => {
         return { width: "85px" , fontSize: '12px' ,lineHeight: '10%' , backgroundColor:'#dbdbdb' };
       },
@@ -198,6 +201,12 @@ const LaporanDetail = (props) => {
     
   ]
 
+  const defaultSorted = [{
+    dataField: 'Urutan',
+    order: 'desc'
+  }];
+  
+
   const options = {
     firstPageText: 'OK',
     sizePerPageList: [{
@@ -232,12 +241,13 @@ TotalKeluar: null*/
 
   return (
     <BootstrapTable 
-      keyField='Tanggal' 
+      keyField='Urutan' 
       data={ props.getLaporanDetail } 
       columns={ columns } 
       expandRow={ expandRow }
       rowStyle={ { lineHeight : '9px' } } 
       pagination={paginationFactory(options)}
+      defaultSorted= { defaultSorted }
     />
   );
   /*return (
