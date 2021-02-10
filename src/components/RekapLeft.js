@@ -23,7 +23,7 @@ const RekapLeft = (props) => {
           <td style={{fontSize: '12px'}}></td>
           <td style={{fontSize: '12px'}}>Jumlah Sakit Bulan ini</td>
           <td style={{fontSize: '12px'}}>:</td>
-          <td style={{fontSize: '12px'}}>{props.getLaporanRekap.JumTerlambat}</td>
+          <td style={{fontSize: '12px'}}>{props.getLaporanRekap.JumlahSakit}</td>
           <td style={{fontSize: '12px'}}></td>
           <td style={{fontSize: '12px'}}>Jumlah Lembur</td>
           <td style={{fontSize: '12px'}}>:</td>
@@ -38,7 +38,7 @@ const RekapLeft = (props) => {
           <td style={{fontSize: '12px'}}></td>
           <td style={{fontSize: '12px'}}>Jumlah Cuti Bulan ini</td>
           <td style={{fontSize: '12px'}}>:</td>
-          <td style={{fontSize: '12px'}}>{props.getLaporanRekap.JumTerlambat}</td>
+          <td style={{fontSize: '12px'}}>{props.getLaporanRekap.JumlahCuti}</td>
           <td style={{fontSize: '12px'}}></td>
           <td style={{fontSize: '12px'}}>Total Lembur</td>
           <td style={{fontSize: '12px'}}>:</td>
@@ -53,7 +53,7 @@ const RekapLeft = (props) => {
           <td style={{fontSize: '12px'}}></td>
           <td style={{fontSize: '12px'}}>Ijin Tidak Masuk</td>
           <td style={{fontSize: '12px'}}>:</td>
-          <td style={{fontSize: '12px'}}>{props.getLaporanRekap.JumTerlambat}</td>
+          <td style={{fontSize: '12px'}}>{props.getLaporanRekap.JumlahIzinTidakMasuk}</td>
           <td style={{fontSize: '12px'}}></td>
           <td style={{fontSize: '12px'}}></td>
           <td style={{fontSize: '12px'}}></td>
@@ -68,7 +68,7 @@ const RekapLeft = (props) => {
           <td style={{fontSize: '12px'}}></td>
           <td style={{fontSize: '12px'}}></td>
           <td style={{fontSize: '12px'}}></td>
-          <td style={{fontSize: '12px'}}>--+</td>
+          <td style={{fontSize: '12px'}}>---+</td>
           <td style={{fontSize: '12px'}}></td>
           <td style={{fontSize: '12px'}}></td>
           <td style={{fontSize: '12px'}}></td>
@@ -83,7 +83,7 @@ const RekapLeft = (props) => {
           <td style={{fontSize: '12px'}}></td>
           <td style={{fontSize: '12px'}}>Total Tidak Masuk</td>
           <td style={{fontSize: '12px'}}>:</td>
-          <td style={{fontSize: '12px'}}>{props.getLaporanRekap.JumTerlambat}</td>
+          <td style={{fontSize: '12px'}}>{props.getLaporanRekap.TotalTidakMasuk}</td>
           <td style={{fontSize: '12px'}}></td>
           <td style={{fontSize: '12px'}}></td>
           <td style={{fontSize: '12px'}}></td>
@@ -98,7 +98,7 @@ const RekapLeft = (props) => {
           <td style={{fontSize: '12px'}}></td>
           <td style={{fontSize: '12px'}}>Total Cuti Thn ini</td>
           <td style={{fontSize: '12px'}}>:</td>
-          <td style={{fontSize: '12px'}}>{props.getLaporanRekap.JumTerlambat}</td>
+          <td style={{fontSize: '12px'}}>{props.getLaporanRekap.TotalCutiThnIni}</td>
           <td style={{fontSize: '12px'}}></td>
           <td style={{fontSize: '12px'}}>OFF</td>
           <td style={{fontSize: '12px'}}>:</td>
@@ -113,7 +113,7 @@ const RekapLeft = (props) => {
           <td style={{fontSize: '12px'}}></td>
           <td style={{fontSize: '12px'}}>Sisa Cuti</td>
           <td style={{fontSize: '12px'}}>:</td>
-          <td style={{fontSize: '12px'}}>{props.getLaporanRekap.JumTerlambat}</td>
+          <td style={{fontSize: '12px'}}>{props.getLaporanRekap.SisaCuti}</td>
           <td style={{fontSize: '12px'}}></td>
           <td style={{fontSize: '12px'}}>Jumlah Masuk Kantor</td>
           <td style={{fontSize: '12px'}}>:</td>
@@ -128,7 +128,7 @@ const RekapLeft = (props) => {
           <td style={{fontSize: '12px'}}></td>
           <td style={{fontSize: '12px'}}>Cuti Khusus Bulan Ini</td>
           <td style={{fontSize: '12px'}}>:</td>
-          <td style={{color: 'red',fontSize: '12px'}}>{props.getLaporanRekap.JumTerlambat}</td>
+          <td style={{color: 'red',fontSize: '12px'}}>{props.getLaporanRekap.JumlahCutiKhusus}</td>
           <td style={{fontSize: '12px'}}></td>
           <td style={{fontSize: '12px'}}>Jumlah Dinas Luar</td>
           <td style={{fontSize: '12px'}}>:</td>
