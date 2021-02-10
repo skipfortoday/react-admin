@@ -17,7 +17,7 @@ const RekapLeft = (props) => {
         <tr style={{ lineHeight : '9px' }} >
           <td style={{fontSize: '12px'}}>Ijin Terlambat</td>
           <td style={{fontSize: '12px'}}>:</td>
-          <td style={{color: 'red', fontSize: '12px'}}>{props.getLaporanRekap.JumTerlambat}</td>
+          <td style={{color: 'red', fontSize: '12px'}}>{props.getLaporanRekap.JmlIjinTerlambat}</td>
           <td style={{fontSize: '12px'}}></td>
           <td style={{fontSize: '12px'}}></td>
           <td style={{fontSize: '12px'}}></td>
@@ -47,9 +47,9 @@ const RekapLeft = (props) => {
         <tr style={{ lineHeight : '9px' }}>
           <td style={{fontSize: '12px'}}>Ijin Tidak Masuk</td>
           <td style={{fontSize: '12px'}}>:</td>
-          <td style={{color: 'red',fontSize: '12px'}}>{props.getLaporanRekap.JumTerlambat}</td>
+          <td style={{color: 'red',fontSize: '12px'}}>{props.getLaporanRekap.JumlahIzinTidakMasuk}</td>
           <td style={{fontSize: '12px'}}>=</td>
-          <td style={{color: 'red',fontSize: '12px'}}>{props.getLaporanRekap.RpPotonganTerlambat}</td>
+          <td style={{color: 'red',fontSize: '12px'}}>{props.getLaporanRekap.RpPotonganTidakMasuk}</td>
           <td style={{fontSize: '12px'}}></td>
           <td style={{fontSize: '12px'}}>Ijin Tidak Masuk</td>
           <td style={{fontSize: '12px'}}>:</td>
@@ -62,9 +62,9 @@ const RekapLeft = (props) => {
         <tr style={{ lineHeight : '9px' }}>
           <td style={{fontSize: '12px'}}>Trlmbt Kmbl Istrht</td>
           <td style={{fontSize: '12px'}}>:</td>
-          <td style={{color: 'red',fontSize: '12px'}}>{props.getLaporanRekap.JumTerlambat}</td>
+          <td style={{color: 'red',fontSize: '12px'}}>{props.getLaporanRekap.TerlambatKembali}</td>
           <td style={{fontSize: '12px'}}>=</td>
-          <td style={{color: 'red',fontSize: '12px'}}>{props.getLaporanRekap.RpPotonganTerlambat}</td>
+          <td style={{color: 'red',fontSize: '12px'}}>{props.getLaporanRekap.RpPotKembaliIstirahat}</td>
           <td style={{fontSize: '12px'}}></td>
           <td style={{fontSize: '12px'}}></td>
           <td style={{fontSize: '12px'}}></td>
@@ -94,7 +94,7 @@ const RekapLeft = (props) => {
           <td style={{fontSize: '12px'}}></td>
           <td style={{fontSize: '12px'}}></td>
           <td style={{fontSize: '12px'}}>=</td>
-          <td style={{color: 'red',fontSize: '12px'}}>{props.getLaporanRekap.JumTerlambat}</td>
+          <td style={{color: 'red',fontSize: '12px'}}>{props.getLaporanRekap.TotalPotongan}</td>
           <td style={{fontSize: '12px'}}></td>
           <td style={{fontSize: '12px'}}>Total Cuti Thn ini</td>
           <td style={{fontSize: '12px'}}>:</td>
