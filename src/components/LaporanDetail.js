@@ -1,18 +1,10 @@
 
 import React from "react";
 import BootstrapTable from "react-bootstrap-table-next";
-import  { Search } from "react-bootstrap-table2-toolkit";
 import paginationFactory from "react-bootstrap-table2-paginator";
 import { connect } from "react-redux"
+import { getLaporanDetail } from "../actions/laporanAction";
 
-const { SearchBar } = Search;
-
-const defaultSorted = [
-  {
-    dataField: "TanggalScan",
-    order: "asc",
-  },
-];
 
 const mapStateToProps = (state) => {
   return {
@@ -28,7 +20,6 @@ const LaporanDetail = (props) => {
     {
       dataField: "Tanggal",
       text: "Tanggal",
-      sort: true,
       headerStyle: () => {
         return { width: "85px" , fontSize: '12px' ,lineHeight: '10%' , backgroundColor:'#dbdbdb' };
       },
@@ -39,7 +30,6 @@ const LaporanDetail = (props) => {
     {
       dataField: "ScanMasuk",
       text: "Datang",
-      sort: true,
       headerStyle: () => {
         return { width: "38px" , fontSize: '12px' , lineHeight: '10%', backgroundColor:'#dbdbdb' };
       },
@@ -52,7 +42,6 @@ const LaporanDetail = (props) => {
     {
       dataField: "ScanPulang",
       text: "Pulang",
-      sort: true,
       headerStyle: () => {
         return { width: "38px" , fontSize: '12px', lineHeight: '10%', backgroundColor:'#dbdbdb' };
       },
@@ -63,7 +52,6 @@ const LaporanDetail = (props) => {
     {
       dataField: "Terlambat",
       text: "Tlmbat",
-      sort: true,
       headerStyle: () => {
         return { width: "38px" , fontSize: '12px', lineHeight: '10%', backgroundColor:'#dbdbdb' };
       },
@@ -75,7 +63,6 @@ const LaporanDetail = (props) => {
     {
       dataField: "Lembur",
       text: "Lembur",
-      sort: true,
       headerStyle: () => {
         return { width: "38px" , fontSize: '12px' , lineHeight: '10%', backgroundColor:'#dbdbdb' };
       },
@@ -86,7 +73,6 @@ const LaporanDetail = (props) => {
     {
       dataField: "Shift",
       text: "S",
-      sort: true,
       headerStyle: () => {
         return { width: "5px"  , fontSize: '12px', lineHeight: '10%', backgroundColor:'#dbdbdb' };
       },
@@ -97,7 +83,6 @@ const LaporanDetail = (props) => {
     {
       dataField: "IstirahatKeluar",
       text: "Break",
-      sort: true,
       headerStyle: () => {
         return { width: "38px" , fontSize: '10px' , lineHeight: '10%' , backgroundColor:'#dbdbdb'};
       },
@@ -108,7 +93,6 @@ const LaporanDetail = (props) => {
     {
       dataField: "IstirahatKembali",
       text: "Kmbl",
-      sort: true,
       headerStyle: () => {
         return { width: "38px" , fontSize: '10px' , lineHeight: '10%' , backgroundColor:'#dbdbdb'};
       },
@@ -119,7 +103,6 @@ const LaporanDetail = (props) => {
     {
       dataField: "TerlambatIstirahat",
       text: "Tlmbat",
-      sort: true,
       headerStyle: () => {
         return { width: "38px" , fontSize: '10px' , lineHeight: '10%', backgroundColor:'#dbdbdb' };
       },
@@ -130,7 +113,6 @@ const LaporanDetail = (props) => {
     {
       dataField: "Status",
       text: "Status",
-      sort: true,
       headerStyle: () => {
         return { width: "60px" , fontSize: '12px' , lineHeight: '10%' , backgroundColor:'#dbdbdb'};
       },
@@ -141,7 +123,6 @@ const LaporanDetail = (props) => {
     {
       dataField: "Keterangan",
       text: "Keterangan",
-      sort: true,
       headerStyle: () => {
         return { width: "100px" , fontSize: '12px' , lineHeight: '10%' , backgroundColor:'#dbdbdb'};
       },
@@ -152,7 +133,6 @@ const LaporanDetail = (props) => {
     {
       dataField: "KetPulang",
       text: "KetPulang",
-      sort: true,
       headerStyle: () => {
         return { width: "70px", fontSize: '12px' ,lineHeight: '10%' , backgroundColor:'#dbdbdb' };
       },
@@ -169,7 +149,6 @@ const LaporanDetail = (props) => {
     {
       dataField: "k",
       text: "",
-      sort: true,
       headerStyle: () => {
         return { width: "120px" , fontSize: '12px'  };
       },
@@ -180,7 +159,6 @@ const LaporanDetail = (props) => {
     {
       dataField: "KelKan",
       text: "",
-      sort: true,
       headerStyle: () => {
         return { width: "90px" , fontSize: '12px'  };
       },
@@ -191,7 +169,6 @@ const LaporanDetail = (props) => {
     {
       dataField: "Durasi",
       text: "",
-      sort: true,
       headerStyle: () => {
         return { width: "90px" , fontSize: '12px' };
       },
@@ -202,7 +179,6 @@ const LaporanDetail = (props) => {
     {
       dataField: "Ket",
       text: "",
-      sort: true,
       headerStyle: () => {
         return { width: "120px" , fontSize: '12px'  };
       },
@@ -213,7 +189,6 @@ const LaporanDetail = (props) => {
     {
       dataField: "KetKembali",
       text: "",
-      sort: true,
       headerStyle: () => {
         return { width: "120px" , fontSize: '12px'  };
       },
@@ -224,6 +199,13 @@ const LaporanDetail = (props) => {
     
   ]
 
+  const options = {
+    firstPageText: 'OK',
+    sizePerPageList: [{
+      text: 'OK', value: 100
+    }] // A numeric array is also available. the purpose of above example is custom the text
+  };
+  
   /*DatangID: 105
 JamKeluar: "11:31:00"
 JamKembali: "12:31:00"
@@ -233,7 +215,7 @@ KeteranganKembali: null
 TotalKeluar: null*/
 
   const expandRow = {
-    renderer: (row, rowIndex) => (
+    renderer: (row) => (
       <div>
         <BootstrapTable 
           classes='rDetail'
@@ -256,7 +238,7 @@ TotalKeluar: null*/
       columns={ columns } 
       expandRow={ expandRow }
       rowStyle={ { lineHeight : '9px' } } 
-      pagination={paginationFactory()}
+      pagination={paginationFactory(options)}
     />
   );
   /*return (

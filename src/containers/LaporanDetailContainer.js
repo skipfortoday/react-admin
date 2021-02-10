@@ -7,6 +7,10 @@ import NavbarComponent from "../components/NavbarComponent";
 import RekapLaporan from "../components/RekapLaporan";
 import BackLaporan from "../components/BackLaporan";
 import { getUserDetail } from "../actions/userAction";
+import PrintButton from "../components/PrintButton";
+import RekapLeft from "../components/RekapLeft";
+import RekapMid from "../components/RekapMid";
+import RekapRight from "../components/RekapRight";
 
 class LaporanDetailContainer extends Component {
   componentDidMount() {
@@ -22,16 +26,20 @@ class LaporanDetailContainer extends Component {
         <Row>
          <Col md={1}>
           <BackLaporan/>
+          
          </Col>
-         <Col md={11}>
+         <Col md={10}>
           <Alert color="warning" >
-           <h4 >Laporan Pertanggal</h4>
+           <h4 >Rincian Laporan</h4>
           </Alert>
+          </Col>
+          <Col md={1}>
+            <PrintButton/>
           </Col>
         </Row>
         <RekapLaporan/>
         <LaporanDetail/>
-
+        <RekapLeft/>
       </Container>
     );
   }

@@ -2,7 +2,7 @@ import React from "react";
 import { Row, Col, Button } from "reactstrap";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPrint } from "@fortawesome/free-solid-svg-icons";
+import { faSearchPlus } from "@fortawesome/free-solid-svg-icons";
 import { connect } from "react-redux";
 import { getFormValues } from "redux-form";
 
@@ -13,7 +13,7 @@ const CetakComponent = ({ values }) => {
       <Col>
         <Link to={"/laporandetail/"+values.UserID+"/"+values.TglAwal+"/"+values.TglAkhir}>
           <Button color="info">
-            <FontAwesomeIcon icon={faPrint} /> Print
+            <FontAwesomeIcon icon={faSearchPlus} /> Rincian Scan
           </Button>
         </Link>
       </Col>

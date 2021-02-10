@@ -80,11 +80,10 @@ export const getLaporanDetail = (UserID,TglAwal,TglAkhir) => {
   };
 };
 
-export const getLaporanRekap = (UserID) => {
+export const getLaporanRekap = (UserID,TglAwal,TglAkhir) => {
   return (dispatch) => {
     axios
-      .get(
-        "http://192.168.0.25:3001/api/sumreport/"+UserID)
+      .get("http://192.168.0.25:3001/api/laporanrekap/"+UserID+"&"+TglAwal+"&"+TglAkhir)
       .then(function (response) {
         dispatch({
           type: GET_LAPORAN_REKAP,
