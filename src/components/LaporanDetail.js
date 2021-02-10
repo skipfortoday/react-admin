@@ -249,8 +249,6 @@ TotalKeluar: null*/
     nonExpandable:props.getExpandKey[1]
   };
 
-  console.log(props.getLaporanDetail);
-
   return (
     <BootstrapTable 
       keyField='Tanggal' 
@@ -258,6 +256,7 @@ TotalKeluar: null*/
       columns={ columns } 
       expandRow={ expandRow }
       rowStyle={ { lineHeight : '9px' } } 
+      pagination={paginationFactory()}
     />
   );
   /*return (
