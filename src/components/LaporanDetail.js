@@ -229,7 +229,7 @@ TotalKeluar: null*/
           classes='rDetail'
           keyField='DatangID' 
           data={ row.detail } 
-          rowStyle={ { lineHeight: '80%' } } 
+          rowStyle={ { lineHeight: '80%' , fontWeight: "bold" } } 
           columns={ dtColumns } 
           />
 
@@ -245,7 +245,7 @@ TotalKeluar: null*/
       data={ props.getLaporanDetail } 
       columns={ columns } 
       expandRow={ expandRow }
-      rowStyle={ { lineHeight : '9px' } } 
+      rowStyle={ { lineHeight : '0px' , fontFamily: 'TimesNewRoman' } } 
       pagination={paginationFactory(options)}
       defaultSorted= { defaultSorted }
     />
