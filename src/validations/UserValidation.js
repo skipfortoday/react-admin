@@ -13,18 +13,6 @@ const UserValidation = (values) => {
     errors.TglLahir = "Tanggal Lahir harus diisi";
   }
 
-  if (!values.Status || values.Status=== "") {
-    errors.Status = "Harus Di Isi";
-  }
-
-  if (!values.TampilkanTerlambat || values.TampilkanTerlambat=== "") {
-    errors.TampilkanTerlambat = "Harus Di Isi";
-  }
-
-  if (!values.TampilkanLembur || values.TampilkanLembur=== "") {
-    errors.TampilkanLembur = "Harus Di Isi";
-  }
-
   if (!values.HP|| values.HP=== "") {
     errors.HP = "Nomor HP harus diisi";
   }

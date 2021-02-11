@@ -31,8 +31,9 @@ const renderField = ({
         readOnly={readOnly} 
       >
         <option value ="">-</option>
-        <option value ="Admin">Ya</option>
-        <option value = "User">Tidak</option>
+        <option value ="1">Atasan Kantor</option>
+        <option value = "2">Atasan Group</option>
+        <option value = "3">Staff</option>
       </Input>
       <div className={ asyncValidating ? 'async-validating' : ''}>
       {touched &&
@@ -55,6 +56,7 @@ const mapStateToProps = (state) => {
 	    TglMulaiCuti  : state.users.getUserDetail.FTglMulaiCuti, 
       TglAwalKontrakPertama : state.users.getUserDetail.FTglAwalKontrakPertama, 
       GroupID       : state.users.getUserDetail.GroupID, 
+      RoleID       : state.users.getUserDetail.RoleID,
       KodeCabang    : state.users.getUserDetail.KodeCabang,   
       Status        : state.users.getUserDetail.Status,   
 	    TampilkanLembur : state.users.getUserDetail.TampilkanLembur, 
@@ -138,7 +140,7 @@ class FormComponent extends Component {
           <Col md={2}>
             <FormGroup>
               <Field
-                type="select"
+                type="CheckBox"
                 name="TampilkanLembur"
                 component={renderField}
                 label="Tampilkan Lembur :"
@@ -149,7 +151,7 @@ class FormComponent extends Component {
           <Col md={2}>
             <FormGroup>
             <Field
-                type="select"
+                type="CheckBox"
                 name="TampilkanTerlambat"
                 component={renderField}
                 label="Tampilkan Terlambat :"
@@ -160,7 +162,7 @@ class FormComponent extends Component {
           <Col md={2}>
             <FormGroup>
               <Field
-                type="select"
+                type="CheckBox"
                 name="Status"
                 component={renderField}
                 label="Status :"
@@ -203,7 +205,7 @@ class FormComponent extends Component {
 
   
 
-          <Col md={6}>
+          <Col md={4}>
             <FormGroup>
               <Field
                 type="text"
@@ -214,13 +216,24 @@ class FormComponent extends Component {
             </FormGroup>
           </Col>
 
-          <Col md={6}>
+          <Col md={4}>
             <FormGroup>
               <Field
                 type="number"
                 name="Pass"
                 component={renderField}
                 label="PIN Password :"
+              />
+            </FormGroup>
+          </Col>
+
+          <Col md={4}>
+            <FormGroup>
+              <Field
+                type="select"
+                name="RoleID"
+                component={renderField}
+                label="Akses Karyawan :"
               />
             </FormGroup>
           </Col>

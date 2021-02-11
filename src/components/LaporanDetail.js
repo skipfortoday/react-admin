@@ -67,7 +67,7 @@ const LaporanDetail = (props) => {
     },
     {
       dataField: "Shift",
-      text: "S",
+      text: "Shift",
       headerStyle: () => {
         return { width: "2px"  , fontSize: '12px', lineHeight: '10%' };
       },

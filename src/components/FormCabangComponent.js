@@ -42,6 +42,7 @@ const mapStateToProps = (state) => {
       KodeCabang: state.Cabang.getCabangDetail.KodeCabang,
       NamaCabang: state.Cabang.getCabangDetail.NamaCabang,
       Alamat: state.Cabang.getCabangDetail.Alamat,
+      NoTelp: state.Cabang.getCabangDetail.NoTelp,
       GeneralManagerID: state.Cabang.getCabangDetail.GeneralManagerID,
       hrdID: state.Cabang.getCabangDetail.hrdID,
     },
@@ -75,13 +76,24 @@ class FormCabangComponent extends Component {
             </FormGroup>
           </Col>
 
-          <Col md={6}>
+          <Col md={4}>
             <FormGroup>
               <Field
                 type="text"
                 name="Alamat"
                 component={renderField}
                 label="Alamat Cabang :"
+              />
+            </FormGroup>
+          </Col>
+
+          <Col md={2}>
+            <FormGroup>
+              <Field
+                type="text"
+                name="NoTelp"
+                component={renderField}
+                label="Nomor Telepon :"
               />
             </FormGroup>
           </Col>

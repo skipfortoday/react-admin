@@ -38,6 +38,9 @@ const NamaCabangLaporan = (props) => {
         
         </td>
         </tr>
+        <tr>
+          <td colspan="10"  style={{ width:"100px" }}><div style={{ textAlign: "center" }}> Absensi Per Karyawan</div></td>
+        </tr>
        
       </tbody>
     </Table>
