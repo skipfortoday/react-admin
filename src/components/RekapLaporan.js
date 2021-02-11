@@ -13,9 +13,9 @@ const mapStateToProps = (state) => {
 const RekapLaporan = (props) => {
   return (
     <Table borderless size="sm">
-      <tbody style={{fontSize: '14px' , fontWeight: "bold"}}>
+      <tbody style={{fontSize: '14px' , fontWeight: "bold" , lineHeight : "70%"}}>
         <tr >
-          <td width="120">Tanggal</td>
+          <td width="120">Periode</td>
           <td width="10">:</td>
           <td>{props.getLaporanRekap.Periode}</td>
         </tr>
