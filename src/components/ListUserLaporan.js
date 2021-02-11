@@ -33,7 +33,7 @@ const TableComponent = (props) => {
       text: "UserID",
       sort: true,
       headerStyle: () => {
-        return { width: "80px" };
+        return { width: "40px" };
       },
     },
     {

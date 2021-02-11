@@ -46,8 +46,6 @@ class LaporanContainer extends Component {
             <CetakComponent />
           </Col>
         </Row>
-
-        <RekapLaporan />
         <LaporanComponent />
       </Container>
     );

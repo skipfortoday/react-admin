@@ -15,19 +15,19 @@ const RekapLeft = (props) => {
     <Table borderless size="sm">
       <tbody style={{fontSize: '14px' , fontWeight: "bold", fontFamily : "Arial"}}>
         <tr style={{ lineHeight : '9px' }} >
-          <td >Ijin Terlambat</td>
+          <td style={{ width : '150px' }}>Ijin Terlambat</td>
           <td >:</td>
           <td style={{color: 'red'}}>{props.getLaporanRekap.IjinTerlambat}</td>
           <td ></td>
           <td ></td>
           <td ></td>
-          <td >Jumlah Sakit Bulan ini</td>
+          <td style={{ width : '170px' }}>Jumlah Sakit Bulan ini</td>
           <td >:</td>
           <td >{props.getLaporanRekap.JumlahSakit}</td>
           <td ></td>
-          <td >Jumlah Lembur</td>
+          <td style={{ width : '170px' }}>Jumlah Lembur</td>
           <td >:</td>
-          <td >{props.getLaporanRekap.JumlahLembur}</td>
+          <td style={{ width : '200px' }}>{props.getLaporanRekap.JumlahLembur}</td>
         </tr> 
         <tr style={{ lineHeight : '9px' }}>
           <td >Jumlah Terlambat</td>
@@ -79,7 +79,7 @@ const RekapLeft = (props) => {
           <td ></td>
           <td ></td>
           <td ></td>
-          <td >--------+</td>
+          <td >-----------+</td>
           <td ></td>
           <td >Total Tidak Masuk</td>
           <td >:</td>
@@ -120,12 +120,10 @@ const RekapLeft = (props) => {
           <td >{props.getLaporanRekap.JmlMasukKantor}</td>
         </tr>
         <tr style={{ lineHeight : '9px' }}>
-          <td style={{fontSize: '14px' , fontWeight: "bold", fontFamily : "TimesNewRoman" , fontStyle : "italic"}} >{props.getLaporanRekap.TglPrint}</td>
-          <td ></td>
-          <td ></td>
-          <td ></td>
-          <td ></td>
-          <td ></td>
+          <td colspan='3' style={{fontSize: '14px' , fontWeight: "bold", fontFamily : "TimesNewRoman" , fontStyle : "italic"}} >{props.getLaporanRekap.TglPrint}</td>
+           <td></td>
+           <td></td>
+           <td></td>
           <td >Cuti Khusus Bulan Ini</td>
           <td >:</td>
           <td style={{color: 'red'}}>{props.getLaporanRekap.JumlahCutiKhusus}</td>

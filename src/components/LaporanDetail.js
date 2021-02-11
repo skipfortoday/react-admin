@@ -23,42 +23,35 @@ const LaporanDetail = (props) => {
       text: "Tanggal",
       sort: true,
       headerStyle: () => {
-        return { width: "80px" , fontSize: '12px' ,lineHeight: '10%' , backgroundColor:'#dbdbdb' };
+        return { width: "80px" , fontSize: '12px' ,lineHeight: '10%' };
       },
       style: () => {
-        return { fontSize: '12px' ,  fontWeight: "normal"  };
+        return {  fontWeight: "normal"  };
       },
     },
     {
       dataField: "ScanMasuk",
       text: "Datang",
       headerStyle: () => {
-        return { width: "38px" , fontSize: '12px' , lineHeight: '10%', backgroundColor:'#dbdbdb' };
+        return { width: "38px" , fontSize: '12px' , lineHeight: '10%' };
       },
-      style: () => {
-        return { fontSize: '12px' };
-      },
-
     },
     
     {
       dataField: "ScanPulang",
       text: "Pulang",
       headerStyle: () => {
-        return { width: "38px" , fontSize: '12px', lineHeight: '10%', backgroundColor:'#dbdbdb' };
-      },
-      style: () => {
-        return { fontSize: '12px' };
+        return { width: "38px" , fontSize: '12px', lineHeight: '10%' };
       },
     },
     {
       dataField: "Terlambat",
       text: "Tlmbat",
       headerStyle: () => {
-        return { width: "38px" , fontSize: '12px', lineHeight: '10%', backgroundColor:'#dbdbdb' };
+        return { width: "38px" , fontSize: '12px', lineHeight: '10%'};
       },
       style: () => {
-        return { color: 'red', fontSize: '12px' };
+        return { color: 'red' };
       },
 
     },
@@ -66,81 +59,74 @@ const LaporanDetail = (props) => {
       dataField: "Lembur",
       text: "Lembur",
       headerStyle: () => {
-        return { width: "38px" , fontSize: '12px' , lineHeight: '10%', backgroundColor:'#dbdbdb' };
+        return { width: "38px" , fontSize: '12px' , lineHeight: '10%'};
       },
       style: () => {
-        return { fontSize: '12px' , color: '#017580' };
+        return { color: '#017580' };
       },
     },
     {
       dataField: "Shift",
       text: "S",
       headerStyle: () => {
-        return { width: "2px"  , fontSize: '12px', lineHeight: '10%', backgroundColor:'#dbdbdb' };
+        return { width: "2px"  , fontSize: '12px', lineHeight: '10%' };
       },
       style: () => {
-        return { fontSize: '12px' ,  fontWeight: "normal"  };
+        return { fontWeight: "normal"  };
       },
     },
     {
       dataField: "IstirahatKeluar",
       text: "Break",
       headerStyle: () => {
-        return { width: "38px" , fontSize: '10px' , lineHeight: '10%' , backgroundColor:'#dbdbdb'};
-      },
-      style: () => {
-        return { fontSize: '12px' };
+        return { width: "38px" , fontSize: '12px' , lineHeight: '10%'};
       },
     },
     {
       dataField: "IstirahatKembali",
       text: "Kmbl",
       headerStyle: () => {
-        return { width: "38px" , fontSize: '10px' , lineHeight: '10%' , backgroundColor:'#dbdbdb'};
-      },
-      style: () => {
-        return { fontSize: '12px' };
+        return { width: "38px" , fontSize: '12px' , lineHeight: '10%'};
       },
     },
     {
       dataField: "TerlambatIstirahat",
       text: "Tlmbat",
       headerStyle: () => {
-        return { width: "38px" , fontSize: '10px' , lineHeight: '10%', backgroundColor:'#dbdbdb' };
+        return { width: "38px" , fontSize: '12px' , lineHeight: '10%' };
       },
       style: () => {
-        return { color: 'red' , fontSize: '12px' , lineHeight: '10%' };
+        return { color: 'red' };
       },
     },
     {
       dataField: "Status",
       text: "Status",
       headerStyle: () => {
-        return { width: "70px" , fontSize: '12px' , lineHeight: '10%' , backgroundColor:'#dbdbdb'};
+        return { width: "70px" , fontSize: '12px' , lineHeight: '10%'};
       },
       style: () => {
-        return { fontSize: '10px' };
+        return {  fontWeight: "normal"  };
       },
     },
     {
       dataField: "Keterangan",
       text: "Keterangan",
       headerStyle: () => {
-        return { width: "120px" , fontSize: '12px' , lineHeight: '10%' , backgroundColor:'#dbdbdb'};
+        return { width: "180px" , fontSize: '12px' , lineHeight: '10%'};
       },
       style: () => {
-        return { fontSize: '10px' };
+        return {  fontWeight: "normal"  };
       },
     },
     {
       dataField: "KetPulang",
       text: "KetPulang",
       headerStyle: () => {
-        return { width: "70px", fontSize: '12px' ,lineHeight: '10%' , backgroundColor:'#dbdbdb' };
+        return { width: "65px", fontSize: '12px' ,lineHeight: '10%'};
       },
-
       style: () => {
-        return { fontSize: '10px' };
+        return {  fontWeight: "normal"  };
       },
     },
     
@@ -152,50 +138,50 @@ const LaporanDetail = (props) => {
       dataField: "k",
       text: "",
       headerStyle: () => {
-        return { width: "50px" , fontSize: '12px'  };
+        return {  };
       },
       style: () => {
-        return { fontSize: '10px' ,width: "30px" };
+        return { width: "30px" };
       },
     },
     {
       dataField: "KelKan",
       text: "",
       headerStyle: () => {
-        return { width: "50px" , fontSize: '12px'  };
+        return { };
       },
       style: () => {
-        return { fontSize: '10px', width: "30px" };
+        return { width: "30px" };
       },
     },
     {
       dataField: "Durasi",
       text: "",
       headerStyle: () => {
-        return { width: "90px" , fontSize: '12px' };
+        return { };
       },
       style: () => {
-        return { fontSize: '10px' ,width: "30px" };
+        return { width: "30px" };
       },
     },
     {
       dataField: "Ket",
       text: "",
       headerStyle: () => {
-        return { width: "120px" , fontSize: '12px'  };
+        return {  };
       },
       style: () => {
-        return { fontSize: '10px' ,width: "100px"};
+        return { width: "100px" ,  fontWeight: "normal" };
       },
     },
     {
       dataField: "KetKembali",
       text: "",
       headerStyle: () => {
-        return { width: "120px" , fontSize: '12px'  };
+        return { };
       },
       style: () => {
-        return { fontSize: '10px' , width: "100px" };
+        return {  width: "100px" , fontWeight: "normal"};
       },
     },
     
@@ -229,7 +215,7 @@ TotalKeluar: null*/
           classes='rDetail'
           keyField='DatangID' 
           data={ row.detail } 
-          rowStyle={ { lineHeight: '60%' , fontWeight: "bold" , borderCollapse : "collapse"} } 
+          rowStyle={ { lineHeight: '70%' , fontWeight: "bold" , fontFamily: 'TimesNewRoman',  fontSize:"12px" } } 
           columns={ dtColumns } 
           />
 
@@ -242,10 +228,11 @@ TotalKeluar: null*/
   return (
     <BootstrapTable 
       keyField='Tanggal' 
+      classes='rTblBsr'
       data={ props.getLaporanDetail } 
       columns={ columns } 
       expandRow={ expandRow }
-      rowStyle={ { lineHeight : '0px' , fontFamily: 'TimesNewRoman' , fontWeight: "bold" } } 
+      rowStyle={ { lineHeight : '0px' , fontFamily: 'TimesNewRoman' , fontWeight: "bold" , fontSize:"12px" } } 
       pagination={paginationFactory(options)}
       defaultSorted= { defaultSorted }
     />

@@ -11,19 +11,34 @@ const mapStateToProps = (state) => {
 
 const NamaCabangLaporan = (props) => {
   return (
+
+      
+    
     <Table borderless size="sm">
+    
       <tbody
         style={{ fontSize: "14px", fontWeight: "bold", lineHeight: "70%" , fontFamily : "Arial" }}
       >
-        <tr>
-          <td>{props.getLaporanHead.NamaHead}</td>
-        </tr>
+        <tr >
+        <td style={{ width:"50px" }}>
+        <img src="/logo-lviors-hitam.png" alt="Lviors"/>
+        </td>
+        <td>
+         <tr>
+         <td>
+          {props.getLaporanHead.NamaHead}
+        </td>
+          </tr> 
         <tr>
           <td>{props.getLaporanHead.Alamat}</td>
         </tr>
         <tr>
           <td>{props.getLaporanHead.NoTelp}</td>
+        </tr> 
+        
+        </td>
         </tr>
+       
       </tbody>
     </Table>
   );

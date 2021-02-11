@@ -28,7 +28,7 @@ const LaporanComponent = (props) => {
         return { width: "85px" , fontSize: '12px' ,lineHeight: '10%' , backgroundColor:'#dbdbdb' };
       },
       style: () => {
-        return { fontSize: '12px' };
+        return {  fontWeight: "normal"  };
       },
     },
     {
@@ -38,10 +38,6 @@ const LaporanComponent = (props) => {
       headerStyle: () => {
         return { width: "38px" , fontSize: '12px' , lineHeight: '10%', backgroundColor:'#dbdbdb' };
       },
-      style: () => {
-        return { fontSize: '12px' };
-      },
-
     },
     
     {
@@ -50,9 +46,6 @@ const LaporanComponent = (props) => {
       sort: true,
       headerStyle: () => {
         return { width: "38px" , fontSize: '12px', lineHeight: '10%', backgroundColor:'#dbdbdb' };
-      },
-      style: () => {
-        return { fontSize: '12px' };
       },
     },
     {
@@ -63,7 +56,7 @@ const LaporanComponent = (props) => {
         return { width: "38px" , fontSize: '12px', lineHeight: '10%', backgroundColor:'#dbdbdb' };
       },
       style: () => {
-        return { color: 'red', fontSize: '12px' };
+        return { color: 'red' };
       },
 
     },
@@ -75,7 +68,7 @@ const LaporanComponent = (props) => {
         return { width: "38px" , fontSize: '12px' , lineHeight: '10%', backgroundColor:'#dbdbdb' };
       },
       style: () => {
-        return { fontSize: '12px' , color: '#017580' };
+        return { color: '#017580' };
       },
     },
     {
@@ -86,7 +79,7 @@ const LaporanComponent = (props) => {
         return { width: "5px"  , fontSize: '12px', lineHeight: '10%', backgroundColor:'#dbdbdb' };
       },
       style: () => {
-        return { fontSize: '12px' };
+        return {  fontWeight: "normal"  };
       },
     },
     {
@@ -96,9 +89,6 @@ const LaporanComponent = (props) => {
       headerStyle: () => {
         return { width: "38px" , fontSize: '10px' , lineHeight: '10%' , backgroundColor:'#dbdbdb'};
       },
-      style: () => {
-        return { fontSize: '12px' };
-      },
     },
     {
       dataField: "IstirahatKembali",
@@ -106,9 +96,6 @@ const LaporanComponent = (props) => {
       sort: true,
       headerStyle: () => {
         return { width: "38px" , fontSize: '10px' , lineHeight: '10%' , backgroundColor:'#dbdbdb'};
-      },
-      style: () => {
-        return { fontSize: '12px' };
       },
     },
     {
@@ -119,7 +106,7 @@ const LaporanComponent = (props) => {
         return { width: "38px" , fontSize: '10px' , lineHeight: '10%', backgroundColor:'#dbdbdb' };
       },
       style: () => {
-        return { color: 'red' , fontSize: '12px' , lineHeight: '10%' };
+        return { color: 'red'};
       },
     },
     {
@@ -130,7 +117,7 @@ const LaporanComponent = (props) => {
         return { width: "60px" , fontSize: '12px' , lineHeight: '10%' , backgroundColor:'#dbdbdb'};
       },
       style: () => {
-        return { fontSize: '10px' };
+        return {  fontWeight: "normal"  };
       },
     },
     {
@@ -141,7 +128,7 @@ const LaporanComponent = (props) => {
         return { width: "100px" , fontSize: '12px' , lineHeight: '10%' , backgroundColor:'#dbdbdb'};
       },
       style: () => {
-        return { fontSize: '10px' };
+        return {  fontWeight: "normal"  };
       },
     },
     {
@@ -153,7 +140,7 @@ const LaporanComponent = (props) => {
       },
 
       style: () => {
-        return { fontSize: '10px' };
+        return {  fontWeight: "normal"  };
       },
     },
     
@@ -166,10 +153,10 @@ const LaporanComponent = (props) => {
       text: "",
       sort: true,
       headerStyle: () => {
-        return { width: "120px" , fontSize: '12px'  };
+        return {  };
       },
       style: () => {
-        return { fontSize: '12px' ,width: "25px" };
+        return { width: "30px" };
       },
     },
     {
@@ -177,10 +164,10 @@ const LaporanComponent = (props) => {
       text: "",
       sort: true,
       headerStyle: () => {
-        return { width: "90px" , fontSize: '12px'  };
+        return {  };
       },
       style: () => {
-        return { fontSize: '12px', width: "25px" };
+        return { width: "30px" };
       },
     },
     {
@@ -188,10 +175,10 @@ const LaporanComponent = (props) => {
       text: "",
       sort: true,
       headerStyle: () => {
-        return { width: "90px" , fontSize: '12px' };
+        return { };
       },
       style: () => {
-        return { fontSize: '12px' ,width: "25px" };
+        return { width: "30px" };
       },
     },
     {
@@ -199,10 +186,10 @@ const LaporanComponent = (props) => {
       text: "",
       sort: true,
       headerStyle: () => {
-        return { width: "120px" , fontSize: '12px'  };
+        return { };
       },
       style: () => {
-        return { fontSize: '10px' ,width: "100px"};
+        return { width: "100px" ,  fontWeight: "normal" };
       },
     },
     {
@@ -210,10 +197,10 @@ const LaporanComponent = (props) => {
       text: "",
       sort: true,
       headerStyle: () => {
-        return { width: "120px" , fontSize: '12px'  };
+        return { };
       },
       style: () => {
-        return { fontSize: '10px' , width: "100px" };
+        return { width: "100px" ,  fontWeight: "normal" };
       },
     },
     
@@ -240,7 +227,7 @@ const defaultSorted = [
           classes='rDetail'
           keyField='DatangID' 
           data={ row.detail } 
-          rowStyle={ { lineHeight: '80%' } } 
+          rowStyle={ { lineHeight: '70%' , fontWeight: "bold" , fontFamily: 'TimesNewRoman',  fontSize:"12px" } } 
           columns={ dtColumns } 
           defaultSortDirection="asc"
           defaultSorted={ defaultSorted } 
@@ -260,7 +247,7 @@ const defaultSorted = [
       data={ props.getLaporanList } 
       columns={ columns } 
       expandRow={ expandRow }
-      rowStyle={ { lineHeight : '9px' } } 
+      rowStyle={ { lineHeight : '0px' , fontFamily: 'TimesNewRoman' , fontWeight: "bold" , fontSize:"12px" } }
       pagination={paginationFactory()}
     />
   );
