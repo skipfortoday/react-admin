@@ -3,6 +3,7 @@ import axios from "axios";
 export const GET_LAPORAN_LIST = "GET_LAPORAN_LIST";
 export const GET_LAPORAN_DETAIL = "GET_LAPORAN_DETAIL";
 export const GET_LAPORAN_REKAP = "GET_LAPORAN_REKAP";
+export const GET_LAPORAN_HEAD = "GET_LAPORAN_HEAD";
 
 
 
@@ -96,6 +97,31 @@ export const getLaporanRekap = (UserID,TglAwal,TglAkhir) => {
       .catch(function (error) {
         dispatch({
           type: GET_LAPORAN_REKAP,
+          payload: {
+            data: false,
+            errorMessage: error.message,
+          },
+        });
+      });
+  };
+};
+
+export const getLaporanHead = (UserID) => {
+  return (dispatch) => {
+    axios
+      .get("http://192.168.0.25:3001/api/headerlaporan/"+UserID)
+      .then(function (response) {
+        dispatch({
+          type: GET_LAPORAN_HEAD,
+          payload: {
+            data: response.data,
+            errorMessage: false,
+          },
+        });
+      })
+      .catch(function (error) {
+        dispatch({
+          type: GET_LAPORAN_HEAD,
           payload: {
             data: false,
             errorMessage: error.message,
