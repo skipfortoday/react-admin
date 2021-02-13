@@ -25,7 +25,7 @@ const LaporanComponent = (props) => {
       text: "Tanggal",
       sort: true,
       headerStyle: () => {
-        return { width: "100px" , fontSize: '12px' ,lineHeight: '10%' , backgroundColor:'#dbdbdb' };
+        return { width: "90px" , fontSize: '12px' ,lineHeight: '10%' , backgroundColor:'#dbdbdb' };
       },
       style: () => {
         return {  fontWeight: "normal"  };
@@ -87,7 +87,7 @@ const LaporanComponent = (props) => {
       text: "Break",
       sort: true,
       headerStyle: () => {
-        return { width: "38px" , fontSize: '10px' , lineHeight: '10%' , backgroundColor:'#dbdbdb'};
+        return { width: "38px" , fontSize: '12px' , lineHeight: '10%' , backgroundColor:'#dbdbdb'};
       },
     },
     {
@@ -95,7 +95,7 @@ const LaporanComponent = (props) => {
       text: "Kmbl",
       sort: true,
       headerStyle: () => {
-        return { width: "38px" , fontSize: '10px' , lineHeight: '10%' , backgroundColor:'#dbdbdb'};
+        return { width: "38px" , fontSize: '12px' , lineHeight: '10%' , backgroundColor:'#dbdbdb'};
       },
     },
     {
@@ -103,7 +103,7 @@ const LaporanComponent = (props) => {
       text: "Tlmbat",
       sort: true,
       headerStyle: () => {
-        return { width: "38px" , fontSize: '10px' , lineHeight: '10%', backgroundColor:'#dbdbdb' };
+        return { width: "38px" , fontSize: '12px' , lineHeight: '10%', backgroundColor:'#dbdbdb' };
       },
       style: () => {
         return { color: 'red'};
@@ -125,7 +125,7 @@ const LaporanComponent = (props) => {
       text: "Keterangan",
       sort: true,
       headerStyle: () => {
-        return { width: "100px" , fontSize: '12px' , lineHeight: '10%' , backgroundColor:'#dbdbdb'};
+        return { width: "180px" , fontSize: '12px' , lineHeight: '10%' , backgroundColor:'#dbdbdb'};
       },
       style: () => {
         return {  fontWeight: "normal"  };
