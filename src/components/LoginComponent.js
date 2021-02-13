@@ -5,7 +5,6 @@ import printJS from 'print-js';
 const LoginComponent = (props) => {
   return (
     <printJS>
-
     <Card body inverse color="info">
     <CardTitle tag="h5">L'Viors Attandace System,</CardTitle>
     <CardText>Silahkan login untuk akses web Admin</CardText>
