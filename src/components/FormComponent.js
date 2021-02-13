@@ -58,7 +58,8 @@ const mapStateToProps = (state) => {
       GroupID       : state.users.getUserDetail.GroupID, 
       RoleID       : state.users.getUserDetail.RoleID,
       KodeCabang    : state.users.getUserDetail.KodeCabang,   
-      Status        : state.users.getUserDetail.Status,   
+      Status        : state.users.getUserDetail.Status,
+      Posisi        :   state.users.getUserDetail.Posisi,
 	    TampilkanLembur : state.users.getUserDetail.TampilkanLembur, 
       TampilkanTerlambat : state.users.getUserDetail.TampilkanTerlambat,
     }
@@ -103,7 +104,7 @@ class FormComponent extends Component {
             </FormGroup>
           </Col>
 
-          <Col md={2}>
+          <Col md={3}>
             <FormGroup>
               <Field
                 type="number"
@@ -115,7 +116,7 @@ class FormComponent extends Component {
           </Col>
 
 
-          <Col md={2}>
+          <Col md={3}>
             <FormGroup>
               <Field
                 type="text"
@@ -125,8 +126,19 @@ class FormComponent extends Component {
               />
             </FormGroup>
           </Col>
+
+          <Col md={3}>
+            <FormGroup>
+              <Field
+                type="text"
+                name="Posisi"
+                component={renderField}
+                label="Posisi :"
+              />
+            </FormGroup>
+          </Col>
           
-          <Col md={2}>
+          <Col md={3}>
             <FormGroup>
               <Field
                 type="text"

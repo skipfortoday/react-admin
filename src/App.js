@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import { BrowserRouter, Route } from "react-router-dom";
+import React, { useReducer,Component,createContext } from "react";
+import { BrowserRouter, Route , Switch } from "react-router-dom";
 import HomeContainer from "./containers/HomeContainer";
 import CreateUserContainer from "./containers/CreateUserContainer";
 import EditUserContainer from "./containers/EditUserContainer";
@@ -22,15 +22,63 @@ import CreateCabangContainer from "./containers/CreateCabangContainer";
 import EditCabangContainer from "./containers/EditCabangContainer";
 import DetailCabangContainer from "./containers/DetailCabangContainer";
 import LaporanDetailContainer from "./containers/LaporanDetailContainer";
+import LoginContainer from "./containers/LoginContainer";
 
 
-export default class App extends Component {
-  render() {
+
+//Context
+export const AuthContext = createContext()
+
+//Inisiasi state
+const initialState = {
+  isAuthenticated: false,
+  user: null,
+  token: null,
+  tokenExpires: 0,
+  role: 0
+}
+
+const reducer = (state, action) => {
+  switch(action.type) {
+    case "LOGIN":
+      localStorage.setItem("user", JSON.stringify(action.payload.user))
+      localStorage.setItem("token", JSON.stringify(action.payload.token))
+      return {
+        ...state,
+        isAuthenticated: true,
+        user: action.payload.user,
+        token: action.payload.token,
+        tokenExpires: action.payload.expires,
+        role: action.payload.role
+      }
+    case "LOGOUT":
+      localStorage.clear()
+      return {
+        ...state,
+        isAuthenticated: false,
+        user: null
+      }
+    
+    default:
+      return state
+  }
+}
+
+
+function App () {
+  const [state, dispatch] = useReducer(reducer, initialState)
+    
     return (
-      <div>
         <BrowserRouter>
-      
+          <Switch>
+        <AuthContext.Provider value={{
+          state,
+          dispatch
+        }}>
+          
           <Route path="/" exact component={HomeContainer} />
+
+          <Route path="/login" exact component={LoginContainer} />
 
           <Route path="/create" exact component={CreateUserContainer} />
 
@@ -74,8 +122,11 @@ export default class App extends Component {
 
           <Route path="/cabang/edit/:KodeCabang" exact component={EditCabangContainer} />
 
+          </AuthContext.Provider>
+          </Switch>
         </BrowserRouter>
-      </div>
+
     );
-  }
+  
 }
+export default App;

@@ -30,13 +30,13 @@ const renderField = ({
         readOnly={readOnly}
       >
         <option value="0">-</option>
-        <option value="MONDAY">SENIN</option>
-        <option value="TUESDAY">SELASA</option>
-        <option value="WEDNESDAY">RABU</option>
-        <option value="THURSDAY">KAMIS</option>
-        <option value="FRIDAY">JUMAT</option>
-        <option value="SATURDAY">SABTU</option>
-        <option value="SUNDAY">MINGGU</option>
+        <option value="Senin">SENIN</option>
+        <option value="Selasa">SELASA</option>
+        <option value="Rabu">RABU</option>
+        <option value="Kamis">KAMIS</option>
+        <option value="Jumat">JUM'AT</option>
+        <option value="Sabtu">SABTU</option>
+        <option value="Minggu">MINGGU</option>
       </Input>
       {touched &&
         ((error && <p style={{ color: "red" }}>{error}</p>) ||

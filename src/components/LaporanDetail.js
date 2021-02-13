@@ -23,7 +23,7 @@ const LaporanDetail = (props) => {
       text: "Tanggal",
       sort: true,
       headerStyle: () => {
-        return { width: "80px" , fontSize: '12px' ,lineHeight: '10%' };
+        return { width: "90px" , fontSize: '12px' ,lineHeight: '10%' };
       },
       style: () => {
         return {  fontWeight: "normal"  };
@@ -113,7 +113,7 @@ const LaporanDetail = (props) => {
       dataField: "Keterangan",
       text: "Keterangan",
       headerStyle: () => {
-        return { width: "180px" , fontSize: '12px' , lineHeight: '10%'};
+        return { width: "150px" , fontSize: '12px' , lineHeight: '10%'};
       },
       style: () => {
         return {  fontWeight: "normal"  };

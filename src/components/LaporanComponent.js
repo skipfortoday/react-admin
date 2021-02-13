@@ -25,7 +25,7 @@ const LaporanComponent = (props) => {
       text: "Tanggal",
       sort: true,
       headerStyle: () => {
-        return { width: "85px" , fontSize: '12px' ,lineHeight: '10%' , backgroundColor:'#dbdbdb' };
+        return { width: "100px" , fontSize: '12px' ,lineHeight: '10%' , backgroundColor:'#dbdbdb' };
       },
       style: () => {
         return {  fontWeight: "normal"  };
