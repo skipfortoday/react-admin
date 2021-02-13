@@ -219,7 +219,7 @@ class FormComponent extends Component {
           <Col md={4}>
             <FormGroup>
               <Field
-                type="number"
+                type="text"
                 name="Pass"
                 component={renderField}
                 label="PIN Password :"
