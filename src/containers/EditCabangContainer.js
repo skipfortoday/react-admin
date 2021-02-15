@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Container,Alert,Col,Row } from "reactstrap";
+import { Container, Alert, Col, Row } from "reactstrap";
 import BackCabang from "../components/BackCabang";
 import { connect } from "react-redux";
 import FormCabangComponent from "../components/FormCabangComponent";
@@ -21,7 +21,9 @@ class EditCabangContainer extends Component {
   }
 
   handleSubmit(data) {
-    this.props.dispatch(putCabangUpdate(data, this.props.match.params.KodeCabang));
+    this.props.dispatch(
+      putCabangUpdate(data, this.props.match.params.KodeCabang)
+    );
   }
 
   render() {
@@ -41,22 +43,22 @@ class EditCabangContainer extends Component {
     }
     return (
       <Container>
-        <NavbarComponent/>
+        <NavbarComponent />
         <Row>
-         <Col md={1}>
-          <BackCabang />
-         </Col>
-         <Col md={11}>
-          <Alert color="warning" >
-           <h4 >Menu Edit Cabang</h4>
-          </Alert>
+          <Col md={1}>
+            <BackCabang />
+          </Col>
+          <Col md={11}>
+            <Alert color="warning">
+              <h4>Menu Edit Cabang</h4>
+            </Alert>
           </Col>
         </Row>
-        <InfoMenuCabang/>
-        <Alert color="warning" ></Alert>
-        <h4>Form Edit Cabang</h4>    
-       <FormCabangComponent onSubmit={(data) => this.handleSubmit(data)} />
-       <Alert color="warning" ></Alert>
+        <InfoMenuCabang />
+        <Alert color="warning"></Alert>
+        <h4>Form Edit Cabang</h4>
+        <FormCabangComponent onSubmit={(data) => this.handleSubmit(data)} />
+        <Alert color="warning"></Alert>
       </Container>
     );
   }

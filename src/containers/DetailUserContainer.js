@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Container,Row,Alert,Col } from "reactstrap";
+import { Container, Row, Alert, Col } from "reactstrap";
 import BackComponent from "../components/BackComponent";
 import { connect } from "react-redux";
 import InfoMenuPegawai from "../components/InfoMenuPegawai";
@@ -15,23 +15,22 @@ class DetailUserContainer extends Component {
   render() {
     return (
       <Container>
-        <NavbarComponent/>
+        <NavbarComponent />
         <Row>
-         <Col md={1}>
-          <BackComponent/>
-         </Col>
-         <Col md={11}>
-          <Alert color="warning" >
-           <h4 >Menu Detail Pegawai</h4>
-          </Alert>
+          <Col md={1}>
+            <BackComponent />
+          </Col>
+          <Col md={11}>
+            <Alert color="warning">
+              <h4>Menu Detail Pegawai</h4>
+            </Alert>
           </Col>
         </Row>
-        <InfoMenuPegawai/>
-        <Alert color="warning" ></Alert>        
+        <InfoMenuPegawai />
+        <Alert color="warning"></Alert>
         <h4>Table Detail Pegawai</h4>
         <DetailUserComponent />
-        <Alert color="warning" ></Alert> 
-  
+        <Alert color="warning"></Alert>
       </Container>
     );
   }

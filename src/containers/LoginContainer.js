@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Container,Alert,Col,Row } from "reactstrap";
+import { Container, Alert, Col, Row } from "reactstrap";
 import LoginComponent from "../components/LoginComponent";
 import { connect } from "react-redux";
 import { postCabangCreate } from "../actions/cabangAction";
@@ -19,50 +19,48 @@ class LoginContainer extends Component {
 
   render() {
     if (this.props.getResponDataCabang || this.props.errorResponDataCabang) {
-      if(this.props.errorResponDataCabang)
-      {
+      if (this.props.errorResponDataCabang) {
+        swal("Failed!", this.props.errorResponDataCabang, "error");
+      } else {
         swal(
-            "Failed!",
-            this.props.errorResponDataCabang,
-            "error"
-          );
-      }else {
-        swal(
-            "Cabang Created!",
-            "Kode : " +
-              this.props.getResponDataCabang.KodeCabang +
-              " , Nama : " +
-              this.props.getResponDataCabang.NamaCabang,
-            "success"
-          );
+          "Cabang Created!",
+          "Kode : " +
+            this.props.getResponDataCabang.KodeCabang +
+            " , Nama : " +
+            this.props.getResponDataCabang.NamaCabang,
+          "success"
+        );
       }
     }
     return (
-      <Container> 
-       
-      <Row >
-      <Col md={4}></Col>
-      <Col md={4}><Alert color="" ></Alert></Col>
-      </Row>
-      <Row >
-      <Col md={4}></Col>
-      <Col md={4}><Alert color="" ></Alert></Col>
-      </Row>
-      <Row >
-      <Col md={4}></Col>
-      <Col md={4}><Alert color="" ></Alert></Col>
-      </Row>
-      <Row >
+      <Container>
+        <Row>
           <Col md={4}></Col>
-        <Col md={4}> 
-        <Alert color="info" ></Alert>
-        <LoginComponent onSubmit={(data) => this.handleSubmit(data)} />
-        <Alert color="warning" ></Alert>
-        </Col> 
+          <Col md={4}>
+            <Alert color=""></Alert>
+          </Col>
         </Row>
-
+        <Row>
+          <Col md={4}></Col>
+          <Col md={4}>
+            <Alert color=""></Alert>
+          </Col>
+        </Row>
+        <Row>
+          <Col md={4}></Col>
+          <Col md={4}>
+            <Alert color=""></Alert>
+          </Col>
+        </Row>
+        <Row>
+          <Col md={4}></Col>
+          <Col md={4}>
+            <Alert color="info"></Alert>
+            <LoginComponent onSubmit={(data) => this.handleSubmit(data)} />
+            <Alert color="warning"></Alert>
+          </Col>
+        </Row>
       </Container>
-
     );
   }
 }

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Container,Col,Row,Alert } from "reactstrap";
+import { Container, Col, Row, Alert } from "reactstrap";
 import BackComponent from "../components/BackComponent";
 import FormComponent from "../components/FormComponent";
 import { connect } from "react-redux";
@@ -22,42 +22,37 @@ class CreateUserContainer extends Component {
 
   render() {
     if (this.props.getResponDataUser || this.props.errorResponDataUser) {
-      if(this.props.errorResponDataUser)
-      {
+      if (this.props.errorResponDataUser) {
+        swal("Failed!", this.props.errorResponDataUser, "error");
+      } else {
         swal(
-            "Failed!",
-            this.props.errorResponDataUser,
-            "error"
-          );
-      }else {
-        swal(
-            "User Berhasil Dibuat!",
-            "Nama : " +
-              this.props.getResponDataUser.Nama +
-              " | ID : " +
-              this.props.getResponDataUser.UserID,
-            "success"
-          );
+          "User Berhasil Dibuat!",
+          "Nama : " +
+            this.props.getResponDataUser.Nama +
+            " | ID : " +
+            this.props.getResponDataUser.UserID,
+          "success"
+        );
       }
     }
     return (
       <Container>
-        <NavbarComponent/>
-           <Row>
-         <Col md={1}>
-          <BackComponent/>
-         </Col>
-         <Col md={11}>
-          <Alert color="warning" >
-           <h4 >Menu Tambah Pegawai</h4>
-          </Alert>
+        <NavbarComponent />
+        <Row>
+          <Col md={1}>
+            <BackComponent />
+          </Col>
+          <Col md={11}>
+            <Alert color="warning">
+              <h4>Menu Tambah Pegawai</h4>
+            </Alert>
           </Col>
         </Row>
-        <InfoMenuPegawai/>
-        <Alert color="warning" ></Alert>        
+        <InfoMenuPegawai />
+        <Alert color="warning"></Alert>
         <h4>Form Tambah Pegawai</h4>
         <FormComponent onSubmit={(data) => this.handleSubmit(data)} />
-        <Alert color="warning" ></Alert> 
+        <Alert color="warning"></Alert>
       </Container>
     );
   }

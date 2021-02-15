@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Container,Alert,Col, Row } from "reactstrap";
+import { Container, Alert, Col, Row } from "reactstrap";
 import BackIzin from "../components/BackIzin";
 import { connect } from "react-redux";
 import { getIzinDetail } from "../actions/izinAction";
@@ -15,24 +15,23 @@ class DetailIzinContainer extends Component {
   render() {
     return (
       <Container>
-        <NavbarComponent/>
+        <NavbarComponent />
         <Row>
-         <Col md={1}>
-          <BackIzin />
-         </Col>
-         <Col md={11}>
-          <Alert color="warning" >
-           <h4 >Menu Detail Izin Pegawai</h4>
-          </Alert>
+          <Col md={1}>
+            <BackIzin />
+          </Col>
+          <Col md={11}>
+            <Alert color="warning">
+              <h4>Menu Detail Izin Pegawai</h4>
+            </Alert>
           </Col>
         </Row>
-        <InfoMenuIzin/>        
-        <Alert color="warning" >
-          <Container >
-          </Container>
+        <InfoMenuIzin />
+        <Alert color="warning">
+          <Container></Container>
         </Alert>
         <DetailIzinComponent />
-        <Alert color="warning" ></Alert>
+        <Alert color="warning"></Alert>
       </Container>
     );
   }

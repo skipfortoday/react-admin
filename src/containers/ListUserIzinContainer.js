@@ -19,7 +19,7 @@ class ListUserIzinContainer extends Component {
         <NavbarComponent />
         <Row>
           <Col md={1}>
-            <BackIzin/>
+            <BackIzin />
           </Col>
           <Col md={11}>
             <Alert color="warning">

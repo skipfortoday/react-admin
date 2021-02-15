@@ -8,7 +8,6 @@ import NavbarComponent from "../components/NavbarComponent";
 import ListUserLaporan from "../components/ListUserLaporan";
 import InfoHomeLaporan from "../components/InfoHomeLaporan";
 
-
 class ListLaporanContainer extends Component {
   componentDidMount() {
     this.props.dispatch(getUsersList());
@@ -30,7 +29,7 @@ class ListLaporanContainer extends Component {
             </Alert>
           </Col>
         </Row>
-        <InfoHomeLaporan/>
+        <InfoHomeLaporan />
         <Alert color="warning"></Alert>
         <ListUserLaporan />
         <Alert color="warning"></Alert>

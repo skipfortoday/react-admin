@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Container,Alert,Col,Row } from "reactstrap";
+import { Container, Alert, Col, Row } from "reactstrap";
 import BackGroup from "../components/BackGroup";
 import { connect } from "react-redux";
 import FormGroupComponent from "../components/FormGroupComponent";
@@ -41,22 +41,22 @@ class EditGroupContainer extends Component {
     }
     return (
       <Container>
-        <NavbarComponent/>
+        <NavbarComponent />
         <Row>
-         <Col md={1}>
-          <BackGroup />
-         </Col>
-         <Col md={11}>
-          <Alert color="warning" >
-           <h4 >Menu Edit Group Pegawai</h4>
-          </Alert>
+          <Col md={1}>
+            <BackGroup />
+          </Col>
+          <Col md={11}>
+            <Alert color="warning">
+              <h4>Menu Edit Group Pegawai</h4>
+            </Alert>
           </Col>
         </Row>
-        <InfoMenuGroup/>
-        <Alert color="warning" ></Alert>
-        <h2>Form Edit Group Pegawai</h2>    
-       <FormGroupComponent onSubmit={(data) => this.handleSubmit(data)} />
-       <Alert color="warning" ></Alert>
+        <InfoMenuGroup />
+        <Alert color="warning"></Alert>
+        <h2>Form Edit Group Pegawai</h2>
+        <FormGroupComponent onSubmit={(data) => this.handleSubmit(data)} />
+        <Alert color="warning"></Alert>
       </Container>
     );
   }

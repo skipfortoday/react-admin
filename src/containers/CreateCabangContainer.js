@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Container,Alert,Col,Row } from "reactstrap";
+import { Container, Alert, Col, Row } from "reactstrap";
 import BackCabang from "../components/BackCabang";
 import InfoMenuCabang from "../components/InfoMenuCabang";
 import FormCabangComponent from "../components/FormCabangComponent";
@@ -22,42 +22,37 @@ class CreateCabangContainer extends Component {
 
   render() {
     if (this.props.getResponDataCabang || this.props.errorResponDataCabang) {
-      if(this.props.errorResponDataCabang)
-      {
+      if (this.props.errorResponDataCabang) {
+        swal("Failed!", this.props.errorResponDataCabang, "error");
+      } else {
         swal(
-            "Failed!",
-            this.props.errorResponDataCabang,
-            "error"
-          );
-      }else {
-        swal(
-            "Cabang Created!",
-            "Kode : " +
-              this.props.getResponDataCabang.KodeCabang +
-              " , Nama : " +
-              this.props.getResponDataCabang.NamaCabang,
-            "success"
-          );
+          "Cabang Created!",
+          "Kode : " +
+            this.props.getResponDataCabang.KodeCabang +
+            " , Nama : " +
+            this.props.getResponDataCabang.NamaCabang,
+          "success"
+        );
       }
     }
     return (
       <Container>
-        <NavbarComponent/>
+        <NavbarComponent />
         <Row>
-         <Col md={1}>
-          <BackCabang />
-         </Col>
-         <Col md={11}>
-          <Alert color="warning" >
-           <h4 >Menu Tambah Cabang</h4>
-          </Alert>
+          <Col md={1}>
+            <BackCabang />
+          </Col>
+          <Col md={11}>
+            <Alert color="warning">
+              <h4>Menu Tambah Cabang</h4>
+            </Alert>
           </Col>
         </Row>
-        <InfoMenuCabang/>
-        <Alert color="warning" ></Alert>        
+        <InfoMenuCabang />
+        <Alert color="warning"></Alert>
         <h2>Form Tambah Cabang</h2>
         <FormCabangComponent onSubmit={(data) => this.handleSubmit(data)} />
-        <Alert color="warning" ></Alert>
+        <Alert color="warning"></Alert>
       </Container>
     );
   }

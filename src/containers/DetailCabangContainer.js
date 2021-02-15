@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Container,Alert,Col, Row } from "reactstrap";
+import { Container, Alert, Col, Row } from "reactstrap";
 import BackCabang from "../components/BackCabang";
 import { connect } from "react-redux";
 import { getCabangDetail } from "../actions/cabangAction";
@@ -15,24 +15,23 @@ class DetailCabangContainer extends Component {
   render() {
     return (
       <Container>
-        <NavbarComponent/>
+        <NavbarComponent />
         <Row>
-         <Col md={1}>
-          <BackCabang />
-         </Col>
-         <Col md={11}>
-          <Alert color="warning" >
-           <h4 >Menu Detail Cabang</h4>
-          </Alert>
+          <Col md={1}>
+            <BackCabang />
+          </Col>
+          <Col md={11}>
+            <Alert color="warning">
+              <h4>Menu Detail Cabang</h4>
+            </Alert>
           </Col>
         </Row>
-        <InfoMenuCabang/>        
-        <Alert color="warning" >
-          <Container >
-          </Container>
+        <InfoMenuCabang />
+        <Alert color="warning">
+          <Container></Container>
         </Alert>
         <DetailCabangComponent />
-        <Alert color="warning" ></Alert>
+        <Alert color="warning"></Alert>
       </Container>
     );
   }

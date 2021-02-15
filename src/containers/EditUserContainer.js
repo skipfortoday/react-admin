@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Container,Alert,Row,Col } from "reactstrap";
+import { Container, Alert, Row, Col } from "reactstrap";
 import BackComponent from "../components/BackComponent";
 import { connect } from "react-redux";
 import FormComponent from "../components/FormComponent";
@@ -30,33 +30,30 @@ class EditUserContainer extends Component {
         swal("Failed!", this.props.errorResponDataUser, "error");
       } else {
         swal(
-          "User " +
-            this.props.getResponDataUser.Nama +
-            " Updated!",
-            " UserID : " +
-            this.props.getResponDataUser.UserID,
+          "User " + this.props.getResponDataUser.Nama + " Updated!",
+          " UserID : " + this.props.getResponDataUser.UserID,
           "success"
         );
       }
     }
     return (
       <Container>
-        <NavbarComponent/>
+        <NavbarComponent />
         <Row>
-         <Col md={1}>
-          <BackComponent/>
-         </Col>
-         <Col md={11}>
-          <Alert color="warning" >
-           <h4 >Menu Detail Pegawai</h4>
-          </Alert>
+          <Col md={1}>
+            <BackComponent />
+          </Col>
+          <Col md={11}>
+            <Alert color="warning">
+              <h4>Menu Detail Pegawai</h4>
+            </Alert>
           </Col>
         </Row>
-        <InfoMenuPegawai/>
-        <Alert color="warning" ></Alert>        
+        <InfoMenuPegawai />
+        <Alert color="warning"></Alert>
         <h4>Form Edit Pegawai</h4>
         <FormComponent onSubmit={(data) => this.handleSubmit(data)} />
-        <Alert color="warning" ></Alert>
+        <Alert color="warning"></Alert>
       </Container>
     );
   }
