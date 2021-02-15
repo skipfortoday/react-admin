@@ -10,7 +10,7 @@ import { getUserDetail } from "../actions/userAction";
 import PrintButton from "../components/PrintButton";
 import RekapLeft from "../components/RekapLeft";
 import NamaCabangLaporan from "../components/NamaCabangLaporan";
-import LogoComponents from "../components/LogoComponents";
+
 
 class LaporanDetailContainer extends Component {
   componentDidMount() {
@@ -39,12 +39,16 @@ class LaporanDetailContainer extends Component {
             <PrintButton/>
           </Col>
         </Row>
-      
-         <NamaCabangLaporan />
-
+        <Row className="page-header">
+        <NamaCabangLaporan />
         <RekapLaporan/>
+        </Row>
+        <Row>  
         <LaporanDetail/>
-        <RekapLeft/>
+        <RekapLeft/> 
+        </Row>
+    
+        
       </Container>
     );
   }

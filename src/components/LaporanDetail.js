@@ -103,7 +103,7 @@ const LaporanDetail = (props) => {
       dataField: "Status",
       text: "Status",
       headerStyle: () => {
-        return { width: "70px" , fontSize: '12px' , lineHeight: '10%'};
+        return { width: "80px" , fontSize: '12px' , lineHeight: '10%'};
       },
       style: () => {
         return {  fontWeight: "normal"  };
@@ -228,10 +228,10 @@ TotalKeluar: null*/
   return (
     <BootstrapTable 
       keyField='Tanggal' 
-      classes='rTblBsr'
       data={ props.getLaporanDetail } 
       columns={ columns } 
       expandRow={ expandRow }
+      headerClasses='page-header-space'
       rowStyle={ { lineHeight : '0px' , fontFamily: 'TimesNewRoman' , fontWeight: "bold" , fontSize:"12px" } } 
       pagination={paginationFactory(options)}
       defaultSorted= { defaultSorted }

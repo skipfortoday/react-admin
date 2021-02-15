@@ -1,6 +1,5 @@
 import React from 'react';
-import { Form, FormGroup, Label, Input, FormFeedback, FormText , Card, Button, CardTitle, CardText } from 'reactstrap';
-import printJS from 'print-js';
+import { Form, FormGroup, Label, Input, Card, Button, CardTitle, CardText } from 'reactstrap';
 
 const LoginComponent = (props) => {
   return (

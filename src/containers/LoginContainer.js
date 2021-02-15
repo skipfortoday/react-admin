@@ -1,13 +1,9 @@
 import React, { Component } from "react";
 import { Container,Alert,Col,Row } from "reactstrap";
-import BackCabang from "../components/BackCabang";
-import InfoMenuCabang from "../components/InfoMenuCabang";
 import LoginComponent from "../components/LoginComponent";
 import { connect } from "react-redux";
 import { postCabangCreate } from "../actions/cabangAction";
 import swal from "sweetalert";
-import NavbarComponent from "../components/NavbarComponent";
-import printJS from 'print-js';
 
 const mapStateToProps = (state) => {
   return {
