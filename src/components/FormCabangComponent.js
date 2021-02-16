@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { reduxForm, Field } from "redux-form";
 import { connect } from "react-redux";
 import { FormGroup, Col, Label, Input, Row, Button } from "reactstrap";
+import Select from 'react-select'
 import CabangValidation from "../validations/CabangValidation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSave } from "@fortawesome/free-solid-svg-icons";
@@ -12,6 +13,7 @@ const renderField = ({
   placeholder,
   label,
   disabled,
+  Select,
   readOnly,
   meta: { touched, error, warning },
 }) => (
