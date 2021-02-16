@@ -50,6 +50,7 @@ const mapStateToProps = (state) => {
       TanggalScan: state.Izin.getIzinDetail.TanggalScan,
       Status: state.Izin.getIzinDetail.Status,
       Keterangan: state.Izin.getIzinDetail.Keterangan,
+      
     },
   };
 };

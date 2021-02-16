@@ -1,17 +1,17 @@
 import React from 'react'
 import Select from 'react-select'
-
 import { connect } from "react-redux";
 
-const options = [
- { value: 'chocolate', label: 'Chocolate' },
- { value: 'strawberry', label: 'Strawberry' },
-{ value: 'vanilla', label: 'Vanilla' }
-]
 
+const mapStateToProps = (state) => {
+  return {
+    getOptUser: state.Opt.getOptUser,
+    errorCabangList: state.Cabang.errorCabangList,
+  };
+};
 
-  const ReactSelectComponent = () => (
-    <Select options={options} />
+  const ReactSelectComponent = (props) => (
+    <Select options={props.getOptUser} />
   );
 
-  export default(ReactSelectComponent);
+  export default connect(mapStateToProps, null)(ReactSelectComponent);

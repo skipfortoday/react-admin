@@ -8,6 +8,7 @@ import { getCabangList, deleteDataCabang } from "../actions/cabangAction";
 import InfoHomeCabang from "../components/InfoHomeCabang";
 import NavbarComponent from "../components/NavbarComponent";
 
+
 class CabangContainer extends Component {
   componentDidMount() {
     this.props.dispatch(getCabangList());

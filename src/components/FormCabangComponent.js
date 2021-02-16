@@ -7,14 +7,17 @@ import CabangValidation from "../validations/CabangValidation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSave } from "@fortawesome/free-solid-svg-icons";
 
+
 const renderField = ({
   input,
   type,
   placeholder,
   label,
   disabled,
-  Select,
+  options,
   readOnly,
+  onChange={(value) => input.onChange(value)},
+  onBlur={(value) => input.onBlur(value)},
   meta: { touched, error, warning },
 }) => (
   <Row>
@@ -47,9 +50,12 @@ const mapStateToProps = (state) => {
       NoTelp: state.Cabang.getCabangDetail.NoTelp,
       GeneralManagerID: state.Cabang.getCabangDetail.GeneralManagerID,
       hrdID: state.Cabang.getCabangDetail.hrdID,
+      OptUser: state.Opt.getOptUser,
     },
   };
 };
+
+
 
 class FormCabangComponent extends Component {
   render() {

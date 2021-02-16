@@ -15,7 +15,6 @@ import {
           getOptUser: action.payload.data,
           errorOptUser: action.payload.errorMessage,
         };
-  
       default:
         return state;
     }

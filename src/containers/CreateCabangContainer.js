@@ -5,22 +5,27 @@ import InfoMenuCabang from "../components/InfoMenuCabang";
 import FormCabangComponent from "../components/FormCabangComponent";
 import { connect } from "react-redux";
 import { postCabangCreate } from "../actions/cabangAction";
+import { getOptUser } from "../actions/optAction";
 import { getUsersList } from "../actions/userAction";
 import swal from "sweetalert";
 import NavbarComponent from "../components/NavbarComponent";
+import Select from 'react-select';
 import ReactSelectComponent from "../components/ReactSelectComponent";
 
 const mapStateToProps = (state) => {
   return {
     getResponDataCabang: state.Cabang.getResponDataCabang,
     errorResponDataCabang: state.Cabang.errorResponDataCabang,
-    getUsersList: state.users.getUsersList,
+    getOptUser: state.Opt.getOptUser,
+    errorOptUser: state.Opt.errorOptUser,
+    getUserList: state.users.getUserList,
   };
 };
 
 
 class CreateCabangContainer extends Component {
   handleSubmit(data) {
+    this.props.dispatch(getOptUser());
     this.props.dispatch(getUsersList());
     this.props.dispatch(postCabangCreate(data));
   }
@@ -57,7 +62,6 @@ class CreateCabangContainer extends Component {
         <InfoMenuCabang />
         <Alert color="warning"></Alert>
         <h2>Form Tambah Cabang</h2>
-
         <ReactSelectComponent/>
         <FormCabangComponent onSubmit={(data) => this.handleSubmit(data)} />
         <Alert color="warning"></Alert>
