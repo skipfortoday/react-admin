@@ -90,6 +90,7 @@ export const postCabangCreate = (data) => {
 };
 
 export const putCabangUpdate = (data, KodeCabang) => {
+  data.hrdID = data.hrdID.value;
   return (dispatch) => {
     axios
       .put(

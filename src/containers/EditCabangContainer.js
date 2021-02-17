@@ -4,6 +4,7 @@ import BackCabang from "../components/BackCabang";
 import { connect } from "react-redux";
 import FormCabangComponent from "../components/FormCabangComponent";
 import { getCabangDetail, putCabangUpdate } from "../actions/cabangAction";
+import { getOptUser} from "../actions/optAction";
 import swal from "sweetalert";
 import InfoMenuCabang from "../components/InfoMenuCabang";
 import NavbarComponent from "../components/NavbarComponent";
@@ -12,11 +13,13 @@ const mapStateToProps = (state) => {
   return {
     getResponDataCabang: state.Cabang.getResponDataCabang,
     errorResponDataCabang: state.Cabang.errorResponDataCabang,
+    getOptUser: state.Opt.getOptUser,
   };
 };
 
 class EditCabangContainer extends Component {
   componentDidMount() {
+    this.props.dispatch(getOptUser());
     this.props.dispatch(getCabangDetail(this.props.match.params.KodeCabang));
   }
 

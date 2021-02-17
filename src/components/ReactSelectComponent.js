@@ -10,8 +10,10 @@ const mapStateToProps = (state) => {
   };
 };
 
-  const ReactSelectComponent = (props) => (
-    <Select options={props.getOptUser} />
-  );
+const ReactSelectComponent = (props) => (
+  <Select options={props.getOptUser} />
+);
 
+
+ 
   export default connect(mapStateToProps, null)(ReactSelectComponent);

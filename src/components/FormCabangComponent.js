@@ -6,8 +6,15 @@ import Select from 'react-select'
 import CabangValidation from "../validations/CabangValidation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSave } from "@fortawesome/free-solid-svg-icons";
+import { getOptUser } from "../actions/optAction";
 
 
+
+
+//let options = this.state.cities.map(function (city) {
+  //return { value: city.countryCode, label: city.name };
+//} )
+ 
 const renderField = ({
   input,
   type,
@@ -16,8 +23,6 @@ const renderField = ({
   disabled,
   options,
   readOnly,
-  onChange={(value) => input.onChange(value)},
-  onBlur={(value) => input.onBlur(value)},
   meta: { touched, error, warning },
 }) => (
   <Row>
@@ -33,6 +38,7 @@ const renderField = ({
         placeholder={placeholder}
         disabled={disabled}
         readOnly={readOnly}
+        
       ></Input>
       {touched &&
         ((error && <p style={{ color: "red" }}>{error}</p>) ||
@@ -41,8 +47,51 @@ const renderField = ({
   </Row>
 );
 
+const renderField2 = ({
+  input,
+  name,
+  id,
+  type,
+  placeholder,
+  label,
+  disabled,
+  options,
+  readOnly,
+  meta: { touched, error, warning },
+}) => (
+  <Row>
+    <Col md="12">
+      <Label htmlFor="{input}" className="col-form-label">
+        {label}
+      </Label>
+    </Col>
+    <Col md="12">
+      
+      <Select
+        {...Input}
+        id={id} 
+        name={name} 
+        type={type}
+        placeholder={placeholder}
+        disabled={disabled}
+        readOnly={readOnly}
+        options={options}
+        value={input.value}
+         onChange={(value) => input.onChange(value)}
+         //onBlur={() => input.onBlur()}
+      />
+      {touched &&
+        ((error && <p style={{ color: "red" }}>{error}</p>) ||
+          (warning && <p style={{ color: "brown" }}>{warning}</p>))}
+    </Col>
+  </Row>
+);
+
 const mapStateToProps = (state) => {
+
+  //console.log(optsiterpilih);
   return {
+    getOptUser : state.Opt.getOptUser,
     initialValues: {
       KodeCabang: state.Cabang.getCabangDetail.KodeCabang,
       NamaCabang: state.Cabang.getCabangDetail.NamaCabang,
@@ -50,11 +99,11 @@ const mapStateToProps = (state) => {
       NoTelp: state.Cabang.getCabangDetail.NoTelp,
       GeneralManagerID: state.Cabang.getCabangDetail.GeneralManagerID,
       hrdID: state.Cabang.getCabangDetail.hrdID,
-      OptUser: state.Opt.getOptUser,
     },
   };
 };
 
+//let  options = [{ value: 'one', label: 'One' }, { value: 'two', label: 'Two' }];
 
 
 class FormCabangComponent extends Component {
@@ -119,11 +168,11 @@ class FormCabangComponent extends Component {
 
           <Col md={2}>
             <FormGroup>
-              <Field
-                type="text"
+            <Field
                 name="hrdID"
-                component={renderField}
-                label="HRD Cabang:"
+                component={renderField2}
+                label="HRD ID :"
+                options={this.props.getOptUser}
               />
             </FormGroup>
           </Col>
