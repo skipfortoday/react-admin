@@ -91,6 +91,7 @@ export const getUserDetail = (UserID) => {
 };
 
 export const postUserCreate = (data) => {
+  data.GroupID = data.GroupID.value;
   return (dispatch) => {
     axios
       .post(
@@ -122,6 +123,7 @@ export const postUserCreate = (data) => {
 
 export const putUserUpdate = (data, UserID) => {
   return (dispatch) => {
+    data.GroupID = data.GroupID.value;
     axios
       .put(
         "http://192.168.0.25:3001/api/user/"+UserID,

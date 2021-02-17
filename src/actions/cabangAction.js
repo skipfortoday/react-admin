@@ -60,6 +60,7 @@ export const getCabangDetail = (KodeCabang) => {
 };
 
 export const postCabangCreate = (data) => {
+  data.hrdID = data.hrdID.value;
   return (dispatch) => {
     axios
       .post(

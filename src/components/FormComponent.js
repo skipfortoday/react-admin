@@ -97,7 +97,7 @@ const mapStateToProps = (state) => {
       TglMasuk      : state.users.getUserDetail.FTglMasuk,
 	    TglMulaiCuti  : state.users.getUserDetail.FTglMulaiCuti, 
       TglAwalKontrakPertama : state.users.getUserDetail.FTglAwalKontrakPertama, 
-      GroupID       : state.users.getUserDetail.GroupID, 
+      GroupID       : {value : state.users.getUserDetail.GroupID, label: state.users.getUserDetail.Jabatan},
       RoleID       : state.users.getUserDetail.RoleID,
       KodeCabang    : state.users.getUserDetail.KodeCabang,   
       Status        : state.users.getUserDetail.Status,
