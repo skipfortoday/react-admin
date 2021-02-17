@@ -6,6 +6,7 @@ import AsyncVUser from "../validations/AsyncVUser";
 import UserValidation from "../validations/UserValidation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSave } from "@fortawesome/free-solid-svg-icons";
+import Select from 'react-select'
 
 const renderField = ({
   input,
@@ -43,8 +44,49 @@ const renderField = ({
   </Row>
 );
 
+const renderField2 = ({
+  input,
+  name,
+  id,
+  type,
+  placeholder,
+  label,
+  disabled,
+  options,
+  readOnly,
+  meta: { touched, error, warning },
+}) => (
+  <Row>
+    <Col md="12">
+      <Label htmlFor="{input}" className="col-form-label">
+        {label}
+      </Label>
+    </Col>
+    <Col md="12">
+      
+      <Select
+        {...Input}
+        id={id} 
+        name={name} 
+        type={type}
+        placeholder={placeholder}
+        disabled={disabled}
+        readOnly={readOnly}
+        options={options}
+        value={input.value}
+         onChange={(value) => input.onChange(value)}
+         //onBlur={() => input.onBlur()}
+      />
+      {touched &&
+        ((error && <p style={{ color: "red" }}>{error}</p>) ||
+          (warning && <p style={{ color: "brown" }}>{warning}</p>))}
+    </Col>
+  </Row>
+);
+
 const mapStateToProps = (state) => {
   return {
+    getOptGroup : state.Opt.getOptGroup,
     initialValues : {
       UserID        : state.users.getUserDetail.UserID,
       Pass          : state.users.getUserDetail.Pass, 
@@ -166,9 +208,9 @@ class FormComponent extends Component {
           <Col md={3}>
             <FormGroup>
               <Field
-                type="text"
                 name="GroupID"
-                component={renderField}
+                component={renderField2}
+                options={this.props.getOptGroup}
                 label="Group Karyawan :"
               />
             </FormGroup>

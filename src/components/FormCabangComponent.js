@@ -6,7 +6,6 @@ import Select from 'react-select'
 import CabangValidation from "../validations/CabangValidation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSave } from "@fortawesome/free-solid-svg-icons";
-import { getOptUser } from "../actions/optAction";
 
 
 
