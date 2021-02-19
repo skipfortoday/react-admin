@@ -1,6 +1,6 @@
 import React from "react";
 import BootstrapTable from "react-bootstrap-table-next";
-import { Container, Button, Row, Col, Spinner } from "reactstrap";
+import { Container, Button, Row, Col, Spinner, Card } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faInfo,
@@ -59,7 +59,10 @@ const GroupComponent = (props) => {
       text: "GroupID",
       sort: true,
       headerStyle: () => {
-        return { width: "80px" };
+        return { width: "30px", color : "white" };
+      },
+      style: () => {
+        return { color : "white" ,fontWeight : "bold" };
       },
     },
     {
@@ -67,32 +70,35 @@ const GroupComponent = (props) => {
       text: "Nama Group",
       sort: true,
       headerStyle: () => {
-        return { width: "120px" };
+        return { width: "120px" ,color : "white" };
+      },
+      style: () => {
+        return { color : "white", fontWeight : "bold" };
       },
     },
     {
       dataField: "link",
       text: "Action",
       headerStyle: () => {
-        return { width: "50px" };
+        return { width: "40px", color : "white" };
       },
       formatter: (rowContent, row) => {
         return (
           <div>
             <Link to={"group/detail/" + row.GroupID}>
-              <Button outline color="primary" className="mr-2">
+              <Button  color="primary" className="mr-2">
                 <FontAwesomeIcon icon={faInfo} /> 
               </Button>
             </Link>
 
             <Link to={"group/edit/" + row.GroupID}>
-              <Button outline color="warning" className="mr-2">
+              <Button  color="warning" className="mr-2">
                 <FontAwesomeIcon icon={faEdit} /> 
               </Button>
             </Link>
 
             <Button
-             outline color="danger"
+             color="danger"
               className="mr-2"
               onClick={() => handleClick(props.dispatch, row.GroupID)}
             >
@@ -100,7 +106,7 @@ const GroupComponent = (props) => {
             </Button>
 
             <Link to={"group/terlambatbertingkat/" + row.GroupID}>
-              <Button outline color="info" className="mr-2">
+              <Button  color="warning" className="mr-2">
                 <FontAwesomeIcon icon={faSortAmountUp} /> 
               </Button>
             </Link>
@@ -118,15 +124,17 @@ const GroupComponent = (props) => {
           keyField="GroupID"
           data={props.getGroupList}
           columns={columns}
+          rowStyle={ { fontWeight: "bold" , color:"white" } } 
           defaultSorted={defaultSorted}
           search
         >
           {(props) => (
             <div>
+               <Card body inverse color="info">
               <Row>
                 <Col>
                   <Link to="group/create">
-                    <Button outline color="info" className="mr-2">
+                    <Button color="warning" className="mr-2">
                       <FontAwesomeIcon icon={faUsersCog} /> Tambah Group{" "}
                       <FontAwesomeIcon icon={faPlus} />
                     </Button>
@@ -143,6 +151,7 @@ const GroupComponent = (props) => {
                 {...props.baseProps}
                 pagination={paginationFactory()}
               />
+              </Card>
             </div>
           )}
         </ToolkitProvider>

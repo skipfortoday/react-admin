@@ -83,7 +83,10 @@ const TableComponent = (props) => {
       text: "UserID",
       sort: true,
       headerStyle: () => {
-        return { width: "80px" };
+        return { width: "80px" , color :"white"};
+      },
+      style: () => {
+        return {  fontWeight : "bold" };
       },
     },
     {
@@ -91,7 +94,10 @@ const TableComponent = (props) => {
       text: "Nama", 
       sort: true,
       headerStyle: () => {
-        return { width: "110px" };
+        return { width: "110px", color :"white" };
+      },
+      style: () => {
+        return { fontWeight : "bold" };
       },
       
     },
@@ -100,7 +106,10 @@ const TableComponent = (props) => {
       text: "Group",
       sort: true,
       headerStyle: () => {
-        return { width: "160px" };
+        return { width: "160px", color :"white" };
+      },
+      style: () => {
+        return { fontWeight : "bold" };
       },
     },
 
@@ -108,39 +117,39 @@ const TableComponent = (props) => {
       dataField: "link",
       text: "Action",
       headerStyle: () => {
-        return { width: "120px" };
+        return { width: "135px" , color :"white" };
       },
       formatter: (rowContent, row) => {
         return (
           
           <div>
+            
 
-            <Button outline color="info" className="mr-2" onClick={() => handleClick2(props.dispatch, row.UserID)}>
+            <Button  color="warning" className="mr-2" onClick={() => handleClick2(props.dispatch, row.UserID)}>
               <FontAwesomeIcon icon={faRetweet} /> 
             </Button>
 
             <Link to={"detail/" + row.UserID}>
-              <Button outline color="primary" className="mr-2">
+              <Button  color="primary" className="mr-2">
                 <FontAwesomeIcon icon={faInfo} />
               </Button>
             </Link>
   
             <Link to={"edit/" + row.UserID}>
-              <Button outline color="warning" className="mr-2">
+              <Button color="warning" className="mr-2">
                 <FontAwesomeIcon icon={faEdit} />
               </Button>
             </Link>
 
-            <Button outline color="danger" className="mr-2" onClick={() => handleClick(props.dispatch, row.UserID)}>
+            <Button color="danger" className="mr-2" onClick={() => handleClick(props.dispatch, row.UserID)}>
               <FontAwesomeIcon icon={faTrash} /> 
             </Button>
 
             <Link to={"editpassword/" + row.UserID}>
-              <Button outline color="secondary" className="mr-2">
+              <Button  color="warning" className="mr-2">
                 <FontAwesomeIcon icon={faUndoAlt} />
               </Button>
             </Link>
-
           
           </div>
         );
@@ -157,16 +166,17 @@ const TableComponent = (props) => {
           keyField="UserID"
           data={props.getUsersList}
           columns={columns}
+          rowStyle={ { fontWeight: "bold" , color:"white" } } 
           defaultSorted={defaultSorted}
           search
         >
           {(props) => (
             <div>
-              
+              <Card body inverse color="info">
               <Row>
                 <Col>
                   <Link to="/create">
-                    <Button outline color="info" className="mr-2">
+                    <Button color="warning" className="mr-2">
                       <FontAwesomeIcon icon={faUserPlus} /> Tambah Pegawai
                     </Button>
                   </Link>
@@ -187,6 +197,7 @@ const TableComponent = (props) => {
                 {...props.baseProps}
                 pagination={paginationFactory()}
               />
+              </Card>
             </div>
           )}
         </ToolkitProvider>

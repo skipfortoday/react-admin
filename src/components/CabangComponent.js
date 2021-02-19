@@ -1,6 +1,6 @@
 import React from "react";
 import BootstrapTable from "react-bootstrap-table-next";
-import { Container, Button, Row, Col, Spinner } from "reactstrap";
+import { Container, Button, Row, Col, Spinner , Card, CardTitle, CardText} from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faInfo,
@@ -61,7 +61,7 @@ const CabangComponent = (props) => {
       text: "KodeCabang",
       sort: true,
       headerStyle: () => {
-        return { width: "75px" };
+        return { width: "75px"  };
       },
     },
     {
@@ -85,7 +85,7 @@ const CabangComponent = (props) => {
       dataField: "link",
       text: "Action",
       headerStyle: () => {
-        return { width: "70px" };
+        return { width: "80px" };
       },
       formatter: (rowContent, row) => {
         return (
@@ -122,6 +122,7 @@ const CabangComponent = (props) => {
           keyField="KodeCabang"
           data={props.getCabangList}
           columns={columns}
+          rowStyle={ {  fontWeight: "bold" , fontColor:"white" } } 
           defaultSorted={defaultSorted}
           search
         >

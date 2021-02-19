@@ -1,6 +1,6 @@
 import React from "react";
 import BootstrapTable from "react-bootstrap-table-next";
-import { Container, Button, Row, Col, Spinner } from "reactstrap";
+import { Container, Button, Row, Col, Spinner, Card } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faInfo,
@@ -63,6 +63,9 @@ const IzinComponent = (props) => {
       headerStyle: () => {
         return { width: "120px" };
       },
+      style: () => {
+        return {  fontWeight : "bold" };
+      },
     },
     {
       dataField: "Nama",
@@ -71,6 +74,9 @@ const IzinComponent = (props) => {
       headerStyle: () => {
         return { width: "120px" };
       },
+      style: () => {
+        return { fontWeight : "bold" };
+      },
     },
     {
       dataField: "Status",
@@ -78,6 +84,9 @@ const IzinComponent = (props) => {
       sort: true,
       headerStyle: () => {
         return { width: "100px" };
+      },
+      style: () => {
+        return {  fontWeight : "bold" };
       },
       
     },
@@ -88,22 +97,25 @@ const IzinComponent = (props) => {
       headerStyle: () => {
         return { width: "250px" };
       },
+      style: () => {
+        return { fontWeight : "bold" };
+      },
     },
     {
       dataField: "link",
       text: "Action",
       headerStyle: () => {
-        return { width: "70px" };
+        return { width: "100px" };
       },
       formatter: (rowContent, row) => {
         return (
           <div>
             <Link to={"izin/detail/" + row.DatangID}>
-              <Button outline color="primary" className="mr-2">
+              <Button color="primary" className="mr-2">
                 <FontAwesomeIcon icon={faInfo} /> 
               </Button>
             </Link>
-            <Button outline color="danger" className="mr-2" onClick={() => handleClick(props.dispatch, row.DatangID)}>
+            <Button color="danger" className="mr-2" onClick={() => handleClick(props.dispatch, row.DatangID)}>
               <FontAwesomeIcon icon={faTrash} />
             </Button>
           </div>
@@ -126,15 +138,16 @@ const IzinComponent = (props) => {
         >
           {(props) => (
             <div>
+              <Card body inverse color="info">
               <Row>
                 <Col>
                   <Link to="izin/list">
-                    <Button outline color="info" className="mr-2">
+                    <Button color="warning" className="mr-2">
                       <FontAwesomeIcon icon={faCalendarCheck} /> Izin Perorang<FontAwesomeIcon icon={faPlus} />
                     </Button>
                   </Link>
                   <Link to="izin/group">
-                    <Button outline color="info" className="mr-2">
+                    <Button color="warning" className="mr-2">
                       <FontAwesomeIcon icon={faCalendarCheck} /> Izin Pergroup <FontAwesomeIcon icon={faPlus} />
                     </Button>
                   </Link>
@@ -150,6 +163,7 @@ const IzinComponent = (props) => {
                 {...props.baseProps}
                 pagination={paginationFactory()}
               />
+              </Card>
             </div>
           )}
         </ToolkitProvider>
