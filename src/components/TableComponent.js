@@ -9,6 +9,7 @@ import {
   faUserPlus,
   retweet,
   faRetweet,
+  faUndoAlt,
 } from "@fortawesome/free-solid-svg-icons";
 import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
 import paginationFactory from "react-bootstrap-table2-paginator";
@@ -107,31 +108,37 @@ const TableComponent = (props) => {
       dataField: "link",
       text: "Action",
       headerStyle: () => {
-        return { width: "250px" };
+        return { width: "120px" };
       },
       formatter: (rowContent, row) => {
         return (
           <div>
 
             <Button color="info" className="mr-2" onClick={() => handleClick2(props.dispatch, row.UserID)}>
-              <FontAwesomeIcon icon={faRetweet} /> Reset Device
+              <FontAwesomeIcon icon={faRetweet} /> 
             </Button>
 
             <Link to={"detail/" + row.UserID}>
               <Button color="primary" className="mr-2">
-                <FontAwesomeIcon icon={faInfo} /> Detail
+                <FontAwesomeIcon icon={faInfo} />
               </Button>
             </Link>
   
             <Link to={"edit/" + row.UserID}>
               <Button color="warning" className="mr-2">
-                <FontAwesomeIcon icon={faEdit} /> Edit
+                <FontAwesomeIcon icon={faEdit} />
               </Button>
             </Link>
-  
+
             <Button color="danger" className="mr-2" onClick={() => handleClick(props.dispatch, row.UserID)}>
-              <FontAwesomeIcon icon={faTrash} /> Delete
+              <FontAwesomeIcon icon={faTrash} /> 
             </Button>
+
+            <Link to={"editpassword/" + row.UserID}>
+              <Button color="secondary" className="mr-2">
+                <FontAwesomeIcon icon={faUndoAlt} />
+              </Button>
+            </Link>
 
           
           </div>

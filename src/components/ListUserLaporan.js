@@ -59,14 +59,14 @@ const TableComponent = (props) => {
       dataField: "link",
       text: "Action",
       headerStyle: () => {
-        return { width: "45px" };
+        return { width: "30px" };
       },
       formatter: (rowContent, row) => {
         return (
           <div>
             <Link to={"laporan/" + row.UserID}>
               <Button color="info" className="mr-2">
-                <FontAwesomeIcon icon={faBook} />Lihat Scan
+                <FontAwesomeIcon icon={faBook} />Scan 
               </Button>
             </Link>
           </div>

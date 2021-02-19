@@ -85,26 +85,26 @@ const CabangComponent = (props) => {
       dataField: "link",
       text: "Action",
       headerStyle: () => {
-        return { width: "150px" };
+        return { width: "70px" };
       },
       formatter: (rowContent, row) => {
         return (
           <div>
             <Link to={"cabang/detail/" + row.KodeCabang}>
               <Button color="primary" className="mr-2">
-                <FontAwesomeIcon icon={faInfo} /> Detail
+                <FontAwesomeIcon icon={faInfo} />
               </Button>
             </Link>
   
             <Link to={"cabang/edit/" + row.KodeCabang}>
               <Button color="warning" className="mr-2">
-                <FontAwesomeIcon icon={faEdit} /> Edit
+                <FontAwesomeIcon icon={faEdit} />
               </Button>
             </Link>
 
             <Link to={"/cabang#"}>
             <Button color="danger" className="mr-2" onClick={() => handleClick(props.dispatch, row.KodeCabang)}>
-              <FontAwesomeIcon icon={faTrash} /> Delete
+              <FontAwesomeIcon icon={faTrash} /> 
             </Button>
             </Link>
           </div>

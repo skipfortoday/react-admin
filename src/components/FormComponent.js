@@ -74,7 +74,7 @@ const renderField2 = ({
         readOnly={readOnly}
         options={options}
         value={input.value}
-         onChange={(value) => input.onChange(value)}
+        onChange={(value) => input.onChange(value)}
          //onBlur={() => input.onBlur()}
       />
       {touched &&
@@ -87,6 +87,7 @@ const renderField2 = ({
 const mapStateToProps = (state) => {
   return {
     getOptGroup : state.Opt.getOptGroup,
+    getOptCabang : state.Opt.getOptCabang,
     initialValues : {
       UserID        : state.users.getUserDetail.UserID,
       Pass          : state.users.getUserDetail.Pass, 
@@ -99,7 +100,7 @@ const mapStateToProps = (state) => {
       TglAwalKontrakPertama : state.users.getUserDetail.FTglAwalKontrakPertama, 
       GroupID       : {value : state.users.getUserDetail.GroupID, label: state.users.getUserDetail.Jabatan},
       RoleID       : state.users.getUserDetail.RoleID,
-      KodeCabang    : state.users.getUserDetail.KodeCabang,   
+      KodeCabang    : {value : state.users.getUserDetail.KodeCabang, label: state.users.getUserDetail.NamaCabang},   
       Status        : state.users.getUserDetail.Status,
       Posisi        :   state.users.getUserDetail.Posisi,
 	    TampilkanLembur : state.users.getUserDetail.TampilkanLembur, 
@@ -196,9 +197,9 @@ class FormComponent extends Component {
           <Col md={3}>
             <FormGroup>
               <Field
-                type="text"
                 name="KodeCabang"
-                component={renderField}
+                component={renderField2}
+                options={this.props.getOptCabang}
                 label="Cabang :"
               />
             </FormGroup>

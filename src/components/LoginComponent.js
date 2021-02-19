@@ -1,29 +1,113 @@
-import React from 'react';
-import { Form, FormGroup, Label, Input, Card, Button, CardTitle, CardText } from 'reactstrap';
+import React, { Component } from "react";
+import { reduxForm, Field } from "redux-form";
+import { connect } from "react-redux";
+import { FormGroup, Col, Label, Input, Row, Button ,Card, CardTitle, CardText  } from "reactstrap";
+import LoginValidation from "../validations/LoginValidation";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSignInAlt } from "@fortawesome/free-solid-svg-icons";
 
-const LoginComponent = (props) => {
-  return (
-    <printJS>
-    <Card body inverse color="info">
-    <CardTitle tag="h5">L'Viors Attandace System,</CardTitle>
-    <CardText>Silahkan login untuk akses web Admin</CardText>
-    <Form>
-      <FormGroup method="post" action="#" >
-        <Label for="exampleEmail">Username</Label>
-        <Input type="email" name="email"  placeholder="Masukan Username" />
-      </FormGroup>
-      <FormGroup>
-        <Label for="examplePassword">Password</Label>
-        <Input type="password" name="password" placeholder="Masukkan Password" />
-      </FormGroup>
-    </Form>
-    <Button color="secondary" type="button" onclick="printJS('/logo-lviors-hitam.png', 'image')">Login</Button>
-  </Card>
-  </printJS>
  
+const renderField = ({
+  input,
+  type,
+  placeholder,
+  label,
+  disabled,
+  readOnly,
+  meta: { touched, error, warning },
+}) => (
+  <Row>
+    <Col md="12">
+      <Label htmlFor="{input}" className="col-form-label">
+        {label}
+      </Label>
+    </Col>
+    <Col md="12">
+      <Input
+        {...input}
+        type={type}
+        placeholder={placeholder}
+        disabled={disabled}
+        readOnly={readOnly}
+        
+      ></Input>
+      {touched &&
+        ((error && <p style={{ color: "#fafa00" }}>{error}</p>) ||
+          (warning && <p style={{ color: "brown" }}>{warning}</p>))}
+    </Col>
+  </Row>
+);
+
+const mapStateToProps = (state) => {
+
+  //console.log(optsiterpilih);
+  return {
+    initialValues: {
+      UserID : state.Login.postLoginUser,
+      Pass: state.Login.postLoginUser,
+    },
+  };
+};
 
 
-  );
+class LoginComponent extends Component {
+  render() {
+    return (
+
+      <Card body inverse color="info">
+        <CardTitle tag="h5">Login Lviors Absensi</CardTitle>
+        <CardText>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</CardText>
+      
+      <form onSubmit={this.props.handleSubmit}>
+        <FormGroup row>
+          <Col md={6}>
+            <FormGroup>
+              <Field
+                type="text"
+                name="UserID"
+                component={renderField}
+                label="Username :"
+              />
+            </FormGroup>
+          </Col>
+
+          <Col md={6}>
+            <FormGroup>
+              <Field
+                type="Password"
+                name="Pass"
+                component={renderField}
+                label="Password :"
+              />
+            </FormGroup>
+          </Col>
+          <Col md={4}>
+          <FormGroup>
+
+              <Button
+                color="warning"
+                type="submit"
+                disabled={this.props.submitting}
+              >
+                <FontAwesomeIcon icon={faSignInAlt} /> Login
+              </Button>
+            </FormGroup>
+            </Col>
+        </FormGroup>
+        <FormGroup row>
+          <Col md="12">
+            
+          </Col>
+        </FormGroup>
+      </form>
+      </Card>
+    );
+  }
 }
 
-export default LoginComponent;
+LoginComponent = reduxForm({
+  form: "formLogin",
+  validate: LoginValidation,
+  enableReinitialize: true,
+})(LoginComponent);
+export default connect(mapStateToProps, null)(LoginComponent);

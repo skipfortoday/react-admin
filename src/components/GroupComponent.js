@@ -9,6 +9,7 @@ import {
   faUsersCog,
   faPlus,
   faClock,
+  faSortAmountUp,
 } from "@fortawesome/free-solid-svg-icons";
 import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
 import paginationFactory from "react-bootstrap-table2-paginator";
@@ -73,20 +74,20 @@ const GroupComponent = (props) => {
       dataField: "link",
       text: "Action",
       headerStyle: () => {
-        return { width: "170px" };
+        return { width: "50px" };
       },
       formatter: (rowContent, row) => {
         return (
           <div>
             <Link to={"group/detail/" + row.GroupID}>
               <Button color="primary" className="mr-2">
-                <FontAwesomeIcon icon={faInfo} /> Detail
+                <FontAwesomeIcon icon={faInfo} /> 
               </Button>
             </Link>
 
             <Link to={"group/edit/" + row.GroupID}>
               <Button color="warning" className="mr-2">
-                <FontAwesomeIcon icon={faEdit} /> Edit
+                <FontAwesomeIcon icon={faEdit} /> 
               </Button>
             </Link>
 
@@ -95,12 +96,12 @@ const GroupComponent = (props) => {
               className="mr-2"
               onClick={() => handleClick(props.dispatch, row.GroupID)}
             >
-              <FontAwesomeIcon icon={faTrash} /> Delete
+              <FontAwesomeIcon icon={faTrash} /> 
             </Button>
 
             <Link to={"group/terlambatbertingkat/" + row.GroupID}>
-              <Button color="info" className="mr-2">
-                <FontAwesomeIcon icon={faClock} /> Terlambat Bertingkat
+              <Button outline color="info" className="mr-2">
+                <FontAwesomeIcon icon={faSortAmountUp} /> 
               </Button>
             </Link>
           </div>

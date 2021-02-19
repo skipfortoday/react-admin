@@ -7,7 +7,7 @@ import { postUserCreate } from "../actions/userAction";
 import swal from "sweetalert";
 import InfoMenuPegawai from "../components/InfoMenuPegawai";
 import NavbarComponent from "../components/NavbarComponent";
-import { getOptGroup } from "../actions/optAction";
+import { getOptCabang, getOptGroup } from "../actions/optAction";
 
 const mapStateToProps = (state) => {
   return {
@@ -19,6 +19,7 @@ const mapStateToProps = (state) => {
 class CreateUserContainer extends Component {
   componentDidMount() {
     this.props.dispatch(getOptGroup())
+    this.props.dispatch(getOptCabang())
   }
 
   handleSubmit(data) {
