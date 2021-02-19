@@ -24,15 +24,13 @@ class ListLaporanContainer extends Component {
             </Button>
           </Col>
           <Col md={11}>
-            <Alert color="warning">
+            <Alert color="info">
               <h4>Menu List Laporan</h4>
             </Alert>
           </Col>
         </Row>
-        <InfoHomeLaporan />
-        <Alert color="warning"></Alert>
         <ListUserLaporan />
-        <Alert color="warning"></Alert>
+        <Alert color="info"></Alert>
       </Container>
     );
   }

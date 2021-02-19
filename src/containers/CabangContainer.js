@@ -26,15 +26,13 @@ class CabangContainer extends Component {
             </Button>
           </Col>
           <Col md={11}>
-            <Alert color="warning">
+            <Alert color="info">
               <h4>Menu List Cabang</h4>
             </Alert>
           </Col>
         </Row>
-        <InfoHomeCabang />
-        <Alert color="warning"></Alert>
         <CabangComponent />
-        <Alert color="warning"></Alert>
+        <Alert color="info"></Alert>
       </Container>
     );
   }

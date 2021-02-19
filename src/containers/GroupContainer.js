@@ -25,15 +25,13 @@ class GroupContainer extends Component {
             </Button>
           </Col>
           <Col md={11}>
-            <Alert color="warning">
+            <Alert color="info">
               <h4>Menu List Group Pegawai</h4>
             </Alert>
           </Col>
         </Row>
-        <InfoHomeGroup />
-        <Alert color="warning"></Alert>
         <GroupComponent />
-        <Alert color="warning"></Alert>
+        <Alert color="info"></Alert>
       </Container>
     );
   }

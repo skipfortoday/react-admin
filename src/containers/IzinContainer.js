@@ -25,15 +25,13 @@ class IzinContainer extends Component {
             </Button>
           </Col>
           <Col md={11}>
-            <Alert color="warning">
+            <Alert color="info">
               <h4>Menu List Izin Pegawai</h4>
             </Alert>
           </Col>
         </Row>
-        <InfoHomeIzin />
-        <Alert color="warning"></Alert>
         <IzinComponent />
-        <Alert color="warning"></Alert>
+        <Alert color="info"></Alert>
       </Container>
     );
   }

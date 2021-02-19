@@ -47,16 +47,13 @@ class EditUserContainer extends Component {
             <BackComponent />
           </Col>
           <Col md={11}>
-            <Alert color="warning">
-              <h4>Menu Detail Pegawai</h4>
+            <Alert color="info">
+              <h4>Menu Edit Pegawai</h4>
             </Alert>
           </Col>
         </Row>
-        <InfoMenuPegawai />
-        <Alert color="warning"></Alert>
-        <h4>Form Edit Pegawai</h4>
         <FormComponent onSubmit={(data) => this.handleSubmit(data)} />
-        <Alert color="warning"></Alert>
+        <Alert color="info"></Alert>
       </Container>
     );
   }

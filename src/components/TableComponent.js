@@ -1,6 +1,6 @@
 import React from "react";
 import BootstrapTable from "react-bootstrap-table-next";
-import { Container, Button, Row, Col, Spinner,Input } from "reactstrap";
+import { Container, Button, Row, Col, Spinner,Card, CardTitle, CardText } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faInfo,
@@ -112,30 +112,31 @@ const TableComponent = (props) => {
       },
       formatter: (rowContent, row) => {
         return (
+          
           <div>
 
-            <Button color="info" className="mr-2" onClick={() => handleClick2(props.dispatch, row.UserID)}>
+            <Button outline color="info" className="mr-2" onClick={() => handleClick2(props.dispatch, row.UserID)}>
               <FontAwesomeIcon icon={faRetweet} /> 
             </Button>
 
             <Link to={"detail/" + row.UserID}>
-              <Button color="primary" className="mr-2">
+              <Button outline color="primary" className="mr-2">
                 <FontAwesomeIcon icon={faInfo} />
               </Button>
             </Link>
   
             <Link to={"edit/" + row.UserID}>
-              <Button color="warning" className="mr-2">
+              <Button outline color="warning" className="mr-2">
                 <FontAwesomeIcon icon={faEdit} />
               </Button>
             </Link>
 
-            <Button color="danger" className="mr-2" onClick={() => handleClick(props.dispatch, row.UserID)}>
+            <Button outline color="danger" className="mr-2" onClick={() => handleClick(props.dispatch, row.UserID)}>
               <FontAwesomeIcon icon={faTrash} /> 
             </Button>
 
             <Link to={"editpassword/" + row.UserID}>
-              <Button color="secondary" className="mr-2">
+              <Button outline color="secondary" className="mr-2">
                 <FontAwesomeIcon icon={faUndoAlt} />
               </Button>
             </Link>
@@ -161,10 +162,11 @@ const TableComponent = (props) => {
         >
           {(props) => (
             <div>
+              
               <Row>
                 <Col>
                   <Link to="/create">
-                    <Button color="danger" className="mr-2">
+                    <Button outline color="info" className="mr-2">
                       <FontAwesomeIcon icon={faUserPlus} /> Tambah Pegawai
                     </Button>
                   </Link>

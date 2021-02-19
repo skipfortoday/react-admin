@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { reduxForm, Field } from "redux-form";
 import { connect } from "react-redux";
-import { FormGroup, Col, Label, Input, Row, Button} from "reactstrap";
+import { FormGroup, Col, Label, Input, Row, Button, Card, CardTitle, CardText} from "reactstrap";
 import AsyncVUser from "../validations/AsyncVUser";
 import UserValidation from "../validations/UserValidation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -112,6 +112,9 @@ const mapStateToProps = (state) => {
 class FormComponent extends Component {
   render() {
     return (
+      <Card body inverse color="info">
+      <CardTitle tag="h5">Form Pegawai</CardTitle>
+      <CardText>Isi data pegawai sesuai dengan data asli pegawai, jangan lupa isi cabang dan group karyawan.</CardText>
       <form onSubmit={this.props.handleSubmit}>
         <FormGroup row>
           <Col md={4}>
@@ -266,7 +269,7 @@ class FormComponent extends Component {
         <Col md={1}>
         </Col>
 
-          <Col md={1}>
+          <Col md={2}>
             <FormGroup>
               
               <Field
@@ -278,11 +281,8 @@ class FormComponent extends Component {
             </FormGroup>
           </Col>
 
-          <Col md={1}>
-        </Col>
 
-
-          <Col md={1}>
+          <Col md={2}>
             <FormGroup>
             <Field
                 type="checkbox"
@@ -304,7 +304,7 @@ class FormComponent extends Component {
                 name="Status"
                 component={renderField}
                 //label="Status :"
-              /> Tampilkan Status
+              />  Status
             </FormGroup>
           </Col>
 
@@ -317,7 +317,7 @@ class FormComponent extends Component {
           <Col md="12">
             <FormGroup>
               <Button
-                color="primary"
+                color="warning"
                 type="submit"
                 disabled={this.props.submitting}
               >
@@ -327,6 +327,7 @@ class FormComponent extends Component {
           </Col>
         </FormGroup>
       </form>
+      </Card>
     );
   }
 }

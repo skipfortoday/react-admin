@@ -93,18 +93,18 @@ const IzinComponent = (props) => {
       dataField: "link",
       text: "Action",
       headerStyle: () => {
-        return { width: "145px" };
+        return { width: "70px" };
       },
       formatter: (rowContent, row) => {
         return (
           <div>
             <Link to={"izin/detail/" + row.DatangID}>
-              <Button color="primary" className="mr-2">
-                <FontAwesomeIcon icon={faInfo} /> Detail
+              <Button outline color="primary" className="mr-2">
+                <FontAwesomeIcon icon={faInfo} /> 
               </Button>
             </Link>
-            <Button color="danger" className="mr-2" onClick={() => handleClick(props.dispatch, row.DatangID)}>
-              <FontAwesomeIcon icon={faTrash} /> Delete
+            <Button outline color="danger" className="mr-2" onClick={() => handleClick(props.dispatch, row.DatangID)}>
+              <FontAwesomeIcon icon={faTrash} />
             </Button>
           </div>
         );
@@ -129,12 +129,12 @@ const IzinComponent = (props) => {
               <Row>
                 <Col>
                   <Link to="izin/list">
-                    <Button color="danger" className="mr-2">
+                    <Button outline color="info" className="mr-2">
                       <FontAwesomeIcon icon={faCalendarCheck} /> Izin Perorang<FontAwesomeIcon icon={faPlus} />
                     </Button>
                   </Link>
                   <Link to="izin/group">
-                    <Button color="danger" className="mr-2">
+                    <Button outline color="info" className="mr-2">
                       <FontAwesomeIcon icon={faCalendarCheck} /> Izin Pergroup <FontAwesomeIcon icon={faPlus} />
                     </Button>
                   </Link>

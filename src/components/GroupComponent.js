@@ -80,19 +80,19 @@ const GroupComponent = (props) => {
         return (
           <div>
             <Link to={"group/detail/" + row.GroupID}>
-              <Button color="primary" className="mr-2">
+              <Button outline color="primary" className="mr-2">
                 <FontAwesomeIcon icon={faInfo} /> 
               </Button>
             </Link>
 
             <Link to={"group/edit/" + row.GroupID}>
-              <Button color="warning" className="mr-2">
+              <Button outline color="warning" className="mr-2">
                 <FontAwesomeIcon icon={faEdit} /> 
               </Button>
             </Link>
 
             <Button
-              color="danger"
+             outline color="danger"
               className="mr-2"
               onClick={() => handleClick(props.dispatch, row.GroupID)}
             >
@@ -126,7 +126,7 @@ const GroupComponent = (props) => {
               <Row>
                 <Col>
                   <Link to="group/create">
-                    <Button color="danger" className="mr-2">
+                    <Button outline color="info" className="mr-2">
                       <FontAwesomeIcon icon={faUsersCog} /> Tambah Group{" "}
                       <FontAwesomeIcon icon={faPlus} />
                     </Button>

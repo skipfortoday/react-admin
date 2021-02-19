@@ -49,16 +49,13 @@ class CreateUserContainer extends Component {
             <BackComponent />
           </Col>
           <Col md={11}>
-            <Alert color="warning">
+            <Alert color="info">
               <h4>Menu Tambah Pegawai</h4>
             </Alert>
           </Col>
         </Row>
-        <InfoMenuPegawai />
-        <Alert color="warning"></Alert>
-        <h4>Form Tambah Pegawai</h4>
         <FormComponent onSubmit={(data) => this.handleSubmit(data)} />
-        <Alert color="warning"></Alert>
+        <Alert color="info"></Alert>
       </Container>
     );
   }

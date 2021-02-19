@@ -25,15 +25,13 @@ class HomeContainer extends Component {
             </Button>
           </Col>
           <Col md={11}>
-            <Alert color="warning">
+            <Alert color="info">
               <h4>Menu List Pegawai</h4>
             </Alert>
           </Col>
         </Row>
-        <InfoHomePegawai />
-        <Alert color="warning"></Alert>
         <TableComponent />
-        <Alert color="warning"></Alert>
+        <Alert color="info"></Alert>
       </Container>
     );
   }

@@ -91,19 +91,19 @@ const CabangComponent = (props) => {
         return (
           <div>
             <Link to={"cabang/detail/" + row.KodeCabang}>
-              <Button color="primary" className="mr-2">
+              <Button outline color="primary" className="mr-2">
                 <FontAwesomeIcon icon={faInfo} />
               </Button>
             </Link>
   
             <Link to={"cabang/edit/" + row.KodeCabang}>
-              <Button color="warning" className="mr-2">
+              <Button outline color="warning" className="mr-2">
                 <FontAwesomeIcon icon={faEdit} />
               </Button>
             </Link>
 
             <Link to={"/cabang#"}>
-            <Button color="danger" className="mr-2" onClick={() => handleClick(props.dispatch, row.KodeCabang)}>
+            <Button outline color="danger" className="mr-2" onClick={() => handleClick(props.dispatch, row.KodeCabang)}>
               <FontAwesomeIcon icon={faTrash} /> 
             </Button>
             </Link>
@@ -130,7 +130,7 @@ const CabangComponent = (props) => {
               <Row>
                 <Col>
                   <Link to="/cabang/create">
-                    <Button color="danger" className="mr-2">
+                    <Button  outline color="info" className="mr-2">
                       <FontAwesomeIcon icon={faSitemap} /> Tambah Cabang <FontAwesomeIcon icon={faPlus} />
                     </Button>
                   </Link>
