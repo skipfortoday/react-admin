@@ -16,7 +16,7 @@ import paginationFactory from "react-bootstrap-table2-paginator";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import swal from 'sweetalert';
-import { deleteUser,resetUser } from "../actions/userAction";
+import { deleteUser,resetUser,resetPasswordUser } from "../actions/userAction";
 
 const { SearchBar } = Search;
 
@@ -56,6 +56,26 @@ const handleClick2 = (dispatch, ID) => {
       });
       } else {
       swal("Device tidak jadi di Reset");
+    }
+  });
+}
+
+const handleClick3 = (dispatch, ID) => {
+  
+  swal({
+    title: "Reset Password Login Karyawan ?",
+    icon: "warning",
+    buttons: true,
+    dangerMode: true,
+  })
+  .then((willresetPasswordUser) => {
+    if (willresetPasswordUser) {
+      dispatch(resetPasswordUser(ID))
+      swal("Berhasil, Karyawan Bisa Login Dengan Password 123456", {
+        icon: "success",
+      });
+      } else {
+      swal("Password tidak jadi di Reset");
     }
   });
 }
@@ -145,11 +165,10 @@ const TableComponent = (props) => {
               <FontAwesomeIcon icon={faTrash} /> 
             </Button>
 
-            <Link to={"editpassword/" + row.UserID}>
-              <Button  color="warning" className="mr-2">
+
+            <Button color="warning" className="mr-2" onClick={() => handleClick3(props.dispatch, row.UserID)}>
                 <FontAwesomeIcon icon={faUndoAlt} />
-              </Button>
-            </Link>
+            </Button>
           
           </div>
         );

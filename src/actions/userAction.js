@@ -190,6 +190,23 @@ export const resetUser = (UserID) => {
   };
 };
 
+export const resetPasswordUser = (UserID) => {
+  return (dispatch) => {
+    axios
+      .put(
+         "http://192.168.0.25:3001/api/resetpassworduser/"+UserID
+      )
+      .then(function (response) {
+        console.log(response);
+        
+      })
+      .catch(function (error) {
+        console.log(error);
+        
+      });
+  };
+};
+
 
 export const deleteDataUser = () => {
   return (dispatch) => {

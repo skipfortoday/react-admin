@@ -1,6 +1,7 @@
 import axios from "axios";
 
 export const GET_IZIN_LIST = "GET_IZIN_LIST";
+export const GET_IZIN_LISTSOLO = "GET_IZIN_LISTSOLO";
 export const GET_IZIN_DETAIL = "GET_IZIN_DETAIL";
 export const POST_IZIN_CREATE = "POST_IZIN_CREATE";
 export const POST_IZIN_GROUP = "POST_IZIN_GROUP";
@@ -24,6 +25,33 @@ export const getIzinList = () => {
       .catch(function (error) {
         dispatch({
           type: GET_IZIN_LIST,
+          payload: {
+            data: false,
+            errorMessage: error.message,
+          },
+        });
+      });
+  };
+};
+
+export const getIzinListSolo = (UserID,TglAwal,TglAkhir) => {
+  return (dispatch) => {
+    axios
+      .get(
+        "http://192.168.0.25:3001/api/izinsolo/"+UserID+"&"+TglAwal+"&"+TglAkhir
+      )
+      .then(function (response) {
+        dispatch({
+          type: GET_IZIN_LISTSOLO,
+          payload: {
+            data: response.data,
+            errorMessage: false,
+          },
+        });
+      })
+      .catch(function (error) {
+        dispatch({
+          type: GET_IZIN_LISTSOLO,
           payload: {
             data: false,
             errorMessage: error.message,

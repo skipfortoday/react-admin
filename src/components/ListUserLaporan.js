@@ -1,6 +1,6 @@
 import React from "react";
 import BootstrapTable from "react-bootstrap-table-next";
-import { Container, Button, Row, Col, Spinner, Input } from "reactstrap";
+import { Container, Button, Row, Col, Spinner,Card } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBook } from "@fortawesome/free-solid-svg-icons";
 import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
@@ -33,7 +33,10 @@ const TableComponent = (props) => {
       text: "UserID",
       sort: true,
       headerStyle: () => {
-        return { width: "40px" };
+        return { width: "40px", backgroundColor:"#fec107" };
+      },
+      style: () => {
+        return { fontWeight : "bold" , color:"white"};
       },
     },
     {
@@ -41,7 +44,10 @@ const TableComponent = (props) => {
       text: "Nama",
       sort: true,
       headerStyle: () => {
-        return { width: "80px" };
+        return { width: "80px" , backgroundColor:"#fec107"};
+      },
+      style: () => {
+        return { fontWeight : "bold" , color:"white"};
       },
     },
 
@@ -51,7 +57,10 @@ const TableComponent = (props) => {
       text: "Group",
       sort: true,
       headerStyle: () => {
-        return { width: "120px" };
+        return { width: "120px", backgroundColor:"#fec107" };
+      },
+      style: () => {
+        return { fontWeight : "bold" , color:"white"};
       },
     },
 
@@ -59,13 +68,13 @@ const TableComponent = (props) => {
       dataField: "link",
       text: "Action",
       headerStyle: () => {
-        return { width: "30px" };
+        return { width: "30px", backgroundColor:"#fec107" };
       },
       formatter: (rowContent, row) => {
         return (
           <div>
             <Link to={"laporan/" + row.UserID}>
-              <Button color="info" className="mr-2">
+              <Button color="warning" className="mr-2">
                 <FontAwesomeIcon icon={faBook} />Scan 
               </Button>
             </Link>
@@ -88,6 +97,7 @@ const TableComponent = (props) => {
         >
           {(props) => (
             <div>
+              <Card body inverse color="info">
               <Row>
                 <Col>
                   <div className="float-right">
@@ -100,6 +110,7 @@ const TableComponent = (props) => {
                 {...props.baseProps}
                 pagination={paginationFactory()}
               />
+              </Card>
             </div>
           )}
         </ToolkitProvider>

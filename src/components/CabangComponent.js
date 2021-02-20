@@ -1,6 +1,6 @@
 import React from "react";
 import BootstrapTable from "react-bootstrap-table-next";
-import { Container, Button, Row, Col, Spinner , Card, CardTitle, CardText} from "reactstrap";
+import { Container, Button, Row, Col, Spinner , Card} from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faInfo,
@@ -61,7 +61,10 @@ const CabangComponent = (props) => {
       text: "KodeCabang",
       sort: true,
       headerStyle: () => {
-        return { width: "75px"  };
+        return { width: "75px" , backgroundColor:"#fec107" };
+      },
+      style: () => {
+        return { fontWeight : "bold" , color:"white"};
       },
     },
     {
@@ -69,7 +72,10 @@ const CabangComponent = (props) => {
       text: "Nama Cabang",
       sort: true,
       headerStyle: () => {
-        return { width: "100px" };
+        return { width: "100px", backgroundColor:"#fec107" };
+      },
+      style: () => {
+        return { fontWeight : "bold" , color:"white"};
       },
     },
     {
@@ -77,7 +83,10 @@ const CabangComponent = (props) => {
       text: "Alamat Cabang", 
       sort: true,
       headerStyle: () => {
-        return { width: "200px" };
+        return { width: "200px", backgroundColor:"#fec107" };
+      },
+      style: () => {
+        return { fontWeight : "bold" , color:"white"};
       },
       
     },
@@ -85,25 +94,25 @@ const CabangComponent = (props) => {
       dataField: "link",
       text: "Action",
       headerStyle: () => {
-        return { width: "80px" };
+        return { width: "80px", backgroundColor:"#fec107" };
       },
       formatter: (rowContent, row) => {
         return (
           <div>
             <Link to={"cabang/detail/" + row.KodeCabang}>
-              <Button outline color="primary" className="mr-2">
+              <Button  color="primary" className="mr-2">
                 <FontAwesomeIcon icon={faInfo} />
               </Button>
             </Link>
   
             <Link to={"cabang/edit/" + row.KodeCabang}>
-              <Button outline color="warning" className="mr-2">
+              <Button  color="warning" className="mr-2">
                 <FontAwesomeIcon icon={faEdit} />
               </Button>
             </Link>
 
             <Link to={"/cabang#"}>
-            <Button outline color="danger" className="mr-2" onClick={() => handleClick(props.dispatch, row.KodeCabang)}>
+            <Button  color="danger" className="mr-2" onClick={() => handleClick(props.dispatch, row.KodeCabang)}>
               <FontAwesomeIcon icon={faTrash} /> 
             </Button>
             </Link>
@@ -128,6 +137,7 @@ const CabangComponent = (props) => {
         >
           {(props) => (
             <div>
+              <Card body inverse color="info">
               <Row>
                 <Col>
                   <Link to="/cabang/create">
@@ -147,6 +157,7 @@ const CabangComponent = (props) => {
                 {...props.baseProps}
                 pagination={paginationFactory()}
               />
+              </Card>
             </div>
           )}
         </ToolkitProvider>

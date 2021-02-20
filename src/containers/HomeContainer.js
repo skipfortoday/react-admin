@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import TableComponent from "../components/TableComponent";
-import { Container, Alert, Col, Row, Button } from "reactstrap";
+import { Container, Alert, Col, Row, Button , Card} from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faListAlt } from "@fortawesome/free-solid-svg-icons";
 import { connect } from "react-redux";
@@ -30,6 +30,7 @@ class HomeContainer extends Component {
             </Alert>
           </Col>
         </Row>
+
         <TableComponent />
         <Alert color="info"></Alert>
       </Container>

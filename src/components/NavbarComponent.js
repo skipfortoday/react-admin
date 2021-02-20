@@ -15,7 +15,8 @@ import {
   DropdownItem,
   Button,
   ButtonDropdown,
-  Alert
+  Alert,
+  Card,
 } from "reactstrap";
 
 const NavbarComponent = (props) => {
@@ -28,11 +29,12 @@ const NavbarComponent = (props) => {
     <div>
       
       <Navbar color="faded" light expand="md">
+          <Card body inverse color="warning">
           <NavbarBrand> L'viors Attandance System ~ </NavbarBrand>
-          
+          </Card>
           <NavbarToggler onClick={toggle} />
           <Collapse isOpen={isOpen} navbar>
-          <Alert color="info">
+          <Card body inverse color="info">
             <Nav className="mr-auto" navbar>
            
               <NavItem>    
@@ -61,7 +63,7 @@ const NavbarComponent = (props) => {
                 </Link>
               </NavItem>   
             </Nav>
-            </Alert>
+            </Card>
             <Nav navbar> 
             <NavItem>
 

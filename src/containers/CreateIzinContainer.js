@@ -3,7 +3,7 @@ import { Container, Alert, Col, Row } from "reactstrap";
 import BackIzin from "../components/BackIzin";
 import FormIzinComponent from "../components/FormIzinComponent";
 import { connect } from "react-redux";
-import { getIzinDetail, postIzinCreate } from "../actions/izinAction";
+import { getIzinDetail, getIzinListSolo, postIzinCreate, deleteDataIzin} from "../actions/izinAction";
 import swal from "sweetalert";
 import NavbarComponent from "../components/NavbarComponent";
 import LengkapiAbsenButton from "../components/LengkapiAbsenButton";
@@ -12,6 +12,7 @@ import LengkapiAbsen from "../components/LengkapiAbsen";
 import LaporanDetail from "../components/LaporanDetail";
 import { getLaporanDetail , getLaporanRekap} from "../actions/laporanAction";
 import { getUserDetail} from "../actions/userAction";
+import IzinComponentSolo from "../components/IzinComponentSolo";
 
 const mapStateToProps = (state) => {
   return {
@@ -23,7 +24,7 @@ const mapStateToProps = (state) => {
 class CreateIzinContainer extends Component {
   componentDidMount() {
     this.props.dispatch(getOptUser());
-    this.props.dispatch(getIzinDetail(this.props.match.params.UserID));;
+    this.props.dispatch(getIzinDetail(this.props.match.params.UserID));
     this.props.dispatch(
       getLaporanDetail(
         this.props.match.params.UserID,
@@ -39,6 +40,11 @@ class CreateIzinContainer extends Component {
       )
     );
     this.props.dispatch(getUserDetail(this.props.match.params.UserID));
+    this.props.dispatch(getIzinListSolo(
+      this.props.match.params.UserID,
+      this.props.match.params.TglAwal,
+      this.props.match.params.TglAkhir));
+    this.props.dispatch(deleteDataIzin());
   }
 
   handleSubmit(data) {
@@ -81,7 +87,7 @@ class CreateIzinContainer extends Component {
         <Col md={1}>
           </Col>
         <Col md={9}>
-        <Alert color="info">
+        <Alert color="warning">
             <LengkapiAbsen />
             </Alert>
           </Col>
@@ -91,6 +97,7 @@ class CreateIzinContainer extends Component {
         </Row>
         <Alert color="info">
         <FormIzinComponent onSubmit={(data) => this.handleSubmit(data)} />
+        <IzinComponentSolo/>
         </Alert>
         <Alert color="info"></Alert>
         <LaporanDetail/>
