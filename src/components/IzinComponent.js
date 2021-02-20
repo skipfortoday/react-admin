@@ -61,7 +61,7 @@ const IzinComponent = (props) => {
       text: "Tanggal Izin",
       sort: true,
       headerStyle: () => {
-        return { width: "120px" };
+        return { width: "120px",backgroundColor:"#fec107" };
       },
       style: () => {
         return {  fontWeight : "bold", color :"white" };
@@ -72,7 +72,7 @@ const IzinComponent = (props) => {
       text: "Nama ",
       sort: true,
       headerStyle: () => {
-        return { width: "120px" };
+        return { width: "120px" ,backgroundColor:"#fec107"};
       },
       style: () => {
         return { fontWeight : "bold", color :"white" };
@@ -83,7 +83,7 @@ const IzinComponent = (props) => {
       text: "Status", 
       sort: true,
       headerStyle: () => {
-        return { width: "100px" };
+        return { width: "100px",backgroundColor:"#fec107" };
       },
       style: () => {
         return {  fontWeight : "bold" , color :"white"};
@@ -95,7 +95,7 @@ const IzinComponent = (props) => {
       text: "Keterangan",
       sort: true,
       headerStyle: () => {
-        return { width: "250px" };
+        return { width: "250px",backgroundColor:"#fec107" };
       },
       style: () => {
         return { fontWeight : "bold",color :"white" };
@@ -105,7 +105,7 @@ const IzinComponent = (props) => {
       dataField: "link",
       text: "Action",
       headerStyle: () => {
-        return { width: "100px" };
+        return { width: "100px" ,backgroundColor:"#fec107"};
       },
       formatter: (rowContent, row) => {
         return (

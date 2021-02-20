@@ -59,7 +59,7 @@ const GroupComponent = (props) => {
       text: "GroupID",
       sort: true,
       headerStyle: () => {
-        return { width: "30px", color : "white" };
+        return { width: "30px", backgroundColor:"#fec107" };
       },
       style: () => {
         return { color : "white" ,fontWeight : "bold" };
@@ -70,7 +70,7 @@ const GroupComponent = (props) => {
       text: "Nama Group",
       sort: true,
       headerStyle: () => {
-        return { width: "120px" ,color : "white" };
+        return { width: "120px" ,backgroundColor:"#fec107" };
       },
       style: () => {
         return { color : "white", fontWeight : "bold" };
@@ -80,7 +80,7 @@ const GroupComponent = (props) => {
       dataField: "link",
       text: "Action",
       headerStyle: () => {
-        return { width: "40px", color : "white" };
+        return { width: "40px",backgroundColor:"#fec107" };
       },
       formatter: (rowContent, row) => {
         return (

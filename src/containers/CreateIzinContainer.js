@@ -81,7 +81,7 @@ class CreateIzinContainer extends Component {
         <Col md={1}>
           </Col>
         <Col md={9}>
-        <Alert color="warning">
+        <Alert color="info">
             <LengkapiAbsen />
             </Alert>
           </Col>

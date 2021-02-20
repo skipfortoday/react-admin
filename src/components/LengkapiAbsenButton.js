@@ -11,11 +11,12 @@ const LengkapiAbsenButton = ({ values }) => {
   return (
     <Row className="mb-2">
       <Col>
-        <Link to={"/izin/create/"+values.Nama.value+"/"+values.TglAwal+"/"+values.TglAkhir}>
-          <Button color="warning">
+          <a href={"/izin/create/"+values.Nama.value+"/"+values.TglAwal+"/"+values.TglAkhir}>
+          <Button color="warning" >
+         
             <FontAwesomeIcon icon={faSearchPlus} /> Lengkapi Scan
           </Button>
-        </Link>
+          </a>
       </Col>
     </Row>
   );
