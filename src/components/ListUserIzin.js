@@ -1,6 +1,6 @@
 import React from "react";
 import BootstrapTable from "react-bootstrap-table-next";
-import { Container, Button, Row, Col, Spinner } from "reactstrap";
+import { Container, Button, Row, Col, Spinner, Card } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faClipboardList,
@@ -33,7 +33,10 @@ const ListUserIzin = (props) => {
       text: "UserID",
       sort: true,
       headerStyle: () => {
-        return { width: "75px" };
+        return { width: "75px" , color : "white" };
+      },
+      style: () => {
+        return { fontWeight : "bold", color :"white" };
       },
     },
     {
@@ -41,7 +44,10 @@ const ListUserIzin = (props) => {
       text: "Nama",
       sort: true,
       headerStyle: () => {
-        return { width: "180px" };
+        return { width: "180px", color : "white"};
+      },
+      style: () => {
+        return { fontWeight : "bold", color :"white" };
       },
     },
     {
@@ -49,7 +55,10 @@ const ListUserIzin = (props) => {
       text: "Group",
       sort: true,
       headerStyle: () => {
-        return { width: "200px" };
+        return { width: "200px", color : "white" };
+      },
+      style: () => {
+        return { fontWeight : "bold", color :"white" };
       },
     },
     {
@@ -57,7 +66,10 @@ const ListUserIzin = (props) => {
       text: "Start Cuti",
       sort: true,
       headerStyle: () => {
-        return { width: "90px" };
+        return { width: "90px", color : "white" };
+      },
+      style: () => {
+        return { fontWeight : "bold", color :"white" };
       },
     },
 
@@ -71,7 +83,7 @@ const ListUserIzin = (props) => {
         return (
           <div>
             <Link to={"create/" + row.UserID}>
-              <Button color="info" className="mr-2">
+              <Button color="warning" className="mr-2">
                 <FontAwesomeIcon icon={faClipboardList} /> Add
               </Button>
             </Link>
@@ -94,6 +106,7 @@ const ListUserIzin = (props) => {
         >
           {(props) => (
             <div>
+              <Card body inverse color="info">
               <Row>
                 <Col>
                   <div className="float-xl-right">
@@ -106,6 +119,7 @@ const ListUserIzin = (props) => {
                 {...props.baseProps}
                 pagination={paginationFactory()}
               />
+              </Card>
             </div>
           )}
         </ToolkitProvider>

@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { FormGroup, Col, Label, Input, Row, Button, Alert } from "reactstrap";
 import IzinValidation from "../validations/IzinValidation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSave } from "@fortawesome/free-solid-svg-icons";
+import { faPaperPlane, faSave } from "@fortawesome/free-solid-svg-icons";
 
 const renderField = ({
   input,
@@ -66,11 +66,6 @@ class FormIzinComponent extends Component {
     return (
       <form onSubmit={this.props.handleSubmit}>
         <FormGroup row>
-          <Col md={12}>
-            <Alert color="danger">
-              Detail Data User
-            </Alert>
-          </Col>
 
 
           <Col md={2}>
@@ -135,12 +130,6 @@ class FormIzinComponent extends Component {
             </FormGroup>
           </Col>
 
-          <Col md={12}>
-            <Alert color="primary">
-              Masukkan Tipe Izin Tanggal Izin dan Keterangan Untuk Izin
-            </Alert>
-          </Col>
-
           <Col md={3}>
             <FormGroup>
               <Field
@@ -158,7 +147,7 @@ class FormIzinComponent extends Component {
                 type="select"
                 name="Status"
                 component={renderField}
-                label="Tipe Izin  :"
+                label="Tipe  :"
               />
             </FormGroup>
           </Col>
@@ -169,24 +158,23 @@ class FormIzinComponent extends Component {
                 type="text"
                 name="Keterangan"
                 component={renderField}
-                label="Keterangan Izin :"
+                label="Keterangan :"
               />
             </FormGroup>
           </Col>
-        </FormGroup>
-
-        <FormGroup row>
-          <Col md="12">
-            <FormGroup>
+         <Col>
+          <FormGroup>
+            <Label> Kirim </Label>
               <Button
                 color="primary"
                 type="submit"
-                disabled={this.props.submitting}
+                disabled={this.props.submitting} 
               >
-                <FontAwesomeIcon icon={faSave} /> SIMPAN
+                <FontAwesomeIcon icon={faPaperPlane} /> 
               </Button>
             </FormGroup>
-          </Col>
+
+            </Col>
         </FormGroup>
       </form>
     );

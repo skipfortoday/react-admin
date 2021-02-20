@@ -15,6 +15,7 @@ import {
   DropdownItem,
   Button,
   ButtonDropdown,
+  Alert
 } from "reactstrap";
 
 const NavbarComponent = (props) => {
@@ -25,36 +26,51 @@ const NavbarComponent = (props) => {
 
   return (
     <div>
+      
       <Navbar color="faded" light expand="md">
           <NavbarBrand> L'viors Attandance System ~ </NavbarBrand>
+          
           <NavbarToggler onClick={toggle} />
           <Collapse isOpen={isOpen} navbar>
+          <Alert color="info">
             <Nav className="mr-auto" navbar>
-              <NavItem>
+           
+              <NavItem>    
                 <Link to="/">
-                <Button color="info"> Pegawai</Button>
+                <NavbarBrand>Pegawai |</NavbarBrand>
                 </Link>
               </NavItem>
               <NavItem>
                 <Link to="/izin">
-                <Button color="info">Status Absensi</Button>
+                <NavbarBrand>Status Absensi |</NavbarBrand>
                 </Link>
               </NavItem>
               <NavItem>
                 <Link to="/group">
-                <Button color="info">Group Pegawai</Button>
+                <NavbarBrand> Group Pegawai |</NavbarBrand>
                 </Link>
               </NavItem>
               <NavItem>
                 <Link to="/cabang">
-                <Button color="info">Cabang</Button>
+                <NavbarBrand> Cabang |</NavbarBrand>
                 </Link>
               </NavItem>
               <NavItem>
                 <Link to="/laporan">
-                <Button color="info"> Laporan</Button>
+                <NavbarBrand> Laporan</NavbarBrand>
                 </Link>
-              </NavItem>
+              </NavItem>   
+            </Nav>
+            </Alert>
+            <Nav navbar> 
+            <NavItem>
+
+            <NavItem>
+                
+                <NavbarBrand> </NavbarBrand>
+        
+              </NavItem>   
+            </NavItem>
             </Nav>
             <Nav navbar>
               <UncontrolledDropdown nav inNavbar>
@@ -85,10 +101,12 @@ const NavbarComponent = (props) => {
                 </ButtonDropdown>
               </UncontrolledDropdown>
             </Nav>
+            
             <NavbarText>as</NavbarText><NavbarBrand> Admin</NavbarBrand>
+            
           </Collapse>
-
       </Navbar>
+
     </div>
   );
 };

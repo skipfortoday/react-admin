@@ -94,7 +94,7 @@ function App () {
 
           <Route path="/group" exact component={GroupContainer} />
 
-          <Route path="/group/create" exact component={CreateGroupContainer} />
+          <Route path="/group/create/" exact component={CreateGroupContainer} />
 
           <Route path="/group/detail/:GroupID" exact component={DetailGroupContainer} />
 
@@ -106,7 +106,7 @@ function App () {
 
           <Route path="/izin/list" exact component={ListUserIzinContainer} />
 
-          <Route path="/izin/create/:DatangID" exact component={CreateIzinContainer} />
+          <Route path="/izin/create/:UserID/:TglAwal/:TglAkhir" exact component={CreateIzinContainer} />
 
           <Route path="/izin/group" exact component={CreateIzinGroup} />
 

@@ -89,15 +89,15 @@ const renderField2 = ({
 const mapStateToProps = (state) => {
   return {
     getOptUser : state.Opt.getOptUser,
+    Nama : state.Opt.getOptUser,
     initialValues: {
-      Nama : {value : state.users.getUserDetail.UserID, label: state.users.getUserDetail.Nama},
-      TglAwal : state.Laporan.getLaporanRekap.TglAwal,
-      TglAkhir : state.Laporan.getLaporanRekap.TglAkhir,
+      UserID: state.users.getUserDetail.UserID,
+      Nama : {value : state.users.getUserDetail.GroupID, label: state.users.getUserDetail.Jabatan},
     },
   };
 };
 
-class LengkapiAbsen extends Component {
+class LengkapiAbsenCreate extends Component {
   render() {
     return (
       <form onSubmit={this.props.handleSubmit}>
@@ -149,8 +149,8 @@ class LengkapiAbsen extends Component {
 
 
 
-LengkapiAbsen = reduxForm({
-  form: "formLengkapiAbsen",
+LengkapiAbsenCreate = reduxForm({
+  form: "formLengkapiAbsenCreate",
   enableReinitialize: true,
-})(LengkapiAbsen);
-export default connect(mapStateToProps, null)(LengkapiAbsen);
+})(LengkapiAbsenCreate);
+export default connect(mapStateToProps, null)(LengkapiAbsenCreate);

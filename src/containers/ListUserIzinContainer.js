@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Container, Alert, Col, Row, Button } from "reactstrap";
+import { Container, Alert, Col, Row, Button} from "reactstrap";
 import { connect } from "react-redux";
 import { getUsersList, deleteDataUser } from "../actions/userAction";
 import { getOptUser } from "../actions/optAction";
@@ -25,22 +25,25 @@ class ListUserIzinContainer extends Component {
             <BackIzin />
           </Col>
           <Col md={11}>
-            <Alert color="warning">
+            <Alert color="info">
               <h4>Menu Lengkapi Absen</h4>
             </Alert>
           </Col>
         </Row>
         <Row>
-        <Col md={10}>
+        <Col md={1}>
+          </Col>
+        <Col md={9}>
+        <Alert color="info">
             <LengkapiAbsen />
+            </Alert>
           </Col>
           <Col md={1}>
             <LengkapiAbsenButton />
           </Col>
-          </Row>
-        <Alert color="warning"></Alert>
+        </Row>
         <ListUserIzin />
-        <Alert color="warning"></Alert>
+        <Alert color="info"></Alert>
       </Container>
     );
   }
