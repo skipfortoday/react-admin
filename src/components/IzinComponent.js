@@ -64,7 +64,7 @@ const IzinComponent = (props) => {
         return { width: "120px" };
       },
       style: () => {
-        return {  fontWeight : "bold" };
+        return {  fontWeight : "bold", color :"white" };
       },
     },
     {
@@ -75,7 +75,7 @@ const IzinComponent = (props) => {
         return { width: "120px" };
       },
       style: () => {
-        return { fontWeight : "bold" };
+        return { fontWeight : "bold", color :"white" };
       },
     },
     {
@@ -86,7 +86,7 @@ const IzinComponent = (props) => {
         return { width: "100px" };
       },
       style: () => {
-        return {  fontWeight : "bold" };
+        return {  fontWeight : "bold" , color :"white"};
       },
       
     },
@@ -98,7 +98,7 @@ const IzinComponent = (props) => {
         return { width: "250px" };
       },
       style: () => {
-        return { fontWeight : "bold" };
+        return { fontWeight : "bold",color :"white" };
       },
     },
     {

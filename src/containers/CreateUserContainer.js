@@ -5,7 +5,6 @@ import FormComponent from "../components/FormComponent";
 import { connect } from "react-redux";
 import { postUserCreate } from "../actions/userAction";
 import swal from "sweetalert";
-import InfoMenuPegawai from "../components/InfoMenuPegawai";
 import NavbarComponent from "../components/NavbarComponent";
 import { getOptCabang, getOptGroup } from "../actions/optAction";
 

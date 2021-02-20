@@ -112,9 +112,7 @@ const mapStateToProps = (state) => {
 class FormComponent extends Component {
   render() {
     return (
-      <Card body inverse color="info">
-      <CardTitle tag="h5">Form Pegawai</CardTitle>
-      <CardText>Isi data pegawai sesuai dengan data asli pegawai, jangan lupa isi cabang dan group karyawan.</CardText>
+     
       <form onSubmit={this.props.handleSubmit}>
         <FormGroup row>
           <Col md={4}>
@@ -327,7 +325,7 @@ class FormComponent extends Component {
           </Col>
         </FormGroup>
       </form>
-      </Card>
+
     );
   }
 }

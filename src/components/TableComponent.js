@@ -86,7 +86,7 @@ const TableComponent = (props) => {
         return { width: "80px" , color :"white"};
       },
       style: () => {
-        return {  fontWeight : "bold" };
+        return {  fontWeight : "bold", color :"white" };
       },
     },
     {
@@ -97,7 +97,7 @@ const TableComponent = (props) => {
         return { width: "110px", color :"white" };
       },
       style: () => {
-        return { fontWeight : "bold" };
+        return { fontWeight : "bold" , color :"white"};
       },
       
     },
@@ -109,7 +109,7 @@ const TableComponent = (props) => {
         return { width: "160px", color :"white" };
       },
       style: () => {
-        return { fontWeight : "bold" };
+        return { fontWeight : "bold", color :"white" };
       },
     },
 
