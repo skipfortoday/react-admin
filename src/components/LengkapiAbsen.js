@@ -1,9 +1,7 @@
 import React, { Component } from "react";
-import { reduxForm, Field} from "redux-form";
+import { reduxForm, Field,getFormValues} from "redux-form";
 import { connect } from "react-redux";
 import Select from 'react-select';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearchPlus } from "@fortawesome/free-solid-svg-icons";
 import {
   FormGroup,
   Col,
@@ -11,10 +9,9 @@ import {
   Input,
   Row,
   Container,
-  Button,
+  Button
 } from "reactstrap";
-import { Link } from "react-router-dom";
-
+import SelectValidation from "../validations/SelectValidation";
 
 const renderField = ({
   input,
@@ -40,7 +37,7 @@ const renderField = ({
         readOnly={readOnly}
       ></Input>
       {touched &&
-        ((error && <p style={{ color: "red" }}>{error}</p>) ||
+        ((error && <p style={{ color: "brown" }}>{error}</p>) ||
           (warning && <p style={{ color: "brown" }}>{warning}</p>))}
     </Col>
   </Row>
@@ -138,7 +135,6 @@ class LengkapiAbsen extends Component {
               </FormGroup>
             </Col>
 
-          
             </Row>
           </FormGroup>
         </Container>
@@ -148,9 +144,10 @@ class LengkapiAbsen extends Component {
 }
 
 
-
+ 
 LengkapiAbsen = reduxForm({
   form: "formLengkapiAbsen",
+  validate: SelectValidation,
   enableReinitialize: true,
 })(LengkapiAbsen);
 export default connect(mapStateToProps, null)(LengkapiAbsen);

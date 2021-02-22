@@ -103,19 +103,14 @@ const IzinComponent = (props) => {
     },
     {
       dataField: "link",
-      text: "Action",
+      text: "Act",
       headerStyle: () => {
-        return { width: "100px" ,backgroundColor:"#fec107"};
+        return { width: "40px" ,backgroundColor:"#fec107"};
       },
       formatter: (rowContent, row) => {
         return (
           <div>
-            <Link to={"izin/detail/" + row.DatangID}>
-              <Button color="primary" className="mr-2">
-                <FontAwesomeIcon icon={faInfo} /> 
-              </Button>
-            </Link>
-            <Button color="danger" className="mr-2" onClick={() => handleClick(props.dispatch, row.DatangID)}>
+            <Button color="warning" className="mr-2" onClick={() => handleClick(props.dispatch, row.DatangID)}>
               <FontAwesomeIcon icon={faTrash} />
             </Button>
           </div>
@@ -141,11 +136,6 @@ const IzinComponent = (props) => {
               <Card body inverse color="info">
               <Row>
                 <Col>
-                  <Link to="izin/list">
-                    <Button color="warning" className="mr-2">
-                      <FontAwesomeIcon icon={faCalendarCheck} /> Izin Perorang<FontAwesomeIcon icon={faPlus} />
-                    </Button>
-                  </Link>
                   <Link to="izin/group">
                     <Button color="warning" className="mr-2">
                       <FontAwesomeIcon icon={faCalendarCheck} /> Izin Pergroup <FontAwesomeIcon icon={faPlus} />

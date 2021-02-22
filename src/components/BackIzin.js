@@ -8,11 +8,11 @@ const BackGroup = () => {
   return (
     <Row className="mb-2">
       <Col>
-        <Link to="/izin">
+      <a href={"/izin"}>
           <Button color="info">
             <FontAwesomeIcon icon={faArrowLeft} /> Back
           </Button>
-        </Link>
+      </a>
       </Col>
     </Row>
   );

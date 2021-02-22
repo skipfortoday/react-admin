@@ -43,9 +43,9 @@ const NavbarComponent = (props) => {
                 </Link>
               </NavItem>
               <NavItem>
-                <Link to="/izin">
+              <a href={"/izin"}>
                 <NavbarBrand>Status Absensi |</NavbarBrand>
-                </Link>
+               </a>
               </NavItem>
               <NavItem>
                 <Link to="/group">
@@ -85,9 +85,9 @@ const NavbarComponent = (props) => {
                     <DropdownItem>Tambah Pegawai</DropdownItem>
                   </Link>
                   <DropdownItem divider />
-                  <Link to="/izin/list">
+                  <a href={"/izin"}>
                     <DropdownItem>Lengkapi Absensi Perorang</DropdownItem>
-                  </Link>
+                  </a>
                   <Link to="/izin/group">
                     <DropdownItem>Lengkapi Absensi Pergroup</DropdownItem>
                   </Link>

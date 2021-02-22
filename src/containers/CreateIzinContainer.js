@@ -10,9 +10,13 @@ import LengkapiAbsenButton from "../components/LengkapiAbsenButton";
 import { getOptUser } from "../actions/optAction";
 import LengkapiAbsen from "../components/LengkapiAbsen";
 import LaporanDetail from "../components/LaporanDetail";
+import RekapLaporan from "../components/RekapLaporan";
 import { getLaporanDetail , getLaporanRekap} from "../actions/laporanAction";
 import { getUserDetail} from "../actions/userAction";
 import IzinComponentSolo from "../components/IzinComponentSolo";
+import RekapLeft from "../components/RekapLeft";
+import NamaCabangLaporan from "../components/NamaCabangLaporan";
+import PrintButton from "../components/PrintButton";
 
 const mapStateToProps = (state) => {
   return {
@@ -55,7 +59,7 @@ class CreateIzinContainer extends Component {
     if (this.props.getResponDataIzin || this.props.errorResponDataIzin) {
       if (this.props.errorResponDataIzin) {
         swal("Failed!", this.props.errorResponDataIzin, "error");
-      } else {
+      } else {window.location.reload();
         swal(
           "Izin Created!",
           " | ID : " +
@@ -66,7 +70,7 @@ class CreateIzinContainer extends Component {
             this.props.getResponDataIzin.Status +
             "  |  Keterangan :       " +
             this.props.getResponDataIzin.Keterangan,
-          "success"
+          "success",
         );
       }
     }
@@ -87,7 +91,7 @@ class CreateIzinContainer extends Component {
         <Col md={1}>
           </Col>
         <Col md={9}>
-        <Alert color="warning">
+        <Alert color="info">
             <LengkapiAbsen />
             </Alert>
           </Col>
@@ -99,8 +103,15 @@ class CreateIzinContainer extends Component {
         <FormIzinComponent onSubmit={(data) => this.handleSubmit(data)} />
         <IzinComponentSolo/>
         </Alert>
-        <Alert color="info"></Alert>
-        <LaporanDetail/>
+        <PrintButton />
+        <Row className="page-header">
+          <NamaCabangLaporan />
+          <RekapLaporan />
+        </Row>
+        <Row>
+          <LaporanDetail />
+          <RekapLeft />
+        </Row>
         <Alert color="info"></Alert>
       </Container>
     );

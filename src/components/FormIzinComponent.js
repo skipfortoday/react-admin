@@ -29,6 +29,7 @@ const renderField = ({
         disabled={disabled}
         readOnly={readOnly}
       >
+        <option value=""></option>
         <option value="OFF">OFF</option>
         <option value="CUTI">CUTI</option>
         <option value="TIDAK MASUK">IZIN TIDAK MASUK</option>
