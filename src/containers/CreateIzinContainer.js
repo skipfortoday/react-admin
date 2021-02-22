@@ -11,7 +11,7 @@ import { getOptUser } from "../actions/optAction";
 import LengkapiAbsen from "../components/LengkapiAbsen";
 import LaporanDetail from "../components/LaporanDetail";
 import RekapLaporan from "../components/RekapLaporan";
-import { getLaporanDetail , getLaporanRekap} from "../actions/laporanAction";
+import { getLaporanDetail , getLaporanRekap, getLaporanHead} from "../actions/laporanAction";
 import { getUserDetail} from "../actions/userAction";
 import IzinComponentSolo from "../components/IzinComponentSolo";
 import RekapLeft from "../components/RekapLeft";
@@ -43,6 +43,8 @@ class CreateIzinContainer extends Component {
         this.props.match.params.TglAkhir
       )
     );
+
+    this.props.dispatch(getLaporanHead(this.props.match.params.UserID));
     this.props.dispatch(getUserDetail(this.props.match.params.UserID));
     this.props.dispatch(getIzinListSolo(
       this.props.match.params.UserID,

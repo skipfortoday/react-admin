@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import { reduxForm, Field } from "redux-form";
 import { connect } from "react-redux";
-import { FormGroup, Col, Label, Input, Row, Button, Alert } from "reactstrap";
+import { FormGroup, Col, Label, Input, Row, Button} from "reactstrap";
 import IzinValidation from "../validations/IzinValidation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPaperPlane, faSave } from "@fortawesome/free-solid-svg-icons";
+import { faPaperPlane} from "@fortawesome/free-solid-svg-icons";
 
 const renderField = ({
   input,
@@ -167,7 +167,7 @@ class FormIzinComponent extends Component {
           <FormGroup>
             <Label> Kirim </Label>
               <Button
-                color="primary"
+                color="info"
                 type="submit"
                 disabled={this.props.submitting} 
               >

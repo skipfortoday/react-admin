@@ -13,7 +13,7 @@ const LengkapiAbsenButton = ({ values }) => {
           <a href={"/izin/create/"+values.Nama.value+"/"+values.TglAwal+"/"+values.TglAkhir}>
           <Button color="warning" >
          
-            <FontAwesomeIcon icon={faSearchPlus} /> Lengkapi Scan
+            <FontAwesomeIcon icon={faSearchPlus} /> Kroscek Absensi
           </Button>
           </a>
       </Col>

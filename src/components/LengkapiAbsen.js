@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { reduxForm, Field,getFormValues} from "redux-form";
+import { reduxForm, Field} from "redux-form";
 import { connect } from "react-redux";
 import Select from 'react-select';
 import {
@@ -12,6 +12,8 @@ import {
   Button
 } from "reactstrap";
 import SelectValidation from "../validations/SelectValidation";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPaperPlane, faSpinner} from "@fortawesome/free-solid-svg-icons"; 
 
 const renderField = ({
   input,
@@ -102,7 +104,7 @@ class LengkapiAbsen extends Component {
         <Container>
           <FormGroup row>
             <Row>
-            <Col md={6}>
+            <Col md={5}>
               <FormGroup>
                 <Field
                   name="Nama"
@@ -134,7 +136,19 @@ class LengkapiAbsen extends Component {
                 />
               </FormGroup>
             </Col>
+            <Col md={1}>
+          <FormGroup>
+            <Label> Proses </Label>
+              <Button
+                color="info"
+                type="submit"
+                disabled={this.props.submitting} 
+              >
+                <FontAwesomeIcon icon={faSpinner} /> 
+              </Button>
+            </FormGroup>
 
+            </Col>
             </Row>
           </FormGroup>
         </Container>
