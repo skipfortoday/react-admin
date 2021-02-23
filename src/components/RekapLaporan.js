@@ -27,7 +27,7 @@ const RekapLaporan = (props) => {
         <tr>
           <td width="120">Posisi / Jabatan</td>
           <td width="10">:</td>
-          <td>{props.getUserDetail.Jabatan}</td>
+          <td>{props.getUserDetail.Posisi}</td>
         </tr>
         
       </tbody>
