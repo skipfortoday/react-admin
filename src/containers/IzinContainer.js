@@ -3,13 +3,24 @@ import { Container, Col, Alert, Row, Button } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faListAlt } from "@fortawesome/free-solid-svg-icons";
 import IzinComponent from "../components/IzinComponent";
+import swal from "sweetalert";
 import { connect } from "react-redux";
 import { getIzinList, deleteDataIzin } from "../actions/izinAction";
-import InfoHomeIzin from "../components/InfoHomeIzin";
 import NavbarComponent from "../components/NavbarComponent";
 import LengkapiAbsenButton from "../components/LengkapiAbsenButton";
 import { getOptUser } from "../actions/optAction";
 import LengkapiAbsen from "../components/LengkapiAbsen";
+import { postLaporanProses } from "../actions/laporanAction";
+
+
+
+const mapStateToProps = (state) => {
+  return {
+    getResponDataLaporan: state.Laporan.getResponDataLaporan,
+    errorResponDataLaporan: state.Laporan.errorResponDataLaporan,
+  };
+};
+
 
 class IzinContainer extends Component {
   componentDidMount() {
@@ -17,8 +28,27 @@ class IzinContainer extends Component {
     this.props.dispatch(deleteDataIzin());
     this.props.dispatch(getOptUser());
   }
+  handleSubmit(data) {
+    this.props.dispatch(postLaporanProses(data));
+  }
+
+  
 
   render() {
+    if (this.props.getResponDataLaporan || this.props.errorResponDataLaporan) {
+      if (this.props.errorResponDataLaporan) {
+        swal("Failed!", this.props.errorResponDataLaporan, "error");
+      } else {
+        swal(
+          "Proses Berhasil!",
+          "Nama : " +
+            this.props.getResponDataLaporan.Nama +
+            " | ID : " +
+            this.props.getResponDataLaporan.UserID,
+          "success"
+        );
+      }
+    }
     return (
       <Container>
         <NavbarComponent />
@@ -39,11 +69,11 @@ class IzinContainer extends Component {
           </Col>
         <Col md={9}>
         <Alert color="info">
-            <LengkapiAbsen />
+            <LengkapiAbsen onSubmit={(data) => this.handleSubmit(data)} />
             </Alert>
           </Col>
           <Col md={1}>
-            <LengkapiAbsenButton />
+            <LengkapiAbsenButton  />
           </Col>
         </Row>
         <IzinComponent />
@@ -53,4 +83,4 @@ class IzinContainer extends Component {
   }
 }
 
-export default connect()(IzinContainer);
+export default connect(mapStateToProps, null)(IzinContainer);

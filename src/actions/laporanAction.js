@@ -4,6 +4,7 @@ export const GET_LAPORAN_LIST = "GET_LAPORAN_LIST";
 export const GET_LAPORAN_DETAIL = "GET_LAPORAN_DETAIL";
 export const GET_LAPORAN_REKAP = "GET_LAPORAN_REKAP";
 export const GET_LAPORAN_HEAD = "GET_LAPORAN_HEAD";
+export const POST_LAPORAN_PROSES = "POST_LAPORAN_PROSES";
 
 
 
@@ -131,3 +132,33 @@ export const getLaporanHead = (UserID) => {
   };
 };
 
+export const postLaporanProses= (data) => {
+  data.UserID = data.Nama.value;
+  return (dispatch) => {
+    axios
+      .post(
+         "http://192.168.0.25:3001/api/proses/",
+        data
+      )
+      .then(function (response) {
+        console.log(response);
+        
+        dispatch({
+          type: POST_LAPORAN_PROSES,
+          payload: {
+            data: response.data,
+            errorMessage: false,
+          },
+        });
+      })
+      .catch(function (error) {
+        dispatch({
+          type: POST_LAPORAN_PROSES,
+          payload: {
+            data: false,
+            errorMessage: error.message,
+          },
+        });
+      });
+  };
+};

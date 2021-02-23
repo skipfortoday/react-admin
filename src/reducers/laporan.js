@@ -3,6 +3,7 @@ import {
     GET_LAPORAN_DETAIL,
     GET_LAPORAN_REKAP,
     GET_LAPORAN_HEAD,
+    POST_LAPORAN_PROSES,
   } from "../actions/laporanAction";
   
   let initialState = {
@@ -16,6 +17,8 @@ import {
     errorLaporanRekap:false,
     getLaporanHead:false,
     errorLaporanHead:false,
+    getResponDataLaporan: false,
+    errorResponDataLaporan: false,
 
   };
   
@@ -52,6 +55,13 @@ import {
             getLaporanHead: action.payload.data,
             errorLaporanHead: action.payload.errorMessage,
           };
+
+          case POST_LAPORAN_PROSES:
+            return {
+              ...state,
+              getResponDataLaporan: action.payload.data,
+              errorResponDataLaporan: action.payload.errorMessage,
+            };
   
       default:
         return state;

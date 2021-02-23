@@ -17,11 +17,14 @@ import IzinComponentSolo from "../components/IzinComponentSolo";
 import RekapLeft from "../components/RekapLeft";
 import NamaCabangLaporan from "../components/NamaCabangLaporan";
 import PrintButton from "../components/PrintButton";
+import { postLaporanProses } from "../actions/laporanAction";
 
 const mapStateToProps = (state) => {
   return {
     getResponDataIzin: state.Izin.getResponDataIzin,
     errorResponDataIzin: state.Izin.errorResponDataIzin,
+    getResponDataLaporan: state.Laporan.getResponDataLaporan,
+    errorResponDataLaporan: state.Laporan.errorResponDataLaporan,
   };
 };
 
@@ -56,6 +59,9 @@ class CreateIzinContainer extends Component {
   handleSubmit(data) {
     this.props.dispatch(postIzinCreate(data));
   }
+  handleSubmit2(data) {
+    this.props.dispatch(postLaporanProses(data));
+  }
 
   render() {
     if (this.props.getResponDataIzin || this.props.errorResponDataIzin) {
@@ -73,6 +79,20 @@ class CreateIzinContainer extends Component {
             "  |  Keterangan :       " +
             this.props.getResponDataIzin.Keterangan,
           "success",
+        );
+      }
+    }
+    if (this.props.getResponDataLaporan || this.props.errorResponDataLaporan) {
+      if (this.props.errorResponDataLaporan) {
+        swal("Failed!", this.props.errorResponDataLaporan, "error");
+      } else {
+        swal(
+          "Proses Berhasil!",
+          "Nama : " +
+            this.props.getResponDataLaporan.Nama +
+            " | ID : " +
+            this.props.getResponDataLaporan.UserID,
+          "success"
         );
       }
     }
@@ -94,7 +114,7 @@ class CreateIzinContainer extends Component {
           </Col>
         <Col md={9}>
         <Alert color="info">
-            <LengkapiAbsen />
+            <LengkapiAbsen onSubmit={(data) => this.handleSubmit2(data)}/>
             </Alert>
           </Col>
           <Col md={1}>
