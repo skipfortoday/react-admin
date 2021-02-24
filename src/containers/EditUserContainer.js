@@ -8,6 +8,7 @@ import { getUserDetail, putUserUpdate } from "../actions/userAction";
 import { getOptCabang, getOptGroup } from "../actions/optAction";
 import swal from "sweetalert";
 import NavbarComponent from "../components/NavbarComponent";
+import {Redirect} from "react-router-dom";
 
 const mapStateToProps = (state) => {
   return {
@@ -28,6 +29,10 @@ class EditUserContainer extends Component {
   }
 
   render() {
+    if (!localStorage.getItem('user')) {
+      swal("Failed!", "Login Dulu Bosq", "error");
+      return <Redirect to="/login" /> ;
+    } 
     if (this.props.getResponDataUser || this.props.errorResponDataUser) {
       if (this.props.errorResponDataUser) {
         swal("Failed!", this.props.errorResponDataUser, "error");

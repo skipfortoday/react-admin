@@ -1,12 +1,14 @@
 import React, { Component } from "react";
+import {Redirect} from "react-router-dom";
 import TableComponent from "../components/TableComponent";
-import { Container, Alert, Col, Row, Button , Card} from "reactstrap";
+import { Container, Alert, Col, Row, Button } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faListAlt } from "@fortawesome/free-solid-svg-icons";
 import { connect } from "react-redux";
 import { getUsersList, deleteDataUser } from "../actions/userAction";
-import InfoHomePegawai from "../components/InfoHomePegawai";
 import NavbarComponent from "../components/NavbarComponent";
+import swal from "sweetalert";
+
 
 class HomeContainer extends Component {
   componentDidMount() {
@@ -15,6 +17,10 @@ class HomeContainer extends Component {
   }
 
   render() {
+    if (!localStorage.getItem('user')) {
+      swal("Failed!", "Login Dulu Bosq", "error");
+      return <Redirect to="/login" /> ;
+    } 
     return (
       <Container>
         <NavbarComponent />

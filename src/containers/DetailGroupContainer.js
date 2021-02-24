@@ -6,6 +6,9 @@ import { getGroupDetail } from "../actions/groupAction";
 import DetailGroupComponent from "../components/DetailGroupComponent";
 import InfoMenuGroup from "../components/InfoMenuGroup";
 import NavbarComponent from "../components/NavbarComponent";
+import {Redirect} from "react-router-dom";
+import swal from "sweetalert";
+
 
 class DetailGroupContainer extends Component {
   componentDidMount() {
@@ -13,6 +16,10 @@ class DetailGroupContainer extends Component {
   }
 
   render() {
+    if (!localStorage.getItem('user')) {
+      swal("Failed!", "Login Dulu Bosq", "error");
+      return <Redirect to="/login" /> ;
+    } 
     return (
       <Container>
         <NavbarComponent />

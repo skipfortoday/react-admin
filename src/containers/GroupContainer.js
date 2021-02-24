@@ -5,8 +5,10 @@ import { faListAlt } from "@fortawesome/free-solid-svg-icons";
 import GroupComponent from "../components/GroupComponent";
 import { connect } from "react-redux";
 import { getGroupList, deleteDataGroup } from "../actions/groupAction";
-import InfoHomeGroup from "../components/InfoHomeGroup";
 import NavbarComponent from "../components/NavbarComponent";
+import {Redirect} from "react-router-dom";
+import swal from "sweetalert";
+
 
 class GroupContainer extends Component {
   componentDidMount() {
@@ -15,6 +17,10 @@ class GroupContainer extends Component {
   }
 
   render() {
+    if (!localStorage.getItem('user')) {
+      swal("Failed!", "Login Dulu Bosq", "error");
+      return <Redirect to="/login" /> ;
+    } 
     return (
       <Container>
         <NavbarComponent />

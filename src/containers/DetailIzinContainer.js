@@ -6,6 +6,9 @@ import { getIzinDetail } from "../actions/izinAction";
 import DetailIzinComponent from "../components/DetailIzinComponent";
 import InfoMenuIzin from "../components/InfoMenuIzin";
 import NavbarComponent from "../components/NavbarComponent";
+import {Redirect} from "react-router-dom";
+import swal from "sweetalert";
+
 
 class DetailIzinContainer extends Component {
   componentDidMount() {
@@ -13,6 +16,10 @@ class DetailIzinContainer extends Component {
   }
 
   render() {
+    if (!localStorage.getItem('user')) {
+      swal("Failed!", "Login Dulu Bosq", "error");
+      return <Redirect to="/login" /> ;
+    } 
     return (
       <Container>
         <NavbarComponent />

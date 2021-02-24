@@ -7,6 +7,8 @@ import { connect } from "react-redux";
 import { getCabangList, deleteDataCabang } from "../actions/cabangAction";
 import InfoHomeCabang from "../components/InfoHomeCabang";
 import NavbarComponent from "../components/NavbarComponent";
+import swal from "sweetalert";
+import {Redirect} from "react-router-dom";
 
 
 class CabangContainer extends Component {
@@ -16,6 +18,10 @@ class CabangContainer extends Component {
   }
 
   render() {
+    if (!localStorage.getItem('user')) {
+      swal("Failed!", "Login Dulu Bosq", "error");
+      return <Redirect to="/login" /> ;
+    } 
     return (
       <Container>
         <NavbarComponent />

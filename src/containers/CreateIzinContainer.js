@@ -18,6 +18,7 @@ import RekapLeft from "../components/RekapLeft";
 import NamaCabangLaporan from "../components/NamaCabangLaporan";
 import PrintButton from "../components/PrintButton";
 import { postLaporanProses } from "../actions/laporanAction";
+import {Redirect} from "react-router-dom";
 
 const mapStateToProps = (state) => {
   return {
@@ -64,6 +65,10 @@ class CreateIzinContainer extends Component {
   }
 
   render() {
+    if (!localStorage.getItem('user')) {
+      swal("Failed!", "Login Dulu Bosq", "error");
+      return <Redirect to="/login" /> ;
+    } 
     if (this.props.getResponDataIzin || this.props.errorResponDataIzin) {
       if (this.props.errorResponDataIzin) {
         swal("Failed!", this.props.errorResponDataIzin, "error");

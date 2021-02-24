@@ -2,32 +2,31 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import {
   Collapse,
+  Button,
   Navbar,
   NavbarToggler,
   NavbarBrand,
   Nav,
   NavItem,
   NavbarText,
-  UncontrolledDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
-  ButtonDropdown,
   Card,
 } from "reactstrap";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSignOutAlt,
+} from "@fortawesome/free-solid-svg-icons";
 
 const NavbarComponent = (props) => {
   const [dropdownOpen, isOpen] = useState(false);
 
   const toggle = () => isOpen(!dropdownOpen);
-  
+  var nama = localStorage.getItem('user');
 
   return (
     <div>
       
       <Navbar color="faded" light expand="md">
           <Card body inverse color="warning">
-          <NavbarBrand> L'viors Attandance System ~ </NavbarBrand>
+          <NavbarBrand> L'viors AttSystem ~ </NavbarBrand>
           </Card>
           <NavbarToggler onClick={toggle} />
           <Collapse isOpen={isOpen} navbar>
@@ -70,41 +69,13 @@ const NavbarComponent = (props) => {
         
               </NavItem>   
             </NavItem>
-            </Nav>
-            <Nav navbar>
-              <UncontrolledDropdown nav inNavbar>
-              <ButtonDropdown isOpen={dropdownOpen} toggle={toggle}>
-                  <DropdownToggle caret color="info">
-                    Portal
-                  </DropdownToggle>
-                <DropdownMenu right>
-                  <Link to="/create">
-                    <DropdownItem>Tambah Pegawai</DropdownItem>
-                  </Link>
-                  <DropdownItem divider />
-                  <a href={"/izin"}>
-                    <DropdownItem>Lengkapi Absensi Perorang</DropdownItem>
-                  </a>
-                  <Link to="/izin/group">
-                    <DropdownItem>Lengkapi Absensi Pergroup</DropdownItem>
-                  </Link>
-                  <DropdownItem divider />
-                  <Link to="/group/create">
-                    <DropdownItem>Tambah Group Pegawai</DropdownItem>
-                  </Link>
-                  <DropdownItem divider />
-                  <Link to="/group/create">
-                    <DropdownItem>Tambah Cabang</DropdownItem>
-                  </Link>
-                </DropdownMenu>
-                </ButtonDropdown>
-              </UncontrolledDropdown>
-            </Nav>
-            
-            <NavbarText>as</NavbarText><NavbarBrand> Admin</NavbarBrand>
-            
+            </Nav>  
           </Collapse>
+          <a href={"/login"}>
+            <Button color="warning">{nama} <FontAwesomeIcon icon={faSignOutAlt}/></Button>
+          </a>
       </Navbar>
+      
 
     </div>
   );

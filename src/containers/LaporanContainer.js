@@ -1,14 +1,25 @@
 import React, { Component } from "react";
 import LaporanComponent from "../components/LaporanComponent";
+
 import { Container, Alert, Col, Row, Button } from "reactstrap";
 import { connect } from "react-redux";
 import { getLaporanDetail, getLaporanList } from "../actions/laporanAction";
 import NavbarComponent from "../components/NavbarComponent";
-import RekapLaporan from "../components/RekapLaporan";
 import BackLaporan from "../components/BackLaporan";
 import FormLaporan from "../components/FormLaporan";
 import { getUserDetail } from "../actions/userAction";
 import CetakComponent from "../components/CetakComponent";
+
+
+
+const mapStateToProps = (state) => {
+  return {
+    getLaporanList: state.Laporan.getLaporanList,
+    getExpandKey: state.Laporan.getExpandKey,
+    errorLaporanList: state.Laporan.errorLaporanList,
+  };
+};
+
 
 class LaporanContainer extends Component {
   componentDidMount() {
@@ -26,7 +37,10 @@ class LaporanContainer extends Component {
     );
   }
 
-  render() {
+  
+
+  render( ) {
+    
     return (
       <Container>
         <NavbarComponent />
@@ -52,4 +66,4 @@ class LaporanContainer extends Component {
   }
 }
 
-export default connect()(LaporanContainer);
+export default connect(mapStateToProps,null)(LaporanContainer);

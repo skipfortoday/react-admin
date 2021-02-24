@@ -8,6 +8,9 @@ import BackIzin from "../components/BackIzin";
 import ListUserIzin from "../components/ListUserIzin";
 import NavbarComponent from "../components/NavbarComponent";
 import LengkapiAbsenButton from "../components/LengkapiAbsenButton";
+import {Redirect} from "react-router-dom";
+import swal from "sweetalert";
+
 
 class ListUserIzinContainer extends Component {
   componentDidMount() {
@@ -17,6 +20,10 @@ class ListUserIzinContainer extends Component {
   }
 
   render() {
+    if (!localStorage.getItem('user')) {
+      swal("Failed!", "Login Dulu Bosq", "error");
+      return <Redirect to="/login" /> ;
+    } 
     return (
       <Container>
         <NavbarComponent />

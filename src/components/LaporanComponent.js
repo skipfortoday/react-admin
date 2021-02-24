@@ -239,10 +239,11 @@ const defaultSorted = [
     nonExpandable:props.getExpandKey[1]
   };
 
-
+ 
 
   return (
-    <BootstrapTable 
+    
+  <BootstrapTable 
       keyField='Tanggal' 
       data={ props.getLaporanList } 
       columns={ columns } 
@@ -251,6 +252,7 @@ const defaultSorted = [
       pagination={paginationFactory()}
     />
   );
+  
   /*return (
     <Container>
       {props.getLaporanList ? (

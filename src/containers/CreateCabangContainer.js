@@ -8,6 +8,7 @@ import { postCabangCreate } from "../actions/cabangAction";
 import { getOptUser } from "../actions/optAction";
 import swal from "sweetalert";
 import NavbarComponent from "../components/NavbarComponent";
+import {Redirect} from "react-router-dom";
 
 
 const mapStateToProps = (state) => {
@@ -28,6 +29,10 @@ class CreateCabangContainer extends Component {
 
   
   render() {
+    if (!localStorage.getItem('user')) {
+      swal("Failed!", "Login Dulu Bosq", "error");
+      return <Redirect to="/login" /> ;
+    } 
     if (this.props.getResponDataCabang || this.props.errorResponDataCabang) {
       if (this.props.errorResponDataCabang) {
         swal("Failed!", this.props.errorResponDataCabang, "error");

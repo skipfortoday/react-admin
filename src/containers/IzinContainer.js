@@ -11,7 +11,7 @@ import LengkapiAbsenButton from "../components/LengkapiAbsenButton";
 import { getOptUser } from "../actions/optAction";
 import LengkapiAbsen from "../components/LengkapiAbsen";
 import { postLaporanProses } from "../actions/laporanAction";
-
+import {Redirect} from "react-router-dom";
 
 
 const mapStateToProps = (state) => {
@@ -35,6 +35,10 @@ class IzinContainer extends Component {
   
 
   render() {
+    if (!localStorage.getItem('user')) {
+      swal("Failed!", "Login Dulu Bosq", "error");
+      return <Redirect to="/login" /> ;
+    } 
     if (this.props.getResponDataLaporan || this.props.errorResponDataLaporan) {
       if (this.props.errorResponDataLaporan) {
         swal("Failed!", this.props.errorResponDataLaporan, "error");

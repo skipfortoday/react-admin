@@ -7,6 +7,7 @@ import { postIzinGroup } from "../actions/izinAction";
 import swal from "sweetalert";
 import FormIzinGroup from "../components/FormIzinGroup";
 import NavbarComponent from "../components/NavbarComponent";
+import {Redirect} from "react-router-dom";
 
 const mapStateToProps = (state) => {
   return {
@@ -21,6 +22,10 @@ class CreateIzinGroup extends Component {
   }
 
   render() {
+    if (!localStorage.getItem('user')) {
+      swal("Failed!", "Login Dulu Bosq", "error");
+      return <Redirect to="/login" /> ;
+    } 
     if (this.props.getResponDataIzin || this.props.errorResponDataIzin) {
       if (this.props.errorResponDataIzin) {
         swal("Failed!", this.props.errorResponDataIzin, "error");

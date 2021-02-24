@@ -7,6 +7,7 @@ import { postUserCreate } from "../actions/userAction";
 import swal from "sweetalert";
 import NavbarComponent from "../components/NavbarComponent";
 import { getOptCabang, getOptGroup } from "../actions/optAction";
+import {Redirect} from "react-router-dom";
 
 const mapStateToProps = (state) => {
   return {
@@ -26,6 +27,10 @@ class CreateUserContainer extends Component {
   }
 
   render() {
+    if (!localStorage.getItem('user')) {
+      swal("Failed!", "Login Dulu Bosq", "error");
+      return <Redirect to="/login" /> ;
+    } 
     if (this.props.getResponDataUser || this.props.errorResponDataUser) {
       if (this.props.errorResponDataUser) {
         swal("Failed!", this.props.errorResponDataUser, "error");

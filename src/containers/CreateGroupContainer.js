@@ -7,6 +7,7 @@ import { connect } from "react-redux";
 import { postGroupCreate } from "../actions/groupAction";
 import swal from "sweetalert";
 import NavbarComponent from "../components/NavbarComponent";
+import {Redirect} from "react-router-dom";
 
 const mapStateToProps = (state) => {
   return {
@@ -21,6 +22,10 @@ class CreateGroupContainer extends Component {
   }
 
   render() {
+    if (!localStorage.getItem('user')) {
+      swal("Failed!", "Login Dulu Bosq", "error");
+      return <Redirect to="/login" /> ;
+    } 
     if (this.props.getResponDataGroup || this.props.errorResponDataGroup) {
       if (this.props.errorResponDataGroup) {
         swal("Failed!", this.props.errorResponDataGroup, "error");

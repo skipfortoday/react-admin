@@ -1,15 +1,18 @@
-import React, { Component } from "react";
+import React, { Component} from "react";
 import { Container, Alert, Col, Row } from "reactstrap";
 import { connect } from "react-redux";
 import { postLoginUser } from "../actions/loginAction";
 import swal from "sweetalert";
 import LoginComponent from "../components/LoginComponent";
-
+import { Redirect } from "react-router-dom";
+localStorage.clear();
 
 const mapStateToProps = (state) => {
   return {
     getResponLoginUser: state.Login.getResponLoginUser,
     errorResponLoginUser: state.Login.errorResponLoginUser,
+    isAuthenticated: state.Login.isAuthenticated,
+    user: state.Login.user,
   };
 };
 
@@ -23,15 +26,19 @@ class LoginContainer extends Component {
   render() {
     if (this.props.getResponLoginUser || this.props.errorResponLoginUser) {
       if (this.props.errorResponLoginUser) {
+        window.location.reload();
         swal("Failed!", "LoginGagal", "error");
+        
       } else {
         swal(
           "Sucsess!",
           "ok",
           "success"
-        );
+
+        );return <Redirect to="/" /> 
       }
     }
+
     return (
       <Container>
         <Row>

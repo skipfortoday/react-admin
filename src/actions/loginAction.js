@@ -1,6 +1,7 @@
 import axios from "axios";
 
 export const POST_LOGIN_USER = "POST_LOGIN_USER";
+export const POST_LOGOUT_USER = "POST_LOGOUT_USER";
 
 export const postLoginUser = (data) => {
   return (dispatch) => {
@@ -26,3 +27,11 @@ export const postLoginUser = (data) => {
       });
   };
 };
+
+export const logout = () => {
+  return {
+    type: POST_LOGOUT_USER
+  };
+};
+
+
