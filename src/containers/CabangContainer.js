@@ -5,7 +5,6 @@ import { faListAlt } from "@fortawesome/free-solid-svg-icons";
 import CabangComponent from "../components/CabangComponent";
 import { connect } from "react-redux";
 import { getCabangList, deleteDataCabang } from "../actions/cabangAction";
-import InfoHomeCabang from "../components/InfoHomeCabang";
 import NavbarComponent from "../components/NavbarComponent";
 import swal from "sweetalert";
 import {Redirect} from "react-router-dom";

@@ -35,10 +35,10 @@ class IzinContainer extends Component {
   
 
   render() {
-    if (!localStorage.getItem('user')) {
-      swal("Failed!", "Login Dulu Bosq", "error");
-      return <Redirect to="/login" /> ;
-    } 
+if (!localStorage.getItem('user')) {
+  swal("Failed!", "Login Dulu Bosq", "error");
+   return <Redirect to="/login"/> ;
+} 
     if (this.props.getResponDataLaporan || this.props.errorResponDataLaporan) {
       if (this.props.errorResponDataLaporan) {
         swal("Failed!", this.props.errorResponDataLaporan, "error");

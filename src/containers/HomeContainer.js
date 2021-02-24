@@ -8,6 +8,7 @@ import { connect } from "react-redux";
 import { getUsersList, deleteDataUser } from "../actions/userAction";
 import NavbarComponent from "../components/NavbarComponent";
 import swal from "sweetalert";
+import LogoutComponent from "../components/LogoutComponent";
 
 
 class HomeContainer extends Component {

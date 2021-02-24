@@ -1,15 +1,16 @@
 import React, { Component } from "react";
 import LaporanComponent from "../components/LaporanComponent";
-
+import {Redirect} from "react-router-dom";
 import { Container, Alert, Col, Row, Button } from "reactstrap";
 import { connect } from "react-redux";
 import { getLaporanDetail, getLaporanList } from "../actions/laporanAction";
 import NavbarComponent from "../components/NavbarComponent";
+import RekapLaporan from "../components/RekapLaporan";
 import BackLaporan from "../components/BackLaporan";
 import FormLaporan from "../components/FormLaporan";
 import { getUserDetail } from "../actions/userAction";
 import CetakComponent from "../components/CetakComponent";
-
+import swal from "sweetalert";
 
 
 const mapStateToProps = (state) => {
@@ -40,7 +41,12 @@ class LaporanContainer extends Component {
   
 
   render( ) {
+      if (this.props.errorLaporanList) {
+        swal("Failed!", "Gaada Data Bosq / Silahkan Coba lagi", "error");
+        return <Redirect to="/laporan" /> ;
+      } 
     
+
     return (
       <Container>
         <NavbarComponent />

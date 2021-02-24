@@ -29,6 +29,7 @@ export const postLoginUser = (data) => {
 };
 
 export const logout = () => {
+  localStorage.clear();
   return {
     type: POST_LOGOUT_USER
   };

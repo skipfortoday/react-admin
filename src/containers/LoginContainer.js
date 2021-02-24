@@ -5,7 +5,7 @@ import { postLoginUser } from "../actions/loginAction";
 import swal from "sweetalert";
 import LoginComponent from "../components/LoginComponent";
 import { Redirect } from "react-router-dom";
-localStorage.clear();
+
 
 const mapStateToProps = (state) => {
   return {
@@ -32,7 +32,7 @@ class LoginContainer extends Component {
       } else {
         swal(
           "Sucsess!",
-          "ok",
+          "Login Berhasil",
           "success"
 
         );return <Redirect to="/" /> 

@@ -1,0 +1,19 @@
+import React from "react";
+import { Row, Col, Button } from "reactstrap";
+import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPrint, faSignOutAlt} from "@fortawesome/free-solid-svg-icons";
+
+const LogoutComponent = () => {
+  return (
+    <Row className="mb-2">
+      <Col>
+          <Button color="warning" onClick={() => localStorage.clear()}>
+            Logout <FontAwesomeIcon icon={faSignOutAlt} /> 
+          </Button>
+      </Col>
+    </Row>
+  );
+};
+
+export default LogoutComponent;

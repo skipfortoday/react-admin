@@ -14,6 +14,7 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSignOutAlt,
 } from "@fortawesome/free-solid-svg-icons";
+import LogoutComponent from "./LogoutComponent";
 
 const NavbarComponent = (props) => {
   const [dropdownOpen, isOpen] = useState(false);
@@ -59,6 +60,7 @@ const NavbarComponent = (props) => {
                 </Link>
               </NavItem>   
             </Nav>
+           
             </Card>
             <Nav navbar> 
             <NavItem>
@@ -72,7 +74,7 @@ const NavbarComponent = (props) => {
             </Nav>  
           </Collapse>
           <a href={"/login"}>
-            <Button color="warning">{nama} <FontAwesomeIcon icon={faSignOutAlt}/></Button>
+           <LogoutComponent/>
           </a>
       </Navbar>
       
