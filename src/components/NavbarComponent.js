@@ -7,15 +7,12 @@ import {
   NavbarBrand,
   Nav,
   NavItem,
-  NavLink,
   NavbarText,
   UncontrolledDropdown,
   DropdownToggle,
   DropdownMenu,
   DropdownItem,
-  Button,
   ButtonDropdown,
-  Alert,
   Card,
 } from "reactstrap";
 
@@ -39,27 +36,27 @@ const NavbarComponent = (props) => {
            
               <NavItem>    
                 <Link to="/">
-                <NavbarBrand>Pegawai |</NavbarBrand>
+                <NavbarBrand>Pegawai</NavbarBrand>
                 </Link>
               </NavItem>
               <NavItem>
               <a href={"/izin"}>
-                <NavbarBrand>Status Absensi |</NavbarBrand>
+                <NavbarBrand>|  Status Absensi</NavbarBrand>
                </a>
               </NavItem>
               <NavItem>
                 <Link to="/group">
-                <NavbarBrand> Group Pegawai |</NavbarBrand>
+                <NavbarBrand>|  Group Pegawai  </NavbarBrand>
                 </Link>
               </NavItem>
               <NavItem>
                 <Link to="/cabang">
-                <NavbarBrand> Cabang |</NavbarBrand>
+                <NavbarBrand>| Cabang</NavbarBrand>
                 </Link>
               </NavItem>
               <NavItem>
                 <Link to="/laporan">
-                <NavbarBrand> Laporan</NavbarBrand>
+                <NavbarBrand>| Laporan</NavbarBrand>
                 </Link>
               </NavItem>   
             </Nav>
