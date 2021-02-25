@@ -9,7 +9,7 @@ const BackGroup = () => {
     <Row className="mb-2">
       <Col>
       <a href={"/izin"}>
-          <Button color="info">
+          <Button color="dark">
             <FontAwesomeIcon icon={faArrowLeft} /> Back
           </Button>
       </a>

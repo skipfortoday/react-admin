@@ -105,7 +105,7 @@ const IzinComponent = (props) => {
       dataField: "link",
       text: "Act",
       headerStyle: () => {
-        return { width: "40px" ,backgroundColor:"#fec107"};
+        return { width: "30px" ,backgroundColor:"#fec107"};
       },
       formatter: (rowContent, row) => {
         return (
@@ -138,7 +138,7 @@ const IzinComponent = (props) => {
                 <Col>
                   <Link to="izin/group">
                     <Button color="warning" className="mr-2">
-                      <FontAwesomeIcon icon={faCalendarCheck} /> Izin Pergroup <FontAwesomeIcon icon={faPlus} />
+                      <FontAwesomeIcon icon={faCalendarCheck} /> Libur Umum
                     </Button>
                   </Link>
                 </Col>

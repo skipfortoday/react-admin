@@ -12,6 +12,7 @@ import CetakComponent from "../components/CetakComponent";
 import swal from "sweetalert";
 
 
+
 const mapStateToProps = (state) => {
   return {
     getLaporanList: state.Laporan.getLaporanList,
@@ -49,22 +50,13 @@ class LaporanContainer extends Component {
     return (
       <div>
         <NavbarComponent />
-        <Row>
-          <Col md={1}>
+       
             <BackLaporan />
-          </Col>
-          <Col md={11}>
-            <Alert color="warning">
-              <h4>Detail Scan</h4>
-            </Alert>
-          </Col>
-          <Col md={10}>
+      
             <FormLaporan />
-          </Col>
-          <Col md={1}>
+      
             <CetakComponent />
-          </Col>
-        </Row>
+  
         <LaporanComponent />
     </div>
     );

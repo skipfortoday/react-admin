@@ -7,7 +7,7 @@ import { getGroupDetail, putGroupUpdate } from "../actions/groupAction";
 import swal from "sweetalert";
 import InfoMenuGroup from "../components/InfoMenuGroup";
 import NavbarComponent from "../components/NavbarComponent";
-import {Redirect} from "react-router-dom";
+import { Redirect } from "react-router-dom";
 
 const mapStateToProps = (state) => {
   return {
@@ -26,10 +26,10 @@ class EditGroupContainer extends Component {
   }
 
   render() {
-    if (!localStorage.getItem('user')) {
+    if (!localStorage.getItem("user")) {
       swal("Failed!", "Login Dulu Bosq", "error");
-      return <Redirect to="/login" /> ;
-    } 
+      return <Redirect to="/login" />;
+    }
     if (this.props.getResponDataGroup || this.props.errorResponDataGroup) {
       if (this.props.errorResponDataGroup) {
         swal("Failed!", this.props.errorResponDataGroup, "error");
@@ -45,24 +45,15 @@ class EditGroupContainer extends Component {
       }
     }
     return (
-      <Container>
+      <div>
         <NavbarComponent />
-        <Row>
-          <Col md={1}>
-            <BackGroup />
-          </Col>
-          <Col md={11}>
-            <Alert color="warning">
-              <h4>Menu Edit Group Pegawai</h4>
-            </Alert>
-          </Col>
-        </Row>
-        <InfoMenuGroup />
-        <Alert color="warning"></Alert>
-        <h2>Form Edit Group Pegawai</h2>
+        <div style={{ backgroundColor: '#17a2b7'}}>
+        <BackGroup />
+        <Container>
         <FormGroupComponent onSubmit={(data) => this.handleSubmit(data)} />
-        <Alert color="warning"></Alert>
-      </Container>
+        </Container>
+        </div>
+      </div>
     );
   }
 }

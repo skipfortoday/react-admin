@@ -40,7 +40,7 @@ const renderField = ({
         
       ></Input>
       {touched &&
-        ((error && <p style={{ color: "red" }}>{error}</p>) ||
+        ((error && <p style={{ color: "yellow" }}>{error}</p>) ||
           (warning && <p style={{ color: "brown" }}>{warning}</p>))}
     </Col>
   </Row>
@@ -80,7 +80,7 @@ const renderField2 = ({
          //onBlur={() => input.onBlur()}
       />
       {touched &&
-        ((error && <p style={{ color: "red" }}>{error}</p>) ||
+        ((error && <p style={{ color: "yellow" }}>{error}</p>) ||
           (warning && <p style={{ color: "brown" }}>{warning}</p>))}
     </Col>
   </Row>
@@ -109,6 +109,7 @@ class FormCabangComponent extends Component {
   render() {
     return (
       <form onSubmit={this.props.handleSubmit}>
+   
         <FormGroup row>
           <Col md={2}>
             <FormGroup>
@@ -180,7 +181,7 @@ class FormCabangComponent extends Component {
           <Col md="12">
             <FormGroup>
               <Button
-                color="primary"
+                color="dark"
                 type="submit"
                 disabled={this.props.submitting}
               >

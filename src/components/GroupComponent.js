@@ -80,16 +80,11 @@ const GroupComponent = (props) => {
       dataField: "link",
       text: "Action",
       headerStyle: () => {
-        return { width: "40px",backgroundColor:"#fec107" };
+        return { width: "10px",backgroundColor:"#fec107" };
       },
       formatter: (rowContent, row) => {
         return (
           <div>
-            <Link to={"group/detail/" + row.GroupID}>
-              <Button  color="primary" className="mr-2">
-                <FontAwesomeIcon icon={faInfo} /> 
-              </Button>
-            </Link>
 
             <Link to={"group/edit/" + row.GroupID}>
               <Button  color="warning" className="mr-2">
@@ -98,7 +93,7 @@ const GroupComponent = (props) => {
             </Link>
 
             <Button
-             color="danger"
+             color="warning"
               className="mr-2"
               onClick={() => handleClick(props.dispatch, row.GroupID)}
             >
@@ -131,7 +126,6 @@ const GroupComponent = (props) => {
           {(props) => (
             <div>
               <Card body inverse color="info">
-              <CardTitle tag="h5">Menu Group</CardTitle>
               <Row>
                 <Col>
                   <Link to="group/create">

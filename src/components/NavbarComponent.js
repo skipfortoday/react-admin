@@ -22,7 +22,7 @@ const NavbarComponent = (props) => {
     <div>
       
       <Navbar color="dark" dark expand="md">
-          <NavbarBrand> L'viors AttSystem ~ </NavbarBrand>
+          <NavbarBrand> L'viors Attendance System ~ </NavbarBrand>
           <NavbarToggler onClick={toggleNavbar} className="mr-2" />
           <Collapse isOpen={!collapsed} navbar>
             <Nav className="mr-auto" navbar>
@@ -47,9 +47,9 @@ const NavbarComponent = (props) => {
                 </Link>
               </NavItem>
               <NavItem>
-                <Link to="/laporan">
+              <a href={"/laporan"}>
                 <NavLink>| Laporan |</NavLink>
-                </Link>
+               </a>
               </NavItem>   
             </Nav>
             <Nav navbar> 

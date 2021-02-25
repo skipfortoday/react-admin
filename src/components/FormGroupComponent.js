@@ -39,7 +39,7 @@ const renderField = ({
         <option value="Minggu">MINGGU</option>
       </Input>
       {touched &&
-        ((error && <p style={{ color: "red" }}>{error}</p>) ||
+        ((error && <p style={{ color: "yellow" }}>{error}</p>) ||
           (warning && <p style={{ color: "brown" }}>{warning}</p>))}
     </Col>
   </Row>
@@ -87,13 +87,14 @@ class FormGroupComponent extends Component {
   render() {
     return (
       <form onSubmit={this.props.handleSubmit}>
-        <FormGroup row>
+        <FormGroup row style={{color:"white"}}>
           <Col md={12}>
-            <Alert color="danger">
+          <div style={{ backgroundColor: "#fec107",color:"black" }}>
               Masukkan Group ID untuk Kode & Nama Group / Nama Jabatan (WAJIB)
-            </Alert>
+            </div>
           </Col>
 
+          
           <Col md={4}>
             <FormGroup>
               <Field
@@ -117,7 +118,8 @@ class FormGroupComponent extends Component {
           </Col>
 
           <Col md={12}>
-            <Alert color="info">Masukkan Hari Libur Dan Komponen Gaji</Alert>
+          <div style={{ backgroundColor: "#fec107" ,color:"black" }}>
+            Masukkan Hari Libur Dan Komponen Gaji</div>
           </Col>
 
           <Col md={1}>
@@ -215,9 +217,9 @@ class FormGroupComponent extends Component {
           </Col>
 
           <Col md={12}>
-            <Alert color="primary">
+          <div style={{ backgroundColor: "#fec107",color:"black" }}>
               Masukkan Aturan Jadwal Pagi atau Jadwal Shift 1 (WAJIB)
-            </Alert>
+            </div>
           </Col>
 
           <Col md={3}>
@@ -298,9 +300,9 @@ class FormGroupComponent extends Component {
           </Col>
 
           <Col md={12}>
-            <Alert color="success">
+          <div style={{ backgroundColor: "#fec107",color:"black" }}>
               Masukkan Aturan Jadwal Siang atau Jadwal Shift 2
-            </Alert>
+            </div>
           </Col>
 
           <Col md={3}>
@@ -381,9 +383,9 @@ class FormGroupComponent extends Component {
           </Col>
 
           <Col md={12}>
-            <Alert color="warning">
+          <div style={{ backgroundColor: "#fec107" ,color:"black"}}>
               Masukkan Aturan Jadwal Sore atau Jadwal Shift 3
-            </Alert>
+           </div>
           </Col>
 
           <Col md={3}>
@@ -468,7 +470,7 @@ class FormGroupComponent extends Component {
           <Col md="12">
             <FormGroup>
               <Button
-                color="primary"
+                color="dark"
                 type="submit"
                 disabled={this.props.submitting}
               >

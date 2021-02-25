@@ -94,17 +94,11 @@ const CabangComponent = (props) => {
       dataField: "link",
       text: "Action",
       headerStyle: () => {
-        return { width: "80px", backgroundColor:"#fec107" };
+        return { width: "40px", backgroundColor:"#fec107" };
       },
       formatter: (rowContent, row) => {
         return (
           <div>
-            <Link to={"cabang/detail/" + row.KodeCabang}>
-              <Button  color="primary" className="mr-2">
-                <FontAwesomeIcon icon={faInfo} />
-              </Button>
-            </Link>
-  
             <Link to={"cabang/edit/" + row.KodeCabang}>
               <Button  color="warning" className="mr-2">
                 <FontAwesomeIcon icon={faEdit} />
@@ -112,7 +106,7 @@ const CabangComponent = (props) => {
             </Link>
 
             <Link to={"/cabang#"}>
-            <Button  color="danger" className="mr-2" onClick={() => handleClick(props.dispatch, row.KodeCabang)}>
+            <Button  color="warning" className="mr-2" onClick={() => handleClick(props.dispatch, row.KodeCabang)}>
               <FontAwesomeIcon icon={faTrash} /> 
             </Button>
             </Link>
@@ -142,7 +136,7 @@ const CabangComponent = (props) => {
                 <Col>
                   <Link to="/cabang/create">
                     <Button color="warning" className="mr-2">
-                      <FontAwesomeIcon icon={faSitemap} /> Tambah Cabang <FontAwesomeIcon icon={faPlus} />
+                      <FontAwesomeIcon icon={faSitemap} /> Tambah Cabang
                     </Button>
                   </Link>
                 </Col>

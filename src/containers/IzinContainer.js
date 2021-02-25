@@ -1,5 +1,4 @@
-import React, { Component } from "react";
-import { Row } from "reactstrap";
+import React, { Component } from "react";;
 import IzinComponent from "../components/IzinComponent";
 import swal from "sweetalert";
 import { connect } from "react-redux";

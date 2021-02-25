@@ -9,6 +9,7 @@ import {
   Nav,
   NavItem,
   NavLink,
+  NavbarText
 } from "reactstrap";
 import LogoutComponent from "./LogoutComponent";
 
@@ -22,22 +23,30 @@ const NavbarComponent = (props) => {
     <div>
       
       <Navbar color="dark" dark expand="md">
-          <NavbarBrand> L'viors AttSystem ~ </NavbarBrand>
+      <img src="/logodarkgold.jpeg" alt="logodarkgold"/>
+          <NavbarBrand> </NavbarBrand>
+          <NavbarBrand> L'viors Attendance System</NavbarBrand>
           <NavbarToggler onClick={toggleNavbar} className="mr-2" />
           <Collapse isOpen={!collapsed} navbar>
             <Nav className="mr-auto" navbar>
-              <NavItem>
-                <Link to="/laporan">
-                <NavbarBrand>| Laporan |</NavbarBrand>
+                 <NavItem>
+                <Link to="/news">
+                <NavLink>Pengumuman </NavLink>
                 </Link>
-              </NavItem>   
+              </NavItem>
+              <NavItem>
+                <Link to="/Laporan">
+                <NavLink> Laporan</NavLink>
+                </Link>
+              </NavItem>
             </Nav>
             <Nav navbar> 
+            <NavItem>
+                <Link to="/Login">
+                <NavLink> Login</NavLink>
+                </Link>
+              </NavItem>
             </Nav>  
-
-          <a href={"/login"}>
-           <LogoutComponent/>
-          </a>
           </Collapse>
       </Navbar>
       

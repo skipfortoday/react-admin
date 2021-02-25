@@ -23,6 +23,7 @@ import EditCabangContainer from "./containers/EditCabangContainer";
 import DetailCabangContainer from "./containers/DetailCabangContainer";
 import LaporanDetailContainer from "./containers/LaporanDetailContainer";
 import LoginContainer from "./containers/LoginContainer";
+import LandingPageContainer from "./containers/LandingPageContainer";
 
 
 
@@ -118,6 +119,8 @@ function App () {
           <Route path="/cabang/detail/:KodeCabang" exact component={DetailCabangContainer} />
 
           <Route path="/cabang/edit/:KodeCabang" exact component={EditCabangContainer} />
+
+          <Route path="/home" exact component={LandingPageContainer} />
 
           </AuthContext.Provider>
           </Switch>

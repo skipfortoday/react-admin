@@ -3,17 +3,15 @@ import BootstrapTable from "react-bootstrap-table-next";
 import { Container, Button, Row, Col, Spinner, Card } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faInfo,
+
   faTrash,
-  faCalendarCheck,
-  faPlus,
 } from "@fortawesome/free-solid-svg-icons";
 import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
 import paginationFactory from "react-bootstrap-table2-paginator";
-import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import swal from 'sweetalert';
 import { deleteIzin } from "../actions/izinAction";
+
 
 const { SearchBar } = Search;
 
@@ -121,7 +119,7 @@ const IzinComponentSolo = (props) => {
 
   
   return (
-    <Container>
+    <div>
       {props.getIzinListSolo ? (
         <ToolkitProvider
           bootstrap4
@@ -159,7 +157,7 @@ const IzinComponentSolo = (props) => {
           )}
         </div>
       )}
-    </Container>
+    </div>
   );
 };
 

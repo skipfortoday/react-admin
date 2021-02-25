@@ -40,7 +40,7 @@ const renderField = ({
         <option value="LIBUR">LIBUR</option>
       </Input>
       {touched &&
-        ((error && <p style={{ color: "red" }}>{error}</p>) ||
+        ((error && <p style={{ color: "yellow" }}>{error}</p>) ||
           (warning && <p style={{ color: "brown" }}>{warning}</p>))}
     </Col>
   </Row>
@@ -48,6 +48,7 @@ const renderField = ({
 
 const mapStateToProps = (state) => {
   return {
+    
     initialValues: {
       DatangID: state.Izin.getIzinDetail.DatangID,
       UserID: state.Izin.getIzinDetail.UserID,
@@ -167,7 +168,7 @@ class FormIzinComponent extends Component {
           <FormGroup>
             <Label> Kirim </Label>
               <Button
-                color="info"
+                color="warning"
                 type="submit"
                 disabled={this.props.submitting} 
               >

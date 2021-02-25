@@ -14,6 +14,9 @@ import { getUserDetail } from "../actions/userAction";
 import PrintButton from "../components/PrintButton";
 import RekapLeft from "../components/RekapLeft";
 import NamaCabangLaporan from "../components/NamaCabangLaporan";
+import LengkapiAbsenGuestComponent from "../components/LengkapiAbsenGuestComponent";
+import LengkapiAbsenButton2 from "../components/LengkapiAbsenButton2";
+import { getOptUser } from "../actions/optAction";
 
 class LaporanDetailContainer extends Component {
   componentDidMount() {
@@ -33,25 +36,32 @@ class LaporanDetailContainer extends Component {
     );
     this.props.dispatch(getUserDetail(this.props.match.params.UserID));
     this.props.dispatch(getLaporanHead(this.props.match.params.UserID));
+    this.props.dispatch(getOptUser());
   }
 
   render() {
     return (
-      <Container>
+     <div>
         <NavbarComponent />
-        <Row>
-          <Col md={1}>
-            <BackLaporan />
-          </Col>
-          <Col md={10}>
-            <Alert color="warning">
-              <h4>Rincian Laporan</h4>
-            </Alert>
-          </Col>
-          <Col md={1}>
-            <PrintButton />
-          </Col>
-        </Row>
+        <div style={{ backgroundColor: "#fec107" }}>
+          <tr>
+            <td width="150"></td>
+            <td>
+              <LengkapiAbsenGuestComponent onSubmit={(data) => this.handleSubmit2(data)} />
+            </td>
+            <td>
+              <tr>
+                <td width="20">.</td>
+              </tr>
+              <tr>
+                <LengkapiAbsenButton2 />
+                <PrintButton /> 
+              </tr>
+            </td>
+          </tr>
+        </div>
+          
+          <Container>
         <Row className="page-header">
           <NamaCabangLaporan />
           <RekapLaporan />
@@ -60,7 +70,8 @@ class LaporanDetailContainer extends Component {
           <LaporanDetail />
           <RekapLeft />
         </Row>
-      </Container>
+        </Container>
+      </div>
     );
   }
 }

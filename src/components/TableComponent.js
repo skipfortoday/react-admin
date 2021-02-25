@@ -194,7 +194,6 @@ const TableComponent = (props) => {
           {(props) => (
             <div>
               <Card body inverse color="info">
-              <CardTitle tag="h5">Menu Pegawai</CardTitle>
                 <Row>
                   <Col>
                     <Link to="/create">

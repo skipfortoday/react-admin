@@ -41,24 +41,15 @@ class CreateGroupContainer extends Component {
       }
     }
     return (
-      <Container>
+      <div>
         <NavbarComponent />
-        <Row>
-          <Col md={1}>
-            <BackGroup />
-          </Col>
-          <Col md={11}>
-            <Alert color="warning">
-              <h4>Menu Tambah Group Pegawai</h4>
-            </Alert>
-          </Col>
-        </Row>
-        <InfoMenuGroup />
-        <Alert color="warning"></Alert>
-        <h4>Form Tambah Group Pegawai</h4>
+        <div style={{ backgroundColor: '#17a2b7'}}>
+        <BackGroup />
+        <Container>
         <FormGroupComponent onSubmit={(data) => this.handleSubmit(data)} />
-        <Alert color="warning"></Alert>
-      </Container>
+        </Container>
+        </div>
+      </div>
     );
   }
 }

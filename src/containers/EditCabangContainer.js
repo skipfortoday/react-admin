@@ -4,11 +4,10 @@ import BackCabang from "../components/BackCabang";
 import { connect } from "react-redux";
 import FormCabangComponent from "../components/FormCabangComponent";
 import { getCabangDetail, putCabangUpdate } from "../actions/cabangAction";
-import { getOptUser} from "../actions/optAction";
+import { getOptUser } from "../actions/optAction";
 import swal from "sweetalert";
-import InfoMenuCabang from "../components/InfoMenuCabang";
 import NavbarComponent from "../components/NavbarComponent";
-import {Redirect} from "react-router-dom";
+import { Redirect } from "react-router-dom";
 
 const mapStateToProps = (state) => {
   return {
@@ -31,10 +30,10 @@ class EditCabangContainer extends Component {
   }
 
   render() {
-    if (!localStorage.getItem('user')) {
+    if (!localStorage.getItem("user")) {
       swal("Failed!", "Login Dulu Bosq", "error");
-      return <Redirect to="/login" /> ;
-    } 
+      return <Redirect to="/login" />;
+    }
     if (this.props.getResponDataCabang || this.props.errorResponDataCabang) {
       if (this.props.errorResponDataCabang) {
         swal("Failed!", this.props.errorResponDataCabang, "error");
@@ -50,24 +49,15 @@ class EditCabangContainer extends Component {
       }
     }
     return (
-      <Container>
+      <div>
         <NavbarComponent />
-        <Row>
-          <Col md={1}>
-            <BackCabang />
-          </Col>
-          <Col md={11}>
-            <Alert color="warning">
-              <h4>Menu Edit Cabang</h4>
-            </Alert>
-          </Col>
-        </Row>
-        <InfoMenuCabang />
-        <Alert color="warning"></Alert>
-        <h4>Form Edit Cabang</h4>
-        <FormCabangComponent onSubmit={(data) => this.handleSubmit(data)} />
-        <Alert color="warning"></Alert>
-      </Container>
+        <div style={{ backgroundColor: "#17a2b7" }}>
+          <BackCabang />
+          <Container>
+          <FormCabangComponent onSubmit={(data) => this.handleSubmit(data)} />
+          </Container>
+        </div>
+      </div>
     );
   }
 }

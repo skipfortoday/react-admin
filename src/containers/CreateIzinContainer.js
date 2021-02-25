@@ -35,6 +35,9 @@ const mapStateToProps = (state) => {
     errorResponDataIzin: state.Izin.errorResponDataIzin,
     getResponDataLaporan: state.Laporan.getResponDataLaporan,
     errorResponDataLaporan: state.Laporan.errorResponDataLaporan,
+    getLaporanList: state.Laporan.getLaporanList,
+    getExpandKey: state.Laporan.getExpandKey,
+    errorLaporanList: state.Laporan.errorLaporanList,
   };
 };
 
@@ -77,6 +80,11 @@ class CreateIzinContainer extends Component {
   }
 
   render() {
+    if (this.props.errorLaporanList) {
+      swal("Failed!", "Gaada Data Bosq / Silahkan Coba lagi", "error");
+      return <Redirect to="/izin" />;
+    }
+
     if (!localStorage.getItem("user")) {
       swal("Failed!", "Login Dulu Bosq", "error");
       return <Redirect to="/login" />;
@@ -117,41 +125,44 @@ class CreateIzinContainer extends Component {
     return (
       <div>
         <NavbarComponent />
-        <Row>
-          <Col md={1}>
-            <BackIzin />
-          </Col>
-          <Col md={11}>
-            <Alert color="info">
-              <h4>Menu Lengkapi Absen</h4>
-            </Alert>
-          </Col>
-        </Row>
-        <Row>
-          <Col md={1}></Col>
-          <Col md={9}>
-            <Alert color="info">
+        <div style={{ backgroundColor: "#fec107" }}>
+          <BackIzin />
+
+          <tr>
+            <td width="60"></td>
+            <td>
               <LengkapiAbsen onSubmit={(data) => this.handleSubmit2(data)} />
-            </Alert>
-          </Col>
-          <Col md={1}>
-            <LengkapiAbsenButton />
-          </Col>
+            </td>
+            <td width="10"></td>
+            <td>
+              <tr>
+                <td width="100">.</td>
+              </tr>
+              <tr>
+                <LengkapiAbsenButton />
+              </tr>
+            </td>
+          </tr>
+        </div>
+        <div style={{ backgroundColor: "#17a2b7" }}>
+          <Container>
+            <FormIzinComponent onSubmit={(data) => this.handleSubmit(data)} />
+          </Container>
+        </div>
+        <IzinComponentSolo />
+        <div style={{ backgroundColor: "#fec107" }}>
+          <Container>
+          <Row>
+         <h3>Print Preview</h3> <PrintButton />
         </Row>
-        <Alert color="info">
-          <FormIzinComponent onSubmit={(data) => this.handleSubmit(data)} />
-          <IzinComponentSolo />
-        </Alert>
-        <PrintButton />
-        <Row className="page-header">
+        </Container>
+        </div>
+        <Container>
           <NamaCabangLaporan />
           <RekapLaporan />
-        </Row>
-        <Row>
           <LaporanDetail />
           <RekapLeft />
-        </Row>
-        <Alert color="info"></Alert>
+        </Container>
       </div>
     );
   }
