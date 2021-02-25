@@ -26,40 +26,13 @@ const NavbarComponent = (props) => {
           <NavbarToggler onClick={toggleNavbar} className="mr-2" />
           <Collapse isOpen={!collapsed} navbar>
             <Nav className="mr-auto" navbar>
-              <NavItem>    
-                <Link to="/">
-                <NavLink>| Pegawai  |</NavLink>
-                </Link>
-              </NavItem>
-              <NavItem>
-              <a href={"/izin"}>
-                <NavLink>| Status Absensi |</NavLink>
-               </a>
-              </NavItem>
-              <NavItem>
-                <Link to="/group">
-                <NavLink>| Group |</NavLink>
-                </Link>
-              </NavItem>
-              <NavItem>
-                <Link to="/cabang">
-                <NavLink>| Cabang |</NavLink>
-                </Link>
-              </NavItem>
               <NavItem>
                 <Link to="/laporan">
-                <NavLink>| Laporan |</NavLink>
+                <NavbarBrand>| Laporan |</NavbarBrand>
                 </Link>
               </NavItem>   
             </Nav>
             <Nav navbar> 
-            <NavItem>
-            <NavItem>
-                
-                <NavbarBrand> {nama}</NavbarBrand>
-        
-              </NavItem>   
-            </NavItem>
             </Nav>  
 
           <a href={"/login"}>

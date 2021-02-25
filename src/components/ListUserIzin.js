@@ -94,7 +94,7 @@ const ListUserIzin = (props) => {
   ];
 
   return (
-    <Container>
+    <div>
       {props.getUsersList ? (
         <ToolkitProvider
           bootstrap4
@@ -132,7 +132,7 @@ const ListUserIzin = (props) => {
           )}
         </div>
       )}
-    </Container>
+    </div>
   );
 };
 

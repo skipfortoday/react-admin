@@ -121,7 +121,7 @@ const IzinComponent = (props) => {
 
   
   return (
-    <Container>
+    <div>
       {props.getIzinList ? (
         <ToolkitProvider
           bootstrap4
@@ -166,7 +166,7 @@ const IzinComponent = (props) => {
           )}
         </div>
       )}
-    </Container>
+    </div>
   );
 };
 

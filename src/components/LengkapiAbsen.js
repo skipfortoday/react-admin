@@ -140,7 +140,7 @@ class LengkapiAbsen extends Component {
           <FormGroup>
             <Label> Proses </Label>
               <Button
-                color="info"
+                color="dark"
                 type="submit"
                 disabled={this.props.submitting} 
               >

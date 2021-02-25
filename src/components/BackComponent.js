@@ -9,7 +9,7 @@ const BackComponent = () => {
     <Row className="mb-2">
       <Col>
         <Link to="/">
-          <Button color="info">
+          <Button color="dark">
             <FontAwesomeIcon icon={faArrowLeft} /> Back
           </Button>
         </Link>

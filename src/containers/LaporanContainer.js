@@ -1,11 +1,10 @@
 import React, { Component } from "react";
 import LaporanComponent from "../components/LaporanComponent";
 import {Redirect} from "react-router-dom";
-import { Container, Alert, Col, Row, Button } from "reactstrap";
+import { Container, Alert, Col, Row} from "reactstrap";
 import { connect } from "react-redux";
 import { getLaporanDetail, getLaporanList } from "../actions/laporanAction";
 import NavbarComponent from "../components/NavbarComponent";
-import RekapLaporan from "../components/RekapLaporan";
 import BackLaporan from "../components/BackLaporan";
 import FormLaporan from "../components/FormLaporan";
 import { getUserDetail } from "../actions/userAction";
@@ -48,7 +47,7 @@ class LaporanContainer extends Component {
     
 
     return (
-      <Container>
+      <div>
         <NavbarComponent />
         <Row>
           <Col md={1}>
@@ -67,7 +66,7 @@ class LaporanContainer extends Component {
           </Col>
         </Row>
         <LaporanComponent />
-      </Container>
+    </div>
     );
   }
 }

@@ -315,7 +315,7 @@ class FormComponent extends Component {
           <Col md="12">
             <FormGroup>
               <Button
-                color="warning"
+                color="dark"
                 type="submit"
                 disabled={this.props.submitting}
               >

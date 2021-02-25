@@ -3,7 +3,12 @@ import { Container, Alert, Col, Row } from "reactstrap";
 import BackIzin from "../components/BackIzin";
 import FormIzinComponent from "../components/FormIzinComponent";
 import { connect } from "react-redux";
-import { getIzinDetail, getIzinListSolo, postIzinCreate, deleteDataIzin} from "../actions/izinAction";
+import {
+  getIzinDetail,
+  getIzinListSolo,
+  postIzinCreate,
+  deleteDataIzin,
+} from "../actions/izinAction";
 import swal from "sweetalert";
 import NavbarComponent from "../components/NavbarComponent";
 import LengkapiAbsenButton from "../components/LengkapiAbsenButton";
@@ -11,14 +16,18 @@ import { getOptUser } from "../actions/optAction";
 import LengkapiAbsen from "../components/LengkapiAbsen";
 import LaporanDetail from "../components/LaporanDetail";
 import RekapLaporan from "../components/RekapLaporan";
-import { getLaporanDetail , getLaporanRekap, getLaporanHead} from "../actions/laporanAction";
-import { getUserDetail} from "../actions/userAction";
+import {
+  getLaporanDetail,
+  getLaporanRekap,
+  getLaporanHead,
+} from "../actions/laporanAction";
+import { getUserDetail } from "../actions/userAction";
 import IzinComponentSolo from "../components/IzinComponentSolo";
 import RekapLeft from "../components/RekapLeft";
 import NamaCabangLaporan from "../components/NamaCabangLaporan";
 import PrintButton from "../components/PrintButton";
 import { postLaporanProses } from "../actions/laporanAction";
-import {Redirect} from "react-router-dom";
+import { Redirect } from "react-router-dom";
 
 const mapStateToProps = (state) => {
   return {
@@ -50,10 +59,13 @@ class CreateIzinContainer extends Component {
 
     this.props.dispatch(getLaporanHead(this.props.match.params.UserID));
     this.props.dispatch(getUserDetail(this.props.match.params.UserID));
-    this.props.dispatch(getIzinListSolo(
-      this.props.match.params.UserID,
-      this.props.match.params.TglAwal,
-      this.props.match.params.TglAkhir));
+    this.props.dispatch(
+      getIzinListSolo(
+        this.props.match.params.UserID,
+        this.props.match.params.TglAwal,
+        this.props.match.params.TglAkhir
+      )
+    );
     this.props.dispatch(deleteDataIzin());
   }
 
@@ -65,14 +77,15 @@ class CreateIzinContainer extends Component {
   }
 
   render() {
-    if (!localStorage.getItem('user')) {
+    if (!localStorage.getItem("user")) {
       swal("Failed!", "Login Dulu Bosq", "error");
-      return <Redirect to="/login" /> ;
-    } 
+      return <Redirect to="/login" />;
+    }
     if (this.props.getResponDataIzin || this.props.errorResponDataIzin) {
       if (this.props.errorResponDataIzin) {
         swal("Failed!", this.props.errorResponDataIzin, "error");
-      } else {window.location.reload();
+      } else {
+        window.location.reload();
         swal(
           "Izin Created!",
           " | ID : " +
@@ -83,7 +96,7 @@ class CreateIzinContainer extends Component {
             this.props.getResponDataIzin.Status +
             "  |  Keterangan :       " +
             this.props.getResponDataIzin.Keterangan,
-          "success",
+          "success"
         );
       }
     }
@@ -102,7 +115,7 @@ class CreateIzinContainer extends Component {
       }
     }
     return (
-      <Container>
+      <div>
         <NavbarComponent />
         <Row>
           <Col md={1}>
@@ -115,11 +128,10 @@ class CreateIzinContainer extends Component {
           </Col>
         </Row>
         <Row>
-        <Col md={1}>
-          </Col>
-        <Col md={9}>
-        <Alert color="info">
-            <LengkapiAbsen onSubmit={(data) => this.handleSubmit2(data)}/>
+          <Col md={1}></Col>
+          <Col md={9}>
+            <Alert color="info">
+              <LengkapiAbsen onSubmit={(data) => this.handleSubmit2(data)} />
             </Alert>
           </Col>
           <Col md={1}>
@@ -127,8 +139,8 @@ class CreateIzinContainer extends Component {
           </Col>
         </Row>
         <Alert color="info">
-        <FormIzinComponent onSubmit={(data) => this.handleSubmit(data)} />
-        <IzinComponentSolo/>
+          <FormIzinComponent onSubmit={(data) => this.handleSubmit(data)} />
+          <IzinComponentSolo />
         </Alert>
         <PrintButton />
         <Row className="page-header">
@@ -140,7 +152,7 @@ class CreateIzinContainer extends Component {
           <RekapLeft />
         </Row>
         <Alert color="info"></Alert>
-      </Container>
+      </div>
     );
   }
 }

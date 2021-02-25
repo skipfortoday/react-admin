@@ -124,7 +124,7 @@ const CabangComponent = (props) => {
 
   
   return (
-    <Container>
+    <div>
       {props.getCabangList ? (
         <ToolkitProvider
           bootstrap4
@@ -141,7 +141,7 @@ const CabangComponent = (props) => {
               <Row>
                 <Col>
                   <Link to="/cabang/create">
-                    <Button  outline color="info" className="mr-2">
+                    <Button color="warning" className="mr-2">
                       <FontAwesomeIcon icon={faSitemap} /> Tambah Cabang <FontAwesomeIcon icon={faPlus} />
                     </Button>
                   </Link>
@@ -170,7 +170,7 @@ const CabangComponent = (props) => {
           )}
         </div>
       )}
-    </Container>
+    </div>
   );
 };
 

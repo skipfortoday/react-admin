@@ -68,7 +68,7 @@ const TableComponent = (props) => {
       dataField: "link",
       text: "Action",
       headerStyle: () => {
-        return { width: "30px", backgroundColor:"#fec107" };
+        return { width: "20px", backgroundColor:"#fec107" };
       },
       formatter: (rowContent, row) => {
         return (
@@ -85,7 +85,7 @@ const TableComponent = (props) => {
   ];
 
   return (
-    <Container>
+    <div>
       {props.getUsersList ? (
         <ToolkitProvider
           bootstrap4
@@ -123,7 +123,7 @@ const TableComponent = (props) => {
           )}
         </div>
       )}
-    </Container>
+    </div>
   );
 };
 

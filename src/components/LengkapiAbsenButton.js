@@ -11,7 +11,7 @@ const LengkapiAbsenButton = ({ values }) => {
     <Row className="mb-2">
       <Col>
           <a href={"/izin/create/"+values.Nama.value+"/"+values.TglAwal+"/"+values.TglAkhir}>
-          <Button color="warning" >
+          <Button color="dark"  size="lg" >
          
             <FontAwesomeIcon icon={faSearchPlus} /> Kroscek Absensi
           </Button>

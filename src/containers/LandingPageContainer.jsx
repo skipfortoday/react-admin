@@ -1,16 +1,15 @@
 import React, { Component } from "react";
-import CabangComponent from "../components/CabangComponent";
+import {Redirect} from "react-router-dom";
+import TableComponent from "../components/TableComponent";
 import { connect } from "react-redux";
-import { getCabangList, deleteDataCabang } from "../actions/cabangAction";
+import { getUsersList, deleteDataUser } from "../actions/userAction";
 import NavbarComponent from "../components/NavbarComponent";
 import swal from "sweetalert";
-import {Redirect} from "react-router-dom";
 
-
-class CabangContainer extends Component {
+class HomeContainer extends Component {
   componentDidMount() {
-    this.props.dispatch(getCabangList());
-    this.props.dispatch(deleteDataCabang());
+    this.props.dispatch(getUsersList());
+    this.props.dispatch(deleteDataUser());
   }
 
   render() {
@@ -21,10 +20,10 @@ class CabangContainer extends Component {
     return (
       <div>
         <NavbarComponent />
-        <CabangComponent />
-      </div>
+        <TableComponent />
+        </div>
     );
   }
 }
 
-export default connect()(CabangContainer);
+export default connect()(HomeContainer);
