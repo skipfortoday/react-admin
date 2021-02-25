@@ -55,12 +55,10 @@ class LoginComponent extends Component {
     return (
 
       <Card body inverse color="info">
-        <CardTitle tag="h5">Login Lviors Absensi</CardTitle>
-        <CardText>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</CardText>
-      
+        <CardTitle tag="h5">Login Lviors Absensi</CardTitle> 
       <form onSubmit={this.props.handleSubmit}>
         <FormGroup row>
-          <Col md={6}>
+          <Col md={5}>
             <FormGroup>
               <Field
                 type="text"
@@ -71,7 +69,7 @@ class LoginComponent extends Component {
             </FormGroup>
           </Col>
 
-          <Col md={6}>
+          <Col md={5}>
             <FormGroup>
               <Field
                 type="Password"
@@ -80,23 +78,18 @@ class LoginComponent extends Component {
                 label="Password :"
               />
             </FormGroup>
+         
           </Col>
-          <Col md={4}>
-          <FormGroup>
 
-              <Button
+          <Col md={1}>
+            <Label></Label>
+          <Button
                 color="warning"
                 type="submit"
                 disabled={this.props.submitting}
               >
                 <FontAwesomeIcon icon={faSignInAlt} /> Login
               </Button>
-            </FormGroup>
-            </Col>
-        </FormGroup>
-        <FormGroup row>
-          <Col md="12">
-            
           </Col>
         </FormGroup>
       </form>

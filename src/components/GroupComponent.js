@@ -1,6 +1,6 @@
 import React from "react";
 import BootstrapTable from "react-bootstrap-table-next";
-import { Container, Button, Row, Col, Spinner, Card } from "reactstrap";
+import { Button, Row, Col, Spinner, Card , CardTitle} from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faInfo,
@@ -117,7 +117,7 @@ const GroupComponent = (props) => {
   ];
 
   return (
-    <Container>
+<div>
       {props.getGroupList ? (
         <ToolkitProvider
           bootstrap4
@@ -130,7 +130,8 @@ const GroupComponent = (props) => {
         >
           {(props) => (
             <div>
-               <Card body inverse color="info">
+              <Card body inverse color="info">
+              <CardTitle tag="h5">Menu Group</CardTitle>
               <Row>
                 <Col>
                   <Link to="group/create">
@@ -162,9 +163,10 @@ const GroupComponent = (props) => {
           ) : (
             <Spinner color="dark" />
           )}
+          
         </div>
       )}
-    </Container>
+</div>
   );
 };
 

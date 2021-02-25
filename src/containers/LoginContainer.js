@@ -1,9 +1,10 @@
 import React, { Component} from "react";
-import { Container, Alert, Col, Row } from "reactstrap";
 import { connect } from "react-redux";
 import { postLoginUser } from "../actions/loginAction";
 import swal from "sweetalert";
+import { getUsersList } from "../actions/userAction";
 import LoginComponent from "../components/LoginComponent";
+import ListUserLaporan from "../components/ListUserLaporan";
 import { Redirect } from "react-router-dom";
 
 
@@ -21,6 +22,10 @@ class LoginContainer extends Component {
   handleSubmit(data) {
     this.props.dispatch(postLoginUser(data));
   }
+  componentDidMount() {
+    this.props.dispatch(getUsersList());
+  }
+
 
   
   render() {
@@ -40,14 +45,13 @@ class LoginContainer extends Component {
     }
 
     return (
-      <Container>
-        <Row>
-      <Col md={3}></Col>
-     <Col md={5}>
-     <LoginComponent onSubmit={(data) => this.handleSubmit(data)}/>
-     </Col>
-     </Row>
-        </Container>
+
+   
+    <div>
+    <LoginComponent onSubmit={(data) => this.handleSubmit(data)}/>
+   
+     </div>
+   
     );
   }
 }

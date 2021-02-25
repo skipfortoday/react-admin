@@ -61,7 +61,6 @@ class CreateUserContainer extends Component {
         <Alert color="info">
         <FormComponent onSubmit={(data) => this.handleSubmit(data)} />
         </Alert>
-        <Alert color="info"></Alert>
       </Container>
     );
   }

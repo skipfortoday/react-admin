@@ -6,7 +6,7 @@ import { connect } from "react-redux";
 import { getUsersList } from "../actions/userAction";
 import NavbarComponent from "../components/NavbarComponent";
 import ListUserLaporan from "../components/ListUserLaporan";
-import InfoHomeLaporan from "../components/InfoHomeLaporan";
+
 
 class ListLaporanContainer extends Component {
   componentDidMount() {

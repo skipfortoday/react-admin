@@ -8,63 +8,52 @@ import {
   NavbarBrand,
   Nav,
   NavItem,
-  NavbarText,
-  Card,
+  NavLink,
 } from "reactstrap";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSignOutAlt,
-} from "@fortawesome/free-solid-svg-icons";
 import LogoutComponent from "./LogoutComponent";
 
 const NavbarComponent = (props) => {
-  const [dropdownOpen, isOpen] = useState(false);
+  const [collapsed, setCollapsed] = useState(true);
 
-  const toggle = () => isOpen(!dropdownOpen);
+  const toggleNavbar = () => setCollapsed(!collapsed);
   var nama = localStorage.getItem('user');
 
   return (
     <div>
       
-      <Navbar color="faded" light expand="md">
-          <Card body inverse color="warning">
+      <Navbar color="dark" dark expand="md">
           <NavbarBrand> L'viors AttSystem ~ </NavbarBrand>
-          </Card>
-          <NavbarToggler onClick={toggle} />
-          <Collapse isOpen={isOpen} navbar>
-          <Card body inverse color="info">
+          <NavbarToggler onClick={toggleNavbar} className="mr-2" />
+          <Collapse isOpen={!collapsed} navbar>
             <Nav className="mr-auto" navbar>
-           
               <NavItem>    
                 <Link to="/">
-                <NavbarBrand>Pegawai</NavbarBrand>
+                <NavLink>| Pegawai  |</NavLink>
                 </Link>
               </NavItem>
               <NavItem>
               <a href={"/izin"}>
-                <NavbarBrand>|  Status Absensi</NavbarBrand>
+                <NavLink>| Status Absensi |</NavLink>
                </a>
               </NavItem>
               <NavItem>
                 <Link to="/group">
-                <NavbarBrand>|  Group Pegawai  </NavbarBrand>
+                <NavLink>| Group |</NavLink>
                 </Link>
               </NavItem>
               <NavItem>
                 <Link to="/cabang">
-                <NavbarBrand>| Cabang</NavbarBrand>
+                <NavLink>| Cabang |</NavLink>
                 </Link>
               </NavItem>
               <NavItem>
                 <Link to="/laporan">
-                <NavbarBrand>| Laporan</NavbarBrand>
+                <NavLink>| Laporan |</NavLink>
                 </Link>
               </NavItem>   
             </Nav>
-           
-            </Card>
             <Nav navbar> 
             <NavItem>
-
             <NavItem>
                 
                 <NavbarBrand> </NavbarBrand>
@@ -72,10 +61,11 @@ const NavbarComponent = (props) => {
               </NavItem>   
             </NavItem>
             </Nav>  
-          </Collapse>
+
           <a href={"/login"}>
            <LogoutComponent/>
           </a>
+          </Collapse>
       </Navbar>
       
 

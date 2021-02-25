@@ -1,6 +1,15 @@
 import React from "react";
 import BootstrapTable from "react-bootstrap-table-next";
-import { Container, Button, Row, Col, Spinner,Card, CardTitle, CardText } from "reactstrap";
+import {
+  Container,
+  Button,
+  Row,
+  Col,
+  Spinner,
+  Card,
+  CardTitle,
+  CardText,
+} from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faInfo,
@@ -15,71 +24,69 @@ import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
 import paginationFactory from "react-bootstrap-table2-paginator";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import swal from 'sweetalert';
-import { deleteUser,resetUser,resetPasswordUser } from "../actions/userAction";
+import swal from "sweetalert";
+import {
+  deleteUser,
+  resetUser,
+  resetPasswordUser,
+} from "../actions/userAction";
 
 const { SearchBar } = Search;
 
 const handleClick = (dispatch, ID) => {
-  
   swal({
     title: "Apakah Anda yakin akan menghapus data ini ?",
     icon: "warning",
     buttons: true,
     dangerMode: true,
-  })
-  .then((willDelete) => {
+  }).then((willDelete) => {
     if (willDelete) {
-      dispatch(deleteUser(ID))
+      dispatch(deleteUser(ID));
       swal("Data User Sukses dihapus", {
         icon: "success",
       });
-      window.location.reload();} else {
+      window.location.reload();
+    } else {
       swal("Data gagal dihapus");
     }
   });
-}
+};
 
 const handleClick2 = (dispatch, ID) => {
-  
   swal({
     title: "Reset Device Login Karyawan ?",
     icon: "warning",
     buttons: true,
     dangerMode: true,
-  })
-  .then((willReset) => {
+  }).then((willReset) => {
     if (willReset) {
-      dispatch(resetUser(ID))
+      dispatch(resetUser(ID));
       swal("Berhasil, Karyawan Bisa Login Di Device Baru", {
         icon: "success",
       });
-      } else {
+    } else {
       swal("Device tidak jadi di Reset");
     }
   });
-}
+};
 
 const handleClick3 = (dispatch, ID) => {
-  
   swal({
     title: "Reset Password Login Karyawan ?",
     icon: "warning",
     buttons: true,
     dangerMode: true,
-  })
-  .then((willresetPasswordUser) => {
+  }).then((willresetPasswordUser) => {
     if (willresetPasswordUser) {
-      dispatch(resetPasswordUser(ID))
+      dispatch(resetPasswordUser(ID));
       swal("Berhasil, Karyawan Bisa Login Dengan Password 123456", {
         icon: "success",
       });
-      } else {
+    } else {
       swal("Password tidak jadi di Reset");
     }
   });
-}
-
+};
 
 const defaultSorted = [
   {
@@ -96,40 +103,38 @@ const mapStateToProps = (state) => {
 };
 
 const TableComponent = (props) => {
-
   const columns = [
     {
       dataField: "UserID",
       text: "UserID",
       sort: true,
       headerStyle: () => {
-        return { width: "80px" , backgroundColor:"#fec107"};
+        return { width: "80px", backgroundColor: "#fec107" };
       },
       style: () => {
-        return {  fontWeight : "bold", color :"white" };
+        return { fontWeight: "bold", color: "white" };
       },
     },
     {
       dataField: "Nama",
-      text: "Nama", 
+      text: "Nama",
       sort: true,
       headerStyle: () => {
-        return { width: "110px",backgroundColor:"#fec107"};
+        return { width: "110px", backgroundColor: "#fec107" };
       },
       style: () => {
-        return { fontWeight : "bold" , color:"white"};
+        return { fontWeight: "bold", color: "white" };
       },
-      
     },
     {
       dataField: "Jabatan",
       text: "Group",
       sort: true,
       headerStyle: () => {
-        return { width: "160px", backgroundColor:"#fec107" };
+        return { width: "160px", backgroundColor: "#fec107" };
       },
       style: () => {
-        return { fontWeight : "bold", color :"white" };
+        return { fontWeight: "bold", color: "white" };
       },
     },
 
@@ -137,85 +142,82 @@ const TableComponent = (props) => {
       dataField: "link",
       text: "Action",
       headerStyle: () => {
-        return { width: "135px" , backgroundColor:"#fec107" };
+        return { width: "80px", backgroundColor: "#fec107" };
       },
       formatter: (rowContent, row) => {
         return (
-          
           <div>
-            
-
-            <Button  color="warning" className="mr-2" onClick={() => handleClick2(props.dispatch, row.UserID)}>
-              <FontAwesomeIcon icon={faRetweet} /> 
+            <Button
+              color="warning"
+              className="mr-2"
+              onClick={() => handleClick2(props.dispatch, row.UserID)}
+            >
+              <FontAwesomeIcon icon={faRetweet} />
             </Button>
-
-            <Link to={"detail/" + row.UserID}>
-              <Button  color="primary" className="mr-2">
-                <FontAwesomeIcon icon={faInfo} />
-              </Button>
-            </Link>
-  
             <Link to={"edit/" + row.UserID}>
               <Button color="warning" className="mr-2">
                 <FontAwesomeIcon icon={faEdit} />
               </Button>
             </Link>
-
-            <Button color="danger" className="mr-2" onClick={() => handleClick(props.dispatch, row.UserID)}>
-              <FontAwesomeIcon icon={faTrash} /> 
+            <Button
+              color="warning"
+              className="mr-2"
+              onClick={() => handleClick3(props.dispatch, row.UserID)}
+            >
+              <FontAwesomeIcon icon={faUndoAlt} />
             </Button>
-
-
-            <Button color="warning" className="mr-2" onClick={() => handleClick3(props.dispatch, row.UserID)}>
-                <FontAwesomeIcon icon={faUndoAlt} />
+            <Button
+              color="warning"
+              className="mr-2"
+              onClick={() => handleClick(props.dispatch, row.UserID)}
+            >
+              <FontAwesomeIcon icon={faTrash} />
             </Button>
-          
           </div>
         );
       },
     },
   ];
 
-  
   return (
-    <Container>
+    <div>
       {props.getUsersList ? (
         <ToolkitProvider
           bootstrap4
           keyField="UserID"
           data={props.getUsersList}
           columns={columns}
-          rowStyle={ { fontWeight: "bold" , color:"white" } } 
+          rowStyle={{ fontWeight: "bold", color: "white" }}
           defaultSorted={defaultSorted}
           search
         >
           {(props) => (
             <div>
               <Card body inverse color="info">
-              <Row>
-                <Col>
-                  <Link to="/create">
-                    <Button color="warning" className="mr-2">
-                      <FontAwesomeIcon icon={faUserPlus} /> Tambah Pegawai
-                    </Button>
-                  </Link>
-                </Col>
-              
-               
-              
-              
-                <Col>
-                
-                  <div className="float-right">
-                    <SearchBar {...props.searchProps} placeholder="Search .." />
-                  </div>
-                </Col>
-              </Row>
+              <CardTitle tag="h5">Menu Pegawai</CardTitle>
+                <Row>
+                  <Col>
+                    <Link to="/create">
+                      <Button color="warning" className="mr-2">
+                        <FontAwesomeIcon icon={faUserPlus} /> Tambah Pegawai
+                      </Button>
+                    </Link>
+                  </Col>
 
-              <BootstrapTable
-                {...props.baseProps}
-                pagination={paginationFactory()}
-              />
+                  <Col>
+                    <div className="float-right">
+                      <SearchBar
+                        {...props.searchProps}
+                        placeholder="Search .."
+                      />
+                    </div>
+                  </Col>
+                </Row>
+
+                <BootstrapTable
+                  {...props.baseProps}
+                  pagination={paginationFactory()}
+                />
               </Card>
             </div>
           )}
@@ -229,7 +231,7 @@ const TableComponent = (props) => {
           )}
         </div>
       )}
-    </Container>
+    </div>
   );
 };
 

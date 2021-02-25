@@ -1,7 +1,5 @@
 import React, { Component } from "react";
-import { Container, Col, Alert, Row, Button } from "reactstrap";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faListAlt } from "@fortawesome/free-solid-svg-icons";
+import { Container, Col, Alert, Row } from "reactstrap";
 import IzinComponent from "../components/IzinComponent";
 import swal from "sweetalert";
 import { connect } from "react-redux";
@@ -57,12 +55,7 @@ if (!localStorage.getItem('user')) {
       <Container>
         <NavbarComponent />
         <Row>
-          <Col md={1}>
-            <Button color="info">
-              <FontAwesomeIcon icon={faListAlt} /> List
-            </Button>
-          </Col>
-          <Col md={11}>
+          <Col md={12}>
             <Alert color="info">
               <h4>Menu List Izin Pegawai</h4>
             </Alert>
@@ -80,8 +73,9 @@ if (!localStorage.getItem('user')) {
             <LengkapiAbsenButton  />
           </Col>
         </Row>
+        <Row>
         <IzinComponent />
-        <Alert color="info"></Alert>
+        </Row>
       </Container>
     );
   }

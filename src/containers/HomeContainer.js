@@ -23,24 +23,10 @@ class HomeContainer extends Component {
       return <Redirect to="/login" /> ;
     } 
     return (
-      <Container>
+      <div>
         <NavbarComponent />
-        <Row>
-          <Col md={1}>
-            <Button color="info">
-              <FontAwesomeIcon icon={faListAlt} /> List
-            </Button>
-          </Col>
-          <Col md={11}>
-            <Alert color="info">
-              <h4>Menu List Pegawai</h4>
-            </Alert>
-          </Col>
-        </Row>
-
         <TableComponent />
-        <Alert color="info"></Alert>
-      </Container>
+        </div>
     );
   }
 }
