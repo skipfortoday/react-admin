@@ -34,7 +34,6 @@ class ListLaporanContainer extends Component {
             </td>
           </tr>
         </div>
-        <ListUserLaporan />
         </div>
     );
   }

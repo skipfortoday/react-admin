@@ -32,6 +32,7 @@ import { Redirect } from "react-router-dom";
 const mapStateToProps = (state) => {
   return {
     getResponDataIzin: state.Izin.getResponDataIzin,
+    errorLaporanDetail : state.Laporan.errorLaporanDetail,
     errorResponDataIzin: state.Izin.errorResponDataIzin,
     getResponDataLaporan: state.Laporan.getResponDataLaporan,
     errorResponDataLaporan: state.Laporan.errorResponDataLaporan,
@@ -80,10 +81,10 @@ class CreateIzinContainer extends Component {
   }
 
   render() {
-    if (this.props.errorLaporanList) {
+    if (this.props.errorLaporanDetail) {
       swal("Failed!", "Gaada Data Bosq / Silahkan Coba lagi", "error");
-      return <Redirect to="/izin" />;
-    }
+      return <Redirect to="/laporan" /> ;
+    } 
 
     var loginid = localStorage.getItem('user');
     if (!localStorage.getItem('user')|| loginid == "undefined") {
@@ -126,7 +127,7 @@ class CreateIzinContainer extends Component {
     return (
       <div>
         <NavbarComponent />
-        <div style={{ backgroundColor: "#fec107" }}>
+        <div class="header-1" style={{ backgroundColor: "#fec107" }}>
           <BackIzin />
 
           <tr>
@@ -145,13 +146,14 @@ class CreateIzinContainer extends Component {
             </td>
           </tr>
         </div>
-        <div style={{ backgroundColor: "#17a2b7" }}>
+        <div  class="header-1"style={{ backgroundColor: "#17a2b7" }}>
           <Container>
             <FormIzinComponent onSubmit={(data) => this.handleSubmit(data)} />
           </Container>
         </div>
-        <IzinComponentSolo />
-        <div style={{ backgroundColor: "#fec107" }}>
+        <div class="header-1">
+        <IzinComponentSolo /></div>
+        <div class="header-1" style={{ backgroundColor: "#fec107" }}>
           <Container>
           <Row>
          <h3>Print Preview</h3> <PrintButton />
@@ -159,10 +161,14 @@ class CreateIzinContainer extends Component {
         </Container>
         </div>
         <Container>
+        <Row className="page-header">
           <NamaCabangLaporan />
           <RekapLaporan />
+          </Row>
+          <Row>
           <LaporanDetail />
           <RekapLeft />
+        </Row>
         </Container>
       </div>
     );

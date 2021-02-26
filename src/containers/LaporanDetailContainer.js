@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import LaporanDetail from "../components/LaporanDetail";
-import { Container, Alert, Col, Row } from "reactstrap";
+import { Container, Row } from "reactstrap";
 import { connect } from "react-redux";
 import {
   getLaporanDetail,
@@ -9,7 +9,6 @@ import {
 } from "../actions/laporanAction";
 import NavbarComponent from "../components/NavbarComponent";
 import RekapLaporan from "../components/RekapLaporan";
-import BackLaporan from "../components/BackLaporan";
 import { getUserDetail } from "../actions/userAction";
 import PrintButton from "../components/PrintButton";
 import RekapLeft from "../components/RekapLeft";
@@ -17,6 +16,14 @@ import NamaCabangLaporan from "../components/NamaCabangLaporan";
 import LengkapiAbsenGuestComponent from "../components/LengkapiAbsenGuestComponent";
 import LengkapiAbsenButton2 from "../components/LengkapiAbsenButton2";
 import { getOptUser } from "../actions/optAction";
+import swal from "sweetalert";
+import {Redirect} from "react-router-dom";
+
+const mapStateToProps = (state) => {
+  return {
+    errorLaporanDetail: state.Laporan.errorLaporanDetail,
+  };
+};
 
 class LaporanDetailContainer extends Component {
   componentDidMount() {
@@ -40,7 +47,12 @@ class LaporanDetailContainer extends Component {
   }
 
   render() {
+    if (this.props.errorLaporanDetail) {
+      swal("Failed!", "Gaada Data Bosq / Silahkan Coba lagi", "error");
+      return <Redirect to="/laporan" /> ;
+    } 
     return (
+        
      <div>
         <NavbarComponent />
         <div class="header-1" style={{ backgroundColor: "#fec107" }}>
@@ -61,7 +73,7 @@ class LaporanDetailContainer extends Component {
           </tr>
         </div>
           
-          <Container>
+        <Container>
         <Row className="page-header">
           <NamaCabangLaporan />
           <RekapLaporan />
@@ -76,4 +88,4 @@ class LaporanDetailContainer extends Component {
   }
 }
 
-export default connect()(LaporanDetailContainer);
+export default connect(mapStateToProps,null)(LaporanDetailContainer);

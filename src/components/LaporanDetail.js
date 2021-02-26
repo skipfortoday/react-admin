@@ -17,7 +17,7 @@ function terlambatFormatter(cell, row) {
   if (row.Terlambat) {
     return (
       <span>
-        <strong style={ { color: 'red' } }>{ cell }</strong>
+        <strong style={ { color: 'red'} }>{ cell }</strong>
       </span>
     );
   }
@@ -31,7 +31,7 @@ function LiburFormatter(cell, row) {
   if (row.Status == 'LIBUR') {
     return (
       <span>
-        <strong style={ { color: 'red' } }>{ cell }</strong>
+        <strong style={ { color: 'red'  } } >{ cell }</strong>
       </span>
     );
   }
@@ -50,10 +50,10 @@ const LaporanDetail = (props) => {
       sort: true,
       formatter: LiburFormatter,
       headerStyle: () => {
-        return { width: "90px" , fontSize: '12px' ,lineHeight: '10%' };
+        return { width: "90px" , fontSize: '12px' ,lineHeight: '10%', textAlign:'center' };
       },
       style: () => {
-        return {  fontWeight: "normal"  };
+        return {  fontWeight: "normal" , fontSize :'12px' ,textAlign:'right'};
       },
     },
     {
@@ -61,7 +61,7 @@ const LaporanDetail = (props) => {
       text: "Datang",
       formatter: terlambatFormatter,
       headerStyle: () => {
-        return { width: "38px" , fontSize: '12px' , lineHeight: '10%' };
+        return { width: "38px" , fontSize: '12px' , lineHeight: '10%',textAlign:'center' };
       },
     },
     
@@ -69,14 +69,14 @@ const LaporanDetail = (props) => {
       dataField: "ScanPulang",
       text: "Pulang",
       headerStyle: () => {
-        return { width: "38px" , fontSize: '12px', lineHeight: '10%' };
+        return { width: "38px" , fontSize: '12px', lineHeight: '10%',textAlign:'center' };
       },
     },
     {
       dataField: "Terlambat",
       text: "Tlmbat",
       headerStyle: () => {
-        return { width: "38px" , fontSize: '12px', lineHeight: '10%'};
+        return { width: "38px" , fontSize: '12px', lineHeight: '10%', textAlign:'center'};
       },
       style: () => {
         return { color: 'red' };
@@ -87,7 +87,7 @@ const LaporanDetail = (props) => {
       dataField: "Lembur",
       text: "Lembur",
       headerStyle: () => {
-        return { width: "38px" , fontSize: '12px' , lineHeight: '10%'};
+        return { width: "38px" , fontSize: '12px' , lineHeight: '10%', textAlign:'center'};
       },
       style: () => {
         return { color: '#017580' };
@@ -97,7 +97,7 @@ const LaporanDetail = (props) => {
       dataField: "Shift",
       text: "Shift",
       headerStyle: () => {
-        return { width: "2px"  , fontSize: '12px', lineHeight: '10%' };
+        return { width: "2px"  , fontSize: '12px', lineHeight: '10%', textAlign:'center' };
       },
       style: () => {
         return { fontWeight: "normal"  };
@@ -107,21 +107,21 @@ const LaporanDetail = (props) => {
       dataField: "IstirahatKeluar",
       text: "Break",
       headerStyle: () => {
-        return { width: "38px" , fontSize: '12px' , lineHeight: '10%'};
+        return { width: "38px" , fontSize: '12px' , lineHeight: '10%',textAlign:'center'};
       },
     },
     {
       dataField: "IstirahatKembali",
       text: "Kmbl",
       headerStyle: () => {
-        return { width: "38px" , fontSize: '12px' , lineHeight: '10%'};
+        return { width: "38px" , fontSize: '12px' , lineHeight: '10%',textAlign:'center'};
       },
     },
     {
       dataField: "TerlambatIstirahat",
       text: "Tlmbat",
       headerStyle: () => {
-        return { width: "38px" , fontSize: '12px' , lineHeight: '10%' };
+        return { width: "38px" , fontSize: '12px' , lineHeight: '10%',textAlign:'center' };
       },
       style: () => {
         return { color: 'red' };
@@ -132,7 +132,7 @@ const LaporanDetail = (props) => {
       text: "Status",
       formatter: LiburFormatter,
       headerStyle: () => {
-        return { width: "80px" , fontSize: '12px' , lineHeight: '10%'};
+        return { width: "80px" , fontSize: '12px' , lineHeight: '10%',textAlign:'center'};
       },
       style: () => {
         return {  fontWeight: "normal"  };
@@ -142,7 +142,7 @@ const LaporanDetail = (props) => {
       dataField: "Keterangan",
       text: "Keterangan",
       headerStyle: () => {
-        return { width: "150px" , fontSize: '12px' , lineHeight: '10%'};
+        return { width: "150px" , fontSize: '12px' , lineHeight: '10%',textAlign:'center'};
       },
       style: () => {
         return {  fontWeight: "normal"  };
@@ -152,7 +152,7 @@ const LaporanDetail = (props) => {
       dataField: "KetPulang",
       text: "KetPulang",
       headerStyle: () => {
-        return { width: "65px", fontSize: '12px' ,lineHeight: '10%'};
+        return { width: "65px", fontSize: '12px' ,lineHeight: '10%',textAlign:'center'};
       },
       style: () => {
         return {  fontWeight: "normal"  };
@@ -244,7 +244,7 @@ TotalKeluar: null*/
           classes='rDetail'
           keyField='DatangID' 
           data={ row.detail } 
-          rowStyle={ { lineHeight: '70%' , fontWeight: "bold" , fontFamily: 'TimesNewRoman',  fontSize:"12px" } } 
+          rowStyle={ { lineHeight: '70%' , fontWeight: "bold" , fontFamily: 'TimesNewRoman',  fontSize:"12px"} } 
           columns={ dtColumns } 
           />
 
@@ -256,12 +256,13 @@ TotalKeluar: null*/
 
   return (
     <BootstrapTable 
-      keyField='Tanggal' 
+      keyField='Tanggal'
+      classes='rDetail2' 
       data={ props.getLaporanDetail } 
       columns={ columns } 
       expandRow={ expandRow }
       headerClasses='page-header-space'
-      rowStyle={ { lineHeight : '0px' , fontFamily: 'TimesNewRoman' , fontWeight: "bold" , fontSize:"12px" } } 
+      rowStyle={ { lineHeight : '0px' , fontFamily: 'TimesNewRoman' , fontWeight: "bold" , fontSize:"12px", textAlign:'center' } } 
       pagination={paginationFactory(options) }
       defaultSorted= { defaultSorted }
     />

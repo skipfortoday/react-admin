@@ -31,10 +31,9 @@ class LoginContainer extends Component {
   render() {
     if (this.props.getResponLoginUser || this.props.errorResponLoginUser) {
       if (this.props.errorResponLoginUser) {
+        alert('Username & Password Salah');
         window.location.reload();
-        swal("Failed!", "LoginGagal", "error");
-        
-      } else {
+      }  else {
         swal(
           "Sucsess!",
           "Login Berhasil",
@@ -49,7 +48,7 @@ class LoginContainer extends Component {
    
     <div>
     <LoginComponent onSubmit={(data) => this.handleSubmit(data)}/>
-   
+      
      </div>
    
     );

@@ -52,6 +52,7 @@ const renderField2 = ({
     disabled,
     options,
     readOnly,
+    isMulti,
     meta: { touched, error, warning },
   }) => (
     <Row>
@@ -71,6 +72,7 @@ const renderField2 = ({
           disabled={disabled}
           readOnly={readOnly}
           options={options}
+          isMulti={isMulti}
           value={input.value}
           onChange={(value) => input.onChange(value)}
            //onBlur={() => input.onBlur()}
@@ -92,6 +94,7 @@ const mapStateToProps = (state) => {
     },
   };
 };
+
 
 class LengkapiAbsenGuestComponent extends Component {
   render() {

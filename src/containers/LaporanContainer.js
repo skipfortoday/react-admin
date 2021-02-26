@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import LaporanComponent from "../components/LaporanComponent";
 import {Redirect} from "react-router-dom";
-import { Container, Alert, Col, Row} from "reactstrap";
 import { connect } from "react-redux";
 import { getLaporanDetail, getLaporanList } from "../actions/laporanAction";
 import NavbarComponent from "../components/NavbarComponent";

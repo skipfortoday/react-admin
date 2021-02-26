@@ -42,24 +42,11 @@ class CreateIzinGroup extends Component {
       }
     }
     return (
-      <Container>
+      <div>
         <NavbarComponent />
-        <Row>
-          <Col md={1}>
-            <BackIzin />
-          </Col>
-          <Col md={11}>
-            <Alert color="warning">
-              <h4>Menu Tambah Izin Pegawai</h4>
-            </Alert>
-          </Col>
-        </Row>
-        <InfoMenuIzin />
-        <Alert color="warning"></Alert>
-        <h2>Form Tambah Izin Pegawai</h2>
+    
         <FormIzinGroup onSubmit={(data) => this.handleSubmit(data)} />
-        <Alert color="warning"></Alert>
-      </Container>
+        </div>
     );
   }
 }
