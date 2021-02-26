@@ -30,10 +30,11 @@ class EditCabangContainer extends Component {
   }
 
   render() {
-    if (!localStorage.getItem("user")) {
+    var loginid = localStorage.getItem('user');
+    if (!localStorage.getItem('user')|| loginid == "undefined") {
       swal("Failed!", "Login Dulu Bosq", "error");
-      return <Redirect to="/login" />;
-    }
+      return <Redirect to="/login" /> ;
+    } 
     if (this.props.getResponDataCabang || this.props.errorResponDataCabang) {
       if (this.props.errorResponDataCabang) {
         swal("Failed!", this.props.errorResponDataCabang, "error");

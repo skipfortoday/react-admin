@@ -27,10 +27,11 @@ class CreateUserContainer extends Component {
   }
 
   render() {
-    if (!localStorage.getItem("user")) {
+    var loginid = localStorage.getItem('user');
+    if (!localStorage.getItem('user')|| loginid == "undefined") {
       swal("Failed!", "Login Dulu Bosq", "error");
-      return <Redirect to="/login" />;
-    }
+      return <Redirect to="/login" /> ;
+    } 
     if (this.props.getResponDataUser || this.props.errorResponDataUser) {
       if (this.props.errorResponDataUser) {
         swal("Failed!", this.props.errorResponDataUser, "error");

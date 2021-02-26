@@ -26,10 +26,11 @@ class EditGroupContainer extends Component {
   }
 
   render() {
-    if (!localStorage.getItem("user")) {
+    var loginid = localStorage.getItem('user');
+    if (loginid == 'undefined') {
       swal("Failed!", "Login Dulu Bosq", "error");
-      return <Redirect to="/login" />;
-    }
+      return <Redirect to="/login" /> ;
+    } 
     if (this.props.getResponDataGroup || this.props.errorResponDataGroup) {
       if (this.props.errorResponDataGroup) {
         swal("Failed!", this.props.errorResponDataGroup, "error");

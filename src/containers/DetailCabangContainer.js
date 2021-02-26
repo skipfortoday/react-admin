@@ -15,7 +15,8 @@ class DetailCabangContainer extends Component {
   }
 
   render() {
-    if (!localStorage.getItem('user')) {
+    var loginid = localStorage.getItem('user');
+    if (!localStorage.getItem('user')|| loginid == "undefined") {
       swal("Failed!", "Login Dulu Bosq", "error");
       return <Redirect to="/login" /> ;
     } 

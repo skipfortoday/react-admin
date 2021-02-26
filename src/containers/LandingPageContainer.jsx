@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { getUsersList, deleteDataUser } from "../actions/userAction";
 import GuestNavbarComponent from "../components/GuestNavbarComponent";
 import swal from "sweetalert";
+import SweeperComponent from "../components/SweeperComponent";
 
 class LandingPageContainer extends Component {
   componentDidMount() {
@@ -15,6 +16,7 @@ class LandingPageContainer extends Component {
     return (
       <div> 
         <GuestNavbarComponent />
+        <SweeperComponent/>
       </div>
     );
   }

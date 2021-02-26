@@ -43,7 +43,7 @@ class LaporanDetailContainer extends Component {
     return (
      <div>
         <NavbarComponent />
-        <div style={{ backgroundColor: "#fec107" }}>
+        <div class="header-1" style={{ backgroundColor: "#fec107" }}>
           <tr>
             <td width="150"></td>
             <td>

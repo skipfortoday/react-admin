@@ -13,7 +13,33 @@ const mapStateToProps = (state) => {
   };
 };
 
+function terlambatFormatter(cell, row) {
+  if (row.Terlambat) {
+    return (
+      <span>
+        <strong style={ { color: 'red' } }>{ cell }</strong>
+      </span>
+    );
+  }
 
+  return (
+    <span>{ cell }</span>
+  );
+}
+
+function LiburFormatter(cell, row) {
+  if (row.Status == 'LIBUR') {
+    return (
+      <span>
+        <strong style={ { color: 'red' } }>{ cell }</strong>
+      </span>
+    );
+  }
+
+  return (
+    <span>{ cell }</span>
+  );
+}
 
 
 const LaporanDetail = (props) => {
@@ -22,6 +48,7 @@ const LaporanDetail = (props) => {
       dataField: "Tanggal",
       text: "Tanggal",
       sort: true,
+      formatter: LiburFormatter,
       headerStyle: () => {
         return { width: "90px" , fontSize: '12px' ,lineHeight: '10%' };
       },
@@ -32,6 +59,7 @@ const LaporanDetail = (props) => {
     {
       dataField: "ScanMasuk",
       text: "Datang",
+      formatter: terlambatFormatter,
       headerStyle: () => {
         return { width: "38px" , fontSize: '12px' , lineHeight: '10%' };
       },
@@ -102,6 +130,7 @@ const LaporanDetail = (props) => {
     {
       dataField: "Status",
       text: "Status",
+      formatter: LiburFormatter,
       headerStyle: () => {
         return { width: "80px" , fontSize: '12px' , lineHeight: '10%'};
       },
@@ -233,7 +262,7 @@ TotalKeluar: null*/
       expandRow={ expandRow }
       headerClasses='page-header-space'
       rowStyle={ { lineHeight : '0px' , fontFamily: 'TimesNewRoman' , fontWeight: "bold" , fontSize:"12px" } } 
-      pagination={paginationFactory(options)}
+      pagination={paginationFactory(options) }
       defaultSorted= { defaultSorted }
     />
   );
