@@ -22,33 +22,35 @@ const NavbarComponent = (props) => {
     <div>
       
       <Navbar color="dark" dark expand="md">
+      <img src="/logodarkgold.jpeg" alt="logodarkgold"/>
+          <NavbarBrand> </NavbarBrand>
           <NavbarBrand> L'viors Attendance System ~ </NavbarBrand>
           <NavbarToggler onClick={toggleNavbar} className="mr-2" />
           <Collapse isOpen={!collapsed} navbar>
             <Nav className="mr-auto" navbar>
               <NavItem>    
                 <Link to="/">
-                <NavLink>| Pegawai  |</NavLink>
+                <NavLink> Pegawai </NavLink>
                 </Link>
               </NavItem>
               <NavItem>
               <a href={"/izin"}>
-                <NavLink>| Status Absensi |</NavLink>
+                <NavLink>Status Absensi </NavLink>
                </a>
               </NavItem>
               <NavItem>
                 <Link to="/group">
-                <NavLink>| Group |</NavLink>
+                <NavLink> Group </NavLink>
                 </Link>
               </NavItem>
               <NavItem>
                 <Link to="/cabang">
-                <NavLink>| Cabang |</NavLink>
+                <NavLink>Cabang </NavLink>
                 </Link>
               </NavItem>
               <NavItem>
               <a href={"/laporan"}>
-                <NavLink>| Laporan |</NavLink>
+                <NavLink> Laporan </NavLink>
                </a>
               </NavItem>   
             </Nav>
@@ -62,7 +64,7 @@ const NavbarComponent = (props) => {
             </NavItem>
             </Nav>  
 
-          <a href={"/login"}>
+          <a href={"/home"}>
            <LogoutComponent/>
           </a>
           </Collapse>

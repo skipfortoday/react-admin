@@ -61,6 +61,7 @@ export const getCabangDetail = (KodeCabang) => {
 
 export const postCabangCreate = (data) => {
   data.hrdID = data.hrdID.value;
+  data.GeneralManagerID = data.GeneralManagerID.value;
   return (dispatch) => {
     axios
       .post(
@@ -92,6 +93,7 @@ export const postCabangCreate = (data) => {
 
 export const putCabangUpdate = (data, KodeCabang) => {
   data.hrdID = data.hrdID.value;
+  data.GeneralManagerID = data.GeneralManagerID.value;
   return (dispatch) => {
     axios
       .put(

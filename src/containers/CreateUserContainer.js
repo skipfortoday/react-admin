@@ -30,7 +30,7 @@ class CreateUserContainer extends Component {
     var loginid = localStorage.getItem('user');
     if (!localStorage.getItem('user')|| loginid == "undefined") {
       swal("Failed!", "Login Dulu Bosq", "error");
-      return <Redirect to="/login" /> ;
+      return <Redirect to="/home" /> ;
     } 
     if (this.props.getResponDataUser || this.props.errorResponDataUser) {
       if (this.props.errorResponDataUser) {
@@ -49,7 +49,7 @@ class CreateUserContainer extends Component {
     return (
       <div>
         <NavbarComponent />
-        <div style={{ backgroundColor: '#17a2b7'}}>
+        <div style={{ backgroundColor: '#fec107'}}>
         <BackComponent />
         <Container>
         <FormComponent onSubmit={(data) => this.handleSubmit(data)} />

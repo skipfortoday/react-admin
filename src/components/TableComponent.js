@@ -112,7 +112,7 @@ const TableComponent = (props) => {
         return { width: "80px", backgroundColor: "#fec107" };
       },
       style: () => {
-        return { fontWeight: "bold", color: "white" };
+        return { fontWeight: "bold" };
       },
     },
     {
@@ -123,7 +123,7 @@ const TableComponent = (props) => {
         return { width: "110px", backgroundColor: "#fec107" };
       },
       style: () => {
-        return { fontWeight: "bold", color: "white" };
+        return { fontWeight: "bold" };
       },
     },
     {
@@ -134,7 +134,7 @@ const TableComponent = (props) => {
         return { width: "160px", backgroundColor: "#fec107" };
       },
       style: () => {
-        return { fontWeight: "bold", color: "white" };
+        return { fontWeight: "bold"  };
       },
     },
 
@@ -187,13 +187,13 @@ const TableComponent = (props) => {
           keyField="UserID"
           data={props.getUsersList}
           columns={columns}
-          rowStyle={{ fontWeight: "bold", color: "white" }}
+          rowStyle={{ fontWeight: "bold",  }}
           defaultSorted={defaultSorted}
           search
         >
           {(props) => (
             <div>
-              <Card body inverse color="info">
+              <Card body inverse style={{ backgroundColor: '#ffffff', borderColor: '#ffffff' }}>
                 <Row>
                   <Col>
                     <Link to="/create">

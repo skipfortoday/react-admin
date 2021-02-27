@@ -87,9 +87,9 @@ class FormGroupComponent extends Component {
   render() {
     return (
       <form onSubmit={this.props.handleSubmit}>
-        <FormGroup row style={{color:"white"}}>
+        <FormGroup row >
           <Col md={12}>
-          <div style={{ backgroundColor: "#fec107",color:"black" }}>
+          <div style={{ backgroundColor: "#fec107" }}>
               Masukkan Group ID untuk Kode & Nama Group / Nama Jabatan (WAJIB)
             </div>
           </Col>
@@ -118,7 +118,7 @@ class FormGroupComponent extends Component {
           </Col>
 
           <Col md={12}>
-          <div style={{ backgroundColor: "#fec107" ,color:"black" }}>
+          <div style={{ backgroundColor: "#363b41" , color:"white"  }}>
             Masukkan Hari Libur Dan Komponen Gaji</div>
           </Col>
 
@@ -217,7 +217,7 @@ class FormGroupComponent extends Component {
           </Col>
 
           <Col md={12}>
-          <div style={{ backgroundColor: "#fec107",color:"black" }}>
+          <div style={{ backgroundColor: "#363b41" ,color:"white"}}>
               Masukkan Aturan Jadwal Pagi atau Jadwal Shift 1 (WAJIB)
             </div>
           </Col>
@@ -300,7 +300,7 @@ class FormGroupComponent extends Component {
           </Col>
 
           <Col md={12}>
-          <div style={{ backgroundColor: "#fec107",color:"black" }}>
+          <div style={{ backgroundColor: "#363b41" ,color:"white"}}>
               Masukkan Aturan Jadwal Siang atau Jadwal Shift 2
             </div>
           </Col>
@@ -383,7 +383,7 @@ class FormGroupComponent extends Component {
           </Col>
 
           <Col md={12}>
-          <div style={{ backgroundColor: "#fec107" ,color:"black"}}>
+          <div style={{ backgroundColor: "#363b41",color:"white" }}>
               Masukkan Aturan Jadwal Sore atau Jadwal Shift 3
            </div>
           </Col>

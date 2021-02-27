@@ -29,7 +29,7 @@ class EditGroupContainer extends Component {
     var loginid = localStorage.getItem('user');
     if (loginid == 'undefined') {
       swal("Failed!", "Login Dulu Bosq", "error");
-      return <Redirect to="/login" /> ;
+      return <Redirect to="/home" /> ;
     } 
     if (this.props.getResponDataGroup || this.props.errorResponDataGroup) {
       if (this.props.errorResponDataGroup) {
@@ -48,7 +48,7 @@ class EditGroupContainer extends Component {
     return (
       <div>
         <NavbarComponent />
-        <div style={{ backgroundColor: '#17a2b7'}}>
+        <div style={{ backgroundColor: '#fec107'}}>
         <BackGroup />
         <Container>
         <FormGroupComponent onSubmit={(data) => this.handleSubmit(data)} />

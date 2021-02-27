@@ -29,7 +29,7 @@ class TerlambatBertingkatContainer extends Component {
     var loginid = localStorage.getItem('user');
     if (!localStorage.getItem('user')|| loginid == "undefined") {
       swal("Failed!", "Login Dulu Bosq", "error");
-      return <Redirect to="/login" /> ;
+      return <Redirect to="/home" /> ;
     } 
     if (this.props.getResponDataGroup || this.props.errorResponDataGroup) {
       if (this.props.errorResponDataGroup) {

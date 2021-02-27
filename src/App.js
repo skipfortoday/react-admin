@@ -24,6 +24,8 @@ import DetailCabangContainer from "./containers/DetailCabangContainer";
 import LaporanDetailContainer from "./containers/LaporanDetailContainer";
 import LoginContainer from "./containers/LoginContainer";
 import LandingPageContainer from "./containers/LandingPageContainer";
+import LaporanDetailGuestContainer from "./containers/LaporanDetailGuestContainer";
+import LaporanGuestContainer from "./containers/LaporanGuestContainer";
 
 
 
@@ -86,9 +88,11 @@ function App () {
 
           <Route path="/laporan" exact component={ListLaporanContainer} />
 
-          <Route path="/laporan/:UserID" exact component={LaporanContainer} />
-
           <Route path="/laporandetail/:UserID/:TglAwal/:TglAkhir" exact component={LaporanDetailContainer} />
+
+          <Route path="/laporanguest" exact component={LaporanGuestContainer} />
+
+          <Route path="/laporandetailguest/:UserID/:TglAwal/:TglAkhir" exact component={LaporanDetailGuestContainer} />
 
           <Route path="/group" exact component={GroupContainer} />
 

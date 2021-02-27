@@ -64,7 +64,7 @@ const CabangComponent = (props) => {
         return { width: "75px" , backgroundColor:"#fec107" };
       },
       style: () => {
-        return { fontWeight : "bold" , color:"white"};
+        return { fontWeight : "bold" };
       },
     },
     {
@@ -75,7 +75,7 @@ const CabangComponent = (props) => {
         return { width: "100px", backgroundColor:"#fec107" };
       },
       style: () => {
-        return { fontWeight : "bold" , color:"white"};
+        return { fontWeight : "bold" };
       },
     },
     {
@@ -86,7 +86,7 @@ const CabangComponent = (props) => {
         return { width: "200px", backgroundColor:"#fec107" };
       },
       style: () => {
-        return { fontWeight : "bold" , color:"white"};
+        return { fontWeight : "bold" };
       },
       
     },
@@ -125,13 +125,13 @@ const CabangComponent = (props) => {
           keyField="KodeCabang"
           data={props.getCabangList}
           columns={columns}
-          rowStyle={ {  fontWeight: "bold" , fontColor:"white" } } 
+          rowStyle={ {  fontWeight: "bold" } } 
           defaultSorted={defaultSorted}
           search
         >
           {(props) => (
             <div>
-              <Card body inverse color="info">
+              <Card body inverse style={{ backgroundColor: '#ffffff', borderColor: '#ffffff' }}>
               <Row>
                 <Col>
                   <Link to="/cabang/create">

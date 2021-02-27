@@ -83,13 +83,13 @@ class CreateIzinContainer extends Component {
   render() {
     if (this.props.errorLaporanDetail) {
       swal("Failed!", "Gaada Data Bosq / Silahkan Coba lagi", "error");
-      return <Redirect to="/laporan" /> ;
+      return <Redirect to="/izin" /> ;
     } 
 
     var loginid = localStorage.getItem('user');
     if (!localStorage.getItem('user')|| loginid == "undefined") {
       swal("Failed!", "Login Dulu Bosq", "error");
-      return <Redirect to="/login" /> ;
+      return <Redirect to="/home" /> ;
     } 
     if (this.props.getResponDataIzin || this.props.errorResponDataIzin) {
       if (this.props.errorResponDataIzin) {

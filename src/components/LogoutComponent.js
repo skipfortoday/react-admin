@@ -8,7 +8,7 @@ const LogoutComponent = () => {
   return (
     <Row className="mb-2">
       <Col>
-          <Button color="warning" onClick={() => localStorage.clear()}>
+          <Button color="dark" onClick={() => localStorage.clear()}>
             Logout <FontAwesomeIcon icon={faSignOutAlt} /> 
           </Button>
       </Col>

@@ -64,7 +64,7 @@ const IzinComponent = (props) => {
         return { width: "120px",backgroundColor:"#fec107" };
       },
       style: () => {
-        return {  fontWeight : "bold", color :"white" };
+        return {  fontWeight : "bold" };
       },
     },
     {
@@ -75,7 +75,7 @@ const IzinComponent = (props) => {
         return { width: "120px" ,backgroundColor:"#fec107"};
       },
       style: () => {
-        return { fontWeight : "bold", color :"white" };
+        return { fontWeight : "bold" };
       },
     },
     {
@@ -86,7 +86,7 @@ const IzinComponent = (props) => {
         return { width: "100px",backgroundColor:"#fec107" };
       },
       style: () => {
-        return {  fontWeight : "bold" , color :"white"};
+        return {  fontWeight : "bold" };
       },
       
     },
@@ -98,7 +98,7 @@ const IzinComponent = (props) => {
         return { width: "250px",backgroundColor:"#fec107" };
       },
       style: () => {
-        return { fontWeight : "bold",color :"white" };
+        return { fontWeight : "bold" };
       },
     },
     {
@@ -133,7 +133,7 @@ const IzinComponent = (props) => {
         >
           {(props) => (
             <div>
-              <Card body inverse color="info">
+              <Card body inverse style={{ backgroundColor: '#ffffff', borderColor: '#ffffff' }}>
               <Row>
                 <Col>
                   <Link to="izin/group">

@@ -18,7 +18,7 @@ class HomeContainer extends Component {
     console.log(loginid)
     if (!localStorage.getItem('user')|| loginid == "undefined") {
       swal("Failed!", "Login Dulu Bosq", "error");
-      return <Redirect to="/login" /> ;
+      return <Redirect to="/home" /> ;
     } 
     return (
       <div>

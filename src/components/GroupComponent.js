@@ -62,7 +62,7 @@ const GroupComponent = (props) => {
         return { width: "30px", backgroundColor:"#fec107" };
       },
       style: () => {
-        return { color : "white" ,fontWeight : "bold" };
+        return { fontWeight : "bold" };
       },
     },
     {
@@ -73,7 +73,7 @@ const GroupComponent = (props) => {
         return { width: "120px" ,backgroundColor:"#fec107" };
       },
       style: () => {
-        return { color : "white", fontWeight : "bold" };
+        return {  fontWeight : "bold" };
       },
     },
     {
@@ -119,13 +119,13 @@ const GroupComponent = (props) => {
           keyField="GroupID"
           data={props.getGroupList}
           columns={columns}
-          rowStyle={ { fontWeight: "bold" , color:"white" } } 
+          rowStyle={ { fontWeight: "bold"  } } 
           defaultSorted={defaultSorted}
           search
         >
           {(props) => (
             <div>
-              <Card body inverse color="info">
+              <Card body inverse style={{ backgroundColor: '#ffffff', borderColor: '#ffffff' }}>
               <Row>
                 <Col>
                   <Link to="group/create">

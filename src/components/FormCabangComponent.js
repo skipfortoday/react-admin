@@ -96,8 +96,6 @@ const mapStateToProps = (state) => {
       NamaCabang: state.Cabang.getCabangDetail.NamaCabang,
       Alamat: state.Cabang.getCabangDetail.Alamat,
       NoTelp: state.Cabang.getCabangDetail.NoTelp,
-      GeneralManagerID: state.Cabang.getCabangDetail.GeneralManagerID,
-      hrdID: state.Cabang.getCabangDetail.hrdID,
     },
   };
 };
@@ -151,28 +149,6 @@ class FormCabangComponent extends Component {
                 name="NoTelp"
                 component={renderField}
                 label="Nomor Telepon :"
-              />
-            </FormGroup>
-          </Col>
-
-          <Col md={2}>
-            <FormGroup>
-              <Field
-                type="text"
-                name="GeneralManagerID"
-                component={renderField}
-                label="General Manager :"
-              />
-            </FormGroup>
-          </Col>
-
-          <Col md={2}>
-            <FormGroup>
-            <Field
-                name="hrdID"
-                component={renderField2}
-                label="HRD ID :"
-                options={this.props.getOptUser}
               />
             </FormGroup>
           </Col>
