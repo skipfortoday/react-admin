@@ -6,6 +6,7 @@ import { getUsersList } from "../actions/userAction";
 import LoginComponent from "../components/LoginComponent";
 import ListUserLaporan from "../components/ListUserLaporan";
 import { Redirect } from "react-router-dom";
+import { Col, Container, Row } from "reactstrap";
 
 
 const mapStateToProps = (state) => {
@@ -46,9 +47,14 @@ class LoginContainer extends Component {
     return (
 
    
-    <div>
+    <div class="bgimg">
+    <Container>
+    <Row>
+      <Col md={6}>
     <LoginComponent onSubmit={(data) => this.handleSubmit(data)}/>
-      
+    </Col>
+    </Row>
+    </Container>
      </div>
    
     );

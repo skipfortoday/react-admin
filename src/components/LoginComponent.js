@@ -53,8 +53,8 @@ const mapStateToProps = (state) => {
 class LoginComponent extends Component {
   render() {
     return (
-
-      <Card body inverse color="info">
+        
+      <Card body inverse color="dark">
         <CardTitle tag="h5">Login Lviors Absensi</CardTitle> 
       <form onSubmit={this.props.handleSubmit}>
         <FormGroup row>

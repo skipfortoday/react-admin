@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { getUsersList } from "../actions/userAction";
 import GuestNavbarComponent from "../components/GuestNavbarComponent";
 import LengkapiAbsenGuestComponent from "../components/LengkapiAbsenGuestComponent";
-import LengkapiAbsenButton3 from "../components/LengkapiAbsenButton2";
+import LengkapiAbsenButton3 from "../components/LengkapiAbsenButton3";
 import { getOptUser } from "../actions/optAction";
 
 
@@ -15,7 +15,7 @@ class LaporanGuestContainer extends Component {
 
   render() {
     return (
-      <div>
+      <div class="bgimg">
         <GuestNavbarComponent/>
         <div style={{ backgroundColor: "#fec107" }}>
           <tr>

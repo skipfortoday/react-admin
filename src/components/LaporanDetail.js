@@ -13,6 +13,8 @@ const mapStateToProps = (state) => {
   };
 };
 
+const rowClasses = row => (row.Status == "LIBUR" ? "alert-row" :   "");
+
 function terlambatFormatter(cell, row) {
   if (row.Terlambat) {
     return (
@@ -261,6 +263,7 @@ TotalKeluar: null*/
       data={ props.getLaporanDetail } 
       columns={ columns } 
       expandRow={ expandRow }
+      rowClasses={rowClasses}
       headerClasses='page-header-space'
       rowStyle={ { lineHeight : '0px' , fontFamily: 'TimesNewRoman' , fontWeight: "bold" , fontSize:"12px", textAlign:'center' } } 
       pagination={paginationFactory(options) }
