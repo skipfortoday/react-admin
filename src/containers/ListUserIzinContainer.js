@@ -21,8 +21,7 @@ class ListUserIzinContainer extends Component {
 
   render() {
     let ambil = JSON.parse(localStorage.getItem('user'));
-    let Login = ambil.Login
-    if (!localStorage.getItem('user')|| Login == "false") {
+    if (!localStorage.getItem('user')||  ambil.Login == "false") {
       swal("Failed!", "Login Dulu Bosq", "error");
       return <Redirect to="/home" /> ;
     } 

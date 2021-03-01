@@ -18,8 +18,7 @@ class LandingPageContainer extends Component {
       <div> 
         
         <GuestNavbarComponent />
-        <div style={{maxWidth:"1500", maxHeight:"100%"}}>
-        <SweeperComponent/>
+        <div class="bgimg">
         </div>
       </div>
     );

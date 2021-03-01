@@ -30,7 +30,7 @@ const NavbarComponent = (props) => {
           <Collapse isOpen={!collapsed} navbar>
             <Nav className="mr-auto" navbar>
                  <NavItem>
-                <Link to="/news">
+                <Link to="/Login">
                 <NavLink>Pengumuman </NavLink>
                 </Link>
               </NavItem>
