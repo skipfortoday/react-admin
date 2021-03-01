@@ -28,8 +28,9 @@ class CreateCabangContainer extends Component {
 
   
   render() {
-    var loginid = localStorage.getItem('user');
-    if (!localStorage.getItem('user')|| loginid == "undefined"){
+    let ambil = JSON.parse(localStorage.getItem('user'));
+    let Login = ambil.Login
+    if (!localStorage.getItem('user')|| Login == "false") {
       swal("Failed!", "Login Dulu Bosq", "error");
       return <Redirect to="/home" /> ;
     } 

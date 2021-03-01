@@ -3,8 +3,15 @@ import {Redirect} from "react-router-dom";
 import TableComponent from "../components/TableComponent";
 import { connect } from "react-redux";
 import { getUsersList, deleteDataUser } from "../actions/userAction";
+
 import NavbarComponent from "../components/NavbarComponent";
 import swal from "sweetalert";
+
+const mapStateToProps = (state) => {
+  return {
+    getResponLoginUser : state.Login.getResponLoginUser,
+  };
+};
 
 
 class HomeContainer extends Component {
@@ -14,9 +21,9 @@ class HomeContainer extends Component {
   }
 
   render() {
-    var loginid = localStorage.getItem('user');
-    console.log(loginid)
-    if (!localStorage.getItem('user')|| loginid == "undefined") {
+    let ambil = JSON.parse(localStorage.getItem('user'));
+    let Login = ambil.Login
+    if (!localStorage.getItem('user')|| Login == "false") {
       swal("Failed!", "Login Dulu Bosq", "error");
       return <Redirect to="/home" /> ;
     } 
@@ -30,4 +37,4 @@ class HomeContainer extends Component {
   }
 }
 
-export default connect()(HomeContainer);
+export default connect(mapStateToProps, null)(HomeContainer);

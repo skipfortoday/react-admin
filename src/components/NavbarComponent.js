@@ -16,7 +16,10 @@ const NavbarComponent = (props) => {
   const [collapsed, setCollapsed] = useState(true);
 
   const toggleNavbar = () => setCollapsed(!collapsed);
-  var nama = localStorage.getItem('user');
+
+  let ambil = JSON.parse(localStorage.getItem('user'));
+  let nama = ambil.AdminID
+
 
   return (
     <div>

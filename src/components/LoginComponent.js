@@ -43,8 +43,8 @@ const mapStateToProps = (state) => {
   //console.log(optsiterpilih);
   return {
     initialValues: {
-      UserID : state.Login.postLoginUser,
-      Pass: state.Login.postLoginUser,
+      AdminID : state.Login.postLoginUser,
+      Password: state.Login.postLoginUser,
     },
   };
 };
@@ -62,7 +62,7 @@ class LoginComponent extends Component {
             <FormGroup>
               <Field
                 type="text"
-                name="UserID"
+                name="AdminID"
                 component={renderField}
                 label="Username :"
               />
@@ -73,7 +73,7 @@ class LoginComponent extends Component {
             <FormGroup>
               <Field
                 type="Password"
-                name="Pass"
+                name="Password"
                 component={renderField}
                 label="Password :"
               />

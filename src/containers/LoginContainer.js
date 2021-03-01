@@ -31,7 +31,7 @@ class LoginContainer extends Component {
   
   render() {
     if (this.props.getResponLoginUser || this.props.errorResponLoginUser) {
-      if (this.props.errorResponLoginUser) {
+      if (this.props.errorResponLoginUser || this.props.getResponLoginUser.Login == "false" ) {
         alert('Username & Password Salah');
         window.location.reload();
       }  else {
