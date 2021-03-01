@@ -26,6 +26,9 @@ import LoginContainer from "./containers/LoginContainer";
 import LandingPageContainer from "./containers/LandingPageContainer";
 import LaporanDetailGuestContainer from "./containers/LaporanDetailGuestContainer";
 import LaporanGuestContainer from "./containers/LaporanGuestContainer";
+import AdminContainer from "./containers/AdminContainer";
+import CreateAdminContainer from "./containers/CreateAdminContainer";
+import EditAdminContainer from "./containers/EditAdminContainer";
 
 
 
@@ -123,6 +126,13 @@ function App () {
           <Route path="/cabang/detail/:KodeCabang" exact component={DetailCabangContainer} />
 
           <Route path="/cabang/edit/:KodeCabang" exact component={EditCabangContainer} />
+
+          <Route path="/superadmin" exact component={AdminContainer} />
+
+          <Route path="/superadmin/create" exact component={CreateAdminContainer} />
+
+          <Route path="/superadmin/edit/:AdminID" exact component={EditAdminContainer} />
+
 
           <Route path="/home" exact component={LandingPageContainer} />
 

@@ -1,19 +1,19 @@
 import axios from "axios";
 
-export const GET_CABANG_LIST = "GET_CABANG_LIST";
-export const GET_CABANG_DETAIL = "GET_CABANG_DETAIL";
-export const POST_CABANG_CREATE = "POST_CABANG_CREATE";
-export const PUT_CABANG_EDIT = "PUT_CABANG_EDIT";
+export const GET_ADMIN_LIST = "GET_ADMIN_LIST";
+export const GET_ADMIN_DETAIL = "GET_ADMIN_DETAIL";
+export const POST_ADMIN_CREATE = "POST_ADMIN_CREATE";
+export const PUT_ADMIN_EDIT = "PUT_ADMIN_EDIT";
 
 
 
-export const getCabangList = () => {
+export const getAdminList = () => {
   return (dispatch) => {
     axios
-      .get("http://192.168.0.25:3001/api/cabang")
+      .get("http://192.168.0.25:3001/api/superadmin")
       .then(function (response) {
         dispatch({
-          type: GET_CABANG_LIST,
+          type: GET_ADMIN_LIST,
           payload: {
             data: response.data,
             errorMessage: false,
@@ -22,7 +22,7 @@ export const getCabangList = () => {
       })
       .catch(function (error) {
         dispatch({
-          type: GET_CABANG_LIST,
+          type: GET_ADMIN_LIST,
           payload: {
             data: false,
             errorMessage: error.message,
@@ -32,15 +32,15 @@ export const getCabangList = () => {
   };
 };
 
-export const getCabangDetail = (KodeCabang) => {
+export const getAdminDetail = (AdminID) => {
   return (dispatch) => {
     axios
       .get(
-        "http://192.168.0.25:3001/api/cabang/"+KodeCabang
+        "http://192.168.0.25:3001/api/superadmin/"+ AdminID
       )
       .then(function (response) {
         dispatch({
-          type: GET_CABANG_DETAIL,
+          type: GET_ADMIN_DETAIL,
           payload: {
             data: response.data,
             errorMessage: false,
@@ -49,7 +49,7 @@ export const getCabangDetail = (KodeCabang) => {
       })
       .catch(function (error) {
         dispatch({
-          type: GET_CABANG_DETAIL,
+          type: GET_ADMIN_DETAIL,
           payload: {
             data: false,
             errorMessage: error.message,
@@ -59,18 +59,18 @@ export const getCabangDetail = (KodeCabang) => {
   };
 };
 
-export const postCabangCreate = (data) => {
+export const postAdminCreate = (data) => {
   return (dispatch) => {
     axios
       .post(
-         "http://192.168.0.25:3001/api/cabang/",
+         "http://192.168.0.25:3001/api/superadmin/",
         data
       )
       .then(function (response) {
         console.log(response);
         
         dispatch({
-          type: POST_CABANG_CREATE,
+          type: POST_ADMIN_CREATE,
           payload: {
             data: response.data,
             errorMessage: false,
@@ -79,7 +79,7 @@ export const postCabangCreate = (data) => {
       })
       .catch(function (error) {
         dispatch({
-          type: POST_CABANG_CREATE,
+          type: POST_ADMIN_CREATE,
           payload: {
             data: false,
             errorMessage: error.message,
@@ -89,18 +89,18 @@ export const postCabangCreate = (data) => {
   };
 };
 
-export const putCabangUpdate = (data, KodeCabang) => {
+export const putAdminUpdate = (data,AdminID) => {
   return (dispatch) => {
     axios
       .put(
-        "http://192.168.0.25:3001/api/cabang/"+KodeCabang,
+        "http://192.168.0.25:3001/api/superadmin/"+AdminID,
         data
       )
       .then(function (response) {
         console.log(response);
         
         dispatch({
-          type: PUT_CABANG_EDIT,
+          type: PUT_ADMIN_EDIT,
           payload: {
             data: response.data,
             errorMessage: false,
@@ -109,7 +109,7 @@ export const putCabangUpdate = (data, KodeCabang) => {
       })
       .catch(function (error) {
         dispatch({
-          type: PUT_CABANG_EDIT,
+          type: PUT_ADMIN_EDIT,
           payload: {
             data: false,
             errorMessage: error.message,
@@ -120,11 +120,11 @@ export const putCabangUpdate = (data, KodeCabang) => {
 };
 
 
-export const deleteCabang = (KodeCabang) => {
+export const deleteAdmin = (AdminID) => {
   return (dispatch) => {
     axios
       .delete(
-         "http://192.168.0.25:3001/api/cabang/"+KodeCabang
+         "http://192.168.0.25:3001/api/superadmin/"+AdminID
       )
       .then(function (response) {
         console.log(response);
@@ -138,23 +138,3 @@ export const deleteCabang = (KodeCabang) => {
 };
 
 
-export const deleteDataCabang = () => {
-  return (dispatch) => {
-    dispatch({
-      type: GET_CABANG_DETAIL,
-      payload: {
-        data: false,
-        errorMessage: false,
-      },
-    });
-
-
-    dispatch({
-      type: POST_CABANG_CREATE,
-      payload: {
-        data: false,
-        errorMessage: false,
-      },
-    });
-  };
-};

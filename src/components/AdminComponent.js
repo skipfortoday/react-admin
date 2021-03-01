@@ -12,11 +12,11 @@ import paginationFactory from "react-bootstrap-table2-paginator";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import swal from 'sweetalert';
-import { deleteCabang } from "../actions/cabangAction";
+import { deleteAdmin } from "../actions/adminAction";
 
 const { SearchBar } = Search;
 
-const handleClick = (dispatch, KodeCabang) => {
+const handleClick = (dispatch, AdminID) => {
   
   swal({
     title: "Apakah Anda yakin akan menghapus data ini ?",
@@ -26,8 +26,8 @@ const handleClick = (dispatch, KodeCabang) => {
   })
   .then((willDelete) => {
     if (willDelete) {
-      dispatch(deleteCabang(KodeCabang))
-      swal("Data Cabang Sukses dihapus", {
+      dispatch(deleteAdmin(AdminID))
+      swal("Data Admin Sukses dihapus", {
         icon: "success",
       });window.location.reload();
     } else {
@@ -39,24 +39,24 @@ const handleClick = (dispatch, KodeCabang) => {
 
 const defaultSorted = [
   {
-    dataField: "KodeCabang",
+    dataField: "AdminID",
     order: "asc",
   },
 ];
 
 const mapStateToProps = (state) => {
   return {
-    getCabangList: state.Cabang.getCabangList,
-    errorCabangList: state.Cabang.errorCabangList,
+    getAdminList: state.Admin.getAdminList,
+    errorAdminList: state.Admin.errorAdminList,
   };
 };
 
-const CabangComponent = (props) => {
+const AdminComponent = (props) => {
 
   const columns = [
     {
-      dataField: "KodeCabang",
-      text: "KodeCabang",
+      dataField: "AdminID",
+      text: "AdminID",
       sort: true,
       headerStyle: () => {
         return { width: "75px" , backgroundColor:"#fec107" };
@@ -66,8 +66,8 @@ const CabangComponent = (props) => {
       },
     },
     {
-      dataField: "NamaCabang",
-      text: "Nama Cabang",
+      dataField: "TanggalCreate",
+      text: "Tanggal Create",
       sort: true,
       headerStyle: () => {
         return { width: "100px", backgroundColor:"#fec107" };
@@ -75,18 +75,6 @@ const CabangComponent = (props) => {
       style: () => {
         return { fontWeight : "bold" };
       },
-    },
-    {
-      dataField: "Alamat",
-      text: "Alamat Cabang", 
-      sort: true,
-      headerStyle: () => {
-        return { width: "200px", backgroundColor:"#fec107" };
-      },
-      style: () => {
-        return { fontWeight : "bold" };
-      },
-      
     },
     {
       dataField: "link",
@@ -97,17 +85,16 @@ const CabangComponent = (props) => {
       formatter: (rowContent, row) => {
         return (
           <div>
-            <Link to={"cabang/edit/" + row.KodeCabang}>
+            <Link to={"superadmin/edit/" + row.AdminID}>
               <Button  color="warning" className="mr-2">
                 <FontAwesomeIcon icon={faEdit} />
               </Button>
             </Link>
 
-            <Link to={"/cabang#"}>
-            <Button  color="warning" className="mr-2" onClick={() => handleClick(props.dispatch, row.KodeCabang)}>
+
+            <Button  color="warning" className="mr-2" onClick={() => handleClick(props.dispatch, row.AdminID)}>
               <FontAwesomeIcon icon={faTrash} /> 
             </Button>
-            </Link>
           </div>
         );
       },
@@ -117,11 +104,11 @@ const CabangComponent = (props) => {
   
   return (
     <div>
-      {props.getCabangList ? (
+      {props.getAdminList ? (
         <ToolkitProvider
           bootstrap4
-          keyField="KodeCabang"
-          data={props.getCabangList}
+          keyField="AdminID"
+          data={props.getAdminList}
           columns={columns}
           rowStyle={ {  fontWeight: "bold" } } 
           defaultSorted={defaultSorted}
@@ -132,9 +119,9 @@ const CabangComponent = (props) => {
               <Card body inverse style={{ backgroundColor: '#ffffff', borderColor: '#ffffff' }}>
               <Row>
                 <Col>
-                  <Link to="/cabang/create">
+                  <Link to="/superadmin/create">
                     <Button color="warning" className="mr-2">
-                      <FontAwesomeIcon icon={faSitemap} /> Tambah Cabang
+                      <FontAwesomeIcon icon={faSitemap} /> Tambah Admin
                     </Button>
                   </Link>
                 </Col>
@@ -155,8 +142,8 @@ const CabangComponent = (props) => {
         </ToolkitProvider>
       ) : (
         <div className="text-center">
-          {props.errorCabangList ? (
-            <h4>{props.errorCabangList}</h4>
+          {props.errorAdminList ? (
+            <h4>{props.errorAdminList}</h4>
           ) : (
             <Spinner color="dark" />
           )}
@@ -166,4 +153,4 @@ const CabangComponent = (props) => {
   );
 };
 
-export default connect(mapStateToProps, null)(CabangComponent);
+export default connect(mapStateToProps, null)(AdminComponent);

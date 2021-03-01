@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { reduxForm, Field } from "redux-form";
 import { connect } from "react-redux";
 import { FormGroup, Col, Label, Input, Row, Button } from "reactstrap";
-import CabangValidation from "../validations/CabangValidation";
+import AdminValidation from "../validations/AdminValidation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSave } from "@fortawesome/free-solid-svg-icons";
 
@@ -44,10 +44,9 @@ const mapStateToProps = (state) => {
   return {
     getOptUser : state.Opt.getOptUser,
     initialValues: {
-      KodeCabang: state.Cabang.getCabangDetail.KodeCabang,
-      NamaCabang: state.Cabang.getCabangDetail.NamaCabang,
-      Alamat: state.Cabang.getCabangDetail.Alamat,
-      NoTelp: state.Cabang.getCabangDetail.NoTelp,
+      AdminID: state.Admin.getAdminDetail.AdminID,
+      TanggalCreate: state.Admin.getAdminDetail.TanggalCreate,
+      Password: state.Admin.getAdminDetail.Password
     },
   };
 };
@@ -55,19 +54,19 @@ const mapStateToProps = (state) => {
 //let  options = [{ value: 'one', label: 'One' }, { value: 'two', label: 'Two' }];
 
 
-class FormCabangComponent extends Component {
+class FormAdminComponent extends Component {
   render() {
     return (
       <form onSubmit={this.props.handleSubmit}>
    
         <FormGroup row>
-          <Col md={2}>
+          <Col md={3}>
             <FormGroup>
               <Field
                 type="text"
-                name="KodeCabang"
+                name="AdminID"
                 component={renderField}
-                label="Kode Cabang :"
+                label="Admin ID :"
               />
             </FormGroup>
           </Col>
@@ -75,32 +74,22 @@ class FormCabangComponent extends Component {
           <Col md={3}>
             <FormGroup>
               <Field
-                type="text"
-                name="NamaCabang"
+                type="password"
+                name="Password"
                 component={renderField}
-                label="Nama Cabang :"
+                label="Password :"
               />
             </FormGroup>
           </Col>
 
-          <Col md={4}>
+          <Col md={3}>
             <FormGroup>
               <Field
-                type="text"
-                name="Alamat"
+                type="date"
+                name="TanggalCreate"
                 component={renderField}
-                label="Alamat Cabang :"
-              />
-            </FormGroup>
-          </Col>
-
-          <Col md={2}>
-            <FormGroup>
-              <Field
-                type="text"
-                name="NoTelp"
-                component={renderField}
-                label="Nomor Telepon :"
+                disabled
+                label="Tanggal Create :"
               />
             </FormGroup>
           </Col>
@@ -123,9 +112,9 @@ class FormCabangComponent extends Component {
   }
 }
 
-FormCabangComponent = reduxForm({
-  form: "formCreateCabang",
-  validate: CabangValidation,
+FormAdminComponent = reduxForm({
+  form: "formCreateAdmin",
+  validate: AdminValidation,
   enableReinitialize: true,
-})(FormCabangComponent);
-export default connect(mapStateToProps, null)(FormCabangComponent);
+})(FormAdminComponent);
+export default connect(mapStateToProps, null)(FormAdminComponent);

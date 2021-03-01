@@ -35,12 +35,25 @@ class LoginContainer extends Component {
         alert('Username & Password Salah');
         window.location.reload();
       }  else {
-        swal(
-          "Sucsess!",
-          "Login Berhasil",
-          "success"
+          if (this.props.getResponLoginUser.RoleAdmin == "99"){
+            swal(
+              "Sucsess!",
+              "Login Berhasil",
+              "success"
+    
+            );return <Redirect to="/asu123" /> 
 
-        );return <Redirect to="/" /> 
+          }
+          else {
+            swal(
+              "Sucsess!",
+              "Login Berhasil",
+              "success"
+    
+            );return <Redirect to="/" />
+
+          }
+        
       }
     }
 
