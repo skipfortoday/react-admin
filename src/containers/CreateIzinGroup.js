@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { Container, Alert, Col, Row } from "reactstrap";
 import BackIzin from "../components/BackIzin";
-import InfoMenuIzin from "../components/InfoMenuIzin";
 import { connect } from "react-redux";
 import { postIzinGroup } from "../actions/izinAction";
+import { getOptUser } from "../actions/optAction";
 import swal from "sweetalert";
 import FormIzinGroup from "../components/FormIzinGroup";
 import NavbarComponent from "../components/NavbarComponent";
@@ -17,6 +17,9 @@ const mapStateToProps = (state) => {
 };
 
 class CreateIzinGroup extends Component {
+  componentDidMount() {
+    this.props.dispatch(getOptUser());
+  }
   handleSubmit(data) {
     this.props.dispatch(postIzinGroup(data));
   }
@@ -33,10 +36,7 @@ class CreateIzinGroup extends Component {
       } else {
         swal(
           "Izin Created!",
-          "Nama : " +
-            this.props.getResponDataIzin.DatangID +
-            " , Umur : " +
-            this.props.getResponDataIzin.Jabatan,
+          "~" ,
           "success"
         );
       }
@@ -44,8 +44,12 @@ class CreateIzinGroup extends Component {
     return (
       <div>
         <NavbarComponent />
-    
+        <div style={{ backgroundColor: '#fec107'}}>
+          <BackIzin></BackIzin>
+        <Container>
         <FormIzinGroup onSubmit={(data) => this.handleSubmit(data)} />
+        </Container>
+        </div>
         </div>
     );
   }

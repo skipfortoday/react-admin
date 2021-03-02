@@ -106,7 +106,7 @@ const ListUserIzin = (props) => {
         >
           {(props) => (
             <div>
-              <Card body inverse color="info">
+              <Card body inverse color="dark">
               <Row>
                 <Col>
                   <div className="float-xl-right">

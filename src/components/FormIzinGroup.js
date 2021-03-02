@@ -4,7 +4,8 @@ import { connect } from "react-redux";
 import { FormGroup, Col, Label, Input, Row, Button, Alert } from "reactstrap";
 import IzinValidation from "../validations/IzinValidation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSave } from "@fortawesome/free-solid-svg-icons";
+import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
+import Select from 'react-select';
 
 const renderField = ({
   input,
@@ -29,11 +30,57 @@ const renderField = ({
         disabled={disabled}
         readOnly={readOnly}
       >
-        <option value="ACC">Acounting</option>
-        <option value="TER">Terapis</option>
-        <option value="DOC">Dokter</option>
-        <option value="RES">Resepsionis</option>
+        <option value=""></option>
+        <option value="OFF">OFF</option>
+        <option value="CUTI">CUTI</option>
+        <option value="TIDAK MASUK">IZIN TIDAK MASUK</option>
+        <option value="SAKIT">SAKIT</option>
+        <option value="DINAS LUAR">DINAS LUAR</option>
+        <option value="CUTI BERSAMA">CUTI BERSAMA</option>
+        <option value="CUTI KHUSUS">CUTI KHUSUS</option>
+        <option value="LIBUR">LIBUR</option>
       </Input>
+      {touched &&
+        ((error && <p style={{ color: "brown" }}>{error}</p>) ||
+          (warning && <p style={{ color: "brown" }}>{warning}</p>))}
+    </Col>
+  </Row>
+);
+
+const renderField2 = ({
+  input,
+  name,
+  id,
+  type,
+  placeholder,
+  label,
+  disabled,
+  options,
+  readOnly,
+  meta: { touched, error, warning },
+}) => (
+  <Row>
+    <Col md="12">
+      <Label htmlFor="{input}" className="col-form-label">
+        {label}
+      </Label>
+    </Col>
+    <Col md="12">
+      
+      <Select
+        {...Input}
+        id={id} 
+        name={name} 
+        type={type}
+        placeholder={placeholder}
+        disabled={disabled}
+        readOnly={readOnly}
+        options={options}
+        isMulti
+        value={input.value}
+        onChange={(value) => input.onChange(value)}
+         //onBlur={() => input.onBlur()}
+      />
       {touched &&
         ((error && <p style={{ color: "red" }}>{error}</p>) ||
           (warning && <p style={{ color: "brown" }}>{warning}</p>))}
@@ -43,12 +90,9 @@ const renderField = ({
 
 const mapStateToProps = (state) => {
   return {
+    getOptUser : state.Opt.getOptUser,
     initialValues: {
-      DatangID: state.Izin.getIzinDetail.DatangID,
-      Nama: state.Izin.getIzinDetail.Nama,
-      TanggalScan: state.Izin.getIzinDetail.TanggalScan,
-      Status: state.Izin.getIzinDetail.Status,
-      Keterangan: state.Izin.getIzinDetail.Keterangan,
+      Nama: state.Opt.getOptUser,
     },
   };
 };
@@ -58,10 +102,21 @@ class FormIzinGroup extends Component {
     return (
       <form onSubmit={this.props.handleSubmit}>
         <FormGroup row>
+
+
+
+        
+
           <Col md={12}>
-            <Alert color="danger">
-              Pilih Tanggal Izin Dan Pilih Group Pegawai
-            </Alert>
+            <FormGroup>
+              <Field
+                name="Nama"
+                disabled
+                component={renderField2}
+                label="Nama:"
+                options={this.props.getOptUser}
+              />
+            </FormGroup>
           </Col>
 
           <Col md={3}>
@@ -79,46 +134,10 @@ class FormIzinGroup extends Component {
             <FormGroup>
               <Field
                 type="select"
-                name="Nama"
+                name="Status"
                 component={renderField}
-                label="Pilih Group Pegawai:"
+                label="Tipe  :"
               />
-            </FormGroup>
-          </Col>
-
-          <Col md={12}>
-            <Alert color="primary">
-              Masukkan Tipe Izin dan Keterangan Untuk Izin
-            </Alert>
-          </Col>
-
-          <Col md={3}>
-            <FormGroup>
-              <Field
-                type="radio"
-                value="OFF"
-                name="Status"
-                component={renderField}
-                label="Tipe Izin  :"
-              /> OFF
-                <Field
-                type="radio"
-                value="CUTI"
-                name="Status"
-                component={renderField}
-              /> CUTI
-                <Field
-                type="radio"
-                value="Tidak Masuk"
-                name="Status"
-                component={renderField}
-              /> TIDAK MASUK
-                <Field
-                type="radio"
-                value="SAKIT"
-                name="Status"
-                component={renderField}
-              /> SAKIT
             </FormGroup>
           </Col>
 
@@ -128,24 +147,23 @@ class FormIzinGroup extends Component {
                 type="text"
                 name="Keterangan"
                 component={renderField}
-                label="Keterangan Izin :"
+                label="Keterangan :"
               />
             </FormGroup>
           </Col>
-        </FormGroup>
-
-        <FormGroup row>
-          <Col md="12">
-            <FormGroup>
+         <Col md={1}>
+          <FormGroup>
+            <Label> Kirim </Label>
               <Button
-                color="primary"
+                color="dark"
                 type="submit"
-                disabled={this.props.submitting}
+                disabled={this.props.submitting} 
               >
-                <FontAwesomeIcon icon={faSave} /> SIMPAN
+                <FontAwesomeIcon icon={faPaperPlane} /> 
               </Button>
             </FormGroup>
-          </Col>
+
+            </Col>
         </FormGroup>
       </form>
     );

@@ -122,7 +122,7 @@ export const postIzinGroup= (data) => {
   return (dispatch) => {
     axios
       .post(
-         "http://192.168.0.25:3001/api/izingroup",
+         "http://192.168.0.25:3001/api/pilihizin",
         data
       )
       .then(function (response) {

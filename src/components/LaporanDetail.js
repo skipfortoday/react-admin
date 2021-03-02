@@ -13,7 +13,7 @@ const mapStateToProps = (state) => {
   };
 };
 
-const rowClasses = row => (row.Status == "LIBUR" ? "alert-row" :   "");
+const rowClasses = row => (row.Tanggal.includes('Minggu') ? "alert-row" :"");
 
 function terlambatFormatter(cell, row) {
   if (row.Terlambat) {
@@ -30,7 +30,7 @@ function terlambatFormatter(cell, row) {
 }
 
 function LiburFormatter(cell, row) {
-  if (row.Status == 'LIBUR') {
+  if (row.Tanggal.includes('Minggu') ) {
     return (
       <span>
         <strong style={ { color: 'red'  } } >{ cell }</strong>
@@ -259,7 +259,6 @@ TotalKeluar: null*/
   return (
     <BootstrapTable 
       keyField='Tanggal'
-      classes='rDetail2' 
       data={ props.getLaporanDetail } 
       columns={ columns } 
       expandRow={ expandRow }

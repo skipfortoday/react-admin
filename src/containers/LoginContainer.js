@@ -41,7 +41,7 @@ class LoginContainer extends Component {
               "Login Berhasil",
               "success"
     
-            );return <Redirect to="/asu123" /> 
+            );return <Redirect to="/superadmin" /> 
 
           }
           else {
