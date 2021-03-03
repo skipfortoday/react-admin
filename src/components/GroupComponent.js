@@ -1,14 +1,12 @@
 import React from "react";
 import BootstrapTable from "react-bootstrap-table-next";
-import { Button, Row, Col, Spinner, Card , CardTitle} from "reactstrap";
+import { Button, Row, Col, Spinner, Card } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faInfo,
   faEdit,
   faTrash,
   faUsersCog,
   faPlus,
-  faClock,
   faSortAmountUp,
 } from "@fortawesome/free-solid-svg-icons";
 import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";

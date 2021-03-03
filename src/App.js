@@ -1,4 +1,4 @@
-import React, { useReducer,Component,createContext } from "react";
+import React, { useReducer,createContext } from "react";
 import { BrowserRouter, Route , Switch } from "react-router-dom";
 import HomeContainer from "./containers/HomeContainer";
 import CreateUserContainer from "./containers/CreateUserContainer";
@@ -15,7 +15,6 @@ import CreateIzinContainer from "./containers/CreateIzinContainer";
 import CreateIzinGroup from "./containers/CreateIzinGroup";
 import EditIzinContainer from "./containers/EditIzinContainer";
 import DetailIzinContainer from "./containers/DetailIzinContainer";
-import LaporanContainer from "./containers/LaporanContainer";
 import ListLaporanContainer from "./containers/ListLaporanContainer";
 import CabangContainer from "./containers/CabangContainer";
 import CreateCabangContainer from "./containers/CreateCabangContainer";

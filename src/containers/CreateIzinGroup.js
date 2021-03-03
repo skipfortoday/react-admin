@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Container, Alert, Col, Row } from "reactstrap";
+import { Container} from "reactstrap";
 import BackIzin from "../components/BackIzin";
 import { connect } from "react-redux";
 import { postIzinGroup } from "../actions/izinAction";
@@ -26,7 +26,7 @@ class CreateIzinGroup extends Component {
 
   render() {
     let ambil = JSON.parse(localStorage.getItem('user'));
-    if (!localStorage.getItem('user')||  ambil.Login == "false") {
+    if (!localStorage.getItem('user')||  ambil.Login === "false") {
       swal("Failed!", "Login Dulu Bosq", "error");
       return <Redirect to="/home" /> ;
     } 

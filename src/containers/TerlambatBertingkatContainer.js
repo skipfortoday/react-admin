@@ -1,13 +1,13 @@
 import React, { Component } from "react";
-import { Container, Alert, Col, Row } from "reactstrap";
+import { Container } from "reactstrap";
 import BackGroup from "../components/BackGroup";
 import { connect } from "react-redux";
 import TerlambatBertingkatComponent from "../components/TerlambatBertingkatComponent";
-import { getGroupDetail, putGroupUpdate } from "../actions/groupAction";
+import { getGroupDetail, getGroupTerLambat1, getGroupTerLambat2, getGroupTerLambat3, putGroupUpdate } from "../actions/groupAction";
 import swal from "sweetalert";
-import InfoMenuGroup from "../components/InfoMenuGroup";
 import NavbarComponent from "../components/NavbarComponent";
 import {Redirect} from "react-router-dom";
+
 
 const mapStateToProps = (state) => {
   return {
@@ -19,6 +19,9 @@ const mapStateToProps = (state) => {
 class TerlambatBertingkatContainer extends Component {
   componentDidMount() {
     this.props.dispatch(getGroupDetail(this.props.match.params.GroupID));
+    this.props.dispatch(getGroupTerLambat1(this.props.match.params.GroupID));
+    this.props.dispatch(getGroupTerLambat2(this.props.match.params.GroupID));
+    this.props.dispatch(getGroupTerLambat3(this.props.match.params.GroupID));
   }
 
   handleSubmit(data) {
@@ -27,7 +30,7 @@ class TerlambatBertingkatContainer extends Component {
 
   render() {
     let ambil = JSON.parse(localStorage.getItem('user'));
-    if (!localStorage.getItem('user')||  ambil.Login == "false") {
+    if (!localStorage.getItem('user')||  ambil.Login === "false") {
       swal("Failed!", "Login Dulu Bosq", "error");
       return <Redirect to="/home" /> ;
     } 
@@ -46,26 +49,13 @@ class TerlambatBertingkatContainer extends Component {
       }
     }
     return (
-      <Container>
+      <div>
         <NavbarComponent />
-        <Row>
-          <Col md={1}>
             <BackGroup />
-          </Col>
-          <Col md={11}>
-            <Alert color="warning">
-              <h4>Menu Terlambat Bertingkat</h4>
-            </Alert>
-          </Col>
-        </Row>
-        <InfoMenuGroup />
-        <Alert color="warning"></Alert>
-        <h2>Form Terlambat Bertingkat</h2>
-        <TerlambatBertingkatComponent
-          onSubmit={(data) => this.handleSubmit(data)}
-        />
-        <Alert color="warning"></Alert>
-      </Container>
+            <Container>
+        <TerlambatBertingkatComponent/>
+        </Container>
+        </div>
     );
   }
 }

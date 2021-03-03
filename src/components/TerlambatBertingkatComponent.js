@@ -51,21 +51,8 @@ const mapStateToProps = (state) => {
       GroupID: state.Group.getGroupDetail.GroupID,
       Jabatan: state.Group.getGroupDetail.Jabatan,
       JamDatang: state.Group.getGroupDetail.JamDatang,
-      JamPulang: state.Group.getGroupDetail.JamPulang,
-      MaxJamDatang: state.Group.getGroupDetail.MaxJamDatang,
-      MinJamLembur: state.Group.getGroupDetail.MinJamLembur,
-      JamDatangSiang: state.Group.getGroupDetail.JamDatangSiang,
-      JamPulangSiang: state.Group.getGroupDetail.JamPulangSiang,
-      MaxJamDatangSiang: state.Group.getGroupDetail.MaxJamDatangSiang,
-      MinJamLemburSiang: state.Group.getGroupDetail.MinJamLemburSiang,
-      JamDatangSore: state.Group.getGroupDetail.JamDatangSore,
-      JamPulangSore: state.Group.getGroupDetail.JamPulangSore,
-      MaxJamDatangSore: state.Group.getGroupDetail.MaxJamDatangSore,
-      MinJamLemburSore: state.Group.getGroupDetail.MinJamLemburSore,
-      HariLibur: state.Group.getGroupDetail.HariLibur,
-      RpLemburPerJam: state.Group.getGroupDetail.RpLemburPerJam,
-      RpPotonganTerlambat: state.Group.getGroupDetail.RpPotonganTerlambat,
-      RpPotonganTidakMasuk: state.Group.getGroupDetail.RpPotonganTidakMasuk,
+      RuleTerlambatBertingkat  : state.Group.getGroupDetail.RuleTerlambatBertingkat,
+
     },
   };
 };
@@ -104,10 +91,19 @@ class TerlambatBertingkatComponent extends Component {
               />
             </FormGroup>
           </Col>
-
-          
           <Col md={4}>
+            <FormGroup>
+              <Field
+                type="text"
+                name="RuleTerlambatBertingkat"
+                component={renderField}
+                label="Menggunakan Terlambat Bertingkat :"
+                disabled
+              />
+            </FormGroup>
           </Col>
+
+        
 
           <Col md={4}>
             <Alert color="info">Terlambat Bertingkat Shift 1</Alert>
@@ -125,7 +121,7 @@ class TerlambatBertingkatComponent extends Component {
             <FormGroup>
               <Field
                 type="time"
-                name="JamDatang"
+                name="Ambil0.MaxJamDatang"
                 component={renderField}
                 label="Jam :"
               />
@@ -147,7 +143,7 @@ class TerlambatBertingkatComponent extends Component {
             <FormGroup>
               <Field
                 type="time"
-                name="JamDatang"
+                name=""
                 component={renderField}
                 label="Jam :"
               />

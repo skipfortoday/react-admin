@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import { reduxForm, Field } from "redux-form";
 import { connect } from "react-redux";
-import { FormGroup, Col, Label, Input, Row, Button, Card, CardTitle, CardText} from "reactstrap";
-import AsyncVUser from "../validations/AsyncVUser";
+import { FormGroup, Col, Label, Input, Row, Button} from "reactstrap";
 import UserValidation from "../validations/UserValidation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSave } from "@fortawesome/free-solid-svg-icons";
@@ -15,7 +14,7 @@ const renderField = ({
   label,
   disabled,
   readOnly,
-  meta: { asyncValidating, touched, error, warning },
+  meta: {  touched, error, warning },
 }) => (
   <Row>
     <Col md="12">
@@ -36,10 +35,10 @@ const renderField = ({
         <option value = "2">Atasan Group</option>
         <option value = "3">Staff</option>
       </Input>
-      <div className={ asyncValidating ? 'async-validating' : ''}>
+     
       {touched &&
         ((error && <p style={{ color: "red" }}>{error}</p>) ||
-          (warning && <p style={{ color: "brown" }}>{warning}</p>))}</div>
+          (warning && <p style={{ color: "brown" }}>{warning}</p>))}
     </Col>
   </Row>
 );
@@ -333,8 +332,6 @@ class FormComponent extends Component {
 FormComponent = reduxForm({
   form: "formCreateUser",
   validate: UserValidation,
-  asyncValidate: AsyncVUser,
-  asyncBlurFields : ['UserID'] ,
   enableReinitialize: true,
 })(FormComponent);
 export default connect(mapStateToProps, null)(FormComponent);

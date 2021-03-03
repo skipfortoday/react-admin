@@ -1,8 +1,7 @@
 import React from "react";
 import { Row, Col, Button } from "reactstrap";
-import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPrint, faSignOutAlt} from "@fortawesome/free-solid-svg-icons";
+import {  faSignOutAlt} from "@fortawesome/free-solid-svg-icons";
 
 const LogoutComponent = () => {
   return (

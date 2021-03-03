@@ -4,7 +4,6 @@ import { postLoginUser } from "../actions/loginAction";
 import swal from "sweetalert";
 import { getUsersList } from "../actions/userAction";
 import LoginComponent from "../components/LoginComponent";
-import ListUserLaporan from "../components/ListUserLaporan";
 import { Redirect } from "react-router-dom";
 import { Col, Container, Row } from "reactstrap";
 
@@ -31,11 +30,11 @@ class LoginContainer extends Component {
   
   render() {
     if (this.props.getResponLoginUser || this.props.errorResponLoginUser) {
-      if (this.props.errorResponLoginUser || this.props.getResponLoginUser.Login == "false" ) {
+      if (this.props.errorResponLoginUser || this.props.getResponLoginUser.Login === "false" ) {
         alert('Username & Password Salah');
         window.location.reload();
       }  else {
-          if (this.props.getResponLoginUser.RoleAdmin == "99"){
+          if (this.props.getResponLoginUser.RoleAdmin === "99"){
             swal(
               "Sucsess!",
               "Login Berhasil",

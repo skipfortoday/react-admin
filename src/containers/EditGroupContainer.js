@@ -1,11 +1,10 @@
 import React, { Component } from "react";
-import { Container, Alert, Col, Row } from "reactstrap";
+import { Container } from "reactstrap";
 import BackGroup from "../components/BackGroup";
 import { connect } from "react-redux";
 import FormGroupComponent from "../components/FormGroupComponent";
 import { getGroupDetail, putGroupUpdate } from "../actions/groupAction";
 import swal from "sweetalert";
-import InfoMenuGroup from "../components/InfoMenuGroup";
 import NavbarComponent from "../components/NavbarComponent";
 import { Redirect } from "react-router-dom";
 
@@ -27,7 +26,7 @@ class EditGroupContainer extends Component {
 
   render() {
     let ambil = JSON.parse(localStorage.getItem('user'));
-    if (!localStorage.getItem('user')||  ambil.Login == "false") {
+    if (!localStorage.getItem('user')||  ambil.Login === "false") {
       swal("Failed!", "Login Dulu Bosq", "error");
       return <Redirect to="/home" /> ;
     } 

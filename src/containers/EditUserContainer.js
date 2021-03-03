@@ -1,9 +1,8 @@
 import React, { Component } from "react";
-import { Container, Alert, Row, Col } from "reactstrap";
+import { Container } from "reactstrap";
 import BackComponent from "../components/BackComponent";
 import { connect } from "react-redux";
 import FormComponent from "../components/FormComponent";
-import InfoMenuPegawai from "../components/InfoMenuPegawai";
 import { getUserDetail, putUserUpdate } from "../actions/userAction";
 import { getOptCabang, getOptGroup } from "../actions/optAction";
 import swal from "sweetalert";
@@ -30,7 +29,7 @@ class EditUserContainer extends Component {
 
   render() {
     let ambil = JSON.parse(localStorage.getItem('user'));
-    if (!localStorage.getItem('user')||  ambil.Login == "false") {
+    if (!localStorage.getItem('user')||  ambil.Login === "false") {
       swal("Failed!", "Login Dulu Bosq", "error");
       return <Redirect to="/home" /> ;
     } 

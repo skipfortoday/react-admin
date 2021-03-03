@@ -2,22 +2,17 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import {
   Collapse,
-
   Navbar,
   NavbarToggler,
   NavbarBrand,
   Nav,
   NavItem,
   NavLink,
-  NavbarText
 } from "reactstrap";
-import LogoutComponent from "./LogoutComponent";
-
 const NavbarComponent = (props) => {
   const [collapsed, setCollapsed] = useState(true);
 
   const toggleNavbar = () => setCollapsed(!collapsed);
-  var nama = localStorage.getItem('user');
 
   return (
     <div>

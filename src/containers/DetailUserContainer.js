@@ -17,7 +17,7 @@ class DetailUserContainer extends Component {
 
   render() {
     let ambil = JSON.parse(localStorage.getItem('user'));
-    if (!localStorage.getItem('user')||  ambil.Login == "false") {
+    if (!localStorage.getItem('user')||  ambil.Login === "false") {
       swal("Failed!", "Login Dulu Bosq", "error");
       return <Redirect to="/home" /> ;
     } 

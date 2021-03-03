@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Container, Alert, Col, Row, Button} from "reactstrap";
+import { Container, Alert, Col, Row} from "reactstrap";
 import { connect } from "react-redux";
 import { getUsersList, deleteDataUser } from "../actions/userAction";
 import { getOptUser } from "../actions/optAction";
@@ -21,7 +21,7 @@ class ListUserIzinContainer extends Component {
 
   render() {
     let ambil = JSON.parse(localStorage.getItem('user'));
-    if (!localStorage.getItem('user')||  ambil.Login == "false") {
+    if (!localStorage.getItem('user')||  ambil.Login === "false") {
       swal("Failed!", "Login Dulu Bosq", "error");
       return <Redirect to="/home" /> ;
     } 

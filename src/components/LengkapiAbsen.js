@@ -13,7 +13,7 @@ import {
 } from "reactstrap";
 import SelectValidation from "../validations/SelectValidation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPaperPlane, faSpinner} from "@fortawesome/free-solid-svg-icons"; 
+import {  faSpinner} from "@fortawesome/free-solid-svg-icons"; 
 
 const renderField = ({
   input,

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { reduxForm, Field } from "redux-form";
 import { connect } from "react-redux";
-import { FormGroup, Col, Label, Input, Row, Button ,Card, CardTitle, CardText  } from "reactstrap";
+import { FormGroup, Col, Label, Input, Row, Button ,Card, CardTitle } from "reactstrap";
 import LoginValidation from "../validations/LoginValidation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSignInAlt } from "@fortawesome/free-solid-svg-icons";

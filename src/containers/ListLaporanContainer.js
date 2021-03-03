@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { getUsersList } from "../actions/userAction";
 import NavbarComponent from "../components/NavbarComponent";
-import ListUserLaporan from "../components/ListUserLaporan";
 import LengkapiAbsenGuestComponent from "../components/LengkapiAbsenGuestComponent";
 import LengkapiAbsenButton2 from "../components/LengkapiAbsenButton2";
 import { getOptUser } from "../actions/optAction";

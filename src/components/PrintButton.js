@@ -1,6 +1,5 @@
 import React from "react";
 import { Row, Col, Button } from "reactstrap";
-import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPrint} from "@fortawesome/free-solid-svg-icons";
 

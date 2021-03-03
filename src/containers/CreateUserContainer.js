@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Container, Col, Row, Alert } from "reactstrap";
+import { Container } from "reactstrap";
 import BackComponent from "../components/BackComponent";
 import FormComponent from "../components/FormComponent";
 import { connect } from "react-redux";
@@ -28,7 +28,7 @@ class CreateUserContainer extends Component {
 
   render() {
     let ambil = JSON.parse(localStorage.getItem('user'));
-    if (!localStorage.getItem('user')|| ambil.Login == "false") {
+    if (!localStorage.getItem('user')|| ambil.Login === "false") {
       swal("Failed!", "Login Dulu Bosq", "error");
       return <Redirect to="/home" /> ;
     } 

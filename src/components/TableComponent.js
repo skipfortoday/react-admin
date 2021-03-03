@@ -1,22 +1,17 @@
 import React from "react";
 import BootstrapTable from "react-bootstrap-table-next";
 import {
-  Container,
   Button,
   Row,
   Col,
   Spinner,
   Card,
-  CardTitle,
-  CardText,
 } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faInfo,
   faEdit,
   faTrash,
   faUserPlus,
-  retweet,
   faRetweet,
   faUndoAlt,
 } from "@fortawesome/free-solid-svg-icons";

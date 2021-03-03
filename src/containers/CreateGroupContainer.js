@@ -1,7 +1,6 @@
 import React, { Component } from "react";
-import { Container, Alert, Col, Row } from "reactstrap";
+import { Container} from "reactstrap";
 import BackGroup from "../components/BackGroup";
-import InfoMenuGroup from "../components/InfoMenuGroup";
 import FormGroupComponent from "../components/FormGroupComponent";
 import { connect } from "react-redux";
 import { postGroupCreate } from "../actions/groupAction";
@@ -23,8 +22,7 @@ class CreateGroupContainer extends Component {
 
   render() {
     let ambil = JSON.parse(localStorage.getItem('user'));
-    let Login = ambil.Login
-    if (!localStorage.getItem('user')||  ambil.Login == "false") {
+    if (!localStorage.getItem('user')||  ambil.Login === "false") {
       swal("Failed!", "Login Dulu Bosq", "error");
       return <Redirect to="/home" /> ;
     } 

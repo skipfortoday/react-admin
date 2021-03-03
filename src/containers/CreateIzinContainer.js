@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Container, Alert, Col, Row } from "reactstrap";
+import { Container, Row } from "reactstrap";
 import BackIzin from "../components/BackIzin";
 import FormIzinComponent from "../components/FormIzinComponent";
 import { connect } from "react-redux";
@@ -87,7 +87,7 @@ class CreateIzinContainer extends Component {
     } 
 
     let ambil = JSON.parse(localStorage.getItem('user'));
-    if (!localStorage.getItem('user')|| ambil.Login == "false") {
+    if (!localStorage.getItem('user')|| ambil.Login === "false") {
       swal("Failed!", "Login Dulu Bosq", "error");
       return <Redirect to="/home" /> ;
     } 

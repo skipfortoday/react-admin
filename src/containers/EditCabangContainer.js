@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Container, Alert, Col, Row } from "reactstrap";
+import { Container} from "reactstrap";
 import BackCabang from "../components/BackCabang";
 import { connect } from "react-redux";
 import FormCabangComponent from "../components/FormCabangComponent";
@@ -31,7 +31,7 @@ class EditCabangContainer extends Component {
 
   render() {
     let ambil = JSON.parse(localStorage.getItem('user'));
-    if (!localStorage.getItem('user')||  ambil.Login == "false") {
+    if (!localStorage.getItem('user')||  ambil.Login === "false") {
       swal("Failed!", "Login Dulu Bosq", "error");
       return <Redirect to="/home" /> ;
     } 
