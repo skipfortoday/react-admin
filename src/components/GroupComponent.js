@@ -7,7 +7,6 @@ import {
   faTrash,
   faUsersCog,
   faPlus,
-  faSortAmountUp,
 } from "@fortawesome/free-solid-svg-icons";
 import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
 import paginationFactory from "react-bootstrap-table2-paginator";

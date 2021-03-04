@@ -1,541 +1,169 @@
-import React, { Component } from "react";
-import { reduxForm, Field } from "redux-form";
-import { connect } from "react-redux";
-import { FormGroup, Col, Label, Input, Row, Button, Alert } from "reactstrap";
-import GroupValidation from "../validations/GroupValidation";
+import React from "react";
+import BootstrapTable from "react-bootstrap-table-next";
+import {  Button, Row, Col, Spinner , Card} from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSave } from "@fortawesome/free-solid-svg-icons";
+import {
+  faEdit,
+  faTrash,
+  faSitemap,
+} from "@fortawesome/free-solid-svg-icons";
+import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
+import paginationFactory from "react-bootstrap-table2-paginator";
+import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import swal from 'sweetalert';
+import { deleteTerlambatBertingkat } from "../actions/TerlambatBertingkatAction";
 
-const renderField = ({
-  input,
-  type,
-  placeholder,
-  label,
-  disabled,
-  readOnly,
-  meta: { touched, error, warning },
-}) => (
-  <Row>
-    <Col md="12">
-      <Label htmlFor="{input}" className="col-form-label">
-        {label}
-      </Label>
-    </Col>
-    <Col md="12">
-      <Input
-        {...input}
-        type={type}
-        placeholder={placeholder}
-        disabled={disabled}
-        readOnly={readOnly}
-      >
-        <option value="0">-</option>
-        <option value="MONDAY">SENIN</option>
-        <option value="TUESDAY">SELASA</option>
-        <option value="WEDNESDAY">RABU</option>
-        <option value="THURSDAY">KAMIS</option>
-        <option value="FRIDAY">JUMAT</option>
-        <option value="SATURDAY">SABTU</option>
-        <option value="SUNDAY">MINGGU</option>
-      </Input>
-      {touched &&
-        ((error && <p style={{ color: "red" }}>{error}</p>) ||
-          (warning && <p style={{ color: "brown" }}>{warning}</p>))}
-    </Col>
-  </Row>
-);
+const { SearchBar } = Search;
+
+const handleClick = (dispatch, KodeTerlambatBertingkat) => {
+  
+  swal({
+    title: "Apakah Anda yakin akan menghapus data ini ?",
+    icon: "warning",
+    buttons: true,
+    dangerMode: true,
+  })
+  .then((willDelete) => {
+    if (willDelete) {
+      dispatch(deleteTerlambatBertingkat(KodeTerlambatBertingkat))
+      swal("Data TerlambatBertingkat Sukses dihapus", {
+        icon: "success",
+      });window.location.reload();
+    } else {
+      swal("Data gagal dihapus");
+    }
+  });
+}
+
+
+const defaultSorted = [
+  {
+    dataField: "KodeTerlambatBertingkat",
+    order: "asc",
+  },
+];
 
 const mapStateToProps = (state) => {
   return {
-    initialValues: {
-      GroupID: state.Group.getGroupDetail.GroupID,
-      Jabatan: state.Group.getGroupDetail.Jabatan,
-      JamDatang: state.Group.getGroupDetail.JamDatang,
-      RuleTerlambatBertingkat  : state.Group.getGroupDetail.RuleTerlambatBertingkat,
-
-    },
+    getTerlambatBertingkatDetail: state.TerlambatBertingkat.getTerlambatBertingkatDetail,
+    errorTerlambatBertingkatList: state.TerlambatBertingkat.errorTerlambatBertingkatList,
   };
 };
 
-class TerlambatBertingkatComponent extends Component {
-  render() {
-    return (
-      <form onSubmit={this.props.handleSubmit}>
-        <FormGroup row>
-          <Col md={12}>
-            <Alert color="danger">
-              Masukkan Group ID untuk Kode & Nama Group / Nama Jabatan (WAJIB)
-            </Alert>
-          </Col>
+const TerlambatBertingkatComponent = (props) => {
 
-          <Col md={4}>
-            <FormGroup>
-              <Field
-                type="text"
-                name="GroupID"
-                component={renderField}
-                label="Group ID :"
-                disabled
-              />
-            </FormGroup>
-          </Col>
-
-          <Col md={4}>
-            <FormGroup>
-              <Field
-                type="text"
-                name="Jabatan"
-                component={renderField}
-                label="Nama Group :"
-                disabled
-              />
-            </FormGroup>
-          </Col>
-          <Col md={4}>
-            <FormGroup>
-              <Field
-                type="text"
-                name="RuleTerlambatBertingkat"
-                component={renderField}
-                label="Menggunakan Terlambat Bertingkat :"
-                disabled
-              />
-            </FormGroup>
-          </Col>
-
-        
-
-          <Col md={4}>
-            <Alert color="info">Terlambat Bertingkat Shift 1</Alert>
-          </Col>
-
-          <Col md={4}>
-            <Alert color="warning">Terlambat Bertingkat Shift 2</Alert>
-          </Col>
-
-          <Col md={4}>
-            <Alert color="danger">Terlambat Bertingkat Shift 3</Alert>
-          </Col>
-
-          <Col md={2}>
-            <FormGroup>
-              <Field
-                type="time"
-                name="Ambil0.MaxJamDatang"
-                component={renderField}
-                label="Jam :"
-              />
-            </FormGroup>
-          </Col>
-
-          <Col md={2}>
-            <FormGroup>
-              <Field
-                type="number"
-                name="JamDatang"
-                component={renderField}
-                label="Potongan :"
-              />
-            </FormGroup>
-          </Col>
-
-          <Col md={2}>
-            <FormGroup>
-              <Field
-                type="time"
-                name=""
-                component={renderField}
-                label="Jam :"
-              />
-            </FormGroup>
-          </Col>
-
-          <Col md={2}>
-            <FormGroup>
-              <Field
-                type="number"
-                name="JamDatang"
-                component={renderField}
-                label="Potongan :"
-              />
-            </FormGroup>
-          </Col>
-
-          <Col md={2}>
-            <FormGroup>
-              <Field
-                type="time"
-                name="JamDatang"
-                component={renderField}
-                label="Jam :"
-              />
-            </FormGroup>
-          </Col>
-
-          <Col md={2}>
-            <FormGroup>
-              <Field
-                type="number"
-                name="JamDatang"
-                component={renderField}
-                label="Potongan :"
-              />
-            </FormGroup>
-          </Col>
-
-          <Col md={2}>
-            <FormGroup>
-              <Field
-                type="time"
-                name="JamDatang"
-                component={renderField}
-                label="Jam :"
-              />
-            </FormGroup>
-          </Col>
-
-          <Col md={2}>
-            <FormGroup>
-              <Field
-                type="number"
-                name="JamDatang"
-                component={renderField}
-                label="Potongan :"
-              />
-            </FormGroup>
-          </Col>
-
-          <Col md={2}>
-            <FormGroup>
-              <Field
-                type="time"
-                name="JamDatang"
-                component={renderField}
-                label="Jam :"
-              />
-            </FormGroup>
-          </Col>
-
-          <Col md={2}>
-            <FormGroup>
-              <Field
-                type="number"
-                name="JamDatang"
-                component={renderField}
-                label="Potongan :"
-              />
-            </FormGroup>
-          </Col>
-
-          <Col md={2}>
-            <FormGroup>
-              <Field
-                type="time"
-                name="JamDatang"
-                component={renderField}
-                label="Jam :"
-              />
-            </FormGroup>
-          </Col>
-
-          <Col md={2}>
-            <FormGroup>
-              <Field
-                type="number"
-                name="JamDatang"
-                component={renderField}
-                label="Potongan :"
-              />
-            </FormGroup>
-          </Col>
-
-
-          <Col md={2}>
-            <FormGroup>
-              <Field
-                type="time"
-                name="JamDatang"
-                component={renderField}
-                label="Jam :"
-              />
-            </FormGroup>
-          </Col>
-
-          <Col md={2}>
-            <FormGroup>
-              <Field
-                type="number"
-                name="JamDatang"
-                component={renderField}
-                label="Potongan :"
-              />
-            </FormGroup>
-          </Col>
-
-          <Col md={2}>
-            <FormGroup>
-              <Field
-                type="time"
-                name="JamDatang"
-                component={renderField}
-                label="Jam :"
-              />
-            </FormGroup>
-          </Col>
-
-          <Col md={2}>
-            <FormGroup>
-              <Field
-                type="number"
-                name="JamDatang"
-                component={renderField}
-                label="Potongan :"
-              />
-            </FormGroup>
-          </Col>
-
-          <Col md={2}>
-            <FormGroup>
-              <Field
-                type="time"
-                name="JamDatang"
-                component={renderField}
-                label="Jam :"
-              />
-            </FormGroup>
-          </Col>
-
-          <Col md={2}>
-            <FormGroup>
-              <Field
-                type="number"
-                name="JamDatang"
-                component={renderField}
-                label="Potongan :"
-              />
-            </FormGroup>
-          </Col>
-
-          <Col md={2}>
-            <FormGroup>
-              <Field
-                type="time"
-                name="JamDatang"
-                component={renderField}
-                label="Jam :"
-              />
-            </FormGroup>
-          </Col>
-
-          <Col md={2}>
-            <FormGroup>
-              <Field
-                type="number"
-                name="JamDatang"
-                component={renderField}
-                label="Potongan :"
-              />
-            </FormGroup>
-          </Col>
-
-          <Col md={2}>
-            <FormGroup>
-              <Field
-                type="time"
-                name="JamDatang"
-                component={renderField}
-                label="Jam :"
-              />
-            </FormGroup>
-          </Col>
-
-          <Col md={2}>
-            <FormGroup>
-              <Field
-                type="number"
-                name="JamDatang"
-                component={renderField}
-                label="Potongan :"
-              />
-            </FormGroup>
-          </Col>
-
-          <Col md={2}>
-            <FormGroup>
-              <Field
-                type="time"
-                name="JamDatang"
-                component={renderField}
-                label="Jam :"
-              />
-            </FormGroup>
-          </Col>
-
-          <Col md={2}>
-            <FormGroup>
-              <Field
-                type="number"
-                name="JamDatang"
-                component={renderField}
-                label="Potongan :"
-              />
-            </FormGroup>
-          </Col>
-
-          <Col md={2}>
-            <FormGroup>
-              <Field
-                type="time"
-                name="JamDatang"
-                component={renderField}
-                label="Jam :"
-              />
-            </FormGroup>
-          </Col>
-
-          <Col md={2}>
-            <FormGroup>
-              <Field
-                type="number"
-                name="JamDatang"
-                component={renderField}
-                label="Potongan :"
-              />
-            </FormGroup>
-          </Col>
-
-          <Col md={2}>
-            <FormGroup>
-              <Field
-                type="time"
-                name="JamDatang"
-                component={renderField}
-                label="Jam :"
-              />
-            </FormGroup>
-          </Col>
-
-          <Col md={2}>
-            <FormGroup>
-              <Field
-                type="number"
-                name="JamDatang"
-                component={renderField}
-                label="Potongan :"
-              />
-            </FormGroup>
-          </Col>
-
-          <Col md={2}>
-            <FormGroup>
-              <Field
-                type="time"
-                name="JamDatang"
-                component={renderField}
-                label="Jam :"
-              />
-            </FormGroup>
-          </Col>
-
-          <Col md={2}>
-            <FormGroup>
-              <Field
-                type="number"
-                name="JamDatang"
-                component={renderField}
-                label="Potongan :"
-              />
-            </FormGroup>
-          </Col>
-
-          <Col md={2}>
-            <FormGroup>
-              <Field
-                type="time"
-                name="JamDatang"
-                component={renderField}
-                label="Jam :"
-              />
-            </FormGroup>
-          </Col>
-
-          <Col md={2}>
-            <FormGroup>
-              <Field
-                type="number"
-                name="JamDatang"
-                component={renderField}
-                label="Potongan :"
-              />
-            </FormGroup>
-          </Col>
-
-          <Col md={2}>
-            <FormGroup>
-              <Field
-                type="time"
-                name="JamDatang"
-                component={renderField}
-                label="Jam :"
-              />
-            </FormGroup>
-          </Col>
-
-          <Col md={2}>
-            <FormGroup>
-              <Field
-                type="number"
-                name="JamDatang"
-                component={renderField}
-                label="Potongan :"
-              />
-            </FormGroup>
-          </Col>
-
-          <Col md={2}>
-            <FormGroup>
-              <Field
-                type="time"
-                name="JamDatang"
-                component={renderField}
-                label="Jam :"
-              />
-            </FormGroup>
-          </Col>
-
-          <Col md={2}>
-            <FormGroup>
-              <Field
-                type="number"
-                name="JamDatang"
-                component={renderField}
-                label="Potongan :"
-              />
-            </FormGroup>
-          </Col>
-        </FormGroup>
-
-        <FormGroup row>
-          <Col md="12">
-            <FormGroup>
-              <Button
-                color="primary"
-                type="submit"
-                disabled={this.props.submitting}
-              >
-                <FontAwesomeIcon icon={faSave} /> SIMPAN
+  const columns = [
+    {
+      dataField: "KodeTerlambatBertingkat",
+      text: "KodeTerlambatBertingkat",
+      sort: true,
+      headerStyle: () => {
+        return { width: "75px" , backgroundColor:"#fec107" };
+      },
+      style: () => {
+        return { fontWeight : "bold" };
+      },
+    },
+    {
+      dataField: "NamaTerlambatBertingkat",
+      text: "Nama TerlambatBertingkat",
+      sort: true,
+      headerStyle: () => {
+        return { width: "100px", backgroundColor:"#fec107" };
+      },
+      style: () => {
+        return { fontWeight : "bold" };
+      },
+    },
+    {
+      dataField: "Alamat",
+      text: "Alamat TerlambatBertingkat", 
+      sort: true,
+      headerStyle: () => {
+        return { width: "200px", backgroundColor:"#fec107" };
+      },
+      style: () => {
+        return { fontWeight : "bold" };
+      },
+      
+    },
+    {
+      dataField: "link",
+      text: "Action",
+      headerStyle: () => {
+        return { width: "40px", backgroundColor:"#fec107" };
+      },
+      formatter: (rowContent, row) => {
+        return (
+          <div>
+            <Link to={"TerlambatBertingkat/edit/" + row.KodeTerlambatBertingkat}>
+              <Button  color="warning" className="mr-2">
+                <FontAwesomeIcon icon={faEdit} />
               </Button>
-            </FormGroup>
-          </Col>
-        </FormGroup>
-      </form>
-    );
-  }
-}
+            </Link>
 
-TerlambatBertingkatComponent = reduxForm({
-  form: "formTerlambatBertingkat",
-  validate: GroupValidation,
-  enableReinitialize: true,
-})(TerlambatBertingkatComponent);
+            <Link to={"/TerlambatBertingkat#"}>
+            <Button  color="warning" className="mr-2" onClick={() => handleClick(props.dispatch, row.KodeTerlambatBertingkat)}>
+              <FontAwesomeIcon icon={faTrash} /> 
+            </Button>
+            </Link>
+          </div>
+        );
+      },
+    },
+  ];
+
+  
+  return (
+    <div>
+      {props.getTerlambatBertingkatList ? (
+        <ToolkitProvider
+          bootstrap4
+          keyField="KodeTerlambatBertingkat"
+          data={props.getTerlambatBertingkatList}
+          columns={columns}
+          rowStyle={ {  fontWeight: "bold" } } 
+          defaultSorted={defaultSorted}
+          search
+        >
+          {(props) => (
+            <div>
+              <Card body inverse style={{ backgroundColor: '#ffffff', borderColor: '#ffffff' }}>
+              <Row>
+                <Col>
+                  <Link to="/TerlambatBertingkat/create">
+                    <Button color="warning" className="mr-2">
+                      <FontAwesomeIcon icon={faSitemap} /> Tambah TerlambatBertingkat
+                    </Button>
+                  </Link>
+                </Col>
+                <Col>
+                  <div className="float-right">
+                    <SearchBar {...props.searchProps} placeholder="Search .." />
+                  </div>
+                </Col>
+              </Row>
+
+              <BootstrapTable
+                {...props.baseProps}
+                pagination={paginationFactory()}
+              />
+              </Card>
+            </div>
+          )}
+        </ToolkitProvider>
+      ) : (
+        <div className="text-center">
+          {props.errorTerlambatBertingkatList ? (
+            <h4>{props.errorTerlambatBertingkatList}</h4>
+          ) : (
+            <Spinner color="dark" />
+          )}
+        </div>
+      )}
+    </div>
+  );
+};
+
 export default connect(mapStateToProps, null)(TerlambatBertingkatComponent);

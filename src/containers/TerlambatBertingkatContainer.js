@@ -3,25 +3,27 @@ import { Container } from "reactstrap";
 import BackGroup from "../components/BackGroup";
 import { connect } from "react-redux";
 import TerlambatBertingkatComponent from "../components/TerlambatBertingkatComponent";
-import { getGroupDetail, getGroupTerLambat1, getGroupTerLambat2, getGroupTerLambat3, putGroupUpdate } from "../actions/groupAction";
+import { getGroupDetail, putGroupUpdate } from "../actions/groupAction";
 import swal from "sweetalert";
 import NavbarComponent from "../components/NavbarComponent";
 import {Redirect} from "react-router-dom";
+import FormTerlambat from "../components/FormTerlambat";
+import { getOptGroup, getOptTerlambat } from "../actions/optAction";
+import { getTerlambatBertingkatDetail } from "../actions/TerlambatBertingkatAction";
 
 
 const mapStateToProps = (state) => {
   return {
-    getResponDataGroup: state.Group.getResponDataGroup,
-    errorResponDataGroup: state.Group.errorResponDataGroup,
+    getTerlambatBertingkatDetail: state.TerlambatBertingkat.getTerlambatBertingkatDetail,
+    errorTerlambatBertingkatList: state.TerlambatBertingkat.errorTerlambatBertingkatList,
   };
 };
 
 class TerlambatBertingkatContainer extends Component {
   componentDidMount() {
     this.props.dispatch(getGroupDetail(this.props.match.params.GroupID));
-    this.props.dispatch(getGroupTerLambat1(this.props.match.params.GroupID));
-    this.props.dispatch(getGroupTerLambat2(this.props.match.params.GroupID));
-    this.props.dispatch(getGroupTerLambat3(this.props.match.params.GroupID));
+    this.props.dispatch(getTerlambatBertingkatDetail(this.props.match.params.GroupID));
+    this.props.dispatch(getOptTerlambat(this.props.match.params.GroupID));
   }
 
   handleSubmit(data) {
@@ -52,9 +54,9 @@ class TerlambatBertingkatContainer extends Component {
       <div>
         <NavbarComponent />
             <BackGroup />
-            <Container>
-        <TerlambatBertingkatComponent/>
-        </Container>
+           
+            <FormTerlambat/>
+        <TerlambatBertingkatComponent/> 
         </div>
     );
   }

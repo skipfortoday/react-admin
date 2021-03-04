@@ -1,0 +1,53 @@
+import {
+    GET_TERLAMBATBERTINGKAT_LIST,
+    GET_TERLAMBATBERTINGKAT_DETAIL,
+    POST_TERLAMBATBERTINGKAT_CREATE,
+    PUT_TERLAMBATBERTINGKAT_EDIT,
+  } from "../actions/TerlambatBertingkatAction"
+  
+  let initialState = {
+    getTerlambatBertingkatList: false,
+    errorTerlambatBertingkatList: false,
+    getTerlambatBertingkatDetail: false,
+    errorTerlambatBertingkatDetail: false,
+    getResponDataTerlambatBertingkat: false,
+    errorResponDataTerlambatBertingkat: false,
+  };
+  
+  const TerlambatBertingkat = (state = initialState, action) => {
+    switch (action.type) {
+      case GET_TERLAMBATBERTINGKAT_LIST:
+        return {
+          ...state,
+          getTerlambatBertingkatList: action.payload.data,
+          errorTerlambatBertingkatList: action.payload.errorMessage,
+        };
+  
+      case GET_TERLAMBATBERTINGKAT_DETAIL:
+        return {
+          ...state,
+          getTerlambatBertingkatDetail: action.payload.data,
+          errorTerlambatBertingkatDetail: action.payload.errorMessage,
+        };
+  
+      case POST_TERLAMBATBERTINGKAT_CREATE:
+        return {
+          ...state,
+          getResponDataTerlambatBertingkat: action.payload.data,
+          errorResponDataTerlambatBertingkat: action.payload.errorMessage,
+        };
+  
+      case PUT_TERLAMBATBERTINGKAT_EDIT:
+        return {
+          ...state,
+          getResponDataTerlambatBertingkat: action.payload.data,
+          errorResponDataTerlambatBertingkat: action.payload.errorMessage,
+        };
+  
+      default:
+        return state;
+    }
+  };
+  
+  export default TerlambatBertingkat ;
+  
