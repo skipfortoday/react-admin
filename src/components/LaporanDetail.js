@@ -33,7 +33,7 @@ function LiburFormatter(cell, row) {
   if (row.Tanggal.includes('Minggu') ) {
     return (
       <span>
-        <strong style={ { color: 'red'  } } >{ cell }</strong>
+        <strong style={ { color: 'red'   } } >{ cell }</strong>
       </span>
     );
   }
@@ -43,6 +43,29 @@ function LiburFormatter(cell, row) {
   );
 }
 
+function KeteranganPanjang(cell, row) {
+
+
+  if (row.Keterangan != null && row.Keterangan.length > 60) {
+    return (
+      <span>
+        <strong style={ { lineHeight: '10px' ,fontWeight: "normal" , fontSize: '12px' } } >{ cell }</strong>
+      </span>
+    );
+    // if (row.Keterangan != null && row.Keterangan.length > 120) {
+    //   return (
+    //     <span>
+    //       <strong style={ { lineHeight: '18px' ,fontWeight: "normal" , fontSize: '12px' } } >{ cell }</strong>
+    //     </span>
+    //   );
+    // }
+
+  }
+
+  return (
+    <span>{ cell }</span>
+  );
+}
 
 const LaporanDetail = (props) => {
   const columns = [
@@ -52,7 +75,7 @@ const LaporanDetail = (props) => {
       sort: true,
       formatter: LiburFormatter,
       headerStyle: () => {
-        return { width: "90px" , fontSize: '12px' ,lineHeight: '10%', textAlign:'center' };
+        return { width: "90px" , fontSize: '12px' ,padding : '0px', textAlign:'center',  };
       },
       style: () => {
         return {  fontWeight: "normal" , fontSize :'12px' ,textAlign:'right'};
@@ -63,7 +86,7 @@ const LaporanDetail = (props) => {
       text: "Datang",
       formatter: terlambatFormatter,
       headerStyle: () => {
-        return { width: "38px" , fontSize: '12px' , lineHeight: '10%',textAlign:'center' };
+        return { width: "38px" , fontSize: '12px' ,textAlign:'center',padding : '0px' };
       },
     },
     
@@ -71,14 +94,14 @@ const LaporanDetail = (props) => {
       dataField: "ScanPulang",
       text: "Pulang",
       headerStyle: () => {
-        return { width: "38px" , fontSize: '12px', lineHeight: '10%',textAlign:'center' };
+        return { width: "38px" , fontSize: '12px',textAlign:'center' ,padding : '0px'};
       },
     },
     {
       dataField: "Terlambat",
       text: "Tlmbat",
       headerStyle: () => {
-        return { width: "38px" , fontSize: '12px', lineHeight: '10%', textAlign:'center'};
+        return { width: "38px" , fontSize: '12px', textAlign:'center',padding : '0px'};
       },
       style: () => {
         return { color: 'red' };
@@ -89,7 +112,7 @@ const LaporanDetail = (props) => {
       dataField: "Lembur",
       text: "Lembur",
       headerStyle: () => {
-        return { width: "38px" , fontSize: '12px' , lineHeight: '10%', textAlign:'center'};
+        return { width: "38px" , fontSize: '12px' , textAlign:'center', padding : '0px'};
       },
       style: () => {
         return { color: '#017580' };
@@ -99,7 +122,7 @@ const LaporanDetail = (props) => {
       dataField: "Shift",
       text: "Shift",
       headerStyle: () => {
-        return { width: "2px"  , fontSize: '12px', lineHeight: '10%', textAlign:'center' };
+        return { width: "15px"  , fontSize: '12px', textAlign:'center',padding : '0px' };
       },
       style: () => {
         return { fontWeight: "normal"  };
@@ -109,21 +132,21 @@ const LaporanDetail = (props) => {
       dataField: "IstirahatKeluar",
       text: "Break",
       headerStyle: () => {
-        return { width: "38px" , fontSize: '12px' , lineHeight: '10%',textAlign:'center'};
+        return { width: "38px" , fontSize: '12px',textAlign:'center',padding : '0px'};
       },
     },
     {
       dataField: "IstirahatKembali",
       text: "Kmbl",
       headerStyle: () => {
-        return { width: "38px" , fontSize: '12px' , lineHeight: '10%',textAlign:'center'};
+        return { width: "38px" , fontSize: '12px',textAlign:'center',padding : '0px'};
       },
     },
     {
       dataField: "TerlambatIstirahat",
       text: "Tlmbat",
       headerStyle: () => {
-        return { width: "38px" , fontSize: '12px' , lineHeight: '10%',textAlign:'center' };
+        return { width: "38px" , fontSize: '12px' ,textAlign:'center',padding : '0px' };
       },
       style: () => {
         return { color: 'red' };
@@ -134,7 +157,7 @@ const LaporanDetail = (props) => {
       text: "Status",
       formatter: LiburFormatter,
       headerStyle: () => {
-        return { width: "80px" , fontSize: '12px' , lineHeight: '10%',textAlign:'center'};
+        return { width: "80px" , fontSize: '12px',textAlign:'center',padding : '0px'};
       },
       style: () => {
         return {  fontWeight: "normal"  };
@@ -143,18 +166,19 @@ const LaporanDetail = (props) => {
     {
       dataField: "Keterangan",
       text: "Keterangan",
+      formatter: KeteranganPanjang,
       headerStyle: () => {
-        return { width: "150px" , fontSize: '12px' , lineHeight: '10%',textAlign:'center'};
+        return { width: "150px" , fontSize: '12px' ,textAlign:'center',padding : '0px'};
       },
       style: () => {
-        return {  fontWeight: "normal"  };
+        return {  fontWeight: "normal" , fontSize: '12px' };
       },
     },
     {
       dataField: "KetPulang",
       text: "KetPulang",
       headerStyle: () => {
-        return { width: "65px", fontSize: '12px' ,lineHeight: '10%',textAlign:'center'};
+        return { width: "65px", fontSize: '12px',textAlign:'center',padding : '0px'};
       },
       style: () => {
         return {  fontWeight: "normal"  };
@@ -264,7 +288,7 @@ TotalKeluar: null*/
       expandRow={ expandRow }
       rowClasses={rowClasses}
       headerClasses='page-header-space'
-      rowStyle={ { lineHeight : '0px' , fontFamily: 'TimesNewRoman' , fontWeight: "bold" , fontSize:"12px", textAlign:'center' } } 
+      rowStyle={ { lineHeight : '0px' , fontFamily: 'TimesNewRoman' , fontWeight: "bold" , fontSize:"12px", textAlign:'center', padding : '0px' } } 
       pagination={paginationFactory(options) }
       defaultSorted= { defaultSorted }
     />

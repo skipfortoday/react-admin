@@ -1,11 +1,7 @@
-import React from "react";
+import React ,{ useState }from "react";
 import BootstrapTable from "react-bootstrap-table-next";
-import { Button, Row, Col, Spinner, Card } from "reactstrap";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
+import { Button, Row, Col, Spinner, Card,Tooltip  } from "reactstrap";
 
-  faTrash,
-} from "@fortawesome/free-solid-svg-icons";
 import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
 import paginationFactory from "react-bootstrap-table2-paginator";
 import { connect } from "react-redux";
@@ -52,6 +48,8 @@ const mapStateToProps = (state) => {
 
 
 const IzinComponentSolo = (props) => {
+  const [tooltipOpen, setTooltipOpen] = useState(false);
+  const toggle = () => setTooltipOpen(!tooltipOpen);
 
   const columns = [
   {
@@ -62,7 +60,7 @@ const IzinComponentSolo = (props) => {
         return { width: "120px",backgroundColor:"#fec107" };
       },
       style: () => {
-        return {  fontWeight : "bold", color :"white" };
+        return {  fontWeight : "bold", color :"white" , lineHeight : "0px"};
       },
     },
     {
@@ -73,7 +71,7 @@ const IzinComponentSolo = (props) => {
         return { width: "120px" ,backgroundColor:"#fec107"};
       },
       style: () => {
-        return { fontWeight : "bold", color :"white" };
+        return { fontWeight : "bold", color :"white", lineHeight : "0px" };
       },
     },
     {
@@ -84,7 +82,7 @@ const IzinComponentSolo = (props) => {
         return { width: "100px",backgroundColor:"#fec107" };
       },
       style: () => {
-        return {  fontWeight : "bold" , color :"white"};
+        return {  fontWeight : "bold" , color :"white" , lineHeight : "0px"};
       },
       
     },
@@ -96,7 +94,7 @@ const IzinComponentSolo = (props) => {
         return { width: "250px",backgroundColor:"#fec107" };
       },
       style: () => {
-        return { fontWeight : "bold",color :"white" };
+        return { fontWeight : "bold",color :"white" , lineHeight : "0px" };
       },
     },
     {
@@ -105,13 +103,17 @@ const IzinComponentSolo = (props) => {
       headerStyle: () => {
         return { width: "40px" ,backgroundColor:"#fec107"};
       },
+      style: () => {
+        return { fontWeight : "bold",color :"white" , lineHeight : "0px" };
+      },
       formatter: (rowContent, row) => {
         return (
-          <div>
-            <Button color="danger" className="mr-2" onClick={() => handleClick(props.dispatch, row.DatangID)}>
-              <FontAwesomeIcon icon={faTrash} />
+          <span>
+           
+            <Button size="sm" color="danger" className="mr-2" id="TooltipExample"  onClick={() => handleClick(props.dispatch, row.DatangID)}>
             </Button>
-          </div>
+           
+            </span>
         );
       },
     },
@@ -144,6 +146,9 @@ const IzinComponentSolo = (props) => {
                 {...props.baseProps}
                 pagination={paginationFactory()}
               />
+               <Tooltip placement="auto" isOpen={tooltipOpen} target="TooltipExample" toggle={toggle}>
+              Hapus Status Absensi
+            </Tooltip>
               </Card>
             </div>
           )}

@@ -98,11 +98,11 @@ const GroupComponent = (props) => {
               <FontAwesomeIcon icon={faTrash} /> 
             </Button>
 
-            <Link to={"group/terlambatbertingkat/" + row.GroupID}>
+            {/* <Link to={"group/terlambatbertingkat/" + row.GroupID}>
               <Button  color="warning" className="mr-2">
                 <FontAwesomeIcon icon={faSortAmountUp} /> 
               </Button>
-            </Link>
+            </Link> */}
           </div>
         );
       },
@@ -130,6 +130,11 @@ const GroupComponent = (props) => {
                     <Button color="warning" className="mr-2">
                       <FontAwesomeIcon icon={faUsersCog} /> Tambah Group{" "}
                       <FontAwesomeIcon icon={faPlus} />
+                    </Button>
+                  </Link>
+                  <Link to="group/terlambatbertingkat/1">
+                    <Button color="warning" className="mr-2">
+                      <FontAwesomeIcon icon={faUsersCog} /> Terlambat Bertingkat
                     </Button>
                   </Link>
                 </Col>

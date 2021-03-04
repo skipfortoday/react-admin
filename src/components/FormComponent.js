@@ -87,9 +87,9 @@ const mapStateToProps = (state) => {
   return {
     getOptGroup : state.Opt.getOptGroup,
     getOptCabang : state.Opt.getOptCabang,
+    getuserDetail : state.users.getUserDetail.UserID,
     initialValues : {
       UserID        : state.users.getUserDetail.UserID,
-      Pass          : state.users.getUserDetail.Pass, 
       Nama          : state.users.getUserDetail.Nama,
       Alamat        : state.users.getUserDetail.Alamat,
 	    TglLahir      : state.users.getUserDetail.FTglLahir,
@@ -252,16 +252,17 @@ class FormComponent extends Component {
             </FormGroup>
           </Col>
           
-          <Col md={2}>
+          {/* <Col md={2}>
             <FormGroup>
               <Field
                 type="password"
                 name="Pass"
+                disabled={disabled}
                 component={renderField}
                 label="PIN Password :"
               />
             </FormGroup>
-          </Col>
+          </Col> */}
 
         <Col md={1}>
         </Col>
