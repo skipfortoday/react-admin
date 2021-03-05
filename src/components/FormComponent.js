@@ -34,6 +34,8 @@ const renderField = ({
         <option value ="1">Atasan Kantor</option>
         <option value = "2">Atasan Group</option>
         <option value = "3">Staff</option>
+        <option value = "4">Staff4</option>
+        <option value = "5">Staff5</option>
       </Input>
      
       {touched &&

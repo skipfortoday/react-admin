@@ -55,19 +55,41 @@ const TerlambatBertingkatComponent = (props) => {
 
   const columns = [
     {
-      dataField: "KodeTerlambatBertingkat",
-      text: "KodeTerlambatBertingkat",
+      dataField: "RuleTerlambatBertingkatID",
+      text: "ID",
       sort: true,
       headerStyle: () => {
-        return { width: "75px" , backgroundColor:"#fec107" };
+        return { width: "5px" , backgroundColor:"#fec107" };
       },
       style: () => {
         return { fontWeight : "bold" };
       },
     },
     {
-      dataField: "NamaTerlambatBertingkat",
-      text: "Nama TerlambatBertingkat",
+      dataField: "GroupID",
+      text: "GroupID",
+      sort: true,
+      headerStyle: () => {
+        return { width: "30px" , backgroundColor:"#fec107" };
+      },
+      style: () => {
+        return { fontWeight : "bold" };
+      },
+    },
+    {
+      dataField: "Shift",
+      text: "Shift",
+      sort: true,
+      headerStyle: () => {
+        return { width: "30px", backgroundColor:"#fec107" };
+      },
+      style: () => {
+        return { fontWeight : "bold" };
+      },
+    },
+    {
+      dataField: "MaxJamDatang",
+      text: "Max Jam Datang", 
       sort: true,
       headerStyle: () => {
         return { width: "100px", backgroundColor:"#fec107" };
@@ -75,13 +97,14 @@ const TerlambatBertingkatComponent = (props) => {
       style: () => {
         return { fontWeight : "bold" };
       },
+      
     },
     {
-      dataField: "Alamat",
-      text: "Alamat TerlambatBertingkat", 
+      dataField: "RpPotonganTerlambat",
+      text: "Potongan ", 
       sort: true,
       headerStyle: () => {
-        return { width: "200px", backgroundColor:"#fec107" };
+        return { width: "100px", backgroundColor:"#fec107" };
       },
       style: () => {
         return { fontWeight : "bold" };
@@ -97,17 +120,15 @@ const TerlambatBertingkatComponent = (props) => {
       formatter: (rowContent, row) => {
         return (
           <div>
-            <Link to={"TerlambatBertingkat/edit/" + row.KodeTerlambatBertingkat}>
+            <Link to={"./"+ row.GroupID+ "/"+ row.RuleTerlambatBertingkatID}>
               <Button  color="warning" className="mr-2">
                 <FontAwesomeIcon icon={faEdit} />
               </Button>
             </Link>
 
-            <Link to={"/TerlambatBertingkat#"}>
-            <Button  color="warning" className="mr-2" onClick={() => handleClick(props.dispatch, row.KodeTerlambatBertingkat)}>
+            <Button  color="warning" className="mr-2" onClick={() => handleClick(props.dispatch, row.RuleTerlambatBertingkatID)}>
               <FontAwesomeIcon icon={faTrash} /> 
             </Button>
-            </Link>
           </div>
         );
       },
@@ -117,11 +138,11 @@ const TerlambatBertingkatComponent = (props) => {
   
   return (
     <div>
-      {props.getTerlambatBertingkatList ? (
+      {props.getTerlambatBertingkatDetail ? (
         <ToolkitProvider
           bootstrap4
           keyField="KodeTerlambatBertingkat"
-          data={props.getTerlambatBertingkatList}
+          data={props.getTerlambatBertingkatDetail}
           columns={columns}
           rowStyle={ {  fontWeight: "bold" } } 
           defaultSorted={defaultSorted}
@@ -155,8 +176,8 @@ const TerlambatBertingkatComponent = (props) => {
         </ToolkitProvider>
       ) : (
         <div className="text-center">
-          {props.errorTerlambatBertingkatList ? (
-            <h4>{props.errorTerlambatBertingkatList}</h4>
+          {props.errorTerlambatBertingkatDetail ? (
+            <h4>{props.errorTerlambatBertingkatDetail}</h4>
           ) : (
             <Spinner color="dark" />
           )}

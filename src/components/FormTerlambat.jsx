@@ -11,6 +11,7 @@ import {
   Container,
 } from "reactstrap";
 import SelectValidation from "../validations/SelectValidation";
+import CariTerlambat from "./CariTerlambat";
 
 
 
@@ -68,11 +69,11 @@ class FormTerlambat extends Component {
     return (
       <form onSubmit={this.props.handleSubmit}>
           
-        <Container>
+        {/* <Container>
           <FormGroup row>
               <FormGroup>
               <Row>
-                <Col md={12}>
+                <Col md={6}>
                 <Field
                   name="Nama"
                   component={renderField2}
@@ -80,9 +81,56 @@ class FormTerlambat extends Component {
                   options={this.props.getOptTerlambat}
                 />
                 </Col>
-            </Row>
+                <Col md={6}>
+                <Field
+                  name="Nama"
+                  component={renderField2}
+                  label="Nama:"
+                  options={this.props.getOptTerlambat}
+                />
+                </Col>
+              </Row>
+
               </FormGroup>
 
+          </FormGroup>
+        </Container> */}
+
+<Container>
+          <FormGroup row>
+            <Row>
+            <Col md={12}>
+              <FormGroup>
+                <Field
+                  name="Nama"
+                  component={renderField2}
+                  label="Nama:"
+                  options={this.props.getOptTerlambat}
+                />
+              </FormGroup>
+            </Col>
+
+            <Col md={4}>
+          
+            </Col>
+
+            <Col md={4}>
+            
+            </Col>
+            <Col md={4}>
+          {/* <FormGroup>
+            <Label> Proses </Label>
+              <Button
+                color="dark"
+                type="submit"
+                disabled={this.props.submitting} 
+              >
+                <FontAwesomeIcon icon={faSpinner} /> 
+              </Button>
+            </FormGroup> */}
+
+            </Col>
+            </Row>
           </FormGroup>
         </Container>
       </form>

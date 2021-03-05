@@ -8,8 +8,10 @@ import swal from "sweetalert";
 import NavbarComponent from "../components/NavbarComponent";
 import {Redirect} from "react-router-dom";
 import FormTerlambat from "../components/FormTerlambat";
-import { getOptGroup, getOptTerlambat } from "../actions/optAction";
+import { getOptTerlambat } from "../actions/optAction";
 import { getTerlambatBertingkatDetail } from "../actions/TerlambatBertingkatAction";
+import CariTerlambat from "../components/CariTerlambat";
+import FormTTComponent from "../components/FormTTComponent";
 
 
 const mapStateToProps = (state) => {
@@ -51,13 +53,38 @@ class TerlambatBertingkatContainer extends Component {
       }
     }
     return (
-      <div>
-        <NavbarComponent />
-            <BackGroup />
+      // <div>
+      //   <NavbarComponent />
            
-            <FormTerlambat/>
-        <TerlambatBertingkatComponent/> 
-        </div>
+      //       
+      //       
+      //   <TerlambatBertingkatComponent/> 
+      //   </div>
+
+<div>
+<NavbarComponent />
+<div style={{ backgroundColor: "#fec107" }}>
+  
+  <tr>
+  
+    <td width="100"></td>
+    <td>
+
+      <FormTerlambat/>
+      <CariTerlambat/>
+    </td>
+    <td> </td>
+  </tr>
+  <tr>
+    <td width="100"></td>
+    <td>
+      <FormTTComponent/>
+    </td>
+  </tr>
+ 
+</div>
+<TerlambatBertingkatComponent/>
+</div>
     );
   }
 }
