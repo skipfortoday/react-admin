@@ -49,10 +49,8 @@ const mapStateToProps = (state) => {
   //console.log(optsiterpilih);
   return {
     initialValues: {
-      KodeCabang: state.Cabang.getCabangDetail.KodeCabang,
-      NamaCabang: state.Cabang.getCabangDetail.NamaCabang,
-      Alamat: state.Cabang.getCabangDetail.Alamat,
-      NoTelp: state.Cabang.getCabangDetail.NoTelp,
+      GroupID: state.Group.getGroupDetail.GroupID,
+      Jabatan: state.Group.getGroupDetail.Jabatan,
     },
   };
 };
@@ -82,9 +80,9 @@ class FormTTComponent extends Component {
             <FormGroup>
               <Field
                 type="text"
-                name="NamaGroup"
+                name="Jabatan"
                 component={renderField}
-                label="NamaGroup:"
+                label="Jabatan :"
                 disabled
               />
             </FormGroup>

@@ -46,7 +46,7 @@ const renderField2 = ({
           options={options}
           value={input.value}
           onChange={(value) => input.onChange(value)}
-           //onBlur={() => input.onBlur()}
+          // onBlur={() => input.onBlur()}
         />
         {touched &&
           ((error && <p style={{ color: "red" }}>{error}</p>) ||
@@ -59,7 +59,7 @@ const mapStateToProps = (state) => {
   return {
     getOptTerlambat: state.Opt.getOptTerlambat,
     initialValues: {
-      Nama : {value : state.users.getUserDetail.UserID, label: state.users.getUserDetail.Nama},
+      Nama : {value : state.Group.getGroupDetail.GroupID, label: state.Group.getGroupDetail.Jabatan},
     },
   };
 };
