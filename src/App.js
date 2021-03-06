@@ -8,6 +8,7 @@ import GroupContainer from "./containers/GroupContainer";
 import CreateGroupContainer from "./containers/CreateGroupContainer";
 import EditGroupContainer from "./containers/EditGroupContainer";
 import TerlambatBertingkatContainer from "./containers/TerlambatBertingkatContainer";
+import EditTerlambatBertingkatContainer from "./containers/EditTerlambatBertingkatContainer";
 import DetailGroupContainer from "./containers/DetailGroupContainer";
 import IzinContainer from "./containers/IzinContainer";
 import ListUserIzinContainer from "./containers/ListUserIzinContainer";
@@ -105,6 +106,8 @@ function App () {
           <Route path="/group/edit/:GroupID" exact component={EditGroupContainer} />
 
           <Route path="/group/terlambatbertingkat/:GroupID" exact component={TerlambatBertingkatContainer} />
+
+          <Route path="/group/terlambatbertingkat/:GroupID/:RuleTerlambatBertingkatID" exact component={EditTerlambatBertingkatContainer} />
 
           <Route path="/izin" exact component={IzinContainer} />
 

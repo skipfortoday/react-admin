@@ -51,6 +51,10 @@ const mapStateToProps = (state) => {
     initialValues: {
       GroupID: state.Group.getGroupDetail.GroupID,
       Jabatan: state.Group.getGroupDetail.Jabatan,
+      Shift: state.TerlambatBertingkat.getTerlambatBertingkatDetail2.Shift,
+      MaxJamDatang: state.TerlambatBertingkat.getTerlambatBertingkatDetail2.MaxJamDatang,
+      RpPotonganTerlambat: state.TerlambatBertingkat.getTerlambatBertingkatDetail2.RpPotonganTerlambat,
+
     },
   };
 };
@@ -103,7 +107,7 @@ class FormTTComponent extends Component {
             <FormGroup>
               <Field
                 type="time"
-                name="NoTelp"
+                name="MaxJamDatang"
                 component={renderField}
                 label="Max Jam Datang :"
               />
@@ -113,7 +117,7 @@ class FormTTComponent extends Component {
             <FormGroup>
               <Field
                 type="number"
-                name="RpPotongan"
+                name="RpPotonganTerlambat"
                 component={renderField}
                 label="Rp Potongan :"
               />

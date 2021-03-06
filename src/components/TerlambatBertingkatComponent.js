@@ -5,7 +5,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faEdit,
   faTrash,
-  faSitemap,
 } from "@fortawesome/free-solid-svg-icons";
 import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
 import paginationFactory from "react-bootstrap-table2-paginator";
@@ -16,7 +15,7 @@ import { deleteTerlambatBertingkat } from "../actions/TerlambatBertingkatAction"
 
 const { SearchBar } = Search;
 
-const handleClick = (dispatch, KodeTerlambatBertingkat) => {
+const handleClick = (dispatch, RuleTerlambatBertingkatID) => {
   
   swal({
     title: "Apakah Anda yakin akan menghapus data ini ?",
@@ -26,7 +25,7 @@ const handleClick = (dispatch, KodeTerlambatBertingkat) => {
   })
   .then((willDelete) => {
     if (willDelete) {
-      dispatch(deleteTerlambatBertingkat(KodeTerlambatBertingkat))
+      dispatch(deleteTerlambatBertingkat(RuleTerlambatBertingkatID))
       swal("Data TerlambatBertingkat Sukses dihapus", {
         icon: "success",
       });window.location.reload();
@@ -39,7 +38,7 @@ const handleClick = (dispatch, KodeTerlambatBertingkat) => {
 
 const defaultSorted = [
   {
-    dataField: "KodeTerlambatBertingkat",
+    dataField: "Shift",
     order: "asc",
   },
 ];
@@ -141,7 +140,7 @@ const TerlambatBertingkatComponent = (props) => {
       {props.getTerlambatBertingkatDetail ? (
         <ToolkitProvider
           bootstrap4
-          keyField="KodeTerlambatBertingkat"
+          keyField="RuleTerlambatBertingkatID"
           data={props.getTerlambatBertingkatDetail}
           columns={columns}
           rowStyle={ {  fontWeight: "bold" } } 
@@ -152,13 +151,6 @@ const TerlambatBertingkatComponent = (props) => {
             <div>
               <Card body inverse style={{ backgroundColor: '#ffffff', borderColor: '#ffffff' }}>
               <Row>
-                <Col>
-                  <Link to="/TerlambatBertingkat/create">
-                    <Button color="warning" className="mr-2">
-                      <FontAwesomeIcon icon={faSitemap} /> Tambah TerlambatBertingkat
-                    </Button>
-                  </Link>
-                </Col>
                 <Col>
                   <div className="float-right">
                     <SearchBar {...props.searchProps} placeholder="Search .." />

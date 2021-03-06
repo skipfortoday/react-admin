@@ -3,6 +3,7 @@ import {
     GET_TERLAMBATBERTINGKAT_DETAIL,
     POST_TERLAMBATBERTINGKAT_CREATE,
     PUT_TERLAMBATBERTINGKAT_EDIT,
+    GET_TERLAMBATBERTINGKAT_DETAIL2,
   } from "../actions/TerlambatBertingkatAction"
   
   let initialState = {
@@ -10,6 +11,8 @@ import {
     errorTerlambatBertingkatList: false,
     getTerlambatBertingkatDetail: false,
     errorTerlambatBertingkatDetail: false,
+    getTerlambatBertingkatDetail2: false,
+    errorTerlambatBertingkatDetail2: false,
     getResponDataTerlambatBertingkat: false,
     errorResponDataTerlambatBertingkat: false,
   };
@@ -28,6 +31,13 @@ import {
           ...state,
           getTerlambatBertingkatDetail: action.payload.data,
           errorTerlambatBertingkatDetail: action.payload.errorMessage,
+        };
+
+        case GET_TERLAMBATBERTINGKAT_DETAIL2:
+        return {
+          ...state,
+          getTerlambatBertingkatDetail2: action.payload.data,
+          errorTerlambatBertingkatDetail2: action.payload.errorMessage,
         };
   
       case POST_TERLAMBATBERTINGKAT_CREATE:

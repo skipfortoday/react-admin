@@ -9,7 +9,7 @@ import NavbarComponent from "../components/NavbarComponent";
 import {Redirect} from "react-router-dom";
 import FormTerlambat from "../components/FormTerlambat";
 import { getOptTerlambat } from "../actions/optAction";
-import { getTerlambatBertingkatDetail, postTerlambatBertingkatCreate } from "../actions/TerlambatBertingkatAction";
+import { getTerlambatBertingkatDetail, getTerlambatBertingkatDetail2, putTerlambatBertingkatUpdate } from "../actions/TerlambatBertingkatAction";
 import CariTerlambat from "../components/CariTerlambat";
 import FormTTComponent from "../components/FormTTComponent";
 
@@ -18,20 +18,23 @@ const mapStateToProps = (state) => {
   return {
     getTerlambatBertingkatDetail: state.TerlambatBertingkat.getTerlambatBertingkatDetail,
     errorTerlambatBertingkatList: state.TerlambatBertingkat.errorTerlambatBertingkatList,
+    getTerlambatBertingkatDetail2: state.TerlambatBertingkat.getTerlambatBertingkatDetail2,
+    errorTerlambatBertingkatList: state.TerlambatBertingkat.errorTerlambatBertingkatList,
     getResponDataTerlambatBertingkat: state.TerlambatBertingkat.getResponDataTerlambatBertingkat,
     errorResponDataTerlambatBertingkat: state.TerlambatBertingkat.errorResponDataTerlambatBertingkat
   };
 };
 
-class TerlambatBertingkatContainer extends Component {
+class EditTerlambatBertingkatContainer extends Component {
   componentDidMount() {
     this.props.dispatch(getGroupDetail(this.props.match.params.GroupID));
     this.props.dispatch(getTerlambatBertingkatDetail(this.props.match.params.GroupID));
+    this.props.dispatch(getTerlambatBertingkatDetail2(this.props.match.params.RuleTerlambatBertingkatID));
     this.props.dispatch(getOptTerlambat(this.props.match.params.GroupID));
   }
 
   handleSubmit(data) {
-    this.props.dispatch(postTerlambatBertingkatCreate(data, this.props.match.params.GroupID));
+    this.props.dispatch(putTerlambatBertingkatUpdate(data, this.props.match.params.RuleTerlambatBertingkatID));
   }
 
   render() {
@@ -91,4 +94,4 @@ class TerlambatBertingkatContainer extends Component {
   }
 }
 
-export default connect(mapStateToProps, null)(TerlambatBertingkatContainer);
+export default connect(mapStateToProps, null)(EditTerlambatBertingkatContainer);

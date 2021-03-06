@@ -11,6 +11,8 @@ const mapStateToProps = (state) => {
 
   
 const RekapLeft = (props) => {
+  let ambil = JSON.parse(localStorage.getItem('user'));
+  let nama = ambil.AdminID
   return (
     <Table borderless size="sm">
       <tbody style={{fontSize: '14px' , fontWeight: "bold", fontFamily : "Arial"}}>
@@ -120,7 +122,7 @@ const RekapLeft = (props) => {
           <td >{props.getLaporanRekap.JmlMasukKantor}</td>
         </tr>
         <tr style={{ lineHeight : '9px' }}>
-          <td colspan='3' style={{fontSize: '14px' , fontWeight: "bold", fontFamily : "TimesNewRoman" , fontStyle : "italic"}} >{props.getLaporanRekap.TglPrint}</td>
+          <td colspan='3' style={{fontSize: '14px' , fontWeight: "bold", fontFamily : "TimesNewRoman" , fontStyle : "italic"}} >{props.getLaporanRekap.TglPrint}{nama}</td>
            <td></td>
            <td></td>
            <td></td>
