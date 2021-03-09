@@ -1,6 +1,7 @@
 import axios from "axios";
 
 export const GET_OPT_USER = "GET_OPT_USER";
+export const GET_OPT_USERMANUAL = "GET_OPT_USERMANUAL";
 export const GET_OPT_GROUP = "GET_OPT_GROUP";
 export const GET_OPT_CABANG = "GET_OPT_CABANG";
 export const GET_OPT_TERLAMBAT = "GET_OPT_TERLAMBAT";
@@ -22,6 +23,31 @@ export const getOptUser = () => {
       .catch(function (error) {
         dispatch({
           type: GET_OPT_USER,
+          payload: {
+            data: false,
+            errorMessage: error.message,
+          },
+        });
+      });
+  };
+};
+
+export const getOptUserManual = () => {
+  return (dispatch) => {
+    axios
+      .get("http://192.168.0.25:3001/api/optusermanual")
+      .then(function (response) {
+        dispatch({
+          type: GET_OPT_USERMANUAL,
+          payload: {
+            data: response.data,
+            errorMessage: false,
+          },
+        });
+      })
+      .catch(function (error) {
+        dispatch({
+          type: GET_OPT_USERMANUAL,
           payload: {
             data: false,
             errorMessage: error.message,

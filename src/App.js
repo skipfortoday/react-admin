@@ -29,6 +29,7 @@ import LaporanGuestContainer from "./containers/LaporanGuestContainer";
 import AdminContainer from "./containers/AdminContainer";
 import CreateAdminContainer from "./containers/CreateAdminContainer";
 import EditAdminContainer from "./containers/EditAdminContainer";
+import AbsensiManualContainer from "./containers/AbsensiManualContainer";
 
 
 
@@ -134,7 +135,8 @@ function App () {
           <Route path="/superadmin/create" exact component={CreateAdminContainer} />
 
           <Route path="/superadmin/edit/:AdminID" exact component={EditAdminContainer} />
-
+      
+          <Route path="/absensimanual" exact component={AbsensiManualContainer} />
 
           <Route path="/home" exact component={LandingPageContainer} />
 

@@ -4,8 +4,8 @@ import { connect } from "react-redux";
 import { FormGroup, Col, Label, Input, Row, Button } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSave } from "@fortawesome/free-solid-svg-icons";
-import TerlambatValidation from "../validations/TerlambatValidation";
-
+import AbsensiManualValidation from "../validations/AbsensiManualValidation";
+import Select from 'react-select';
 
 
 const renderField = ({
@@ -45,10 +45,51 @@ const renderField = ({
   </Row>
 );
 
+const renderField2 = ({
+  input,
+  name,
+  id,
+  type,
+  placeholder,
+  label,
+  disabled,
+  options,
+  readOnly,
+  meta: { touched, error, warning },
+}) => (
+  <Row>
+    <Col md="12">
+      <Label htmlFor="{input}" className="col-form-label">
+        {label}
+      </Label>
+    </Col>
+    <Col md="12">
+      
+      <Select
+        {...Input}
+        id={id} 
+        name={name} 
+        type={type}
+        placeholder="Pilih Nama"
+        disabled={disabled}
+        readOnly={readOnly}
+        options={options}
+        value={input.value}
+        onChange={(value) => input.onChange(value)}
+        // onBlur={() => input.onBlur()}
+      />
+      {touched &&
+        ((error && <p style={{ color: "red" }}>{error}</p>) ||
+          (warning && <p style={{ color: "brown" }}>{warning}</p>))}
+    </Col>
+  </Row>
+);
+
 const mapStateToProps = (state) => {
 
   //console.log(optsiterpilih);
   return {
+    getOptUserManual: state.Opt.getOptUserManual,
     initialValues: {
       GroupID: state.Group.getGroupDetail.GroupID,
       Jabatan: state.Group.getGroupDetail.Jabatan,
@@ -63,35 +104,24 @@ const mapStateToProps = (state) => {
 //let  options = [{ value: 'one', label: 'One' }, { value: 'two', label: 'Two' }];
 
 
-class FormTTComponent extends Component {
+class FormAbsensiManual extends Component {
   render() {
     return (
       <form onSubmit={this.props.handleSubmit}>
    
         <FormGroup row>
-          <Col md={1}>
+          <Col md={5}>
             <FormGroup>
               <Field
                 type="text"
                 name="GroupID"
-                component={renderField}
-                label="GroupID:"
-                disabled
+                component={renderField2}
+                options={this.props.getOptUserManual}
+                label="Nama:"
               />
             </FormGroup>
           </Col>
 
-          <Col md={3}>
-            <FormGroup>
-              <Field
-                type="text"
-                name="Jabatan"
-                component={renderField}
-                label="Jabatan :"
-                disabled
-              />
-            </FormGroup>
-          </Col>
 
           <Col md={2}>
             <FormGroup>
@@ -104,23 +134,13 @@ class FormTTComponent extends Component {
             </FormGroup>
           </Col>
 
-          <Col md={2}>
+          <Col md={3}>
             <FormGroup>
               <Field
-                type="time"
-                name="MaxJamDatang"
+                type="text"
+                name="Keterangan"
                 component={renderField}
-                label="Max Jam Datang :"
-              />
-            </FormGroup>
-          </Col>
-          <Col md={2}>
-            <FormGroup>
-              <Field
-                type="number"
-                name="RpPotonganTerlambat"
-                component={renderField}
-                label="Rp Potongan :"
+                label="Keterangan :"
               />
             </FormGroup>
           </Col>
@@ -141,9 +161,9 @@ class FormTTComponent extends Component {
   }
 }
 
-FormTTComponent = reduxForm({
-  form: "FormTTComponent",
-  validate: TerlambatValidation,
+FormAbsensiManual = reduxForm({
+  form: "FormAbsensiManual",
+  validate: AbsensiManualValidation,
   enableReinitialize: true,
-})(FormTTComponent);
-export default connect(mapStateToProps, null)(FormTTComponent);
+})(FormAbsensiManual);
+export default connect(mapStateToProps, null)(FormAbsensiManual);

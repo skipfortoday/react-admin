@@ -1,8 +1,10 @@
-import { GET_OPT_USER , GET_OPT_GROUP, GET_OPT_CABANG, GET_OPT_TERLAMBAT } from "../actions/optAction";
+import { GET_OPT_USER , GET_OPT_GROUP, GET_OPT_CABANG, GET_OPT_TERLAMBAT, GET_OPT_USERMANUAL } from "../actions/optAction";
 
 let initialState = {
   getOptUser: false,
   errorOptUser: false,
+  getOptUserManual: false,
+  errorOptUserManual: false,
   getOptGroup: false,
   errorOpGroup: false,
   getOptTerlambat: false,
@@ -18,6 +20,13 @@ const Opt = (state = initialState, action) => {
         ...state,
         getOptUser: action.payload.data,
         errorOptUser: action.payload.errorMessage,
+      };
+
+      case GET_OPT_USERMANUAL:
+      return {
+        ...state,
+        getOptUserManual: action.payload.data,
+        errorOptUserManual: action.payload.errorMessage,
       };
 
     case GET_OPT_GROUP:

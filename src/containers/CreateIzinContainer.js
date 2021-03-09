@@ -128,8 +128,16 @@ class CreateIzinContainer extends Component {
       <div>
         <NavbarComponent />
         <div class="header-1" style={{ backgroundColor: "#fec107" }}>
-          <BackIzin />
-
+        <td><BackIzin /></td>
+        <td width='30px'></td>
+         <td>
+          <LengkapiAbsen onSubmit={(data) => this.handleSubmit2(data)} />
+          </td>
+          <td width='150px'></td>
+          <td>
+          <LengkapiAbsenButton />
+          </td>
+{/*         
           <tr>
             <td width="60"></td>
             <td>
@@ -144,9 +152,10 @@ class CreateIzinContainer extends Component {
                 <LengkapiAbsenButton />
               </tr>
             </td>
-          </tr>
+          </tr> */}
         </div>
         <div  class="header-1"style={{ backgroundColor: "#17a2b7" }}>
+        
           <Container>
             <FormIzinComponent onSubmit={(data) => this.handleSubmit(data)} />
           </Container>

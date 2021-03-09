@@ -46,7 +46,7 @@ class EditCabangContainer extends Component {
             " , Nama Cabang: " +
             this.props.getResponDataCabang.NamaCabang,
           "success"
-        );
+        );window.location.reload();
       }
     }
     return (

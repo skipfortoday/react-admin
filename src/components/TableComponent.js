@@ -1,12 +1,6 @@
 import React from "react";
 import BootstrapTable from "react-bootstrap-table-next";
-import {
-  Button,
-  Row,
-  Col,
-  Spinner,
-  Card,
-} from "reactstrap";
+import { Button, Row, Col, Spinner, Card } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faEdit,
@@ -129,7 +123,7 @@ const TableComponent = (props) => {
         return { width: "160px", backgroundColor: "#fec107" };
       },
       style: () => {
-        return { fontWeight: "bold"  };
+        return { fontWeight: "bold" };
       },
     },
 
@@ -143,6 +137,7 @@ const TableComponent = (props) => {
         return (
           <div>
             <Button
+              size="sm"
               color="warning"
               className="mr-2"
               onClick={() => handleClick2(props.dispatch, row.UserID)}
@@ -150,11 +145,12 @@ const TableComponent = (props) => {
               <FontAwesomeIcon icon={faRetweet} />
             </Button>
             <Link to={"edit/" + row.UserID}>
-              <Button color="warning" className="mr-2">
+              <Button color="warning" className="mr-2" size="sm">
                 <FontAwesomeIcon icon={faEdit} />
               </Button>
             </Link>
             <Button
+               size="sm"
               color="warning"
               className="mr-2"
               onClick={() => handleClick3(props.dispatch, row.UserID)}
@@ -162,6 +158,7 @@ const TableComponent = (props) => {
               <FontAwesomeIcon icon={faUndoAlt} />
             </Button>
             <Button
+              size="sm"
               color="warning"
               className="mr-2"
               onClick={() => handleClick(props.dispatch, row.UserID)}
@@ -182,13 +179,17 @@ const TableComponent = (props) => {
           keyField="UserID"
           data={props.getUsersList}
           columns={columns}
-          rowStyle={{ fontWeight: "bold",  }}
+          rowStyle={{ fontWeight: "bold" }}
           defaultSorted={defaultSorted}
           search
         >
           {(props) => (
             <div>
-              <Card body inverse style={{ backgroundColor: '#ffffff', borderColor: '#ffffff' }}>
+              <Card
+                body
+                inverse
+                style={{ backgroundColor: "#ffffff", borderColor: "#ffffff" }}
+              >
                 <Row>
                   <Col>
                     <Link to="/create">

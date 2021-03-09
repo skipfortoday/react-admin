@@ -51,7 +51,7 @@ class TerlambatBertingkatContainer extends Component {
             " , GroupID : " +
             this.props.getResponDataTerlambatBertingkat.Jabatan,
           "success"
-        );
+        );window.location.reload();
       }
     }
     return (

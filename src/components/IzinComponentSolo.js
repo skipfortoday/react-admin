@@ -60,7 +60,7 @@ const IzinComponentSolo = (props) => {
         return { width: "120px",backgroundColor:"#fec107" };
       },
       style: () => {
-        return {  fontWeight : "bold", color :"white" , lineHeight : "0px"};
+        return {  fontWeight : "bold"};
       },
     },
     {
@@ -71,7 +71,7 @@ const IzinComponentSolo = (props) => {
         return { width: "120px" ,backgroundColor:"#fec107"};
       },
       style: () => {
-        return { fontWeight : "bold", color :"white", lineHeight : "0px" };
+        return { fontWeight : "bold" };
       },
     },
     {
@@ -82,7 +82,7 @@ const IzinComponentSolo = (props) => {
         return { width: "100px",backgroundColor:"#fec107" };
       },
       style: () => {
-        return {  fontWeight : "bold" , color :"white" , lineHeight : "0px"};
+        return {  fontWeight : "bold" };
       },
       
     },
@@ -94,25 +94,24 @@ const IzinComponentSolo = (props) => {
         return { width: "250px",backgroundColor:"#fec107" };
       },
       style: () => {
-        return { fontWeight : "bold",color :"white" , lineHeight : "0px" };
+        return { fontWeight : "bold"  };
       },
     },
     {
       dataField: "link",
-      text: "Act",
+      text: "Hapus",
       headerStyle: () => {
-        return { width: "40px" ,backgroundColor:"#fec107"};
+        return { width: "40px" ,backgroundColor:"#fec107"   };
       },
       style: () => {
-        return { fontWeight : "bold",color :"white" , lineHeight : "0px" };
+        return { fontWeight : "bold"  };
       },
       formatter: (rowContent, row) => {
         return (
-          <span>
-           
-            <Button size="sm" color="danger" className="mr-2" id="TooltipExample"  onClick={() => handleClick(props.dispatch, row.DatangID)}>
-            </Button>
-           
+          <span> 
+            <Button size="sm"  color="danger" className="mr-2" id="TooltipExample"  onClick={() => handleClick(props.dispatch, row.DatangID)}>
+              -
+            </Button>  
             </span>
         );
       },
@@ -133,23 +132,24 @@ const IzinComponentSolo = (props) => {
         >
           {(props) => (
             <div>
-              <Card body inverse color="dark">
+              {/* <Card body inverse color="light"> */}
               <Row>
                 <Col>
-                  <div className="float-right">
+                  <div className="float-right" >
                     <SearchBar {...props.searchProps} placeholder="Search .." />
                   </div>
                 </Col>
               </Row>
-
+              <div id="TooltipExample"></div>
+              <Tooltip placement="auto" isOpen={tooltipOpen} target="TooltipExample" toggle={toggle}>
+              Hapus Status Absensi
+            </Tooltip>
               <BootstrapTable
                 {...props.baseProps}
                 pagination={paginationFactory()}
               />
-               <Tooltip placement="auto" isOpen={tooltipOpen} target="TooltipExample" toggle={toggle}>
-              Hapus Status Absensi
-            </Tooltip>
-              </Card>
+           
+              {/* </Card> */}
             </div>
           )}
         </ToolkitProvider>
@@ -160,6 +160,7 @@ const IzinComponentSolo = (props) => {
           ) : (
             <Spinner color="dark" />
           )}
+          
         </div>
       )}
     </div>
