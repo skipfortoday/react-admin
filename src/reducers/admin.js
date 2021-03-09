@@ -1,13 +1,15 @@
 import {
-    GET_ADMIN_LIST,
     GET_ADMIN_DETAIL,
     POST_ADMIN_CREATE,
     PUT_ADMIN_EDIT,
+    GET_ADMIN_TIMENOW,
   } from "../actions/adminAction"
   
   let initialState = {
     getAdminList: false,
     errorAdminList: false,
+    getAdminTimeNow: false,
+    errorAdminTimeNow: false,
     getAdminDetail: false,
     errorAdminDetail: false,
     getResponDataAdmin: false,
@@ -16,11 +18,19 @@ import {
   
   const Admin = (state = initialState, action) => {
     switch (action.type) {
-      case GET_ADMIN_LIST:
+
+      case GET_ADMIN_TIMENOW:
         return {
           ...state,
-          getAdminList: action.payload.data,
-          errorAdminList: action.payload.errorMessage,
+          getAdminTimeNow: action.payload.data,
+          errorAdminTimeNow: action.payload.errorMessage,
+        };
+
+      case GET_ADMIN_TIMENOW:
+        return {
+          ...state,
+          getAdminTimeNow: action.payload.data,
+          errorAdminTimeNow: action.payload.errorMessage,
         };
   
       case GET_ADMIN_DETAIL:

@@ -2,18 +2,15 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { getUsersList, deleteDataUser } from "../actions/userAction";
 import { getOptUserManual } from "../actions/optAction";
-import FormAbsensiManual from "../components/FormAbsensiManual";
 import GuestNavbarComponentManual from "../components/GuestNavbarComponentManual";
 import { Container } from "reactstrap";
-import Ambilwaktu from "../components/Ambilwaktu";
-import { getAdminTimeNow } from "../actions/adminAction";
+import FormAbsensiManual2 from "../components/FormAbsensiManual2";
 
-
-class AbsensiManualContainer extends Component {
+class AbsensiManualContainerKeluarKantor extends Component {
   componentDidMount() {
     this.props.dispatch(getUsersList());
     this.props.dispatch(getOptUserManual());
-    this.props.dispatch(getAdminTimeNow());
+    this.props.dispatch(deleteDataUser());
   }
 
   render() {
@@ -23,13 +20,13 @@ class AbsensiManualContainer extends Component {
         <GuestNavbarComponentManual />
         <div class="header-1" style={{ backgroundColor: "#fec107" }}>
           <Container>
-        <FormAbsensiManual/>
+        <FormAbsensiManual2/>
         </Container>
         </div>
-        <h1>Menu Masuk<Ambilwaktu/></h1>
+        <h1>Menu Keluar Kantor</h1>
       </div>
     );
   }
 }
 
-export default connect()(AbsensiManualContainer);
+export default connect()(AbsensiManualContainerKeluarKantor);

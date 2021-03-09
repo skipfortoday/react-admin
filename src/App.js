@@ -30,6 +30,11 @@ import AdminContainer from "./containers/AdminContainer";
 import CreateAdminContainer from "./containers/CreateAdminContainer";
 import EditAdminContainer from "./containers/EditAdminContainer";
 import AbsensiManualContainer from "./containers/AbsensiManualContainer";
+import AbsensiManualContainerPulang from "./containers/AbsensiManualContainerPulang";
+import AbsensiManualContainerIstLuar from "./containers/AbsensiManualContainerIstLuar";
+import AbsensiManualContainerIstKembali from "./containers/AbsensiManualContainerIstKembali";
+import AbsensiManualContainerKeluarKantor from "./containers/AbsensiManualContainerKeluarKantor";
+import AbsensiManualContainerKembaliKantor from "./containers/AbsensiManualContainerKembaliKantor";
 
 
 
@@ -135,8 +140,13 @@ function App () {
           <Route path="/superadmin/create" exact component={CreateAdminContainer} />
 
           <Route path="/superadmin/edit/:AdminID" exact component={EditAdminContainer} />
-      
+
           <Route path="/absensimanual" exact component={AbsensiManualContainer} />
+          <Route path="/absensimanualpulang" exact component={AbsensiManualContainerPulang} />
+          <Route path="/absensimanualistirahatkeluar" exact component={AbsensiManualContainerIstLuar} />
+          <Route path="/absensimanualistirahatkembali" exact component={AbsensiManualContainerIstKembali} />
+          <Route path="/absensimanualkeluarkantor" exact component={AbsensiManualContainerKeluarKantor} />
+          <Route path="/absensimanualkembalikantor" exact component={AbsensiManualContainerKembaliKantor} />
 
           <Route path="/home" exact component={LandingPageContainer} />
 

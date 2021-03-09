@@ -1,10 +1,36 @@
 import axios from "axios";
 
+export const GET_ADMIN_TIMENOW = "GET_ADMIN_TIMENOW";
 export const GET_ADMIN_LIST = "GET_ADMIN_LIST";
 export const GET_ADMIN_DETAIL = "GET_ADMIN_DETAIL";
 export const POST_ADMIN_CREATE = "POST_ADMIN_CREATE";
 export const PUT_ADMIN_EDIT = "PUT_ADMIN_EDIT";
 
+
+export const getAdminTimeNow = () => {
+  return (dispatch) => {
+    axios
+      .get("http://192.168.0.25:3001/api/gettime2")
+      .then(function (response) {
+        dispatch({
+          type: GET_ADMIN_TIMENOW,
+          payload: {
+            data: response.data,
+            errorMessage: false,
+          },
+        });
+      })
+      .catch(function (error) {
+        dispatch({
+          type: GET_ADMIN_TIMENOW,
+          payload: {
+            data: false,
+            errorMessage: error.message,
+          },
+        });
+      });
+  };
+};
 
 
 export const getAdminList = () => {

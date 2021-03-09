@@ -26,16 +26,41 @@ const NavbarComponent = (props) => {
             <Nav className="mr-auto" navbar>
                  <NavItem>
                 <Link to="/absensimanual">
-                <NavLink>Absensi Manual </NavLink>
+                <NavLink>Masuk </NavLink>
                 </Link>
               </NavItem>
               <NavItem>
-                <a href={"/laporanguest"}>
-                <NavLink> Laporan</NavLink>
+                <a href={"/absensimanualpulang"}>
+                <NavLink> Pulang</NavLink>
+                </a>
+              </NavItem>
+              <NavItem>
+                <a href={"/absensimanualistirahatkeluar"}>
+                <NavLink> Istirahat Keluar</NavLink>
+                </a>
+              </NavItem>
+              <NavItem>
+                <a href={"/absensimanualistirahatkembali"}>
+                <NavLink> Istirahat Kembali</NavLink>
+                </a>
+              </NavItem>
+              <NavItem>
+                <a href={"/absensimanualkeluarkantor"}>
+                <NavLink> Keluar Kantor</NavLink>
+                </a>
+              </NavItem>
+              <NavItem>
+                <a href={"/absensimanualkembalikantor"}>
+                <NavLink> Kembali Kantor</NavLink>
                 </a>
               </NavItem>
             </Nav>
             <Nav navbar> 
+            <NavItem>
+                <Link to="/home">
+                <NavLink> Home</NavLink>
+                </Link>
+              </NavItem>
             <NavItem>
                 <Link to="/Login">
                 <NavLink> Login</NavLink>
