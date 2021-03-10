@@ -1,10 +1,31 @@
-import { GET_OPT_USER , GET_OPT_GROUP, GET_OPT_CABANG, GET_OPT_TERLAMBAT, GET_OPT_USERMANUAL } from "../actions/optAction";
+import {
+  GET_OPT_USER,
+  GET_OPT_GROUP,
+  GET_OPT_CABANG,
+  GET_OPT_TERLAMBAT,
+  GET_OPT_USERMANUAL,
+  GET_OPT_USERMANUALPULANG,
+  GET_OPT_USERMANUALKELUAR,
+  GET_OPT_USERMANUALKEMBALI,
+  GET_OPT_USERMANUALKELUARIST,
+  GET_OPT_USERMANUALKEMBALIIST,
+} from "../actions/optAction";
 
 let initialState = {
   getOptUser: false,
   errorOptUser: false,
   getOptUserManual: false,
   errorOptUserManual: false,
+  getOptUserManualPulang: false,
+  errorOptUserManualPulang: false,
+  getOptUserManualKeluar: false,
+  errorOptUserManualKeluar: false,
+  getOptUserManualKembali: false,
+  errorOptUserManualKembali: false,
+  getOptUserManualKeluarIst: false,
+  errorOptUserManualKeluarIst: false,
+  getOptUserManualKembaliIst: false,
+  errorOptUserManualKembaliIst: false,
   getOptGroup: false,
   errorOpGroup: false,
   getOptTerlambat: false,
@@ -22,11 +43,46 @@ const Opt = (state = initialState, action) => {
         errorOptUser: action.payload.errorMessage,
       };
 
-      case GET_OPT_USERMANUAL:
+    case GET_OPT_USERMANUAL:
       return {
         ...state,
         getOptUserManual: action.payload.data,
         errorOptUserManual: action.payload.errorMessage,
+      };
+
+    case GET_OPT_USERMANUALPULANG:
+      return {
+        ...state,
+        getOptUserManualPulang: action.payload.data,
+        errorOptUserManualPulang: action.payload.errorMessage,
+      };
+
+    case GET_OPT_USERMANUALKELUAR:
+      return {
+        ...state,
+        getOptUserManualKeluar: action.payload.data,
+        errorOptUserManualKeluar: action.payload.errorMessage,
+      };
+
+    case GET_OPT_USERMANUALKEMBALI:
+      return {
+        ...state,
+        getOptUserManualKembali: action.payload.data,
+        errorOptUserManualKembali: action.payload.errorMessage,
+      };
+
+    case GET_OPT_USERMANUALKELUARIST:
+      return {
+        ...state,
+        getOptUserManualKeluarIst: action.payload.data,
+        errorOptUserManualKeluarIst: action.payload.errorMessage,
+      };
+
+    case GET_OPT_USERMANUALKEMBALIIST:
+      return {
+        ...state,
+        getOptUserManualKembaliIst: action.payload.data,
+        errorOptUserManualKembaliIst: action.payload.errorMessage,
       };
 
     case GET_OPT_GROUP:
@@ -36,19 +92,19 @@ const Opt = (state = initialState, action) => {
         errorOptGroup: action.payload.errorMessage,
       };
 
-      case GET_OPT_TERLAMBAT:
+    case GET_OPT_TERLAMBAT:
       return {
         ...state,
         getOptTerlambat: action.payload.data,
         errorOptTerlambat: action.payload.errorMessage,
       };
 
-      case GET_OPT_CABANG:
-        return {
-          ...state,
-          getOptCabang: action.payload.data,
-          errorOptCabang: action.payload.errorMessage,
-        };
+    case GET_OPT_CABANG:
+      return {
+        ...state,
+        getOptCabang: action.payload.data,
+        errorOptCabang: action.payload.errorMessage,
+      };
     default:
       return state;
   }
