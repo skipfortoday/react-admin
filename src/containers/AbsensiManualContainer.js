@@ -6,12 +6,14 @@ import FormAbsensiManual from "../components/FormAbsensiManual";
 import GuestNavbarComponentManual from "../components/GuestNavbarComponentManual";
 import { Container } from "reactstrap";
 import Ambilwaktu from "../components/Ambilwaktu";
+import { getAdminTimeNow } from "../actions/adminAction";
 
 
 class AbsensiManualContainer extends Component {
   componentDidMount() {
     this.props.dispatch(getUsersList());
     this.props.dispatch(getOptUserManual());
+    this.props.dispatch(getAdminTimeNow());
   }
 
   render() {
