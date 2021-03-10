@@ -89,7 +89,7 @@ const mapStateToProps = (state) => {
 
   //console.log(optsiterpilih);
   return {
-    getOptUserManual: state.Opt.getOptUserManual,
+    getOptUserManualPulang: state.Opt.getOptUserManualPulang,
   };
 };
 
@@ -98,6 +98,7 @@ const mapStateToProps = (state) => {
 
 class FormAbsensiManual2 extends Component {
   render() {
+    
     return (
       <form onSubmit={this.props.handleSubmit}>
    
@@ -106,9 +107,9 @@ class FormAbsensiManual2 extends Component {
             <FormGroup>
               <Field
                 type="text"
-                name="GroupID"
+                name="Nama"
                 component={renderField2}
-                options={this.props.getOptUserManual}
+                options={this.props.getOptUserManualPulang}
                 label="Nama:"
               />
             </FormGroup>

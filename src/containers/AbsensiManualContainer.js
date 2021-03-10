@@ -7,7 +7,16 @@ import GuestNavbarComponentManual from "../components/GuestNavbarComponentManual
 import { Container } from "reactstrap";
 import Ambilwaktu from "../components/Ambilwaktu";
 import { getAdminTimeNow } from "../actions/adminAction";
+import { postManualMasuk } from "../actions/manualAction";
+import swal from "sweetalert";
 
+
+const mapStateToProps = (state) => {
+  return {
+    getResponDataManual: state.Manual.getResponDataManual,
+    errorResponDataManual: state.Manual.errorResponDataManual,
+  };
+};
 
 class AbsensiManualContainer extends Component {
   componentDidMount() {
@@ -15,15 +24,30 @@ class AbsensiManualContainer extends Component {
     this.props.dispatch(getOptUserManual());
     this.props.dispatch(getAdminTimeNow());
   }
+  handleSubmit(data) {
+    this.props.dispatch(postManualMasuk(data));
+  }
 
   render() {
+
+    if (this.props.getResponDataManual || this.props.errorResponDataManual) {
+      if (this.props.errorResponDataManual) {
+        swal("Failed!", this.props.errorResponDataManual, "error");
+      } else {
+        swal(
+          "Berhasil Absen!",
+          "~",
+          "success"
+        );
+      }
+    }
     return (
       <div> 
         
         <GuestNavbarComponentManual />
         <div class="header-1" style={{ backgroundColor: "#fec107" }}>
           <Container>
-        <FormAbsensiManual/>
+        <FormAbsensiManual  onSubmit={(data) => this.handleSubmit(data)} />
         </Container>
         </div>
         <h1>Menu Masuk<Ambilwaktu/></h1>
@@ -32,4 +56,4 @@ class AbsensiManualContainer extends Component {
   }
 }
 
-export default connect()(AbsensiManualContainer);
+export default connect(mapStateToProps, null)(AbsensiManualContainer);

@@ -90,14 +90,6 @@ const mapStateToProps = (state) => {
   //console.log(optsiterpilih);
   return {
     getOptUserManual: state.Opt.getOptUserManual,
-    initialValues: {
-      GroupID: state.Group.getGroupDetail.GroupID,
-      Jabatan: state.Group.getGroupDetail.Jabatan,
-      Shift: state.TerlambatBertingkat.getTerlambatBertingkatDetail2.Shift,
-      MaxJamDatang: state.TerlambatBertingkat.getTerlambatBertingkatDetail2.MaxJamDatang,
-      RpPotonganTerlambat: state.TerlambatBertingkat.getTerlambatBertingkatDetail2.RpPotonganTerlambat,
-
-    },
   };
 };
 
@@ -114,7 +106,7 @@ class FormAbsensiManual extends Component {
             <FormGroup>
               <Field
                 type="text"
-                name="GroupID"
+                name="Nama"
                 component={renderField2}
                 options={this.props.getOptUserManual}
                 label="Nama:"
