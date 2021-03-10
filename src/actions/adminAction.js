@@ -1,5 +1,7 @@
 import axios from "axios";
 
+export const BASEURL="192.168.0.25:3001";
+
 export const GET_ADMIN_TIMENOW = "GET_ADMIN_TIMENOW";
 export const GET_ADMIN_LIST = "GET_ADMIN_LIST";
 export const GET_ADMIN_DETAIL = "GET_ADMIN_DETAIL";
@@ -7,10 +9,12 @@ export const POST_ADMIN_CREATE = "POST_ADMIN_CREATE";
 export const PUT_ADMIN_EDIT = "PUT_ADMIN_EDIT";
 
 
+
+
 export const getAdminTimeNow = () => {
   return (dispatch) => {
-    axios
-      .get("http://192.168.0.25:3001/api/gettime2")
+    setInterval (function() {
+    axios.get("http://"+BASEURL+"/api/gettime2")
       .then(function (response) {
         dispatch({
           type: GET_ADMIN_TIMENOW,
@@ -28,7 +32,7 @@ export const getAdminTimeNow = () => {
             errorMessage: error.message,
           },
         });
-      });
+      });},1000);
   };
 };
 
@@ -36,7 +40,7 @@ export const getAdminTimeNow = () => {
 export const getAdminList = () => {
   return (dispatch) => {
     axios
-      .get("http://192.168.0.25:3001/api/superadmin")
+      .get("http://"+BASEURL+"/api/superadmin")
       .then(function (response) {
         dispatch({
           type: GET_ADMIN_LIST,
@@ -62,7 +66,7 @@ export const getAdminDetail = (AdminID) => {
   return (dispatch) => {
     axios
       .get(
-        "http://192.168.0.25:3001/api/superadmin/"+ AdminID
+        "http://"+BASEURL+"/api/superadmin/"+ AdminID
       )
       .then(function (response) {
         dispatch({
@@ -89,7 +93,7 @@ export const postAdminCreate = (data) => {
   return (dispatch) => {
     axios
       .post(
-         "http://192.168.0.25:3001/api/superadmin/",
+         "http://"+BASEURL+"/api/superadmin/",
         data
       )
       .then(function (response) {
@@ -119,7 +123,7 @@ export const putAdminUpdate = (data,AdminID) => {
   return (dispatch) => {
     axios
       .put(
-        "http://192.168.0.25:3001/api/superadmin/"+AdminID,
+        "http://"+BASEURL+"/api/superadmin/"+AdminID,
         data
       )
       .then(function (response) {
@@ -150,7 +154,7 @@ export const deleteAdmin = (AdminID) => {
   return (dispatch) => {
     axios
       .delete(
-         "http://192.168.0.25:3001/api/superadmin/"+AdminID
+         "http://"+BASEURL+"/api/superadmin/"+AdminID
       )
       .then(function (response) {
         console.log(response);

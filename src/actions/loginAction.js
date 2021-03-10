@@ -1,4 +1,5 @@
 import axios from "axios";
+import { BASEURL } from "./adminAction";
 
 export const POST_LOGIN_USER = "POST_LOGIN_USER";
 export const POST_LOGOUT_USER = "POST_LOGOUT_USER";
@@ -6,7 +7,7 @@ export const POST_LOGOUT_USER = "POST_LOGOUT_USER";
 export const postLoginUser = (data) => {
   return (dispatch) => {
     axios
-      .post("http://192.168.0.25:3001/api/login", data)
+      .post("http://"+BASEURL+"/api/login", data)
       .then(function (response) {
         dispatch({
           type: POST_LOGIN_USER,

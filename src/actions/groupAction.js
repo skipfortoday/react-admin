@@ -1,4 +1,5 @@
 import axios from "axios";
+import { BASEURL } from "./adminAction";
 
 export const GET_GROUP_LIST = "GET_GROUP_LIST";
 export const GET_GROUP_DETAIL = "GET_GROUP_DETAIL";
@@ -13,7 +14,7 @@ export const PUT_GROUP_EDIT = "PUT_GROUP_EDIT";
 export const getGroupList = () => {
   return (dispatch) => {
     axios
-      .get("http://192.168.0.25:3001/api/group")
+      .get("http://"+BASEURL+"/api/group")
       .then(function (response) {
         dispatch({
           type: GET_GROUP_LIST,
@@ -39,7 +40,7 @@ export const getGroupDetail = (GroupID) => {
   return (dispatch) => {
     axios
       .get(
-        "http://192.168.0.25:3001/api/group/"+GroupID
+        "http://"+BASEURL+"/api/group/"+GroupID
       )
       .then(function (response) {
         dispatch({
@@ -66,7 +67,7 @@ export const getGroupTerLambat1 = (GroupID) => {
   return (dispatch) => {
     axios
       .get(
-        "http://192.168.0.25:3001/api/groupterlambat1/"+GroupID
+        "http://"+BASEURL+"api/groupterlambat1/"+GroupID
       )
       .then(function (response) {
         dispatch({
@@ -93,7 +94,7 @@ export const getGroupTerLambat2 = (GroupID) => {
   return (dispatch) => {
     axios
       .get(
-        "http://192.168.0.25:3001/api/groupterlambat2/"+GroupID
+        "http://"+BASEURL+"/api/groupterlambat2/"+GroupID
       )
       .then(function (response) {
         dispatch({
@@ -120,7 +121,7 @@ export const getGroupTerLambat3 = (GroupID) => {
   return (dispatch) => {
     axios
       .get(
-        "http://192.168.0.25:3001/api/groupterlambat3/"+GroupID
+        "http://"+BASEURL+"/api/groupterlambat3/"+GroupID
       )
       .then(function (response) {
         dispatch({
@@ -147,7 +148,7 @@ export const postGroupCreate = (data) => {
   return (dispatch) => {
     axios
       .post(
-         "http://192.168.0.25:3001/api/group/",
+         "http://"+BASEURL+"/api/group/",
         data
       )
       .then(function (response) {
@@ -177,7 +178,7 @@ export const putGroupUpdate = (data, GroupID) => {
   return (dispatch) => {
     axios
       .put(
-        "http://192.168.0.25:3001/api/group/"+GroupID,
+        "http://"+BASEURL+"/api/group/"+GroupID,
         data
       )
       .then(function (response) {
@@ -208,7 +209,7 @@ export const deleteGroup = (GroupID) => {
   return (dispatch) => {
     axios
       .delete(
-         "http://192.168.0.25:3001/api/group/"+GroupID
+         "http://"+BASEURL+"/api/group/"+GroupID
       )
       .then(function (response) {
         console.log(response);

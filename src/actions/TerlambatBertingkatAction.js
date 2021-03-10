@@ -1,4 +1,5 @@
 import axios from "axios";
+import { BASEURL } from "./adminAction";
 
 export const GET_TERLAMBATBERTINGKAT_LIST = "GET_TERLAMBATBERTINGKAT_LIST";
 export const GET_TERLAMBATBERTINGKAT_DETAIL = "GET_TERLAMBATBERTINGKAT_DETAIL";
@@ -11,7 +12,7 @@ export const PUT_TERLAMBATBERTINGKAT_EDIT = "PUT_TERLAMBATBERTINGKAT_EDIT";
 export const getTerlambatBertingkatList = () => {
   return (dispatch) => {
     axios
-      .get("http://192.168.0.25:3001/api/TerlambatBertingkat")
+      .get("http://"+BASEURL+"/api/TerlambatBertingkat")
       .then(function (response) {
         dispatch({
           type: GET_TERLAMBATBERTINGKAT_LIST,
@@ -37,7 +38,7 @@ export const getTerlambatBertingkatDetail = (GroupID) => {
   return (dispatch) => {
     axios
       .get(
-        "http://192.168.0.25:3001/api/TerlambatBertingkat/"+GroupID
+        "http://"+BASEURL+"/api/TerlambatBertingkat/"+GroupID
       )
       .then(function (response) {
         dispatch({
@@ -64,7 +65,7 @@ export const getTerlambatBertingkatDetail2 = (RuleTerlambatBertingkatID) => {
   return (dispatch) => {
     axios
       .get(
-        "http://192.168.0.25:3001/api/TerlambatBertingkat2/"+RuleTerlambatBertingkatID
+        "http://"+BASEURL+"/api/TerlambatBertingkat2/"+RuleTerlambatBertingkatID
       )
       .then(function (response) {
         dispatch({
@@ -91,7 +92,7 @@ export const postTerlambatBertingkatCreate = (data) => {
   return (dispatch) => {
     axios
       .post(
-         "http://192.168.0.25:3001/api/TerlambatBertingkat/",
+         "http://"+BASEURL+"/api/TerlambatBertingkat/",
         data
       )
       .then(function (response) {
@@ -121,7 +122,7 @@ export const putTerlambatBertingkatUpdate = (data, RuleTerlambatBertingkatID) =>
   return (dispatch) => {
     axios
       .put(
-        "http://192.168.0.25:3001/api/TerlambatBertingkat/"+RuleTerlambatBertingkatID,
+        "http://"+BASEURL+"/api/TerlambatBertingkat/"+RuleTerlambatBertingkatID,
         data
       )
       .then(function (response) {
@@ -152,7 +153,7 @@ export const deleteTerlambatBertingkat = (RuleTerlambatBertingkatID) => {
   return (dispatch) => {
     axios
       .delete(
-         "http://192.168.0.25:3001/api/TerlambatBertingkat/"+RuleTerlambatBertingkatID
+         "http://"+BASEURL+"/api/TerlambatBertingkat/"+RuleTerlambatBertingkatID
       )
       .then(function (response) {
         console.log(response);

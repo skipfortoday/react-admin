@@ -1,4 +1,5 @@
 import axios from "axios";
+import { BASEURL } from "./adminAction";
 
 export const GET_LAPORAN_LIST = "GET_LAPORAN_LIST";
 export const GET_LAPORAN_DETAIL = "GET_LAPORAN_DETAIL";
@@ -11,7 +12,7 @@ export const POST_LAPORAN_PROSES = "POST_LAPORAN_PROSES";
 export const getLaporanList = (UserID) => {
   return (dispatch) => {
     axios
-      .get("http://192.168.0.25:3001/api/laporan/"+UserID)
+      .get("http://"+BASEURL+"/api/laporan/"+UserID)
       .then(function (response) {
         var res = [];
         var expand = [];
@@ -49,7 +50,7 @@ export const getLaporanList = (UserID) => {
 export const getLaporanDetail = (UserID,TglAwal,TglAkhir) => {
   return (dispatch) => {
     axios
-      .get("http://192.168.0.25:3001/api/laporandetail/"+UserID+"&"+TglAwal+"&"+TglAkhir)
+      .get("http://"+BASEURL+"/api/laporandetail/"+UserID+"&"+TglAwal+"&"+TglAkhir)
       .then(function (response) {
         var res = [];
         var expand = [];
@@ -85,7 +86,7 @@ export const getLaporanDetail = (UserID,TglAwal,TglAkhir) => {
 export const getLaporanRekap = (UserID,TglAwal,TglAkhir) => {
   return (dispatch) => {
     axios
-      .get("http://192.168.0.25:3001/api/laporanrekap/"+UserID+"&"+TglAwal+"&"+TglAkhir)
+      .get("http://"+BASEURL+"/api/laporanrekap/"+UserID+"&"+TglAwal+"&"+TglAkhir)
       .then(function (response) {
         dispatch({
           type: GET_LAPORAN_REKAP,
@@ -110,7 +111,7 @@ export const getLaporanRekap = (UserID,TglAwal,TglAkhir) => {
 export const getLaporanHead = (UserID) => {
   return (dispatch) => {
     axios
-      .get("http://192.168.0.25:3001/api/headerlaporan/"+UserID)
+      .get("http://"+BASEURL+"/api/headerlaporan/"+UserID)
       .then(function (response) {
         dispatch({
           type: GET_LAPORAN_HEAD,
@@ -137,7 +138,7 @@ export const postLaporanProses= (data) => {
   return (dispatch) => {
     axios
       .post(
-         "http://192.168.0.25:3001/api/proses/",
+         "http://"+BASEURL+"/api/proses/",
         data
       )
       .then(function (response) {

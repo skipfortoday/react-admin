@@ -1,4 +1,5 @@
 import axios from "axios";
+import { BASEURL } from "./adminAction";
 
 export const GET_USERS_LIST = "GET_USERS_LIST";
 export const GET_USER_DETAIL = "GET_USER_DETAIL";
@@ -15,7 +16,7 @@ export const PUT_CABANG_EDIT = "PUT_CABANG_EDIT";
 export const getUsersList = () => {
   return (dispatch) => {
     axios
-      .get("http://192.168.0.25:3001/api/user")
+      .get("http://"+BASEURL+"/api/user")
       .then(function (response) {
         dispatch({
           type: GET_USERS_LIST,
@@ -41,7 +42,7 @@ export const getUsersList = () => {
 export const getUserV = () => {
   return (dispatch) => {
     axios
-      .get("http://192.168.0.25:3001/api/vuser")
+      .get("http://"+BASEURL+"/api/vuser")
       .then(function (response) {
         dispatch({
           type: GET_USER_V,
@@ -67,7 +68,7 @@ export const getUserDetail = (UserID) => {
   return (dispatch) => {
     axios
       .get(
-        "http://192.168.0.25:3001/api/user/"+UserID
+        "http://"+BASEURL+"/api/user/"+UserID
       )
       .then(function (response) {
         dispatch({
@@ -96,7 +97,7 @@ export const postUserCreate = (data) => {
   return (dispatch) => {
     axios
       .post(
-         "http://192.168.0.25:3001/api/user/",
+         "http://"+BASEURL+"/api/user/",
         data
       )
       .then(function (response) {
@@ -128,7 +129,7 @@ export const putUserUpdate = (data, UserID) => {
     data.KodeCabang = data.KodeCabang.value;
     axios
       .put(
-        "http://192.168.0.25:3001/api/user/"+UserID,
+        "http://"+BASEURL+"/api/user/"+UserID,
         data
       )
       .then(function (response) {
@@ -159,7 +160,7 @@ export const deleteUser = (UserID) => {
   return (dispatch) => {
     axios
       .delete(
-         "http://192.168.0.25:3001/api/user/"+UserID
+         "http://"+BASEURL+"/api/user/"+UserID
       )
       .then(function (response) {
         console.log(response);
@@ -177,7 +178,7 @@ export const resetUser = (UserID) => {
   return (dispatch) => {
     axios
       .put(
-         "http://192.168.0.25:3001/api/resetdevice/"+UserID
+         "http://"+BASEURL+"/api/resetdevice/"+UserID
       )
       .then(function (response) {
         console.log(response);
@@ -194,7 +195,7 @@ export const resetPasswordUser = (UserID) => {
   return (dispatch) => {
     axios
       .put(
-         "http://192.168.0.25:3001/api/resetpassworduser/"+UserID
+         "http://"+BASEURL+"/api/resetpassworduser/"+UserID
       )
       .then(function (response) {
         console.log(response);
@@ -232,7 +233,7 @@ export const deleteDataUser = () => {
 export const getCabangList = () => {
   return (dispatch) => {
     axios
-      .get("http://192.168.0.25:3001/api/cabang")
+      .get("http://"+BASEURL+"/api/cabang")
       .then(function (response) {
         dispatch({
           type: GET_CABANG_LIST,
@@ -258,7 +259,7 @@ export const getCabangDetail = (KodeCabang) => {
   return (dispatch) => {
     axios
       .get(
-        "http://192.168.0.25:3001/api/cabang/"+KodeCabang
+        "http://"+BASEURL+"/api/cabang/"+KodeCabang
       )
       .then(function (response) {
         dispatch({
@@ -285,7 +286,7 @@ export const postCabangCreate = (data) => {
   return (dispatch) => {
     axios
       .post(
-         "http://192.168.0.25:3001/api/cabang/",
+         "http://"+BASEURL+"/api/cabang/",
         data
       )
       .then(function (response) {
@@ -315,7 +316,7 @@ export const putCabangUpdate = (data, KodeCabang) => {
   return (dispatch) => {
     axios
       .put(
-        "http://192.168.0.25:3001/api/cabang/"+KodeCabang,
+        "http://"+BASEURL+"/api/cabang/"+KodeCabang,
         data
       )
       .then(function (response) {
@@ -346,7 +347,7 @@ export const deleteCabang = (KodeCabang) => {
   return (dispatch) => {
     axios
       .delete(
-         "http://192.168.0.25:3001/api/cabang/"+KodeCabang
+         "http://"+BASEURL+"/api/cabang/"+KodeCabang
       )
       .then(function (response) {
         console.log(response);

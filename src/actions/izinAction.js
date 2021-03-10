@@ -1,4 +1,5 @@
 import axios from "axios";
+import { BASEURL } from "./adminAction";
 
 export const GET_IZIN_LIST = "GET_IZIN_LIST";
 export const GET_IZIN_LISTSOLO = "GET_IZIN_LISTSOLO";
@@ -12,7 +13,7 @@ export const PUT_IZIN_EDIT = "PUT_IZIN_EDIT";
 export const getIzinList = () => {
   return (dispatch) => {
     axios
-      .get("http://192.168.0.25:3001/api/izin")
+      .get("http://"+BASEURL+"/api/izin")
       .then(function (response) {
         dispatch({
           type: GET_IZIN_LIST,
@@ -38,7 +39,7 @@ export const getIzinListSolo = (UserID,TglAwal,TglAkhir) => {
   return (dispatch) => {
     axios
       .get(
-        "http://192.168.0.25:3001/api/izinsolo/"+UserID+"&"+TglAwal+"&"+TglAkhir
+        "http://"+BASEURL+"/api/izinsolo/"+UserID+"&"+TglAwal+"&"+TglAkhir
       )
       .then(function (response) {
         dispatch({
@@ -65,7 +66,7 @@ export const getIzinDetail = (UserID) => {
   return (dispatch) => {
     axios
       .get(
-        "http://192.168.0.25:3001/api/user/"+UserID
+        "http://"+BASEURL+"/api/user/"+UserID
       )
       .then(function (response) {
         dispatch({
@@ -92,7 +93,7 @@ export const postIzinCreate = (data) => {
   return (dispatch) => {
     axios
       .post(
-         "http://192.168.0.25:3001/api/izin",
+         "http://"+BASEURL+"/api/izin",
         data
       )
       .then(function (response) {
@@ -122,7 +123,7 @@ export const postIzinGroup= (data) => {
   return (dispatch) => {
     axios
       .post(
-         "http://192.168.0.25:3001/api/pilihizin",
+         "http://"+BASEURL+"/api/pilihizin",
         data
       )
       .then(function (response) {
@@ -152,7 +153,7 @@ export const putIzinUpdate = (data, DatangID) => {
   return (dispatch) => {
     axios
       .put(
-        "http://192.168.0.25:3001/api/izin/"+DatangID,
+        "http://"+BASEURL+"/api/izin/"+DatangID,
         data
       )
       .then(function (response) {
@@ -183,7 +184,7 @@ export const deleteIzin = (DatangID) => {
   return (dispatch) => {
     axios
       .delete(
-         "http://192.168.0.25:3001/api/izin/"+DatangID
+         "http://"+BASEURL+"/api/izin/"+DatangID
       )
       .then(function (response) {
         console.log(response);

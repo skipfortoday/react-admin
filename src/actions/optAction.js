@@ -1,4 +1,5 @@
 import axios from "axios";
+import { BASEURL } from "./adminAction";
 
 export const GET_OPT_USER = "GET_OPT_USER";
 export const GET_OPT_USERMANUAL = "GET_OPT_USERMANUAL";
@@ -10,7 +11,7 @@ export const GET_OPT_TERLAMBAT = "GET_OPT_TERLAMBAT";
 export const getOptUser = () => {
   return (dispatch) => {
     axios
-      .get("http://192.168.0.25:3001/api/optuser")
+      .get("http://"+BASEURL+"/api/optuser")
       .then(function (response) {
         dispatch({
           type: GET_OPT_USER,
@@ -35,7 +36,7 @@ export const getOptUser = () => {
 export const getOptUserManual = () => {
   return (dispatch) => {
     axios
-      .get("http://192.168.0.25:3001/api/optusermanual")
+      .get("http://"+BASEURL+"/api/optusermanual")
       .then(function (response) {
         dispatch({
           type: GET_OPT_USERMANUAL,
@@ -60,7 +61,7 @@ export const getOptUserManual = () => {
 export const getOptGroup = () => {
   return (dispatch) => {
     axios
-      .get("http://192.168.0.25:3001/api/optgroup")
+      .get("http://"+BASEURL+"/api/optgroup")
       .then(function (response) {
         dispatch({
           type: GET_OPT_GROUP,
@@ -85,7 +86,7 @@ export const getOptGroup = () => {
 export const getOptTerlambat = () => {
   return (dispatch) => {
     axios
-      .get("http://192.168.0.25:3001/api/optTerlambat")
+      .get("http://"+BASEURL+"/api/optTerlambat")
       .then(function (response) {
         dispatch({
           type: GET_OPT_TERLAMBAT,
@@ -110,7 +111,7 @@ export const getOptTerlambat = () => {
 export const getOptCabang = () => {
   return (dispatch) => {
     axios
-      .get("http://192.168.0.25:3001/api/optcabang")
+      .get("http://"+BASEURL+"/api/optcabang")
       .then(function (response) {
         dispatch({
           type: GET_OPT_CABANG,
