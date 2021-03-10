@@ -8,6 +8,9 @@ import FormAbsensiManual2 from "../components/FormAbsensiManual2";
 import { getAdminTimeNow } from "../actions/adminAction";
 import { putManualPulang } from "../actions/manualAction";
 import swal from "sweetalert";
+import RecentScanComponent from "../components/RecentScanComponent";
+import OnDutyRoster from "../components/OnDutyRoster";
+import Ambilwaktu from "../components/Ambilwaktu";
 
 const mapStateToProps = (state) => {
   return {
@@ -43,13 +46,23 @@ class AbsensiManualContainerPulang extends Component {
       <div> 
         
         <GuestNavbarComponentManual />
-        <div class="header-1" style={{ backgroundColor: "#fec107" }}>
+        <div class="header-1">
+          <div class="row p-1">
+            <div class="col-md-8">
+              <div style={{ backgroundColor: "#fec107" }} class="p-2 mb-2">
+                <h4 class="text-center mt-2 mb-2"><Ambilwaktu/></h4>
           <Container>
         <FormAbsensiManual2  onSubmit={(data) => this.handleSubmit(data)} />
         </Container>
         </div>
-        <h1>Menu Pulang</h1>
-
+              <RecentScanComponent/>
+            </div>
+            <div class="col-md-4">
+              <OnDutyRoster/>
+            </div>
+            
+          </div>
+        </div>
       </div>
     );
   }

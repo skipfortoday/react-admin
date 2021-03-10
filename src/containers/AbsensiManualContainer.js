@@ -51,7 +51,7 @@ class AbsensiManualContainer extends Component {
               <div style={{ backgroundColor: "#fec107" }} class="p-2 mb-2">
                 <h4 class="text-center mt-2 mb-2"><Ambilwaktu/></h4>
                 <Container>
-                  <FormAbsensiManual/>
+                  <FormAbsensiManual onSubmit={(data) => this.handleSubmit(data)}/>
                 </Container>
               </div>
               <RecentScanComponent/>

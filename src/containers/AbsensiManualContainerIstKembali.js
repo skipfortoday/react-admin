@@ -6,6 +6,9 @@ import { Container } from "reactstrap";
 import FormAbsensiManualIstKembali from "../components/FormAbsensiManualIstKembali";
 import swal from "sweetalert";
 import { putManualKemIstirahat } from "../actions/manualAction";
+import RecentScanComponent from "../components/RecentScanComponent";
+import OnDutyRoster from "../components/OnDutyRoster";
+import Ambilwaktu from "../components/Ambilwaktu";
 
 const mapStateToProps = (state) => {
   return {
@@ -35,14 +38,25 @@ class AbsensiManualContainerIstKembali extends Component {
     }
     return (
       <div> 
-        
         <GuestNavbarComponentManual />
-        <div class="header-1" style={{ backgroundColor: "#fec107" }}>
+        <div class="header-1">
+          <div class="row p-1">
+            <div class="col-md-8">
+              <div style={{ backgroundColor: "#fec107" }} class="p-2 mb-2">
+                <h4 class="text-center mt-2 mb-2">
+                  <Ambilwaktu />
+                </h4>
           <Container>
         <FormAbsensiManualIstKembali onSubmit={(data) => this.handleSubmit(data)} />
         </Container>
         </div>
-        <h1>Menu Istrahat Kembali</h1>
+              <RecentScanComponent />
+            </div>
+            <div class="col-md-4">
+              <OnDutyRoster />
+            </div>
+          </div>
+        </div>
       </div>
     );
   }
