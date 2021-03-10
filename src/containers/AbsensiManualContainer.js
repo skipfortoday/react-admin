@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { getUsersList } from "../actions/userAction";
 import { getOptUserManual } from "../actions/optAction";
 import FormAbsensiManual from "../components/FormAbsensiManual";
 import GuestNavbarComponentManual from "../components/GuestNavbarComponentManual";
@@ -20,7 +19,6 @@ const mapStateToProps = (state) => {
 
 class AbsensiManualContainer extends Component {
   componentDidMount() {
-    this.props.dispatch(getUsersList());
     this.props.dispatch(getOptUserManual());
     this.props.dispatch(getAdminTimeNow());
   }

@@ -1,26 +1,45 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { getUsersList, deleteDataUser } from "../actions/userAction";
-import { getOptUserManual } from "../actions/optAction";
+import { getOptUserManualKembaliIst } from "../actions/optAction";
 import GuestNavbarComponentManual from "../components/GuestNavbarComponentManual";
 import { Container } from "reactstrap";
-import FormAbsensiManual2 from "../components/FormAbsensiManual2";
+import FormAbsensiManualIstKembali from "../components/FormAbsensiManualIstKembali";
+import swal from "sweetalert";
+import { putManualKemIstirahat } from "../actions/manualAction";
 
+const mapStateToProps = (state) => {
+  return {
+    getResponDataManual: state.Manual.getResponDataManual,
+    errorResponDataManual: state.Manual.errorResponDataManual,
+  };
+};
 class AbsensiManualContainerIstKembali extends Component {
   componentDidMount() {
-    this.props.dispatch(getUsersList());
-    this.props.dispatch(getOptUserManual());
-    this.props.dispatch(deleteDataUser());
+    this.props.dispatch(getOptUserManualKembaliIst());
+  }
+  handleSubmit(data) {
+    this.props.dispatch(putManualKemIstirahat(data));
   }
 
   render() {
+    if (this.props.getResponDataManual || this.props.errorResponDataManual) {
+      if (this.props.errorResponDataManual) {
+        swal("Failed!", this.props.errorResponDataManual, "error");
+      } else {
+        swal(
+          "Berhasil Absen!",
+          "Kembali Istirahat",
+          "success"
+        );
+      }
+    }
     return (
       <div> 
         
         <GuestNavbarComponentManual />
         <div class="header-1" style={{ backgroundColor: "#fec107" }}>
           <Container>
-        <FormAbsensiManual2/>
+        <FormAbsensiManualIstKembali onSubmit={(data) => this.handleSubmit(data)} />
         </Container>
         </div>
         <h1>Menu Istrahat Kembali</h1>
@@ -29,4 +48,4 @@ class AbsensiManualContainerIstKembali extends Component {
   }
 }
 
-export default connect()(AbsensiManualContainerIstKembali);
+export default connect(mapStateToProps, null)(AbsensiManualContainerIstKembali);

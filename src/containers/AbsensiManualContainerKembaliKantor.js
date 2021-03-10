@@ -1,26 +1,47 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { getUsersList, deleteDataUser } from "../actions/userAction";
-import { getOptUserManual } from "../actions/optAction";
+import { getOptUserManualKembali } from "../actions/optAction";
 import GuestNavbarComponentManual from "../components/GuestNavbarComponentManual";
 import { Container } from "reactstrap";
-import FormAbsensiManual2 from "../components/FormAbsensiManual2";
+import FormAbsensiManualKembali from "../components/FormAbsensiManualKembali";
+import { putManualKembali } from "../actions/manualAction";
+import swal from "sweetalert";
+
+const mapStateToProps = (state) => {
+  return {
+    getResponDataManual: state.Manual.getResponDataManual,
+    errorResponDataManual: state.Manual.errorResponDataManual,
+  };
+};
 
 class AbsensiManualContainerKembaliKantor extends Component {
   componentDidMount() {
-    this.props.dispatch(getUsersList());
-    this.props.dispatch(getOptUserManual());
-    this.props.dispatch(deleteDataUser());
+    this.props.dispatch(getOptUserManualKembali());
+  }
+  handleSubmit(data) {
+    this.props.dispatch(putManualKembali(data));
   }
 
   render() {
+    if (this.props.getResponDataManual || this.props.errorResponDataManual) {
+      if (this.props.errorResponDataManual) {
+        swal("Failed!", this.props.errorResponDataManual, "error");
+      } else {
+        swal(
+          "Berhasil Absen!",
+          "Kembali Kantor",
+          "success"
+        );
+      }
+    }
+    
     return (
       <div> 
         
         <GuestNavbarComponentManual />
         <div class="header-1" style={{ backgroundColor: "#fec107" }}>
           <Container>
-        <FormAbsensiManual2/>
+        <FormAbsensiManualKembali onSubmit={(data) => this.handleSubmit(data)} />
         </Container>
         </div>
         <h1>Menu Kembali Kantor</h1>
@@ -29,4 +50,4 @@ class AbsensiManualContainerKembaliKantor extends Component {
   }
 }
 
-export default connect()(AbsensiManualContainerKembaliKantor);
+export default connect(mapStateToProps, null)(AbsensiManualContainerKembaliKantor);
