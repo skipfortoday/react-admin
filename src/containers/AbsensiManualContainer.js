@@ -8,6 +8,8 @@ import Ambilwaktu from "../components/Ambilwaktu";
 import { getAdminTimeNow } from "../actions/adminAction";
 import { postManualMasuk } from "../actions/manualAction";
 import swal from "sweetalert";
+import RecentScanComponent from "../components/RecentScanComponent";
+import OnDutyRoster from "../components/OnDutyRoster";
 
 
 const mapStateToProps = (state) => {
@@ -43,12 +45,23 @@ class AbsensiManualContainer extends Component {
       <div> 
         
         <GuestNavbarComponentManual />
-        <div class="header-1" style={{ backgroundColor: "#fec107" }}>
-          <Container>
-        <FormAbsensiManual  onSubmit={(data) => this.handleSubmit(data)} />
-        </Container>
+        <div class="header-1">
+          <div class="row p-1">
+            <div class="col-md-8">
+              <div style={{ backgroundColor: "#fec107" }} class="p-2 mb-2">
+                <h4 class="text-center mt-2 mb-2"><Ambilwaktu/></h4>
+                <Container>
+                  <FormAbsensiManual/>
+                </Container>
+              </div>
+              <RecentScanComponent/>
+            </div>
+            <div class="col-md-4">
+              <OnDutyRoster/>
+            </div>
+            
+          </div>
         </div>
-        <h1>Menu Masuk<Ambilwaktu/></h1>
       </div>
     );
   }
