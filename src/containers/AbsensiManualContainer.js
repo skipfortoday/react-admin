@@ -5,11 +5,12 @@ import FormAbsensiManual from "../components/FormAbsensiManual";
 import GuestNavbarComponentManual from "../components/GuestNavbarComponentManual";
 import { Container } from "reactstrap";
 import Ambilwaktu from "../components/Ambilwaktu";
-import { getAdminTimeNow } from "../actions/adminAction";
+import { getAdminOnDuty, getAdminTimeNow } from "../actions/adminAction";
 import { postManualMasuk } from "../actions/manualAction";
 import swal from "sweetalert";
 import RecentScanComponent from "../components/RecentScanComponent";
 import OnDutyRoster from "../components/OnDutyRoster";
+import LaporanDetail from "../components/LaporanDetail";
 
 
 const mapStateToProps = (state) => {
@@ -22,7 +23,8 @@ const mapStateToProps = (state) => {
 class AbsensiManualContainer extends Component {
   componentDidMount() {
     this.props.dispatch(getOptUserManual());
-    this.props.dispatch(getAdminTimeNow());
+    this.props.dispatch(getAdminOnDuty());
+    // this.props.dispatch(getAdminTimeNow());
   }
   handleSubmit(data) {
     this.props.dispatch(postManualMasuk(data));
@@ -38,7 +40,9 @@ class AbsensiManualContainer extends Component {
           "Berhasil Absen!",
           "~",
           "success"
-        );
+        ); setTimeout(function() {
+             window.location.reload()
+        }, 1000);
       }
     }
     return (
@@ -55,6 +59,7 @@ class AbsensiManualContainer extends Component {
                 </Container>
               </div>
               <RecentScanComponent/>
+              {/* <LaporanDetail/> */}
             </div>
             <div class="col-md-4">
               <OnDutyRoster/>

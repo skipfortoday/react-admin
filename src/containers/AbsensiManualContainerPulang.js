@@ -5,7 +5,7 @@ import { getOptUserManualPulang } from "../actions/optAction";
 import GuestNavbarComponentManual from "../components/GuestNavbarComponentManual";
 import { Container } from "reactstrap";
 import FormAbsensiManual2 from "../components/FormAbsensiManual2";
-import { getAdminTimeNow } from "../actions/adminAction";
+import { getAdminOnDuty, getAdminTimeNow } from "../actions/adminAction";
 import { putManualPulang } from "../actions/manualAction";
 import swal from "sweetalert";
 import RecentScanComponent from "../components/RecentScanComponent";
@@ -22,8 +22,9 @@ const mapStateToProps = (state) => {
 class AbsensiManualContainerPulang extends Component {
   componentDidMount() {
     this.props.dispatch(getUsersList());
+    this.props.dispatch(getAdminOnDuty());
     this.props.dispatch(getOptUserManualPulang());
-    this.props.dispatch(getAdminTimeNow()); 
+    // this.props.dispatch(getAdminTimeNow()); 
   }
 
   handleSubmit(data) {
@@ -39,7 +40,9 @@ class AbsensiManualContainerPulang extends Component {
           "Berhasil Absen Pulang!",
           "~",
           "success"
-        );
+        ); setTimeout(function() {
+          window.location.reload()
+     }, 1000);
       }
     }
     return (

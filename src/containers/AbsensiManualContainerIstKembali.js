@@ -9,6 +9,7 @@ import { putManualKemIstirahat } from "../actions/manualAction";
 import RecentScanComponent from "../components/RecentScanComponent";
 import OnDutyRoster from "../components/OnDutyRoster";
 import Ambilwaktu from "../components/Ambilwaktu";
+import { getAdminOnDuty } from "../actions/adminAction";
 
 const mapStateToProps = (state) => {
   return {
@@ -18,6 +19,7 @@ const mapStateToProps = (state) => {
 };
 class AbsensiManualContainerIstKembali extends Component {
   componentDidMount() {
+    this.props.dispatch(getAdminOnDuty());
     this.props.dispatch(getOptUserManualKembaliIst());
   }
   handleSubmit(data) {
@@ -33,7 +35,9 @@ class AbsensiManualContainerIstKembali extends Component {
           "Berhasil Absen!",
           "Kembali Istirahat",
           "success"
-        );
+        ); setTimeout(function() {
+          window.location.reload()
+     }, 1000);
       }
     }
     return (

@@ -2,8 +2,9 @@ import axios from "axios";
 
 export const BASEURL="192.168.0.25:3001";
 
-export const GET_ADMIN_TIMENOW = "GET_ADMIN_TIMENOW";
+// export const GET_ADMIN_TIMENOW = "GET_ADMIN_TIMENOW";
 export const GET_ADMIN_LIST = "GET_ADMIN_LIST";
+export const GET_ADMIN_ONDUTY = "GET_ADMIN_ONDUTY";
 export const GET_ADMIN_DETAIL = "GET_ADMIN_DETAIL";
 export const POST_ADMIN_CREATE = "POST_ADMIN_CREATE";
 export const PUT_ADMIN_EDIT = "PUT_ADMIN_EDIT";
@@ -11,13 +12,38 @@ export const PUT_ADMIN_EDIT = "PUT_ADMIN_EDIT";
 
 
 
-export const getAdminTimeNow = () => {
+// export const getAdminTimeNow = () => {
+//   return (dispatch) => {
+//     setInterval (function() {
+//     axios.get("http://"+BASEURL+"/api/gettime2")
+//       .then(function (response) {
+//         dispatch({
+//           type: GET_ADMIN_TIMENOW,
+//           payload: {
+//             data: response.data,
+//             errorMessage: false,
+//           },
+//         });
+//       })
+//       .catch(function (error) {
+//         dispatch({
+//           type: GET_ADMIN_TIMENOW,
+//           payload: {
+//             data: false,
+//             errorMessage: error.message,
+//           },
+//         });
+//       });},1000);
+//   };
+// };
+
+export const getAdminOnDuty = () => {
   return (dispatch) => {
-    setInterval (function() {
-    axios.get("http://"+BASEURL+"/api/gettime2")
+    axios
+      .get("http://"+BASEURL+"/api/onduty")
       .then(function (response) {
         dispatch({
-          type: GET_ADMIN_TIMENOW,
+          type: GET_ADMIN_ONDUTY,
           payload: {
             data: response.data,
             errorMessage: false,
@@ -26,13 +52,13 @@ export const getAdminTimeNow = () => {
       })
       .catch(function (error) {
         dispatch({
-          type: GET_ADMIN_TIMENOW,
+          type: GET_ADMIN_ONDUTY,
           payload: {
             data: false,
             errorMessage: error.message,
           },
         });
-      });},1000);
+      });
   };
 };
 

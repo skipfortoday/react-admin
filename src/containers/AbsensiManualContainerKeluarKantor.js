@@ -9,6 +9,7 @@ import swal from "sweetalert";
 import RecentScanComponent from "../components/RecentScanComponent";
 import OnDutyRoster from "../components/OnDutyRoster";
 import Ambilwaktu from "../components/Ambilwaktu";
+import { getAdminOnDuty } from "../actions/adminAction";
 
 
 const mapStateToProps = (state) => {
@@ -20,6 +21,7 @@ const mapStateToProps = (state) => {
 
 class AbsensiManualContainerKeluarKantor extends Component {
   componentDidMount() {
+    this.props.dispatch(getAdminOnDuty());
     this.props.dispatch(getOptUserManualKeluar());
   }
   handleSubmit(data) {
@@ -32,7 +34,9 @@ class AbsensiManualContainerKeluarKantor extends Component {
         swal("Failed!", this.props.errorResponDataManual, "error");
       } else {
         swal("Berhasil Absen!", "Keluar Kantor", "success");
-      } window.location.reload();
+      }  setTimeout(function() {
+        window.location.reload()
+   }, 1000);
     }
     return (
       <div>
