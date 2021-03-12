@@ -148,22 +148,22 @@ function App () {
           <Route path="/superadmin/edit/:AdminID" exact component={EditAdminContainer} />
 
           <Route path="/absensimanual" exact component={AbsensiManualContainer} />
-          <Route path="/absensimanual/:id" exact component={AbsensiManualContainer2} />
+          <Route path="/absensimanual/:id/:nama" exact component={AbsensiManualContainer2} />
 
           <Route path="/absensimanualpulang" exact component={AbsensiManualContainerPulang} />
-          <Route path="/absensimanualpulang/:id" exact component={AbsensiManualContainerPulang2} />
+          <Route path="/absensimanualpulang/:id/:nama" exact component={AbsensiManualContainerPulang2} />
 
           <Route path="/absensimanualistirahatkeluar" exact component={AbsensiManualContainerIstLuar} />
-          <Route path="/absensimanualistirahatkeluar/:id" exact component={AbsensiManualContainerIstLuar2} />
+          <Route path="/absensimanualistirahatkeluar/:id/:nama" exact component={AbsensiManualContainerIstLuar2} />
 
           <Route path="/absensimanualistirahatkembali" exact component={AbsensiManualContainerIstKembali} />
-          <Route path="/absensimanualistirahatkembali/:id" exact component={AbsensiManualContainerIstKembali2} />
+          <Route path="/absensimanualistirahatkembali/:id/:nama" exact component={AbsensiManualContainerIstKembali2} />
 
           <Route path="/absensimanualkeluarkantor" exact component={AbsensiManualContainerKeluarKantor} />
-          <Route path="/absensimanualkeluarkantor/:id" exact component={AbsensiManualContainerKeluarKantor2} />
+          <Route path="/absensimanualkeluarkantor/:id/:nama" exact component={AbsensiManualContainerKeluarKantor2} />
 
           <Route path="/absensimanualkembalikantor" exact component={AbsensiManualContainerKembaliKantor} />
-          <Route path="/absensimanualkembalikantor/:id" exact component={AbsensiManualContainerKembaliKantor2} />
+          <Route path="/absensimanualkembalikantor/:id/:nama" exact component={AbsensiManualContainerKembaliKantor2} />
 
           <Route path="/home" exact component={LandingPageContainer} />
 

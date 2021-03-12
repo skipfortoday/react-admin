@@ -11,7 +11,9 @@ export const PUT_MANUAL_KELISTIRAHAT = "PUT_MANUAL_KELISTIRAHAT";
 export const PUT_MANUAL_KEMISTIRAHAT = "PUT_MANUAL_KEMISTIRAHAT";
 
 export const postManualMasuk= (data) => {
+  console.log(data);
     data.UserID = data.Nama.value;
+    data.NamaUser = data.Nama.label;
     return (dispatch) => {
       axios
         .post(
@@ -42,8 +44,10 @@ export const postManualMasuk= (data) => {
   };
 
   export const putManualPulang= (data) => {
+    console.log(data);
+    data.NamaUser = data.Nama.label;
     data.UserID = data.Nama.value;
-    let parameter = data.Nama.datangid
+    let parameter = data.Nama.datangid;
     return (dispatch) => {
       axios
         .put(
@@ -75,6 +79,7 @@ export const postManualMasuk= (data) => {
 
   export const postManualKeluar= (data) => {
     data.UserID = data.Nama.value;
+    data.NamaUser = data.Nama.label;
     data.DatangID = data.Nama.DatangID;
     return (dispatch) => {
       axios
@@ -107,6 +112,7 @@ export const postManualMasuk= (data) => {
 
   export const putManualKembali= (data) => {
     data.UserID = data.Nama.value;
+    data.NamaUser = data.Nama.label;
     let parameter = data.Nama.KeluarID
     return (dispatch) => {
       axios
@@ -139,6 +145,7 @@ export const postManualMasuk= (data) => {
 
   export const putManualKelIstirahat= (data) => {
     data.UserID = data.Nama.value;
+    data.NamaUser = data.Nama.label;
     let parameter = data.Nama.datangid
     return (dispatch) => {
       axios
@@ -171,6 +178,7 @@ export const postManualMasuk= (data) => {
 
   export const putManualKemIstirahat= (data) => {
     data.UserID = data.Nama.value;
+    data.NamaUser = data.Nama.label;
     let parameter = data.Nama.datangid
     return (dispatch) => {
       axios

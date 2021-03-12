@@ -22,7 +22,6 @@ const mapStateToProps = (state) => {
 };
 
 class AbsensiManualContainerIstLuar extends Component {
-  
   componentDidMount() {
     this.props.dispatch(getAdminOnDuty());
     this.props.dispatch(getOptUserManualKeluarIst());
@@ -38,7 +37,15 @@ class AbsensiManualContainerIstLuar extends Component {
         swal("Failed!", this.props.errorResponDataManual, "error");
       } else {
         swal("Berhasil Absen!", "istirahat Keluar", "success");
-      }  return <Redirect to={"/absensimanualistirahatkeluar/"+ this.props.getResponDataManual.UserID } />
+      }
+      return (
+        <Redirect
+          to={
+            "/absensimanualistirahatkeluar/" +
+            this.props.getResponDataManual.UserID + "/" + this.props.getResponDataManual.Nama
+          }
+        />
+      );
     }
     return (
       <div>
@@ -48,6 +55,9 @@ class AbsensiManualContainerIstLuar extends Component {
           <div class="row p-1">
             <div class="col-md-8">
               <div style={{ backgroundColor: "#fec107" }} class="p-2 mb-2">
+                <h3 class="text-center mt-2 mb-2">
+                  Absen Istirahat Keluar Manual
+                </h3>
                 <h4 class="text-center mt-2 mb-2">
                   <Ambilwaktu />
                 </h4>

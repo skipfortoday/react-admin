@@ -27,7 +27,7 @@ class AbsensiManualContainerPulang2 extends Component {
     this.props.dispatch(getAdminOnDuty());
     this.props.dispatch(getOptUserManualPulang());
     this.props.dispatch(getLaporanList(this.props.match.params.id));
-    // this.props.dispatch(getAdminTimeNow()); 
+    // this.props.dispatch(getAdminTimeNow());
   }
 
   handleSubmit(data) {
@@ -39,40 +39,45 @@ class AbsensiManualContainerPulang2 extends Component {
       if (this.props.errorResponDataManual) {
         swal("Failed!", this.props.errorResponDataManual, "error");
       } else {
-        swal(
-          "Berhasil Absen Pulang!",
-          "~",
-          "success"
-        ); setTimeout(function() {
-          window.location.reload()
-     }, 1000);
-     return <Redirect to={"/absensimanualpulang/"+ this.props.getResponDataManual.UserID } />
+        swal("Berhasil Absen Pulang!", "~", "success");
+        setTimeout(function () {
+          window.location.reload();
+        }, 500);
+        return (
+          <Redirect
+            to={"/absensimanualpulang/" + this.props.getResponDataManual.UserID + "/" + this.props.getResponDataManual.Nama}
+          />
+        );
       }
     }
     return (
-      <div> 
-        
+      <div>
         <GuestNavbarComponentManual />
         <div class="header-1">
           <div class="row p-1">
             <div class="col-md-8">
               <div style={{ backgroundColor: "#fec107" }} class="p-2 mb-2">
-                <h4 class="text-center mt-2 mb-2"><Ambilwaktu/></h4>
-          <Container>
-        <FormAbsensiManual2  onSubmit={(data) => this.handleSubmit(data)} />
-        </Container>
-        </div> <div class="card">
+                <h3 class="text-center mt-2 mb-2">Absen Pulang Manual</h3>
+                <h4 class="text-center mt-2 mb-2">
+                  <Ambilwaktu />
+                </h4>
+                <Container>
+                  <FormAbsensiManual2
+                    onSubmit={(data) => this.handleSubmit(data)}
+                  />
+                </Container>
+              </div>{" "}
+              <div class="card">
                 <div class="card-header">
-                  <h6>Daftar Absensi Pegawai {this.props.match.params.id} </h6>
+                  <h6>Daftar Absensi Pegawai| {this.props.match.params.id} ~ {this.props.match.params.nama}</h6>
                 </div>
               </div>
               <LaporanDetail2 />
               {/* <RecentScanComponent/> */}
             </div>
             <div class="col-md-4">
-              <OnDutyRoster/>
+              <OnDutyRoster />
             </div>
-            
           </div>
         </div>
       </div>

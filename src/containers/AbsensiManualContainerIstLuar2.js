@@ -22,7 +22,6 @@ const mapStateToProps = (state) => {
 };
 
 class AbsensiManualContainerIstLuar2 extends Component {
-  
   componentDidMount() {
     this.props.dispatch(getAdminOnDuty());
     this.props.dispatch(getOptUserManualKeluarIst());
@@ -39,10 +38,18 @@ class AbsensiManualContainerIstLuar2 extends Component {
         swal("Failed!", this.props.errorResponDataManual, "error");
       } else {
         swal("Berhasil Absen!", "istirahat Keluar", "success");
-      } setTimeout(function() {
-        window.location.reload()
-   }, 500);
-   return <Redirect to={"/absensimanualistirahatkeluar/"+ this.props.getResponDataManual.UserID } />
+      }
+      setTimeout(function () {
+        window.location.reload();
+      }, 500);
+      return (
+        <Redirect
+          to={
+            "/absensimanualistirahatkeluar/" +
+            this.props.getResponDataManual.UserID + "/" + this.props.getResponDataManual.Nama
+          }
+        />
+      );
     }
     return (
       <div>
@@ -52,6 +59,7 @@ class AbsensiManualContainerIstLuar2 extends Component {
           <div class="row p-1">
             <div class="col-md-8">
               <div style={{ backgroundColor: "#fec107" }} class="p-2 mb-2">
+              <h3 class="text-center mt-2 mb-2">Absen Istirahat Keluar Manual</h3>
                 <h4 class="text-center mt-2 mb-2">
                   <Ambilwaktu />
                 </h4>
@@ -63,7 +71,7 @@ class AbsensiManualContainerIstLuar2 extends Component {
               </div>
               <div class="card">
                 <div class="card-header">
-                  <h6>Daftar Absensi Pegawai {this.props.match.params.id} </h6>
+                  <h6>Daftar Absensi Pegawai | {this.props.match.params.id} ~ {this.props.match.params.nama} </h6>
                 </div>
               </div>
               <LaporanDetail2 />

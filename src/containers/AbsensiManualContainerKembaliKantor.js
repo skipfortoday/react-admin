@@ -36,7 +36,15 @@ class AbsensiManualContainerKembaliKantor extends Component {
         swal("Failed!", this.props.errorResponDataManual, "error");
       } else {
         swal("Berhasil Absen!", "Kembali Kantor", "success");
-      } return <Redirect to={"/absensimanualkembalikantor/"+ this.props.getResponDataManual.UserID } />
+      }
+      return (
+        <Redirect
+          to={
+            "/absensimanualkembalikantor/" +
+            this.props.getResponDataManual.UserID  + "/" + this.props.getResponDataManual.Nama
+          }
+        />
+      );
     }
 
     return (
@@ -46,6 +54,9 @@ class AbsensiManualContainerKembaliKantor extends Component {
           <div class="row p-1">
             <div class="col-md-8">
               <div style={{ backgroundColor: "#fec107" }} class="p-2 mb-2">
+                <h3 class="text-center mt-2 mb-2">
+                  Absen Kembali Kantor Manual
+                </h3>
                 <h4 class="text-center mt-2 mb-2">
                   <Ambilwaktu />
                 </h4>

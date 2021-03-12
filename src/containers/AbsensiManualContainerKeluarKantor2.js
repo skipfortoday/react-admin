@@ -14,7 +14,6 @@ import { getLaporanList } from "../actions/laporanAction";
 import LaporanDetail2 from "../components/LaporanDetail2";
 import { Redirect } from "react-router-dom";
 
-
 const mapStateToProps = (state) => {
   return {
     getResponDataManual: state.Manual.getResponDataManual,
@@ -38,10 +37,18 @@ class AbsensiManualContainerKeluarKantor2 extends Component {
         swal("Failed!", this.props.errorResponDataManual, "error");
       } else {
         swal("Berhasil Absen!", "Keluar Kantor", "success");
-      }  setTimeout(function() {
-        window.location.reload()
-   }, 500);
-   return <Redirect to={"/absensimanualkeluarkantor/"+ this.props.getResponDataManual.UserID } />
+      }
+      setTimeout(function () {
+        window.location.reload();
+      }, 500);
+      return (
+        <Redirect
+          to={
+            "/absensimanualkeluarkantor/" +
+            this.props.getResponDataManual.UserID  + "/" + this.props.getResponDataManual.Nama
+          }
+        />
+      );
     }
     return (
       <div>
@@ -50,6 +57,7 @@ class AbsensiManualContainerKeluarKantor2 extends Component {
           <div class="row p-1">
             <div class="col-md-8">
               <div style={{ backgroundColor: "#fec107" }} class="p-2 mb-2">
+              <h3 class="text-center mt-2 mb-2">Absen Keluar Kantor Manual</h3>
                 <h4 class="text-center mt-2 mb-2">
                   <Ambilwaktu />
                 </h4>
@@ -59,7 +67,13 @@ class AbsensiManualContainerKeluarKantor2 extends Component {
                   />
                 </Container>
               </div>
-              <RecentScanComponent />
+              <div class="card">
+                <div class="card-header">
+                  <h6>Daftar Absensi Pegawai| {this.props.match.params.id} ~ {this.props.match.params.nama} </h6>
+                </div>
+              </div>
+              <LaporanDetail2 />
+              {/* <RecentScanComponent /> */}
             </div>
             <div class="col-md-4">
               <OnDutyRoster />

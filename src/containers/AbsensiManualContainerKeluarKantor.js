@@ -14,7 +14,6 @@ import { getLaporanList } from "../actions/laporanAction";
 import LaporanDetail2 from "../components/LaporanDetail2";
 import { Redirect } from "react-router-dom";
 
-
 const mapStateToProps = (state) => {
   return {
     getResponDataManual: state.Manual.getResponDataManual,
@@ -37,7 +36,15 @@ class AbsensiManualContainerKeluarKantor extends Component {
         swal("Failed!", this.props.errorResponDataManual, "error");
       } else {
         swal("Berhasil Absen!", "Keluar Kantor", "success");
-      }  return <Redirect to={"/absensimanualkeluarkantor/"+ this.props.getResponDataManual.UserID } />
+      }
+      return (
+        <Redirect
+          to={
+            "/absensimanualkeluarkantor/" +
+            this.props.getResponDataManual.UserID  + "/" + this.props.getResponDataManual.Nama
+          }
+        />
+      );
     }
     return (
       <div>
@@ -46,6 +53,7 @@ class AbsensiManualContainerKeluarKantor extends Component {
           <div class="row p-1">
             <div class="col-md-8">
               <div style={{ backgroundColor: "#fec107" }} class="p-2 mb-2">
+              <h3 class="text-center mt-2 mb-2">Absen Keluar Kantor Manual</h3>
                 <h4 class="text-center mt-2 mb-2">
                   <Ambilwaktu />
                 </h4>
@@ -55,6 +63,7 @@ class AbsensiManualContainerKeluarKantor extends Component {
                   />
                 </Container>
               </div>
+
               <RecentScanComponent />
             </div>
             <div class="col-md-4">

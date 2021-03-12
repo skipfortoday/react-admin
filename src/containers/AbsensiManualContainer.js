@@ -43,7 +43,7 @@ class AbsensiManualContainer extends Component {
           "Berhasil Absen!",
           "~",
           "success"
-        ); return <Redirect to={"/absensimanual/"+ this.props.getResponDataManual.UserID } />
+        ); return <Redirect to={"/absensimanual/"+ this.props.getResponDataManual.UserID + "/" + this.props.getResponDataManual.Nama }  />
 
         // setTimeout(function() {
         //     return <Redirect to="/" />
@@ -59,7 +59,9 @@ class AbsensiManualContainer extends Component {
           <div class="row p-1">
             <div class="col-md-8">
               <div style={{ backgroundColor: "#fec107" }} class="p-2 mb-2">
+              <h3 class="text-center mt-2 mb-2">Absen Masuk Manual</h3>
                 <h4 class="text-center mt-2 mb-2"><Ambilwaktu/></h4>
+                
                 <Container>
                   <FormAbsensiManual onSubmit={(data) => this.handleSubmit(data)}/>
                 </Container>
