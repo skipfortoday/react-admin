@@ -11,6 +11,7 @@ import swal from "sweetalert";
 import RecentScanComponent from "../components/RecentScanComponent";
 import OnDutyRoster from "../components/OnDutyRoster";
 import Ambilwaktu from "../components/Ambilwaktu";
+import { Redirect } from "react-router-dom";
 
 const mapStateToProps = (state) => {
   return {
@@ -40,9 +41,7 @@ class AbsensiManualContainerPulang extends Component {
           "Berhasil Absen Pulang!",
           "~",
           "success"
-        ); setTimeout(function() {
-          window.location.reload()
-     }, 1000);
+        ); return <Redirect to={"/absensimanualpulang/"+ this.props.getResponDataManual.UserID } />
       }
     }
     return (

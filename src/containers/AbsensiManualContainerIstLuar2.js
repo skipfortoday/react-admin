@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { getOptUserManualKembali } from "../actions/optAction";
+import { getOptUserManualKeluarIst } from "../actions/optAction";
 import GuestNavbarComponentManual from "../components/GuestNavbarComponentManual";
 import { Container } from "reactstrap";
-import FormAbsensiManualKembali from "../components/FormAbsensiManualKembali";
-import { putManualKembali } from "../actions/manualAction";
+import FormAbsensiManualIstKeluar from "../components/FormAbsensiManualIstKeluar";
+import { putManualKelIstirahat } from "../actions/manualAction";
 import swal from "sweetalert";
 import RecentScanComponent from "../components/RecentScanComponent";
 import OnDutyRoster from "../components/OnDutyRoster";
@@ -21,13 +21,16 @@ const mapStateToProps = (state) => {
   };
 };
 
-class AbsensiManualContainerKembaliKantor extends Component {
+class AbsensiManualContainerIstLuar2 extends Component {
+  
   componentDidMount() {
     this.props.dispatch(getAdminOnDuty());
-    this.props.dispatch(getOptUserManualKembali());
+    this.props.dispatch(getOptUserManualKeluarIst());
+    this.props.dispatch(getLaporanList(this.props.match.params.id));
   }
+
   handleSubmit(data) {
-    this.props.dispatch(putManualKembali(data));
+    this.props.dispatch(putManualKelIstirahat(data));
   }
 
   render() {
@@ -35,13 +38,16 @@ class AbsensiManualContainerKembaliKantor extends Component {
       if (this.props.errorResponDataManual) {
         swal("Failed!", this.props.errorResponDataManual, "error");
       } else {
-        swal("Berhasil Absen!", "Kembali Kantor", "success");
-      } return <Redirect to={"/absensimanualkembalikantor/"+ this.props.getResponDataManual.UserID } />
+        swal("Berhasil Absen!", "istirahat Keluar", "success");
+      } setTimeout(function() {
+        window.location.reload()
+   }, 500);
+   return <Redirect to={"/absensimanualistirahatkeluar/"+ this.props.getResponDataManual.UserID } />
     }
-
     return (
       <div>
         <GuestNavbarComponentManual />
+
         <div class="header-1">
           <div class="row p-1">
             <div class="col-md-8">
@@ -50,12 +56,18 @@ class AbsensiManualContainerKembaliKantor extends Component {
                   <Ambilwaktu />
                 </h4>
                 <Container>
-                  <FormAbsensiManualKembali
+                  <FormAbsensiManualIstKeluar
                     onSubmit={(data) => this.handleSubmit(data)}
                   />
                 </Container>
               </div>
-              <RecentScanComponent />
+              <div class="card">
+                <div class="card-header">
+                  <h6>Daftar Absensi Pegawai {this.props.match.params.id} </h6>
+                </div>
+              </div>
+              <LaporanDetail2 />
+              {/* <RecentScanComponent /> */}
             </div>
             <div class="col-md-4">
               <OnDutyRoster />
@@ -67,7 +79,4 @@ class AbsensiManualContainerKembaliKantor extends Component {
   }
 }
 
-export default connect(
-  mapStateToProps,
-  null
-)(AbsensiManualContainerKembaliKantor);
+export default connect(mapStateToProps, null)(AbsensiManualContainerIstLuar2);

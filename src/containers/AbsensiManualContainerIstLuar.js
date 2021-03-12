@@ -10,6 +10,9 @@ import RecentScanComponent from "../components/RecentScanComponent";
 import OnDutyRoster from "../components/OnDutyRoster";
 import Ambilwaktu from "../components/Ambilwaktu";
 import { getAdminOnDuty } from "../actions/adminAction";
+import { getLaporanList } from "../actions/laporanAction";
+import LaporanDetail2 from "../components/LaporanDetail2";
+import { Redirect } from "react-router-dom";
 
 const mapStateToProps = (state) => {
   return {
@@ -35,9 +38,7 @@ class AbsensiManualContainerIstLuar extends Component {
         swal("Failed!", this.props.errorResponDataManual, "error");
       } else {
         swal("Berhasil Absen!", "istirahat Keluar", "success");
-      } setTimeout(function() {
-        window.location.reload()
-   }, 1000);
+      }  return <Redirect to={"/absensimanualistirahatkeluar/"+ this.props.getResponDataManual.UserID } />
     }
     return (
       <div>

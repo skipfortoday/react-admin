@@ -102,7 +102,7 @@ const OnDutyRoster = (props) => {
         return { width: "110px", backgroundColor: "#fec107" , lineHeight : '20%'};
       },
       style: () => {
-        return { fontWeight: "bold"};
+        return { fontWeight: "bold" ,lineHeight : '20%'};
       },
     },
 	{
@@ -113,7 +113,7 @@ const OnDutyRoster = (props) => {
 		  return { width: "40px", backgroundColor: "#fec107" , lineHeight : '20%'};
 		},
 		style: () => {
-		  return { fontWeight: "bold"  };
+		  return { fontWeight: "bold" ,lineHeight : '20%' };
 		},
 	  },
   ];
@@ -155,7 +155,7 @@ const OnDutyRoster = (props) => {
 
                 <BootstrapTable
                   {...props.baseProps}
-                  pagination={paginationFactory()}
+                  // pagination={paginationFactory()}
                 />
 				</div>
 		</div>

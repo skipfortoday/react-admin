@@ -74,6 +74,7 @@ export const postManualMasuk= (data) => {
   };
 
   export const postManualKeluar= (data) => {
+    data.UserID = data.Nama.value;
     data.DatangID = data.Nama.DatangID;
     return (dispatch) => {
       axios
@@ -105,6 +106,7 @@ export const postManualMasuk= (data) => {
   };
 
   export const putManualKembali= (data) => {
+    data.UserID = data.Nama.value;
     let parameter = data.Nama.KeluarID
     return (dispatch) => {
       axios
@@ -136,6 +138,7 @@ export const postManualMasuk= (data) => {
   };
 
   export const putManualKelIstirahat= (data) => {
+    data.UserID = data.Nama.value;
     let parameter = data.Nama.datangid
     return (dispatch) => {
       axios
@@ -167,6 +170,7 @@ export const postManualMasuk= (data) => {
   };
 
   export const putManualKemIstirahat= (data) => {
+    data.UserID = data.Nama.value;
     let parameter = data.Nama.datangid
     return (dispatch) => {
       axios

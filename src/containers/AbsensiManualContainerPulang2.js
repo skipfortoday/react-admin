@@ -1,19 +1,19 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { getOptUserManual } from "../actions/optAction";
-import FormAbsensiManual from "../components/FormAbsensiManual";
+import { getUsersList } from "../actions/userAction";
+import { getOptUserManualPulang } from "../actions/optAction";
 import GuestNavbarComponentManual from "../components/GuestNavbarComponentManual";
 import { Container } from "reactstrap";
-import Ambilwaktu from "../components/Ambilwaktu";
+import FormAbsensiManual2 from "../components/FormAbsensiManual2";
 import { getAdminOnDuty, getAdminTimeNow } from "../actions/adminAction";
-import { postManualMasuk } from "../actions/manualAction";
+import { putManualPulang } from "../actions/manualAction";
 import swal from "sweetalert";
 import RecentScanComponent from "../components/RecentScanComponent";
 import OnDutyRoster from "../components/OnDutyRoster";
-import { getLaporanList } from "../actions/laporanAction";
+import Ambilwaktu from "../components/Ambilwaktu";
 import { Redirect } from "react-router-dom";
 import LaporanDetail2 from "../components/LaporanDetail2";
-
+import { getLaporanList } from "../actions/laporanAction";
 
 const mapStateToProps = (state) => {
   return {
@@ -22,33 +22,31 @@ const mapStateToProps = (state) => {
   };
 };
 
-class AbsensiManualContainer extends Component {
+class AbsensiManualContainerPulang2 extends Component {
   componentDidMount() {
-    this.props.dispatch(getOptUserManual());
     this.props.dispatch(getAdminOnDuty());
-    // this.props.dispatch(getLaporanList(this.props.match.params.id));
-    // this.props.dispatch(getAdminTimeNow());
+    this.props.dispatch(getOptUserManualPulang());
+    this.props.dispatch(getLaporanList(this.props.match.params.id));
+    // this.props.dispatch(getAdminTimeNow()); 
   }
+
   handleSubmit(data) {
-    this.props.dispatch(postManualMasuk(data));
+    this.props.dispatch(putManualPulang(data));
   }
 
   render() {
-
     if (this.props.getResponDataManual || this.props.errorResponDataManual) {
       if (this.props.errorResponDataManual) {
         swal("Failed!", this.props.errorResponDataManual, "error");
       } else {
         swal(
-          "Berhasil Absen!",
+          "Berhasil Absen Pulang!",
           "~",
           "success"
-        ); return <Redirect to={"/absensimanual/"+ this.props.getResponDataManual.UserID } />
-
-        // setTimeout(function() {
-        //     return <Redirect to="/" />
-        // }, 1000);
-
+        ); setTimeout(function() {
+          window.location.reload()
+     }, 1000);
+     return <Redirect to={"/absensimanualpulang/"+ this.props.getResponDataManual.UserID } />
       }
     }
     return (
@@ -60,11 +58,16 @@ class AbsensiManualContainer extends Component {
             <div class="col-md-8">
               <div style={{ backgroundColor: "#fec107" }} class="p-2 mb-2">
                 <h4 class="text-center mt-2 mb-2"><Ambilwaktu/></h4>
-                <Container>
-                  <FormAbsensiManual onSubmit={(data) => this.handleSubmit(data)}/>
-                </Container>
+          <Container>
+        <FormAbsensiManual2  onSubmit={(data) => this.handleSubmit(data)} />
+        </Container>
+        </div> <div class="card">
+                <div class="card-header">
+                  <h6>Daftar Absensi Pegawai {this.props.match.params.id} </h6>
+                </div>
               </div>
-              <RecentScanComponent/>
+              <LaporanDetail2 />
+              {/* <RecentScanComponent/> */}
             </div>
             <div class="col-md-4">
               <OnDutyRoster/>
@@ -77,4 +80,4 @@ class AbsensiManualContainer extends Component {
   }
 }
 
-export default connect(mapStateToProps, null)(AbsensiManualContainer);
+export default connect(mapStateToProps, null)(AbsensiManualContainerPulang2);

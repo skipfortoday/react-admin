@@ -29,7 +29,6 @@ import {
           ...state,
           getLaporanList: action.payload.data,
           getExpandKey: action.payload.expandKey,
-          errorExpandKey: action.payload.expandKey,
           errorLaporanList: action.payload.errorMessage,
         };
   
@@ -38,7 +37,6 @@ import {
           ...state,
           getLaporanDetail: action.payload.data,
           getExpandKey: action.payload.expandKey,
-          errorExpandKey: action.payload.expandKey,
           errorLaporanDetail: action.payload.errorMessage,
         };
 

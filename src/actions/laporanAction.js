@@ -12,7 +12,7 @@ export const POST_LAPORAN_PROSES = "POST_LAPORAN_PROSES";
 export const getLaporanList = (UserID) => {
   return (dispatch) => {
     axios
-      .get("http://"+BASEURL+"/api/laporan/"+UserID)
+      .get("http://"+BASEURL+"/api/laporandetail2/"+UserID)
       .then(function (response) {
         var res = [];
         var expand = [];
