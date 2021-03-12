@@ -10,8 +10,6 @@ import RecentScanComponent from "../components/RecentScanComponent";
 import OnDutyRoster from "../components/OnDutyRoster";
 import Ambilwaktu from "../components/Ambilwaktu";
 import { getAdminOnDuty } from "../actions/adminAction";
-import { getLaporanList } from "../actions/laporanAction";
-import LaporanDetail2 from "../components/LaporanDetail2";
 import { Redirect } from "react-router-dom";
 
 const mapStateToProps = (state) => {

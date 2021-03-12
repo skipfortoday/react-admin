@@ -1,6 +1,6 @@
 import React ,{ useState }from "react";
 import BootstrapTable from "react-bootstrap-table-next";
-import { Button, Row, Col, Spinner, Card,Tooltip  } from "reactstrap";
+import { Button, Row, Col, Spinner,Tooltip  } from "reactstrap";
 
 import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
 import paginationFactory from "react-bootstrap-table2-paginator";

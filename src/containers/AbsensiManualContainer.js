@@ -5,14 +5,13 @@ import FormAbsensiManual from "../components/FormAbsensiManual";
 import GuestNavbarComponentManual from "../components/GuestNavbarComponentManual";
 import { Container } from "reactstrap";
 import Ambilwaktu from "../components/Ambilwaktu";
-import { getAdminOnDuty, getAdminTimeNow } from "../actions/adminAction";
+import { getAdminOnDuty } from "../actions/adminAction";
 import { postManualMasuk } from "../actions/manualAction";
 import swal from "sweetalert";
 import RecentScanComponent from "../components/RecentScanComponent";
 import OnDutyRoster from "../components/OnDutyRoster";
-import { getLaporanList } from "../actions/laporanAction";
 import { Redirect } from "react-router-dom";
-import LaporanDetail2 from "../components/LaporanDetail2";
+
 
 
 const mapStateToProps = (state) => {

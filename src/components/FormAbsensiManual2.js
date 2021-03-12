@@ -119,7 +119,7 @@ class FormAbsensiManual2 extends Component {
             <FormGroup>
               <Field
                 type="text"
-                name="Keterangan"
+                name="KetPulang"
                 component={renderField}
                 label="Keterangan :"
               />

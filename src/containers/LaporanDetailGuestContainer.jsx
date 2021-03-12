@@ -11,13 +11,13 @@ import GuestNavbarComponent from "../components/GuestNavbarComponent";
 import RekapLaporan from "../components/RekapLaporan";
 import { getUserDetail } from "../actions/userAction";
 import PrintButton from "../components/PrintButton";
-import RekapLeft from "../components/RekapLeft";
 import NamaCabangLaporan from "../components/NamaCabangLaporan";
 import LengkapiAbsenGuestComponent from "../components/LengkapiAbsenGuestComponent";
 import LengkapiAbsenButton3 from "../components/LengkapiAbsenButton3";
 import { getOptUser } from "../actions/optAction";
 import swal from "sweetalert";
 import {Redirect} from "react-router-dom";
+import RekapLeft2 from "../components/RekapLeft2";
 
 const mapStateToProps = (state) => {
   return {
@@ -80,7 +80,9 @@ class LaporanDetailGuestContainer extends Component {
         </Row>
         <Row>
           <LaporanDetail />
-          <RekapLeft />
+
+          <RekapLeft2/>
+          {/* <RekapLeft /> */}
         </Row>
         </Container>
       </div>

@@ -43,29 +43,6 @@ function LiburFormatter(cell, row) {
   );
 }
 
-function KeteranganPanjang(cell, row) {
-
-
-  if (row.Keterangan != null && row.Keterangan.length > 60) {
-    return (
-      <span>
-        <strong style={ { lineHeight: '10px' ,fontWeight: "normal" , fontSize: '12px' } } >{ cell }</strong>
-      </span>
-    );
-    // if (row.Keterangan != null && row.Keterangan.length > 120) {
-    //   return (
-    //     <span>
-    //       <strong style={ { lineHeight: '18px' ,fontWeight: "normal" , fontSize: '12px' } } >{ cell }</strong>
-    //     </span>
-    //   );
-    // }
-
-  }
-
-  return (
-    <span>{ cell }</span>
-  );
-}
 
 const LaporanDetail = (props) => {
   const columns = [
@@ -78,7 +55,7 @@ const LaporanDetail = (props) => {
         return { width: "90px" , fontSize: '12px' ,padding : '0px', textAlign:'center',  };
       },
       style: () => {
-        return {  fontWeight: "normal" , fontSize :'12px' ,textAlign:'right'};
+        return {  fontWeight: "normal" , fontSize :'12px' ,textAlign:'right',padding : '0px'};
       },
     },
     {
@@ -86,7 +63,10 @@ const LaporanDetail = (props) => {
       text: "Datang",
       formatter: terlambatFormatter,
       headerStyle: () => {
-        return { width: "38px" , fontSize: '12px' ,textAlign:'center',padding : '0px' };
+        return { width: "38px" , fontSize: '12px' ,textAlign:'center',padding : '0px' };  
+      },
+      style: () => {
+        return { padding : '0px' };
       },
     },
     
@@ -96,6 +76,9 @@ const LaporanDetail = (props) => {
       headerStyle: () => {
         return { width: "38px" , fontSize: '12px',textAlign:'center' ,padding : '0px'};
       },
+      style: () => {
+        return { padding : '0px' };
+      },
     },
     {
       dataField: "Terlambat",
@@ -104,7 +87,7 @@ const LaporanDetail = (props) => {
         return { width: "38px" , fontSize: '12px', textAlign:'center',padding : '0px'};
       },
       style: () => {
-        return { color: 'red' };
+        return { color: 'red',padding : '0px' };
       },
 
     },
@@ -115,7 +98,7 @@ const LaporanDetail = (props) => {
         return { width: "38px" , fontSize: '12px' , textAlign:'center', padding : '0px'};
       },
       style: () => {
-        return { color: '#017580' };
+        return { color: '#017580' ,padding : '0px'};
       },
     },
     {
@@ -125,7 +108,7 @@ const LaporanDetail = (props) => {
         return { width: "15px"  , fontSize: '12px', textAlign:'center',padding : '0px' };
       },
       style: () => {
-        return { fontWeight: "normal"  };
+        return { fontWeight: "normal" ,padding : '0px' };
       },
     },
     {
@@ -134,12 +117,18 @@ const LaporanDetail = (props) => {
       headerStyle: () => {
         return { width: "38px" , fontSize: '12px',textAlign:'center',padding : '0px'};
       },
+      style: () => {
+        return { padding : '0px' };
+      },
     },
     {
       dataField: "IstirahatKembali",
       text: "Kmbl",
       headerStyle: () => {
         return { width: "38px" , fontSize: '12px',textAlign:'center',padding : '0px'};
+      },
+      style: () => {
+        return { padding : '0px' };
       },
     },
     {
@@ -149,7 +138,7 @@ const LaporanDetail = (props) => {
         return { width: "38px" , fontSize: '12px' ,textAlign:'center',padding : '0px' };
       },
       style: () => {
-        return { color: 'red' };
+        return { color: 'red',padding : '0px' };
       },
     },
     {
@@ -160,18 +149,17 @@ const LaporanDetail = (props) => {
         return { width: "80px" , fontSize: '12px',textAlign:'center',padding : '0px'};
       },
       style: () => {
-        return {  fontWeight: "normal"  };
+        return {  fontWeight: "normal" ,padding : '0px' };
       },
     },
     {
       dataField: "Keterangan",
       text: "Keterangan",
-      formatter: KeteranganPanjang,
       headerStyle: () => {
         return { width: "150px" , fontSize: '12px' ,textAlign:'center',padding : '0px'};
       },
       style: () => {
-        return {  fontWeight: "normal" , fontSize: '12px' };
+        return {  fontWeight: "normal" , fontSize: '12px' ,padding : '0px' };
       },
     },
     {
@@ -181,7 +169,7 @@ const LaporanDetail = (props) => {
         return { width: "65px", fontSize: '12px',textAlign:'center',padding : '0px'};
       },
       style: () => {
-        return {  fontWeight: "normal"  };
+        return {  fontWeight: "normal" ,padding : '0px'  };
       },
     },
     
@@ -196,7 +184,7 @@ const LaporanDetail = (props) => {
         return {  };
       },
       style: () => {
-        return { width: "30px" };
+        return { width: "30px"  ,padding : '0px'};
       },
     },
     {
@@ -206,7 +194,7 @@ const LaporanDetail = (props) => {
         return { };
       },
       style: () => {
-        return { width: "30px" };
+        return { width: "30px" ,padding : '0px' };
       },
     },
     {
@@ -216,7 +204,7 @@ const LaporanDetail = (props) => {
         return { };
       },
       style: () => {
-        return { width: "30px" };
+        return { width: "30px" ,padding : '0px' };
       },
     },
     {
@@ -226,7 +214,7 @@ const LaporanDetail = (props) => {
         return {  };
       },
       style: () => {
-        return { width: "100px" ,  fontWeight: "normal" };
+        return { width: "100px" ,  fontWeight: "normal" ,padding : '0px' };
       },
     },
     {
@@ -236,7 +224,7 @@ const LaporanDetail = (props) => {
         return { };
       },
       style: () => {
-        return {  width: "100px" , fontWeight: "normal"};
+        return {  width: "100px" , fontWeight: "normal" ,padding : '0px'};
       },
     },
     
@@ -270,7 +258,7 @@ TotalKeluar: null*/
           classes='rDetail'
           keyField='DatangID' 
           data={ row.detail } 
-          rowStyle={ { lineHeight: '70%' , fontWeight: "bold" , fontFamily: 'TimesNewRoman',  fontSize:"12px"} } 
+          rowStyle={ {  fontWeight: "bold" , fontFamily: 'TimesNewRoman',  fontSize:"12px",padding : '0px' } } 
           columns={ dtColumns } 
           />
 
@@ -288,7 +276,7 @@ TotalKeluar: null*/
       expandRow={ expandRow }
       rowClasses={rowClasses}
       headerClasses='page-header-space'
-      rowStyle={ { lineHeight : '0px' , fontFamily: 'TimesNewRoman' , fontWeight: "bold" , fontSize:"12px", textAlign:'center', padding : '0px' } } 
+      rowStyle={ {fontFamily: 'TimesNewRoman' , fontWeight: "bold" , fontSize:"12px", textAlign:'center' ,padding : '0px'} } 
       pagination={paginationFactory(options) }
       defaultSorted= { defaultSorted }
     />

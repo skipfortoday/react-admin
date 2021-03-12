@@ -1,6 +1,4 @@
 import React, { Component } from "react";
-import { Container } from "reactstrap";
-import BackGroup from "../components/BackGroup";
 import { connect } from "react-redux";
 import TerlambatBertingkatComponent from "../components/TerlambatBertingkatComponent";
 import { getGroupDetail} from "../actions/groupAction";

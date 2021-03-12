@@ -1,14 +1,12 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { getUsersList } from "../actions/userAction";
 import { getOptUserManualPulang } from "../actions/optAction";
 import GuestNavbarComponentManual from "../components/GuestNavbarComponentManual";
 import { Container } from "reactstrap";
 import FormAbsensiManual2 from "../components/FormAbsensiManual2";
-import { getAdminOnDuty, getAdminTimeNow } from "../actions/adminAction";
+import { getAdminOnDuty} from "../actions/adminAction";
 import { putManualPulang } from "../actions/manualAction";
 import swal from "sweetalert";
-import RecentScanComponent from "../components/RecentScanComponent";
 import OnDutyRoster from "../components/OnDutyRoster";
 import Ambilwaktu from "../components/Ambilwaktu";
 import { Redirect } from "react-router-dom";

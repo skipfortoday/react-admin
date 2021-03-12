@@ -6,7 +6,6 @@ import { Container } from "reactstrap";
 import FormAbsensiManualIstKembali from "../components/FormAbsensiManualIstKembali";
 import swal from "sweetalert";
 import { putManualKemIstirahat } from "../actions/manualAction";
-import RecentScanComponent from "../components/RecentScanComponent";
 import OnDutyRoster from "../components/OnDutyRoster";
 import Ambilwaktu from "../components/Ambilwaktu";
 import { getAdminOnDuty } from "../actions/adminAction";

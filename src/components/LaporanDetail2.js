@@ -1,9 +1,8 @@
 import React from "react";
 import BootstrapTable from "react-bootstrap-table-next";
-import { Button, Row, Col, Spinner, Card } from "reactstrap";
+import {  Spinner } from "reactstrap";
 import paginationFactory from "react-bootstrap-table2-paginator";
 import { connect } from "react-redux";
-import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
 
 const mapStateToProps = (state) => {
   return {
@@ -78,7 +77,7 @@ const LaporanDetail2 = (props) => {
         };
       },
       style: () => {
-        return { fontWeight: "normal", fontSize: "12px", textAlign: "right" };
+        return { fontWeight: "normal", fontSize: "12px", textAlign: "right" ,padding: "0px" };
       },
     },
     {
@@ -93,6 +92,9 @@ const LaporanDetail2 = (props) => {
           padding: "0px",
         };
       },
+      style: () => {
+        return { padding: "0px" };
+      },
     },
 
     {
@@ -105,6 +107,9 @@ const LaporanDetail2 = (props) => {
           textAlign: "center",
           padding: "0px",
         };
+      },
+      style: () => {
+        return { padding: "0px" };
       },
     },
     {
@@ -119,7 +124,7 @@ const LaporanDetail2 = (props) => {
         };
       },
       style: () => {
-        return { color: "red" };
+        return { color: "red" , padding: "0px" };
       },
     },
     {
@@ -134,7 +139,7 @@ const LaporanDetail2 = (props) => {
         };
       },
       style: () => {
-        return { color: "#017580" };
+        return { color: "#017580" , padding: "0px"};
       },
     },
     {
@@ -149,7 +154,7 @@ const LaporanDetail2 = (props) => {
         };
       },
       style: () => {
-        return { fontWeight: "normal" };
+        return { fontWeight: "normal", padding: "0px" };
       },
     },
     {
@@ -163,6 +168,9 @@ const LaporanDetail2 = (props) => {
           padding: "0px",
         };
       },
+      style: () => {
+        return { padding: "0px" };
+      },
     },
     {
       dataField: "IstirahatKembali",
@@ -174,6 +182,9 @@ const LaporanDetail2 = (props) => {
           textAlign: "center",
           padding: "0px",
         };
+      },
+      style: () => {
+        return { padding: "0px" };
       },
     },
     {
@@ -188,7 +199,7 @@ const LaporanDetail2 = (props) => {
         };
       },
       style: () => {
-        return { color: "red" };
+        return { color: "red", padding: "0px" };
       },
     },
     {
@@ -204,7 +215,7 @@ const LaporanDetail2 = (props) => {
         };
       },
       style: () => {
-        return { fontWeight: "normal" };
+        return { fontWeight: "normal", padding: "0px" };
       },
     },
     {
@@ -220,7 +231,7 @@ const LaporanDetail2 = (props) => {
         };
       },
       style: () => {
-        return { fontWeight: "normal", fontSize: "12px" };
+        return { fontWeight: "normal", fontSize: "12px", padding: "0px" };
       },
     },
     {
@@ -235,7 +246,7 @@ const LaporanDetail2 = (props) => {
         };
       },
       style: () => {
-        return { fontWeight: "normal" };
+        return { fontWeight: "normal" , padding: "0px"};
       },
     },
   ];
@@ -326,7 +337,6 @@ TotalKeluar: null*/
           keyField="DatangID"
           data={row.detail}
           rowStyle={{
-            lineHeight: "70%",
             fontWeight: "bold",
             fontFamily: "TimesNewRoman",
             fontSize: "12px",
@@ -351,7 +361,6 @@ TotalKeluar: null*/
             rowClasses={rowClasses}
             headerClasses="page-header-space"
             rowStyle={{
-              lineHeight: "0px",
               fontFamily: "TimesNewRoman",
               fontWeight: "bold",
               fontSize: "12px",

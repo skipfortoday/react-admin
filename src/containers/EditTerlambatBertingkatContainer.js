@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import { Container } from "reactstrap";
-import BackGroup from "../components/BackGroup";
+
 import { connect } from "react-redux";
 import TerlambatBertingkatComponent from "../components/TerlambatBertingkatComponent";
 import { getGroupDetail} from "../actions/groupAction";
@@ -19,7 +18,7 @@ const mapStateToProps = (state) => {
     getTerlambatBertingkatDetail: state.TerlambatBertingkat.getTerlambatBertingkatDetail,
     errorTerlambatBertingkatList: state.TerlambatBertingkat.errorTerlambatBertingkatList,
     getTerlambatBertingkatDetail2: state.TerlambatBertingkat.getTerlambatBertingkatDetail2,
-    errorTerlambatBertingkatList: state.TerlambatBertingkat.errorTerlambatBertingkatList,
+    errorTerlambatBertingkatDetail2: state.TerlambatBertingkat.errorTerlambatBertingkatDetail2,
     getResponDataTerlambatBertingkat: state.TerlambatBertingkat.getResponDataTerlambatBertingkat,
     errorResponDataTerlambatBertingkat: state.TerlambatBertingkat.errorResponDataTerlambatBertingkat
   };
