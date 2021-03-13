@@ -2,4 +2,4 @@
 :: Created on: 3 FEBRUAI 2021
 
 @echo off
-pm2 serve build 5000 --spa
+npm install -g serve & npm install -g pm2
