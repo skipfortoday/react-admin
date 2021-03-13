@@ -4,6 +4,8 @@ import { postLoginUser } from "../actions/loginAction";
 import swal from "sweetalert";
 import { getUsersList } from "../actions/userAction";
 import LoginComponent from "../components/LoginComponent";
+import SunComponent from "../components/SunComponent";
+import MountainComponent from "../components/MountainComponent";
 import { Redirect } from "react-router-dom";
 import { Col, Container, Row } from "reactstrap";
 
@@ -58,7 +60,7 @@ class LoginContainer extends Component {
 
     return (
 
-   
+    <div>
     <div class="bgimg">
     <Container>
     <Row>
@@ -67,6 +69,7 @@ class LoginContainer extends Component {
     </Col>
     </Row>
     </Container>
+     </div>
      </div>
    
     );

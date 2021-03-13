@@ -12,10 +12,8 @@ class LandingPageContainer extends Component {
   render() {
     return (
       <div> 
-        
         <GuestNavbarComponent />
-        <div class="bgimg">
-        </div>
+        <video  autoPlay loop src="/images/opening.mp4" type="video/mp4" id="myVideo"></video>
       </div>
     );
   }
