@@ -37,7 +37,7 @@ class AbsensiManualContainerIstKembali2 extends Component {
         swal("Berhasil Absen!", "Kembali Istirahat", "success");
         setTimeout(function () {
           window.location.reload();
-        }, 500);
+        }, 200);
         return (
           <Redirect
             to={

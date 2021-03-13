@@ -40,7 +40,7 @@ class AbsensiManualContainer2 extends Component {
 
         setTimeout(function () {
           window.location.reload();
-        }, 400);
+        }, 200);
         return (
           <Redirect
             to={"/absensimanual/" + this.props.getResponDataManual.UserID + "/" + this.props.getResponDataManual.Nama}

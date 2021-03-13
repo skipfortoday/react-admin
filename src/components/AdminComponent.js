@@ -46,8 +46,8 @@ const defaultSorted = [
 
 const mapStateToProps = (state) => {
   return {
-    getAdminList: state.Admin.getAdminList,
-    errorAdminList: state.Admin.errorAdminList,
+    getAdminDetail: state.Admin.getAdminDetail,
+    errorAdminDetail: state.Admin.errorAdminDetail,
   };
 };
 
@@ -104,11 +104,11 @@ const AdminComponent = (props) => {
   
   return (
     <div>
-      {props.getAdminList ? (
+      {props.getAdminDetail ? (
         <ToolkitProvider
           bootstrap4
           keyField="AdminID"
-          data={props.getAdminList}
+          data={props.getAdminDetail}
           columns={columns}
           rowStyle={ {  fontWeight: "bold" } } 
           defaultSorted={defaultSorted}
@@ -142,8 +142,8 @@ const AdminComponent = (props) => {
         </ToolkitProvider>
       ) : (
         <div className="text-center">
-          {props.errorAdminList ? (
-            <h4>{props.errorAdminList}</h4>
+          {props.errorAdminDetail ? (
+            <h4>{props.errorAdminDetail}</h4>
           ) : (
             <Spinner color="dark" />
           )}

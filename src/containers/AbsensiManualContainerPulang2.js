@@ -40,7 +40,7 @@ class AbsensiManualContainerPulang2 extends Component {
         swal("Berhasil Absen Pulang!", "~", "success");
         setTimeout(function () {
           window.location.reload();
-        }, 500);
+        }, 200);
         return (
           <Redirect
             to={"/absensimanualpulang/" + this.props.getResponDataManual.UserID + "/" + this.props.getResponDataManual.Nama}

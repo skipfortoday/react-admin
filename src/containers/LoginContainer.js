@@ -34,7 +34,7 @@ class LoginContainer extends Component {
         alert('Username & Password Salah');
         window.location.reload();
       }  else {
-          if (this.props.getResponLoginUser.RoleAdmin === "99"){
+          if (this.props.getResponLoginUser.RoleAdmin === 99){
             swal(
               "Sucsess!",
               "Login Berhasil",

@@ -40,7 +40,7 @@ class AbsensiManualContainerIstLuar2 extends Component {
       }
       setTimeout(function () {
         window.location.reload();
-      }, 500);
+      }, 200);
       return (
         <Redirect
           to={
