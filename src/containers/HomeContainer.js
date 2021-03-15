@@ -22,7 +22,7 @@ class HomeContainer extends Component {
 
   render() {
     if (!localStorage.getItem('user') || localStorage.getItem('user') === "false") {
-      swal("Failed!", "Login Dulu Bosq", "error");
+      swal("Failed!", "Login Dulu", "error");
       return <Redirect to="/home" /> ;
     } 
     return (

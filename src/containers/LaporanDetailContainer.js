@@ -48,7 +48,7 @@ class LaporanDetailContainer extends Component {
 
   render() {
     if (this.props.errorLaporanDetail) {
-      swal("Failed!", "Gaada Data Bosq / Silahkan Coba lagi", "error");
+      swal("Failed!", "Tidak Ada Data / Silahkan Coba lagi", "error");
       return <Redirect to="/laporan" /> ;
     } 
     return (

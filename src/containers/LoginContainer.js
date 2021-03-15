@@ -1,14 +1,11 @@
-import React, { Component} from "react";
+import React, { Component } from "react";
 import { connect } from "react-redux";
 import { postLoginUser } from "../actions/loginAction";
 import swal from "sweetalert";
 import { getUsersList } from "../actions/userAction";
 import LoginComponent from "../components/LoginComponent";
-import SunComponent from "../components/SunComponent";
-import MountainComponent from "../components/MountainComponent";
 import { Redirect } from "react-router-dom";
 import { Col, Container, Row } from "reactstrap";
-
 
 const mapStateToProps = (state) => {
   return {
@@ -19,7 +16,6 @@ const mapStateToProps = (state) => {
   };
 };
 
-
 class LoginContainer extends Component {
   handleSubmit(data) {
     this.props.dispatch(postLoginUser(data));
@@ -28,50 +24,50 @@ class LoginContainer extends Component {
     this.props.dispatch(getUsersList());
   }
 
-
-  
   render() {
     if (this.props.getResponLoginUser || this.props.errorResponLoginUser) {
-      if (this.props.errorResponLoginUser || this.props.getResponLoginUser.Login === "false" ) {
-        alert('Username & Password Salah');
+      if (
+        this.props.errorResponLoginUser ||
+        this.props.getResponLoginUser.Login === "false"
+      ) {
+        alert("Username & Password Salah");
         window.location.reload();
-      }  else {
-          if (this.props.getResponLoginUser.RoleAdmin === 99){
-            swal(
-              "Sucsess!",
-              "Login Berhasil",
-              "success"
-    
-            );return <Redirect to="/superadmin" /> 
-
-          }
-          else {
-            swal(
-              "Sucsess!",
-              "Login Berhasil",
-              "success"
-    
-            );return <Redirect to="/" />
-
-          }
-        
+      } else {
+        if (this.props.getResponLoginUser.RoleAdmin === 99) {
+          swal("Sucsess!", "Login Berhasil", "success");
+          return <Redirect to="/superadmin" />;
+        } else {
+          swal("Sucsess!", "Login Berhasil", "success");
+          return <Redirect to="/" />;
+        }
       }
     }
 
     return (
+      <div class="bgimg">
+          <Container>
 
-    <div>
-    <div class="bgimg">
-    <Container>
-    <Row>
-      <Col md={6}>
-    <LoginComponent onSubmit={(data) => this.handleSubmit(data)}/>
-    </Col>
-    </Row>
-    </Container>
-     </div>
-     </div>
-   
+            <Row>
+            <Col md={12}>.</Col>
+            <Col md={12}>.</Col>
+            <Col md={12}>.</Col>
+            <Col md={12}>.</Col>
+            <Col md={12}>.</Col>
+            <Col md={12}>.</Col>
+            <Col md={12}>.</Col>
+               <Col md={12}>.</Col>
+               <Col md={12}>.</Col>
+              <Col md={12}>.</Col>
+              <Col md={12}>.</Col>
+              <Col md={12}>.</Col>
+              <Col></Col>
+              <Col md={6}>
+                <LoginComponent onSubmit={(data) => this.handleSubmit(data)} />
+              </Col>
+            </Row>
+          </Container>
+          
+        </div>
     );
   }
 }

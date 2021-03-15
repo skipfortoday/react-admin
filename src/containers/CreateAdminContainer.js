@@ -37,7 +37,7 @@ class CreateAdminContainer extends Component {
         swal("Failed!", this.props.errorResponDataAdmin, "error");
       } else {
         swal(
-          "Cabang Created!",
+          "Admin Created!",
           "Kode : " +
             this.props.getResponDataAdmin.AdminID +
             " , Nama : " +

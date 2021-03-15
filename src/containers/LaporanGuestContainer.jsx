@@ -15,7 +15,7 @@ class LaporanGuestContainer extends Component {
 
   render() {
     return (
-      <div class="bgimg">
+      <div >
         <GuestNavbarComponent/>
         <div style={{ backgroundColor: "#fec107" }}>
           <tr>
