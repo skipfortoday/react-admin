@@ -5,7 +5,6 @@ import { FormGroup, Col, Label, Input, Row, Button } from "reactstrap";
 import IzinValidation from "../validations/IzinValidation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
-import Select from 'react-select'
 
 const renderField = ({
   input,
