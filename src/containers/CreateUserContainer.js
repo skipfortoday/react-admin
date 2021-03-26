@@ -42,7 +42,9 @@ class CreateUserContainer extends Component {
             " | ID : " +
             this.props.getResponDataUser.UserID,
           "success"
-        );
+        );  setTimeout(function () {
+          window.location.reload();
+        }, 200);
       }
     }
     return (

@@ -40,7 +40,9 @@ class EditUserContainer extends Component {
           "User " + this.props.getResponDataUser.Nama + " Updated!",
           " UserID : " + this.props.getResponDataUser.UserID,
           "success"
-        );
+        ); setTimeout(function () {
+          window.location.reload();
+        }, 200);
       }
     }
     return (
