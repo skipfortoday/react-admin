@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const BASEURL="localhost:3001";
+export const BASEURL="192.168.11.2:3001";
 
 // export const GET_ADMIN_TIMENOW = "GET_ADMIN_TIMENOW";
 export const GET_ADMIN_LIST = "GET_ADMIN_LIST";
