@@ -7,6 +7,7 @@ export const GET_IZIN_DETAIL = "GET_IZIN_DETAIL";
 export const POST_IZIN_CREATE = "POST_IZIN_CREATE";
 export const POST_IZIN_GROUP = "POST_IZIN_GROUP";
 export const PUT_IZIN_EDIT = "PUT_IZIN_EDIT";
+export const GET_IZIN_DETAIL_FORM = "GET_IZIN_DETAIL_FORM";
 
 
 
@@ -216,5 +217,34 @@ export const deleteDataIzin = () => {
         errorMessage: false,
       },
     });
+  };
+};
+
+
+// detail data untuk form edit 
+export const getIzinDetailForm = (DatangID) => {
+  return (dispatch) => {
+    axios
+      .get(
+        "http://"+BASEURL+"/api/detailAbsensi/"+DatangID,
+      )
+      .then(function (response) {
+        dispatch({
+          type: GET_IZIN_DETAIL_FORM,
+          payload: {
+            data: response.data,
+            errorMessage: false,
+          },
+        });
+      })
+      .catch(function (error) {
+        dispatch({
+          type: GET_IZIN_DETAIL,
+          payload: {
+            data: false,
+            errorMessage: error.message,
+          },
+        });
+      });
   };
 };

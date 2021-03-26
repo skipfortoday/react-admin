@@ -8,6 +8,7 @@ import {
   getIzinListSolo,
   postIzinCreate,
   deleteDataIzin,
+  putIzinUpdate,
 } from "../actions/izinAction";
 import swal from "sweetalert";
 import NavbarComponent from "../components/NavbarComponent";
@@ -74,7 +75,13 @@ class CreateIzinContainer extends Component {
   }
 
   handleSubmit(data) {
-    this.props.dispatch(postIzinCreate(data));
+    if(!data.DatangID){
+      // create
+      this.props.dispatch(postIzinCreate(data));
+    }else{
+      //put
+      this.props.dispatch(putIzinUpdate(data, data.DatangID));
+    }
   }
   handleSubmit2(data) {
     this.props.dispatch(postLaporanProses(data));
@@ -136,48 +143,41 @@ class CreateIzinContainer extends Component {
           <td>
           <LengkapiAbsenButton />
           </td>
-{/*         
-          <tr>
-            <td width="60"></td>
-            <td>
-              <LengkapiAbsen onSubmit={(data) => this.handleSubmit2(data)} />
-            </td>
-            <td width="10"></td>
-            <td>
-              <tr>
-                <td width="100">.</td>
-              </tr>
-              <tr>
-                <LengkapiAbsenButton />
-              </tr>
-            </td>
-          </tr> */}
         </div>
-        <div  class="header-1"style={{ backgroundColor: "#17a2b7" }}>
-        
-          <Container>
-            <FormIzinComponent onSubmit={(data) => this.handleSubmit(data)} />
+        <div  class="header-1" style={{padding:"10px 20px"}}>
+            <div className="row">
+              <div  className="col-lg-8">
+                <IzinComponentSolo />
+              </div>
+              <div className="col-lg-4">
+                <div style={{ background:"#17a2b7", padding:"0px 10px" }}>
+                  <FormIzinComponent onSubmit={(data) => this.handleSubmit(data)} />
+                </div>
+              </div>
+            </div>
+            
+          
+            
+          
+        </div>
+        { /*
+        <div class="header-1" style={{ backgroundColor: "#fec107" }}>
+            <Container>
+            <Row>
+          <h3>Print Preview</h3> <PrintButton />
+          </Row>
           </Container>
         </div>
-        <div class="header-1">
-        <IzinComponentSolo /></div>
-        <div class="header-1" style={{ backgroundColor: "#fec107" }}>
-          <Container>
-          <Row>
-         <h3>Print Preview</h3> <PrintButton />
-        </Row>
-        </Container>
-        </div>
         <Container>
-        <Row className="page-header">
-          <NamaCabangLaporan />
-          <RekapLaporan />
+          <Row className="page-header">
+            <NamaCabangLaporan />
+            <RekapLaporan />
+            </Row>
+            <Row>
+            <LaporanDetail />
+            <RekapLeft />
           </Row>
-          <Row>
-          <LaporanDetail />
-          <RekapLeft />
-        </Row>
-        </Container>
+        </Container> */}
       </div>
     );
   }

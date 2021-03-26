@@ -5,6 +5,7 @@ import {
   POST_IZIN_CREATE,
   POST_IZIN_GROUP,
   PUT_IZIN_EDIT,
+  GET_IZIN_DETAIL_FORM,
 } from "../actions/izinAction";
 
 let initialState = {
@@ -16,6 +17,8 @@ let initialState = {
   errorIzinDetail: false,
   getResponDataIzin: false,
   errorResponDataIzin: false,
+  getIzinDetailForm:false,
+  errorIzinDetailForm:false,
 };
 
 const Izin = (state = initialState, action) => {
@@ -61,6 +64,13 @@ const Izin = (state = initialState, action) => {
         getResponDataIzin: action.payload.data,
         errorResponDataIzin: action.payload.errorMessage,
       };
+
+    case GET_IZIN_DETAIL_FORM:
+      return {
+        ...state,
+        getIzinDetailForm: action.payload.data,
+        errorIzinDetailForm: action.payload.data
+      }  
 
     default:
       return state;

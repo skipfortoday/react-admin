@@ -1,17 +1,21 @@
 import React, { Component } from "react";
 import { reduxForm, Field } from "redux-form";
 import { connect } from "react-redux";
-import { FormGroup, Col, Label, Input, Row, Button} from "reactstrap";
+import { FormGroup, Col, Label, Input, Row, Button } from "reactstrap";
 import IzinValidation from "../validations/IzinValidation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPaperPlane} from "@fortawesome/free-solid-svg-icons";
+import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
+import Select from 'react-select'
 
 const renderField = ({
   input,
+  name,
+  id,
   type,
   placeholder,
   label,
   disabled,
+  options,
   readOnly,
   meta: { touched, error, warning },
 }) => (
@@ -23,16 +27,21 @@ const renderField = ({
     </Col>
     <Col md="12">
       <Input
-        {...input}
+        {...Input}
+        id={id} 
+        name={name} 
         type={type}
         placeholder={placeholder}
         disabled={disabled}
         readOnly={readOnly}
+        options={options}
+        value={input.value}
+        onChange={(value) => input.onChange(value)}
       >
         <option value=""></option>
         <option value="OFF">OFF</option>
         <option value="CUTI">CUTI</option>
-        <option value="TIDAK MASUK">IZIN TIDAK MASUK</option>
+        <option value="TIDAK MASUK">TIDAK MASUK</option>
         <option value="SAKIT">SAKIT</option>
         <option value="DINAS LUAR">DINAS LUAR</option>
         <option value="CUTI BERSAMA">CUTI BERSAMA</option>
@@ -48,17 +57,28 @@ const renderField = ({
 
 const mapStateToProps = (state) => {
   return {
-    
+
     initialValues: {
-      DatangID: state.Izin.getIzinDetail.DatangID,
       UserID: state.Izin.getIzinDetail.UserID,
       Nama: state.Izin.getIzinDetail.Nama,
       Jabatan: state.Izin.getIzinDetail.Jabatan,
       FTglMulaiCuti: state.Izin.getIzinDetail.FTglMulaiCuti,
-      TanggalScan: state.Izin.getIzinDetail.TanggalScan,
-      Status: state.Izin.getIzinDetail.Status,
-      Keterangan: state.Izin.getIzinDetail.Keterangan,
-      SisaCuti : state.Izin.getIzinDetail.SisaCuti,
+      SisaCuti: state.Izin.getIzinDetail.SisaCuti,
+      //
+      DatangID: state.Izin.getIzinDetailForm.DatangID,
+      TanggalScan: state.Izin.getIzinDetailForm.TanggalScan,
+      Status: state.Izin.getIzinDetailForm.STATUS,
+      Keterangan: state.Izin.getIzinDetailForm.Keterangan,
+      statusOptions : [
+        {value : '', label : '-'},
+        {value : 'LIBUR', label : 'LIBUR'},
+        {value : 'CUTI', label : 'CUTI'},
+        {value : 'TIDAK MASUK', label : 'TIDAK MASUK'},
+        {value : 'SAKIT', label : 'SAKIT'},
+        {value : 'DINAS LUAR', label : 'DINAS LUAR'},
+        {value : 'CUTI BERSAMA', label : 'CUTI BERSAMA'},
+        {value : 'CUTI KHUSUS', label : 'CUTI KHUSUS'}
+      ]
     },
   };
 };
@@ -68,9 +88,7 @@ class FormIzinComponent extends Component {
     return (
       <form onSubmit={this.props.handleSubmit}>
         <FormGroup row>
-
-
-          <Col md={2}>
+          <Col md={4}>
             <FormGroup>
               <Field
                 type="text"
@@ -82,9 +100,7 @@ class FormIzinComponent extends Component {
             </FormGroup>
           </Col>
 
-        
-
-          <Col md={3}>
+          <Col md={4}>
             <FormGroup>
               <Field
                 type="text"
@@ -96,7 +112,7 @@ class FormIzinComponent extends Component {
             </FormGroup>
           </Col>
 
-          <Col md={3}>
+          <Col md={4}>
             <FormGroup>
               <Field
                 type="text"
@@ -108,7 +124,7 @@ class FormIzinComponent extends Component {
             </FormGroup>
           </Col>
 
-          <Col md={2}>
+          <Col md={6}>
             <FormGroup>
               <Field
                 type="text"
@@ -120,7 +136,7 @@ class FormIzinComponent extends Component {
             </FormGroup>
           </Col>
 
-          <Col md={2}>
+          <Col md={4}>
             <FormGroup>
               <Field
                 type="text"
@@ -131,8 +147,20 @@ class FormIzinComponent extends Component {
               />
             </FormGroup>
           </Col>
-
-          <Col md={3}>
+        </FormGroup>
+        <FormGroup row>
+          <Col md={12} style={{display: "none"}}>
+            <FormGroup>
+              <Field
+                readOnly="true"
+                type="text"
+                name="DatangID"
+                component={renderField}
+                label="DatangID:"
+              />
+            </FormGroup>
+          </Col>
+          <Col md={6}>
             <FormGroup>
               <Field
                 type="date"
@@ -143,7 +171,7 @@ class FormIzinComponent extends Component {
             </FormGroup>
           </Col>
 
-          <Col md={3}>
+          <Col md={6}>
             <FormGroup>
               <Field
                 type="select"
@@ -154,7 +182,7 @@ class FormIzinComponent extends Component {
             </FormGroup>
           </Col>
 
-          <Col md={5}>
+          <Col md={10}>
             <FormGroup>
               <Field
                 type="text"
@@ -164,19 +192,20 @@ class FormIzinComponent extends Component {
               />
             </FormGroup>
           </Col>
-         <Col>
-          <FormGroup>
-            <Label> Kirim </Label>
+          
+          <Col>
+            <FormGroup>
               <Button
                 color="warning"
                 type="submit"
-                disabled={this.props.submitting} 
+                className="btn-block"
+                disabled={this.props.submitting}
               >
-                <FontAwesomeIcon icon={faPaperPlane} /> 
+                <FontAwesomeIcon icon={faPaperPlane} /> Kirim
               </Button>
             </FormGroup>
 
-            </Col>
+          </Col>
         </FormGroup>
       </form>
     );

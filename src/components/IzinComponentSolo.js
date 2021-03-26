@@ -6,7 +6,11 @@ import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
 import paginationFactory from "react-bootstrap-table2-paginator";
 import { connect } from "react-redux";
 import swal from 'sweetalert';
-import { deleteIzin } from "../actions/izinAction";
+import { deleteIzin, getIzinDetailForm } from "../actions/izinAction";
+import { faEdit } from "@fortawesome/free-solid-svg-icons";
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import '../components/IzinComponentSolo.css'
 
 
 const { SearchBar } = Search;
@@ -31,6 +35,9 @@ const handleClick = (dispatch, DatangID) => {
   });
 }
 
+const handleEditClick = (dispatch, DatangID) => {
+  dispatch(getIzinDetailForm(DatangID))
+}
 
 const defaultSorted = [
   {
@@ -54,13 +61,13 @@ const IzinComponentSolo = (props) => {
   const columns = [
   {
       dataField: "TanggalIzin",
-      text: "Tanggal Izin",
+      text: "Tanggal",
       sort: true,
       headerStyle: () => {
         return { width: "120px",backgroundColor:"#fec107" };
       },
       style: () => {
-        return {  fontWeight : "bold"};
+        return {  fontWeight : "normal"};
       },
     },
     {
@@ -71,18 +78,18 @@ const IzinComponentSolo = (props) => {
         return { width: "120px" ,backgroundColor:"#fec107"};
       },
       style: () => {
-        return { fontWeight : "bold" };
+        return { fontWeight : "normal" };
       },
     },
     {
-      dataField: "Status",
+      dataField: "STATUS",
       text: "Status", 
       sort: true,
       headerStyle: () => {
         return { width: "100px",backgroundColor:"#fec107" };
       },
       style: () => {
-        return {  fontWeight : "bold" };
+        return {  fontWeight : "normal" };
       },
       
     },
@@ -91,26 +98,29 @@ const IzinComponentSolo = (props) => {
       text: "Keterangan",
       sort: true,
       headerStyle: () => {
-        return { width: "250px",backgroundColor:"#fec107" };
+        return { width: "200px",backgroundColor:"#fec107" };
       },
       style: () => {
-        return { fontWeight : "bold"  };
+        return { fontWeight : "normal"  };
       },
     },
     {
       dataField: "link",
-      text: "Hapus",
+      text: "Action",
       headerStyle: () => {
-        return { width: "40px" ,backgroundColor:"#fec107"   };
+        return { width: "70px" ,backgroundColor:"#fec107"   };
       },
       style: () => {
-        return { fontWeight : "bold"  };
+        return { fontWeight : "normal"  };
       },
       formatter: (rowContent, row) => {
         return (
           <span> 
-            <Button size="sm"  color="danger" className="mr-2" id="TooltipExample"  onClick={() => handleClick(props.dispatch, row.DatangID)}>
-              -
+            <Button size="sm"  color="danger" className="mr-1" id="TooltipExample"  onClick={() => handleClick(props.dispatch, row.DatangID)}>
+              <FontAwesomeIcon icon={faTrash} />
+            </Button>  
+            <Button size="sm"  color="warning" className="mr-1" id=""  onClick={() => handleEditClick(props.dispatch, row.DatangID)}>
+              <FontAwesomeIcon icon={faEdit} />
             </Button>  
             </span>
         );
@@ -147,6 +157,7 @@ const IzinComponentSolo = (props) => {
               <BootstrapTable
                 {...props.baseProps}
                 pagination={paginationFactory()}
+                sizePerPage={50}
               />
            
               {/* </Card> */}
