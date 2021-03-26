@@ -160,7 +160,7 @@ class CreateIzinContainer extends Component {
             
           
         </div>
-        { /*
+        
         <div class="header-1" style={{ backgroundColor: "#fec107" }}>
             <Container>
             <Row>
@@ -177,7 +177,7 @@ class CreateIzinContainer extends Component {
             <LaporanDetail />
             <RekapLeft />
           </Row>
-        </Container> */}
+        </Container> 
       </div>
     );
   }
