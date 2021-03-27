@@ -8,7 +8,6 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
 import paginationFactory from "react-bootstrap-table2-paginator";
-import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import swal from 'sweetalert';
 import { deleteTerlambatBertingkat } from "../actions/TerlambatBertingkatAction";
@@ -119,11 +118,11 @@ const TerlambatBertingkatComponent = (props) => {
       formatter: (rowContent, row) => {
         return (
           <div>
-            <Link to={"./"+ row.GroupID+ "/"+ row.RuleTerlambatBertingkatID}>
+            <a href={"./"+ row.GroupID+ "/"+ row.RuleTerlambatBertingkatID}>
               <Button  color="warning" className="mr-2">
                 <FontAwesomeIcon icon={faEdit} />
               </Button>
-            </Link>
+            </a>
 
             <Button  color="warning" className="mr-2" onClick={() => handleClick(props.dispatch, row.RuleTerlambatBertingkatID)}>
               <FontAwesomeIcon icon={faTrash} /> 

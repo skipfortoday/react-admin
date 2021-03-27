@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 
 import { connect } from "react-redux";
-import TerlambatBertingkatComponent from "../components/TerlambatBertingkatComponent";
 import { getGroupDetail} from "../actions/groupAction";
 import swal from "sweetalert";
 import NavbarComponent from "../components/NavbarComponent";
@@ -52,7 +51,7 @@ class EditTerlambatBertingkatContainer extends Component {
             " , GroupID : " +
             this.props.getResponDataTerlambatBertingkat.Jabatan,
           "success"
-        );
+        );  return <Redirect to={"/group/terlambatbertingkat/" +this.props.getResponDataTerlambatBertingkat.GroupID} /> ;
       }
     }
     return (
@@ -86,7 +85,7 @@ class EditTerlambatBertingkatContainer extends Component {
   </tr>
  
 </div>
-<TerlambatBertingkatComponent/>
+
 </div>
     );
   }
