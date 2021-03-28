@@ -4,6 +4,7 @@ import { postLoginUser } from "../actions/loginAction";
 import swal from "sweetalert";
 import { getUsersList } from "../actions/userAction";
 import LoginComponent from "../components/LoginComponent";
+import BackLogin from "../components/BackLogin";
 import { Redirect } from "react-router-dom";
 import { Col, Container, Row } from "reactstrap";
 
@@ -44,30 +45,21 @@ class LoginContainer extends Component {
     }
 
     return (
-      <div class="bgimg">
-          <Container>
-
-            <Row>
-            <Col md={12}>.</Col>
-            <Col md={12}>.</Col>
-            <Col md={12}>.</Col>
-            <Col md={12}>.</Col>
-            <Col md={12}>.</Col>
-            <Col md={12}>.</Col>
-            <Col md={12}>.</Col>
-               <Col md={12}>.</Col>
-               <Col md={12}>.</Col>
-              <Col md={12}>.</Col>
-              <Col md={12}>.</Col>
-              <Col md={12}>.</Col>
-              <Col></Col>
-              <Col md={6}>
-                <LoginComponent onSubmit={(data) => this.handleSubmit(data)} />
-              </Col>
-            </Row>
-          </Container>
+      <div >
+        
+        <Container>
           
-        </div>
+        <Row>
+          <BackLogin/>
+        </Row>
+        <Row>
+        <Col md={3}></Col>
+        <Col md={7}>
+        <LoginComponent onSubmit={(data) => this.handleSubmit(data)} />
+        </Col>
+        </Row>
+        </Container>
+      </div>
     );
   }
 }

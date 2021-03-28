@@ -39,11 +39,6 @@ class EditAdminContainer extends Component {
       } else {
         swal(
           "Admin Updated!",
-          "Kode : " +
-            this.props.getResponDataAdmin.KodeAdmin +
-            " , Nama Admin: " +
-            this.props.getResponDataAdmin.NamaAdmin,
-          "success"
         );
       }
     }

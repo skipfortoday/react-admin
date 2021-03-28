@@ -13,7 +13,7 @@ class LandingPageContainer extends Component {
     return (
       <div> 
         <GuestNavbarComponent />
-        <video  autoPlay loop src="/images/opening.mp4" type="video/mp4" id="myVideo"></video>
+        <video  autoPlay muted loop src="/images/opening.mp4" type="video/mp4" id="myVideo"></video>
       </div>
     );
   }
