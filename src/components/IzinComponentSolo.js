@@ -1,6 +1,6 @@
-import React ,{ useState }from "react";
+import React, { useState } from "react";
 import BootstrapTable from "react-bootstrap-table-next";
-import { Button, Row, Col, Spinner,Tooltip  } from "reactstrap";
+import { Button, Row, Col, Spinner, Tooltip } from "reactstrap";
 
 import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
 import paginationFactory from "react-bootstrap-table2-paginator";
@@ -16,23 +16,23 @@ import '../components/IzinComponentSolo.css'
 const { SearchBar } = Search;
 
 const handleClick = (dispatch, DatangID) => {
-  
+
   swal({
     title: "Apakah Anda yakin akan menghapus data ini ?",
     icon: "warning",
     buttons: true,
     dangerMode: true,
   })
-  .then((willDelete) => {
-    if (willDelete) {
-      dispatch(deleteIzin(DatangID))
-      swal("Data Izin Sukses dihapus", {
-        icon: "success",
-      }); window.location.reload();
-    } else {
-      swal("Data gagal dihapus");
-    }
-  });
+    .then((willDelete) => {
+      if (willDelete) {
+        dispatch(deleteIzin(DatangID))
+        swal("Data Izin Sukses dihapus", {
+          icon: "success",
+        }); window.location.reload();
+      } else {
+        swal("Data gagal dihapus");
+      }
+    });
 }
 
 const handleEditClick = (dispatch, DatangID) => {
@@ -59,76 +59,89 @@ const IzinComponentSolo = (props) => {
   const toggle = () => setTooltipOpen(!tooltipOpen);
 
   const columns = [
-  {
+    {
       dataField: "TanggalIzin",
       text: "Tanggal",
       sort: true,
       headerStyle: () => {
-        return { width: "120px",backgroundColor:"#fec107" };
+        return { width: "120px", backgroundColor: "#fec107" };
       },
       style: () => {
-        return {  fontWeight : "normal"};
+        return { fontWeight: "normal" };
       },
     },
     {
-      dataField: "Nama",
-      text: "Nama ",
+      dataField: "ScanMasuk",
+      text: "Datang",
       sort: true,
       headerStyle: () => {
-        return { width: "120px" ,backgroundColor:"#fec107"};
+        return { width: "120px", backgroundColor: "#fec107" };
       },
       style: () => {
-        return { fontWeight : "normal" };
+        return { fontWeight: "normal" };
       },
     },
+
+    {
+      dataField: "ScanPulang",
+      text: "Pulang",
+      sort: true,
+      headerStyle: () => {
+        return { width: "120px", backgroundColor: "#fec107" };
+      },
+      style: () => {
+        return { fontWeight: "normal" };
+      },
+    },
+
     {
       dataField: "STATUS",
-      text: "Status", 
+      text: "Status",
       sort: true,
       headerStyle: () => {
-        return { width: "100px",backgroundColor:"#fec107" };
+        return { width: "100px", backgroundColor: "#fec107" };
       },
       style: () => {
-        return {  fontWeight : "normal" };
+        return { fontWeight: "normal" };
       },
-      
+
     },
     {
       dataField: "Keterangan",
       text: "Keterangan",
       sort: true,
       headerStyle: () => {
-        return { width: "200px",backgroundColor:"#fec107" };
+        return { width: "200px", backgroundColor: "#fec107" };
       },
       style: () => {
-        return { fontWeight : "normal"  };
+        return { fontWeight: "normal" };
       },
     },
     {
       dataField: "link",
       text: "Action",
       headerStyle: () => {
-        return { width: "70px" ,backgroundColor:"#fec107"   };
+        return { width: "70px", backgroundColor: "#fec107" };
       },
       style: () => {
-        return { fontWeight : "normal"  };
+        return { fontWeight: "normal" };
       },
       formatter: (rowContent, row) => {
         return (
-          <span> 
-            <Button size="sm"  color="danger" className="mr-1" id="TooltipExample"  onClick={() => handleClick(props.dispatch, row.DatangID)}>
+          <span>
+            <Button size="sm" color="danger" className="mr-1" id="TooltipExample" onClick={() => handleClick(props.dispatch, row.DatangID)}>
               <FontAwesomeIcon icon={faTrash} />
-            </Button>  
-            <Button size="sm"  color="warning" className="mr-1" id=""  onClick={() => handleEditClick(props.dispatch, row.DatangID)}>
+            </Button>
+            <Button size="sm" color="warning" className="mr-1" id="" onClick={() => handleEditClick(props.dispatch, row.DatangID)}>
               <FontAwesomeIcon icon={faEdit} />
-            </Button>  
-            </span>
+            </Button>
+          </span>
         );
       },
     },
   ];
 
-  
+
   return (
     <div>
       {props.getIzinListSolo ? (
@@ -152,14 +165,14 @@ const IzinComponentSolo = (props) => {
               </Row>
               <div id="TooltipExample"></div>
               <Tooltip placement="auto" isOpen={tooltipOpen} target="TooltipExample" toggle={toggle}>
-              Hapus Status Absensi
+                Hapus Status Absensi
             </Tooltip>
               <BootstrapTable
                 {...props.baseProps}
                 pagination={paginationFactory()}
                 sizePerPage={50}
               />
-           
+
               {/* </Card> */}
             </div>
           )}
@@ -171,7 +184,7 @@ const IzinComponentSolo = (props) => {
           ) : (
             <Spinner color="dark" />
           )}
-          
+
         </div>
       )}
     </div>
