@@ -7,7 +7,6 @@ import {
   getIzinDetail,
   getIzinListSolo,
   postIzinCreate,
-  deleteDataIzin,
   putIzinUpdate,
 } from "../actions/izinAction";
 import swal from "sweetalert";
