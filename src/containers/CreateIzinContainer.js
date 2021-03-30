@@ -44,6 +44,7 @@ const mapStateToProps = (state) => {
 };
 
 class CreateIzinContainer extends Component {
+
   componentDidMount() {
     this.props.dispatch(getOptUser());
     this.props.dispatch(getIzinDetail(this.props.match.params.UserID));
@@ -71,10 +72,14 @@ class CreateIzinContainer extends Component {
         this.props.match.params.TglAkhir
       )
     );
-    this.props.dispatch(deleteDataIzin());
+    // this.props.dispatch(deleteDataIzin());
   }
 
   handleSubmit(data) {
+    const ambil = JSON.parse(localStorage.getItem('user'));
+
+    data.ADMIN = ambil.AdminID;
+    console.log(data);
     if(!data.DatangID){
       // create
       this.props.dispatch(postIzinCreate(data));
