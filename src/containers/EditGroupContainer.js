@@ -35,10 +35,7 @@ class EditGroupContainer extends Component {
       } else {
         swal(
           "Group Updated!",
-          "Nama : " +
-            this.props.getResponDataGroup.GroupID +
-            " , GroupID : " +
-            this.props.getResponDataGroup.Jabatan,
+          "",
           "success"
         );
       }

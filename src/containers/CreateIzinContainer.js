@@ -122,12 +122,10 @@ class CreateIzinContainer extends Component {
       } else {
         swal(
           "Proses Berhasil!",
-          "Nama : " +
-            this.props.getResponDataLaporan.Nama +
-            " | ID : " +
-            this.props.getResponDataLaporan.UserID,
           "success"
-        );
+        );setTimeout(function () {
+          window.location.reload();
+        }, 200);
       }
     }
     return (

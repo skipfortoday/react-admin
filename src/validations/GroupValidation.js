@@ -25,6 +25,21 @@ const GroupValidation = (values) => {
       errors.MinJamLembur = "Min Jam Lembur Pagi Harus diisi ";
     }
 
+    if (!values.RpLemburPerJam || values.RpLemburPerJam === "") {
+      errors.RpLemburPerJam = "RpLemburPerJam harus diisi";
+    }
+  
+    if (!values.RpPotonganTerlambat || values.RpPotonganTerlambat === "") {
+      errors.RpPotonganTerlambat = "RpPotonganTerlambat Pagi harus diisi";
+    }
+  
+    if (!values.RpPotonganTerlambatKembali || values.RpPotonganTerlambatKembali === "") {
+      errors.RpPotonganTerlambatKembali = "RpPotonganTerlambatKembali Pagi harus diisi";
+    }
+  
+    if (!values.RpPotonganTidakMasuk || values.RpPotonganTidakMasuk === "") {
+      errors.RpPotonganTidakMasuk = "RpPotonganTidakMasuk Harus diisi ";
+    }
   
     return errors;
   };
