@@ -23,56 +23,62 @@ const NavbarComponent = (props) => {
 
   return (
     <div>
-      
+
       <Navbar color="dark" dark expand="md">
-      <img src="/logodarkgold.jpeg" alt="logodarkgold"/>
-          <NavbarBrand> </NavbarBrand>
-          <NavbarBrand> L'viors Attendance System ~ </NavbarBrand>
-          <NavbarToggler onClick={toggleNavbar} className="mr-2" />
-          <Collapse isOpen={!collapsed} navbar>
-            <Nav className="mr-auto" navbar>
-              <NavItem>    
-                <Link to="/">
+        <img src="/logodarkgold.jpeg" alt="logodarkgold" />
+        <NavbarBrand> </NavbarBrand>
+        <NavbarBrand> L'viors Attendance System ~ </NavbarBrand>
+        <NavbarToggler onClick={toggleNavbar} className="mr-2" />
+        <Collapse isOpen={!collapsed} navbar>
+          <Nav className="mr-auto" navbar>
+            <NavItem>
+              <Link to="/">
                 <NavLink> Pegawai </NavLink>
-                </Link>
-              </NavItem>
-              <NavItem>
+              </Link>
+            </NavItem>
+            <NavItem>
               <a href={"/izin"}>
                 <NavLink>Status Absensi </NavLink>
-               </a>
-              </NavItem>
-              <NavItem>
-                <Link to="/group">
+              </a>
+            </NavItem>
+            <NavItem>
+              <Link to="/group">
                 <NavLink> Group </NavLink>
-                </Link>
-              </NavItem>
-              <NavItem>
-                <Link to="/cabang">
+              </Link>
+            </NavItem>
+            <NavItem>
+              <Link to="/cabang">
                 <NavLink>Cabang </NavLink>
-                </Link>
-              </NavItem>
-              <NavItem>
+              </Link>
+            </NavItem>
+            <NavItem>
               <a href={"/laporan"}>
                 <NavLink> Laporan </NavLink>
-               </a>
-              </NavItem>   
-            </Nav>
-            <Nav navbar> 
-            <NavItem>
-            <NavItem>
-                
-                <NavbarBrand> {nama}</NavbarBrand>
-        
-              </NavItem>   
+              </a>
             </NavItem>
-            </Nav>  
+
+            <NavItem>
+              <a href={"/history"}>
+                <NavLink> History </NavLink>
+              </a>
+            </NavItem>
+          </Nav>
+          <Nav navbar>
+            <NavItem>
+              <NavItem>
+
+                <NavbarBrand> {nama}</NavbarBrand>
+
+              </NavItem>
+            </NavItem>
+          </Nav>
 
           <a href={"/home"}>
-           <LogoutComponent/>
+            <LogoutComponent />
           </a>
-          </Collapse>
+        </Collapse>
       </Navbar>
-      
+
 
     </div>
   );

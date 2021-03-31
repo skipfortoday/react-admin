@@ -5,9 +5,11 @@ import { FormGroup, Col, Label, Input, Row, Button } from "reactstrap";
 import IzinValidation from "../validations/IzinValidation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
+import Select from 'react-select'
+import { setEditJamForm } from "../actions/izinAction";
 
 const renderFieldCb = ({
-  input, name, id, type, label,
+  input, name, id, type, label, checked, value,
   meta: { touched, error, warning },
 
 }) => (
@@ -18,7 +20,8 @@ const renderFieldCb = ({
         id={id}
         name={name}
         type={type}
-        value={input.value}
+        value={value}
+        checked={checked}
         onChange={(value) => input.onChange(value)} />
       {label}
     </Label>
@@ -59,16 +62,7 @@ const renderField = ({
         value={input.value}
         onChange={(value) => input.onChange(value)}
       >
-        <option value="">-</option>
-        <option value="OFF">OFF</option>
-        <option value="CUTI">CUTI</option>
-        <option value="TIDAK MASUK">TIDAK MASUK</option>
-        <option value="SAKIT">SAKIT</option>
-        <option value="DINAS LUAR">DINAS LUAR</option>
-        <option value="CUTI BERSAMA">CUTI BERSAMA</option>
-        <option value="CUTI KHUSUS">CUTI KHUSUS</option>
-        <option value="LIBUR">LIBUR</option>
-        <option value="MASUK">MASUK</option>
+     
       </Input>
       {touched &&
         ((error && <p style={{ color: "yellow" }}>{error}</p>) ||
@@ -77,24 +71,85 @@ const renderField = ({
   </Row>
 );
 
+const renderFieldSelect = ({
+  input,
+  name,
+  id,
+  type,
+  placeholder,
+  label,
+  disabled,
+  options,
+  readOnly,
+  meta: { touched, error, warning },
+}) => (
+  <Row>
+    <Col md="12">
+      <Label htmlFor="{input}" className="col-form-label">
+        {label}
+      </Label>
+    </Col>
+    <Col md="12">
+      
+      <Select
+        {...Input}
+        id={id} 
+        name={name} 
+        type={type}
+        placeholder={placeholder}
+        disabled={disabled}
+        readOnly={readOnly}
+        options={options}
+        value={input.value}
+        onChange={(value) => input.onChange(value)}
+         //onBlur={() => input.onBlur()}
+      />
+      {touched &&
+        ((error && <p style={{ color: "red" }}>{error}</p>) ||
+          (warning && <p style={{ color: "brown" }}>{warning}</p>))}
+    </Col>
+  </Row>
+);
+
 const mapStateToProps = (state) => {
   return {
-
+    editJam: state.Izin.editJamForm,
     initialValues: {
       UserID: state.Izin.getIzinDetail.UserID,
       Nama: state.Izin.getIzinDetail.Nama,
       Jabatan: state.Izin.getIzinDetail.Jabatan,
       FTglMulaiCuti: state.Izin.getIzinDetail.FTglMulaiCuti,
       SisaCuti: state.Izin.getIzinDetail.SisaCuti,
-      //
       DatangID: state.Izin.getIzinDetailForm.DatangID,
       TanggalScan: state.Izin.getIzinDetailForm.TanggalScan,
       TanggalScanSampai: state.Izin.getIzinDetailForm.TanggalScan,
-      Status: state.Izin.getIzinDetailForm.STATUS,
+      Status: {
+        value: state.Izin.getIzinDetailForm.STATUS,
+        label: state.Izin.getIzinDetailForm.STATUS
+      },
+      Shift: {
+        value: state.Izin.getIzinDetailForm.Shift,
+        label: state.Izin.getIzinDetailForm.Shift
+      },
       Keterangan: state.Izin.getIzinDetailForm.Keterangan,
-      statusOptions: [
+      ScanMasuk: state.Izin.getIzinDetailForm.ScanMasuk,
+      ScanPulang: state.Izin.getIzinDetailForm.ScanPulang,
+      //ScanPulang: state.Izin.getIzinDetailForm.editJam,
+      editJam: state.Izin.editJamForm
+      // editJam: 
+    },
+  };
+};
+
+class FormIzinComponent extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      StatusOption: [
         { value: '', label: '-' },
         { value: 'LIBUR', label: 'LIBUR' },
+        { value: 'MASUK', label: 'MASUK' },
         { value: 'CUTI', label: 'CUTI' },
         { value: 'TIDAK MASUK', label: 'TIDAK MASUK' },
         { value: 'SAKIT', label: 'SAKIT' },
@@ -102,32 +157,18 @@ const mapStateToProps = (state) => {
         { value: 'CUTI BERSAMA', label: 'CUTI BERSAMA' },
         { value: 'CUTI KHUSUS', label: 'CUTI KHUSUS' }
       ],
-      //editJam: false
-      ScanMasuk: state.Izin.getIzinDetailForm.ScanMasuk,
-      ScanPulang: state.Izin.getIzinDetailForm.ScanPulang,
-      editJam: state.e
-    },
-  };
-};
-
-class FormIzinComponent extends Component {
-  
-  constructor(props) {
-    super(props);
-    this.state = {
-      editJam: false
+      ShiftOption: [
+        { value: '1', label:'Shift 1'},
+        { value: '2', label:'Shift 2'},
+        { value: '3', label:'Shift 3'}
+      ],
+      inputJam:true,
     }
 
   }
 
-  handleEditTglClick(b){
-    console.log(b);
-  }
-
   handleEditTglClick = event => {
-    this.setState({
-      editJam: event.target.checked
-    });
+    this.props.dispatch(setEditJamForm(event.target.checked));
   }
 
   render() {
@@ -229,18 +270,19 @@ class FormIzinComponent extends Component {
             </FormGroup>
           </Col>
 
-          <Col md={4}>
+          <Col md={5}>
             <FormGroup>
               <Field
                 type="select"
                 name="Status"
-                component={renderField}
+                component={renderFieldSelect}
+                options={this.state.StatusOption}
                 label="Tipe  :"
               />
             </FormGroup>
           </Col>
 
-          <Col md={8}>
+          <Col md={7}>
             <FormGroup>
               <Field
                 type="text"
@@ -255,19 +297,38 @@ class FormIzinComponent extends Component {
             <FormGroup>
               <Field
                 type="checkbox"
-                name="editJam"
-                className="form-control"
                 component={renderFieldCb}
                 label="Perbaiki Jam"
                 onChange={this.handleEditTglClick}
+              /> 
+            </FormGroup>
+          </Col>
+
+          <Col md={4} style={{display:"none"}}>
+            <FormGroup>
+              <Field
+                type="text"
+                name="editJam"
+                component={renderField}
               />
             </FormGroup>
           </Col>
 
-          {this.state.editJam ? (
-            <Col md="8">
+          {this.props.editJam ? (
+            <Col md="12">
               <Row>
-                <Col md={6}>
+                <Col md={4}>
+                  <FormGroup>
+                    <Field
+                      type="select"
+                      name="Shift"
+                      component={renderFieldSelect}
+                      options={this.state.ShiftOption}
+                      label="Shift :"
+                    />
+                  </FormGroup>
+                </Col>
+                <Col md={4}>
                   <FormGroup>
                     <Field
                       type="time"
@@ -277,7 +338,7 @@ class FormIzinComponent extends Component {
                     />
                   </FormGroup>
                 </Col>
-                <Col md={6}>
+                <Col md={4}>
                   <FormGroup>
                     <Field
                       type="time"

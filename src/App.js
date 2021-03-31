@@ -41,6 +41,7 @@ import AbsensiManualContainerIstLuar2 from "./containers/AbsensiManualContainerI
 import AbsensiManualContainerIstKembali2 from "./containers/AbsensiManualContainerIstKembali2";
 import AbsensiManualContainerKeluarKantor2 from "./containers/AbsensiManualContainerKeluarKantor2";
 import AbsensiManualContainerKembaliKantor2 from "./containers/AbsensiManualContainerKembaliKantor2";
+import HistoryContainer from "./containers/HistoryContainer";
 
 
 
@@ -166,6 +167,8 @@ function App () {
           <Route path="/absensimanualkembalikantor/:id/:nama" exact component={AbsensiManualContainerKembaliKantor2} />
 
           <Route path="/home" exact component={LandingPageContainer} />
+
+          <Route path="/history" exact component={HistoryContainer} />
 
           </AuthContext.Provider>
           </Switch>
