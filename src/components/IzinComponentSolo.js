@@ -58,6 +58,9 @@ const IzinComponentSolo = (props) => {
   const [tooltipOpen, setTooltipOpen] = useState(false);
   const toggle = () => setTooltipOpen(!tooltipOpen);
 
+  const [tooltipOpenH, setTooltipOpenH] = useState(false);
+  const toggleH = () => setTooltipOpenH(!tooltipOpenH);
+
   const columns = [
     {
       dataField: "TanggalIzin",
@@ -129,10 +132,10 @@ const IzinComponentSolo = (props) => {
       formatter: (rowContent, row) => {
         return (
           <span>
-            <Button size="sm" color="danger" className="mr-1" id="TooltipExample" onClick={() => handleClick(props.dispatch, row.DatangID)}>
+            <Button size="sm" color="danger" className="mr-1" id="TooltipHapus" onClick={() => handleClick(props.dispatch, row.DatangID)}>
               <FontAwesomeIcon icon={faTrash} />
             </Button>
-            <Button size="sm" color="warning" className="mr-1" id="" onClick={() => handleEditClick(props.dispatch, row.DatangID)}>
+            <Button size="sm" color="warning" className="mr-1" id="TooltipEdit" onClick={() => handleEditClick(props.dispatch, row.DatangID)}>
               <FontAwesomeIcon icon={faEdit} />
             </Button>
           </span>
@@ -163,10 +166,14 @@ const IzinComponentSolo = (props) => {
                   </div>
                 </Col>
               </Row>
-              <div id="TooltipExample"></div>
-              <Tooltip placement="auto" isOpen={tooltipOpen} target="TooltipExample" toggle={toggle}>
+              {/* <div id="TooltipHapus"></div> */}
+              <Tooltip placement="auto" isOpen={tooltipOpen} target="TooltipHapus" toggle={toggle}>
                 Hapus Status Absensi
-            </Tooltip>
+              </Tooltip>
+              {/* <div id="TooltipEdit"></div> */}
+              <Tooltip placement="auto" isOpen={tooltipOpenH} target="TooltipEdit" toggle={toggleH}>
+                Edit Status Absensi
+              </Tooltip>
               <BootstrapTable
                 {...props.baseProps}
                 pagination={paginationFactory()}

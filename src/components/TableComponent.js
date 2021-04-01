@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import BootstrapTable from "react-bootstrap-table-next";
-import { Button, Row, Col, Spinner, Card } from "reactstrap";
+import { Button, Row, Col, Spinner, Card, Tooltip } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faEdit,
@@ -92,6 +92,19 @@ const mapStateToProps = (state) => {
 };
 
 const TableComponent = (props) => {
+
+  const[resetDevice, setResetDevice] = useState(false);
+  const toggleResetDevice = () => setResetDevice(!resetDevice);
+
+  const[editPegawai, setEditPegawai] = useState(false);
+  const toggleEditPegawai = () => setEditPegawai(!editPegawai);
+
+  const[resetPassword, setResetPassword] = useState(false);
+  const toggleResetPassword = () => setResetPassword(!resetPassword);
+
+  const[deletePegawai, setDeletePegawai] = useState(false);
+  const toggleDeletePegawai = () => setDeletePegawai(!deletePegawai);
+
   const columns = [
     {
       dataField: "UserID",
@@ -137,6 +150,7 @@ const TableComponent = (props) => {
         return (
           <div>
             <Button
+              id="btResetDevice"
               size="sm"
               color="warning"
               className="mr-2"
@@ -145,11 +159,12 @@ const TableComponent = (props) => {
               <FontAwesomeIcon icon={faRetweet} />
             </Button>
             <Link to={"edit/" + row.UserID}>
-              <Button color="warning" className="mr-2" size="sm">
+              <Button color="warning" className="mr-2" size="sm" id="btEditPegawai">
                 <FontAwesomeIcon icon={faEdit} />
               </Button>
             </Link>
             <Button
+              id="btResetPassword"
                size="sm"
               color="warning"
               className="mr-2"
@@ -158,6 +173,7 @@ const TableComponent = (props) => {
               <FontAwesomeIcon icon={faUndoAlt} />
             </Button>
             <Button
+              id="btDeletePegawai"
               size="sm"
               color="warning"
               className="mr-2"
@@ -209,6 +225,18 @@ const TableComponent = (props) => {
                   </Col>
                 </Row>
 
+                <Tooltip placement="auto" isOpen={resetDevice} target="btResetDevice" toggle={toggleResetDevice}>
+                  Reset Device Pegawai
+                </Tooltip>
+                <Tooltip placement="auto" isOpen={editPegawai} target="btEditPegawai" toggle={toggleEditPegawai}>
+                  Edit Data Pegawai
+                </Tooltip>
+                <Tooltip placement="auto" isOpen={resetPassword} target="btResetPassword" toggle={toggleResetPassword}>
+                  Reset Password
+                </Tooltip>
+                <Tooltip placement="auto" isOpen={deletePegawai} target="btDeletePegawai" toggle={toggleDeletePegawai}>
+                  Hapus Pegawai
+                </Tooltip>
                 <BootstrapTable
                   {...props.baseProps}
                   pagination={paginationFactory()}
