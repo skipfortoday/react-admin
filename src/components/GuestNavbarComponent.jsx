@@ -9,6 +9,7 @@ import {
   NavItem,
   NavLink,
 } from "reactstrap";
+import { siteConfig } from "../config";
 const NavbarComponent = (props) => {
   const [collapsed, setCollapsed] = useState(true);
 
@@ -16,35 +17,38 @@ const NavbarComponent = (props) => {
 
   return (
     <div>
-      
+
       <Navbar color="dark" dark expand="md">
-      <img src="/logodarkgold.jpeg" alt="logodarkgold"/>
-          <NavbarBrand> </NavbarBrand>
-          <NavbarBrand> L'viors Attendance System</NavbarBrand>
-          <NavbarToggler onClick={toggleNavbar} className="mr-2" />
-          <Collapse isOpen={!collapsed} navbar>
-            <Nav className="mr-auto" navbar>
-                 <NavItem>
-                <Link to="/absensimanual">
-                <NavLink>Absensi Manual </NavLink>
-                </Link>
-              </NavItem>
-              <NavItem>
-                <a href={"/laporanguest"}>
-                <NavLink> Laporan</NavLink>
-                </a>
-              </NavItem>
-            </Nav>
-            <Nav navbar> 
+        <img src="/logodarkgold.jpeg" alt="logodarkgold" />
+        <NavbarBrand> </NavbarBrand>
+        <NavbarBrand> L'viors Attendance System</NavbarBrand>
+        <NavbarToggler onClick={toggleNavbar} className="mr-2" />
+        <Collapse isOpen={!collapsed} navbar>
+          <Nav className="mr-auto" navbar>
             <NavItem>
-                <Link to="/Login">
+              <Link to="/absensimanual">
+                <NavLink>Absensi Manual </NavLink>
+              </Link>
+            </NavItem>
+            <NavItem>
+              <a href={"/laporanguest"}>
+                <NavLink> Laporan</NavLink>
+              </a>
+            </NavItem>
+          </Nav>
+          <Nav navbar>
+            <NavItem>
+              <NavbarBrand> {siteConfig.nama}</NavbarBrand>
+            </NavItem>
+            <NavItem>
+              <Link to="/Login">
                 <NavLink> Login</NavLink>
-                </Link>
-              </NavItem>
-            </Nav>  
-          </Collapse>
+              </Link>
+            </NavItem>
+          </Nav>
+        </Collapse>
       </Navbar>
-      
+
 
     </div>
   );

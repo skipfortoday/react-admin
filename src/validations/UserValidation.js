@@ -16,7 +16,7 @@ const UserValidation = (values) => {
   if (!values.HP|| values.HP=== "") {
     errors.HP = "Nomor HP harus diisi";
   }
-console.log(values);
+//console.log(values);
   if (!values.KodeCabang || values.KodeCabang=== undefined) {
     errors.KodeCabang = "Kode harus diisi";
   } 

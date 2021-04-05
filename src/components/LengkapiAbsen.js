@@ -90,8 +90,8 @@ const mapStateToProps = (state) => {
     getOptUser : state.Opt.getOptUser,
     initialValues: {
       Nama : {value : state.users.getUserDetail.UserID, label: state.users.getUserDetail.Nama},
-      TglAwal : state.Laporan.getLaporanRekap.TglAwal,
-      TglAkhir : state.Laporan.getLaporanRekap.TglAkhir,
+      TglAwal : state.Laporan.getLaporanRekap ? state.Laporan.getLaporanRekap.TglAwal : state.Laporan.defTglAwal,
+      TglAkhir : state.Laporan.getLaporanRekap ? state.Laporan.getLaporanRekap.TglAkhir : state.Laporan.defTglAkhir
     },
   };
 };
@@ -104,16 +104,6 @@ class LengkapiAbsen extends Component {
         <Container>
           <FormGroup row>
             <Row>
-            <Col md={5}>
-              <FormGroup>
-                <Field
-                  name="Nama"
-                  component={renderField2}
-                  label="Nama:"
-                  options={this.props.getOptUser}
-                />
-              </FormGroup>
-            </Col>
 
             <Col md={3}>
               <FormGroup>
@@ -133,6 +123,16 @@ class LengkapiAbsen extends Component {
                   name="TglAkhir"
                   component={renderField}
                   label="Tanggal Akhir :"
+                />
+              </FormGroup>
+            </Col>
+            <Col md={5}>
+              <FormGroup>
+                <Field
+                  name="Nama"
+                  component={renderField2}
+                  label="Nama:"
+                  options={this.props.getOptUser}
                 />
               </FormGroup>
             </Col>

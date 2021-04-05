@@ -28,17 +28,6 @@ class HistoryFilterComponent extends Component {
             // <form onSubmit={this.props.handleSubmitFilter}>
             <form onSubmit={this.props.handleSubmit}>
                 <FormGroup row>
-                    <Col md={4}>
-                        <FormGroup>
-                            <Field
-                                type="text"
-                                name="Nama"
-                                component={SelectRenderComponent}
-                                options={this.props.getOptUser}
-                                label="Nama :"
-                            />
-                        </FormGroup>
-                    </Col>
 
                     <Col md={3}>
                         <FormGroup>
@@ -57,6 +46,17 @@ class HistoryFilterComponent extends Component {
                                 name="TglAkhir"
                                 component={InputRenderComponent}
                                 label="TglAbsen Akhir"
+                            />
+                        </FormGroup>
+                    </Col>
+                    <Col md={4}>
+                        <FormGroup>
+                            <Field
+                                type="text"
+                                name="Nama"
+                                component={SelectRenderComponent}
+                                options={this.props.getOptUser}
+                                label="Nama :"
                             />
                         </FormGroup>
                     </Col>

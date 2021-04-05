@@ -1,11 +1,12 @@
-import React, { Component } from "react";
-import { reduxForm, Field } from "redux-form";
+import React, { Component, PureComponent } from "react";
+import { reduxForm, Field, change, formValueSelector, reset } from "redux-form";
 import { connect } from "react-redux";
-import { FormGroup, Col, Label, Input, Row, Button} from "reactstrap";
+import { FormGroup, Col, Label, Input, Row, Button } from "reactstrap";
 import UserValidation from "../validations/UserValidation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSave } from "@fortawesome/free-solid-svg-icons";
 import Select from 'react-select'
+import { formatTglYmd } from "../containers/formatTgl";
 
 const renderField = ({
   input,
@@ -14,30 +15,30 @@ const renderField = ({
   label,
   disabled,
   readOnly,
-  meta: {  touched, error, warning },
+  meta: { touched, error, warning },
 }) => (
   <Row>
-    <Col md="12">
-      <Label htmlFor="{input}" className="col-form-label">
-        {label}
-      </Label>
-    </Col>
-    <Col md="12">
+    {/* <Col md="4"> */}
+    <Label md="4" htmlFor="{input}" className="col-form-label text-right">
+      {label}
+    </Label>
+    {/* </Col> */}
+    <Col md="8">
       <Input
         {...input}
         type={type}
         placeholder={placeholder}
         disabled={disabled}
-        readOnly={readOnly} 
+        readOnly={readOnly}
       >
-        <option value ="">-</option>
-        <option value ="1">Atasan Kantor</option>
-        <option value = "2">Atasan Group</option>
-        <option value = "3">Staff</option>
-        <option value = "4">Staff4</option>
-        <option value = "5">Staff5</option>
+        <option value="">-</option>
+        <option value="1">Atasan Kantor</option>
+        <option value="2">Atasan Group</option>
+        <option value="3">Staff Bisa View Jam</option>
+        <option value="4">Staff Tidak Bisa View Jam</option>
+        <option value="5">Staff Tidak Bisa Akses</option>
       </Input>
-     
+
       {touched &&
         ((error && <p style={{ color: "red" }}>{error}</p>) ||
           (warning && <p style={{ color: "brown" }}>{warning}</p>))}
@@ -58,17 +59,17 @@ const renderField2 = ({
   meta: { touched, error, warning },
 }) => (
   <Row>
-    <Col md="12">
-      <Label htmlFor="{input}" className="col-form-label">
-        {label}
-      </Label>
-    </Col>
-    <Col md="12">
-      
+    {/* <Col md="4"> */}
+    <Label md="4" htmlFor="{input}" className="col-form-label text-right">
+      {label}
+    </Label>
+    {/* </Col> */}
+    <Col md="8">
+
       <Select
         {...Input}
-        id={id} 
-        name={name} 
+        id={id}
+        name={name}
         type={type}
         placeholder={placeholder}
         disabled={disabled}
@@ -76,7 +77,7 @@ const renderField2 = ({
         options={options}
         value={input.value}
         onChange={(value) => input.onChange(value)}
-         //onBlur={() => input.onBlur()}
+      //onBlur={() => input.onBlur()}
       />
       {touched &&
         ((error && <p style={{ color: "red" }}>{error}</p>) ||
@@ -85,233 +86,272 @@ const renderField2 = ({
   </Row>
 );
 
+// Decorate form with dispatchable actions
+const mapDispatchToProps = (dispatch) => ({
+  change, reset
+});
+
+// const form = formValueSelector("formCreateUserx");
 const mapStateToProps = (state) => {
+  // const {TglAwalKontrakPertama, TglMulaiCuti, Posisi}  = form(state, "TglAwalKontrakPertama", "TglMulaiCuti", "Posisi");
+  
   return {
-    getOptGroup : state.Opt.getOptGroup,
-    getOptCabang : state.Opt.getOptCabang,
-    getuserDetail : state.users.getUserDetail.UserID,
-    initialValues : {
-      UserID        : state.users.getUserDetail.UserID,
-      Nama          : state.users.getUserDetail.Nama,
-      Alamat        : state.users.getUserDetail.Alamat,
-	    TglLahir      : state.users.getUserDetail.FTglLahir,
-    	HP            : state.users.getUserDetail.HP,
-      TglMasuk      : state.users.getUserDetail.FTglMasuk,
-	    TglMulaiCuti  : state.users.getUserDetail.FTglMulaiCuti, 
-      TglAwalKontrakPertama : state.users.getUserDetail.FTglAwalKontrakPertama, 
-      GroupID       : {value : state.users.getUserDetail.GroupID, label: state.users.getUserDetail.Jabatan},
-      RoleID       : state.users.getUserDetail.RoleID,
-      KodeCabang    : {value : state.users.getUserDetail.KodeCabang, label: state.users.getUserDetail.NamaCabang},   
-      Status        : state.users.getUserDetail.Status,
-      Posisi        :   state.users.getUserDetail.Posisi,
-	    TampilkanLembur : state.users.getUserDetail.TampilkanLembur, 
-      TampilkanTerlambat : state.users.getUserDetail.TampilkanTerlambat,
+    getOptGroup: state.Opt.getOptGroup,
+    getOptCabang: state.Opt.getOptCabang,
+    getuserDetail: state.users.getUserDetail.UserID,
+    initialValues: {
+      UserID: state.users.getUserDetail.UserID,
+      Nama: state.users.getUserDetail.Nama,
+      Alamat: state.users.getUserDetail.Alamat,
+      TglLahir: state.users.getUserDetail.FTglLahir,
+      HP: state.users.getUserDetail.HP,
+      TglMasuk: state.users.getUserDetail.FTglMasuk,
+      TglMulaiCuti: state.users.getUserDetail.FTglMulaiCuti,
+      TglAwalKontrakPertama: state.users.getUserDetail.FTglAwalKontrakPertama,
+      GroupID: { value: state.users.getUserDetail.GroupID, label: state.users.getUserDetail.Jabatan },
+      RoleID: state.users.getUserDetail.RoleID,
+      KodeCabang: { value: state.users.getUserDetail.KodeCabang, label: state.users.getUserDetail.NamaCabang },
+      Status: state.users.getUserDetail.Status,
+      Posisi: state.users.getUserDetail.Posisi,
+      TampilkanLembur: state.users.getUserDetail.TampilkanLembur,
+      TampilkanTerlambat: state.users.getUserDetail.TampilkanTerlambat,
     }
   };
 };
 
 class FormComponent extends Component {
+
+  handleTglKontrakChange = (e, TglKontrak) => {
+    // console.log(text);
+    // Sementara pakai begii , beberapa metode redux change saya coba, tapi masih mentok tidak bisa mengupdate, akhirnya pakai cara seperti ini. CODE.NGAWUR
+
+    var form = document.getElementById('formEditUser');
+    var inTglMulaiCuti = form.querySelector('input[name="TglMulaiCuti"]');
+    var d = new Date(TglKontrak);
+    var year = d.getFullYear();
+    var month = d.getMonth();
+    var day = d.getDate();
+    var c = new Date(year + 1, month, day);
+    inTglMulaiCuti.value = formatTglYmd(c);
+
+    // this.props.change("formCreateUserx", "TglMulaiCuti", formatTglYmd(c));
+    // this.props.reset();
+    // this.props.dispatch()
+    // this.setState({
+    //   TglMulaiCuti:text
+    // })    
+    //dispatch()
+    //this.props.change("formCreateUser", "TglMulaiCuti", "2023-02-01");
+  }
+
   render() {
     return (
-     
-      <form onSubmit={this.props.handleSubmit}>
+      <form onSubmit={this.props.handleSubmit} id="formEditUser">
         <FormGroup row>
-          <Col md={4}>
-            <FormGroup>
-              <Field
-                type="text"
-                name="Nama"
-                component={renderField}
-                label="Nama Pegawai :"
-              />
-            </FormGroup>
+          <Col md="6">
+            <Row>
+              <Col md={12}>
+                <FormGroup>
+                  <Field
+                    type="text"
+                    name="UserID"
+                    component={renderField}
+                    label="UserID :"
+                  />
+                </FormGroup>
+              </Col>
+              <Col md={12}>
+                <FormGroup>
+                  <Field
+                    type="text"
+                    name="Nama"
+                    component={renderField}
+                    label="Nama Pegawai :"
+                  />
+                </FormGroup>
+              </Col>
+
+              <Col md={12}>
+                <FormGroup>
+                  <Field
+                    type="textarea"
+                    name="Alamat"
+                    component={renderField}
+                    label="Alamat Pegawai :"
+                  />
+                </FormGroup>
+              </Col>
+
+
+              <Col md={12}>
+                <FormGroup>
+                  <Field
+                    type="number"
+                    name="HP"
+                    component={renderField}
+                    label="Nomor HP Pegawai :"
+                  />
+                </FormGroup>
+              </Col>
+
+              <Col md={12}>
+                <FormGroup>
+                  <Field
+                    type="date"
+                    name="TglLahir"
+                    component={renderField}
+                    label="Tanggal Lahir :"
+                  />
+                </FormGroup>
+              </Col>
+
+              <Col md={12}>
+                <FormGroup>
+                  <Field
+                    type="date"
+                    name="TglMasuk"
+                    component={renderField}
+                    label="Tanggal Masuk :"
+                  />
+                </FormGroup>
+              </Col>
+
+              <Col md={12}>
+                <FormGroup>
+                  <Field
+                    type="date"
+                    name="TglKeluar"
+                    component={renderField}
+                    label="Tanggal Keluar :"
+                  />
+                </FormGroup>
+              </Col>
+            </Row>
           </Col>
+          <Col md="6">
+            <Row>
+              <Col md={12}>
+                <FormGroup>
+                  <Field
+                    type="date"
+                    name="TglAwalKontrakPertama"
+                    component={renderField}
+                    onChange={this.handleTglKontrakChange}
+                    label="Tanggal Awal Kontrak :"
+                  />
+                </FormGroup>
+              </Col>
 
-          <Col md={5}>
-            <FormGroup>
-              <Field
-                type="text"
-                name="Alamat"
-                component={renderField}
-                label="Alamat Pegawai :"
-              />
-            </FormGroup>
+              <Col md={12}>
+                <FormGroup>
+                  <Field
+                    type="date"
+                    disabled
+                    name="TglMulaiCuti"
+                    component={renderField}
+                    label="Tanggal Mulai Cuti :"
+                  />
+                </FormGroup>
+              </Col>
+
+              <Col md={12}>
+                <FormGroup>
+                  <Field
+                    name="KodeCabang"
+                    component={renderField2}
+                    options={this.props.getOptCabang}
+                    label="Cabang :"
+                  />
+                </FormGroup>
+              </Col>
+
+
+              <Col md={12}>
+                <FormGroup>
+                  <Field
+                    name="GroupID"
+                    component={renderField2}
+                    options={this.props.getOptGroup}
+                    label="Group Karyawan :"
+                  />
+                </FormGroup>
+              </Col>
+
+              <Col md={12}>
+                <FormGroup>
+                  <Field
+                    type="text"
+                    name="Posisi"
+                    component={renderField}
+                    label="Posisi :"
+                  />
+                </FormGroup>
+              </Col>
+
+
+              <Col md={12}>
+                <FormGroup>
+                  <Field
+                    type="select"
+                    name="RoleID"
+                    component={renderField}
+                    label="Akses Karyawan :"
+                  />
+                </FormGroup>
+              </Col>
+
+              {/* <Col md={2}>
+                <FormGroup>
+                  <Field
+                    type="password"
+                    name="Pass"
+                    disabled={disabled}
+                    component={renderField}
+                    label="PIN Password :"
+                  />
+                </FormGroup>
+              </Col> */}
+
+              <Col md={12}>
+                <Row>
+                  <Col md={4}>
+                    <FormGroup>
+
+                      <Field
+                        type="checkbox"
+                        name="TampilkanLembur"
+                        component={renderField}
+                      //label="Tampilkan Lembur :"
+                      /> Tampilkan Lembur
+                    </FormGroup>
+                  </Col>
+                  <Col md={4}>
+                    <FormGroup>
+                      <Field
+                        type="checkbox"
+                        name="TampilkanTerlambat"
+                        component={renderField}
+                      //label="Tampilkan Terlambat :"
+                      /> Tampilkan Terlambat
+                    </FormGroup>
+                  </Col>
+
+                  <Col md={4}>
+                    <FormGroup>
+                      <Field
+                        type="checkbox"
+                        name="Status"
+                        component={renderField}
+                      //label="Status :"
+                      />  Bisa Absen Manual
+                    </FormGroup>
+                  </Col>
+                </Row>
+              </Col>
+
+
+            </Row>
           </Col>
-
-
-          <Col md={3}>
-            <FormGroup>
-              <Field
-                type="number"
-                name="HP"
-                component={renderField}
-                label="Nomor HP Pegawai :"
-              />
-            </FormGroup>
-          </Col>
-
-          <Col md={3}>
-            <FormGroup>
-              <Field
-                type="date"
-                name="TglLahir"
-                component={renderField}
-                label="Tanggal Lahir :"
-              />
-            </FormGroup>
-          </Col>
-
-          <Col md={3}>
-            <FormGroup>
-              <Field
-                type="date"
-                name="TglMasuk"
-                component={renderField}
-                label="Tanggal Masuk :"
-              />
-            </FormGroup>
-          </Col>
-
-          <Col md={3}>
-            <FormGroup>
-              <Field
-                type="date"
-                name="TglAwalKontrakPertama"
-                component={renderField}
-                label="Tanggal Awal Kontrak :"
-              />
-            </FormGroup>
-          </Col>
-
-          <Col md={3}>
-            <FormGroup>
-              <Field
-                type="date"
-                name="TglMulaiCuti"
-                component={renderField}
-                label="Tanggal Mulai Cuti:"
-              />
-            </FormGroup>
-          </Col>
-
-  
-
-          <Col md={3}>
-            <FormGroup>
-              <Field
-                name="KodeCabang"
-                component={renderField2}
-                options={this.props.getOptCabang}
-                label="Cabang :"
-              />
-            </FormGroup>
-          </Col>
-
-
-          <Col md={3}>
-            <FormGroup>
-              <Field
-                name="GroupID"
-                component={renderField2}
-                options={this.props.getOptGroup}
-                label="Group Karyawan :"
-              />
-            </FormGroup>
-          </Col>
-
-          <Col md={3}>
-            <FormGroup>
-              <Field
-                type="text"
-                name="Posisi"
-                component={renderField}
-                label="Posisi :"
-              />
-            </FormGroup>
-          </Col>
-
-          
-          <Col md={3}>
-            <FormGroup>
-              <Field
-                type="select"
-                name="RoleID"
-                component={renderField}
-                label="Akses Karyawan :"
-              />
-            </FormGroup>
-          </Col>
-
-          
-          <Col md={3}>
-            <FormGroup>
-              <Field
-                type="text"
-                name="UserID"
-                component={renderField}
-                label="UserID:"
-              />
-            </FormGroup>
-          </Col>
-          
-          {/* <Col md={2}>
-            <FormGroup>
-              <Field
-                type="password"
-                name="Pass"
-                disabled={disabled}
-                component={renderField}
-                label="PIN Password :"
-              />
-            </FormGroup>
-          </Col> */}
-
-        <Col md={1}>
-        </Col>
-
-          <Col md={2}>
-            <FormGroup>
-              
-              <Field
-                type="checkbox"
-                name="TampilkanLembur"
-                component={renderField}
-                //label="Tampilkan Lembur :"
-              /> Tampilkan Lembur
-            </FormGroup>
-          </Col>
-
-
-          <Col md={2}>
-            <FormGroup>
-            <Field
-                type="checkbox"
-                name="TampilkanTerlambat"
-                component={renderField}
-                //label="Tampilkan Terlambat :"
-              /> Tampilkan Terlambat
-            </FormGroup>
-          </Col>
-
-          <Col md={1}>
-        </Col>
-
-
-          <Col md={1}>
-            <FormGroup>
-              <Field
-                type="checkbox"
-                name="Status"
-                component={renderField}
-                //label="Status :"
-              />  Status
-            </FormGroup>
-          </Col>
-
-
-          
-
-
         </FormGroup>
         <FormGroup row>
           <Col md="12">
@@ -332,9 +372,20 @@ class FormComponent extends Component {
   }
 }
 
+// export default reduxForm({
+//   form: "formCreateUserx",
+//   validate: UserValidation,
+//   enableReinitialize: true,
+// })(
+//   connect(
+//     mapStateToProps,
+//     mapDispatchToProps
+//   )(FormComponent)
+// );
+
 FormComponent = reduxForm({
-  form: "formCreateUser",
+  form: "formCreateUserx",
   validate: UserValidation,
   enableReinitialize: true,
 })(FormComponent);
-export default connect(mapStateToProps, null)(FormComponent);
+export default connect(mapStateToProps, mapDispatchToProps)(FormComponent);

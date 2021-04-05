@@ -21,7 +21,7 @@ class ListLaporanContainer extends Component {
           <tr>
             <td width="150"></td>
             <td>
-              <LengkapiAbsenGuestComponent onSubmit={(data) => this.handleSubmit2(data)} />
+              <LengkapiAbsenGuestComponent onSubmit={(data) => this.handleSubmit2(data)} tglAwal="2021-03-01" />
             </td>
             <td>
               <tr>

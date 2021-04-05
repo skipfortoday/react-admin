@@ -10,6 +10,7 @@ export const GET_CABANG_LIST = "GET_CABANG_LIST";
 export const GET_CABANG_DETAIL = "GET_CABANG_DETAIL";
 export const POST_CABANG_CREATE = "POST_CABANG_CREATE";
 export const PUT_CABANG_EDIT = "PUT_CABANG_EDIT";
+// export const SET_TGL_CUTI = "SET_TGL_CUTI";
 
 
 
@@ -381,3 +382,15 @@ export const deleteDataCabang = () => {
     });
   };
 };
+
+
+// export const setTglCuti = () => {
+//   return (dispatch) =>{
+//     dispatch({
+//       type: SET_TGL_CUTI,
+//       payload: {
+
+//       }
+//     })
+//   }
+// }

@@ -1,19 +1,6 @@
 import { GET_LIST_HISTORY, SET_FILTER_HISTORY, DEL_LIST_HISTORY } from '../actions/historyAction';
+import { formatTglYmd } from '../containers/formatTgl';
 
-const formatTgl =(td) =>{
-    var Y = td.getFullYear(),
-        m = td.getMonth(),
-        d = td.getDate();
-        // H = td.getHours(),
-        // i = td.getMinutes(),
-        // s = td.getSeconds();
-
-    if(m < 10) m+=1;
-    if(m < 10) m = "0"+m;
-    if(d < 10) d = "0"+d;
-
-    return  Y+"-"+m+"-"+d;
-}
 
 let initialState = {
     getListHistory: false,
@@ -23,12 +10,12 @@ let initialState = {
         value: 'all',
         label: 'Semua Karyawan'
     },
-    defTglAwal: formatTgl(new Date(
+    defTglAwal: formatTglYmd(new Date(
         new Date().getFullYear(),
         new Date().getMonth(),
         new Date().getDate()-30
     )),
-    defTglAkhir: formatTgl(new Date()),
+    defTglAkhir: formatTglYmd(new Date()),
 
 };
 

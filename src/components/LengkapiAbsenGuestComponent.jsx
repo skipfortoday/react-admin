@@ -89,8 +89,9 @@ const mapStateToProps = (state) => {
     getOptUser : state.Opt.getOptUser,
     initialValues: {
       Nama : {value : state.users.getUserDetail.UserID, label: state.users.getUserDetail.Nama},
-      TglAwal : state.Laporan.getLaporanRekap.TglAwal,
-      TglAkhir : state.Laporan.getLaporanRekap.TglAkhir,
+      TglAwal : state.Laporan.getLaporanRekap ? state.Laporan.getLaporanRekap.TglAwal : state.Laporan.defTglAwal,
+      TglAkhir : state.Laporan.getLaporanRekap ? state.Laporan.getLaporanRekap.TglAkhir : state.Laporan.defTglAkhir
+      //TglAkhir : state.Laporan.getLaporanRekap.TglAkhir,
     },
   };
 };
@@ -98,6 +99,7 @@ const mapStateToProps = (state) => {
 
 class LengkapiAbsenGuestComponent extends Component {
   render() {
+    
     return (
       <form onSubmit={this.props.handleSubmit}>
           

@@ -9,8 +9,16 @@ import {
   Nav,
   NavItem,
   NavLink,
+  DropdownItem,
+  DropdownMenu,
+  DropdownToggle,
+  UncontrolledDropdown,
+  Button
 } from "reactstrap";
+import { siteConfig } from "../config";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import LogoutComponent from "./LogoutComponent";
+import { faSignOutAlt, faUserAlt, faUserAltSlash, faUserAstronaut, faUserCircle, faUserCog, faUserInjured, faUserMd, faUserTag, faUserTie } from "@fortawesome/free-solid-svg-icons";
 
 const NavbarComponent = (props) => {
   const [collapsed, setCollapsed] = useState(true);
@@ -63,19 +71,37 @@ const NavbarComponent = (props) => {
               </a>
             </NavItem>
           </Nav>
+
           <Nav navbar>
             <NavItem>
-              <NavItem>
-
-                <NavbarBrand> {nama}</NavbarBrand>
-
-              </NavItem>
+              <NavbarBrand> {siteConfig.nama}</NavbarBrand>
             </NavItem>
+            {/* <NavItem>
+              <NavbarBrand> {nama}</NavbarBrand>
+            </NavItem> */}
+            <UncontrolledDropdown nav inNavbar>
+              <DropdownToggle nav caret>
+                <FontAwesomeIcon icon={faUserTie} />&nbsp;{nama}
+              </DropdownToggle>
+              <DropdownMenu right>
+                <DropdownItem>
+                  Profile
+                </DropdownItem>
+                <DropdownItem divider />
+                <DropdownItem>
+                  {/* <Button color="dark" onClick={() => localStorage.clear()}> */}
+                  <a href={"/home"} style={{textDecoration:"none", color:"unset"}}>
+                    <FontAwesomeIcon icon={faSignOutAlt} />&nbsp; Logout
+                  </a>
+                  {/* </Button> */}
+                </DropdownItem>
+              </DropdownMenu>
+            </UncontrolledDropdown>
           </Nav>
 
-          <a href={"/home"}>
+          {/* <a href={"/home"}>
             <LogoutComponent />
-          </a>
+          </a> */}
         </Collapse>
       </Navbar>
 
