@@ -81,9 +81,11 @@ class CreateIzinContainer extends Component {
     console.log(data);
     if(!data.DatangID){
       // create
+      console.log(data);
       this.props.dispatch(postIzinCreate(data));
     }else{
       //put
+      //console.log(data);
       this.props.dispatch(putIzinUpdate(data, data.DatangID));
     }
   }
@@ -135,7 +137,7 @@ class CreateIzinContainer extends Component {
     return (
       <div>
         <NavbarComponent />
-        <div class="header-1" style={{ backgroundColor: "#fec107" }}>
+        <div class="header-1" style={{ backgroundColor: "#f9a826" }}>
         <td><BackIzin /></td>
         <td width='30px'></td>
          <td>
@@ -157,13 +159,9 @@ class CreateIzinContainer extends Component {
                 </div>
               </div>
             </div>
-            
-          
-            
-          
         </div>
         
-        <div class="header-1" style={{ backgroundColor: "#fec107" }}>
+        <div class="header-1" style={{ backgroundColor: "#f9a826" }}>
             <Container>
             <Row>
           <h3>Print Preview</h3> <PrintButton />

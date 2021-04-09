@@ -33,7 +33,7 @@ const TableComponent = (props) => {
       text: "UserID",
       sort: true,
       headerStyle: () => {
-        return { width: "40px", backgroundColor:"#fec107" };
+        return { width: "40px", backgroundColor:"#f9a826" };
       },
       style: () => {
         return { fontWeight : "bold" , color:"white"};
@@ -44,7 +44,7 @@ const TableComponent = (props) => {
       text: "Nama",
       sort: true,
       headerStyle: () => {
-        return { width: "80px" , backgroundColor:"#fec107"};
+        return { width: "80px" , backgroundColor:"#f9a826"};
       },
       style: () => {
         return { fontWeight : "bold" , color:"white"};
@@ -57,7 +57,7 @@ const TableComponent = (props) => {
       text: "Group",
       sort: true,
       headerStyle: () => {
-        return { width: "120px", backgroundColor:"#fec107" };
+        return { width: "120px", backgroundColor:"#f9a826" };
       },
       style: () => {
         return { fontWeight : "bold" , color:"white"};
@@ -68,7 +68,7 @@ const TableComponent = (props) => {
       dataField: "link",
       text: "Action",
       headerStyle: () => {
-        return { width: "20px", backgroundColor:"#fec107" };
+        return { width: "20px", backgroundColor:"#f9a826" };
       },
       formatter: (rowContent, row) => {
         return (

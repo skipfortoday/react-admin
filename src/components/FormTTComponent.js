@@ -5,8 +5,7 @@ import { FormGroup, Col, Label, Input, Row, Button } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSave } from "@fortawesome/free-solid-svg-icons";
 import TerlambatValidation from "../validations/TerlambatValidation";
-
-
+import Select from 'react-select';
 
 const renderField = ({
   input,
@@ -30,14 +29,14 @@ const renderField = ({
         placeholder={placeholder}
         disabled={disabled}
         readOnly={readOnly}
-      
+
       >
-           <option value ="">-</option>
-        <option value ="1">Shift 1</option>
-        <option value = "2">Shift 2</option>
-        <option value = "3">Shift 3</option>
+        <option value="">-</option>
+        <option value="1">Shift 1</option>
+        <option value="2">Shift 2</option>
+        <option value="3">Shift 3</option>
       </Input>
-   
+
       {touched &&
         ((error && <p style={{ color: "brown" }}>{error}</p>) ||
           (warning && <p style={{ color: "brown" }}>{warning}</p>))}
@@ -45,17 +44,61 @@ const renderField = ({
   </Row>
 );
 
-const mapStateToProps = (state) => {
+const renderFieldSelect = ({
+  input,
+  name,
+  id,
+  type,
+  placeholder,
+  label,
+  isDisabled,
+  options,
+  readOnly,
+  meta: { touched, error, warning },
+}) => (
+  <Row>
+    <Col md="12">
+      <Label htmlFor="{input}" className="col-form-label">
+        {label}
+      </Label>
+    </Col>
+    <Col md="12">
 
-  //console.log(optsiterpilih);
+      <Select
+        {...Input}
+        id={id}
+        name={name}
+        type={type}
+        placeholder={placeholder}
+        isDisabled={isDisabled}
+        readOnly={readOnly}
+        options={options}
+        value={input.value}
+        // onChange={(value) => input.onChange(value)}
+        onChange={input.onChange}
+
+      // onBlur={() => input.onBlur()}
+      />
+      {touched &&
+        ((error && <p style={{ color: "red" }}>{error}</p>) ||
+          (warning && <p style={{ color: "brown" }}>{warning}</p>))}
+    </Col>
+  </Row>
+);
+
+const mapStateToProps = (state) => {
   return {
+    getOptTerlambat: state.Opt.getOptTerlambat,
     initialValues: {
-      GroupID: state.Group.getGroupDetail.GroupID,
-      Jabatan: state.Group.getGroupDetail.Jabatan,
+      GroupJabatan: {
+        value: state.Group.getGroupDetail.GroupID ? state.Group.getGroupDetail.GroupID : "",
+        label: (state.Group.getGroupDetail.GroupID ? state.Group.getGroupDetail.GroupID : "") + ' - ' + (state.Group.getGroupDetail.Jabatan ? state.Group.getGroupDetail.Jabatan : "")
+      },
+      RuleID: state.TerlambatBertingkat.getTerlambatBertingkatDetail2.RuleTerlambatBertingkatID,
       Shift: state.TerlambatBertingkat.getTerlambatBertingkatDetail2.Shift,
       MaxJamDatang: state.TerlambatBertingkat.getTerlambatBertingkatDetail2.MaxJamDatang,
       RpPotonganTerlambat: state.TerlambatBertingkat.getTerlambatBertingkatDetail2.RpPotonganTerlambat,
-
+      
     },
   };
 };
@@ -64,19 +107,19 @@ const mapStateToProps = (state) => {
 
 
 class FormTTComponent extends Component {
+
   render() {
     return (
       <form onSubmit={this.props.handleSubmit}>
-   
         <FormGroup row>
-          <Col md={1}>
+          <Col md={1} style={{display:"none"}}>
             <FormGroup>
               <Field
                 type="text"
-                name="GroupID"
+                name="RuleID"
                 component={renderField}
-                label="GroupID:"
-                disabled
+                label="RuleID :"
+                readOnly
               />
             </FormGroup>
           </Col>
@@ -84,11 +127,14 @@ class FormTTComponent extends Component {
           <Col md={3}>
             <FormGroup>
               <Field
-                type="text"
-                name="Jabatan"
-                component={renderField}
-                label="Jabatan :"
-                disabled
+                type="select"
+                name="GroupJabatan"
+                component={renderFieldSelect}
+                label="Group Jabatan :"
+                placeholder="Pilih Group Jabatan"
+                options={this.props.getOptTerlambat}
+                onChange={this.props.JabatanChange}
+                isDisabled={this.props.isEditing}
               />
             </FormGroup>
           </Col>
@@ -124,15 +170,15 @@ class FormTTComponent extends Component {
               />
             </FormGroup>
           </Col>
-          <Col md={1}>
-            <FormGroup>
-              <Label>.</Label>
-            <Button
+          <Col md={2}>
+            <FormGroup >
+              <Button
+                style={{ marginTop: "35px" }}
                 color="dark"
                 type="submit"
                 disabled={this.props.submitting}
               > <FontAwesomeIcon icon={faSave} /> SIMPAN
-              </Button>
+                </Button>
             </FormGroup>
           </Col>
         </FormGroup>

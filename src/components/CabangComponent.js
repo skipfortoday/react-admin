@@ -59,7 +59,7 @@ const CabangComponent = (props) => {
       text: "KodeCabang",
       sort: true,
       headerStyle: () => {
-        return { width: "75px" , backgroundColor:"#fec107" };
+        return { width: "75px" , backgroundColor:"#f9a826" };
       },
       style: () => {
         return { fontWeight : "bold" };
@@ -70,7 +70,7 @@ const CabangComponent = (props) => {
       text: "Nama Cabang",
       sort: true,
       headerStyle: () => {
-        return { width: "100px", backgroundColor:"#fec107" };
+        return { width: "100px", backgroundColor:"#f9a826" };
       },
       style: () => {
         return { fontWeight : "bold" };
@@ -81,7 +81,7 @@ const CabangComponent = (props) => {
       text: "Alamat Cabang", 
       sort: true,
       headerStyle: () => {
-        return { width: "200px", backgroundColor:"#fec107" };
+        return { width: "200px", backgroundColor:"#f9a826" };
       },
       style: () => {
         return { fontWeight : "bold" };
@@ -92,7 +92,7 @@ const CabangComponent = (props) => {
       dataField: "link",
       text: "Action",
       headerStyle: () => {
-        return { width: "40px", backgroundColor:"#fec107" };
+        return { width: "40px", backgroundColor:"#f9a826" };
       },
       formatter: (rowContent, row) => {
         return (

@@ -65,7 +65,7 @@ class EditTerlambatBertingkatContainer extends Component {
 
 <div>
 <NavbarComponent />
-<div style={{ backgroundColor: "#fec107" }}>
+<div style={{ backgroundColor: "#f9a826" }}>
   
   <tr>
   

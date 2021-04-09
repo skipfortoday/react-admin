@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 import { reduxForm, Field } from "redux-form";
 import { connect } from "react-redux";
-import { FormGroup, Col, Label, Input, Row, Button ,Card, CardTitle } from "reactstrap";
+import { FormGroup, Col, Label, Input, Row, Button, Card, CardTitle } from "reactstrap";
 import LoginValidation from "../validations/LoginValidation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSignInAlt } from "@fortawesome/free-solid-svg-icons";
+import '../containers/LoginStyle.css';
+import { Link } from "react-router-dom";
 
- 
 const renderField = ({
   input,
   type,
@@ -23,14 +24,14 @@ const renderField = ({
       </Label>
     </Col>
     <Col md="12">
-      <Input
+      <input
         {...input}
         type={type}
         placeholder={placeholder}
         disabled={disabled}
         readOnly={readOnly}
-        
-      ></Input>
+
+      ></input>
       {touched &&
         ((error && <p style={{ color: "#fafa00" }}>{error}</p>) ||
           (warning && <p style={{ color: "brown" }}>{warning}</p>))}
@@ -43,7 +44,7 @@ const mapStateToProps = (state) => {
   //console.log(optsiterpilih);
   return {
     initialValues: {
-      AdminID : state.Login.postLoginUser,
+      AdminID: state.Login.postLoginUser,
       Password: state.Login.postLoginUser,
     },
   };
@@ -53,47 +54,48 @@ const mapStateToProps = (state) => {
 class LoginComponent extends Component {
   render() {
     return (
-        
-      <Card body inverse color="dark">
-        <CardTitle tag="h5">Login Lviors Absensi</CardTitle> 
-      <form onSubmit={this.props.handleSubmit}>
+      <form onSubmit={this.props.handleSubmit} className="formLogin">
         <FormGroup row>
-          <Col md={5}>
+          <Col md={12}>
             <FormGroup>
               <Field
                 type="text"
                 name="AdminID"
                 component={renderField}
-                label="Username :"
+                label="Username"
               />
             </FormGroup>
           </Col>
 
-          <Col md={5}>
+          <Col md={12}>
             <FormGroup>
               <Field
                 type="Password"
                 name="Password"
                 component={renderField}
-                label="Password :"
+                label="Password"
               />
             </FormGroup>
-         
           </Col>
-
-          <Col md={1}>
+          <Col md="12" className="cas">
+            <div class="custom-control custom-switch rememberMe">
+              <input type="checkbox" class="custom-control-input" id="customSwitch1" />
+              <label class="custom-control-label" for="customSwitch1">Remember me</label>
+            </div>
+            <Link className="forgotPassword">Forgot Password?</Link>
+          </Col>
+          <Col md={12}>
             <Label></Label>
-          <Button
-                color="warning"
-                type="submit"
-                disabled={this.props.submitting}
-              >
-                <FontAwesomeIcon icon={faSignInAlt} /> Login
+            <Button
+              className="buttonLogin btn-block"
+              type="submit"
+              disabled={this.props.submitting}
+            >
+              Login
               </Button>
           </Col>
         </FormGroup>
       </form>
-      </Card>
     );
   }
 }

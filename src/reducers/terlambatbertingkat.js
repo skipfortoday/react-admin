@@ -4,6 +4,7 @@ import {
     POST_TERLAMBATBERTINGKAT_CREATE,
     PUT_TERLAMBATBERTINGKAT_EDIT,
     GET_TERLAMBATBERTINGKAT_DETAIL2,
+    POST_TERLAMBATBERTINGKAT_SALIN
   } from "../actions/TerlambatBertingkatAction"
   
   let initialState = {
@@ -15,6 +16,9 @@ import {
     errorTerlambatBertingkatDetail2: false,
     getResponDataTerlambatBertingkat: false,
     errorResponDataTerlambatBertingkat: false,
+
+    postTerlambatBertingkatSalin:false,
+    errorTerlambatBertingkatSalin:false
   };
   
   const TerlambatBertingkat = (state = initialState, action) => {
@@ -54,6 +58,13 @@ import {
           errorResponDataTerlambatBertingkat: action.payload.errorMessage,
         };
   
+      case POST_TERLAMBATBERTINGKAT_SALIN:
+        return {
+          ...state,
+          postTerlambatBertingkatSalin: action.payload.data,
+          errorTerlambatBertingkatSalin: action.payload.errorMessage
+        }
+
       default:
         return state;
     }

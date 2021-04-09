@@ -51,7 +51,7 @@ class EditCabangContainer extends Component {
     return (
       <div>
         <NavbarComponent />
-        <div style={{ backgroundColor: "#fec107" }}>
+        <div style={{ backgroundColor: "#f9a826" }}>
           <BackCabang />
           <Container>
           <FormCabangComponent onSubmit={(data) => this.handleSubmit(data)} />

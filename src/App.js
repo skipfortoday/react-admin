@@ -119,8 +119,11 @@ function App () {
           <Route path="/group/edit/:GroupID" exact component={EditGroupContainer} />
 
           <Route path="/group/terlambatbertingkat/:GroupID" exact component={TerlambatBertingkatContainer} />
+          
+          <Route path="/group/terlambatbertingkat" exact component={TerlambatBertingkatContainer} />
 
-          <Route path="/group/terlambatbertingkat/:GroupID/:RuleTerlambatBertingkatID" exact component={EditTerlambatBertingkatContainer} />
+          {/* <Route path="/group/terlambatbertingkat/:GroupID/:RuleTerlambatBertingkatID" exact component={EditTerlambatBertingkatContainer} /> */}
+          <Route path="/group/terlambatbertingkat/:GroupID/:RuleTerlambatBertingkatID" exact component={TerlambatBertingkatContainer} />
 
           <Route path="/izin" exact component={IzinContainer} />
 

@@ -50,7 +50,7 @@ class CreateUserContainer extends Component {
     return (
       <div>
         <NavbarComponent />
-        <div style={{ backgroundColor: '#fec107'}}>
+        <div style={{ backgroundColor: '#f9a826'}}>
         <BackComponent />
         <Container>
         <FormComponent onSubmit={(data) => this.handleSubmit(data)} />

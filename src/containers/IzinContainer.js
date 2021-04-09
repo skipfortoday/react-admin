@@ -9,6 +9,7 @@ import { getOptUser } from "../actions/optAction";
 import LengkapiAbsen from "../components/LengkapiAbsen";
 import { postLaporanProses } from "../actions/laporanAction";
 import { Redirect } from "react-router-dom";
+import { Row, Col, Container } from "reactstrap"
 
 const mapStateToProps = (state) => {
   return {
@@ -28,10 +29,10 @@ class IzinContainer extends Component {
   }
 
   render() {
-    if (!localStorage.getItem('user')||  localStorage.getItem('user') === "false") {
+    if (!localStorage.getItem('user') || localStorage.getItem('user') === "false") {
       swal("Failed!", "Login Dulu Bosq", "error");
-      return <Redirect to="/home" /> ;
-    } 
+      return <Redirect to="/home" />;
+    }
     if (this.props.getResponDataLaporan || this.props.errorResponDataLaporan) {
       if (this.props.errorResponDataLaporan) {
         swal("Failed!", this.props.errorResponDataLaporan, "error");
@@ -39,9 +40,9 @@ class IzinContainer extends Component {
         swal(
           "Proses Berhasil!",
           "Nama : " +
-            this.props.getResponDataLaporan.Nama +
-            " | ID : " +
-            this.props.getResponDataLaporan.UserID,
+          this.props.getResponDataLaporan.Nama +
+          " | ID : " +
+          this.props.getResponDataLaporan.UserID,
           "success"
         );
       }
@@ -49,24 +50,17 @@ class IzinContainer extends Component {
     return (
       <div>
         <NavbarComponent />
-        <div style={{ backgroundColor: '#fec107'}}>
-          <tr> 
-            <td width="60"></td> 
-            <td>
-               <LengkapiAbsen onSubmit={(data) => this.handleSubmit(data)} />
-            </td>
-            <td width="10"></td> 
-          <td>
-            <tr>
-            <td width="100">.</td> 
-            </tr>
-            <tr>
-         
-             <LengkapiAbsenButton />
-
-            </tr>
-          </td>
-          </tr>
+        <div style={{ backgroundColor: '#f9a826' }} >
+          <Container>
+            <Row>
+              <Col md="12">
+                <LengkapiAbsen onSubmit={(data) => this.handleSubmit(data)} />
+              </Col>
+              {/* <Col md="2">
+                <LengkapiAbsenButton />
+              </Col> */}
+            </Row>
+          </Container>
         </div>
 
         <IzinComponent />

@@ -1,0 +1,80 @@
+.mainWrapper{
+    height: 100vh;
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+}
+
+.loginWrapper{
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+.loginBox{
+    border-radius: 6px;
+    width: 390px;
+    height: 480px;
+    border: 1px solid rgb(231, 230, 230);
+    position: absolute;
+    right: 0px;
+    top: 90px;
+    padding: 12px;
+    box-sizing: border-box;
+}
+
+.iconUser{
+    width: 60px;
+    height: 60px;
+    margin: 7px auto;
+    display: block;
+}
+.welcome{
+    font-size: 36px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    /* font-family: Arial, Helvetica, sans-serif; */
+    font-weight: 600;
+    text-align: center;
+    margin: 20px auto;
+}
+
+.buttonLogin{
+    background-color: #f9a826 !important;
+    border:0 !important;
+    border-radius: 16px !important;
+}
+
+.formLogin{
+    width: 290px;
+    margin:auto;
+    display: block;
+}
+
+.formLogin input{
+    border: 0;
+    border-bottom: 1px solid #f9a826;
+    width: 100%;
+}
+
+.formLogin input:focus,.formLogin input:active{
+    border-bottom: 2px solid #f9a826;
+    outline: none;
+}
+
+.cas{
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.rememberMe{
+    float: left;
+    font-size: 14px;
+}
+.forgotPassword{
+    float: right;
+    font-size: 14px;
+}
+
+.custom-control-input:checked~.custom-control-label::before{
+    color: #fff;
+    border-color: #f9a826 !important;
+    background-color: #f9a826 !important;
+}

@@ -49,7 +49,7 @@ class CreateAdminContainer extends Component {
     return (
      <div>
         <NavbarComponent />
-        <div style={{ backgroundColor: '#fec107'}}>
+        <div style={{ backgroundColor: '#f9a826'}}>
         <BackAdminComponent />
         <Container>
         <FormAdminComponent onSubmit={(data) => this.handleSubmit(data)} />

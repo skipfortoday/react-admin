@@ -86,6 +86,35 @@ const renderField2 = ({
   </Row>
 );
 
+const renderFieldCb = ({
+  input,
+  name,
+  id,
+  type,
+  placeholder,
+  label,
+  disabled,
+  options,
+  readOnly,
+  meta: { touched, error, warning },
+}) => (
+  <Col>
+    <Label htmlFor="{input}" className="col-form-label">
+      <Input
+        {...input}
+        type={type}
+        placeholder={placeholder}
+        disabled={disabled}
+        readOnly={readOnly}
+      />
+      {touched &&
+        ((error && <p style={{ color: "red" }}>{error}</p>) ||
+          (warning && <p style={{ color: "brown" }}>{warning}</p>))}
+      {label}
+    </Label>
+  </Col>
+);
+
 // Decorate form with dispatchable actions
 const mapDispatchToProps = (dispatch) => ({
   change, reset
@@ -94,7 +123,7 @@ const mapDispatchToProps = (dispatch) => ({
 // const form = formValueSelector("formCreateUserx");
 const mapStateToProps = (state) => {
   // const {TglAwalKontrakPertama, TglMulaiCuti, Posisi}  = form(state, "TglAwalKontrakPertama", "TglMulaiCuti", "Posisi");
-  
+
   return {
     getOptGroup: state.Opt.getOptGroup,
     getOptCabang: state.Opt.getOptCabang,
@@ -314,36 +343,32 @@ class FormComponent extends Component {
 
               <Col md={12}>
                 <Row>
-                  <Col md={4}>
-                    <FormGroup>
-
+                  <Col md="4">
+                  </Col>
+                  <Col md="8">
+                    <FormGroup className="mb-0">
                       <Field
                         type="checkbox"
                         name="TampilkanLembur"
-                        component={renderField}
-                      //label="Tampilkan Lembur :"
-                      /> Tampilkan Lembur
+                        component={renderFieldCb}
+                        label="Hitung Lembur"
+                      />
                     </FormGroup>
-                  </Col>
-                  <Col md={4}>
-                    <FormGroup>
+                    <FormGroup className="mb-0">
                       <Field
                         type="checkbox"
                         name="TampilkanTerlambat"
-                        component={renderField}
-                      //label="Tampilkan Terlambat :"
-                      /> Tampilkan Terlambat
+                        component={renderFieldCb}
+                        label="Hitung Terlambat"
+                      />
                     </FormGroup>
-                  </Col>
-
-                  <Col md={4}>
-                    <FormGroup>
+                    <FormGroup className="mb-0">
                       <Field
                         type="checkbox"
                         name="Status"
-                        component={renderField}
-                      //label="Status :"
-                      />  Bisa Absen Manual
+                        component={renderFieldCb}
+                        label="Bisa Absen Manual"
+                      />
                     </FormGroup>
                   </Col>
                 </Row>

@@ -12,6 +12,10 @@ const TerlambatValidation = (values) => {
     if (!values.RpPotonganTerlambat|| values.RpPotonganTerlambat=== "") {
       errors.RpPotonganTerlambat = "Potongan harus diisi";
     }
+
+    if(!values.GroupID || values.GroupID.value === ""){
+      errors.GroupID = "Group Jabatan Harus Diisi";
+    }
   
     return errors;
   };

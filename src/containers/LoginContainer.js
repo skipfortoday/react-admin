@@ -7,6 +7,9 @@ import LoginComponent from "../components/LoginComponent";
 import BackLogin from "../components/BackLogin";
 import { Redirect } from "react-router-dom";
 import { Col, Container, Row } from "reactstrap";
+import bgLogin from "../bg_login_page.png"
+import userLogin from "../icon_user_login.png"
+import './LoginStyle.css';
 
 const mapStateToProps = (state) => {
   return {
@@ -44,20 +47,26 @@ class LoginContainer extends Component {
       }
     }
 
+
     return (
-      <div >
-        
+      <div className="mainWrapper" style={{backgroundImage:`url(${bgLogin})`}}>
         <Container>
-          
-        <Row>
-          <BackLogin/>
-        </Row>
-        <Row>
-        <Col md={3}></Col>
-        <Col md={7}>
-        <LoginComponent onSubmit={(data) => this.handleSubmit(data)} />
-        </Col>
-        </Row>
+          <div className="loginWrapper">
+            <div className="loginBox">
+              <img className="iconUser" src={userLogin}></img>
+              <h1 className="welcome">WELCOME ADMIN</h1>
+              <LoginComponent onSubmit={(data) => this.handleSubmit(data)} />
+            </div>
+          </div>
+          {/* <Row>
+            <BackLogin />
+          </Row> */}
+          {/* <Row>
+            <Col md={3}></Col>
+            <Col md={7}> */}
+              {/* <LoginComponent onSubmit={(data) => this.handleSubmit(data)} /> */}
+            {/* </Col>
+          </Row> */}
         </Container>
       </div>
     );

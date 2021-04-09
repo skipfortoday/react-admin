@@ -1,6 +1,6 @@
 import React from "react";
 import BootstrapTable from "react-bootstrap-table-next";
-import {  Button, Row, Col, Spinner , Card} from "reactstrap";
+import { Button, Row, Col, Spinner, Card } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faEdit,
@@ -10,28 +10,29 @@ import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
 import paginationFactory from "react-bootstrap-table2-paginator";
 import { connect } from "react-redux";
 import swal from 'sweetalert';
-import { deleteTerlambatBertingkat } from "../actions/TerlambatBertingkatAction";
+import { deleteTerlambatBertingkat, getTerlambatBertingkatDetail2 } from "../actions/TerlambatBertingkatAction";
+import { Link } from "react-router-dom";
 
 const { SearchBar } = Search;
 
 const handleClick = (dispatch, RuleTerlambatBertingkatID) => {
-  
+
   swal({
     title: "Apakah Anda yakin akan menghapus data ini ?",
     icon: "warning",
     buttons: true,
     dangerMode: true,
   })
-  .then((willDelete) => {
-    if (willDelete) {
-      dispatch(deleteTerlambatBertingkat(RuleTerlambatBertingkatID))
-      swal("Data TerlambatBertingkat Sukses dihapus", {
-        icon: "success",
-      });window.location.reload();
-    } else {
-      swal("Data gagal dihapus");
-    }
-  });
+    .then((willDelete) => {
+      if (willDelete) {
+        dispatch(deleteTerlambatBertingkat(RuleTerlambatBertingkatID))
+        swal("Data TerlambatBertingkat Sukses dihapus", {
+          icon: "success",
+        }); window.location.reload();
+      } else {
+        swal("Data gagal dihapus");
+      }
+    });
 }
 
 
@@ -57,10 +58,10 @@ const TerlambatBertingkatComponent = (props) => {
       text: "ID",
       sort: true,
       headerStyle: () => {
-        return { width: "5px" , backgroundColor:"#fec107" };
+        return { width: "5px", backgroundColor: "#f9a826" };
       },
       style: () => {
-        return { fontWeight : "bold" };
+        return { fontWeight: "bold" };
       },
     },
     {
@@ -68,10 +69,10 @@ const TerlambatBertingkatComponent = (props) => {
       text: "GroupID",
       sort: true,
       headerStyle: () => {
-        return { width: "30px" , backgroundColor:"#fec107" };
+        return { width: "30px", backgroundColor: "#f9a826" };
       },
       style: () => {
-        return { fontWeight : "bold" };
+        return { fontWeight: "bold" };
       },
     },
     {
@@ -79,53 +80,58 @@ const TerlambatBertingkatComponent = (props) => {
       text: "Shift",
       sort: true,
       headerStyle: () => {
-        return { width: "30px", backgroundColor:"#fec107" };
+        return { width: "30px", backgroundColor: "#f9a826" };
       },
       style: () => {
-        return { fontWeight : "bold" };
+        return { fontWeight: "bold" };
       },
     },
     {
       dataField: "MaxJamDatang",
-      text: "Max Jam Datang", 
+      text: "Max Jam Datang",
       sort: true,
       headerStyle: () => {
-        return { width: "100px", backgroundColor:"#fec107" };
+        return { width: "100px", backgroundColor: "#f9a826" };
       },
       style: () => {
-        return { fontWeight : "bold" };
+        return { fontWeight: "bold" };
       },
-      
+
     },
     {
       dataField: "RpPotonganTerlambat",
-      text: "Potongan ", 
+      text: "Potongan ",
       sort: true,
       headerStyle: () => {
-        return { width: "100px", backgroundColor:"#fec107" };
+        return { width: "100px", backgroundColor: "#f9a826" };
       },
       style: () => {
-        return { fontWeight : "bold" };
+        return { fontWeight: "bold" };
       },
-      
+
     },
     {
       dataField: "link",
       text: "Action",
       headerStyle: () => {
-        return { width: "40px", backgroundColor:"#fec107" };
+        return { width: "40px", backgroundColor: "#f9a826" };
       },
       formatter: (rowContent, row) => {
         return (
           <div>
-            <a href={"./"+ row.GroupID+ "/"+ row.RuleTerlambatBertingkatID}>
+            {/* <a href={"./"+ row.GroupID+ "/"+ row.RuleTerlambatBertingkatID}>
               <Button  color="warning" className="mr-2">
                 <FontAwesomeIcon icon={faEdit} />
               </Button>
-            </a>
+            </a> */}
+            <Link to={"/group/terlambatbertingkat/"+row.GroupID+"/"+row.RuleTerlambatBertingkatID} onClick={() => props.dispatch(getTerlambatBertingkatDetail2(row.RuleTerlambatBertingkatID))}>
+              <Button color="warning" className="mr-2">
+                <FontAwesomeIcon icon={faEdit} />
+              </Button>
+            </Link>
 
-            <Button  color="warning" className="mr-2" onClick={() => handleClick(props.dispatch, row.RuleTerlambatBertingkatID)}>
-              <FontAwesomeIcon icon={faTrash} /> 
+            <Button color="warning" className="mr-2" onClick={() => handleClick(props.dispatch, row.RuleTerlambatBertingkatID)}>
+              <FontAwesomeIcon icon={faTrash} />
             </Button>
           </div>
         );
@@ -133,7 +139,7 @@ const TerlambatBertingkatComponent = (props) => {
     },
   ];
 
-  
+
   return (
     <div>
       {props.getTerlambatBertingkatDetail ? (
@@ -142,25 +148,25 @@ const TerlambatBertingkatComponent = (props) => {
           keyField="RuleTerlambatBertingkatID"
           data={props.getTerlambatBertingkatDetail}
           columns={columns}
-          rowStyle={ {  fontWeight: "bold" } } 
+          rowStyle={{ fontWeight: "bold" }}
           defaultSorted={defaultSorted}
           search
         >
           {(props) => (
             <div>
               <Card body inverse style={{ backgroundColor: '#ffffff', borderColor: '#ffffff' }}>
-              <Row>
-                <Col>
-                  <div className="float-right">
-                    <SearchBar {...props.searchProps} placeholder="Search .." />
-                  </div>
-                </Col>
-              </Row>
+                <Row>
+                  <Col>
+                    <div className="float-right">
+                      <SearchBar {...props.searchProps} placeholder="Search .." />
+                    </div>
+                  </Col>
+                </Row>
 
-              <BootstrapTable
-                {...props.baseProps}
-                pagination={paginationFactory()}
-              />
+                <BootstrapTable
+                  {...props.baseProps}
+                  pagination={paginationFactory()}
+                />
               </Card>
             </div>
           )}

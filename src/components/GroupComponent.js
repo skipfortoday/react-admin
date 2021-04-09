@@ -56,7 +56,7 @@ const GroupComponent = (props) => {
       text: "GroupID",
       sort: true,
       headerStyle: () => {
-        return { width: "30px", backgroundColor:"#fec107" };
+        return { width: "30px", backgroundColor:"#f9a826" };
       },
       style: () => {
         return { fontWeight : "bold" };
@@ -67,7 +67,7 @@ const GroupComponent = (props) => {
       text: "Nama Group",
       sort: true,
       headerStyle: () => {
-        return { width: "120px" ,backgroundColor:"#fec107" };
+        return { width: "120px" ,backgroundColor:"#f9a826" };
       },
       style: () => {
         return {  fontWeight : "bold" };
@@ -77,7 +77,7 @@ const GroupComponent = (props) => {
       dataField: "link",
       text: "Action",
       headerStyle: () => {
-        return { width: "10px",backgroundColor:"#fec107" };
+        return { width: "10px",backgroundColor:"#f9a826" };
       },
       formatter: (rowContent, row) => {
         return (
@@ -131,7 +131,7 @@ const GroupComponent = (props) => {
                       <FontAwesomeIcon icon={faPlus} />
                     </Button>
                   </Link>
-                  <Link to="group/terlambatbertingkat/1">
+                  <Link to="group/terlambatbertingkat/">
                     <Button color="warning" className="mr-2">
                       <FontAwesomeIcon icon={faUsersCog} /> Terlambat Bertingkat
                     </Button>

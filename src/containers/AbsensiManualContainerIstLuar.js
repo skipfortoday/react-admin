@@ -52,7 +52,7 @@ class AbsensiManualContainerIstLuar extends Component {
         <div class="header-1">
           <div class="row p-1">
             <div class="col-md-8">
-              <div style={{ backgroundColor: "#fec107" }} class="p-2 mb-2">
+              <div style={{ backgroundColor: "#f9a826" }} class="p-2 mb-2">
                 <h3 class="text-center mt-2 mb-2">
                   Absen Istirahat Keluar Manual
                 </h3>

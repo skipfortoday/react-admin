@@ -89,7 +89,7 @@ class FormGroupComponent extends Component {
       <form onSubmit={this.props.handleSubmit}>
         <FormGroup row >
           <Col md={12}>
-          <div style={{ backgroundColor: "#fec107" }}>
+          <div style={{ backgroundColor: "#f9a826" }}>
               Masukkan Group ID untuk Kode & Nama Group / Nama Jabatan (WAJIB)
             </div>
           </Col>

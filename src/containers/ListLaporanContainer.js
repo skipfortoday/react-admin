@@ -17,7 +17,7 @@ class ListLaporanContainer extends Component {
     return (
       <div>
         <NavbarComponent />
-        <div style={{ backgroundColor: "#fec107" }}>
+        <div style={{ backgroundColor: "#f9a826" }}>
           <tr>
             <td width="150"></td>
             <td>

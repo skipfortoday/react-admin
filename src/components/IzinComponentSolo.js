@@ -67,7 +67,7 @@ const IzinComponentSolo = (props) => {
       text: "Tanggal",
       sort: true,
       headerStyle: () => {
-        return { width: "120px", backgroundColor: "#fec107" };
+        return { width: "120px", backgroundColor: "#f9a826" };
       },
       style: () => {
         return { fontWeight: "normal" };
@@ -78,7 +78,7 @@ const IzinComponentSolo = (props) => {
       text: "Datang",
       sort: true,
       headerStyle: () => {
-        return { width: "120px", backgroundColor: "#fec107" };
+        return { width: "120px", backgroundColor: "#f9a826" };
       },
       style: () => {
         return { fontWeight: "normal" };
@@ -90,7 +90,7 @@ const IzinComponentSolo = (props) => {
       text: "Pulang",
       sort: true,
       headerStyle: () => {
-        return { width: "120px", backgroundColor: "#fec107" };
+        return { width: "120px", backgroundColor: "#f9a826" };
       },
       style: () => {
         return { fontWeight: "normal" };
@@ -102,7 +102,7 @@ const IzinComponentSolo = (props) => {
       text: "Status",
       sort: true,
       headerStyle: () => {
-        return { width: "100px", backgroundColor: "#fec107" };
+        return { width: "100px", backgroundColor: "#f9a826" };
       },
       style: () => {
         return { fontWeight: "normal" };
@@ -114,7 +114,7 @@ const IzinComponentSolo = (props) => {
       text: "Keterangan",
       sort: true,
       headerStyle: () => {
-        return { width: "200px", backgroundColor: "#fec107" };
+        return { width: "200px", backgroundColor: "#f9a826" };
       },
       style: () => {
         return { fontWeight: "normal" };
@@ -124,7 +124,7 @@ const IzinComponentSolo = (props) => {
       dataField: "link",
       text: "Action",
       headerStyle: () => {
-        return { width: "70px", backgroundColor: "#fec107" };
+        return { width: "70px", backgroundColor: "#f9a826" };
       },
       style: () => {
         return { fontWeight: "normal" };

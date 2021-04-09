@@ -8,16 +8,12 @@ import { getFormValues } from "redux-form";
 
 const LengkapiAbsenButton = ({ values }) => {
   return (
-    <Row className="mb-2">
-      <Col>
+    
           <a href={"/izin/create/"+values.Nama.value+"/"+values.TglAwal+"/"+values.TglAkhir}>
-          <Button color="dark"  size="" >
-         
-            <FontAwesomeIcon icon={faSearchPlus} /> Kroscek Absensi
+          <Button color="dark" type="button" size="" >
+            <FontAwesomeIcon icon={faSearchPlus} /> View
           </Button>
           </a>
-      </Col>
-    </Row>
   );
 };
 

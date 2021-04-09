@@ -6,6 +6,7 @@ import IzinValidation from "../validations/IzinValidation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 import Select from 'react-select';
+import { formatTglYmd } from "../containers/formatTgl";
 
 const renderField = ({
   input,
@@ -93,20 +94,35 @@ const mapStateToProps = (state) => {
     getOptUser : state.Opt.getOptUser,
     initialValues: {
       Nama: state.Opt.getOptUser,
+      TanggalScan: formatTglYmd(new Date()),
+      TanggalScanSampai: formatTglYmd(new Date())
     },
   };
 };
 
 class FormIzinGroup extends Component {
+  constructor(props){
+    super(props);
+    this.state = { 
+      
+    };
+
+    // var startDay = new Date("2021-04-01");
+    // var endDay = new Date("2021-04-01");
+    // for(var day = startDay; day<=endDay; day.setDate(day.getDate()+1)){
+    //   console.log(day);
+    // }
+
+  }
+
+  handleTanggalScanChange(event){
+    console.log(event.target.value);
+  }
+  
   render() {
     return (
       <form onSubmit={this.props.handleSubmit}>
         <FormGroup row>
-
-
-
-        
-
           <Col md={12}>
             <FormGroup>
               <Field
@@ -119,18 +135,30 @@ class FormIzinGroup extends Component {
             </FormGroup>
           </Col>
 
-          <Col md={3}>
+          <Col md={2}>
             <FormGroup>
               <Field
                 type="date"
                 name="TanggalScan"
                 component={renderField}
-                label="Tanggal:"
+                label="Tanggal Awal:"
+                onChange={this.handleTanggalScanChange}
+                value={this.state.TanggalScan}
+              />
+            </FormGroup>
+          </Col>
+          <Col md={2}>
+            <FormGroup>
+              <Field
+                type="date"
+                name="TanggalScanSampai"
+                component={renderField}
+                label="Tanggal Akhir:"
               />
             </FormGroup>
           </Col>
 
-          <Col md={3}>
+          <Col md={2}>
             <FormGroup>
               <Field
                 type="select"
@@ -141,7 +169,7 @@ class FormIzinGroup extends Component {
             </FormGroup>
           </Col>
 
-          <Col md={5}>
+          <Col md={4}>
             <FormGroup>
               <Field
                 type="text"
@@ -151,15 +179,17 @@ class FormIzinGroup extends Component {
               />
             </FormGroup>
           </Col>
-         <Col md={1}>
+         <Col md={2}>
           <FormGroup>
-            <Label> Kirim </Label>
+            {/* <Label> Kirim </Label> */}
               <Button
+                style={{marginTop:"35px"}}
                 color="dark"
                 type="submit"
                 disabled={this.props.submitting} 
+                className="btn-block"
               >
-                <FontAwesomeIcon icon={faPaperPlane} /> 
+                <FontAwesomeIcon icon={faPaperPlane} /> Kirim
               </Button>
             </FormGroup>
 
@@ -175,4 +205,5 @@ FormIzinGroup = reduxForm({
   validate: IzinValidation,
   enableReinitialize: true,
 })(FormIzinGroup);
+
 export default connect(mapStateToProps, null)(FormIzinGroup);

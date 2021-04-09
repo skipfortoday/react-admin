@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Container} from "reactstrap";
+import { Button, Container} from "reactstrap";
 import BackIzin from "../components/BackIzin";
 import { connect } from "react-redux";
 import { postIzinGroup } from "../actions/izinAction";
@@ -24,6 +24,30 @@ class CreateIzinGroup extends Component {
     this.props.dispatch(postIzinGroup(data));
   }
 
+  async handleClick(){
+    // var a = 0;
+
+    // function aww() {
+    //   return 3;
+    // }
+    
+    // let xa = await aww();
+    // a +=1;
+
+    // console.log(a);
+
+
+    // swal(
+    //   "test", {
+    //     buttons: {
+    //       ok:"Okay"
+    //     }
+    //   }
+    // ).then((value) => {
+    //   window.location.reload();
+    // });
+  }
+
   render() {
     if (!localStorage.getItem('user')||  localStorage.getItem('user') === "false") {
       swal("Failed!", "Login Dulu Bosq", "error");
@@ -37,16 +61,23 @@ class CreateIzinGroup extends Component {
           "Izin Created!",
           "~" ,
           "success"
-        );
+        ).then((value) =>{
+          window.location.reload();
+        });
       }
     }
+
+    
+
+
     return (
       <div>
         <NavbarComponent />
-        <div style={{ backgroundColor: '#fec107'}}>
+        <div style={{ backgroundColor: '#f9a826'}}>
           <BackIzin></BackIzin>
         <Container>
         <FormIzinGroup onSubmit={(data) => this.handleSubmit(data)} />
+        {/* <Button onClick={this.handleClick}>TEST</Button> */}
         </Container>
         </div>
         </div>

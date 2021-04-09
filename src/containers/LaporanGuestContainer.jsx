@@ -17,7 +17,7 @@ class LaporanGuestContainer extends Component {
     return (
       <div >
         <GuestNavbarComponent/>
-        <div style={{ backgroundColor: "#fec107" }}>
+        <div style={{ backgroundColor: "#f9a826" }}>
           <tr>
             <td width="150"></td>
             <td>

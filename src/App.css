@@ -36,3 +36,13 @@
     transform: rotate(360deg);
   }
 }
+
+
+loginBox{
+  width: 320px;
+  height: 420px;
+  border: 1px solid #ccc;
+  position: absolute;
+  right: 0;
+  top: 0;
+}

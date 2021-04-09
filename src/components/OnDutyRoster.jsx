@@ -30,7 +30,7 @@ const OnDutyRoster = (props) => {
       text: "Nama",
       sort: true,
       headerStyle: () => {
-        return { width: "110px", backgroundColor: "#fec107" };
+        return { width: "110px", backgroundColor: "#f9a826" };
       },
       style: () => {
         return { fontWeight: "bold" ,padding:"10px"};
@@ -41,7 +41,7 @@ const OnDutyRoster = (props) => {
 		text: "Jam",
 		sort: true,
 		headerStyle: () => {
-		  return { width: "40px", backgroundColor: "#fec107"};
+		  return { width: "40px", backgroundColor: "#f9a826"};
 		},
 		style: () => {
 		  return { fontWeight: "bold" , padding:"10px" };

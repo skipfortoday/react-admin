@@ -59,7 +59,7 @@ const AdminComponent = (props) => {
       text: "AdminID",
       sort: true,
       headerStyle: () => {
-        return { width: "75px" , backgroundColor:"#fec107" };
+        return { width: "75px" , backgroundColor:"#f9a826" };
       },
       style: () => {
         return { fontWeight : "bold" };
@@ -70,7 +70,7 @@ const AdminComponent = (props) => {
       text: "Tanggal Create",
       sort: true,
       headerStyle: () => {
-        return { width: "100px", backgroundColor:"#fec107" };
+        return { width: "100px", backgroundColor:"#f9a826" };
       },
       style: () => {
         return { fontWeight : "bold" };
@@ -80,7 +80,7 @@ const AdminComponent = (props) => {
       dataField: "link",
       text: "Action",
       headerStyle: () => {
-        return { width: "40px", backgroundColor:"#fec107" };
+        return { width: "40px", backgroundColor:"#f9a826" };
       },
       formatter: (rowContent, row) => {
         return (
