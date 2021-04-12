@@ -8,6 +8,7 @@ import swal from "sweetalert";
 import FormIzinGroup from "../components/FormIzinGroup";
 import NavbarComponent from "../components/NavbarComponent";
 import {Redirect} from "react-router-dom";
+import swal2 from "@sweetalert/with-react"
 
 const mapStateToProps = (state) => {
   return {
@@ -21,32 +22,10 @@ class CreateIzinGroup extends Component {
     this.props.dispatch(getOptUser());
   }
   handleSubmit(data) {
+    // console.log(data);
     this.props.dispatch(postIzinGroup(data));
   }
 
-  async handleClick(){
-    // var a = 0;
-
-    // function aww() {
-    //   return 3;
-    // }
-    
-    // let xa = await aww();
-    // a +=1;
-
-    // console.log(a);
-
-
-    // swal(
-    //   "test", {
-    //     buttons: {
-    //       ok:"Okay"
-    //     }
-    //   }
-    // ).then((value) => {
-    //   window.location.reload();
-    // });
-  }
 
   render() {
     if (!localStorage.getItem('user')||  localStorage.getItem('user') === "false") {
@@ -57,10 +36,28 @@ class CreateIzinGroup extends Component {
       if (this.props.errorResponDataIzin) {
         swal("Failed!", this.props.errorResponDataIzin, "error");
       } else {
-        swal(
-          "Izin Created!",
-          "~" ,
-          "success"
+        swal2(
+          
+          <div>
+            {
+              this.props.getResponDataIzin.responeSudahAda.length > 0 ? (
+                <div>
+                  <h4>Sukses...</h4>
+                  <ul style={{padding:"0", margin:"0 0 0 10px", textAlign:"left"}}> 
+                    {
+                      this.props.getResponDataIzin.responeSudahAda.map(function(item){
+                        return (
+                          <li>{item}</li>
+                        )
+                      })
+                    }
+                  </ul>
+                </div>
+              ) : ("Sukses") 
+            }
+          </div>
+          //JSON.stringify(this.props.getResponDataIzin.responeSudahAda) ,
+          
         ).then((value) =>{
           window.location.reload();
         });

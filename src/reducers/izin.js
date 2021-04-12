@@ -7,6 +7,8 @@ import {
   PUT_IZIN_EDIT,
   GET_IZIN_DETAIL_FORM,
   EDIT_JAM_FORM,
+  GET_IZIN_DETAIL_FORM_STATUS,
+  getIzinDetailForm,
 } from "../actions/izinAction";
 
 let initialState = {
@@ -22,6 +24,7 @@ let initialState = {
   errorIzinDetailForm: false,
 
   editJamForm: false,
+  getIzinDetailFormStatus:false
 };
 
 const Izin = (state = initialState, action) => {
@@ -80,6 +83,14 @@ const Izin = (state = initialState, action) => {
         ...state,
         editJamForm: action.payload.data,
       }
+    
+    case GET_IZIN_DETAIL_FORM_STATUS:
+      // console.log(action.payload.data);
+      return {
+        ...state,
+        getIzinDetailFormStatus: action.payload.data,
+      }
+
 
 
     default:

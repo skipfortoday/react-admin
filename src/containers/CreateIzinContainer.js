@@ -1,10 +1,11 @@
 import React, { Component } from "react";
-import { Container, Row } from "reactstrap";
+import { Button, Container, Row } from "reactstrap";
 import BackIzin from "../components/BackIzin";
 import FormIzinComponent from "../components/FormIzinComponent";
 import { connect } from "react-redux";
 import {
   getIzinDetail,
+  setStatusForm,
   getIzinListSolo,
   postIzinCreate,
   putIzinUpdate,
@@ -45,6 +46,7 @@ const mapStateToProps = (state) => {
 class CreateIzinContainer extends Component {
 
   componentDidMount() {
+    this.props.dispatch(setStatusForm(""));
     this.props.dispatch(getOptUser());
     this.props.dispatch(getIzinDetail(this.props.match.params.UserID));
     this.props.dispatch(
@@ -74,14 +76,19 @@ class CreateIzinContainer extends Component {
     // this.props.dispatch(deleteDataIzin());
   }
 
+  handleClick(){
+    // console.log(this.props);
+  }
+
   handleSubmit(data) {
+    // console.log(data);
     const ambil = JSON.parse(localStorage.getItem('user'));
 
     data.ADMIN = ambil.AdminID;
     console.log(data);
     if(!data.DatangID){
       // create
-      console.log(data);
+      // console.log(data);
       this.props.dispatch(postIzinCreate(data));
     }else{
       //put
@@ -104,22 +111,26 @@ class CreateIzinContainer extends Component {
       return <Redirect to="/home" /> ;
     } 
     if (this.props.getResponDataIzin || this.props.errorResponDataIzin) {
+      
       if (this.props.errorResponDataIzin) {
         swal("Failed!", this.props.errorResponDataIzin, "error");
       } else {
-        window.location.reload();
+        //window.location.reload();
         swal(
-          "Izin Created!",
-          " | ID : " +
-            this.props.getResponDataIzin.UserID +
-            "  |  Tanggal :  " +
-            this.props.getResponDataIzin.TanggalScan +
-            "  |   Status :  " +
-            this.props.getResponDataIzin.Status +
-            "  |  Keterangan :       " +
-            this.props.getResponDataIzin.Keterangan,
+          "",
+          this.props.getResponDataIzin[0].message,
+          // " | ID : " +
+          //   this.props.getResponDataIzin.UserID +
+          //   "  |  Tanggal :  " +
+          //   this.props.getResponDataIzin.TanggalScan +
+          //   "  |   Status :  " +
+          //   this.props.getResponDataIzin.Status +
+          //   "  |  Keterangan :       " +
+          //   this.props.getResponDataIzin.Keterangan,
           "success"
-        );
+        ).then((value) => {
+          window.location.reload();
+        });
       }
     }
     if (this.props.getResponDataLaporan || this.props.errorResponDataLaporan) {
@@ -130,7 +141,7 @@ class CreateIzinContainer extends Component {
           "Proses Berhasil!",
           "success"
         );setTimeout(function () {
-          window.location.reload();
+          //window.location.reload();
         }, 200);
       }
     }
@@ -145,12 +156,13 @@ class CreateIzinContainer extends Component {
           </td>
           <td width='150px'></td>
           <td>
-          <LengkapiAbsenButton />
+          {/* <LengkapiAbsenButton /> */}
           </td>
         </div>
         <div  class="header-1" style={{padding:"10px 20px"}}>
             <div className="row">
               <div  className="col-lg-8">
+                <Button onClick={this.handleClick}>TEST</Button>
                 <IzinComponentSolo />
               </div>
               <div className="col-lg-4">

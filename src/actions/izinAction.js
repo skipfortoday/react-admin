@@ -8,6 +8,7 @@ export const POST_IZIN_CREATE = "POST_IZIN_CREATE";
 export const POST_IZIN_GROUP = "POST_IZIN_GROUP";
 export const PUT_IZIN_EDIT = "PUT_IZIN_EDIT";
 export const GET_IZIN_DETAIL_FORM = "GET_IZIN_DETAIL_FORM";
+export const GET_IZIN_DETAIL_FORM_STATUS = "GET_IZIN_DETAIL_FORM_STATUS";
 export const EDIT_JAM_FORM = "EDIT_JAM_FORM";
 
 
@@ -257,6 +258,19 @@ export const setEditJamForm = (checked) => {
       payload: {
         data: checked
       },
+    });
+  }
+};
+
+export const setStatusForm = (value) => {
+  return (dispatch) => {
+    dispatch({
+      type: GET_IZIN_DETAIL_FORM_STATUS,
+      payload:{
+        data:{
+          STATUS: value
+        }
+      }
     });
   }
 };

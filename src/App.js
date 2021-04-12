@@ -42,6 +42,7 @@ import AbsensiManualContainerIstKembali2 from "./containers/AbsensiManualContain
 import AbsensiManualContainerKeluarKantor2 from "./containers/AbsensiManualContainerKeluarKantor2";
 import AbsensiManualContainerKembaliKantor2 from "./containers/AbsensiManualContainerKembaliKantor2";
 import HistoryContainer from "./containers/HistoryContainer";
+import TestingContainer from "./containers/TestingContainer";
 
 
 
@@ -92,6 +93,7 @@ function App () {
           dispatch
         }}>
           
+          <Route path="/testing" exact component={TestingContainer} />
           <Route path="/" exact component={HomeContainer} />
 
           <Route path="/login" exact component={LoginContainer} />

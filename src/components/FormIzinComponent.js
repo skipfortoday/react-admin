@@ -1,115 +1,17 @@
 import React, { Component } from "react";
-import { reduxForm, Field } from "redux-form";
+import { reduxForm, Field, change } from "redux-form";
+import { bindActionCreators } from 'redux'
 import { connect } from "react-redux";
 import { FormGroup, Col, Label, Input, Row, Button } from "reactstrap";
 import IzinValidation from "../validations/IzinValidation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
-import Select from 'react-select'
-import { setEditJamForm } from "../actions/izinAction";
 
-const renderFieldCb = ({
-  input, name, id, type, label, checked, value,
-  meta: { touched, error, warning },
+import { setEditJamForm,setStatusForm } from "../actions/izinAction";
+import { InputFieldComponent } from "../components/formController/InputFieldComponent";
+import { SelectFieldComponent } from "../components/formController/SelectFieldComponent";
+import { CheckboxFieldComponent } from "../components/formController/CheckboxFieldComponent";
 
-}) => (
-  <Col md="12">
-    <Label htmlFor="{input}" className="col-form-label">
-      <Input
-        {...Input}
-        id={id}
-        name={name}
-        type={type}
-        value={value}
-        checked={checked}
-        onChange={(value) => input.onChange(value)} />
-      {label}
-    </Label>
-    {touched &&
-      ((error && <p style={{ color: "yellow" }}>{error}</p>) ||
-        (warning && <p style={{ color: "brown" }}>{warning}</p>))}
-  </Col>
-);
-
-const renderField = ({
-  input,
-  name,
-  id,
-  type,
-  placeholder,
-  label,
-  disabled,
-  options,
-  readOnly,
-  meta: { touched, error, warning },
-}) => (
-  <Row>
-    <Col md="12">
-      <Label htmlFor="{input}" className="col-form-label">
-        {label}
-      </Label>
-    </Col>
-    <Col md="12">
-      <Input
-        {...Input}
-        id={id}
-        name={name}
-        type={type}
-        placeholder={placeholder}
-        disabled={disabled}
-        readOnly={readOnly}
-        options={options}
-        value={input.value}
-        onChange={(value) => input.onChange(value)}
-      >
-     
-      </Input>
-      {touched &&
-        ((error && <p style={{ color: "yellow" }}>{error}</p>) ||
-          (warning && <p style={{ color: "brown" }}>{warning}</p>))}
-    </Col>
-  </Row>
-);
-
-const renderFieldSelect = ({
-  input,
-  name,
-  id,
-  type,
-  placeholder,
-  label,
-  disabled,
-  options,
-  readOnly,
-  meta: { touched, error, warning },
-}) => (
-  <Row>
-    <Col md="12">
-      <Label htmlFor="{input}" className="col-form-label">
-        {label}
-      </Label>
-    </Col>
-    <Col md="12">
-      
-      <Select
-        {...Input}
-        id={id} 
-        name={name} 
-        type={type}
-        placeholder={placeholder}
-        disabled={disabled}
-        readOnly={readOnly}
-        options={options}
-        value={input.value}
-        onChange={(value) => input.onChange(value)}
-         //onBlur={() => input.onBlur()}
-      />
-      {touched &&
-        ((error && <p style={{ color: "red" }}>{error}</p>) ||
-          (warning && <p style={{ color: "brown" }}>{warning}</p>))}
-    </Col>
-  </Row>
-);
 
 const mapStateToProps = (state) => {
   return {
@@ -124,8 +26,8 @@ const mapStateToProps = (state) => {
       TanggalScan: state.Izin.getIzinDetailForm.TanggalScan,
       TanggalScanSampai: state.Izin.getIzinDetailForm.TanggalScan,
       Status: {
-        value: state.Izin.getIzinDetailForm.STATUS,
-        label: state.Izin.getIzinDetailForm.STATUS
+        value: state.Izin.getIzinDetailForm ? state.Izin.getIzinDetailForm.STATUS : state.Izin.getIzinDetailFormStatus.STATUS,
+        label: state.Izin.getIzinDetailForm ? state.Izin.getIzinDetailForm.STATUS : state.Izin.getIzinDetailFormStatus.STATUS
       },
       Shift: {
         value: state.Izin.getIzinDetailForm.Shift,
@@ -134,12 +36,17 @@ const mapStateToProps = (state) => {
       Keterangan: state.Izin.getIzinDetailForm.Keterangan,
       ScanMasuk: state.Izin.getIzinDetailForm.ScanMasuk,
       ScanPulang: state.Izin.getIzinDetailForm.ScanPulang,
-      //ScanPulang: state.Izin.getIzinDetailForm.editJam,
       editJam: state.Izin.editJamForm
-      // editJam: 
     },
+    StatusAbsensi:state.Izin.getIzinDetailForm ? state.Izin.getIzinDetailForm.STATUS : state.Izin.getIzinDetailFormStatus.STATUS
   };
 };
+
+const mapDispatchToProps = (dispatch) => ({
+  updateField: bindActionCreators((field, data) => {
+    change("formCreateizin", field, data)
+  }, dispatch)
+})
 
 class FormIzinComponent extends Component {
 
@@ -162,28 +69,40 @@ class FormIzinComponent extends Component {
         { value: '2', label:'Shift 2'},
         { value: '3', label:'Shift 3'}
       ],
-      inputJam:true,
+      inputJam: false,
+      isStatusMasuk: false,
     }
+    this.handleStatusChange = this.handleStatusChange.bind(this)
 
   }
 
   handleEditTglClick = event => {
-    this.props.dispatch(setEditJamForm(event.target.checked));
+    //this.props.dispatch(setEditJamForm(event.target.checked));
+    this.setState({
+      ...this.state,
+      inputJam:event.target.checked
+    });
+  }
+
+  handleStatusChange(data){
+    this.setState({
+      ...this.state,
+      isStatusMasuk:data.value === "MASUK" ? true : false
+    });
   }
 
   render() {
-
-
     return (
       <form onSubmit={this.props.handleSubmit}>
         <FormGroup row>
+          {/* <div>TEST</div> */}
           <Col md={4} >
             <FormGroup>
               <Field
                 type="text"
                 name="UserID"
                 disabled
-                component={renderField}
+                component={InputFieldComponent}
                 label="ID :"
               />
             </FormGroup>
@@ -195,7 +114,7 @@ class FormIzinComponent extends Component {
                 type="text"
                 name="Nama"
                 disabled
-                component={renderField}
+                component={InputFieldComponent}
                 label="Nama:"
               />
             </FormGroup>
@@ -207,7 +126,7 @@ class FormIzinComponent extends Component {
                 type="text"
                 name="Jabatan"
                 disabled
-                component={renderField}
+                component={InputFieldComponent}
                 label="Jabatan:"
               />
             </FormGroup>
@@ -219,7 +138,7 @@ class FormIzinComponent extends Component {
                 type="text"
                 name="FTglMulaiCuti"
                 disabled
-                component={renderField}
+                component={InputFieldComponent}
                 label="Mulai Cuti:"
               />
             </FormGroup>
@@ -231,7 +150,7 @@ class FormIzinComponent extends Component {
                 type="text"
                 name="SisaCuti"
                 disabled
-                component={renderField}
+                component={InputFieldComponent}
                 label="Sisa Cuti:"
               />
             </FormGroup>
@@ -244,7 +163,7 @@ class FormIzinComponent extends Component {
                 readOnly="true"
                 type="text"
                 name="DatangID"
-                component={renderField}
+                component={InputFieldComponent}
                 label="DatangID:"
               />
             </FormGroup>
@@ -254,7 +173,7 @@ class FormIzinComponent extends Component {
               <Field
                 type="date"
                 name="TanggalScan"
-                component={renderField}
+                component={InputFieldComponent}
                 label="Tanggal:"
               />
             </FormGroup>
@@ -264,7 +183,7 @@ class FormIzinComponent extends Component {
               <Field
                 type="date"
                 name="TanggalScanSampai"
-                component={renderField}
+                component={InputFieldComponent}
                 label="Tanggal:"
               />
             </FormGroup>
@@ -275,9 +194,10 @@ class FormIzinComponent extends Component {
               <Field
                 type="select"
                 name="Status"
-                component={renderFieldSelect}
+                component={SelectFieldComponent}
                 options={this.state.StatusOption}
                 label="Tipe  :"
+                onChange={this.handleStatusChange}
               />
             </FormGroup>
           </Col>
@@ -287,34 +207,39 @@ class FormIzinComponent extends Component {
               <Field
                 type="text"
                 name="Keterangan"
-                component={renderField}
+                component={InputFieldComponent}
                 label="Keterangan :"
               />
             </FormGroup>
           </Col>
-
-          <Col md={4}>
-            <FormGroup>
-              <Field
-                type="checkbox"
-                component={renderFieldCb}
-                label="Perbaiki Jam"
-                onChange={this.handleEditTglClick}
-              /> 
-            </FormGroup>
-          </Col>
-
+          {this.state.isStatusMasuk ? 
+            (
+              <Col md={4}>
+                <FormGroup>
+                  <Field
+                    name="editJam"
+                    type="checkbox"
+                    component={CheckboxFieldComponent}
+                    label="Perbaiki Jam"
+                    onChange={this.handleEditTglClick}
+                  /> 
+                </FormGroup>
+              </Col>
+            ) : ("")
+          }
+         
           <Col md={4} style={{display:"none"}}>
             <FormGroup>
               <Field
                 type="text"
                 name="editJam"
-                component={renderField}
+                component={InputFieldComponent}
               />
             </FormGroup>
           </Col>
+        
 
-          {this.props.editJam ? (
+          {this.state.inputJam ? (
             <Col md="12">
               <Row>
                 <Col md={4}>
@@ -322,7 +247,7 @@ class FormIzinComponent extends Component {
                     <Field
                       type="select"
                       name="Shift"
-                      component={renderFieldSelect}
+                      component={SelectFieldComponent}
                       options={this.state.ShiftOption}
                       label="Shift :"
                     />
@@ -333,7 +258,7 @@ class FormIzinComponent extends Component {
                     <Field
                       type="time"
                       name="ScanMasuk"
-                      component={renderField}
+                      component={InputFieldComponent}
                       label="Masuk :"
                     />
                   </FormGroup>
@@ -343,7 +268,7 @@ class FormIzinComponent extends Component {
                     <Field
                       type="time"
                       name="ScanPulang"
-                      component={renderField}
+                      component={InputFieldComponent}
                       label="Pulang :"
                     />
                   </FormGroup>
@@ -372,4 +297,4 @@ FormIzinComponent = reduxForm({
   validate: IzinValidation,
   enableReinitialize: true,
 })(FormIzinComponent);
-export default connect(mapStateToProps, null)(FormIzinComponent);
+export default connect(mapStateToProps, mapDispatchToProps)(FormIzinComponent);
