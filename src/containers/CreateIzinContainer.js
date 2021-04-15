@@ -97,7 +97,25 @@ class CreateIzinContainer extends Component {
     }
   }
   handleSubmit2(data) {
-    this.props.dispatch(postLaporanProses(data));
+    //console.log(data);
+    swal({
+      title: "Anda akan melengkapi absensi?",
+      text: "Proses ini akan mengisi absensi yang belum lengkap.",
+      icon: "warning",
+      buttons: true,
+      dangerMode: false,
+    })
+    .then((willDelete) => {
+      if (willDelete) {
+        this.props.dispatch(postLaporanProses(data));
+        // swal("Poof! Your imaginary file has been deleted!", {
+        //   icon: "success",
+        // });
+      } else {
+        //swal("Your imaginary file is safe!");
+      }
+    });
+    //this.props.dispatch(postLaporanProses(data));
   }
 
   render() {
@@ -141,8 +159,8 @@ class CreateIzinContainer extends Component {
           "Proses Berhasil!",
           "success"
         );setTimeout(function () {
-          //window.location.reload();
-        }, 200);
+          window.location.reload();
+        }, 300);
       }
     }
     return (
@@ -162,7 +180,6 @@ class CreateIzinContainer extends Component {
         <div  class="header-1" style={{padding:"10px 20px"}}>
             <div className="row">
               <div  className="col-lg-8">
-                <Button onClick={this.handleClick}>TEST</Button>
                 <IzinComponentSolo />
               </div>
               <div className="col-lg-4">

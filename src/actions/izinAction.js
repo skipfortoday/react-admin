@@ -100,8 +100,6 @@ export const postIzinCreate = (data) => {
         data
       )
       .then(function (response) {
-        console.log(response);
-        
         dispatch({
           type: POST_IZIN_CREATE,
           payload: {
@@ -160,8 +158,6 @@ export const putIzinUpdate = (data, DatangID) => {
         data
       )
       .then(function (response) {
-        console.log(response);
-        
         dispatch({
           type: PUT_IZIN_EDIT,
           payload: {
