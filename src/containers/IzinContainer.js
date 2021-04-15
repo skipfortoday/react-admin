@@ -25,7 +25,34 @@ class IzinContainer extends Component {
     this.props.dispatch(getOptUser());
   }
   handleSubmit(data) {
-    this.props.dispatch(postLaporanProses(data));
+    swal({
+      title:"Otomatis lengkapi absen?",
+      text: "Periksa dulu tanggal awal : "+ data.TglAwal + " dan tanggal akhir : "+ data.TglAkhir +". Anda setuju?" ,
+      icon: "warning",
+      buttons: {
+        defeat: {
+          text:"Ya",
+          value:"ok"
+        },
+        cancel: "Tidak"
+      },
+    })
+    .then((value) => {
+      switch (value) {
+     
+        case "ok":
+          // swal("Prosess");
+          this.props.dispatch(postLaporanProses(data));
+          break;
+     
+        case "catch":
+          break;
+     
+        default:
+          //swal("Got away safely!");
+      }
+    });
+    //this.props.dispatch(postLaporanProses(data));
   }
 
   render() {

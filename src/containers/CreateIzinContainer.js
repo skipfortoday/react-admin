@@ -97,25 +97,33 @@ class CreateIzinContainer extends Component {
     }
   }
   handleSubmit2(data) {
-    //console.log(data);
     swal({
-      title: "Anda akan melengkapi absensi?",
-      text: "Proses ini akan mengisi absensi yang belum lengkap.",
+      title:"Otomatis lengkapi absen?",
+      text: "Periksa dulu tanggal awal : "+ this.props.match.params.TglAwal + " dan tanggal akhir : "+ this.props.match.params.TglAkhir +". Anda setuju?" ,
       icon: "warning",
-      buttons: true,
-      dangerMode: false,
+      buttons: {
+        defeat: {
+          text:"Ya",
+          value:"ok"
+        },
+        cancel: "Tidak"
+      },
     })
-    .then((willDelete) => {
-      if (willDelete) {
-        this.props.dispatch(postLaporanProses(data));
-        // swal("Poof! Your imaginary file has been deleted!", {
-        //   icon: "success",
-        // });
-      } else {
-        //swal("Your imaginary file is safe!");
+    .then((value) => {
+      switch (value) {
+     
+        case "ok":
+          // swal("Prosess");
+          this.props.dispatch(postLaporanProses(data));
+          break;
+     
+        case "catch":
+          break;
+     
+        default:
+          //swal("Got away safely!");
       }
     });
-    //this.props.dispatch(postLaporanProses(data));
   }
 
   render() {
