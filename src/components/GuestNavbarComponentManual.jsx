@@ -25,9 +25,9 @@ const NavbarComponent = (props) => {
           <Collapse isOpen={!collapsed} navbar>
             <Nav className="mr-auto" navbar>
                  <NavItem>
-                <Link to="/absensimanual">
+                 <a href={"/absensimanual"}>
                 <NavLink>Masuk </NavLink>
-                </Link>
+                </a>
               </NavItem>
               <NavItem>
                 <a href={"/absensimanualpulang"}>

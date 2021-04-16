@@ -42,7 +42,6 @@ const mapStateToProps = (state) => {
 
   //console.log(optsiterpilih);
   return {
-    getOptUser : state.Opt.getOptUser,
     initialValues: {
       KodeCabang: state.Cabang.getCabangDetail.KodeCabang,
       NamaCabang: state.Cabang.getCabangDetail.NamaCabang,

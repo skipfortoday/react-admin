@@ -103,11 +103,9 @@ const CabangComponent = (props) => {
               </Button>
             </Link>
 
-            <Link to={"/cabang#"}>
             <Button  color="warning" className="mr-2" onClick={() => handleClick(props.dispatch, row.KodeCabang)}>
               <FontAwesomeIcon icon={faTrash} /> 
             </Button>
-            </Link>
           </div>
         );
       },

@@ -6,11 +6,12 @@ import { Container } from "reactstrap";
 import FormAbsensiManualKeluar from "../components/FormAbsensiManualKeluar";
 import { postManualKeluar } from "../actions/manualAction";
 import swal from "sweetalert";
-import RecentScanComponent from "../components/RecentScanComponent";
 import OnDutyRoster from "../components/OnDutyRoster";
 import Ambilwaktu from "../components/Ambilwaktu";
 import { getAdminOnDuty } from "../actions/adminAction";
-import { Redirect } from "react-router-dom";
+import { getLaporanList } from "../actions/laporanAction";
+import LaporanDetail2 from "../components/LaporanDetail2";
+
 
 const mapStateToProps = (state) => {
   return {
@@ -24,6 +25,12 @@ class AbsensiManualContainerKeluarKantor extends Component {
     this.props.dispatch(getAdminOnDuty());
     this.props.dispatch(getOptUserManualKeluar());
   }
+
+  componentDidUpdate() {
+    this.props.dispatch(getAdminOnDuty());
+    this.props.dispatch(getOptUserManualKeluar());
+    this.props.dispatch(getLaporanList(this.props.getResponDataManual.UserID));
+  }
   handleSubmit(data) {
     this.props.dispatch(postManualKeluar(data));
   }
@@ -35,41 +42,38 @@ class AbsensiManualContainerKeluarKantor extends Component {
       } else {
         swal("Berhasil Absen!", "Keluar Kantor", "success");
       }
-      return (
-        <Redirect
-          to={
-            "/absensimanualkeluarkantor/" +
-            this.props.getResponDataManual.UserID  + "/" + this.props.getResponDataManual.Nama
-          }
-        />
-      );
     }
     return (
       <div>
-        <GuestNavbarComponentManual />
-        <div class="header-1">
-          <div class="row p-1">
-            <div class="col-md-8">
-              <div style={{ backgroundColor: "#f9a826" }} class="p-2 mb-2">
-              <h3 class="text-center mt-2 mb-2">Absen Keluar Kantor Manual</h3>
-                <h4 class="text-center mt-2 mb-2">
-                  <Ambilwaktu />
-                </h4>
-                <Container>
-                  <FormAbsensiManualKeluar
-                    onSubmit={(data) => this.handleSubmit(data)}
-                  />
-                </Container>
+      <GuestNavbarComponentManual />
+      <div class="header-1">
+        <div class="row p-1">
+          <div class="col-md-8">
+            <div style={{ backgroundColor: "#f9a826" }} class="p-2 mb-2">
+            <h3 class="text-center mt-2 mb-2">Absen Keluar Kantor Manual</h3>
+              <h4 class="text-center mt-2 mb-2">
+                <Ambilwaktu />
+              </h4>
+              <Container>
+                <FormAbsensiManualKeluar
+                  onSubmit={(data) => this.handleSubmit(data)}
+                />
+              </Container>
+            </div>
+            <div class="card">
+              <div class="card-header">
+                <h6>Daftar Absensi Pegawai| {this.props.getResponDataManual.UserID} ~ {this.props.getResponDataManual.UserID} </h6>
               </div>
-
-              <RecentScanComponent />
             </div>
-            <div class="col-md-4">
-              <OnDutyRoster />
-            </div>
+            <LaporanDetail2 />
+            {/* <RecentScanComponent /> */}
+          </div>
+          <div class="col-md-4">
+            <OnDutyRoster />
           </div>
         </div>
       </div>
+    </div>
     );
   }
 }

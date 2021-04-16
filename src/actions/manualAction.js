@@ -10,6 +10,8 @@ export const PUT_MANUAL_KEMBALI = "PUT_MANUAL_KEMBALI";
 export const PUT_MANUAL_KELISTIRAHAT = "PUT_MANUAL_KELISTIRAHAT";
 export const PUT_MANUAL_KEMISTIRAHAT = "PUT_MANUAL_KEMISTIRAHAT";
 
+export const CLEAR_MANUAL = "CLEAR_MANUAL";
+
 export const postManualMasuk= (data) => {
   console.log(data);
     data.UserID = data.Nama.value;
@@ -206,5 +208,11 @@ export const postManualMasuk= (data) => {
             },
           });
         });
+    };
+  };
+
+  export const clearManual = () => {
+    return {
+      type: CLEAR_MANUAL
     };
   };

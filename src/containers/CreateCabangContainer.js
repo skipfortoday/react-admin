@@ -19,9 +19,7 @@ const mapStateToProps = (state) => {
 
 
 class CreateCabangContainer extends Component {
-  componentDidMount() {
-    this.props.dispatch(getOptUser());
-  }
+
   handleSubmit(data) {
     this.props.dispatch(postCabangCreate(data));
   }
@@ -42,8 +40,8 @@ class CreateCabangContainer extends Component {
             this.props.getResponDataCabang.KodeCabang +
             " , Nama : " +
             this.props.getResponDataCabang.NamaCabang,
-          "success"
-        );
+          "success" 
+        ); return <Redirect to={"/cabang"} />
       }
     }
     return (

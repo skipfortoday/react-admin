@@ -27,6 +27,13 @@ class AbsensiManualContainer2 extends Component {
     this.props.dispatch(getLaporanList(this.props.match.params.id));
     // this.props.dispatch(getAdminTimeNow());
   }
+
+  // componentDidUpdate() {
+  //   this.props.dispatch(getOptUserManual());
+  //   this.props.dispatch(getAdminOnDuty());
+  //   this.props.dispatch(getLaporanList(this.props.match.params.id));
+  //   // this.props.dispatch(getAdminTimeNow());
+  // }
   handleSubmit(data) {
     this.props.dispatch(postManualMasuk(data));
   }
@@ -37,10 +44,6 @@ class AbsensiManualContainer2 extends Component {
         swal("Failed!", this.props.errorResponDataManual, "error");
       } else {
         swal("Berhasil Absen!", "~", "success");
-
-        setTimeout(function () {
-          window.location.reload();
-        }, 200);
         return (
           <Redirect
             to={"/absensimanual/" + this.props.getResponDataManual.UserID + "/" + this.props.getResponDataManual.Nama}
