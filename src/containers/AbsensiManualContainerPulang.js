@@ -5,13 +5,16 @@ import { getOptUserManualPulang } from "../actions/optAction";
 import GuestNavbarComponentManual from "../components/GuestNavbarComponentManual";
 import { Container } from "reactstrap";
 import FormAbsensiManual2 from "../components/FormAbsensiManual2";
-import { getAdminOnDuty} from "../actions/adminAction";
+import { getAdminOnDuty } from "../actions/adminAction";
 import { putManualPulang } from "../actions/manualAction";
 import swal from "sweetalert";
 import RecentScanComponent from "../components/RecentScanComponent";
 import OnDutyRoster from "../components/OnDutyRoster";
 import Ambilwaktu from "../components/Ambilwaktu";
 import { Redirect } from "react-router-dom";
+import LaporanDetail2 from "../components/LaporanDetail2";
+import { getLaporanList } from "../actions/laporanAction";
+
 
 const mapStateToProps = (state) => {
   return {
@@ -22,10 +25,14 @@ const mapStateToProps = (state) => {
 
 class AbsensiManualContainerPulang extends Component {
   componentDidMount() {
-    this.props.dispatch(getUsersList());
     this.props.dispatch(getAdminOnDuty());
     this.props.dispatch(getOptUserManualPulang());
-    // this.props.dispatch(getAdminTimeNow());
+  }
+
+  componentDidUpdate() {
+    this.props.dispatch(getAdminOnDuty());
+    this.props.dispatch(getOptUserManualPulang());
+    this.props.dispatch(getLaporanList(this.props.getResponDataManual.UserID));
   }
 
   handleSubmit(data) {
@@ -38,11 +45,6 @@ class AbsensiManualContainerPulang extends Component {
         swal("Failed!", this.props.errorResponDataManual, "error");
       } else {
         swal("Berhasil Absen Pulang!", "~", "success");
-        return (
-          <Redirect
-            to={"/absensimanualpulang/" + this.props.getResponDataManual.UserID + "/" + this.props.getResponDataManual.Nama}
-          />
-        );
       }
     }
     return (
@@ -61,8 +63,17 @@ class AbsensiManualContainerPulang extends Component {
                     onSubmit={(data) => this.handleSubmit(data)}
                   />
                 </Container>
+              </div>{" "}
+              <div class="card">
+                <div class="card-header">
+                  <h6>
+                    Daftar Absensi Pegawai | {this.props.getResponDataManual.UserID} ~{" "}
+                    {this.props.getResponDataManual.Nama}
+                  </h6>
+                </div>
               </div>
-              <RecentScanComponent />
+              <LaporanDetail2 />
+              {/* <RecentScanComponent/> */}
             </div>
             <div class="col-md-4">
               <OnDutyRoster />

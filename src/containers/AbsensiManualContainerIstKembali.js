@@ -6,11 +6,11 @@ import { Container } from "reactstrap";
 import FormAbsensiManualIstKembali from "../components/FormAbsensiManualIstKembali";
 import swal from "sweetalert";
 import { putManualKemIstirahat } from "../actions/manualAction";
-import RecentScanComponent from "../components/RecentScanComponent";
 import OnDutyRoster from "../components/OnDutyRoster";
 import Ambilwaktu from "../components/Ambilwaktu";
 import { getAdminOnDuty } from "../actions/adminAction";
-import { Redirect } from "react-router-dom";
+import { getLaporanList } from "../actions/laporanAction";
+import LaporanDetail2 from "../components/LaporanDetail2";
 
 const mapStateToProps = (state) => {
   return {
@@ -22,6 +22,13 @@ class AbsensiManualContainerIstKembali extends Component {
   componentDidMount() {
     this.props.dispatch(getAdminOnDuty());
     this.props.dispatch(getOptUserManualKembaliIst());
+
+  }
+
+  componentDidUpdate() {
+    this.props.dispatch(getAdminOnDuty());
+    this.props.dispatch(getOptUserManualKembaliIst());
+    this.props.dispatch(getLaporanList(this.props.getResponDataManual.UserID));
   }
   handleSubmit(data) {
     this.props.dispatch(putManualKemIstirahat(data));
@@ -33,14 +40,6 @@ class AbsensiManualContainerIstKembali extends Component {
         swal("Failed!", this.props.errorResponDataManual, "error");
       } else {
         swal("Berhasil Absen!", "Kembali Istirahat", "success");
-        return (
-          <Redirect
-            to={
-              "/absensimanualistirahatkembali/" +
-              this.props.getResponDataManual.UserID + "/" + this.props.getResponDataManual.Nama
-            }
-          />
-        );
       }
     }
     return (
@@ -60,7 +59,13 @@ class AbsensiManualContainerIstKembali extends Component {
                   />
                 </Container>
               </div>
-              <RecentScanComponent />
+              <div class="card">
+                <div class="card-header">
+                  <h6>Daftar Absensi Pegawai | {this.props.getResponDataManual.UserID} ~ {this.props.getResponDataManual.Nama} </h6>
+                </div>
+              </div>
+              <LaporanDetail2 />
+              {/* <RecentScanComponent /> */}
             </div>
             <div class="col-md-4">
               <OnDutyRoster />

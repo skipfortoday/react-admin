@@ -106,14 +106,19 @@ class CreateIzinContainer extends Component {
     }
   }
   handleSubmit2(data) {
-    //console.log(data);
     swal({
-      title: "Anda akan melengkapi absensi?",
-      text: "Proses ini akan mengisi absensi yang belum lengkap.",
+      title:"Otomatis lengkapi absen?",
+      text: "Periksa dulu tanggal awal : "+ this.props.match.params.TglAwal + " dan tanggal akhir : "+ this.props.match.params.TglAkhir +". Anda setuju?" ,
       icon: "warning",
-      buttons: true,
-      dangerMode: false,
+      buttons: {
+        defeat: {
+          text:"Ya",
+          value:"ok"
+        },
+        cancel: "Tidak"
+      },
     })
+
       .then((willDelete) => {
         if (willDelete) {
           this.props.dispatch(postLaporanProses(data));
@@ -125,6 +130,7 @@ class CreateIzinContainer extends Component {
         }
       });
     //this.props.dispatch(postLaporanProses(data));
+
   }
 
   render() {

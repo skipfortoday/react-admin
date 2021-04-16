@@ -6,11 +6,11 @@ import { Container } from "reactstrap";
 import FormAbsensiManualIstKeluar from "../components/FormAbsensiManualIstKeluar";
 import { putManualKelIstirahat } from "../actions/manualAction";
 import swal from "sweetalert";
-import RecentScanComponent from "../components/RecentScanComponent";
 import OnDutyRoster from "../components/OnDutyRoster";
 import Ambilwaktu from "../components/Ambilwaktu";
 import { getAdminOnDuty } from "../actions/adminAction";
-import { Redirect } from "react-router-dom";
+import { getLaporanList } from "../actions/laporanAction";
+import LaporanDetail2 from "../components/LaporanDetail2";
 
 const mapStateToProps = (state) => {
   return {
@@ -25,6 +25,12 @@ class AbsensiManualContainerIstLuar extends Component {
     this.props.dispatch(getOptUserManualKeluarIst());
   }
 
+  componentDidUpdate() {
+    this.props.dispatch(getAdminOnDuty());
+    this.props.dispatch(getOptUserManualKeluarIst());
+    this.props.dispatch(getLaporanList(this.props.getResponDataManual.UserID));
+  }
+
   handleSubmit(data) {
     this.props.dispatch(putManualKelIstirahat(data));
   }
@@ -36,14 +42,6 @@ class AbsensiManualContainerIstLuar extends Component {
       } else {
         swal("Berhasil Absen!", "istirahat Keluar", "success");
       }
-      return (
-        <Redirect
-          to={
-            "/absensimanualistirahatkeluar/" +
-            this.props.getResponDataManual.UserID + "/" + this.props.getResponDataManual.Nama
-          }
-        />
-      );
     }
     return (
       <div>
@@ -65,7 +63,17 @@ class AbsensiManualContainerIstLuar extends Component {
                   />
                 </Container>
               </div>
-              <RecentScanComponent />
+              <div class="card">
+                <div class="card-header">
+                  <h6>
+                    Daftar Absensi Pegawai |{" "}
+                    {this.props.getResponDataManual.UserID} ~{" "}
+                    {this.props.getResponDataManual.Nama}{" "}
+                  </h6>
+                </div>
+              </div>
+              <LaporanDetail2 />
+              {/* <RecentScanComponent /> */}
             </div>
             <div class="col-md-4">
               <OnDutyRoster />

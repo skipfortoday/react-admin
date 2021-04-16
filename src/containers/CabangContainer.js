@@ -12,6 +12,11 @@ class CabangContainer extends Component {
     this.props.dispatch(getCabangList());
     this.props.dispatch(deleteDataCabang());
   }
+  componentDidUpdate() {
+    this.props.dispatch(getCabangList());
+  }
+
+  
 
   render() {
     let ambil = JSON.parse(localStorage.getItem('user'));

@@ -5,6 +5,7 @@ import {
   PUT_MANUAL_KEMBALI,
   PUT_MANUAL_KEMISTIRAHAT,
   PUT_MANUAL_PULANG,
+  CLEAR_MANUAL,
 } from "../actions/manualAction";
 
 let initialState = {
@@ -55,6 +56,13 @@ const Manual = (state = initialState, action) => {
         getResponDataManual: action.payload.data,
         errorResponDataManual: action.payload.errorMessage,
       };
+
+    case CLEAR_MANUAL:
+        return {
+          ...state,
+          getResponDataManual: false,
+          errorResponDataManual: false,
+        };
 
     default:
       return state;

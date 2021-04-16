@@ -19,7 +19,10 @@ const mapStateToProps = (state) => {
 
 class EditCabangContainer extends Component {
   componentDidMount() {
-    this.props.dispatch(getOptUser());
+    this.props.dispatch(getCabangDetail(this.props.match.params.KodeCabang));
+  }
+
+  componentDidUpdate() {
     this.props.dispatch(getCabangDetail(this.props.match.params.KodeCabang));
   }
 
@@ -45,7 +48,7 @@ class EditCabangContainer extends Component {
             " , Nama Cabang: " +
             this.props.getResponDataCabang.NamaCabang,
           "success"
-        );window.location.reload();
+        ); 
       }
     }
     return (

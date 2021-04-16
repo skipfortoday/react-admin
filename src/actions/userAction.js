@@ -225,8 +225,6 @@ export const deleteDataUser = () => {
         errorMessage: false,
       },
     });
-
-
     dispatch({
       type: POST_USER_CREATE,
       payload: {
