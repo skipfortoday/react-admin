@@ -1,4 +1,5 @@
 import axios from "axios";
+import { siteConfig } from "../config";
 import { BASEURL } from "./adminAction";
 
 export const GET_GROUP_LIST = "GET_GROUP_LIST";
@@ -9,12 +10,17 @@ export const GET_GROUP_TERLAMBAT3 = "GET_GROUP_TERLAMBAT3";
 export const POST_GROUP_CREATE = "POST_GROUP_CREATE";
 export const PUT_GROUP_EDIT = "PUT_GROUP_EDIT";
 
-
+let headers = {
+  headers :{
+    'Access-Control-Allow-Origin':'*',
+    KodeCabang:siteConfig.kodeCabang
+  }
+}
 
 export const getGroupList = () => {
   return (dispatch) => {
     axios
-      .get("http://"+BASEURL+"/api/group")
+      .get(BASEURL+"/api/group", headers)
       .then(function (response) {
         dispatch({
           type: GET_GROUP_LIST,
@@ -40,7 +46,7 @@ export const getGroupDetail = (GroupID) => {
   return (dispatch) => {
     axios
       .get(
-        "http://"+BASEURL+"/api/group/"+GroupID
+        BASEURL+"/api/group/"+GroupID
       )
       .then(function (response) {
         dispatch({
@@ -67,7 +73,7 @@ export const getGroupTerLambat1 = (GroupID) => {
   return (dispatch) => {
     axios
       .get(
-        "http://"+BASEURL+"api/groupterlambat1/"+GroupID
+        BASEURL+"api/groupterlambat1/"+GroupID
       )
       .then(function (response) {
         dispatch({
@@ -94,7 +100,7 @@ export const getGroupTerLambat2 = (GroupID) => {
   return (dispatch) => {
     axios
       .get(
-        "http://"+BASEURL+"/api/groupterlambat2/"+GroupID
+        BASEURL+"/api/groupterlambat2/"+GroupID
       )
       .then(function (response) {
         dispatch({
@@ -121,7 +127,7 @@ export const getGroupTerLambat3 = (GroupID) => {
   return (dispatch) => {
     axios
       .get(
-        "http://"+BASEURL+"/api/groupterlambat3/"+GroupID
+        BASEURL+"/api/groupterlambat3/"+GroupID
       )
       .then(function (response) {
         dispatch({
@@ -148,8 +154,9 @@ export const postGroupCreate = (data) => {
   return (dispatch) => {
     axios
       .post(
-         "http://"+BASEURL+"/api/group/",
-        data
+        BASEURL+"/api/group/",
+        data,
+        headers
       )
       .then(function (response) {
         console.log(response);
@@ -178,7 +185,7 @@ export const putGroupUpdate = (data, GroupID) => {
   return (dispatch) => {
     axios
       .put(
-        "http://"+BASEURL+"/api/group/"+GroupID,
+        BASEURL+"/api/group/"+GroupID,
         data
       )
       .then(function (response) {
@@ -209,7 +216,7 @@ export const deleteGroup = (GroupID) => {
   return (dispatch) => {
     axios
       .delete(
-         "http://"+BASEURL+"/api/group/"+GroupID
+         BASEURL+"/api/group/"+GroupID
       )
       .then(function (response) {
         console.log(response);

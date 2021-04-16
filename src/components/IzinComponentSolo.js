@@ -28,7 +28,9 @@ const handleClick = (dispatch, DatangID) => {
         dispatch(deleteIzin(DatangID))
         swal("Data Izin Sukses dihapus", {
           icon: "success",
-        }); window.location.reload();
+        }).then((value) => {
+          window.location.reload();
+        }); 
       } else {
         swal("Data gagal dihapus");
       }
@@ -49,7 +51,7 @@ const defaultSorted = [
 const mapStateToProps = (state) => {
   return {
     getIzinListSolo: state.Izin.getIzinListSolo,
-    errorIzinListSolo: state.Izin.errorIzinListSolo,
+    errorIzinListSolo: state.Izin.errorIzinListSolo
   };
 };
 
@@ -187,9 +189,10 @@ const IzinComponentSolo = (props) => {
       ) : (
         <div className="text-center">
           {props.errorIzinListSolo ? (
-            <h4>{props.errorIzinListSolo}</h4>
+            <h4>props.errorIzinListSolo</h4>
           ) : (
             <Spinner color="dark" />
+
           )}
 
         </div>

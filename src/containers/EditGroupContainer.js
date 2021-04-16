@@ -34,10 +34,15 @@ class EditGroupContainer extends Component {
         swal("Failed!", this.props.errorResponDataGroup, "error");
       } else {
         swal(
-          "Group Updated!",
-          "",
+          "Group Created!",
+          "ID : " +
+          this.props.getResponDataGroup.data.GroupID +
+          " , Jabatan : " +
+          this.props.getResponDataGroup.data.Jabatan,
           "success"
-        );
+        ).then((value) => {
+          window.location.reload();
+        });
       }
     }
     return (

@@ -16,7 +16,7 @@ export const PUT_ADMIN_EDIT = "PUT_ADMIN_EDIT";
 // export const getAdminTimeNow = () => {
 //   return (dispatch) => {
 //     setInterval (function() {
-//     axios.get("http://"+BASEURL+"/api/gettime2")
+//     axios.get(BASEURL+"/api/gettime2")
 //       .then(function (response) {
 //         dispatch({
 //           type: GET_ADMIN_TIMENOW,
@@ -41,7 +41,7 @@ export const PUT_ADMIN_EDIT = "PUT_ADMIN_EDIT";
 export const getAdminOnDuty = () => {
   return (dispatch) => {
     axios
-      .get("http://"+BASEURL+"/api/onduty")
+      .get(BASEURL+"/api/onduty")
       .then(function (response) {
         dispatch({
           type: GET_ADMIN_ONDUTY,
@@ -67,7 +67,7 @@ export const getAdminOnDuty = () => {
 export const getAdminList = () => {
   return (dispatch) => {
     axios
-      .get("http://"+BASEURL+"/api/superadmin")
+      .get(BASEURL+"/api/superadmin")
       .then(function (response) {
         dispatch({
           type: GET_ADMIN_LIST,
@@ -93,7 +93,7 @@ export const getAdminDetail = (AdminID) => {
   return (dispatch) => {
     axios
       .get(
-        "http://"+BASEURL+"/api/superadmin/"+ AdminID
+        BASEURL+"/api/superadmin/"+ AdminID
       )
       .then(function (response) {
         dispatch({
@@ -120,7 +120,7 @@ export const postAdminCreate = (data) => {
   return (dispatch) => {
     axios
       .post(
-         "http://"+BASEURL+"/api/superadmin/",
+         BASEURL+"/api/superadmin/",
         data
       )
       .then(function (response) {
@@ -150,7 +150,7 @@ export const putAdminUpdate = (data,AdminID) => {
   return (dispatch) => {
     axios
       .put(
-        "http://"+BASEURL+"/api/superadmin/"+AdminID,
+        BASEURL+"/api/superadmin/"+AdminID,
         data
       )
       .then(function (response) {
@@ -181,7 +181,7 @@ export const deleteAdmin = (AdminID) => {
   return (dispatch) => {
     axios
       .delete(
-         "http://"+BASEURL+"/api/superadmin/"+AdminID
+         BASEURL+"/api/superadmin/"+AdminID
       )
       .then(function (response) {
         console.log(response);

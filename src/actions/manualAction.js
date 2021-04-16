@@ -17,7 +17,7 @@ export const postManualMasuk= (data) => {
     return (dispatch) => {
       axios
         .post(
-           "http://"+BASEURL+"/api/attlogmanual/",
+           BASEURL+"/api/attlogmanual/",
           data
         )
         .then(function (response) {
@@ -51,7 +51,7 @@ export const postManualMasuk= (data) => {
     return (dispatch) => {
       axios
         .put(
-           "http://"+BASEURL+"/api/datangmanual/"+parameter,
+           BASEURL+"/api/datangmanual/"+parameter,
           data
         )
         .then(function (response) {
@@ -84,7 +84,7 @@ export const postManualMasuk= (data) => {
     return (dispatch) => {
       axios
         .post(
-           "http://"+BASEURL+"/api/keluarkantormanual/",
+           BASEURL+"/api/keluarkantormanual/",
           data
         )
         .then(function (response) {
@@ -117,7 +117,7 @@ export const postManualMasuk= (data) => {
     return (dispatch) => {
       axios
         .put(
-           "http://"+BASEURL+"/api/keluarkantormanual/"+parameter,
+           BASEURL+"/api/keluarkantormanual/"+parameter,
           data
         )
         .then(function (response) {
@@ -150,7 +150,7 @@ export const postManualMasuk= (data) => {
     return (dispatch) => {
       axios
         .put(
-           "http://"+BASEURL+"/api/istirahatmanual/"+parameter,
+           BASEURL+"/api/istirahatmanual/"+parameter,
           data
         )
         .then(function (response) {
@@ -183,7 +183,7 @@ export const postManualMasuk= (data) => {
     return (dispatch) => {
       axios
         .put(
-           "http://"+BASEURL+"/api/istirahatkembalimanual/"+parameter,
+           BASEURL+"/api/istirahatkembalimanual/"+parameter,
           data
         )
         .then(function (response) {

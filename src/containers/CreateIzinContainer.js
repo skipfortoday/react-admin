@@ -33,7 +33,7 @@ import { Redirect } from "react-router-dom";
 const mapStateToProps = (state) => {
   return {
     getResponDataIzin: state.Izin.getResponDataIzin,
-    errorLaporanDetail : state.Laporan.errorLaporanDetail,
+    errorLaporanDetail: state.Laporan.errorLaporanDetail,
     errorResponDataIzin: state.Izin.errorResponDataIzin,
     getResponDataLaporan: state.Laporan.getResponDataLaporan,
     errorResponDataLaporan: state.Laporan.errorResponDataLaporan,
@@ -48,7 +48,14 @@ class CreateIzinContainer extends Component {
   componentDidMount() {
     this.props.dispatch(setStatusForm(""));
     this.props.dispatch(getOptUser());
+    
+    // untuk form editing
     this.props.dispatch(getIzinDetail(this.props.match.params.UserID));
+    
+    // laporan tablen header
+    // this.props.dispatch(getLaporanHead(this.props.match.params.UserID));
+    
+    // laporan table body
     this.props.dispatch(
       getLaporanDetail(
         this.props.match.params.UserID,
@@ -56,6 +63,8 @@ class CreateIzinContainer extends Component {
         this.props.match.params.TglAkhir
       )
     );
+
+    // laporan table footer
     this.props.dispatch(
       getLaporanRekap(
         this.props.match.params.UserID,
@@ -64,7 +73,7 @@ class CreateIzinContainer extends Component {
       )
     );
 
-    this.props.dispatch(getLaporanHead(this.props.match.params.UserID));
+    // untuk form lengkapi
     this.props.dispatch(getUserDetail(this.props.match.params.UserID));
     this.props.dispatch(
       getIzinListSolo(
@@ -73,10 +82,10 @@ class CreateIzinContainer extends Component {
         this.props.match.params.TglAkhir
       )
     );
-    // this.props.dispatch(deleteDataIzin());
+    //this.props.dispatch(deleteDataIzin());
   }
 
-  handleClick(){
+  handleClick() {
     // console.log(this.props);
   }
 
@@ -86,11 +95,11 @@ class CreateIzinContainer extends Component {
 
     data.ADMIN = ambil.AdminID;
     console.log(data);
-    if(!data.DatangID){
+    if (!data.DatangID) {
       // create
       // console.log(data);
       this.props.dispatch(postIzinCreate(data));
-    }else{
+    } else {
       //put
       //console.log(data);
       this.props.dispatch(putIzinUpdate(data, data.DatangID));
@@ -105,31 +114,31 @@ class CreateIzinContainer extends Component {
       buttons: true,
       dangerMode: false,
     })
-    .then((willDelete) => {
-      if (willDelete) {
-        this.props.dispatch(postLaporanProses(data));
-        // swal("Poof! Your imaginary file has been deleted!", {
-        //   icon: "success",
-        // });
-      } else {
-        //swal("Your imaginary file is safe!");
-      }
-    });
+      .then((willDelete) => {
+        if (willDelete) {
+          this.props.dispatch(postLaporanProses(data));
+          // swal("Poof! Your imaginary file has been deleted!", {
+          //   icon: "success",
+          // });
+        } else {
+          //swal("Your imaginary file is safe!");
+        }
+      });
     //this.props.dispatch(postLaporanProses(data));
   }
 
   render() {
     if (this.props.errorLaporanDetail) {
       swal("Failed!", "Tidak Ada Data / Silahkan Coba lagi", "error");
-      return <Redirect to="/izin" /> ;
-    } 
+      return <Redirect to="/izin" />;
+    }
 
-    if (!localStorage.getItem('user')||localStorage.getItem('user') === "false") {
+    if (!localStorage.getItem('user') || localStorage.getItem('user') === "false") {
       swal("Failed!", "Login Dulu Bosq", "error");
-      return <Redirect to="/home" /> ;
-    } 
+      return <Redirect to="/home" />;
+    }
     if (this.props.getResponDataIzin || this.props.errorResponDataIzin) {
-      
+
       if (this.props.errorResponDataIzin) {
         swal("Failed!", this.props.errorResponDataIzin, "error");
       } else {
@@ -158,7 +167,7 @@ class CreateIzinContainer extends Component {
         swal(
           "Proses Berhasil!",
           "success"
-        );setTimeout(function () {
+        ); setTimeout(function () {
           window.location.reload();
         }, 300);
       }
@@ -167,46 +176,46 @@ class CreateIzinContainer extends Component {
       <div>
         <NavbarComponent />
         <div class="header-1" style={{ backgroundColor: "#f9a826" }}>
-        <td><BackIzin /></td>
-        <td width='30px'></td>
-         <td>
-          <LengkapiAbsen onSubmit={(data) => this.handleSubmit2(data)} />
+          <td><BackIzin /></td>
+          <td width='30px'></td>
+          <td>
+            <LengkapiAbsen onSubmit={(data) => this.handleSubmit2(data)} />
           </td>
           <td width='150px'></td>
           <td>
-          {/* <LengkapiAbsenButton /> */}
+            {/* <LengkapiAbsenButton /> */}
           </td>
         </div>
-        <div  class="header-1" style={{padding:"10px 20px"}}>
-            <div className="row">
-              <div  className="col-lg-8">
-                <IzinComponentSolo />
-              </div>
-              <div className="col-lg-4">
-                <div style={{ background:"#17a2b7", padding:"0px 10px" }}>
-                  <FormIzinComponent onSubmit={(data) => this.handleSubmit(data)} />
-                </div>
+        <div class="header-1" style={{ padding: "10px 20px" }}>
+          <div className="row">
+            <div className="col-lg-8">
+              <IzinComponentSolo />
+            </div>
+            <div className="col-lg-4">
+              <div style={{ background: "#17a2b7", padding: "0px 10px" }}>
+                <FormIzinComponent onSubmit={(data) => this.handleSubmit(data)} />
               </div>
             </div>
+          </div>
         </div>
-        
+
         <div class="header-1" style={{ backgroundColor: "#f9a826" }}>
-            <Container>
+          <Container>
             <Row>
-          <h3>Print Preview</h3> <PrintButton />
-          </Row>
+              <h3>Print Preview</h3> <PrintButton />
+            </Row>
           </Container>
         </div>
         <Container>
           <Row className="page-header">
             <NamaCabangLaporan />
             <RekapLaporan />
-            </Row>
-            <Row>
+          </Row>
+          <Row>
             <LaporanDetail />
             <RekapLeft />
           </Row>
-        </Container> 
+        </Container>
       </div>
     );
   }
