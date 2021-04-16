@@ -50,7 +50,7 @@ class TerlambatBertingkatContainer extends Component {
     this.props.dispatch(getGroupDetail(this.props.match.params.GroupID));
     this.props.dispatch(getOptTerlambat(this.props.match.params.GroupID));
 
-    // list table 
+    // // list table 
     this.props.dispatch(getTerlambatBertingkatDetail(this.props.match.params.GroupID));
     if (this.props.match.params.RuleTerlambatBertingkatID) {
       this.props.dispatch(getTerlambatBertingkatDetail2(this.props.match.params.RuleTerlambatBertingkatID));
@@ -72,7 +72,7 @@ class TerlambatBertingkatContainer extends Component {
     // this.props.dispatch(delTerlambatBertingkatDetail2)
     this.props.dispatch(getTerlambatBertingkatDetail(data.value));
     this.props.history.replace('/group/terlambatbertingkat/' + data.value);
-    this.props.dispatch(getTerlambatBertingkatDetail2(this.props.match.params.RuleTerlambatBertingkatID));
+    //this.props.dispatch(getTerlambatBertingkatDetail2(this.props.match.params.RuleTerlambatBertingkatID));
   };
 
   getDataForEditing() {

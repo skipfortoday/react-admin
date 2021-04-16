@@ -1,4 +1,5 @@
 import axios from "axios";
+import { siteConfig } from "../config";
 import { BASEURL } from "./adminAction";
 
 export const GET_OPT_USER = "GET_OPT_USER";
@@ -12,11 +13,16 @@ export const GET_OPT_GROUP = "GET_OPT_GROUP";
 export const GET_OPT_CABANG = "GET_OPT_CABANG";
 export const GET_OPT_TERLAMBAT = "GET_OPT_TERLAMBAT";
 
-
+let headers = {
+  headers :{
+    'Access-Control-Allow-Origin':'*',
+    KodeCabang:siteConfig.kodeCabang
+  }
+}
 export const getOptUser = () => {
   return (dispatch) => {
     axios
-      .get("http://"+BASEURL+"/api/optuser")
+      .get(BASEURL+"/api/optuser", headers)
       .then(function (response) {
         dispatch({
           type: GET_OPT_USER,
@@ -41,7 +47,7 @@ export const getOptUser = () => {
 export const getOptUserManual = () => {
   return (dispatch) => {
     axios
-      .get("http://"+BASEURL+"/api/optusermanual")
+      .get(BASEURL+"/api/optusermanual")
       .then(function (response) {
         dispatch({
           type: GET_OPT_USERMANUAL,
@@ -66,7 +72,7 @@ export const getOptUserManual = () => {
 export const getOptUserManualPulang = () => {
   return (dispatch) => {
     axios
-      .get("http://"+BASEURL+"/api/optusermanualpulang")
+      .get(BASEURL+"/api/optusermanualpulang")
       .then(function (response) {
         dispatch({
           type: GET_OPT_USERMANUALPULANG,
@@ -91,7 +97,7 @@ export const getOptUserManualPulang = () => {
 export const getOptUserManualKeluar = () => {
   return (dispatch) => {
     axios
-      .get("http://"+BASEURL+"/api/optusermanualkeluar")
+      .get(BASEURL+"/api/optusermanualkeluar")
       .then(function (response) {
         dispatch({
           type: GET_OPT_USERMANUALKELUAR,
@@ -116,7 +122,7 @@ export const getOptUserManualKeluar = () => {
 export const getOptUserManualKembali = () => {
   return (dispatch) => {
     axios
-      .get("http://"+BASEURL+"/api/optusermanualkembali")
+      .get(BASEURL+"/api/optusermanualkembali")
       .then(function (response) {
         dispatch({
           type: GET_OPT_USERMANUALKEMBALI,
@@ -141,7 +147,7 @@ export const getOptUserManualKembali = () => {
 export const getOptUserManualKeluarIst = () => {
   return (dispatch) => {
     axios
-      .get("http://"+BASEURL+"/api/optusermanualkeluarist")
+      .get(BASEURL+"/api/optusermanualkeluarist")
       .then(function (response) {
         dispatch({
           type: GET_OPT_USERMANUALKELUARIST,
@@ -166,7 +172,7 @@ export const getOptUserManualKeluarIst = () => {
 export const getOptUserManualKembaliIst = () => {
   return (dispatch) => {
     axios
-      .get("http://"+BASEURL+"/api/optusermanualkembaliist")
+      .get(BASEURL+"/api/optusermanualkembaliist")
       .then(function (response) {
         dispatch({
           type: GET_OPT_USERMANUALKEMBALIIST,
@@ -191,7 +197,7 @@ export const getOptUserManualKembaliIst = () => {
 export const getOptGroup = () => {
   return (dispatch) => {
     axios
-      .get("http://"+BASEURL+"/api/optgroup")
+      .get(BASEURL+"/api/optgroup")
       .then(function (response) {
         dispatch({
           type: GET_OPT_GROUP,
@@ -216,7 +222,7 @@ export const getOptGroup = () => {
 export const getOptTerlambat = () => {
   return (dispatch) => {
     axios
-      .get("http://"+BASEURL+"/api/optTerlambat")
+      .get(BASEURL+"/api/optTerlambat")
       .then(function (response) {
         dispatch({
           type: GET_OPT_TERLAMBAT,
@@ -241,7 +247,7 @@ export const getOptTerlambat = () => {
 export const getOptCabang = () => {
   return (dispatch) => {
     axios
-      .get("http://"+BASEURL+"/api/optcabang")
+      .get(BASEURL+"/api/optcabang")
       .then(function (response) {
         dispatch({
           type: GET_OPT_CABANG,

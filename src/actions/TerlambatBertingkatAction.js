@@ -1,4 +1,5 @@
 import axios from "axios";
+import { siteConfig } from "../config";
 import { BASEURL } from "./adminAction";
 
 export const GET_TERLAMBATBERTINGKAT_LIST = "GET_TERLAMBATBERTINGKAT_LIST";
@@ -9,11 +10,17 @@ export const PUT_TERLAMBATBERTINGKAT_EDIT = "PUT_TERLAMBATBERTINGKAT_EDIT";
 export const DEL_TERLAMBATBERTINGKAT_DETAIL2 = "DEL_TERLAMBATBERTINGKAT_DETAIL2";
 export const POST_TERLAMBATBERTINGKAT_SALIN = "POST_TERLAMBATBERTINGKAT_SALIN";
 
+let headers = {
+  headers :{
+    'Access-Control-Allow-Origin':'*',
+    KodeCabang:siteConfig.kodeCabang
+  }
+}
 
 export const getTerlambatBertingkatList = () => {
   return (dispatch) => {
     axios
-      .get("http://"+BASEURL+"/api/TerlambatBertingkat")
+      .get(BASEURL+"/api/TerlambatBertingkat", headers)
       .then(function (response) {
         dispatch({
           type: GET_TERLAMBATBERTINGKAT_LIST,
@@ -39,7 +46,8 @@ export const getTerlambatBertingkatDetail = (GroupID) => {
   return (dispatch) => {
     axios
       .get(
-        "http://"+BASEURL+"/api/TerlambatBertingkat/"+GroupID
+        BASEURL+"/api/TerlambatBertingkat/"+GroupID,
+        headers
       )
       .then(function (response) {
         var terlambatBertingkat = [];
@@ -84,7 +92,8 @@ export const getTerlambatBertingkatDetail2 = (RuleTerlambatBertingkatID) => {
   return (dispatch) => {
     axios
       .get(
-        "http://"+BASEURL+"/api/TerlambatBertingkat2/"+RuleTerlambatBertingkatID
+        BASEURL+"/api/TerlambatBertingkat2/"+RuleTerlambatBertingkatID,
+        headers
       )
       .then(function (response) {
         dispatch({
@@ -111,8 +120,9 @@ export const postTerlambatBertingkatCreate = (data) => {
   return (dispatch) => {
     axios
       .post(
-         "http://"+BASEURL+"/api/TerlambatBertingkat/",
-        data
+         BASEURL+"/api/TerlambatBertingkat/",
+        data,
+        headers
       )
       .then(function (response) {
         console.log(response);
@@ -141,8 +151,9 @@ export const putTerlambatBertingkatUpdate = (data, RuleTerlambatBertingkatID) =>
   return (dispatch) => {
     axios
       .put(
-        "http://"+BASEURL+"/api/TerlambatBertingkat/"+RuleTerlambatBertingkatID,
-        data
+        BASEURL+"/api/TerlambatBertingkat/"+RuleTerlambatBertingkatID,
+        data,
+        headers
       )
       .then(function (response) {
         console.log(response);
@@ -172,7 +183,7 @@ export const deleteTerlambatBertingkat = (RuleTerlambatBertingkatID) => {
   return (dispatch) => {
     axios
       .delete(
-         "http://"+BASEURL+"/api/TerlambatBertingkat/"+RuleTerlambatBertingkatID
+         BASEURL+"/api/TerlambatBertingkat/"+RuleTerlambatBertingkatID
       )
       .then(function (response) {
         console.log(response);
@@ -212,8 +223,9 @@ export const postSalinRuleTerlambatBertingkat = (data) => {
   return (dispatch) => {
     axios
       .post(
-         "http://"+BASEURL+"/api/SalinTerlambatBertingkat/",
-        data
+        BASEURL+"/api/SalinTerlambatBertingkat/",
+        data,
+        headers
       )
       .then(function (response) {
         dispatch({

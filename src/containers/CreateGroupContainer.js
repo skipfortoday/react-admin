@@ -1,12 +1,13 @@
 import React, { Component } from "react";
-import { Container} from "reactstrap";
+import { Container } from "reactstrap";
 import BackGroup from "../components/BackGroup";
 import FormGroupComponent from "../components/FormGroupComponent";
 import { connect } from "react-redux";
 import { postGroupCreate } from "../actions/groupAction";
 import swal from "sweetalert";
 import NavbarComponent from "../components/NavbarComponent";
-import {Redirect} from "react-router-dom";
+import { Redirect } from "react-router-dom";
+import { siteConfig } from "../config";
 
 const mapStateToProps = (state) => {
   return {
@@ -21,32 +22,34 @@ class CreateGroupContainer extends Component {
   }
 
   render() {
-    if (!localStorage.getItem('user')||localStorage.getItem('user') === "false") {
+    if (!localStorage.getItem('user') || localStorage.getItem('user') === "false") {
       swal("Failed!", "Login Dulu Bosq", "error");
-      return <Redirect to="/home" /> ;
-    } 
+      return <Redirect to="/home" />;
+    }
     if (this.props.getResponDataGroup || this.props.errorResponDataGroup) {
       if (this.props.errorResponDataGroup) {
         swal("Failed!", this.props.errorResponDataGroup, "error");
       } else {
         swal(
           "Group Created!",
-          "Nama : " +
-            this.props.getResponDataGroup.GroupID +
-            " , Umur : " +
-            this.props.getResponDataGroup.Jabatan,
+          "ID : " +
+          this.props.getResponDataGroup.data.GroupID +
+          " , Jabatan : " +
+          this.props.getResponDataGroup.data.Jabatan,
           "success"
-        );
+        ).then((value) => {
+          window.location.reload();
+        });
       }
     }
     return (
       <div>
         <NavbarComponent />
-        <div style={{ backgroundColor: '#f9a826'}}>
-        <BackGroup />
-        <Container>
-        <FormGroupComponent onSubmit={(data) => this.handleSubmit(data)} />
-        </Container>
+        <div style={{ backgroundColor: '#f9a826' }}>
+          <BackGroup />
+          <Container>
+            <FormGroupComponent onSubmit={(data) => this.handleSubmit(data)} />
+          </Container>
         </div>
       </div>
     );

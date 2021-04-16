@@ -29,7 +29,7 @@ export const delListHistory = () =>{
 export const getListHistory = (Nama, TglAwal, TglAkhir) => {
     return (dispatch) => {
         axios
-            .get("http://" + BASEURL + "/api/history/"+Nama+"&"+TglAwal+"&"+TglAkhir)
+            .get(BASEURL + "/api/history/"+Nama+"&"+TglAwal+"&"+TglAkhir)
             .then(function (response) {
                 dispatch({
                     type: GET_LIST_HISTORY,
