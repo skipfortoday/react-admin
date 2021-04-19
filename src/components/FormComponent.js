@@ -1,5 +1,5 @@
-import React, { Component, PureComponent } from "react";
-import { reduxForm, Field, change, formValueSelector, reset } from "redux-form";
+import React, { Component } from "react";
+import { reduxForm, Field, change, reset } from "redux-form";
 import { connect } from "react-redux";
 import { FormGroup, Col, Label, Input, Row, Button } from "reactstrap";
 import UserValidation from "../validations/UserValidation";

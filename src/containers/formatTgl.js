@@ -1,5 +1,3 @@
-import React from 'react'
-
 export const formatTglYmd = (tgl) => {
     const td = new Date(tgl);
     let 

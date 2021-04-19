@@ -1,5 +1,5 @@
 import axios from "axios";
-import {API_BASEURL} from '../config'
+import {API_BASEURL, headers} from '../config'
 
 export const BASEURL = API_BASEURL;
 
@@ -9,8 +9,6 @@ export const GET_ADMIN_ONDUTY = "GET_ADMIN_ONDUTY";
 export const GET_ADMIN_DETAIL = "GET_ADMIN_DETAIL";
 export const POST_ADMIN_CREATE = "POST_ADMIN_CREATE";
 export const PUT_ADMIN_EDIT = "PUT_ADMIN_EDIT";
-
-
 
 
 // export const getAdminTimeNow = () => {
@@ -41,7 +39,7 @@ export const PUT_ADMIN_EDIT = "PUT_ADMIN_EDIT";
 export const getAdminOnDuty = () => {
   return (dispatch) => {
     axios
-      .get(BASEURL+"/api/onduty")
+      .get(BASEURL+"/api/onduty", headers)
       .then(function (response) {
         dispatch({
           type: GET_ADMIN_ONDUTY,

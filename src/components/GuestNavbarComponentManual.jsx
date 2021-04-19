@@ -9,6 +9,7 @@ import {
   NavItem,
   NavLink,
 } from "reactstrap";
+import { siteConfig } from "../config";
 const NavbarComponent = (props) => {
   const [collapsed, setCollapsed] = useState(true);
 
@@ -16,60 +17,61 @@ const NavbarComponent = (props) => {
 
   return (
     <div>
-      
+
       <Navbar color="dark" dark expand="md">
-      <img src="/logodarkgold.jpeg" alt="logodarkgold"/>
-          <NavbarBrand> </NavbarBrand>
-          <NavbarBrand> L'viors Attendance System</NavbarBrand>
-          <NavbarToggler onClick={toggleNavbar} className="mr-2" />
-          <Collapse isOpen={!collapsed} navbar>
-            <Nav className="mr-auto" navbar>
-                 <NavItem>
-                 <a href={"/absensimanual"}>
+        <img src="/logodarkgold.jpeg" alt="logodarkgold" />
+        <NavbarBrand> </NavbarBrand>
+        <NavbarBrand> L'viors Attendance System</NavbarBrand>
+        <NavbarToggler onClick={toggleNavbar} className="mr-2" />
+        <Collapse isOpen={!collapsed} navbar>
+          <Nav className="mr-auto" navbar>
+            <NavItem>
+              <a href={"/absensimanual"}>
                 <NavLink>Masuk </NavLink>
-                </a>
-              </NavItem>
-              <NavItem>
-                <a href={"/absensimanualpulang"}>
+              </a>
+            </NavItem>
+            <NavItem>
+              <a href={"/absensimanualpulang"}>
                 <NavLink> Pulang</NavLink>
-                </a>
-              </NavItem>
-              <NavItem>
-                <a href={"/absensimanualistirahatkeluar"}>
+              </a>
+            </NavItem>
+            <NavItem>
+              <a href={"/absensimanualistirahatkeluar"}>
                 <NavLink> Istirahat Keluar</NavLink>
-                </a>
-              </NavItem>
-              <NavItem>
-                <a href={"/absensimanualistirahatkembali"}>
+              </a>
+            </NavItem>
+            <NavItem>
+              <a href={"/absensimanualistirahatkembali"}>
                 <NavLink> Istirahat Kembali</NavLink>
-                </a>
-              </NavItem>
-              <NavItem>
-                <a href={"/absensimanualkeluarkantor"}>
+              </a>
+            </NavItem>
+            <NavItem>
+              <a href={"/absensimanualkeluarkantor"}>
                 <NavLink> Keluar Kantor</NavLink>
-                </a>
-              </NavItem>
-              <NavItem>
-                <a href={"/absensimanualkembalikantor"}>
+              </a>
+            </NavItem>
+            <NavItem>
+              <a href={"/absensimanualkembalikantor"}>
                 <NavLink> Kembali Kantor</NavLink>
-                </a>
-              </NavItem>
-            </Nav>
-            <Nav navbar> 
+              </a>
+            </NavItem>
+          </Nav>
+          <NavbarBrand>{siteConfig.nama}</NavbarBrand>
+          <Nav navbar>
             <NavItem>
-                <Link to="/home">
+              <Link to="/home">
                 <NavLink> Home</NavLink>
-                </Link>
-              </NavItem>
+              </Link>
+            </NavItem>
             <NavItem>
-                <Link to="/Login">
+              <Link to="/Login">
                 <NavLink> Login</NavLink>
-                </Link>
-              </NavItem>
-            </Nav>  
-          </Collapse>
+              </Link>
+            </NavItem>
+          </Nav>
+        </Collapse>
       </Navbar>
-      
+
 
     </div>
   );

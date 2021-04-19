@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button, Container, Row } from "reactstrap";
+import { Container, Row } from "reactstrap";
 import BackIzin from "../components/BackIzin";
 import FormIzinComponent from "../components/FormIzinComponent";
 import { connect } from "react-redux";
@@ -12,7 +12,6 @@ import {
 } from "../actions/izinAction";
 import swal from "sweetalert";
 import NavbarComponent from "../components/NavbarComponent";
-import LengkapiAbsenButton from "../components/LengkapiAbsenButton";
 import { getOptUser } from "../actions/optAction";
 import LengkapiAbsen from "../components/LengkapiAbsen";
 import LaporanDetail from "../components/LaporanDetail";
@@ -20,7 +19,6 @@ import RekapLaporan from "../components/RekapLaporan";
 import {
   getLaporanDetail,
   getLaporanRekap,
-  getLaporanHead,
 } from "../actions/laporanAction";
 import { getUserDetail } from "../actions/userAction";
 import IzinComponentSolo from "../components/IzinComponentSolo";

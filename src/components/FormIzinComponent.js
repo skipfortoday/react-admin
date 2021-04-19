@@ -2,12 +2,11 @@ import React, { Component } from "react";
 import { reduxForm, Field, change } from "redux-form";
 import { bindActionCreators } from 'redux'
 import { connect } from "react-redux";
-import { FormGroup, Col, Label, Input, Row, Button } from "reactstrap";
+import { FormGroup, Col, Row, Button } from "reactstrap";
 import IzinValidation from "../validations/IzinValidation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 
-import { setEditJamForm,setStatusForm } from "../actions/izinAction";
 import { InputFieldComponent } from "../components/formController/InputFieldComponent";
 import { SelectFieldComponent } from "../components/formController/SelectFieldComponent";
 import { CheckboxFieldComponent } from "../components/formController/CheckboxFieldComponent";

@@ -2,11 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { postLoginUser, resetState } from "../actions/loginAction";
 import swal from "sweetalert";
-import { getUsersList } from "../actions/userAction";
 import LoginComponent from "../components/LoginComponent";
-import BackLogin from "../components/BackLogin";
-import { Redirect,useHistory  } from "react-router-dom";
-import { Col, Container, Row } from "reactstrap";
+import {Container } from "reactstrap";
 import bgLogin from "../bg_login_page.png"
 import userLogin from "../icon_user_login.png"
 import './LoginStyle.css';
@@ -56,13 +53,12 @@ class LoginContainer extends Component {
   }
 
   render() {
-    
     return (
       <div className="mainWrapper" style={{backgroundImage:`url(${bgLogin})`}}>
         <Container>
           <div className="loginWrapper">
             <div className="loginBox">
-              <img className="iconUser" src={userLogin}></img>
+              <img className="iconUser" src={userLogin} alt="user-login"></img>
               <h1 className="welcome">WELCOME ADMIN X</h1>
               <LoginComponent onSubmit={(data) => this.handleSubmit(data)} />
             </div>

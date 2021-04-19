@@ -8,7 +8,6 @@ import GroupContainer from "./containers/GroupContainer";
 import CreateGroupContainer from "./containers/CreateGroupContainer";
 import EditGroupContainer from "./containers/EditGroupContainer";
 import TerlambatBertingkatContainer from "./containers/TerlambatBertingkatContainer";
-import EditTerlambatBertingkatContainer from "./containers/EditTerlambatBertingkatContainer";
 import DetailGroupContainer from "./containers/DetailGroupContainer";
 import IzinContainer from "./containers/IzinContainer";
 import ListUserIzinContainer from "./containers/ListUserIzinContainer";

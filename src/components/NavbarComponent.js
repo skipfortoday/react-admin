@@ -17,8 +17,7 @@ import {
 } from "reactstrap";
 import { siteConfig } from "../config";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import LogoutComponent from "./LogoutComponent";
-import { faSignOutAlt, faUserAlt, faUserAltSlash, faUserAstronaut, faUserCircle, faUserCog, faUserInjured, faUserMd, faUserTag, faUserTie } from "@fortawesome/free-solid-svg-icons";
+import { faSignOutAlt, faUserTie } from "@fortawesome/free-solid-svg-icons";
 
 const NavbarComponent = (props) => {
   const [collapsed, setCollapsed] = useState(true);

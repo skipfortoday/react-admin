@@ -1,4 +1,5 @@
 import axios from "axios";
+import { headers } from "../config";
 import { BASEURL } from "./adminAction";
 
 export const POST_MANUAL_MASUK = "POST_MANUAL_MASUK";
@@ -49,7 +50,7 @@ export const postManualMasuk= (data) => {
     console.log(data);
     data.NamaUser = data.Nama.label;
     data.UserID = data.Nama.value;
-    let parameter = data.Nama.datangid;
+    let parameter = data.Nama.DatangID;
     return (dispatch) => {
       axios
         .put(
@@ -86,8 +87,9 @@ export const postManualMasuk= (data) => {
     return (dispatch) => {
       axios
         .post(
-           BASEURL+"/api/keluarkantormanual/",
-          data
+          BASEURL+"/api/keluarkantormanual/",
+          data,
+          headers
         )
         .then(function (response) {
           console.log(response);
@@ -148,11 +150,11 @@ export const postManualMasuk= (data) => {
   export const putManualKelIstirahat= (data) => {
     data.UserID = data.Nama.value;
     data.NamaUser = data.Nama.label;
-    let parameter = data.Nama.datangid
+    let parameter = data.Nama.DatangID
     return (dispatch) => {
       axios
         .put(
-           BASEURL+"/api/istirahatmanual/"+parameter,
+          BASEURL+"/api/istirahatmanual/"+parameter,
           data
         )
         .then(function (response) {
@@ -181,7 +183,7 @@ export const postManualMasuk= (data) => {
   export const putManualKemIstirahat= (data) => {
     data.UserID = data.Nama.value;
     data.NamaUser = data.Nama.label;
-    let parameter = data.Nama.datangid
+    let parameter = data.Nama.DatangID
     return (dispatch) => {
       axios
         .put(

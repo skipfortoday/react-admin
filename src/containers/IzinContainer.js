@@ -4,7 +4,6 @@ import swal from "sweetalert";
 import { connect } from "react-redux";
 import { getIzinList, deleteDataIzin } from "../actions/izinAction";
 import NavbarComponent from "../components/NavbarComponent";
-import LengkapiAbsenButton from "../components/LengkapiAbsenButton";
 import { getOptUser } from "../actions/optAction";
 import LengkapiAbsen from "../components/LengkapiAbsen";
 import { postLaporanProses } from "../actions/laporanAction";

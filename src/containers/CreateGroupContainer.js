@@ -7,7 +7,6 @@ import { postGroupCreate } from "../actions/groupAction";
 import swal from "sweetalert";
 import NavbarComponent from "../components/NavbarComponent";
 import { Redirect } from "react-router-dom";
-import { siteConfig } from "../config";
 
 const mapStateToProps = (state) => {
   return {
