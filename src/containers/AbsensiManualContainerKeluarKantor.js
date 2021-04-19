@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import {reset} from 'redux-form';
 import { connect } from "react-redux";
 import { getOptUserManualKeluar } from "../actions/optAction";
 import GuestNavbarComponentManual from "../components/GuestNavbarComponentManual";
@@ -30,6 +31,7 @@ class AbsensiManualContainerKeluarKantor extends Component {
     this.props.dispatch(getAdminOnDuty());
     this.props.dispatch(getOptUserManualKeluar());
     this.props.dispatch(getLaporanList(this.props.getResponDataManual.UserID));
+    this.props.dispatch(reset('FormAbsensiManualKeluar'));
   }
   handleSubmit(data) {
     this.props.dispatch(postManualKeluar(data));

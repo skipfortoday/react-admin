@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import {reset} from 'redux-form';
 import { connect } from "react-redux";
 import { getOptUserManualKembaliIst } from "../actions/optAction";
 import GuestNavbarComponentManual from "../components/GuestNavbarComponentManual";
@@ -29,6 +30,7 @@ class AbsensiManualContainerIstKembali extends Component {
     this.props.dispatch(getAdminOnDuty());
     this.props.dispatch(getOptUserManualKembaliIst());
     this.props.dispatch(getLaporanList(this.props.getResponDataManual.UserID));
+    this.props.dispatch(reset('FormAbsensiManualIstKembali'));
   }
   handleSubmit(data) {
     this.props.dispatch(putManualKemIstirahat(data));

@@ -4,7 +4,6 @@ import BackCabang from "../components/BackCabang";
 import FormCabangComponent from "../components/FormCabangComponent";
 import { connect } from "react-redux";
 import { postCabangCreate } from "../actions/cabangAction";
-import { getOptUser } from "../actions/optAction";
 import swal from "sweetalert";
 import NavbarComponent from "../components/NavbarComponent";
 import {Redirect} from "react-router-dom";

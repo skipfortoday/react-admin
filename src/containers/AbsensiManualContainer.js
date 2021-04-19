@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import {reset} from 'redux-form';
 import { connect } from "react-redux";
 import { getOptUserManual } from "../actions/optAction";
 import FormAbsensiManual from "../components/FormAbsensiManual";
@@ -30,6 +31,7 @@ class AbsensiManualContainer extends Component {
     this.props.dispatch(getOptUserManual());
     this.props.dispatch(getAdminOnDuty());
     this.props.dispatch(getLaporanList(this.props.getResponDataManual.UserID));
+    this.props.dispatch(reset('FormAbsensiManual'));  // requires form name
  
     // this.props.dispatch(getAdminTimeNow());
   }

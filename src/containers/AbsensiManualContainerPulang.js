@@ -1,6 +1,6 @@
 import React, { Component } from "react";
+import {reset} from 'redux-form';
 import { connect } from "react-redux";
-import { getUsersList } from "../actions/userAction";
 import { getOptUserManualPulang } from "../actions/optAction";
 import GuestNavbarComponentManual from "../components/GuestNavbarComponentManual";
 import { Container } from "reactstrap";
@@ -8,10 +8,8 @@ import FormAbsensiManual2 from "../components/FormAbsensiManual2";
 import { getAdminOnDuty } from "../actions/adminAction";
 import { putManualPulang } from "../actions/manualAction";
 import swal from "sweetalert";
-import RecentScanComponent from "../components/RecentScanComponent";
 import OnDutyRoster from "../components/OnDutyRoster";
 import Ambilwaktu from "../components/Ambilwaktu";
-import { Redirect } from "react-router-dom";
 import LaporanDetail2 from "../components/LaporanDetail2";
 import { getLaporanList } from "../actions/laporanAction";
 
@@ -33,6 +31,7 @@ class AbsensiManualContainerPulang extends Component {
     this.props.dispatch(getAdminOnDuty());
     this.props.dispatch(getOptUserManualPulang());
     this.props.dispatch(getLaporanList(this.props.getResponDataManual.UserID));
+    this.props.dispatch(reset('FormAbsensiManual2'));
   }
 
   handleSubmit(data) {

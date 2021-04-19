@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import {reset} from 'redux-form';
 import { connect } from "react-redux";
 import { getOptUserManualKembali } from "../actions/optAction";
 import GuestNavbarComponentManual from "../components/GuestNavbarComponentManual";
@@ -9,7 +10,6 @@ import swal from "sweetalert";
 import OnDutyRoster from "../components/OnDutyRoster";
 import Ambilwaktu from "../components/Ambilwaktu";
 import { getAdminOnDuty } from "../actions/adminAction";
-import { Redirect } from "react-router-dom";
 import { getLaporanList } from "../actions/laporanAction";
 import LaporanDetail2 from "../components/LaporanDetail2";
 
@@ -30,6 +30,7 @@ class AbsensiManualContainerKembaliKantor extends Component {
     this.props.dispatch(getAdminOnDuty());
     this.props.dispatch(getOptUserManualKembali());
     this.props.dispatch(getLaporanList(this.props.getResponDataManual.UserID));
+    this.props.dispatch(reset('FormAbsensiManualKembali'));
   }
   handleSubmit(data) {
     this.props.dispatch(putManualKembali(data));
