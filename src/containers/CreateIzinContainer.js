@@ -28,6 +28,7 @@ import PrintButton from "../components/PrintButton";
 import { postLaporanProses } from "../actions/laporanAction";
 import { Redirect } from "react-router-dom";
 
+
 const mapStateToProps = (state) => {
   return {
     getResponDataIzin: state.Izin.getResponDataIzin,

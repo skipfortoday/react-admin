@@ -56,6 +56,8 @@ const mapStateToProps = (state) => {
 };
 
 
+
+
 const IzinComponentSolo = (props) => {
   const [tooltipOpen, setTooltipOpen] = useState(false);
   const toggle = () => setTooltipOpen(!tooltipOpen);
@@ -146,10 +148,11 @@ const IzinComponentSolo = (props) => {
     },
   ];
 
-
+  console.log(props.getIzinListSolo);
   return (
     <div>
-      {props.getIzinListSolo ? (
+      
+      { props.getIzinListSolo[0] ? (
         <ToolkitProvider
           bootstrap4
           keyField="DatangID"
@@ -191,7 +194,7 @@ const IzinComponentSolo = (props) => {
           {props.errorIzinListSolo ? (
             <h4>props.errorIzinListSolo</h4>
           ) : (
-            <Spinner color="dark" />
+            "Belum Ada Data"
 
           )}
 

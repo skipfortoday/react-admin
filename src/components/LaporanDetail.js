@@ -281,39 +281,39 @@ TotalKeluar: null*/
       defaultSorted= { defaultSorted }
     />
   );
-  /*return (
-    <Container>
-      {props.getLaporanList ? (
-        <ToolkitProvider
-          bootstrap4
-          keyField="UserID"
-          data={props.getLaporanList}
-          columns={columns}
-          defaultSorted={defaultSorted}
-          search
-        >
-          {(props) => (
-            <div >
+  // /*return (
+  //   <Container>
+  //     {props.getLaporanList ? (
+  //       <ToolkitProvider
+  //         bootstrap4
+  //         keyField="UserID"
+  //         data={props.getLaporanList}
+  //         columns={columns}
+  //         defaultSorted={defaultSorted}
+  //         search
+  //       >
+  //         {(props) => (
+  //           <div >
 
 
-              <BootstrapTable
-                {...props.baseProps}
-                pagination={paginationFactory()}
-              />
-            </div>
-          )}
-        </ToolkitProvider>
-      ) : (
-        <div className="text-center">
-          {props.errorLaporanList ? (
-            <h4>{props.errorLaporanList}</h4>
-          ) : (
-            <Spinner color="dark" />
-          )}
-        </div>
-      )}
-    </Container>
-  );*/
+  //             <BootstrapTable
+  //               {...props.baseProps}
+  //               pagination={paginationFactory()}
+  //             />
+  //           </div>
+  //         )}
+  //       </ToolkitProvider>
+  //     ) : (
+  //       <div className="text-center">
+  //         {props.errorLaporanList ? (
+  //           <h4>{props.errorLaporanList}</h4>
+  //         ) : (
+  //           <Spinner color="dark" />
+  //         )}
+  //       </div>
+  //     )}
+  //   </Container>
+  // );*/
 };
 
 export default connect(mapStateToProps, null)(LaporanDetail);
