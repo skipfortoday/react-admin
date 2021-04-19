@@ -1,5 +1,5 @@
 import axios from "axios";
-import { siteConfig } from "../config";
+import { headers } from "../config";
 import { BASEURL } from "./adminAction";
 
 export const GET_IZIN_LIST = "GET_IZIN_LIST";
@@ -11,13 +11,6 @@ export const PUT_IZIN_EDIT = "PUT_IZIN_EDIT";
 export const GET_IZIN_DETAIL_FORM = "GET_IZIN_DETAIL_FORM";
 export const GET_IZIN_DETAIL_FORM_STATUS = "GET_IZIN_DETAIL_FORM_STATUS";
 export const EDIT_JAM_FORM = "EDIT_JAM_FORM";
-
-let headers = {
-  headers :{
-    'Access-Control-Allow-Origin':'*',
-    KodeCabang:siteConfig.kodeCabang
-  }
-}
 
 export const getIzinList = () => {
   return (dispatch) => {

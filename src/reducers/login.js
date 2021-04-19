@@ -33,7 +33,6 @@ const Login = (state = initialState, action) => {
           ...state,
           user: data,
           getResponLoginUser: data,
-          errorResponLoginUser: action.payload.errorMessage,
           isAuthenticated: true,
           loginStatusMessage: data.message,
           errorResponLoginUser:false

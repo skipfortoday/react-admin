@@ -1,5 +1,5 @@
 import axios from "axios";
-import { siteConfig } from "../config";
+import { headers } from "../config";
 import { BASEURL } from "./adminAction";
 
 export const GET_TERLAMBATBERTINGKAT_LIST = "GET_TERLAMBATBERTINGKAT_LIST";
@@ -9,13 +9,6 @@ export const POST_TERLAMBATBERTINGKAT_CREATE = "POST_TERLAMBATBERTINGKAT_CREATE"
 export const PUT_TERLAMBATBERTINGKAT_EDIT = "PUT_TERLAMBATBERTINGKAT_EDIT";
 export const DEL_TERLAMBATBERTINGKAT_DETAIL2 = "DEL_TERLAMBATBERTINGKAT_DETAIL2";
 export const POST_TERLAMBATBERTINGKAT_SALIN = "POST_TERLAMBATBERTINGKAT_SALIN";
-
-let headers = {
-  headers :{
-    'Access-Control-Allow-Origin':'*',
-    KodeCabang:siteConfig.kodeCabang
-  }
-}
 
 export const getTerlambatBertingkatList = () => {
   return (dispatch) => {

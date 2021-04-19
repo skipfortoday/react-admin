@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button, Container} from "reactstrap";
+import { Container} from "reactstrap";
 import BackIzin from "../components/BackIzin";
 import { connect } from "react-redux";
 import { postIzinGroup } from "../actions/izinAction";

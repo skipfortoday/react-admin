@@ -8,7 +8,6 @@ import {
   GET_IZIN_DETAIL_FORM,
   EDIT_JAM_FORM,
   GET_IZIN_DETAIL_FORM_STATUS,
-  getIzinDetailForm,
 } from "../actions/izinAction";
 
 let initialState = {

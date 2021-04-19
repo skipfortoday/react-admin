@@ -1,5 +1,5 @@
 import axios from "axios";
-import { siteConfig } from "../config";
+import { headers } from "../config";
 import { BASEURL } from "./adminAction";
 
 export const GET_GROUP_LIST = "GET_GROUP_LIST";
@@ -9,13 +9,6 @@ export const GET_GROUP_TERLAMBAT2 = "GET_GROUP_TERLAMBAT2";
 export const GET_GROUP_TERLAMBAT3 = "GET_GROUP_TERLAMBAT3";
 export const POST_GROUP_CREATE = "POST_GROUP_CREATE";
 export const PUT_GROUP_EDIT = "PUT_GROUP_EDIT";
-
-let headers = {
-  headers :{
-    'Access-Control-Allow-Origin':'*',
-    KodeCabang:siteConfig.kodeCabang
-  }
-}
 
 export const getGroupList = () => {
   return (dispatch) => {

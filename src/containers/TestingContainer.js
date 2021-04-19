@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { connect, Provider, } from 'react-redux'
+import { connect, } from 'react-redux'
 import { Button } from 'reactstrap'
 import { reduxForm, Field, change, } from 'redux-form'
 import { InputFieldComponent } from '../components/formController/InputFieldComponent'

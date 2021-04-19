@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import BootstrapTable from 'react-bootstrap-table-next';
 import { Row, Col } from "reactstrap";
-import ToolkitProvider, { Search } from 'react-bootstrap-table2-toolkit';
+import ToolkitProvider from 'react-bootstrap-table2-toolkit';
 import paginationFactory from 'react-bootstrap-table2-paginator';
 
 const mapStateToProps = (state) => {
@@ -12,7 +12,6 @@ const mapStateToProps = (state) => {
     }
 }
 
-const { SearchBar } = Search;
 const columns = [
     // {
     //     dataField: 'id',

@@ -1,15 +1,12 @@
 import React, { Component, useState } from "react";
-import { reduxForm, Field } from "redux-form";
 import { connect } from "react-redux";
 import TerlambatBertingkatComponent from "../components/TerlambatBertingkatComponent";
 import { getGroupDetail } from "../actions/groupAction";
 import swal from "sweetalert";
 import NavbarComponent from "../components/NavbarComponent";
 import { Redirect } from "react-router-dom";
-import FormTerlambat from "../components/FormTerlambat";
 import { getOptTerlambat } from "../actions/optAction";
 import { getTerlambatBertingkatDetail, postTerlambatBertingkatCreate, getTerlambatBertingkatDetail2, putTerlambatBertingkatUpdate, postSalinRuleTerlambatBertingkat } from "../actions/TerlambatBertingkatAction";
-import CariTerlambat from "../components/CariTerlambat";
 import FormTTComponent from "../components/FormTTComponent";
 import {
   Container, Button, Row, Col,

@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import { reduxForm, Field } from "redux-form";
 import { connect } from "react-redux";
-import { FormGroup, Col, Label, Input, Row, Button } from "reactstrap";
-import UserValidation from "../validations/UserValidation";
+import { FormGroup, Col, Label, Button } from "reactstrap";
 import { InputRenderComponent } from './InputRenderComponent';
 import { SelectRenderComponent } from './SelectRenderComponent';
 

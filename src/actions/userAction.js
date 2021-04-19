@@ -1,5 +1,5 @@
 import axios from "axios";
-import { siteConfig } from "../config";
+import { headers } from "../config";
 import { BASEURL } from "./adminAction";
 
 export const GET_USERS_LIST = "GET_USERS_LIST";
@@ -12,13 +12,6 @@ export const GET_CABANG_DETAIL = "GET_CABANG_DETAIL";
 export const POST_CABANG_CREATE = "POST_CABANG_CREATE";
 export const PUT_CABANG_EDIT = "PUT_CABANG_EDIT";
 // export const SET_TGL_CUTI = "SET_TGL_CUTI";
-
-let headers = {
-  headers :{
-    'Access-Control-Allow-Origin':'*',
-    KodeCabang:siteConfig.kodeCabang
-  }
-}
 
 export const getUsersList = () => {
   return (dispatch) => {

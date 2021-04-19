@@ -6,7 +6,7 @@ import GuestNavbarComponentManual from "../components/GuestNavbarComponentManual
 import { Container } from "reactstrap";
 import Ambilwaktu from "../components/Ambilwaktu";
 import { getAdminOnDuty } from "../actions/adminAction";
-import { clearManual, postManualMasuk} from "../actions/manualAction";
+import { postManualMasuk} from "../actions/manualAction";
 import swal from "sweetalert";
 import LaporanDetail2 from "../components/LaporanDetail2";
 import OnDutyRoster from "../components/OnDutyRoster";
@@ -24,14 +24,6 @@ class AbsensiManualContainer extends Component {
   componentDidMount() {
     this.props.dispatch(getOptUserManual());
     this.props.dispatch(getAdminOnDuty());
-  //   setTimeout(()=>
-  //   {
-  //     this.setState({
-  //         getResponDataManual: false
-  //     })
-  //   }, 100
-  // )
-    // this.props.dispatch(getAdminTimeNow());
   }
 
   componentDidUpdate() {
@@ -46,25 +38,15 @@ class AbsensiManualContainer extends Component {
     this.props.dispatch(postManualMasuk(data));
   }
 
-  
 
   render() {
 
     if (this.props.getResponDataManual || this.props.errorResponDataManual) {
+      console.log('test');
       if (this.props.errorResponDataManual) {
         swal("Failed!", this.props.errorResponDataManual, "error");
       } else {
         swal("Berhasil Absen!", "~", "success");
-        // return (
-        //   <Redirect
-        //     to={
-        //       "/absensimanual/" +
-        //       this.props.getResponDataManual.UserID +
-        //       "/" +
-        //       this.props.getResponDataManual.Nama
-        //     }
-        //   />
-        // );
       }
     }
     return (

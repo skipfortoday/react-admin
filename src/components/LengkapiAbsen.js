@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { reduxForm, Field, getFormValues } from "redux-form";
+import { reduxForm, Field } from "redux-form";
 import { connect } from "react-redux";
 import Select from 'react-select';
 import {
@@ -13,7 +13,7 @@ import {
 } from "reactstrap";
 import SelectValidation from "../validations/SelectValidation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSpinner, faSearchPlus } from "@fortawesome/free-solid-svg-icons";
+import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 import LengkapiAbsenButton from "./LengkapiAbsenButton";
 
 const renderField = ({
