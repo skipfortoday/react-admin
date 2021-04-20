@@ -5,7 +5,7 @@ import { getOptUserManualKeluarIst } from "../actions/optAction";
 import GuestNavbarComponentManual from "../components/GuestNavbarComponentManual";
 import { Container } from "reactstrap";
 import FormAbsensiManualIstKeluar from "../components/FormAbsensiManualIstKeluar";
-import { putManualKelIstirahat } from "../actions/manualAction";
+import { putManualKelIstirahat, resetProps } from "../actions/manualAction";
 import swal from "sweetalert";
 import OnDutyRoster from "../components/OnDutyRoster";
 import Ambilwaktu from "../components/Ambilwaktu";
@@ -21,30 +21,46 @@ const mapStateToProps = (state) => {
 };
 
 class AbsensiManualContainerIstLuar extends Component {
+  
+  constructor(props) {
+    super(props);
+    this.state = {disableButton : false};
+  }
+
   componentDidMount() {
     this.props.dispatch(getAdminOnDuty());
     this.props.dispatch(getOptUserManualKeluarIst());
   }
 
   componentDidUpdate() {
-    this.props.dispatch(getAdminOnDuty());
-    this.props.dispatch(getOptUserManualKeluarIst());
-    this.props.dispatch(getLaporanList(this.props.getResponDataManual.UserID));
-    this.props.dispatch(reset('FormAbsensiManualIstKeluar'));
-  }
-
-  handleSubmit(data) {
-    this.props.dispatch(putManualKelIstirahat(data));
-  }
-
-  render() {
     if (this.props.getResponDataManual || this.props.errorResponDataManual) {
       if (this.props.errorResponDataManual) {
         swal("Failed!", this.props.errorResponDataManual, "error");
       } else {
         swal("Berhasil Absen!", "istirahat Keluar", "success");
+        this.props.dispatch(getAdminOnDuty());
+        this.props.dispatch(getOptUserManualKeluarIst());
+        this.props.dispatch(getLaporanList(this.props.getResponDataManual.UserID));
+        this.props.dispatch(reset('FormAbsensiManualIstKeluar'));
       }
+      this.setState({
+        disableButton:false
+      })
+      this.props.dispatch(resetProps())
     }
+  }
+
+  handleSubmit(data) {
+    if(!this.state.disableButton){
+      this.props.dispatch(putManualKelIstirahat(data));
+      this.setState({
+        disableButton:true
+      })
+    }
+  }
+
+  render() {
+    
     return (
       <div>
         <GuestNavbarComponentManual />

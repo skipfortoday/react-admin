@@ -6,6 +6,7 @@ import {
   PUT_MANUAL_KEMISTIRAHAT,
   PUT_MANUAL_PULANG,
   CLEAR_MANUAL,
+  RESET_PROPS,
 } from "../actions/manualAction";
 
 let initialState = {
@@ -15,6 +16,12 @@ let initialState = {
 
 const Manual = (state = initialState, action) => {
   switch (action.type) {
+    case RESET_PROPS :
+      return {
+        ...state,
+        getResponDataManual:false,
+        errorResponDataManual:false
+      }
     case POST_MANUAL_MASUK:
       return {
         ...state,

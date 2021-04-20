@@ -29,17 +29,11 @@ import AdminContainer from "./containers/AdminContainer";
 import CreateAdminContainer from "./containers/CreateAdminContainer";
 import EditAdminContainer from "./containers/EditAdminContainer";
 import AbsensiManualContainer from "./containers/AbsensiManualContainer";
-import AbsensiManualContainer2 from "./containers/AbsensiManualContainer2";
 import AbsensiManualContainerPulang from "./containers/AbsensiManualContainerPulang";
 import AbsensiManualContainerIstLuar from "./containers/AbsensiManualContainerIstLuar";
 import AbsensiManualContainerIstKembali from "./containers/AbsensiManualContainerIstKembali";
 import AbsensiManualContainerKeluarKantor from "./containers/AbsensiManualContainerKeluarKantor";
 import AbsensiManualContainerKembaliKantor from "./containers/AbsensiManualContainerKembaliKantor";
-import AbsensiManualContainerPulang2 from "./containers/AbsensiManualContainerPulang2";
-import AbsensiManualContainerIstLuar2 from "./containers/AbsensiManualContainerIstLuar2";
-import AbsensiManualContainerIstKembali2 from "./containers/AbsensiManualContainerIstKembali2";
-import AbsensiManualContainerKeluarKantor2 from "./containers/AbsensiManualContainerKeluarKantor2";
-import AbsensiManualContainerKembaliKantor2 from "./containers/AbsensiManualContainerKembaliKantor2";
 import HistoryContainer from "./containers/HistoryContainer";
 import TestingContainer from "./containers/TestingContainer";
 
@@ -153,22 +147,12 @@ function App () {
           <Route path="/superadmin/edit/:AdminID" exact component={EditAdminContainer} />
 
           <Route path="/absensimanual" exact component={AbsensiManualContainer} />
-          <Route path="/absensimanual/:id/:nama" exact component={AbsensiManualContainer2} />
-
           <Route path="/absensimanualpulang" exact component={AbsensiManualContainerPulang} />
-          <Route path="/absensimanualpulang/:id/:nama" exact component={AbsensiManualContainerPulang2} />
-
+        
           <Route path="/absensimanualistirahatkeluar" exact component={AbsensiManualContainerIstLuar} />
-          <Route path="/absensimanualistirahatkeluar/:id/:nama" exact component={AbsensiManualContainerIstLuar2} />
-
           <Route path="/absensimanualistirahatkembali" exact component={AbsensiManualContainerIstKembali} />
-          <Route path="/absensimanualistirahatkembali/:id/:nama" exact component={AbsensiManualContainerIstKembali2} />
-
           <Route path="/absensimanualkeluarkantor" exact component={AbsensiManualContainerKeluarKantor} />
-          <Route path="/absensimanualkeluarkantor/:id/:nama" exact component={AbsensiManualContainerKeluarKantor2} />
-
           <Route path="/absensimanualkembalikantor" exact component={AbsensiManualContainerKembaliKantor} />
-          <Route path="/absensimanualkembalikantor/:id/:nama" exact component={AbsensiManualContainerKembaliKantor2} />
 
           <Route path="/home" exact component={LandingPageContainer} />
 

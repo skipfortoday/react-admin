@@ -7,7 +7,7 @@ import GuestNavbarComponentManual from "../components/GuestNavbarComponentManual
 import { Container } from "reactstrap";
 import Ambilwaktu from "../components/Ambilwaktu";
 import { getAdminOnDuty } from "../actions/adminAction";
-import { postManualMasuk} from "../actions/manualAction";
+import { postManualMasuk, resetProps} from "../actions/manualAction";
 import swal from "sweetalert";
 import LaporanDetail2 from "../components/LaporanDetail2";
 import OnDutyRoster from "../components/OnDutyRoster";
@@ -22,26 +22,18 @@ const mapStateToProps = (state) => {
 };
 
 class AbsensiManualContainer extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {disableButton : false};
+  }
+
   componentDidMount() {
     this.props.dispatch(getOptUserManual());
     this.props.dispatch(getAdminOnDuty());
   }
 
   componentDidUpdate() {
-    this.props.dispatch(getOptUserManual());
-    this.props.dispatch(getAdminOnDuty());
-    this.props.dispatch(getLaporanList(this.props.getResponDataManual.UserID));
-    this.props.dispatch(reset('FormAbsensiManual'));  // requires form name
- 
-    // this.props.dispatch(getAdminTimeNow());
-  }
-
-  handleSubmit(data) {
-    this.props.dispatch(postManualMasuk(data));
-  }
-
-
-  render() {
 
     if (this.props.getResponDataManual || this.props.errorResponDataManual) {
       console.log('test');
@@ -49,8 +41,34 @@ class AbsensiManualContainer extends Component {
         swal("Failed!", this.props.errorResponDataManual, "error");
       } else {
         swal("Berhasil Absen!", "~", "success");
+        this.props.dispatch(getOptUserManual());
+        this.props.dispatch(getAdminOnDuty());
+        this.props.dispatch(getLaporanList(this.props.getResponDataManual.UserID));
+        this.props.dispatch(reset('FormAbsensiManual'));  // requires form name
       }
+      this.setState({
+        disableButton:false
+      })
+      // 
+      this.props.dispatch(resetProps())
     }
+    
+    // this.props.dispatch(getAdminTimeNow());
+  }
+
+  handleSubmit(data) {
+    if(!this.state.disableButton){
+      this.props.dispatch(postManualMasuk(data));
+      this.setState({
+        disableButton:true
+      })
+    }
+  }
+
+
+  render() {
+
+    
     return (
       <div>
         <GuestNavbarComponentManual />
@@ -64,6 +82,7 @@ class AbsensiManualContainer extends Component {
                 </h4>
                 <Container>
                   <FormAbsensiManual
+                    disableButton={this.state.disableButton}
                     onSubmit={(data) => this.handleSubmit(data)}
                   />
                 </Container>

@@ -10,8 +10,17 @@ export const PUT_MANUAL_KEMBALI = "PUT_MANUAL_KEMBALI";
 
 export const PUT_MANUAL_KELISTIRAHAT = "PUT_MANUAL_KELISTIRAHAT";
 export const PUT_MANUAL_KEMISTIRAHAT = "PUT_MANUAL_KEMISTIRAHAT";
+export const RESET_PROPS = "RESET_PROPS";
 
 export const CLEAR_MANUAL = "CLEAR_MANUAL";
+
+export const resetProps = () => {
+  return (dispatch) => {
+    dispatch({
+      type: RESET_PROPS,
+    });
+  }
+}
 
 export const postManualMasuk= (data) => {
   console.log(data);

@@ -6,7 +6,7 @@ import GuestNavbarComponentManual from "../components/GuestNavbarComponentManual
 import { Container } from "reactstrap";
 import FormAbsensiManual2 from "../components/FormAbsensiManual2";
 import { getAdminOnDuty } from "../actions/adminAction";
-import { putManualPulang } from "../actions/manualAction";
+import { putManualPulang, resetProps } from "../actions/manualAction";
 import swal from "sweetalert";
 import OnDutyRoster from "../components/OnDutyRoster";
 import Ambilwaktu from "../components/Ambilwaktu";
@@ -22,30 +22,46 @@ const mapStateToProps = (state) => {
 };
 
 class AbsensiManualContainerPulang extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {disableButton : false};
+  }
+
   componentDidMount() {
     this.props.dispatch(getAdminOnDuty());
     this.props.dispatch(getOptUserManualPulang());
   }
 
   componentDidUpdate() {
-    this.props.dispatch(getAdminOnDuty());
-    this.props.dispatch(getOptUserManualPulang());
-    this.props.dispatch(getLaporanList(this.props.getResponDataManual.UserID));
-    this.props.dispatch(reset('FormAbsensiManual2'));
-  }
-
-  handleSubmit(data) {
-    this.props.dispatch(putManualPulang(data));
-  }
-
-  render() {
+    
     if (this.props.getResponDataManual || this.props.errorResponDataManual) {
       if (this.props.errorResponDataManual) {
         swal("Failed!", this.props.errorResponDataManual, "error");
       } else {
         swal("Berhasil Absen Pulang!", "~", "success");
+        this.props.dispatch(getAdminOnDuty());
+        this.props.dispatch(getOptUserManualPulang());
+        this.props.dispatch(getLaporanList(this.props.getResponDataManual.UserID));
+        this.props.dispatch(reset('FormAbsensiManual2'));
       }
+      this.setState({
+        disableButton:false
+      })
+      this.props.dispatch(resetProps())
     }
+  }
+
+  handleSubmit(data) {
+    if(!this.state.disableButton){
+      this.props.dispatch(putManualPulang(data));
+      this.setState({
+        disableButton:true
+      })
+    }
+  }
+
+  render() {
     return (
       <div>
         <GuestNavbarComponentManual />

@@ -5,7 +5,7 @@ import { getOptUserManualKeluar } from "../actions/optAction";
 import GuestNavbarComponentManual from "../components/GuestNavbarComponentManual";
 import { Container } from "reactstrap";
 import FormAbsensiManualKeluar from "../components/FormAbsensiManualKeluar";
-import { postManualKeluar } from "../actions/manualAction";
+import { postManualKeluar , resetProps} from "../actions/manualAction";
 import swal from "sweetalert";
 import OnDutyRoster from "../components/OnDutyRoster";
 import Ambilwaktu from "../components/Ambilwaktu";
@@ -22,29 +22,46 @@ const mapStateToProps = (state) => {
 };
 
 class AbsensiManualContainerKeluarKantor extends Component {
+  
+  constructor(props) {
+    super(props);
+    this.state = {disableButton : false};
+  }
+
   componentDidMount() {
     this.props.dispatch(getAdminOnDuty());
     this.props.dispatch(getOptUserManualKeluar());
   }
 
   componentDidUpdate() {
-    this.props.dispatch(getAdminOnDuty());
-    this.props.dispatch(getOptUserManualKeluar());
-    this.props.dispatch(getLaporanList(this.props.getResponDataManual.UserID));
-    this.props.dispatch(reset('FormAbsensiManualKeluar'));
-  }
-  handleSubmit(data) {
-    this.props.dispatch(postManualKeluar(data));
-  }
-
-  render() {
     if (this.props.getResponDataManual || this.props.errorResponDataManual) {
       if (this.props.errorResponDataManual) {
         swal("Failed!", this.props.errorResponDataManual, "error");
       } else {
         swal("Berhasil Absen!", "Keluar Kantor", "success");
+        this.props.dispatch(getAdminOnDuty());
+        this.props.dispatch(getOptUserManualKeluar());
+        this.props.dispatch(getLaporanList(this.props.getResponDataManual.UserID));
+        this.props.dispatch(reset('FormAbsensiManualKeluar'));
       }
+      this.setState({
+        disableButton:false
+      })
+      this.props.dispatch(resetProps())
     }
+  }
+
+  handleSubmit(data) {
+    if(!this.state.disableButton){
+      this.props.dispatch(postManualKeluar(data));
+      this.setState({
+        disableButton:true
+      })
+    }
+  }
+
+  render() {
+    
     return (
       <div>
       <GuestNavbarComponentManual />

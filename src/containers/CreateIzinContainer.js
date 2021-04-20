@@ -17,6 +17,7 @@ import LengkapiAbsen from "../components/LengkapiAbsen";
 import LaporanDetail from "../components/LaporanDetail";
 import RekapLaporan from "../components/RekapLaporan";
 import {
+  getLaporanHead,
   getLaporanDetail,
   getLaporanRekap,
 } from "../actions/laporanAction";
@@ -52,7 +53,7 @@ class CreateIzinContainer extends Component {
     this.props.dispatch(getIzinDetail(this.props.match.params.UserID));
     
     // laporan tablen header
-    // this.props.dispatch(getLaporanHead(this.props.match.params.UserID));
+    this.props.dispatch(getLaporanHead(this.props.match.params.UserID));
     
     // laporan table body
     this.props.dispatch(
