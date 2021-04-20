@@ -16,7 +16,7 @@ export const PUT_CABANG_EDIT = "PUT_CABANG_EDIT";
 export const getUsersList = () => {
   return (dispatch) => {
     axios
-      .get(BASEURL+"/api/user", headers)
+      .get(BASEURL + "/api/user", headers)
       .then(function (response) {
         dispatch({
           type: GET_USERS_LIST,
@@ -42,7 +42,7 @@ export const getUsersList = () => {
 export const getUserV = () => {
   return (dispatch) => {
     axios
-      .get(BASEURL+"/api/vuser")
+      .get(BASEURL + "/api/vuser", headers)
       .then(function (response) {
         dispatch({
           type: GET_USER_V,
@@ -68,7 +68,8 @@ export const getUserDetail = (UserID) => {
   return (dispatch) => {
     axios
       .get(
-        BASEURL+"/api/user/"+UserID
+        BASEURL + "/api/user/" + UserID,
+        headers
       )
       .then(function (response) {
         dispatch({
@@ -97,12 +98,13 @@ export const postUserCreate = (data) => {
   return (dispatch) => {
     axios
       .post(
-         BASEURL+"/api/user/",
-        data
+        BASEURL + "/api/user/",
+        data,
+        headers
       )
       .then(function (response) {
         console.log(response);
-        
+
         dispatch({
           type: POST_USER_CREATE,
           payload: {
@@ -129,12 +131,13 @@ export const putUserUpdate = (data, UserID) => {
     data.KodeCabang = data.KodeCabang.value;
     axios
       .put(
-        BASEURL+"/api/user/"+UserID,
-        data
+        BASEURL + "/api/user/" + UserID,
+        data,
+        headers
       )
       .then(function (response) {
         console.log(response);
-        
+
         dispatch({
           type: PUT_USER_EDIT,
           payload: {
@@ -160,15 +163,16 @@ export const deleteUser = (UserID) => {
   return (dispatch) => {
     axios
       .delete(
-         BASEURL+"/api/user/"+UserID
+        BASEURL + "/api/user/" + UserID,
+        headers
       )
       .then(function (response) {
         console.log(response);
-        
+
       })
       .catch(function (error) {
         console.log(error);
-        
+
       });
   };
 };
@@ -178,15 +182,17 @@ export const resetUser = (UserID) => {
   return (dispatch) => {
     axios
       .put(
-         BASEURL+"/api/resetdevice/"+UserID
+        BASEURL + "/api/resetdevice/" + UserID,
+        null,
+        headers
       )
       .then(function (response) {
         console.log(response);
-        
+
       })
       .catch(function (error) {
         console.log(error);
-        
+
       });
   };
 };
@@ -195,15 +201,17 @@ export const resetPasswordUser = (UserID) => {
   return (dispatch) => {
     axios
       .put(
-         BASEURL+"/api/resetpassworduser/"+UserID
+        BASEURL + "/api/resetpassworduser/" + UserID,
+        null,
+        headers
       )
       .then(function (response) {
         console.log(response);
-        
+
       })
       .catch(function (error) {
         console.log(error);
-        
+
       });
   };
 };
@@ -231,7 +239,7 @@ export const deleteDataUser = () => {
 export const getCabangList = () => {
   return (dispatch) => {
     axios
-      .get(BASEURL+"/api/cabang")
+      .get(BASEURL + "/api/cabang", headers)
       .then(function (response) {
         dispatch({
           type: GET_CABANG_LIST,
@@ -257,7 +265,8 @@ export const getCabangDetail = (KodeCabang) => {
   return (dispatch) => {
     axios
       .get(
-        BASEURL+"/api/cabang/"+KodeCabang
+        BASEURL + "/api/cabang/" + KodeCabang,
+        headers
       )
       .then(function (response) {
         dispatch({
@@ -284,12 +293,13 @@ export const postCabangCreate = (data) => {
   return (dispatch) => {
     axios
       .post(
-         BASEURL+"/api/cabang/",
-        data
+        BASEURL + "/api/cabang/",
+        data,
+        headers
       )
       .then(function (response) {
         console.log(response);
-        
+
         dispatch({
           type: POST_CABANG_CREATE,
           payload: {
@@ -314,12 +324,13 @@ export const putCabangUpdate = (data, KodeCabang) => {
   return (dispatch) => {
     axios
       .put(
-        BASEURL+"/api/cabang/"+KodeCabang,
-        data
+        BASEURL + "/api/cabang/" + KodeCabang,
+        data,
+        headers
       )
       .then(function (response) {
         console.log(response);
-        
+
         dispatch({
           type: PUT_CABANG_EDIT,
           payload: {
@@ -345,15 +356,16 @@ export const deleteCabang = (KodeCabang) => {
   return (dispatch) => {
     axios
       .delete(
-         BASEURL+"/api/cabang/"+KodeCabang
+        BASEURL + "/api/cabang/" + KodeCabang,
+        headers
       )
       .then(function (response) {
         console.log(response);
-        
+
       })
       .catch(function (error) {
         console.log(error);
-        
+
       });
   };
 };

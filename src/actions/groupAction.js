@@ -40,6 +40,7 @@ export const getGroupDetail = (GroupID) => {
     axios
       .get(
         BASEURL+"/api/group/"+GroupID
+        , headers
       )
       .then(function (response) {
         dispatch({
@@ -66,7 +67,7 @@ export const getGroupTerLambat1 = (GroupID) => {
   return (dispatch) => {
     axios
       .get(
-        BASEURL+"api/groupterlambat1/"+GroupID
+        BASEURL+"api/groupterlambat1/"+GroupID, headers
       )
       .then(function (response) {
         dispatch({
@@ -93,7 +94,7 @@ export const getGroupTerLambat2 = (GroupID) => {
   return (dispatch) => {
     axios
       .get(
-        BASEURL+"/api/groupterlambat2/"+GroupID
+        BASEURL+"/api/groupterlambat2/"+GroupID, headers
       )
       .then(function (response) {
         dispatch({
@@ -120,7 +121,7 @@ export const getGroupTerLambat3 = (GroupID) => {
   return (dispatch) => {
     axios
       .get(
-        BASEURL+"/api/groupterlambat3/"+GroupID
+        BASEURL+"/api/groupterlambat3/"+GroupID, headers
       )
       .then(function (response) {
         dispatch({
@@ -180,6 +181,7 @@ export const putGroupUpdate = (data, GroupID) => {
       .put(
         BASEURL+"/api/group/"+GroupID,
         data
+        , headers
       )
       .then(function (response) {
         console.log(response);
@@ -210,6 +212,7 @@ export const deleteGroup = (GroupID) => {
     axios
       .delete(
          BASEURL+"/api/group/"+GroupID
+         , headers
       )
       .then(function (response) {
         console.log(response);

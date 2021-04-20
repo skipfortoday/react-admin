@@ -144,6 +144,7 @@ const mapStateToProps = (state) => {
       Posisi: state.users.getUserDetail.Posisi,
       TampilkanLembur: state.users.getUserDetail.TampilkanLembur,
       TampilkanTerlambat: state.users.getUserDetail.TampilkanTerlambat,
+      TglKeluar: state.users.getUserDetail.FTglKeluar
     }
   };
 };

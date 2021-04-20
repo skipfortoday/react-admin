@@ -1,5 +1,7 @@
 import axios from "axios";
+import { headers } from "../config";
 import { BASEURL } from "./adminAction";
+
 
 export const GET_CABANG_LIST = "GET_CABANG_LIST";
 export const GET_CABANG_DETAIL = "GET_CABANG_DETAIL";
@@ -11,7 +13,7 @@ export const PUT_CABANG_EDIT = "PUT_CABANG_EDIT";
 export const getCabangList = () => {
   return (dispatch) => {
     axios
-      .get(BASEURL+"/api/cabang")
+      .get(BASEURL+"/api/cabang", headers)
       .then(function (response) {
         dispatch({
           type: GET_CABANG_LIST,
@@ -37,7 +39,7 @@ export const getCabangDetail = (KodeCabang) => {
   return (dispatch) => {
     axios
       .get(
-        BASEURL+"/api/cabang/"+KodeCabang
+        BASEURL+"/api/cabang/"+KodeCabang, headers
       )
       .then(function (response) {
         dispatch({
@@ -64,8 +66,8 @@ export const postCabangCreate = (data) => {
   return (dispatch) => {
     axios
       .post(
-         BASEURL+"/api/cabang/",
-        data
+        BASEURL+"/api/cabang/",
+        data, headers
       )
       .then(function (response) {
         console.log(response);
@@ -95,7 +97,7 @@ export const putCabangUpdate = (data, KodeCabang) => {
     axios
       .put(
         BASEURL+"/api/cabang/"+KodeCabang,
-        data
+        data, headers
       )
       .then(function (response) {
         console.log(response);
@@ -125,7 +127,7 @@ export const deleteCabang = (KodeCabang) => {
   return (dispatch) => {
     axios
       .delete(
-         BASEURL+"/api/cabang/"+KodeCabang
+         BASEURL+"/api/cabang/"+KodeCabang, headers
       )
       .then(function (response) {
         console.log(response);

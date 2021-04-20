@@ -41,7 +41,8 @@ export const getIzinListSolo = (UserID,TglAwal,TglAkhir) => {
   return (dispatch) => {
     axios
       .get(
-        BASEURL+"/api/izinsolo/"+UserID+"&"+TglAwal+"&"+TglAkhir
+        BASEURL+"/api/izinsolo/"+UserID+"&"+TglAwal+"&"+TglAkhir,
+        headers
       )
       .then(function (response) {
         dispatch({
@@ -68,7 +69,8 @@ export const getIzinDetail = (UserID) => {
   return (dispatch) => {
     axios
       .get(
-        BASEURL+"/api/user/"+UserID
+        BASEURL+"/api/user/"+UserID,
+        headers
       )
       .then(function (response) {
         dispatch({
@@ -95,8 +97,9 @@ export const postIzinCreate = (data) => {
   return (dispatch) => {
     axios
       .post(
-         BASEURL+"/api/izin",
-        data
+        BASEURL+"/api/izin",
+        data,
+        headers
       )
       .then(function (response) {
         dispatch({
@@ -123,8 +126,9 @@ export const postIzinGroup= (data) => {
   return (dispatch) => {
     axios
       .post(
-         BASEURL+"/api/pilihizin",
-        data
+        BASEURL+"/api/pilihizin",
+        data,
+        headers
       )
       .then(function (response) {
         console.log(response);
@@ -154,7 +158,8 @@ export const putIzinUpdate = (data, DatangID) => {
     axios
       .put(
         BASEURL+"/api/izin/"+DatangID,
-        data
+        data,
+        headers
       )
       .then(function (response) {
         dispatch({
@@ -182,7 +187,8 @@ export const deleteIzin = (DatangID) => {
   return (dispatch) => {
     axios
       .delete(
-         BASEURL+"/api/izin/"+DatangID
+        BASEURL+"/api/izin/"+DatangID,
+        headers
       )
       .then(function (response) {
         console.log(response);
@@ -224,6 +230,7 @@ export const getIzinDetailForm = (DatangID) => {
     axios
       .get(
         BASEURL+"/api/detailAbsensi/"+DatangID,
+        headers
       )
       .then(function (response) {
         dispatch({

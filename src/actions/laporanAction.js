@@ -1,4 +1,5 @@
 import axios from "axios";
+import { headers } from "../config";
 import { BASEURL } from "./adminAction";
 
 export const GET_LAPORAN_LIST = "GET_LAPORAN_LIST";
@@ -12,7 +13,7 @@ export const POST_LAPORAN_PROSES = "POST_LAPORAN_PROSES";
 export const getLaporanList = (UserID) => {
   return (dispatch) => {
     axios
-      .get(BASEURL+"/api/laporandetail2/"+UserID)
+      .get(BASEURL+"/api/laporandetail2/"+UserID, headers)
       .then(function (response) {
         var res = [];
         var expand = [];
@@ -50,7 +51,7 @@ export const getLaporanList = (UserID) => {
 export const getLaporanDetail = (UserID,TglAwal,TglAkhir) => {
   return (dispatch) => {
     axios
-      .get(BASEURL+"/api/laporandetail/"+UserID+"&"+TglAwal+"&"+TglAkhir)
+      .get(BASEURL+"/api/laporandetail/"+UserID+"&"+TglAwal+"&"+TglAkhir, headers)
       .then(function (response) {
         var res = [];
         var expand = [];
@@ -86,7 +87,7 @@ export const getLaporanDetail = (UserID,TglAwal,TglAkhir) => {
 export const getLaporanRekap = (UserID,TglAwal,TglAkhir) => {
   return (dispatch) => {
     axios
-      .get(BASEURL+"/api/laporanrekap/"+UserID+"&"+TglAwal+"&"+TglAkhir)
+      .get(BASEURL+"/api/laporanrekap/"+UserID+"&"+TglAwal+"&"+TglAkhir, headers)
       .then(function (response) {
         dispatch({
           type: GET_LAPORAN_REKAP,
@@ -111,7 +112,7 @@ export const getLaporanRekap = (UserID,TglAwal,TglAkhir) => {
 export const getLaporanHead = (UserID) => {
   return (dispatch) => {
     axios
-      .get(BASEURL+"/api/headerlaporan/"+UserID)
+      .get(BASEURL+"/api/headerlaporan/"+UserID, headers)
       .then(function (response) {
         dispatch({
           type: GET_LAPORAN_HEAD,
@@ -138,8 +139,9 @@ export const postLaporanProses= (data) => {
   return (dispatch) => {
     axios
       .post(
-         BASEURL+"/api/proses/",
-        data
+        BASEURL+"/api/proses/",
+        data,
+        headers
       )
       .then(function (response) {
         console.log(response);

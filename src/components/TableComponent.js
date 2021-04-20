@@ -33,8 +33,10 @@ const handleClick = (dispatch, ID) => {
       dispatch(deleteUser(ID));
       swal("Data User Sukses dihapus", {
         icon: "success",
+      }).then((value) => {
+        window.location.reload()
       });
-      window.location.reload();
+      // window.location.reload(); // kalau langsung reload, maka dispatch belom jalan udah ke reeload, di server butuh waktu lebih lama
     } else {
       swal("Data gagal dihapus");
     }

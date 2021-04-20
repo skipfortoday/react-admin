@@ -1,4 +1,5 @@
 import axios from "axios";
+import { headers } from "../config";
 import { BASEURL } from "./adminAction";
 
 export const GET_LIST_HISTORY = 'GET_LIST_HISTORY';
@@ -29,7 +30,7 @@ export const delListHistory = () =>{
 export const getListHistory = (Nama, TglAwal, TglAkhir) => {
     return (dispatch) => {
         axios
-            .get(BASEURL + "/api/history/"+Nama+"&"+TglAwal+"&"+TglAkhir)
+            .get(BASEURL + "/api/history/"+Nama+"&"+TglAwal+"&"+TglAkhir, headers)
             .then(function (response) {
                 dispatch({
                     type: GET_LIST_HISTORY,

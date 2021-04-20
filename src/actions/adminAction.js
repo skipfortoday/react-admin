@@ -65,7 +65,7 @@ export const getAdminOnDuty = () => {
 export const getAdminList = () => {
   return (dispatch) => {
     axios
-      .get(BASEURL+"/api/superadmin")
+      .get(BASEURL+"/api/superadmin", headers)
       .then(function (response) {
         dispatch({
           type: GET_ADMIN_LIST,
@@ -91,7 +91,7 @@ export const getAdminDetail = (AdminID) => {
   return (dispatch) => {
     axios
       .get(
-        BASEURL+"/api/superadmin/"+ AdminID
+        BASEURL+"/api/superadmin/"+ AdminID, headers
       )
       .then(function (response) {
         dispatch({
@@ -118,8 +118,9 @@ export const postAdminCreate = (data) => {
   return (dispatch) => {
     axios
       .post(
-         BASEURL+"/api/superadmin/",
-        data
+        BASEURL+"/api/superadmin/",
+        data, 
+        headers
       )
       .then(function (response) {
         console.log(response);
@@ -149,7 +150,8 @@ export const putAdminUpdate = (data,AdminID) => {
     axios
       .put(
         BASEURL+"/api/superadmin/"+AdminID,
-        data
+        data, 
+        headers
       )
       .then(function (response) {
         console.log(response);
@@ -179,7 +181,8 @@ export const deleteAdmin = (AdminID) => {
   return (dispatch) => {
     axios
       .delete(
-         BASEURL+"/api/superadmin/"+AdminID
+        BASEURL+"/api/superadmin/"+AdminID, 
+        headers
       )
       .then(function (response) {
         console.log(response);

@@ -88,11 +88,11 @@ const NavbarComponent = (props) => {
                 </DropdownItem>
                 <DropdownItem divider />
                 <DropdownItem>
-                  <Button color="dark" onClick={() => localStorage.clear()}>
+                  <div color="dark" onClick={() => localStorage.clear()}>
                   <a href={"/home"} style={{textDecoration:"none", color:"unset"}}>
                     <FontAwesomeIcon icon={faSignOutAlt} />&nbsp; Logout
                   </a>
-                  </Button>
+                  </div>
                 </DropdownItem>
               </DropdownMenu>
             </UncontrolledDropdown>
