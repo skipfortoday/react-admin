@@ -29,8 +29,9 @@ export const postManualMasuk= (data) => {
     return (dispatch) => {
       axios
         .post(
-           BASEURL+"/api/attlogmanual/",
-          data
+          BASEURL+"/api/attlogmanual/",
+          data,
+          headers
         )
         .then(function (response) {
           console.log(response);
@@ -63,8 +64,9 @@ export const postManualMasuk= (data) => {
     return (dispatch) => {
       axios
         .put(
-           BASEURL+"/api/datangmanual/"+parameter,
-          data
+          BASEURL+"/api/datangmanual/"+parameter,
+          data,
+          headers
         )
         .then(function (response) {
           console.log(response);
@@ -130,8 +132,9 @@ export const postManualMasuk= (data) => {
     return (dispatch) => {
       axios
         .put(
-           BASEURL+"/api/keluarkantormanual/"+parameter,
-          data
+          BASEURL+"/api/keluarkantormanual/"+parameter,
+          data,
+          headers
         )
         .then(function (response) {
           console.log(response);
@@ -164,7 +167,8 @@ export const postManualMasuk= (data) => {
       axios
         .put(
           BASEURL+"/api/istirahatmanual/"+parameter,
-          data
+          data,
+          headers
         )
         .then(function (response) {
           console.log(response);
@@ -196,8 +200,9 @@ export const postManualMasuk= (data) => {
     return (dispatch) => {
       axios
         .put(
-           BASEURL+"/api/istirahatkembalimanual/"+parameter,
-          data
+          BASEURL+"/api/istirahatkembalimanual/"+parameter,
+          data,
+          headers
         )
         .then(function (response) {
           console.log(response);
