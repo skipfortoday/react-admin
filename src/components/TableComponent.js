@@ -227,18 +227,24 @@ const TableComponent = (props) => {
                   </Col>
                 </Row>
 
-                <Tooltip placement="auto" isOpen={resetDevice} target="btResetDevice" toggle={toggleResetDevice}>
-                  Reset Device Pegawai
-                </Tooltip>
-                <Tooltip placement="auto" isOpen={editPegawai} target="btEditPegawai" toggle={toggleEditPegawai}>
-                  Edit Data Pegawai
-                </Tooltip>
-                <Tooltip placement="auto" isOpen={resetPassword} target="btResetPassword" toggle={toggleResetPassword}>
-                  Reset Password
-                </Tooltip>
-                <Tooltip placement="auto" isOpen={deletePegawai} target="btDeletePegawai" toggle={toggleDeletePegawai}>
-                  Hapus Pegawai
-                </Tooltip>
+                {
+                  props.getUsersList ? (
+                    <div>
+                      <Tooltip placement="auto" isOpen={resetDevice} target="btResetDevice" toggle={toggleResetDevice}>
+                        Reset Device Pegawai
+                      </Tooltip>
+                      <Tooltip placement="auto" isOpen={editPegawai} target="btEditPegawai" toggle={toggleEditPegawai}>
+                        Edit Data Pegawai
+                      </Tooltip>
+                      <Tooltip placement="auto" isOpen={resetPassword} target="btResetPassword" toggle={toggleResetPassword}>
+                        Reset Password
+                      </Tooltip>
+                      <Tooltip placement="auto" isOpen={deletePegawai} target="btDeletePegawai" toggle={toggleDeletePegawai}>
+                        Hapus Pegawai
+                      </Tooltip>
+                    </div>
+                  ) : ('')
+                }
                 <BootstrapTable
                   {...props.baseProps}
                   pagination={paginationFactory()}
