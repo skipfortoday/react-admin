@@ -27,7 +27,7 @@ const Login = (state = initialState, action) => {
 
     case POST_LOGIN_USER:
       const data = action.payload.data;
-      if (data) {
+      if (data.Login === true) {
         localStorage.setItem("user", JSON.stringify(data));
         return {
           ...state,
@@ -45,15 +45,6 @@ const Login = (state = initialState, action) => {
           loginStatusMessage: data.message
         }
       }
-
-    // localStorage.setItem("user", JSON.stringify(action.payload.data))
-    // return {
-    //   ...state,
-    //   user: action.payload.data,
-    //   getResponLoginUser: action.payload.data,
-    //   errorResponLoginUser: action.payload.errorMessage,
-    //   isAuthenticated: true,
-    // };
 
     default:
       return state;

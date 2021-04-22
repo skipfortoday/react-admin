@@ -26,7 +26,6 @@ const NavbarComponent = (props) => {
 
   let ambil = JSON.parse(localStorage.getItem('user'));
   let nama = ambil.AdminID
-  console.log(ambil);
 
   return (
     <div>

@@ -1,12 +1,12 @@
 const LoginValidation = (values) => {
     const errors = {};
   
-    if (!values.UserID|| values.UserID === "") {
-      errors.UserID = "Isi Username";
+    if (!values.AdminID|| values.AdminID === "") {
+      errors.AdminID = "Isi Username";
     }
   
-    if (!values.Pass || values.Pass === "") {
-      errors.Pass = "Isi Pass";
+    if (!values.Password || values.Password === "") {
+      errors.Password = "Isi Pass";
     }
 
   

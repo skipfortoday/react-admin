@@ -7,11 +7,11 @@ import { getFormValues } from "redux-form";
 
 
 const LengkapiAbsenButton2 = ({ values }) => {
-  console.log(values.Nama)
+  
   return (
     <Row className="mb-2">
       <Col>
-          <a href={"/laporandetail/"+values.Nama.value+"/"+values.TglAwal+"/"+values.TglAkhir}>
+          <a href={"/laporandetail/"+values.Nama.value+"/"+values.TglAwal.split("-").join("")+"/"+values.TglAkhir.split("-").join("")}>
           <Button color="dark" >
          
             <FontAwesomeIcon icon={faDesktop} /> Print View

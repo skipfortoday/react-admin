@@ -59,7 +59,7 @@ class LoginContainer extends Component {
           <div className="loginWrapper">
             <div className="loginBox">
               <img className="iconUser" src={userLogin} alt="user-login"></img>
-              <h1 className="welcome">WELCOME ADMIN X</h1>
+              <h1 className="welcome">WELCOME ADMIN</h1>
               <LoginComponent onSubmit={(data) => this.handleSubmit(data)} />
             </div>
           </div>

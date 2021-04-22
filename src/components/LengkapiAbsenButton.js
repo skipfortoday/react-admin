@@ -8,15 +8,14 @@ import { getFormValues } from "redux-form";
 
 const LengkapiAbsenButton = ({ values }) => {
   return (
-    
-          <a href={"/izin/create/"+values.Nama.value+"/"+values.TglAwal+"/"+values.TglAkhir}>
-          <Button color="dark" type="button" size="" >
-            <FontAwesomeIcon icon={faSearchPlus} /> View
+    <a href={"/izin/create/"+values.Nama.value+"/"+values.TglAwal.split("-").join("")+"/"+values.TglAkhir.split("-").join("")}>
+      <Button color="dark" type="button" size="" >
+        <FontAwesomeIcon icon={faSearchPlus} /> View
           </Button>
-          </a>
+    </a>
   );
 };
 
 export default connect(state => ({
-    values: getFormValues("formLengkapiAbsen")(state)
-  }))(LengkapiAbsenButton);
+  values: getFormValues("formLengkapiAbsen")(state)
+}))(LengkapiAbsenButton);
