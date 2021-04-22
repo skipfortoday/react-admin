@@ -194,7 +194,7 @@ const LaporanDetail = (props) => {
         return { };
       },
       style: () => {
-        return { width: "30px" ,padding : '0px' };
+        return { width: "40px" ,padding : '0px' };
       },
     },
     {

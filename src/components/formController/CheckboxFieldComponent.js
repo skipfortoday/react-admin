@@ -1,3 +1,4 @@
+import React from "react";
 import {Col, Label, Input} from "reactstrap"
 export const CheckboxFieldComponent = ({
     input, name, id, type, label, checked, value,

@@ -1,3 +1,4 @@
+import React from "react";
 import {Row, Col, Label, Input} from "reactstrap"
 export const InputFieldComponent = ({
     input,

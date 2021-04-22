@@ -26,7 +26,7 @@ const NavbarComponent = (props) => {
 
   let ambil = JSON.parse(localStorage.getItem('user'));
   let nama = ambil.AdminID
-
+  console.log(ambil);
 
   return (
     <div>
@@ -38,6 +38,15 @@ const NavbarComponent = (props) => {
         <NavbarToggler onClick={toggleNavbar} className="mr-2" />
         <Collapse isOpen={!collapsed} navbar>
           <Nav className="mr-auto" navbar>
+            { ambil.RoleAdmin === 99 ?
+              (
+                <NavItem>
+                  <Link to="/superadmin">
+                    <NavLink> Super Admin </NavLink>
+                  </Link>
+                </NavItem>    
+              ) : ("")
+            }
             <NavItem>
               <Link to="/">
                 <NavLink> Pegawai </NavLink>
@@ -53,11 +62,15 @@ const NavbarComponent = (props) => {
                 <NavLink> Group </NavLink>
               </Link>
             </NavItem>
-            <NavItem>
-              <Link to="/cabang">
-                <NavLink>Cabang </NavLink>
-              </Link>
-            </NavItem>
+            {ambil.RoleAdmin === 99 ?
+              (
+                <NavItem>
+                  <Link to="/cabang">
+                    <NavLink>Cabang </NavLink>
+                  </Link>
+                </NavItem>
+              ) : ("")
+            }
             <NavItem>
               <a href={"/laporan"}>
                 <NavLink> Laporan </NavLink>

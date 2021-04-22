@@ -348,6 +348,7 @@ TotalKeluar: null*/
     expanded: props.getExpandKey[0],
     nonExpandable: props.getExpandKey[1],
   };
+  {console.log(props.getLaporanList)}
   return (
     <div>
       {props.getLaporanList  ? (
@@ -373,11 +374,12 @@ TotalKeluar: null*/
         </div>
       ) : (
         <div className="text-center">
-          {props.errorLaporanList ? (
+          {!props.errorLaporanList ? (
             <h4>{props.errorLaporanList}</h4>
           ) : (
             <Spinner color="dark" />
           )}
+          
         </div>
       )}
     </div>
