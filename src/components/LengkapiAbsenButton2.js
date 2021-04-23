@@ -7,7 +7,6 @@ import { getFormValues } from "redux-form";
 
 
 const LengkapiAbsenButton2 = ({ values }) => {
-  
   return (
     <Row className="mb-2">
       <Col>

@@ -1,17 +1,65 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { getUsersList } from "../actions/userAction";
+import { getUserDetail, getUsersList } from "../actions/userAction";
 import NavbarComponent from "../components/NavbarComponent";
+import {
+  getLaporanDetail,
+  getLaporanHead,
+  getLaporanRekap,
+} from "../actions/laporanAction";
 import LengkapiAbsenGuestComponent from "../components/LengkapiAbsenGuestComponent";
-import LengkapiAbsenButton2 from "../components/LengkapiAbsenButton2";
 import { getOptUser } from "../actions/optAction";
+import { Container, Row } from "reactstrap";
+import NamaCabangLaporan from "../components/NamaCabangLaporan";
+import RekapLaporan from "../components/RekapLaporan";
+import LaporanDetail from "../components/LaporanDetail";
+import RekapLeft from "../components/RekapLeft";
+
+const mapStateToProps = (state) => {
+  return {
+    getLaporanDetail: state.Laporan.getLaporanDetail,
+    getLaporanHead: state.Laporan.getLaporanHead,
+    errorLaporanDetail: state.Laporan.errorLaporanDetail,
+  };
+};
 
 
 class ListLaporanContainer extends Component {
+
+  
   componentDidMount() {
     this.props.dispatch(getOptUser());
     this.props.dispatch(getUsersList());
   }
+
+  handleSubmit(data) {
+    this.props.dispatch(
+      getLaporanDetail(
+      data.Nama.value,
+      data.TglAwal,
+      data.TglAkhir
+      )
+    );
+    this.props.dispatch(
+      getLaporanHead(
+      data.Nama.value
+      )
+    );
+    this.props.dispatch(
+      getUserDetail(
+      data.Nama.value
+      )
+    );
+    this.props.dispatch(
+      getLaporanRekap(
+      data.Nama.value,
+      data.TglAwal,
+      data.TglAkhir
+      )
+    );
+    
+  }
+
 
   render() {
     return (
@@ -21,21 +69,27 @@ class ListLaporanContainer extends Component {
           <tr>
             <td width="150"></td>
             <td>
-              <LengkapiAbsenGuestComponent onSubmit={(data) => this.handleSubmit2(data)} tglAwal="2021-03-01" />
-            </td>
-            <td>
-              <tr>
-                <td width="20">.</td>
-              </tr>
-              <tr>
-                <LengkapiAbsenButton2 />
-              </tr>
+              <LengkapiAbsenGuestComponent
+                onSubmit={(data) => this.handleSubmit(data)}
+              />
             </td>
           </tr>
         </div>
-        </div>
+        {this.props.getLaporanHead ? (
+        <Container>
+          <Row className="page-header">
+            <NamaCabangLaporan />
+            <RekapLaporan />
+          </Row>
+          <Row>
+            <LaporanDetail />
+            <RekapLeft />
+          </Row>
+        </Container>
+        ) : ("") }
+      </div>
     );
   }
 }
 
-export default connect()(ListLaporanContainer);
+export default connect(mapStateToProps,null)(ListLaporanContainer);

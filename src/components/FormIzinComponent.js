@@ -296,4 +296,4 @@ FormIzinComponent = reduxForm({
   validate: IzinValidation,
   enableReinitialize: true,
 })(FormIzinComponent);
-export default connect(mapStateToProps, mapDispatchToProps)(FormIzinComponent);
+export default connect(mapStateToProps)(FormIzinComponent);

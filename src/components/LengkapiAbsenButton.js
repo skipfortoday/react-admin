@@ -7,6 +7,7 @@ import { getFormValues } from "redux-form";
 
 
 const LengkapiAbsenButton = ({ values }) => {
+  console.log(values)
   return (
     <a href={"/izin/create/"+values.Nama.value+"/"+values.TglAwal.split("-").join("")+"/"+values.TglAkhir.split("-").join("")}>
       <Button color="dark" type="button" size="" >

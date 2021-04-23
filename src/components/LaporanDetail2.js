@@ -374,7 +374,7 @@ TotalKeluar: null*/
         </div>
       ) : (
         <div className="text-center">
-          {!props.errorLaporanList ? (
+          {props.errorLaporanList ? (
             <h4>{props.errorLaporanList}</h4>
           ) : (
             <Spinner color="dark" />

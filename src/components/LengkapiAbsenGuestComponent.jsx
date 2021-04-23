@@ -9,8 +9,12 @@ import {
   Input,
   Row,
   Container,
+  Button,
 } from "reactstrap";
 import SelectValidation from "../validations/SelectValidation";
+import PrintButton from "./PrintButton";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
 const renderField = ({
   input,
@@ -130,7 +134,7 @@ class LengkapiAbsenGuestComponent extends Component {
               </FormGroup>
             </Col>
 
-            <Col md={5}>
+            <Col md={3}>
               <FormGroup>
                 <Field
                   name="Nama"
@@ -140,6 +144,41 @@ class LengkapiAbsenGuestComponent extends Component {
                 />
               </FormGroup>
             </Col>
+
+            <Col md={3}>
+                <Row>
+                  <FormGroup style={{ marginTop: "37px" }}>
+                    
+                    
+                    <Button
+                     onClick={this.props.handleSubmit(values => 
+                      this.props.onSubmit({ 
+                        ...values,
+                        type: 'proses'
+                      }))}
+                      color="dark"
+                      type="submit"
+                      disabled={this.props.submitting}
+                    >
+                      <FontAwesomeIcon icon={faSearch} /> View
+                    </Button>
+                  </FormGroup> &nbsp;
+                  <FormGroup style={{ marginTop: "37px" }}>
+                    {/* <LengkapiAbsenButton/>
+                    {/* <a href={"/izin/create/" + this.props.values.Nama.value + "/" + this.props.values.TglAwal + "/" + this.props.values.TglAkhir}>
+                      <Button color="dark" size="" >
+                        <FontAwesomeIcon icon={faSearchPlus} /> View
+                      </Button>
+                    </a> */} 
+                    <PrintButton/>
+                  </FormGroup>
+    
+                  
+                </Row>
+
+              </Col>
+
+
             </Row>
           </FormGroup>
         </Container>

@@ -21,6 +21,7 @@ import {Redirect} from "react-router-dom";
 
 const mapStateToProps = (state) => {
   return {
+    getLaporanDetail: state.Laporan.getLaporanDetail,
     errorLaporanDetail: state.Laporan.errorLaporanDetail,
   };
 };

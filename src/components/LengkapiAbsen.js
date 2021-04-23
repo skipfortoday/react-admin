@@ -13,7 +13,7 @@ import {
 } from "reactstrap";
 import SelectValidation from "../validations/SelectValidation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSpinner } from "@fortawesome/free-solid-svg-icons";
+import { faSearch, faSpinner } from "@fortawesome/free-solid-svg-icons";
 import LengkapiAbsenButton from "./LengkapiAbsenButton";
 
 const renderField = ({
@@ -100,10 +100,14 @@ const mapStateToProps = (state) => {
 
 class LengkapiAbsen extends Component {
   render() {
-    
-    return (
-      <form onSubmit={this.props.handleSubmit}>
+    const handleSubmit = (event) => {
+      event.preventDefault();
+      console.log(event);
+      
+    }
 
+    return (
+      <form >
         <Container>
           <FormGroup row>
             <Row>
@@ -141,23 +145,45 @@ class LengkapiAbsen extends Component {
               </Col>
               <Col md={3}>
                 <Row>
-                  <FormGroup style={{ marginTop: "37px" }}>
+                <FormGroup style={{ marginTop: "37px" , marginRight: "70px" }}>
+                    {/* <LengkapiAbsenButton/>
+                    {/* <a href={"/izin/create/" + this.props.values.Nama.value + "/" + this.props.values.TglAwal + "/" + this.props.values.TglAkhir}>
+                      <Button color="dark" size="" >
+                        <FontAwesomeIcon icon={faSearchPlus} /> View
+                      </Button>
+                    </a> */} 
                     <Button
+                      onClick={this.props.handleSubmit(values => 
+                        this.props.onSubmit({ 
+                          ...values,
+                          type: 'view'
+                        }))}
                       color="dark"
+                      type="submit"
+                      disabled={this.props.submitting}
+                    >
+                      <FontAwesomeIcon icon={faSearch} /> View
+                    </Button>
+                  </FormGroup>
+
+                  <FormGroup style={{ marginTop: "37px" }}>
+                    
+                    
+                    <Button
+                     onClick={this.props.handleSubmit(values => 
+                      this.props.onSubmit({ 
+                        ...values,
+                        type: 'proses'
+                      }))}
+                      color="info"
                       type="submit"
                       disabled={this.props.submitting}
                     >
                       <FontAwesomeIcon icon={faSpinner} /> Lengkapi
                     </Button>
                   </FormGroup> &nbsp;
-                  <FormGroup style={{ marginTop: "37px" }}>
-                    <LengkapiAbsenButton/>
-                    {/* <a href={"/izin/create/" + this.props.values.Nama.value + "/" + this.props.values.TglAwal + "/" + this.props.values.TglAkhir}>
-                      <Button color="dark" size="" >
-                        <FontAwesomeIcon icon={faSearchPlus} /> View
-                      </Button>
-                    </a> */}
-                  </FormGroup>
+                
+    
                   
                 </Row>
 

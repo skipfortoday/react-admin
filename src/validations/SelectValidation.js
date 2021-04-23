@@ -1,7 +1,7 @@
 const SelectValidation = (values) => {
     const errors = {};
-  
-    if (!values.Nama || values.Nama === "") {
+    // console.log(values)
+    if (!values.Nama || values.Nama.value === "") {
       errors.Nama = "Nama harus diisi";
     }
   

@@ -29,7 +29,7 @@ const handleClick = (dispatch, DatangID) => {
         swal("Data Izin Sukses dihapus", {
           icon: "success",
         }).then((value) => {
-          window.location.reload();
+          //window.location.reload();
         }); 
       } else {
         swal("Data gagal dihapus");
@@ -148,7 +148,7 @@ const IzinComponentSolo = (props) => {
     },
   ];
 
-  console.log(props.getIzinListSolo);
+  // console.log(props.getIzinListSolo);
   return (
     <div>
       
