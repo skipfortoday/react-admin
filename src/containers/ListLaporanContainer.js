@@ -23,43 +23,44 @@ const mapStateToProps = (state) => {
   };
 };
 
-
 class ListLaporanContainer extends Component {
-
-  
   componentDidMount() {
     this.props.dispatch(getOptUser());
     this.props.dispatch(getUsersList());
   }
 
-  handleSubmit(data) {
-    this.props.dispatch(
-      getLaporanDetail(
-      data.Nama.value,
-      data.TglAwal,
-      data.TglAkhir
-      )
-    );
-    this.props.dispatch(
-      getLaporanHead(
-      data.Nama.value
-      )
-    );
-    this.props.dispatch(
-      getUserDetail(
-      data.Nama.value
-      )
-    );
-    this.props.dispatch(
-      getLaporanRekap(
-      data.Nama.value,
-      data.TglAwal,
-      data.TglAkhir
-      )
-    );
-    
-  }
+  async handleSubmit(data) {
+    if (data.type == "printview")
+      try {
+        await this.props.dispatch(
+          getLaporanDetail(data.Nama.value, data.TglAwal, data.TglAkhir)
+        );
 
+        await this.props.dispatch(getLaporanHead(data.Nama.value));
+        await this.props.dispatch(getUserDetail(data.Nama.value));
+        await this.props.dispatch(
+          getLaporanRekap(data.Nama.value, data.TglAwal, data.TglAkhir)
+        );
+        setTimeout(function(){ window.print() }, 1000);
+        // setTimeout
+        // window.print();
+      } catch (err) {
+        console.log(err);
+      }
+    else
+      try {
+        this.props.dispatch(
+          getLaporanDetail(data.Nama.value, data.TglAwal, data.TglAkhir)
+        );
+        this.props.dispatch(getLaporanHead(data.Nama.value));
+        this.props.dispatch(getUserDetail(data.Nama.value));
+        this.props.dispatch(
+          getLaporanRekap(data.Nama.value, data.TglAwal, data.TglAkhir)
+        );
+      } catch (err) {
+        console.log(err);
+      }
+  }
 
   render() {
     return (
@@ -76,20 +77,22 @@ class ListLaporanContainer extends Component {
           </tr>
         </div>
         {this.props.getLaporanHead ? (
-        <Container>
-          <Row className="page-header">
-            <NamaCabangLaporan />
-            <RekapLaporan />
-          </Row>
-          <Row>
-            <LaporanDetail />
-            <RekapLeft />
-          </Row>
-        </Container>
-        ) : ("") }
+          <Container>
+            <Row className="page-header">
+              <NamaCabangLaporan />
+              <RekapLaporan />
+            </Row>
+            <Row>
+              <LaporanDetail />
+              <RekapLeft />
+            </Row>
+          </Container>
+        ) : (
+          ""
+        )}
       </div>
     );
   }
 }
 
-export default connect(mapStateToProps,null)(ListLaporanContainer);
+export default connect(mapStateToProps, null)(ListLaporanContainer);

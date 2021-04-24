@@ -14,7 +14,7 @@ import {
 import SelectValidation from "../validations/SelectValidation";
 import PrintButton from "./PrintButton";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import { faPrint, faSearch } from "@fortawesome/free-solid-svg-icons";
 
 const renderField = ({
   input,
@@ -154,7 +154,7 @@ class LengkapiAbsenGuestComponent extends Component {
                      onClick={this.props.handleSubmit(values => 
                       this.props.onSubmit({ 
                         ...values,
-                        type: 'proses'
+                        type: 'view'
                       }))}
                       color="dark"
                       type="submit"
@@ -170,7 +170,19 @@ class LengkapiAbsenGuestComponent extends Component {
                         <FontAwesomeIcon icon={faSearchPlus} /> View
                       </Button>
                     </a> */} 
-                    <PrintButton/>
+                    {/* <PrintButton /> */}
+                    <Button
+                     onClick={this.props.handleSubmit(values => 
+                      this.props.onSubmit({ 
+                        ...values,
+                        type: 'printview'
+                      }))}
+                      color="info"
+                      type="submit"
+                      disabled={this.props.submitting}
+                    >
+                      <FontAwesomeIcon icon={faPrint} /> Print
+                    </Button>
                   </FormGroup>
     
                   

@@ -8,11 +8,19 @@ export const GET_LAPORAN_REKAP = "GET_LAPORAN_REKAP";
 export const GET_LAPORAN_HEAD = "GET_LAPORAN_HEAD";
 export const POST_LAPORAN_PROSES = "POST_LAPORAN_PROSES";
 export const RESET_LAPORAN = "RESET_LAPORAN";
+export const RESET_LAPORAN_RESPON = "RESET_LAPORAN_RESPON";
 
 export const resetLaporan = () => {
   return (dispatch) => {
     dispatch({
       type: RESET_LAPORAN,
+    });
+  }
+}
+export const resetLaporanRespon = () => {
+  return (dispatch) => {
+    dispatch({
+      type: RESET_LAPORAN_RESPON,
     });
   }
 }

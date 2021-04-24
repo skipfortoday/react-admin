@@ -5,6 +5,7 @@ import {
   GET_LAPORAN_HEAD,
   POST_LAPORAN_PROSES,
   RESET_LAPORAN,
+  RESET_LAPORAN_RESPON,
 } from "../actions/laporanAction";
 import { formatTglYmd } from '../containers/formatTgl';
 
@@ -37,8 +38,18 @@ const Laporan = (state = initialState, action) => {
       return {
         ...state,
         getLaporanHead: false,
-        errorLaporanHead: false
+        errorLaporanHead: false,
+        getResponDataLaporan:false,
+        errorResponDataLaporan:false
       };
+
+      case RESET_LAPORAN_RESPON :
+      return {
+        ...state,
+        getResponDataLaporan:false,
+        errorResponDataLaporan:false
+      };
+
     case GET_LAPORAN_LIST:
       return {
         ...state,

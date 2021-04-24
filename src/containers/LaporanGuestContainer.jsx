@@ -4,7 +4,11 @@ import { getUserDetail, getUsersList } from "../actions/userAction";
 import GuestNavbarComponent from "../components/GuestNavbarComponent";
 import LengkapiAbsenGuestComponent from "../components/LengkapiAbsenGuestComponent";
 import { getOptUser } from "../actions/optAction";
-import { getLaporanDetail, getLaporanHead, getLaporanRekap } from "../actions/laporanAction";
+import {
+  getLaporanDetail,
+  getLaporanHead,
+  getLaporanRekap,
+} from "../actions/laporanAction";
 import { Container, Row } from "reactstrap";
 import NamaCabangLaporan from "../components/NamaCabangLaporan";
 import RekapLaporan from "../components/RekapLaporan";
@@ -26,36 +30,36 @@ class LaporanGuestContainer extends Component {
   }
 
   handleSubmit(data) {
-    this.props.dispatch(
-      getLaporanDetail(
-      data.Nama.value,
-      data.TglAwal,
-      data.TglAkhir
-      )
-    );
-    this.props.dispatch(
-      getLaporanHead(
-      data.Nama.value
-      )
-    );
-    this.props.dispatch(
-      getUserDetail(
-      data.Nama.value
-      )
-    );
-    this.props.dispatch(
-      getLaporanRekap(
-      data.Nama.value,
-      data.TglAwal,
-      data.TglAkhir
-      )
-    );
-    
+    if (data.type == "printview") {
+      this.props.dispatch(
+        getLaporanDetail(data.Nama.value, data.TglAwal, data.TglAkhir)
+      );
+      this.props.dispatch(getLaporanHead(data.Nama.value));
+      this.props.dispatch(getUserDetail(data.Nama.value));
+      this.props.dispatch(
+        getLaporanRekap(data.Nama.value, data.TglAwal, data.TglAkhir)
+      );
+
+      setTimeout(function () {
+        window.print();
+      }, 1000);
+      // setTimeout
+      // window.print();
+    } else {
+      this.props.dispatch(
+        getLaporanDetail(data.Nama.value, data.TglAwal, data.TglAkhir)
+      );
+      this.props.dispatch(getLaporanHead(data.Nama.value));
+      this.props.dispatch(getUserDetail(data.Nama.value));
+      this.props.dispatch(
+        getLaporanRekap(data.Nama.value, data.TglAwal, data.TglAkhir)
+      );
+    }
   }
   render() {
     return (
-      <div >
-        <GuestNavbarComponent/>
+      <div>
+        <GuestNavbarComponent />
         <div style={{ backgroundColor: "#f9a826" }}>
           <tr>
             <td width="150"></td>
@@ -67,20 +71,22 @@ class LaporanGuestContainer extends Component {
           </tr>
         </div>
         {this.props.getLaporanHead ? (
-        <Container>
-          <Row className="page-header">
-            <NamaCabangLaporan />
-            <RekapLaporan />
-          </Row>
-          <Row>
-            <LaporanDetail />
-            <RekapLeft2 />
-          </Row>
-        </Container>
-        ) : ("") }
-        </div>
+          <Container>
+            <Row className="page-header">
+              <NamaCabangLaporan />
+              <RekapLaporan />
+            </Row>
+            <Row>
+              <LaporanDetail />
+              <RekapLeft2 />
+            </Row>
+          </Container>
+        ) : (
+          ""
+        )}
+      </div>
     );
   }
 }
 
-export default connect(mapStateToProps,null)(LaporanGuestContainer);
+export default connect(mapStateToProps, null)(LaporanGuestContainer);

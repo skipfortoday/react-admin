@@ -80,7 +80,7 @@ class LaporanDetailContainer extends Component {
           <RekapLaporan />
         </Row>
         <Row>
-          <LaporanDetail />
+          <Laporan  Detail />
           <RekapLeft />
         </Row>
         </Container>
