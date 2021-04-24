@@ -23,7 +23,6 @@ export const resetProps = () => {
 }
 
 export const postManualMasuk= (data) => {
-  console.log(data);
     data.UserID = data.Nama.value;
     data.NamaUser = data.Nama.label;
     return (dispatch) => {
@@ -34,15 +33,26 @@ export const postManualMasuk= (data) => {
           headers
         )
         .then(function (response) {
-          console.log(response);
+          console.log(response.data);
+          if(response.data.status == 1){
+            dispatch({
+              type: POST_MANUAL_MASUK,
+              payload: {
+                data: response.data,
+                errorMessage: false,
+              },
+            });
+          }else{
+            dispatch({
+              type: POST_MANUAL_MASUK,
+              payload: {
+                data: response.data,
+                errorMessage: response.data.message,
+              },
+            });
+          }
           
-          dispatch({
-            type: POST_MANUAL_MASUK,
-            payload: {
-              data: response.data,
-              errorMessage: false,
-            },
-          });
+          
         })
         .catch(function (error) {
           dispatch({
