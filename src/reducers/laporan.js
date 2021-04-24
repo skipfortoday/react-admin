@@ -4,6 +4,7 @@ import {
   GET_LAPORAN_REKAP,
   GET_LAPORAN_HEAD,
   POST_LAPORAN_PROSES,
+  RESET_LAPORAN,
 } from "../actions/laporanAction";
 import { formatTglYmd } from '../containers/formatTgl';
 
@@ -32,6 +33,12 @@ let initialState = {
 
 const Laporan = (state = initialState, action) => {
   switch (action.type) {
+    case RESET_LAPORAN :
+      return {
+        ...state,
+        getLaporanHead: false,
+        errorLaporanHead: false
+      };
     case GET_LAPORAN_LIST:
       return {
         ...state,

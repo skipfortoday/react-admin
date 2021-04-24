@@ -10,7 +10,7 @@ import swal from "sweetalert";
 import OnDutyRoster from "../components/OnDutyRoster";
 import Ambilwaktu from "../components/Ambilwaktu";
 import { getAdminOnDuty } from "../actions/adminAction";
-import { getLaporanList } from "../actions/laporanAction";
+import { getLaporanList, resetLaporan } from "../actions/laporanAction";
 import LaporanDetail2 from "../components/LaporanDetail2";
 
 const mapStateToProps = (state) => {
@@ -30,6 +30,7 @@ class AbsensiManualContainerKembaliKantor extends Component {
   componentDidMount() {
     this.props.dispatch(getAdminOnDuty());
     this.props.dispatch(getOptUserManualKembali());
+    this.props.dispatch(resetLaporan())
   }
 
   componentDidUpdate() {
@@ -78,11 +79,6 @@ class AbsensiManualContainerKembaliKantor extends Component {
                     onSubmit={(data) => this.handleSubmit(data)}
                   />
                 </Container>
-              </div>
-              <div class="card">
-                <div class="card-header">
-                  <h6>Daftar Absensi Pegawai| {this.props.getResponDataManual.UserID} ~ {this.props.getResponDataManual.UserID}</h6>
-                </div>
               </div>
               <LaporanDetail2 />
               {/* <RecentScanComponent /> */}

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import {reset} from 'redux-form';
+import { reset } from "redux-form";
 import { connect } from "react-redux";
 import { getOptUserManualKeluarIst } from "../actions/optAction";
 import GuestNavbarComponentManual from "../components/GuestNavbarComponentManual";
@@ -10,7 +10,7 @@ import swal from "sweetalert";
 import OnDutyRoster from "../components/OnDutyRoster";
 import Ambilwaktu from "../components/Ambilwaktu";
 import { getAdminOnDuty } from "../actions/adminAction";
-import { getLaporanList } from "../actions/laporanAction";
+import { getLaporanList, resetLaporan } from "../actions/laporanAction";
 import LaporanDetail2 from "../components/LaporanDetail2";
 
 const mapStateToProps = (state) => {
@@ -21,15 +21,15 @@ const mapStateToProps = (state) => {
 };
 
 class AbsensiManualContainerIstLuar extends Component {
-  
   constructor(props) {
     super(props);
-    this.state = {disableButton : false};
+    this.state = { disableButton: false };
   }
 
   componentDidMount() {
     this.props.dispatch(getAdminOnDuty());
     this.props.dispatch(getOptUserManualKeluarIst());
+    this.props.dispatch(resetLaporan())
   }
 
   componentDidUpdate() {
@@ -40,27 +40,28 @@ class AbsensiManualContainerIstLuar extends Component {
         swal("Berhasil Absen!", "istirahat Keluar", "success");
         this.props.dispatch(getAdminOnDuty());
         this.props.dispatch(getOptUserManualKeluarIst());
-        this.props.dispatch(getLaporanList(this.props.getResponDataManual.UserID));
-        this.props.dispatch(reset('FormAbsensiManualIstKeluar'));
+        this.props.dispatch(
+          getLaporanList(this.props.getResponDataManual.UserID)
+        );
+        this.props.dispatch(reset("FormAbsensiManualIstKeluar"));
       }
       this.setState({
-        disableButton:false
-      })
-      this.props.dispatch(resetProps())
+        disableButton: false,
+      });
+      this.props.dispatch(resetProps());
     }
   }
 
   handleSubmit(data) {
-    if(!this.state.disableButton){
+    if (!this.state.disableButton) {
       this.props.dispatch(putManualKelIstirahat(data));
       this.setState({
-        disableButton:true
-      })
+        disableButton: true,
+      });
     }
   }
 
   render() {
-    
     return (
       <div>
         <GuestNavbarComponentManual />
@@ -80,15 +81,6 @@ class AbsensiManualContainerIstLuar extends Component {
                     onSubmit={(data) => this.handleSubmit(data)}
                   />
                 </Container>
-              </div>
-              <div class="card">
-                <div class="card-header">
-                  <h6>
-                    Daftar Absensi Pegawai |{" "}
-                    {this.props.getResponDataManual.UserID} ~{" "}
-                    {this.props.getResponDataManual.Nama}{" "}
-                  </h6>
-                </div>
               </div>
               <LaporanDetail2 />
               {/* <RecentScanComponent /> */}

@@ -11,7 +11,8 @@ import { postManualMasuk, resetProps} from "../actions/manualAction";
 import swal from "sweetalert";
 import LaporanDetail2 from "../components/LaporanDetail2";
 import OnDutyRoster from "../components/OnDutyRoster";
-import { getLaporanList } from "../actions/laporanAction";
+import { getLaporanHead, getLaporanList, resetLaporan } from "../actions/laporanAction";
+import { getUserDetail } from "../actions/userAction";
 
 
 const mapStateToProps = (state) => {
@@ -31,12 +32,12 @@ class AbsensiManualContainer extends Component {
   componentDidMount() {
     this.props.dispatch(getOptUserManual());
     this.props.dispatch(getAdminOnDuty());
+    this.props.dispatch(resetLaporan())
   }
 
   componentDidUpdate() {
 
     if (this.props.getResponDataManual || this.props.errorResponDataManual) {
-      console.log('test');
       if (this.props.errorResponDataManual) {
         swal("Failed!", this.props.errorResponDataManual, "error");
       } else {
@@ -44,6 +45,7 @@ class AbsensiManualContainer extends Component {
         this.props.dispatch(getOptUserManual());
         this.props.dispatch(getAdminOnDuty());
         this.props.dispatch(getLaporanList(this.props.getResponDataManual.UserID));
+        this.props.dispatch(getLaporanHead(this.props.getResponDataManual.UserID));
         this.props.dispatch(reset('FormAbsensiManual'));  // requires form name
       }
       this.setState({
@@ -52,7 +54,6 @@ class AbsensiManualContainer extends Component {
       // 
       this.props.dispatch(resetProps())
     }
-    
     // this.props.dispatch(getAdminTimeNow());
   }
 
@@ -63,6 +64,7 @@ class AbsensiManualContainer extends Component {
         disableButton:true
       })
     }
+    
   }
 
 
@@ -87,14 +89,7 @@ class AbsensiManualContainer extends Component {
                   />
                 </Container>
               </div>
-              <div class="card">
-                <div class="card-header">
-                  <h6>Daftar Absensi Pegawai | {this.props.getResponDataManual.UserID} ~ {this.props.getResponDataManual.Nama}</h6>
-                  
-                </div>
-              </div>
                <LaporanDetail2 /> 
-
               {/* <RecentScanComponent /> */}
               {/* <LaporanDetail/> */}
             </div>

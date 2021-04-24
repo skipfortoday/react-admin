@@ -45,7 +45,7 @@ class HistoryContainer extends Component {
         return (
             <div style={{minHeight:"900px"}}>
                 <NavbarComponent />
-                <div className="bg-warning">
+                <div style={{ backgroundColor: "#f9a826" }}>
                     <Container>
                         <h3 className="text-center p-2">History Edit Absensi</h3>
                         <HistoryFilterComponent onSubmit={(data) => this.handleSubmitFilter(data)} />

@@ -4,9 +4,8 @@ import { Table } from "reactstrap";
 
 const mapStateToProps = (state) => {
   return {
-    getUserDetail: state.users.getUserDetail,
+    getLaporanHead: state.Laporan.getLaporanHead,
     getLaporanRekap: state.Laporan.getLaporanRekap,
-    errorUserDetail: state.users.errorUserDetail,
   };
 };
 
@@ -22,12 +21,12 @@ const RekapLaporan = (props) => {
         <tr>
           <td width="120">Nama</td>
           <td width="10">:</td>
-          <td>{props.getUserDetail.Nama}</td>
+          <td>{props.getLaporanHead.Nama}</td>
         </tr> 
         <tr>
           <td width="120">Posisi / Jabatan</td>
           <td width="10">:</td>
-          <td>{props.getUserDetail.Posisi}</td>
+          <td>{props.getLaporanHead.Posisi}</td>
         </tr>
         
       </tbody>

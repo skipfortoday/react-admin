@@ -13,7 +13,6 @@ import {
   DropdownMenu,
   DropdownToggle,
   UncontrolledDropdown,
-  Button
 } from "reactstrap";
 import { siteConfig } from "../config";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -52,9 +51,11 @@ const NavbarComponent = (props) => {
               </Link>
             </NavItem>
             <NavItem>
-              <a href={"/izin"}>
+            <Link to="/izin">
+              {/* <a href={"/izin"}> */}
                 <NavLink>Status Absensi </NavLink>
-              </a>
+              {/* </a> */}
+              </Link>
             </NavItem>
             <NavItem>
               <Link to="/group">
@@ -71,15 +72,15 @@ const NavbarComponent = (props) => {
               ) : ("")
             }
             <NavItem>
-              <a href={"/laporan"}>
+               <Link to="/laporan">
                 <NavLink> Laporan </NavLink>
-              </a>
+              </Link>
             </NavItem>
 
             <NavItem>
-              <a href={"/history"}>
+             <Link to="/history">
                 <NavLink> History </NavLink>
-              </a>
+              </Link>
             </NavItem>
           </Nav>
 

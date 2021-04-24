@@ -80,7 +80,7 @@ class LoginComponent extends Component {
               <input type="checkbox" class="custom-control-input" id="customSwitch1" />
               <label class="custom-control-label" for="customSwitch1">Remember me</label>
             </div>
-            <Link className="forgotPassword">Forgot Password?</Link>
+            <Link to={"/home"} className="forgotPassword">Kembali Ke Dashboard</Link>
           </Col>
           <Col md={12}>
             <Label></Label>
@@ -92,6 +92,7 @@ class LoginComponent extends Component {
               Login
               </Button>
           </Col>
+          
         </FormGroup>
       </form>
     );

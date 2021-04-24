@@ -26,34 +26,36 @@ const NavbarComponent = (props) => {
         <Collapse isOpen={!collapsed} navbar>
           <Nav className="mr-auto" navbar>
             <NavItem>
-              <a href={"/absensimanual"}>
+              <Link to={"/absensimanual"}>
+              {/* <a href={"/absensimanual"}> */}
                 <NavLink>Masuk </NavLink>
-              </a>
+              {/* </a> */}
+              </Link>
             </NavItem>
             <NavItem>
-              <a href={"/absensimanualpulang"}>
+              <Link to={"/absensimanualpulang"}>  
                 <NavLink> Pulang</NavLink>
-              </a>
+              </Link>
             </NavItem>
             <NavItem>
-              <a href={"/absensimanualistirahatkeluar"}>
+              <Link to={"/absensimanualistirahatkeluar"}>
                 <NavLink> Istirahat Keluar</NavLink>
-              </a>
+              </Link>
             </NavItem>
             <NavItem>
-              <a href={"/absensimanualistirahatkembali"}>
+              <Link to={"/absensimanualistirahatkembali"}>
                 <NavLink> Istirahat Kembali</NavLink>
-              </a>
+              </Link>
             </NavItem>
             <NavItem>
-              <a href={"/absensimanualkeluarkantor"}>
+              <Link to={"/absensimanualkeluarkantor"}>
                 <NavLink> Keluar Kantor</NavLink>
-              </a>
+              </Link>
             </NavItem>
             <NavItem>
-              <a href={"/absensimanualkembalikantor"}>
+              <Link to={"/absensimanualkembalikantor"}>
                 <NavLink> Kembali Kantor</NavLink>
-              </a>
+              </Link>
             </NavItem>
           </Nav>
           <NavbarBrand>{siteConfig.nama}</NavbarBrand>

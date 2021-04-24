@@ -11,7 +11,7 @@ import swal from "sweetalert";
 import OnDutyRoster from "../components/OnDutyRoster";
 import Ambilwaktu from "../components/Ambilwaktu";
 import LaporanDetail2 from "../components/LaporanDetail2";
-import { getLaporanList } from "../actions/laporanAction";
+import { getLaporanList, resetLaporan } from "../actions/laporanAction";
 
 
 const mapStateToProps = (state) => {
@@ -31,6 +31,7 @@ class AbsensiManualContainerPulang extends Component {
   componentDidMount() {
     this.props.dispatch(getAdminOnDuty());
     this.props.dispatch(getOptUserManualPulang());
+    this.props.dispatch(resetLaporan())
   }
 
   componentDidUpdate() {
@@ -78,14 +79,6 @@ class AbsensiManualContainerPulang extends Component {
                     onSubmit={(data) => this.handleSubmit(data)}
                   />
                 </Container>
-              </div>{" "}
-              <div class="card">
-                <div class="card-header">
-                  <h6>
-                    Daftar Absensi Pegawai | {this.props.getResponDataManual.UserID} ~{" "}
-                    {this.props.getResponDataManual.Nama}
-                  </h6>
-                </div>
               </div>
               <LaporanDetail2 />
               {/* <RecentScanComponent/> */}

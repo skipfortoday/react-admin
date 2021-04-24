@@ -20,6 +20,7 @@ import {
   getLaporanHead,
   getLaporanDetail,
   getLaporanRekap,
+  resetLaporan,
 } from "../actions/laporanAction";
 import { getUserDetail } from "../actions/userAction";
 import IzinComponentSolo from "../components/IzinComponentSolo";
@@ -48,6 +49,7 @@ class CreateIzinContainer extends Component {
   componentDidMount() {
     this.props.dispatch(setStatusForm(""));
     this.props.dispatch(getOptUser());
+    this.props.dispatch(resetLaporan());
     
     // untuk form editing
     this.props.dispatch(getIzinDetail(this.props.match.params.UserID));

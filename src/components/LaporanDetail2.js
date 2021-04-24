@@ -1,11 +1,12 @@
 import React from "react";
 import BootstrapTable from "react-bootstrap-table-next";
-import {  Spinner } from "reactstrap";
+import { Spinner } from "reactstrap";
 import paginationFactory from "react-bootstrap-table2-paginator";
 import { connect } from "react-redux";
 
 const mapStateToProps = (state) => {
   return {
+    getLaporanHead:state.Laporan.getLaporanHead,
     getLaporanList: state.Laporan.getLaporanList,
     getExpandKey: state.Laporan.getExpandKey,
     errorLaporanList: state.Laporan.errorLaporanList,
@@ -70,14 +71,19 @@ const LaporanDetail2 = (props) => {
       formatter: LiburFormatter,
       headerStyle: () => {
         return {
-          width: "90px",
+          width: "70px",
           fontSize: "12px",
           padding: "0px",
           textAlign: "center",
         };
       },
       style: () => {
-        return { fontWeight: "normal", fontSize: "12px", textAlign: "right" ,padding: "0px" };
+        return {
+          fontWeight: "normal",
+          fontSize: "12px",
+          textAlign: "right",
+          padding: "0px",
+        };
       },
     },
     {
@@ -86,7 +92,7 @@ const LaporanDetail2 = (props) => {
       formatter: terlambatFormatter,
       headerStyle: () => {
         return {
-          width: "38px",
+          width: "40px",
           fontSize: "12px",
           textAlign: "center",
           padding: "0px",
@@ -124,7 +130,7 @@ const LaporanDetail2 = (props) => {
         };
       },
       style: () => {
-        return { color: "red" , padding: "0px" };
+        return { color: "red", padding: "0px" };
       },
     },
     {
@@ -139,7 +145,7 @@ const LaporanDetail2 = (props) => {
         };
       },
       style: () => {
-        return { color: "#017580" , padding: "0px"};
+        return { color: "#017580", padding: "0px" };
       },
     },
     {
@@ -246,7 +252,7 @@ const LaporanDetail2 = (props) => {
         };
       },
       style: () => {
-        return { fontWeight: "normal" , padding: "0px"};
+        return { fontWeight: "normal", padding: "0px" };
       },
     },
   ];
@@ -348,38 +354,48 @@ TotalKeluar: null*/
     expanded: props.getExpandKey[0],
     nonExpandable: props.getExpandKey[1],
   };
-  {console.log(props.getLaporanList)}
+  {
+    console.log(props.getLaporanList);
+  }
   return (
     <div>
-      {props.getLaporanList  ? (
-        
+      {props.getLaporanHead ? (
         <div>
-          <BootstrapTable
-            keyField="Tanggal"
-            data={props.getLaporanList}
-            columns={columns}
-            expandRow={expandRow}
-            rowClasses={rowClasses}
-            headerClasses="page-header-space"
-            rowStyle={{
-              fontFamily: "TimesNewRoman",
-              fontWeight: "bold",
-              fontSize: "12px",
-              textAlign: "center",
-              padding: "0px",
-            }}
-            pagination={paginationFactory(options)}
-            defaultSorted={defaultSorted}
-          />
+          <div class="card">
+            <div class="card-header">
+              <h6>
+                Daftar Absensi Pegawai | {props.getLaporanHead.UserID}{" "}
+                ~ {props.getLaporanHead.Nama}
+              </h6>
+            </div>
+          </div>
+          <div>
+            <BootstrapTable
+              keyField="Tanggal"
+              data={props.getLaporanList}
+              columns={columns}
+              expandRow={expandRow}
+              rowClasses={rowClasses}
+              headerClasses="page-header-space"
+              rowStyle={{
+                fontFamily: "TimesNewRoman",
+                fontWeight: "bold",
+                fontSize: "12px",
+                textAlign: "center",
+                padding: "0px",
+              }}
+              pagination={paginationFactory(options)}
+              defaultSorted={defaultSorted}
+            />
+          </div>
         </div>
       ) : (
         <div className="text-center">
-          {props.errorLaporanList ? (
+          {!props.errorLaporanList ? (
             <h4>{props.errorLaporanList}</h4>
           ) : (
             <Spinner color="dark" />
           )}
-          
         </div>
       )}
     </div>

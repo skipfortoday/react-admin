@@ -11,6 +11,7 @@ export const PUT_IZIN_EDIT = "PUT_IZIN_EDIT";
 export const GET_IZIN_DETAIL_FORM = "GET_IZIN_DETAIL_FORM";
 export const GET_IZIN_DETAIL_FORM_STATUS = "GET_IZIN_DETAIL_FORM_STATUS";
 export const EDIT_JAM_FORM = "EDIT_JAM_FORM";
+export const RESET_IZIN_SOLO = "RESET_IZIN_SOLO";
 export const RESET_RESPONSE_DI = "RESET_RESPONSE_DI";
 
 export const resetResponseDataIzin = () => {

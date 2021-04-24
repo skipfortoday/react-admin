@@ -12,7 +12,7 @@ import { getIzinList,
 import NavbarComponent from "../components/NavbarComponent";
 import { getOptUser } from "../actions/optAction";
 import LengkapiAbsen from "../components/LengkapiAbsen";
-import { getLaporanDetail, getLaporanHead, getLaporanRekap, postLaporanProses } from "../actions/laporanAction";
+import { getLaporanDetail, getLaporanHead, getLaporanRekap, postLaporanProses, resetLaporan } from "../actions/laporanAction";
 import { Redirect } from "react-router-dom";
 import { Row, Col, Container } from "reactstrap";
 import { getUserDetail } from "../actions/userAction";
@@ -43,6 +43,7 @@ class IzinContainer extends Component {
     this.props.dispatch(getIzinList());
     this.props.dispatch(deleteDataIzin());
     this.props.dispatch(getOptUser());
+    this.props.dispatch(resetLaporan());
   }
 
 
@@ -63,6 +64,7 @@ class IzinContainer extends Component {
       
     }
     this.props.dispatch(reset('formCreateizin'));  // requires form name
+  
   }
 
   componentDidUpdate(){

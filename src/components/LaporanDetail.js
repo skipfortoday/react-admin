@@ -52,7 +52,7 @@ const LaporanDetail = (props) => {
       sort: true,
       formatter: LiburFormatter,
       headerStyle: () => {
-        return { width: "90px" , fontSize: '12px' ,padding : '0px', textAlign:'center',  };
+        return { width: "75px" , fontSize: '12px' ,padding : '0px', textAlign:'center',  };
       },
       style: () => {
         return {  fontWeight: "normal" , fontSize :'12px' ,textAlign:'right',padding : '0px'};
@@ -63,7 +63,7 @@ const LaporanDetail = (props) => {
       text: "Datang",
       formatter: terlambatFormatter,
       headerStyle: () => {
-        return { width: "38px" , fontSize: '12px' ,textAlign:'center',padding : '0px' };  
+        return { width: "42px" , fontSize: '12px' ,textAlign:'center',padding : '0px' };  
       },
       style: () => {
         return { padding : '0px' };
@@ -74,7 +74,7 @@ const LaporanDetail = (props) => {
       dataField: "ScanPulang",
       text: "Pulang",
       headerStyle: () => {
-        return { width: "38px" , fontSize: '12px',textAlign:'center' ,padding : '0px'};
+        return { width: "42px" , fontSize: '12px',textAlign:'center' ,padding : '0px'};
       },
       style: () => {
         return { padding : '0px' };
@@ -156,7 +156,7 @@ const LaporanDetail = (props) => {
       dataField: "Keterangan",
       text: "Keterangan",
       headerStyle: () => {
-        return { width: "150px" , fontSize: '12px' ,textAlign:'center',padding : '0px'};
+        return { width: "165px" , fontSize: '12px' ,textAlign:'center',padding : '0px'};
       },
       style: () => {
         return {  fontWeight: "normal" , fontSize: '12px' ,padding : '0px' };
@@ -166,7 +166,7 @@ const LaporanDetail = (props) => {
       dataField: "KetPulang",
       text: "KetPulang",
       headerStyle: () => {
-        return { width: "65px", fontSize: '12px',textAlign:'center',padding : '0px'};
+        return { width: "50px", fontSize: '12px',textAlign:'center',padding : '0px'};
       },
       style: () => {
         return {  fontWeight: "normal" ,padding : '0px'  };
