@@ -32,6 +32,7 @@ import AbsensiManualContainerKeluarKantor from "./containers/AbsensiManualContai
 import AbsensiManualContainerKembaliKantor from "./containers/AbsensiManualContainerKembaliKantor";
 import HistoryContainer from "./containers/HistoryContainer";
 import TestingContainer from "./containers/TestingContainer";
+import KelengkapanAbsenContainer from "./containers/KelengkapanAbsenContainer";
 
 const mapStateToProps = (state) => {
   return {
@@ -76,8 +77,12 @@ class App extends Component {
           /> */}
 
           <Route path="/testing" exact component={TestingContainer} />
-          <Route path="/" exact component={HomeContainer} >
-             {this.props.errorUsersList  ? <Redirect to="/home" /> : <HomeContainer />}
+          <Route path="/" exact component={HomeContainer}>
+            {this.props.errorUsersList ? (
+              <Redirect to="/home" />
+            ) : (
+              <HomeContainer />
+            )}
           </Route>
 
           <Route path="/login" exact component={LoginContainer} />
@@ -203,6 +208,7 @@ class App extends Component {
             component={AbsensiManualContainerKembaliKantor}
           />
 
+          <Route path="/kelengkapanabsensi" exact component={KelengkapanAbsenContainer} />
           <Route path="/home" exact component={LandingPageContainer} />
 
           <Route path="/history" exact component={HistoryContainer} />

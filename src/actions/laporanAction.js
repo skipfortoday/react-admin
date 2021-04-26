@@ -6,6 +6,7 @@ export const GET_LAPORAN_LIST = "GET_LAPORAN_LIST";
 export const GET_LAPORAN_DETAIL = "GET_LAPORAN_DETAIL";
 export const GET_LAPORAN_REKAP = "GET_LAPORAN_REKAP";
 export const GET_LAPORAN_HEAD = "GET_LAPORAN_HEAD";
+export const GET_LAPORAN_KELENGKAPAN = "GET_LAPORAN_KELENGKAPAN";
 export const POST_LAPORAN_PROSES = "POST_LAPORAN_PROSES";
 export const RESET_LAPORAN = "RESET_LAPORAN";
 export const RESET_LAPORAN_RESPON = "RESET_LAPORAN_RESPON";
@@ -128,6 +129,31 @@ export const getLaporanRekap = (UserID,TglAwal,TglAkhir) => {
       .catch(function (error) {
         dispatch({
           type: GET_LAPORAN_REKAP,
+          payload: {
+            data: false,
+            errorMessage: error.message,
+          },
+        });
+      });
+  };
+};
+
+export const getKelengkapanAbsen = (TanggalScan,TanggalScanSampai) => {
+  return (dispatch) => {
+    axios
+      .get(BASEURL+"/api/KelengkapanAbsen/"+TanggalScan+"&"+TanggalScanSampai, headers)
+      .then(function (response) {
+        dispatch({
+          type: GET_LAPORAN_KELENGKAPAN,
+          payload: {
+            data: response.data,
+            errorMessage: false,
+          },
+        });
+      })
+      .catch(function (error) {
+        dispatch({
+          type: GET_LAPORAN_KELENGKAPAN,
           payload: {
             data: false,
             errorMessage: error.message,

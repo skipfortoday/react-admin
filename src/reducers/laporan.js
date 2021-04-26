@@ -6,7 +6,8 @@ import {
   POST_LAPORAN_PROSES,
   RESET_LAPORAN,
   RESET_LAPORAN_RESPON,
-  IS_LOADING
+  IS_LOADING,
+  GET_LAPORAN_KELENGKAPAN
 } from "../actions/laporanAction";
 import { formatTglYmd } from '../containers/formatTgl';
 
@@ -23,8 +24,9 @@ let initialState = {
   errorLaporanHead: false,
   getResponDataLaporan: false,
   errorResponDataLaporan: false,
+  getLaporanKelengkapan:false,
+  errorLaporanKelengkapan:false,
   isLoading:false,
-
   defTglAwal: formatTglYmd(new Date(
     new Date().getFullYear(),
     new Date().getMonth(),
@@ -91,6 +93,13 @@ const Laporan = (state = initialState, action) => {
         getLaporanHead: action.payload.data,
         errorLaporanHead: action.payload.errorMessage,
       };
+
+      case GET_LAPORAN_KELENGKAPAN:
+        return {
+          ...state,
+          getLaporanKelengkapan: action.payload.data,
+          errorLaporanKelengkapan: action.payload.errorMessage,
+        };
 
     case POST_LAPORAN_PROSES:
       return {

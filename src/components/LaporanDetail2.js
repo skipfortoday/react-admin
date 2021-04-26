@@ -71,7 +71,7 @@ const LaporanDetail2 = (props) => {
       formatter: LiburFormatter,
       headerStyle: () => {
         return {
-          width: "70px",
+          width: "90px",
           fontSize: "12px",
           padding: "0px",
           textAlign: "center",
@@ -92,7 +92,7 @@ const LaporanDetail2 = (props) => {
       formatter: terlambatFormatter,
       headerStyle: () => {
         return {
-          width: "40px",
+          width: "35px",
           fontSize: "12px",
           textAlign: "center",
           padding: "0px",
@@ -108,7 +108,7 @@ const LaporanDetail2 = (props) => {
       text: "Pulang",
       headerStyle: () => {
         return {
-          width: "38px",
+          width: "35px",
           fontSize: "12px",
           textAlign: "center",
           padding: "0px",
