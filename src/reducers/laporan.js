@@ -6,6 +6,7 @@ import {
   POST_LAPORAN_PROSES,
   RESET_LAPORAN,
   RESET_LAPORAN_RESPON,
+  IS_LOADING
 } from "../actions/laporanAction";
 import { formatTglYmd } from '../containers/formatTgl';
 
@@ -22,6 +23,7 @@ let initialState = {
   errorLaporanHead: false,
   getResponDataLaporan: false,
   errorResponDataLaporan: false,
+  isLoading:false,
 
   defTglAwal: formatTglYmd(new Date(
     new Date().getFullYear(),
@@ -34,6 +36,12 @@ let initialState = {
 
 const Laporan = (state = initialState, action) => {
   switch (action.type) {
+    case IS_LOADING:
+      return {
+        ...state,
+        isLoading: action.payload.data
+      }
+
     case RESET_LAPORAN :
       return {
         ...state,
@@ -61,9 +69,13 @@ const Laporan = (state = initialState, action) => {
     case GET_LAPORAN_DETAIL:
       return {
         ...state,
+        
         getLaporanDetail: action.payload.data,
         getExpandKey: action.payload.expandKey,
         errorLaporanDetail: action.payload.errorMessage,
+        isLoading:false,
+        getLaporanRekap: action.payload.data.footer,
+        getLaporanHead: action.payload.data.header,
       };
 
     case GET_LAPORAN_REKAP:

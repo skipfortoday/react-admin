@@ -9,6 +9,18 @@ export const GET_LAPORAN_HEAD = "GET_LAPORAN_HEAD";
 export const POST_LAPORAN_PROSES = "POST_LAPORAN_PROSES";
 export const RESET_LAPORAN = "RESET_LAPORAN";
 export const RESET_LAPORAN_RESPON = "RESET_LAPORAN_RESPON";
+export const IS_LOADING = "IS_LOADING";
+
+export const setLoading = (val) => {
+  return (dispatch) => {
+    dispatch({
+      type:IS_LOADING,
+      payload:{
+        data:val
+      }
+    })
+  }
+}
 
 export const resetLaporan = () => {
   return (dispatch) => {
@@ -72,16 +84,17 @@ export const getLaporanDetail = (UserID,TglAwal,TglAkhir) => {
         var expand = [];
         var expandKey = [];
         var nonExpandKey = [];
-        for(var row in response.data){
-          res.push(response.data[row]);
-          if(response.data[row]['detail'].length>0) expandKey.push(response.data[row].Tanggal);
-          else nonExpandKey.push(response.data[row].Tanggal);
+        var body = response.data.body;
+        for(var row in body){
+          res.push(body[row]);
+          if(body[row]['detail'].length>0) expandKey.push(body[row].Tanggal);
+          else nonExpandKey.push(body[row].Tanggal);
         }
         expand = [expandKey, nonExpandKey];
         dispatch({
           type: GET_LAPORAN_DETAIL,
           payload: {
-            data: res,
+            data: response.data,
             expandKey :  expand,
             errorMessage: false,
           },

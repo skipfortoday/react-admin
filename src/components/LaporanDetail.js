@@ -6,8 +6,13 @@ import { connect } from "react-redux"
 
 
 const mapStateToProps = (state) => {
+  var arrobj = state.Laporan.getLaporanDetail.body;
+  var arr = [];
+  for(var data in arrobj){
+    arr.push(arrobj[data])
+  };
   return {
-    getLaporanDetail: state.Laporan.getLaporanDetail,
+    getLaporanDetail: arr,
     getExpandKey: state.Laporan.getExpandKey,
     errorLaporanDetail: state.Laporan.errorLaporanDetail,
   };
@@ -45,6 +50,8 @@ function LiburFormatter(cell, row) {
 
 
 const LaporanDetail = (props) => {
+  // console.log(props.getLaporanDetail);
+  // console.log(Array.isArray(props.getLaporanDetail));
   const columns = [
     {
       dataField: "Tanggal",

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { reduxForm, Field} from "redux-form";
+import { reduxForm, Field } from "redux-form";
 import { connect } from "react-redux";
 import Select from 'react-select';
 import {
@@ -47,54 +47,54 @@ const renderField = ({
 );
 
 const renderField2 = ({
-    input,
-    name,
-    id,
-    type,
-    placeholder,
-    label,
-    disabled,
-    options,
-    readOnly,
-    isMulti,
-    meta: { touched, error, warning },
-  }) => (
-    <Row>
-      <Col md="12">
-        <Label htmlFor="{input}" className="col-form-label">
-          {label}
-        </Label>
-      </Col>
-      <Col md="12">
-        
-        <Select
-          {...Input}
-          id={id} 
-          name={name} 
-          type={type}
-          placeholder={placeholder}
-          disabled={disabled}
-          readOnly={readOnly}
-          options={options}
-          isMulti={isMulti}
-          value={input.value}
-          onChange={(value) => input.onChange(value)}
-           //onBlur={() => input.onBlur()}
-        />
-        {touched &&
-          ((error && <p style={{ color: "red" }}>{error}</p>) ||
-            (warning && <p style={{ color: "brown" }}>{warning}</p>))}
-      </Col>
-    </Row>
-  );
+  input,
+  name,
+  id,
+  type,
+  placeholder,
+  label,
+  disabled,
+  options,
+  readOnly,
+  isMulti,
+  meta: { touched, error, warning },
+}) => (
+  <Row>
+    <Col md="12">
+      <Label htmlFor="{input}" className="col-form-label">
+        {label}
+      </Label>
+    </Col>
+    <Col md="12">
+
+      <Select
+        {...Input}
+        id={id}
+        name={name}
+        type={type}
+        placeholder={placeholder}
+        disabled={disabled}
+        readOnly={readOnly}
+        options={options}
+        isMulti={isMulti}
+        value={input.value}
+        onChange={(value) => input.onChange(value)}
+      //onBlur={() => input.onBlur()}
+      />
+      {touched &&
+        ((error && <p style={{ color: "red" }}>{error}</p>) ||
+          (warning && <p style={{ color: "brown" }}>{warning}</p>))}
+    </Col>
+  </Row>
+);
 
 const mapStateToProps = (state) => {
   return {
-    getOptUser : state.Opt.getOptUser,
+    getOptUser: state.Opt.getOptUser,
     initialValues: {
-      Nama : {value : state.users.getUserDetail.UserID, label: state.users.getUserDetail.Nama},
-      TglAwal : state.Laporan.getLaporanRekap ? state.Laporan.getLaporanRekap.TglAwal : state.Laporan.defTglAwal,
-      TglAkhir : state.Laporan.getLaporanRekap ? state.Laporan.getLaporanRekap.TglAkhir : state.Laporan.defTglAkhir
+      Nama: { value: state.users.getUserDetail.UserID, label: state.users.getUserDetail.Nama },
+      TglAwal: state.Laporan.getLaporanRekap ? state.Laporan.getLaporanRekap.TglAwal : state.Laporan.defTglAwal,
+      TglAkhir: state.Laporan.getLaporanRekap ? state.Laporan.getLaporanRekap.TglAkhir : state.Laporan.defTglAkhir
       //TglAkhir : state.Laporan.getLaporanRekap.TglAkhir,
     },
   };
@@ -103,59 +103,59 @@ const mapStateToProps = (state) => {
 
 class LengkapiAbsenGuestComponent extends Component {
   render() {
-    
+
     return (
       <form onSubmit={this.props.handleSubmit}>
-          
+
         <Container>
           <FormGroup row>
             <Row>
-            
 
-            <Col md={3}>
-              <FormGroup>
-                <Field
-                  type="date"
-                  name="TglAwal"
-                  component={renderField}
-                  label="Tanggal Awal:"
-                />
-              </FormGroup>
-            </Col>
 
-            <Col md={3}>
-              <FormGroup>
-                <Field
-                  type="date"
-                  name="TglAkhir"
-                  component={renderField}
-                  label="Tanggal Akhir :"
-                />
-              </FormGroup>
-            </Col>
+              <Col md={3}>
+                <FormGroup>
+                  <Field
+                    type="date"
+                    name="TglAwal"
+                    component={renderField}
+                    label="Tanggal Awal:"
+                  />
+                </FormGroup>
+              </Col>
 
-            <Col md={3}>
-              <FormGroup>
-                <Field
-                  name="Nama"
-                  component={renderField2}
-                  label="Nama:"
-                  options={this.props.getOptUser}
-                />
-              </FormGroup>
-            </Col>
+              <Col md={3}>
+                <FormGroup>
+                  <Field
+                    type="date"
+                    name="TglAkhir"
+                    component={renderField}
+                    label="Tanggal Akhir :"
+                  />
+                </FormGroup>
+              </Col>
 
-            <Col md={3}>
+              <Col md={3}>
+                <FormGroup>
+                  <Field
+                    name="Nama"
+                    component={renderField2}
+                    label="Nama:"
+                    options={this.props.getOptUser}
+                  />
+                </FormGroup>
+              </Col>
+
+              <Col md={3}>
                 <Row>
                   <FormGroup style={{ marginTop: "37px" }}>
-                    
-                    
+
+
                     <Button
-                     onClick={this.props.handleSubmit(values => 
-                      this.props.onSubmit({ 
-                        ...values,
-                        type: 'view'
-                      }))}
+                      onClick={this.props.handleSubmit(values =>
+                        this.props.onSubmit({
+                          ...values,
+                          type: 'view'
+                        }))}
                       color="dark"
                       type="submit"
                       disabled={this.props.submitting}
@@ -164,19 +164,12 @@ class LengkapiAbsenGuestComponent extends Component {
                     </Button>
                   </FormGroup> &nbsp;
                   <FormGroup style={{ marginTop: "37px" }}>
-                    {/* <LengkapiAbsenButton/>
-                    {/* <a href={"/izin/create/" + this.props.values.Nama.value + "/" + this.props.values.TglAwal + "/" + this.props.values.TglAkhir}>
-                      <Button color="dark" size="" >
-                        <FontAwesomeIcon icon={faSearchPlus} /> View
-                      </Button>
-                    </a> */} 
-                    {/* <PrintButton /> */}
                     <Button
-                     onClick={this.props.handleSubmit(values => 
-                      this.props.onSubmit({ 
-                        ...values,
-                        type: 'printview'
-                      }))}
+                      onClick={this.props.handleSubmit(values =>
+                        this.props.onSubmit({
+                          ...values,
+                          type: 'printview'
+                        }))}
                       color="info"
                       type="submit"
                       disabled={this.props.submitting}
@@ -184,8 +177,6 @@ class LengkapiAbsenGuestComponent extends Component {
                       <FontAwesomeIcon icon={faPrint} /> Print
                     </Button>
                   </FormGroup>
-    
-                  
                 </Row>
 
               </Col>
@@ -200,7 +191,7 @@ class LengkapiAbsenGuestComponent extends Component {
 }
 
 
- 
+
 LengkapiAbsenGuestComponent = reduxForm({
   form: "formLengkapiAbsenGuest",
   validate: SelectValidation,

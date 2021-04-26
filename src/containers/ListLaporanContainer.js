@@ -6,10 +6,12 @@ import {
   getLaporanDetail,
   getLaporanHead,
   getLaporanRekap,
+  resetLaporan,
+  setLoading
 } from "../actions/laporanAction";
 import LengkapiAbsenGuestComponent from "../components/LengkapiAbsenGuestComponent";
 import { getOptUser } from "../actions/optAction";
-import { Container, Row } from "reactstrap";
+import { Container, Row, Spinner } from "reactstrap";
 import NamaCabangLaporan from "../components/NamaCabangLaporan";
 import RekapLaporan from "../components/RekapLaporan";
 import LaporanDetail from "../components/LaporanDetail";
@@ -20,6 +22,7 @@ const mapStateToProps = (state) => {
     getLaporanDetail: state.Laporan.getLaporanDetail,
     getLaporanHead: state.Laporan.getLaporanHead,
     errorLaporanDetail: state.Laporan.errorLaporanDetail,
+    isLoading:state.Laporan.isLoading
   };
 };
 
@@ -29,37 +32,24 @@ class ListLaporanContainer extends Component {
     this.props.dispatch(getUsersList());
   }
 
-  async handleSubmit(data) {
-    if (data.type == "printview")
-      try {
-        await this.props.dispatch(
-          getLaporanDetail(data.Nama.value, data.TglAwal, data.TglAkhir)
-        );
+  handleSubmit(data) {
+    this.props.dispatch(resetLaporan());
+    this.props.dispatch(
+      getLaporanDetail(data.Nama.value, data.TglAwal, data.TglAkhir)
+    );
+    // this.props.dispatch(getLaporanHead(data.Nama.value));
+    // this.props.dispatch(getUserDetail(data.Nama.value));
+    // this.props.dispatch(
+    //   getLaporanRekap(data.Nama.value, data.TglAwal, data.TglAkhir)
+    // );
+    this.props.dispatch(setLoading(true));
+    if (data.type == "printview") {
 
-        await this.props.dispatch(getLaporanHead(data.Nama.value));
-        await this.props.dispatch(getUserDetail(data.Nama.value));
-        await this.props.dispatch(
-          getLaporanRekap(data.Nama.value, data.TglAwal, data.TglAkhir)
-        );
-        setTimeout(function(){ window.print() }, 1000);
-        // setTimeout
-        // window.print();
-      } catch (err) {
-        console.log(err);
-      }
-    else
-      try {
-        this.props.dispatch(
-          getLaporanDetail(data.Nama.value, data.TglAwal, data.TglAkhir)
-        );
-        this.props.dispatch(getLaporanHead(data.Nama.value));
-        this.props.dispatch(getUserDetail(data.Nama.value));
-        this.props.dispatch(
-          getLaporanRekap(data.Nama.value, data.TglAwal, data.TglAkhir)
-        );
-      } catch (err) {
-        console.log(err);
-      }
+      setTimeout(function () {
+        window.print();
+      }, 1000);
+    }
+    
   }
 
   render() {
@@ -76,7 +66,12 @@ class ListLaporanContainer extends Component {
             </td>
           </tr>
         </div>
-        {this.props.getLaporanHead ? (
+        {this.props.isLoading ? (
+          <div style={{textAlign:"center", padding:"50px 0px"}}>
+            <Spinner />
+          </div>
+        ) : ("") }
+        {this.props.getLaporanDetail ? (
           <Container>
             <Row className="page-header">
               <NamaCabangLaporan />
