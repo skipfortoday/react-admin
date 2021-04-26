@@ -1,12 +1,9 @@
 import React, { Component } from "react";
 import { reduxForm, Field } from "redux-form";
 import { connect } from "react-redux";
-import Select from 'react-select';
 import {
   FormGroup,
   Col,
-  Label,
-  Input,
   Row,
   Container,
   Button
@@ -14,80 +11,11 @@ import {
 import SelectValidation from "../validations/SelectValidation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch, faSpinner } from "@fortawesome/free-solid-svg-icons";
-import LengkapiAbsenButton from "./LengkapiAbsenButton";
+import { SelectFieldComponent } from "./formController/SelectFieldComponent";
+import { InputFieldComponent } from "./formController/InputFieldComponent";
 
-const renderField = ({
-  input,
-  type,
-  placeholder,
-  label,
-  disabled,
-  readOnly,
-  meta: { touched, error, warning },
-}) => (
-  <Row>
-    <Col md="12">
-      <Label htmlFor="{input}" className="col-form-label">
-        {label}
-      </Label>
-    </Col>
-    <Col md="12">
-      <Input
-        {...input}
-        type={type}
-        placeholder={placeholder}
-        disabled={disabled}
-        readOnly={readOnly}
-      ></Input>
-      {touched &&
-        ((error && <p style={{ color: "brown" }}>{error}</p>) ||
-          (warning && <p style={{ color: "brown" }}>{warning}</p>))}
-    </Col>
-  </Row>
-);
-
-const renderField2 = ({
-  input,
-  name,
-  id,
-  type,
-  placeholder,
-  label,
-  disabled,
-  options,
-  readOnly,
-  meta: { touched, error, warning },
-}) => (
-  <Row>
-    <Col md="12">
-      <Label htmlFor="{input}" className="col-form-label">
-        {label}
-      </Label>
-    </Col>
-    <Col md="12">
-
-      <Select
-        {...Input}
-        id={id}
-        name={name}
-        type={type}
-        placeholder={placeholder}
-        disabled={disabled}
-        readOnly={readOnly}
-        options={options}
-        value={input.value}
-        onChange={(value) => input.onChange(value)}
-      //onBlur={() => input.onBlur()}
-      />
-      {touched &&
-        ((error && <p style={{ color: "red" }}>{error}</p>) ||
-          (warning && <p style={{ color: "brown" }}>{warning}</p>))}
-    </Col>
-  </Row>
-);
 
 const mapStateToProps = (state) => {
-
   return {
     getOptUser: state.Opt.getOptUser,
     initialValues: {
@@ -103,7 +31,6 @@ class LengkapiAbsen extends Component {
     const handleSubmit = (event) => {
       event.preventDefault();
       console.log(event);
-      
     }
 
     return (
@@ -117,7 +44,7 @@ class LengkapiAbsen extends Component {
                   <Field
                     type="date"
                     name="TglAwal"
-                    component={renderField}
+                    component={InputFieldComponent}
                     label="Tanggal Awal:"
                   />
                 </FormGroup>
@@ -128,7 +55,7 @@ class LengkapiAbsen extends Component {
                   <Field
                     type="date"
                     name="TglAkhir"
-                    component={renderField}
+                    component={InputFieldComponent}
                     label="Tanggal Akhir :"
                   />
                 </FormGroup>
@@ -137,7 +64,7 @@ class LengkapiAbsen extends Component {
                 <FormGroup>
                   <Field
                     name="Nama"
-                    component={renderField2}
+                    component={SelectFieldComponent}
                     label="Nama:"
                     options={this.props.getOptUser}
                   />
@@ -146,12 +73,6 @@ class LengkapiAbsen extends Component {
               <Col md={3}>
                 <Row>
                 <FormGroup style={{ marginTop: "37px" , marginRight: "70px" }}>
-                    {/* <LengkapiAbsenButton/>
-                    {/* <a href={"/izin/create/" + this.props.values.Nama.value + "/" + this.props.values.TglAwal + "/" + this.props.values.TglAkhir}>
-                      <Button color="dark" size="" >
-                        <FontAwesomeIcon icon={faSearchPlus} /> View
-                      </Button>
-                    </a> */} 
                     <Button
                       onClick={this.props.handleSubmit(values => 
                         this.props.onSubmit({ 
@@ -167,8 +88,6 @@ class LengkapiAbsen extends Component {
                   </FormGroup>
 
                   <FormGroup style={{ marginTop: "37px" }}>
-                    
-                    
                     <Button
                      onClick={this.props.handleSubmit(values => 
                       this.props.onSubmit({ 
@@ -182,11 +101,7 @@ class LengkapiAbsen extends Component {
                       <FontAwesomeIcon icon={faSpinner} /> Lengkapi
                     </Button>
                   </FormGroup> &nbsp;
-                
-    
-                  
                 </Row>
-
               </Col>
             </Row>
           </FormGroup>

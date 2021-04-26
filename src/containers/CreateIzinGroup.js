@@ -9,6 +9,7 @@ import FormIzinGroup from "../components/FormIzinGroup";
 import NavbarComponent from "../components/NavbarComponent";
 import {Redirect} from "react-router-dom";
 import swal2 from "@sweetalert/with-react"
+import { postLaporanProses } from "../actions/laporanAction";
 
 const mapStateToProps = (state) => {
   return {
@@ -22,8 +23,33 @@ class CreateIzinGroup extends Component {
     this.props.dispatch(getOptUser());
   }
   handleSubmit(data) {
-    // console.log(data);
-    this.props.dispatch(postIzinGroup(data));
+    if(data.Status.value === 'LENGKAPI'){
+      swal({
+        title: "Otomatis lengkapi absen?",
+        text:
+          "Periksa dulu tanggal awal : " +
+          data.TanggalScan +
+          " dan tanggal akhir : " +
+          data.TanggalScanSampai +
+          ". Anda setuju?",
+        icon: "warning",
+        buttons: {
+          defeat: {
+            text: "Ya",
+            value: "ok",
+          },
+          cancel: "Tidak",
+        },
+      }).then((willDelete) => {
+        if (willDelete) {
+          this.props.dispatch(postLaporanProses(data));
+        } else {
+          //swal("Your imaginary file is safe!");
+        }
+      });
+    }else{
+      this.props.dispatch(postIzinGroup(data));
+    }
   }
 
 

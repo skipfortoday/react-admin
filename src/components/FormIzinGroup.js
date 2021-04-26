@@ -5,89 +5,22 @@ import { FormGroup, Col, Label, Input, Row, Button } from "reactstrap";
 import IzinValidation from "../validations/IzinValidation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
-import Select from 'react-select';
 import { formatTglYmd } from "../containers/formatTgl";
+import { SelectMultipleFieldComponent } from "./formController/SelectMultipleFieldComponent";
+import { InputFieldComponent } from "./formController/InputFieldComponent";
+import { SelectFieldComponent } from "./formController/SelectFieldComponent";
 
-const renderField = ({
-  input,
-  type,
-  placeholder,
-  label,
-  disabled,
-  readOnly,
-  meta: { touched, error, warning },
-}) => (
-  <Row>
-    <Col md="12">
-      <Label htmlFor="{input}" className="col-form-label">
-        {label}
-      </Label>
-    </Col>
-    <Col md="12">
-      <Input
-        {...input}
-        type={type}
-        placeholder={placeholder}
-        disabled={disabled}
-        readOnly={readOnly}
-      >
-        <option value=""></option>
-        <option value="OFF">OFF</option>
-        <option value="CUTI">CUTI</option>
-        <option value="TIDAK MASUK">IZIN TIDAK MASUK</option>
-        <option value="SAKIT">SAKIT</option>
-        <option value="DINAS LUAR">DINAS LUAR</option>
-        <option value="CUTI BERSAMA">CUTI BERSAMA</option>
-        <option value="CUTI KHUSUS">CUTI KHUSUS</option>
-        <option value="LIBUR">LIBUR</option>
-      </Input>
-      {touched &&
-        ((error && <p style={{ color: "brown" }}>{error}</p>) ||
-          (warning && <p style={{ color: "brown" }}>{warning}</p>))}
-    </Col>
-  </Row>
-);
-
-const renderField2 = ({
-  input,
-  name,
-  id,
-  type,
-  placeholder,
-  label,
-  disabled,
-  options,
-  readOnly,
-  meta: { touched, error, warning },
-}) => (
-  <Row>
-    <Col md="12">
-      <Label htmlFor="{input}" className="col-form-label">
-        {label}
-      </Label>
-    </Col>
-    <Col md="12">
-      
-      <Select
-        {...Input}
-        id={id} 
-        name={name} 
-        type={type}
-        placeholder={placeholder}
-        disabled={disabled}
-        readOnly={readOnly}
-        options={options}
-        isMulti
-        value={input.value}
-        onChange={(value) => input.onChange(value)}
-         //onBlur={() => input.onBlur()}
-      />
-      {touched &&
-        ((error && <p style={{ color: "red" }}>{error}</p>) ||
-          (warning && <p style={{ color: "brown" }}>{warning}</p>))}
-    </Col>
-  </Row>
-);
+const opsi = [
+  {value: "OFF", label:"OFF"},
+  {value: "CUTI", label:"CUTI"},
+  {value: "TIDAK MASUK", label:"IZIN TIDAK MASUK"},
+  {value: "SAKIT", label:"SAKIT"},
+  {value: "DINAS LUAR", label:"DINAS LUAR"},
+  {value: "CUTI BERSAMA", label:"CUTI BERSAMA"},
+  {value: "CUTI KHUSUS", label:"CUTI KHUSUS"},
+  {value: "LIBUR", label:"LIBUR"},
+  {value: "LENGKAPI", label:"LENGKAPI ABSEN"}
+]
 
 const mapStateToProps = (state) => {
   return {
@@ -106,13 +39,6 @@ class FormIzinGroup extends Component {
     this.state = { 
       
     };
-
-    // var startDay = new Date("2021-04-01");
-    // var endDay = new Date("2021-04-01");
-    // for(var day = startDay; day<=endDay; day.setDate(day.getDate()+1)){
-    //   console.log(day);
-    // }
-
   }
 
   handleTanggalScanChange(event){
@@ -128,7 +54,7 @@ class FormIzinGroup extends Component {
               <Field
                 name="Nama"
                 disabled
-                component={renderField2}
+                component={SelectMultipleFieldComponent}
                 label="Nama:"
                 options={this.props.getOptUser}
               />
@@ -140,7 +66,7 @@ class FormIzinGroup extends Component {
               <Field
                 type="date"
                 name="TanggalScan"
-                component={renderField}
+                component={InputFieldComponent}
                 label="Tanggal Awal:"
                 onChange={this.handleTanggalScanChange}
                 value={this.state.TanggalScan}
@@ -152,7 +78,7 @@ class FormIzinGroup extends Component {
               <Field
                 type="date"
                 name="TanggalScanSampai"
-                component={renderField}
+                component={InputFieldComponent}
                 label="Tanggal Akhir:"
               />
             </FormGroup>
@@ -163,8 +89,9 @@ class FormIzinGroup extends Component {
               <Field
                 type="select"
                 name="Status"
-                component={renderField}
+                component={SelectFieldComponent}
                 label="Tipe  :"
+                options={opsi}
               />
             </FormGroup>
           </Col>
@@ -174,7 +101,7 @@ class FormIzinGroup extends Component {
               <Field
                 type="text"
                 name="Keterangan"
-                component={renderField}
+                component={InputFieldComponent}
                 label="Keterangan :"
               />
             </FormGroup>

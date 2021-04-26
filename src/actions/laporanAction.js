@@ -163,7 +163,7 @@ export const getLaporanHead = (UserID) => {
 };
 
 export const postLaporanProses= (data) => {
-  data.UserID = data.Nama.value;
+  //data.UserID = data.Nama.value;
   return (dispatch) => {
     axios
       .post(

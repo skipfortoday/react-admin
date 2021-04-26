@@ -34,7 +34,7 @@ export const InputFieldComponent = ({
 
             </Input>
             {touched &&
-                ((error && <p style={{ color: "yellow" }}>{error}</p>) ||
+                ((error && <p style={{ color: "brown" }}>{error}</p>) ||
                     (warning && <p style={{ color: "brown" }}>{warning}</p>))}
         </Col>
     </Row>

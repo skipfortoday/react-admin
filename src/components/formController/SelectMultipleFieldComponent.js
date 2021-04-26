@@ -1,7 +1,8 @@
 import React from "react";
 import {Row, Col, Label, Input} from "reactstrap"
 import Select from 'react-select'
-export const SelectFieldComponent = ({
+
+export const SelectMultipleFieldComponent = ({
     input,
     name,
     id,
@@ -30,12 +31,13 @@ export const SelectFieldComponent = ({
           disabled={disabled}
           readOnly={readOnly}
           options={options}
+          isMulti
           value={input.value}
           onChange={(value) => input.onChange(value)}
            //onBlur={() => input.onBlur()}
         />
         {touched &&
-          ((error && <p style={{ color: "brown" }}>{error}</p>) ||
+          ((error && <p style={{ color: "red" }}>{error}</p>) ||
             (warning && <p style={{ color: "brown" }}>{warning}</p>))}
       </Col>
     </Row>
