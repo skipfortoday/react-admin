@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import {
   Collapse,
-
   Navbar,
   NavbarToggler,
   NavbarBrand,
@@ -23,12 +22,11 @@ const NavbarComponent = (props) => {
 
   const toggleNavbar = () => setCollapsed(!collapsed);
 
-  let ambil = JSON.parse(localStorage.getItem('user'));
-  let nama = ambil.AdminID
+  let ambil = JSON.parse(localStorage.getItem("user"));
+  let nama = ambil.AdminID;
 
   return (
     <div>
-
       <Navbar color="dark" dark expand="md">
         <img src="/logodarkgold.jpeg" alt="logodarkgold" />
         <NavbarBrand> </NavbarBrand>
@@ -36,50 +34,75 @@ const NavbarComponent = (props) => {
         <NavbarToggler onClick={toggleNavbar} className="mr-2" />
         <Collapse isOpen={!collapsed} navbar>
           <Nav className="mr-auto" navbar>
-            { ambil.RoleAdmin === 99 ?
-              (
-                <NavItem>
-                  <Link to="/superadmin">
-                    <NavLink> Super Admin </NavLink>
-                  </Link>
-                </NavItem>    
-              ) : ("")
-            }
+            {ambil.RoleAdmin === 99 ? (
+              <NavItem>
+                <Link to="/superadmin">
+                  <NavLink> Super Admin </NavLink>
+                </Link>
+              </NavItem>
+            ) : (
+              ""
+            )}
             <NavItem>
               <Link to="/">
                 <NavLink> Pegawai </NavLink>
               </Link>
             </NavItem>
-            <NavItem>
-            <Link to="/izin">
-              {/* <a href={"/izin"}> */}
-                <NavLink>Status Absensi </NavLink>
-              {/* </a> */}
-              </Link>
-            </NavItem>
+            <UncontrolledDropdown nav inNavbar>
+              <DropdownToggle nav caret>
+                Status Absensi
+              </DropdownToggle>
+              <DropdownMenu right>
+                <DropdownItem>
+                  <Link to="/izin" >
+                    {/* <a href={"/izin"}> */}
+                   Status Absensi 
+                    {/* </a> */}
+                  </Link>
+                </DropdownItem>
+                <DropdownItem divider />
+                <DropdownItem>
+                  <Link to="/izin/group" >
+                    {/* <a href={"/izin"}> */}
+                      Izin Group & Libur Umum
+                    {/* </a> */}
+                  </Link>
+                </DropdownItem>
+                <DropdownItem divider />
+                <DropdownItem>
+                  <Link to="/kelengkapanabsensi" >
+                    {/* <a href={"/izin"}> */}
+                      Kelengkapan Absensi
+                    {/* </a> */}
+                  </Link>
+                </DropdownItem>
+              </DropdownMenu>
+            </UncontrolledDropdown>
             <NavItem>
               <Link to="/group">
                 <NavLink> Group </NavLink>
               </Link>
             </NavItem>
-            {ambil.RoleAdmin === 99 ?
-              (
-                <NavItem>
-                  <Link to="/cabang">
-                    <NavLink>Cabang </NavLink>
-                  </Link>
-                </NavItem>
-              ) : ("")
-            }
+            {ambil.RoleAdmin === 99 ? (
+              <NavItem>
+                <Link to="/cabang">
+                  <NavLink>Cabang </NavLink>
+                </Link>
+              </NavItem>
+            ) : (
+              ""
+            )}
             <NavItem>
-               <Link to="/laporan">
+              <Link to="/laporan">
                 <NavLink> Laporan </NavLink>
               </Link>
             </NavItem>
 
             <NavItem>
-             <Link to="/history">
+              <Link to="/history">
+             
                 <NavLink> History </NavLink>
+              
               </Link>
             </NavItem>
           </Nav>
@@ -93,18 +116,21 @@ const NavbarComponent = (props) => {
             </NavItem> */}
             <UncontrolledDropdown nav inNavbar>
               <DropdownToggle nav caret>
-                <FontAwesomeIcon icon={faUserTie} />&nbsp;{nama}
+                <FontAwesomeIcon icon={faUserTie} />
+                &nbsp;{nama}
               </DropdownToggle>
               <DropdownMenu right>
-                <DropdownItem>
-                  Profile
-                </DropdownItem>
+                <DropdownItem>Profile</DropdownItem>
                 <DropdownItem divider />
                 <DropdownItem>
                   <div color="dark" onClick={() => localStorage.clear()}>
-                  <a href={"/home"} style={{textDecoration:"none", color:"unset"}}>
-                    <FontAwesomeIcon icon={faSignOutAlt} />&nbsp; Logout
-                  </a>
+                    <a
+                      href={"/home"}
+                      style={{ textDecoration: "none", color: "unset" }}
+                    >
+                      <FontAwesomeIcon icon={faSignOutAlt} />
+                      &nbsp; Logout
+                    </a>
                   </div>
                 </DropdownItem>
               </DropdownMenu>
@@ -116,8 +142,6 @@ const NavbarComponent = (props) => {
           </a> */}
         </Collapse>
       </Navbar>
-
-
     </div>
   );
 };

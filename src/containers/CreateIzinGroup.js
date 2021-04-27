@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Container} from "reactstrap";
 import BackIzin from "../components/BackIzin";
 import { connect } from "react-redux";
-import { postIzinGroup } from "../actions/izinAction";
+import { deleteDataIzin, getIzinList, postIzinGroup } from "../actions/izinAction";
 import { getOptUser } from "../actions/optAction";
 import swal from "sweetalert";
 import FormIzinGroup from "../components/FormIzinGroup";
@@ -10,6 +10,7 @@ import NavbarComponent from "../components/NavbarComponent";
 import {Redirect} from "react-router-dom";
 import swal2 from "@sweetalert/with-react"
 import { postLaporanProses } from "../actions/laporanAction";
+import IzinComponent from "../components/IzinComponent";
 
 const mapStateToProps = (state) => {
   return {
@@ -21,7 +22,10 @@ const mapStateToProps = (state) => {
 class CreateIzinGroup extends Component {
   componentDidMount() {
     this.props.dispatch(getOptUser());
+    this.props.dispatch(getIzinList());
+    this.props.dispatch(deleteDataIzin());
   }
+  
   handleSubmit(data) {
     if(data.Status.value === 'LENGKAPI'){
       swal({
@@ -103,6 +107,7 @@ class CreateIzinGroup extends Component {
         {/* <Button onClick={this.handleClick}>TEST</Button> */}
         </Container>
         </div>
+        <IzinComponent />
         </div>
     );
   }

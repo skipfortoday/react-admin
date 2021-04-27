@@ -215,7 +215,7 @@ class IzinContainer extends Component {
             </Container>
           </div>
         ) : (
-          <IzinComponent />
+          ""
         )}
       </div>
     );

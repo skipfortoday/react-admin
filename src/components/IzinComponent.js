@@ -134,13 +134,6 @@ const IzinComponent = (props) => {
               <Card body inverse style={{ backgroundColor: '#ffffff', borderColor: '#ffffff' }}>
               <Row>
                 <Col>
-                  <Link to="izin/group">
-                    <Button color="warning" className="mr-2">
-                      <FontAwesomeIcon icon={faCalendarCheck} /> Libur Umum
-                    </Button>
-                  </Link>
-                </Col>
-                <Col>
                   <div className="float-right">
                     <SearchBar {...props.searchProps} placeholder="Search .." />
                   </div>

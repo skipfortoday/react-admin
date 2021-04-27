@@ -1,11 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { getUserDetail, getUsersList } from "../actions/userAction";
+import { getUsersList } from "../actions/userAction";
 import NavbarComponent from "../components/NavbarComponent";
 import {
   getLaporanDetail,
-  getLaporanHead,
-  getLaporanRekap,
   resetLaporan,
   setLoading
 } from "../actions/laporanAction";
@@ -25,6 +23,8 @@ const mapStateToProps = (state) => {
     isLoading:state.Laporan.isLoading
   };
 };
+
+
 
 class ListLaporanContainer extends Component {
   componentDidMount() {
