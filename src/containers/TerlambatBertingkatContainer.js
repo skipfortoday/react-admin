@@ -6,7 +6,7 @@ import swal from "sweetalert";
 import NavbarComponent from "../components/NavbarComponent";
 import { Redirect } from "react-router-dom";
 import { getOptTerlambat } from "../actions/optAction";
-import { getTerlambatBertingkatDetail, postTerlambatBertingkatCreate, getTerlambatBertingkatDetail2, putTerlambatBertingkatUpdate, postSalinRuleTerlambatBertingkat } from "../actions/TerlambatBertingkatAction";
+import { getTerlambatBertingkatDetail, postTerlambatBertingkatCreate, getTerlambatBertingkatDetail2, putTerlambatBertingkatUpdate, postSalinRuleTerlambatBertingkat, resetFormTT, reseResponTT } from "../actions/TerlambatBertingkatAction";
 import FormTTComponent from "../components/FormTTComponent";
 import {
   Container, Button, Row, Col,
@@ -15,6 +15,7 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import FormDuplikat from "../components/FormDuplikat"
+import { reset } from "redux-form";
 
 
 const mapStateToProps = (state) => {
@@ -67,6 +68,8 @@ class TerlambatBertingkatContainer extends Component {
 
   handleChangeGroup(data) {
     // this.props.dispatch(delTerlambatBertingkatDetail2)
+    this.props.dispatch(reset('FormTTComponent'));
+    this.props.dispatch(resetFormTT())
     this.props.dispatch(getTerlambatBertingkatDetail(data.value));
     this.props.history.replace('/group/terlambatbertingkat/' + data.value);
     //this.props.dispatch(getTerlambatBertingkatDetail2(this.props.match.params.RuleTerlambatBertingkatID));
@@ -102,9 +105,12 @@ class TerlambatBertingkatContainer extends Component {
           " , GroupID : " +
           this.props.getResponDataTerlambatBertingkat.Jabatan,
           "success"
-        );
+        ).then(()=> {this.props.dispatch(getTerlambatBertingkatDetail(this.props.match.params.GroupID))})
         if (this.state.isEditing) this.backFromEdit();
-        window.location.reload(); // semestinya bukan direload page nya, 
+        this.props.dispatch(reseResponTT());
+        
+        
+        // semestinya bukan direload page nya,oke 
         //this.props.dispatch(getTerlambatBertingkatDetail(this.props.match.params.GroupID));
       }
     }

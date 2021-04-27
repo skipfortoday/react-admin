@@ -6,36 +6,17 @@ import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
 import paginationFactory from "react-bootstrap-table2-paginator";
 import { connect } from "react-redux";
 import swal from 'sweetalert';
-import { deleteIzin, getIzinDetailForm } from "../actions/izinAction";
+import { deleteIzin, getIzinDetailForm, getIzinListSolo } from "../actions/izinAction";
 import { faEdit } from "@fortawesome/free-solid-svg-icons";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import '../components/IzinComponentSolo.css'
+import '../components/IzinComponentSolo.css';
+
 
 
 const { SearchBar } = Search;
 
-const handleClick = (dispatch, DatangID) => {
 
-  swal({
-    title: "Apakah Anda yakin akan menghapus data ini ?",
-    icon: "warning",
-    buttons: true,
-    dangerMode: true,
-  })
-    .then((willDelete) => {
-      if (willDelete) {
-        dispatch(deleteIzin(DatangID))
-        swal("Data Izin Sukses dihapus", {
-          icon: "success",
-        }).then((value) => {
-          //window.location.reload();
-        }); 
-      } else {
-        swal("Data gagal dihapus");
-      }
-    });
-}
 
 const handleEditClick = (dispatch, DatangID) => {
   dispatch(getIzinDetailForm(DatangID))
@@ -51,7 +32,10 @@ const defaultSorted = [
 const mapStateToProps = (state) => {
   return {
     getIzinListSolo: state.Izin.getIzinListSolo,
-    errorIzinListSolo: state.Izin.errorIzinListSolo
+    errorIzinListSolo: state.Izin.errorIzinListSolo,
+    UserID: state.form.formLengkapiAbsen.values.Nama.value,
+    TglAwal: state.form.formLengkapiAbsen.values.TglAwal,
+    TglAkhir: state.form.formLengkapiAbsen.values.TglAkhir,
   };
 };
 
@@ -59,6 +43,28 @@ const mapStateToProps = (state) => {
 
 
 const IzinComponentSolo = (props) => {
+  console.log(props)
+  const handleClick = (dispatch, DatangID) => {
+
+    swal({
+      title: "Apakah Anda yakin akan menghapus data ini ?",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    })
+      .then((willDelete) => {
+        if (willDelete) {
+          dispatch(deleteIzin(DatangID))
+          swal("Data Izin Sukses dihapus", {
+            icon: "success",
+          }).then((value) => {
+             dispatch(getIzinListSolo(props.UserID,props.TglAwal,props.TglAkhir))
+          }); 
+        } else {
+          swal("Data gagal dihapus");
+        }
+      });
+  }
   const [tooltipOpen, setTooltipOpen] = useState(false);
   const toggle = () => setTooltipOpen(!tooltipOpen);
 

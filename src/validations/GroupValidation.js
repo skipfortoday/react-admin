@@ -25,7 +25,7 @@ const GroupValidation = (values) => {
       errors.MinJamLembur = "Min Jam Lembur Pagi Harus diisi ";
     }
 
-    if (!values.RpLemburPerJam || values.RpLemburPerJam === "") {
+    if (values.RpLemburPerJam === false || values.RpLemburPerJam === "") {
       errors.RpLemburPerJam = "RpLemburPerJam harus diisi";
     }
   

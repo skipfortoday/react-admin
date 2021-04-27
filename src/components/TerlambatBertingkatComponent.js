@@ -10,30 +10,12 @@ import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
 import paginationFactory from "react-bootstrap-table2-paginator";
 import { connect } from "react-redux";
 import swal from 'sweetalert';
-import { deleteTerlambatBertingkat, getTerlambatBertingkatDetail2 } from "../actions/TerlambatBertingkatAction";
+import { deleteTerlambatBertingkat, getTerlambatBertingkatDetail, getTerlambatBertingkatDetail2 } from "../actions/TerlambatBertingkatAction";
 import { Link } from "react-router-dom";
 
 const { SearchBar } = Search;
 
-const handleClick = (dispatch, RuleTerlambatBertingkatID) => {
 
-  swal({
-    title: "Apakah Anda yakin akan menghapus data ini ?",
-    icon: "warning",
-    buttons: true,
-    dangerMode: true,
-  })
-    .then((willDelete) => {
-      if (willDelete) {
-        dispatch(deleteTerlambatBertingkat(RuleTerlambatBertingkatID))
-        swal("Data TerlambatBertingkat Sukses dihapus", {
-          icon: "success",
-        }); window.location.reload();
-      } else {
-        swal("Data gagal dihapus");
-      }
-    });
-}
 
 
 const defaultSorted = [
@@ -47,10 +29,30 @@ const mapStateToProps = (state) => {
   return {
     getTerlambatBertingkatDetail: state.TerlambatBertingkat.getTerlambatBertingkatDetail,
     errorTerlambatBertingkatList: state.TerlambatBertingkat.errorTerlambatBertingkatList,
+    GroupID : state.form.FormTTComponent.values.GroupJabatan.value
   };
 };
 
 const TerlambatBertingkatComponent = (props) => {
+  const handleClick = (dispatch, RuleTerlambatBertingkatID) => {
+
+    swal({
+      title: "Apakah Anda yakin akan menghapus data ini ?",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    })
+      .then((willDelete) => {
+        if (willDelete) {
+          dispatch(deleteTerlambatBertingkat(RuleTerlambatBertingkatID))
+          swal("Data TerlambatBertingkat Sukses dihapus", {
+            icon: "success",
+          }).then(()=>{dispatch(getTerlambatBertingkatDetail(props.GroupID))});
+        } else {
+          swal("Data gagal dihapus");
+        }
+      });
+  }
 
   const columns = [
     {

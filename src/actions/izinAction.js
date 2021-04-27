@@ -207,7 +207,7 @@ export const deleteIzin = (DatangID) => {
         dispatch({
           type: RESET_RESPONSE_DI,
           payload: {
-            data:true
+            data:false
           },
         });
         

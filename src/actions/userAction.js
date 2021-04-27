@@ -94,7 +94,8 @@ export const getUserDetail = (UserID) => {
 
 export const postUserCreate = (data) => {
   data.GroupID = data.GroupID.value;
-  data.KodeCabang = data.KodeCabang.value;
+  data.RoleID = data.RoleID.value;
+  data.TglAwalKontrakPertama = data.TglAwalKontrakPertama == undefined ? null : data.TglAwalKontrakPertama;
   return (dispatch) => {
     axios
       .post(
@@ -128,7 +129,8 @@ export const postUserCreate = (data) => {
 export const putUserUpdate = (data, UserID) => {
   return (dispatch) => {
     data.GroupID = data.GroupID.value;
-    data.KodeCabang = data.KodeCabang.value;
+    data.RoleID = data.RoleID.value;
+    data.TglAwalKontrakPertama = data.TglAwalKontrakPertama == undefined ? null : data.TglAwalKontrakPertama;
     axios
       .put(
         BASEURL + "/api/user/" + UserID,

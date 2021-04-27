@@ -138,10 +138,10 @@ export const getLaporanRekap = (UserID,TglAwal,TglAkhir) => {
   };
 };
 
-export const getKelengkapanAbsen = (TanggalScan,TanggalScanSampai) => {
+export const getKelengkapanAbsen = (KodeCabang, TanggalScan,TanggalScanSampai) => {
   return (dispatch) => {
     axios
-      .get(BASEURL+"/api/KelengkapanAbsen/"+TanggalScan+"&"+TanggalScanSampai, headers)
+      .get(BASEURL+"/api/laporantidaklengkap/"+KodeCabang+"&"+TanggalScan+"&"+TanggalScanSampai, headers)
       .then(function (response) {
         dispatch({
           type: GET_LAPORAN_KELENGKAPAN,

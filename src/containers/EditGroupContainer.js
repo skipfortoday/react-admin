@@ -51,7 +51,7 @@ class EditGroupContainer extends Component {
         <div style={{ backgroundColor: '#f9a826'}}>
         <BackGroup />
         <Container>
-        <FormGroupComponent onSubmit={(data) => this.handleSubmit(data)} />
+        <FormGroupComponent onSubmit={(data) => this.handleSubmit(data)} dis={true} />
         </Container>
         </div>
       </div>

@@ -8,6 +8,7 @@ import swal from "sweetalert";
 import NavbarComponent from "../components/NavbarComponent";
 import { getOptCabang, getOptGroup } from "../actions/optAction";
 import { Redirect } from "react-router-dom";
+import { reset } from "redux-form";
 
 const mapStateToProps = (state) => {
   return {
@@ -42,19 +43,19 @@ class CreateUserContainer extends Component {
             " | ID : " +
             this.props.getResponDataUser.UserID,
           "success"
-        );  setTimeout(function () {
-          window.location.reload();
-        }, 200);
+        ).then(() => {
+          this.props.dispatch(reset('formCreateUserx'));
+        }); 
       }
     }
     return (
-      <div>
+      <div style={{minHeight:"900px"}}>
         <NavbarComponent />
         <div style={{ backgroundColor: '#f9a826'}}>
-        <BackComponent />
-        <Container>
-        <FormComponent onSubmit={(data) => this.handleSubmit(data)} />
-        </Container>
+          <BackComponent />
+          <Container>
+            <FormComponent onSubmit={(data) => this.handleSubmit(data)} />
+          </Container>
         </div>
       </div>
     );

@@ -5,115 +5,22 @@ import { FormGroup, Col, Label, Input, Row, Button } from "reactstrap";
 import UserValidation from "../validations/UserValidation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSave } from "@fortawesome/free-solid-svg-icons";
-import Select from 'react-select'
 import { formatTglYmd } from "../containers/formatTgl";
+import { InputFieldComponentHrz } from "./formController/InputFieldComponentHrz";
+import { CheckboxFieldComponent } from "./formController/CheckboxFieldComponent";
+import { SelectFieldComponentHrz } from "./formController/SelectFieldComponentHrz";
+import { siteConfig } from "../config";
 
-const renderField = ({
-  input,
-  type,
-  placeholder,
-  label,
-  disabled,
-  readOnly,
-  meta: { touched, error, warning },
-}) => (
-  <Row>
-    {/* <Col md="4"> */}
-    <Label md="4" htmlFor="{input}" className="col-form-label text-right">
-      {label}
-    </Label>
-    {/* </Col> */}
-    <Col md="8">
-      <Input
-        {...input}
-        type={type}
-        placeholder={placeholder}
-        disabled={disabled}
-        readOnly={readOnly}
-      >
-        <option value="">-</option>
-        <option value="1">Atasan Kantor</option>
-        <option value="2">Atasan Group</option>
-        <option value="3">Staff Bisa View Jam</option>
-        <option value="4">Staff Tidak Bisa View Jam</option>
-        <option value="5">Staff Tidak Bisa Akses</option>
-      </Input>
 
-      {touched &&
-        ((error && <p style={{ color: "brown" }}>{error}</p>) ||
-          (warning && <p style={{ color: "brown" }}>{warning}</p>))}
-    </Col>
-  </Row>
-);
 
-const renderField2 = ({
-  input,
-  name,
-  id,
-  type,
-  placeholder,
-  label,
-  disabled,
-  options,
-  readOnly,
-  meta: { touched, error, warning },
-}) => (
-  <Row>
-    {/* <Col md="4"> */}
-    <Label md="4" htmlFor="{input}" className="col-form-label text-right">
-      {label}
-    </Label>
-    {/* </Col> */}
-    <Col md="8">
-
-      <Select
-        {...Input}
-        id={id}
-        name={name}
-        type={type}
-        placeholder={placeholder}
-        disabled={disabled}
-        readOnly={readOnly}
-        options={options}
-        value={input.value}
-        onChange={(value) => input.onChange(value)}
-      //onBlur={() => input.onBlur()}
-      />
-      {touched &&
-        ((error && <p style={{ color: "red" }}>{error}</p>) ||
-          (warning && <p style={{ color: "brown" }}>{warning}</p>))}
-    </Col>
-  </Row>
-);
-
-const renderFieldCb = ({
-  input,
-  name,
-  id,
-  type,
-  placeholder,
-  label,
-  disabled,
-  options,
-  readOnly,
-  meta: { touched, error, warning },
-}) => (
-  <Col>
-    <Label htmlFor="{input}" className="col-form-label">
-      <Input
-        {...input}
-        type={type}
-        placeholder={placeholder}
-        disabled={disabled}
-        readOnly={readOnly}
-      />
-      {touched &&
-        ((error && <p style={{ color: "red" }}>{error}</p>) ||
-          (warning && <p style={{ color: "brown" }}>{warning}</p>))}
-      {label}
-    </Label>
-  </Col>
-);
+const opsiAkses = [
+  {value:"", label:"-"},
+  {value:"1", label:"Atasan Kantor"},
+  {value:"2", label:"Atasan Group"},
+  {value:"3", label:"Staff Bisa View Jam"},
+  {value:"4", label:"Staff Tidak Bisa View Jam"},
+  {value:"5", label:"Staff Tidak Bisa Akses"}
+]
 
 // Decorate form with dispatchable actions
 const mapDispatchToProps = (dispatch) => ({
@@ -123,6 +30,13 @@ const mapDispatchToProps = (dispatch) => ({
 // const form = formValueSelector("formCreateUserx");
 const mapStateToProps = (state) => {
   // const {TglAwalKontrakPertama, TglMulaiCuti, Posisi}  = form(state, "TglAwalKontrakPertama", "TglMulaiCuti", "Posisi");
+  let opsiAksesInit = {};
+  opsiAkses.map((data) => {
+    if(data.value == state.users.getUserDetail.RoleID){
+      opsiAksesInit = data;
+      return;
+    }
+  })
 
   return {
     getOptGroup: state.Opt.getOptGroup,
@@ -138,8 +52,8 @@ const mapStateToProps = (state) => {
       TglMulaiCuti: state.users.getUserDetail.FTglMulaiCuti,
       TglAwalKontrakPertama: state.users.getUserDetail.FTglAwalKontrakPertama,
       GroupID: { value: state.users.getUserDetail.GroupID, label: state.users.getUserDetail.Jabatan },
-      RoleID: state.users.getUserDetail.RoleID,
-      KodeCabang: { value: state.users.getUserDetail.KodeCabang, label: state.users.getUserDetail.NamaCabang },
+      RoleID: opsiAksesInit,
+      KodeCabang: siteConfig.kodeCabang,
       Status: state.users.getUserDetail.Status,
       Posisi: state.users.getUserDetail.Posisi,
       TampilkanLembur: state.users.getUserDetail.TampilkanLembur,
@@ -183,9 +97,10 @@ class FormComponent extends Component {
               <Col md={12}>
                 <FormGroup>
                   <Field
+                    readOnly
                     type="text"
                     name="UserID"
-                    component={renderField}
+                    component={InputFieldComponentHrz}
                     label="UserID :"
                   />
                 </FormGroup>
@@ -195,7 +110,7 @@ class FormComponent extends Component {
                   <Field
                     type="text"
                     name="Nama"
-                    component={renderField}
+                    component={InputFieldComponentHrz}
                     label="Nama Pegawai :"
                   />
                 </FormGroup>
@@ -206,7 +121,7 @@ class FormComponent extends Component {
                   <Field
                     type="textarea"
                     name="Alamat"
-                    component={renderField}
+                    component={InputFieldComponentHrz}
                     label="Alamat Pegawai :"
                   />
                 </FormGroup>
@@ -218,7 +133,7 @@ class FormComponent extends Component {
                   <Field
                     type="number"
                     name="HP"
-                    component={renderField}
+                    component={InputFieldComponentHrz}
                     label="Nomor HP Pegawai :"
                   />
                 </FormGroup>
@@ -229,7 +144,7 @@ class FormComponent extends Component {
                   <Field
                     type="date"
                     name="TglLahir"
-                    component={renderField}
+                    component={InputFieldComponentHrz}
                     label="Tanggal Lahir :"
                   />
                 </FormGroup>
@@ -240,7 +155,7 @@ class FormComponent extends Component {
                   <Field
                     type="date"
                     name="TglMasuk"
-                    component={renderField}
+                    component={InputFieldComponentHrz}
                     label="Tanggal Masuk :"
                   />
                 </FormGroup>
@@ -251,7 +166,7 @@ class FormComponent extends Component {
                   <Field
                     type="date"
                     name="TglKeluar"
-                    component={renderField}
+                    component={InputFieldComponentHrz}
                     label="Tanggal Keluar :"
                   />
                 </FormGroup>
@@ -265,7 +180,7 @@ class FormComponent extends Component {
                   <Field
                     type="date"
                     name="TglAwalKontrakPertama"
-                    component={renderField}
+                    component={InputFieldComponentHrz}
                     onChange={this.handleTglKontrakChange}
                     label="Tanggal Awal Kontrak :"
                   />
@@ -278,7 +193,7 @@ class FormComponent extends Component {
                     type="date"
                     disabled
                     name="TglMulaiCuti"
-                    component={renderField}
+                    component={InputFieldComponentHrz}
                     label="Tanggal Mulai Cuti :"
                   />
                 </FormGroup>
@@ -288,9 +203,9 @@ class FormComponent extends Component {
                 <FormGroup>
                   <Field
                     name="KodeCabang"
-                    component={renderField2}
-                    options={this.props.getOptCabang}
+                    component={InputFieldComponentHrz}
                     label="Cabang :"
+                    readOnly
                   />
                 </FormGroup>
               </Col>
@@ -300,7 +215,7 @@ class FormComponent extends Component {
                 <FormGroup>
                   <Field
                     name="GroupID"
-                    component={renderField2}
+                    component={SelectFieldComponentHrz}
                     options={this.props.getOptGroup}
                     label="Group Karyawan :"
                   />
@@ -312,7 +227,7 @@ class FormComponent extends Component {
                   <Field
                     type="text"
                     name="Posisi"
-                    component={renderField}
+                    component={InputFieldComponentHrz}
                     label="Posisi :"
                   />
                 </FormGroup>
@@ -324,8 +239,9 @@ class FormComponent extends Component {
                   <Field
                     type="select"
                     name="RoleID"
-                    component={renderField}
+                    component={SelectFieldComponentHrz}
                     label="Akses Karyawan :"
+                    options={opsiAkses}
                   />
                 </FormGroup>
               </Col>
@@ -336,7 +252,7 @@ class FormComponent extends Component {
                     type="password"
                     name="Pass"
                     disabled={disabled}
-                    component={renderField}
+                    component={InputFieldComponentHrz}
                     label="PIN Password :"
                   />
                 </FormGroup>
@@ -351,7 +267,7 @@ class FormComponent extends Component {
                       <Field
                         type="checkbox"
                         name="TampilkanLembur"
-                        component={renderFieldCb}
+                        component={CheckboxFieldComponent}
                         label="Hitung Lembur"
                       />
                     </FormGroup>
@@ -359,7 +275,7 @@ class FormComponent extends Component {
                       <Field
                         type="checkbox"
                         name="TampilkanTerlambat"
-                        component={renderFieldCb}
+                        component={CheckboxFieldComponent}
                         label="Hitung Terlambat"
                       />
                     </FormGroup>
@@ -367,7 +283,7 @@ class FormComponent extends Component {
                       <Field
                         type="checkbox"
                         name="Status"
-                        component={renderFieldCb}
+                        component={CheckboxFieldComponent}
                         label="Bisa Absen Manual"
                       />
                     </FormGroup>

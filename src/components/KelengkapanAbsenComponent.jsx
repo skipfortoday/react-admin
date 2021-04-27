@@ -1,6 +1,6 @@
 import React from "react";
 import BootstrapTable from "react-bootstrap-table-next";
-import {   Row, Col, Spinner , Card} from "reactstrap";
+import { Row, Col, Spinner , Card} from "reactstrap";
 import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
 import paginationFactory from "react-bootstrap-table2-paginator";
 import { connect } from "react-redux";
@@ -8,7 +8,7 @@ const { SearchBar } = Search;
 
 const defaultSorted = [
   {
-    dataField: "KodeCabang",
+    dataField: "Nama",
     order: "asc",
   },
 ];
@@ -23,17 +23,7 @@ const mapStateToProps = (state) => {
 const KelengkapanAbsenComponent = (props) => {
 
   const columns = [
-    {
-      dataField: "Nama",
-      text: "Nama",
-      sort: true,
-      headerStyle: () => {
-        return { width: "75px" , backgroundColor:"#f9a826" };
-      },
-      style: () => {
-        return { fontWeight : "bold" };
-      },
-    },
+    
     {
       dataField: "Tanggal",
       text: "Tanggal",
@@ -42,18 +32,29 @@ const KelengkapanAbsenComponent = (props) => {
         return { width: "100px", backgroundColor:"#f9a826" };
       },
       style: () => {
-        return { fontWeight : "bold" };
+        return { fontWeight : "normal" };
       },
     },
     {
-      dataField: "Masuk",
-      text: "Masuk", 
+      dataField: "Nama",
+      text: "Nama",
+      sort: true,
+      headerStyle: () => {
+        return { width: "100px" , backgroundColor:"#f9a826" };
+      },
+      style: () => {
+        return { fontWeight : "normal" };
+      },
+    },
+    {
+      dataField: "KeteranganTdkLengkap",
+      text: "Keterangan", 
       sort: true,
       headerStyle: () => {
         return { width: "200px", backgroundColor:"#f9a826" };
       },
       style: () => {
-        return { fontWeight : "bold" };
+        return { fontWeight : "normal" };
       },
       
     },
@@ -69,7 +70,7 @@ const KelengkapanAbsenComponent = (props) => {
           data={props.getLaporanKelengkapan}
           columns={columns}
           rowStyle={ {  fontWeight: "bold" } } 
-          defaultSorted={defaultSorted}
+          // defaultSorted={defaultSorted}
           search
         >
           {(props) => (
@@ -85,7 +86,8 @@ const KelengkapanAbsenComponent = (props) => {
 
               <BootstrapTable
                 {...props.baseProps}
-                pagination={paginationFactory()}
+                sizePerPage="50"
+                pagination={paginationFactory({sizePerPage:50})}
               />
               </Card>
             </div>
@@ -96,8 +98,8 @@ const KelengkapanAbsenComponent = (props) => {
           {props.errorLaporanKelengkapan ? (
             <h4>{props.errorLaporanKelengkapan}</h4>
           ) : (
-            // <Spinner color="dark" />
             ""
+            
           )}
         </div>
       )}

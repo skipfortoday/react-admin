@@ -4,7 +4,9 @@ import {
     POST_TERLAMBATBERTINGKAT_CREATE,
     PUT_TERLAMBATBERTINGKAT_EDIT,
     GET_TERLAMBATBERTINGKAT_DETAIL2,
-    POST_TERLAMBATBERTINGKAT_SALIN
+    POST_TERLAMBATBERTINGKAT_SALIN,
+    RESET_FORMTT,
+    RESET_RESPONTT
   } from "../actions/TerlambatBertingkatAction"
   
   let initialState = {
@@ -23,6 +25,20 @@ import {
   
   const TerlambatBertingkat = (state = initialState, action) => {
     switch (action.type) {
+      case RESET_FORMTT:
+        return {
+          ...state,
+          getTerlambatBertingkatDetail2: false
+        };
+
+      case RESET_RESPONTT:
+        return {
+           ...state,
+           getResponDataTerlambatBertingkat: false,
+           errorResponDataTerlambatBertingkat: false,
+       };
+
+
       case GET_TERLAMBATBERTINGKAT_LIST:
         return {
           ...state,

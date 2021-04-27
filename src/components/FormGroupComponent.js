@@ -100,6 +100,7 @@ class FormGroupComponent extends Component {
               <Field
                 type="text"
                 name="GroupID"
+                readOnly={this.props.dis}
                 component={renderField}
                 label="Group ID :"
               />
@@ -111,6 +112,7 @@ class FormGroupComponent extends Component {
               <Field
                 type="text"
                 name="Jabatan"
+                readOnly={this.props.dis}
                 component={renderField}
                 label="Nama Group :"
               />

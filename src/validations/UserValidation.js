@@ -26,20 +26,26 @@ const UserValidation = (values) => {
   }
 
 
-  if (!values.UserID || values.UserID === "") {
-    errors.UserID = "UserID harus diisi"; 
-  } 
+  // if (!values.UserID || values.UserID === "") {
+  //   errors.UserID = "UserID harus diisi"; 
+  // } 
 
 
   if (!values.Pass || values.Pass === "") {
     errors.Pass = "Password harus diisi";
   } 
 
-  if (!values.GroupID || values.GroupID === "undefined") {
+  if (!values.GroupID || values.GroupID.value === undefined) {
     errors.GroupID = "Group ID harus diisi";
   }
 
+  if (!values.RoleID || values.RoleID.value === undefined) {
+    errors.RoleID = "Role ID harus diisi";
+  }
 
+  if (!values.Posisi || values.Posisi === "") {
+    errors.Posisi = "Posisi harus diisi";
+  }
 
   return errors;
 };

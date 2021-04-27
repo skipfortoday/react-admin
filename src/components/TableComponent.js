@@ -18,6 +18,7 @@ import {
   deleteUser,
   resetUser,
   resetPasswordUser,
+  getUsersList
 } from "../actions/userAction";
 
 const { SearchBar } = Search;
@@ -34,7 +35,7 @@ const handleClick = (dispatch, ID) => {
       swal("Data User Sukses dihapus", {
         icon: "success",
       }).then((value) => {
-        window.location.reload()
+        dispatch(getUsersList())
       });
       // window.location.reload(); // kalau langsung reload, maka dispatch belom jalan udah ke reeload, di server butuh waktu lebih lama
     } else {

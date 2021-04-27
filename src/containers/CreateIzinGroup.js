@@ -11,11 +11,13 @@ import {Redirect} from "react-router-dom";
 import swal2 from "@sweetalert/with-react"
 import { postLaporanProses } from "../actions/laporanAction";
 import IzinComponent from "../components/IzinComponent";
+import { reset } from "redux-form";
 
 const mapStateToProps = (state) => {
   return {
     getResponDataIzin: state.Izin.getResponDataIzin,
     errorResponDataIzin: state.Izin.errorResponDataIzin,
+    getResponDataLaporan: state.Laporan.getResponDataLaporan,
   };
 };
 
@@ -56,6 +58,16 @@ class CreateIzinGroup extends Component {
     }
   }
 
+  componentDidUpdate(){
+    if(this.props.getResponDataLaporan){
+      var msg = this.props.getResponDataLaporan.successCount +" proses berhasil. ";
+      if(this.props.getResponDataLaporan.errorCount > 0) 
+      msg += this.props.getResponDataLaporan.successCount +" proses gagal";
+      swal("Berhasil Absen!", msg, "success");
+      this.props.dispatch(reset("formCreateizin"));
+    }
+  }
+
 
   render() {
     if (!localStorage.getItem('user')||  localStorage.getItem('user') === "false") {
@@ -69,10 +81,12 @@ class CreateIzinGroup extends Component {
         swal2(
           
           <div>
-            {
+            {  
+              this.props.getResponDataIzin.responeSudahAda &&
               this.props.getResponDataIzin.responeSudahAda.length > 0 ? (
                 <div>
                   <h4>Sukses...</h4>
+                  <h6 style={{textAlign:"left"}}>Data yang gagal : </h6>
                   <ul style={{padding:"0", margin:"0 0 0 10px", textAlign:"left"}}> 
                     {
                       this.props.getResponDataIzin.responeSudahAda.map(function(item){
@@ -88,8 +102,9 @@ class CreateIzinGroup extends Component {
           </div>
           //JSON.stringify(this.props.getResponDataIzin.responeSudahAda) ,
           
-        ).then((value) =>{
-          window.location.reload();
+        ).then(() =>{
+          this.props.dispatch(getIzinList());
+          this.props.dispatch(reset("formCreateizin"));
         });
       }
     }

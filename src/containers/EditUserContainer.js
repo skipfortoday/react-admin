@@ -40,13 +40,13 @@ class EditUserContainer extends Component {
           "User " + this.props.getResponDataUser.Nama + " Updated!",
           " UserID : " + this.props.getResponDataUser.UserID,
           "success"
-        ); setTimeout(function () {
-          window.location.reload();
-        }, 200);
+        ).then(() => {
+          this.props.dispatch(getUserDetail(this.props.match.params.UserID))
+        })
       }
     }
     return (
-      <div>
+      <div style={{minHeight:"700px"}}>
         <NavbarComponent />
         <div style={{ backgroundColor: "#f9a826" }}>
           <BackComponent />

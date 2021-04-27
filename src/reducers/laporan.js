@@ -99,6 +99,7 @@ const Laporan = (state = initialState, action) => {
           ...state,
           getLaporanKelengkapan: action.payload.data,
           errorLaporanKelengkapan: action.payload.errorMessage,
+          isLoading:false,
         };
 
     case POST_LAPORAN_PROSES:

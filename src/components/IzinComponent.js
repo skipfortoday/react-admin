@@ -11,9 +11,10 @@ import paginationFactory from "react-bootstrap-table2-paginator";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import swal from 'sweetalert';
-import { deleteIzin } from "../actions/izinAction";
+import { deleteIzin, getIzinList } from "../actions/izinAction";
 
 const { SearchBar } = Search;
+
 
 const handleClick = (dispatch, DatangID) => {
   
@@ -28,7 +29,8 @@ const handleClick = (dispatch, DatangID) => {
       dispatch(deleteIzin(DatangID))
       swal("Data Izin Sukses dihapus", {
         icon: "success",
-      }); window.location.reload();
+      }).then(()=> {dispatch(getIzinList())});
+
     } else {
       swal("Data gagal dihapus");
     }

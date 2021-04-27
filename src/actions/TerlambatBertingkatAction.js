@@ -9,6 +9,25 @@ export const POST_TERLAMBATBERTINGKAT_CREATE = "POST_TERLAMBATBERTINGKAT_CREATE"
 export const PUT_TERLAMBATBERTINGKAT_EDIT = "PUT_TERLAMBATBERTINGKAT_EDIT";
 export const DEL_TERLAMBATBERTINGKAT_DETAIL2 = "DEL_TERLAMBATBERTINGKAT_DETAIL2";
 export const POST_TERLAMBATBERTINGKAT_SALIN = "POST_TERLAMBATBERTINGKAT_SALIN";
+export const RESET_FORMTT = "RESET_FORMTT";
+export const RESET_RESPONTT = "RESET_RESPONTT";
+
+export const resetFormTT = () => {
+  return (dispatch) => {
+    dispatch({
+      type: RESET_FORMTT,
+    });
+  }
+}
+
+export const reseResponTT = () => {
+  return (dispatch) => {
+    dispatch({
+      type: RESET_RESPONTT,
+    });
+  }
+}
+
 
 export const getTerlambatBertingkatList = () => {
   return (dispatch) => {
@@ -176,7 +195,7 @@ export const deleteTerlambatBertingkat = (RuleTerlambatBertingkatID) => {
   return (dispatch) => {
     axios
       .delete(
-         BASEURL+"/api/TerlambatBertingkat/"+RuleTerlambatBertingkatID
+         BASEURL+"/api/TerlambatBertingkat/"+RuleTerlambatBertingkatID, headers
       )
       .then(function (response) {
         console.log(response);
