@@ -45,11 +45,8 @@ class EditTerlambatBertingkatContainer extends Component {
         swal("Failed!", this.props.errorResponDataTerlambatBertingkat, "error");
       } else {
         swal(
-          "Group Updated!",
-          "Nama : " +
-            this.props.getResponDataTerlambatBertingkat.GroupID +
-            " , GroupID : " +
-            this.props.getResponDataTerlambatBertingkat.Jabatan,
+          "Updated!",
+          "",
           "success"
         );  return <Redirect to={"/group/terlambatbertingkat/" +this.props.getResponDataTerlambatBertingkat.GroupID} /> ;
       }

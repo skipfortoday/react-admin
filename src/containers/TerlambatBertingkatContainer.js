@@ -99,11 +99,8 @@ class TerlambatBertingkatContainer extends Component {
         swal("Failed!", this.props.errorResponDataTerlambatBertingkat, "error");
       } else {
         swal(
-          "Group Updated!",
-          "Nama : " +
-          this.props.getResponDataTerlambatBertingkat.GroupID +
-          " , GroupID : " +
-          this.props.getResponDataTerlambatBertingkat.Jabatan,
+          "Updated!",
+          "",
           "success"
         ).then(()=> {this.props.dispatch(getTerlambatBertingkatDetail(this.props.match.params.GroupID))})
         if (this.state.isEditing) this.backFromEdit();
