@@ -36,6 +36,8 @@ import {
            ...state,
            getResponDataTerlambatBertingkat: false,
            errorResponDataTerlambatBertingkat: false,
+           postTerlambatBertingkatSalin:false,
+
        };
 
 

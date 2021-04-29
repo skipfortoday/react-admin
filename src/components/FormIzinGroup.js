@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { reduxForm, Field } from "redux-form";
 import { connect } from "react-redux";
-import { FormGroup, Col, Button } from "reactstrap";
+import { FormGroup, Col, Button, Spinner } from "reactstrap";
 import IzinValidation from "../validations/IzinValidation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
@@ -11,40 +11,36 @@ import { InputFieldComponent } from "./formController/InputFieldComponent";
 import { SelectFieldComponent } from "./formController/SelectFieldComponent";
 
 const opsi = [
-  {value: "OFF", label:"OFF"},
-  {value: "CUTI", label:"CUTI"},
-  {value: "TIDAK MASUK", label:"IZIN TIDAK MASUK"},
-  {value: "SAKIT", label:"SAKIT"},
-  {value: "DINAS LUAR", label:"DINAS LUAR"},
-  {value: "CUTI BERSAMA", label:"CUTI BERSAMA"},
-  {value: "CUTI KHUSUS", label:"CUTI KHUSUS"},
-  {value: "LIBUR", label:"LIBUR"},
-  {value: "LENGKAPI", label:"LENGKAPI ABSEN"}
+  { value: "OFF", label: "OFF" },
+  { value: "CUTI", label: "CUTI" },
+  { value: "TIDAK MASUK", label: "IZIN TIDAK MASUK" },
+  { value: "SAKIT", label: "SAKIT" },
+  { value: "DINAS LUAR", label: "DINAS LUAR" },
+  { value: "CUTI BERSAMA", label: "CUTI BERSAMA" },
+  { value: "CUTI KHUSUS", label: "CUTI KHUSUS" },
+  { value: "LIBUR", label: "LIBUR" },
+  { value: "LENGKAPI", label: "LENGKAPI ABSEN" }
 ]
 
 const mapStateToProps = (state) => {
   return {
-    getOptUser : state.Opt.getOptUser,
+    getOptUser: state.Opt.getOptUser,
     initialValues: {
       Nama: state.Opt.getOptUser,
       TanggalScan: formatTglYmd(new Date()),
       TanggalScanSampai: formatTglYmd(new Date())
     },
+    isOnSubmitting:state.Izin.isOnSubmitting
   };
 };
 
 class FormIzinGroup extends Component {
-  constructor(props){
-    super(props);
-    this.state = { 
-      
-    };
-  }
+  
 
-  handleTanggalScanChange(event){
+  handleTanggalScanChange(event) {
     console.log(event.target.value);
   }
-  
+
   render() {
     return (
       <form onSubmit={this.props.handleSubmit}>
@@ -69,7 +65,6 @@ class FormIzinGroup extends Component {
                 component={InputFieldComponent}
                 label="Tanggal Awal:"
                 onChange={this.handleTanggalScanChange}
-                value={this.state.TanggalScan}
               />
             </FormGroup>
           </Col>
@@ -96,7 +91,7 @@ class FormIzinGroup extends Component {
             </FormGroup>
           </Col>
 
-          <Col md={4}>
+          <Col md={3}>
             <FormGroup>
               <Field
                 type="text"
@@ -106,21 +101,25 @@ class FormIzinGroup extends Component {
               />
             </FormGroup>
           </Col>
-         <Col md={2}>
-          <FormGroup>
-            {/* <Label> Kirim </Label> */}
-              <Button
-                style={{marginTop:"35px"}}
-                color="dark"
-                type="submit"
-                disabled={this.props.submitting} 
-                className="btn-block"
-              >
-                <FontAwesomeIcon icon={faPaperPlane} /> Kirim
-              </Button>
-            </FormGroup>
-
-            </Col>
+          <Col md={2} style={{ marginTop: "37px" }}>
+              <FormGroup>
+                <Button
+                  color="dark"
+                  type="submit"
+                  disabled={this.props.submitting}
+                  className="btn-block"
+                >
+                  <FontAwesomeIcon icon={faPaperPlane} /> Kirim
+                </Button>
+              </FormGroup>
+            
+          </Col>
+          <Col md={1} style={{ marginTop: "37px" }}>
+            {
+              this.props.isOnSubmitting ?
+              (<Spinner/>) : ("")
+            }
+          </Col>
         </FormGroup>
       </form>
     );

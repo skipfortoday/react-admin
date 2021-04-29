@@ -6,7 +6,13 @@ import swal from "sweetalert";
 import NavbarComponent from "../components/NavbarComponent";
 import { Redirect } from "react-router-dom";
 import { getOptTerlambat } from "../actions/optAction";
-import { getTerlambatBertingkatDetail, postTerlambatBertingkatCreate, getTerlambatBertingkatDetail2, putTerlambatBertingkatUpdate, postSalinRuleTerlambatBertingkat, resetFormTT, reseResponTT } from "../actions/TerlambatBertingkatAction";
+import {
+  getTerlambatBertingkatDetail, postTerlambatBertingkatCreate,
+  getTerlambatBertingkatDetail2 as gtt,
+  putTerlambatBertingkatUpdate,
+  postSalinRuleTerlambatBertingkat, resetFormTT, reseResponTT,
+  deleteTerlambatBertingkat
+} from "../actions/TerlambatBertingkatAction";
 import FormTTComponent from "../components/FormTTComponent";
 import {
   Container, Button, Row, Col,
@@ -28,7 +34,7 @@ const mapStateToProps = (state) => {
     getTerlambatBertingkatDetail2: state.TerlambatBertingkat.getTerlambatBertingkatDetail2,
     getOptTerlambat: state.Opt.getOptTerlambat,
     postTerlambatBertingkatSalin: state.TerlambatBertingkat.postTerlambatBertingkatSalin,
-    errorTerlambatBertingkatSalin:state.TerlambatBertingkat.errorTerlambatBertingkatSalin,
+    errorTerlambatBertingkatSalin: state.TerlambatBertingkat.errorTerlambatBertingkatSalin,
   };
 };
 
@@ -39,9 +45,12 @@ class TerlambatBertingkatContainer extends Component {
       formTitle: "Tambah Rule Terlambat Bertingkat",
       isEditing: false,
       modalShow: false,
+      modal:false,
     };
     this.backFromEdit = this.backFromEdit.bind(this)
     this.handleSubmitSalin = this.handleSubmitSalin.bind(this)
+    this.handleEditClick = this.handleEditClick.bind(this)
+    this.handleDeleteClick = this.handleDeleteClick.bind(this)
   }
 
   componentDidMount() {
@@ -51,9 +60,34 @@ class TerlambatBertingkatContainer extends Component {
     // // list table 
     this.props.dispatch(getTerlambatBertingkatDetail(this.props.match.params.GroupID));
     if (this.props.match.params.RuleTerlambatBertingkatID) {
-      this.props.dispatch(getTerlambatBertingkatDetail2(this.props.match.params.RuleTerlambatBertingkatID));
-      this.setState({ formTitle: "Ubah Rule Terlambat Bertingkat", isEditing: true });
+      this.handleEditClick(this.props.match.params.RuleTerlambatBertingkatID);
     }
+  }
+
+  handleEditClick(RuleID) {
+    this.props.dispatch(gtt(RuleID));
+    this.setState({ formTitle: "Ubah Rule Terlambat Bertingkat", isEditing: true });
+  }
+
+  handleDeleteClick(RuleID){
+    swal({
+      title: "Apakah Anda yakin akan menghapus data ini ?",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    }).then((willDelete) => {
+      if (willDelete) {
+        this.props.dispatch(deleteTerlambatBertingkat(RuleID))
+        swal("Data TerlambatBertingkat Sukses dihapus", {
+          icon: "success",
+        }).then(()=>{
+          this.props.dispatch(getTerlambatBertingkatDetail(this.props.match.params.GroupID))
+          this.backFromEdit()
+        });
+      } else {
+        swal("Data gagal dihapus");
+      }
+    });
   }
 
   handleSubmit(data) {
@@ -63,12 +97,14 @@ class TerlambatBertingkatContainer extends Component {
       this.props.dispatch(putTerlambatBertingkatUpdate(data, data.RuleID))
     } else {
       this.props.dispatch(postTerlambatBertingkatCreate(data, data.GroupID.value));
+      this.props.dispatch(reset('FormTTComponent'));
     }
+    this.props.dispatch(resetFormTT())
   }
 
   handleChangeGroup(data) {
     // this.props.dispatch(delTerlambatBertingkatDetail2)
-    this.props.dispatch(reset('FormTTComponent'));
+    //this.props.dispatch(reset('FormTTComponent'));
     this.props.dispatch(resetFormTT())
     this.props.dispatch(getTerlambatBertingkatDetail(data.value));
     this.props.history.replace('/group/terlambatbertingkat/' + data.value);
@@ -84,8 +120,17 @@ class TerlambatBertingkatContainer extends Component {
     this.props.history.push('/group/terlambatbertingkat/' + this.props.match.params.GroupID);
   }
 
-  handleSubmitSalin(data){
+  handleSubmitSalin(data) {
     this.props.dispatch(postSalinRuleTerlambatBertingkat(data));
+  }
+
+  toggle = () => {
+    //setModal(!modal);
+    this.setState({
+      ...this.state,
+      modal:!this.state.modal
+    })
+    console.log(this.state.modal);
   }
 
   render() {
@@ -102,13 +147,12 @@ class TerlambatBertingkatContainer extends Component {
           "Updated!",
           "",
           "success"
-        ).then(()=> {this.props.dispatch(getTerlambatBertingkatDetail(this.props.match.params.GroupID))})
+        ).then(() => {
+          this.props.dispatch(getTerlambatBertingkatDetail(this.props.match.params.GroupID))
+        });
+
         if (this.state.isEditing) this.backFromEdit();
         this.props.dispatch(reseResponTT());
-        
-        
-        // semestinya bukan direload page nya,oke 
-        //this.props.dispatch(getTerlambatBertingkatDetail(this.props.match.params.GroupID));
       }
     }
 
@@ -120,13 +164,14 @@ class TerlambatBertingkatContainer extends Component {
           "Berhasil disalin",
           "Berhasil disalin ke group lain",
           "success"
-        );
-        window.location.reload(); // semestinya bukan direload page nya, 
-        //this.props.dispatch(getTerlambatBertingkatDetail(this.props.match.params.GroupID));
+        ).then(()=>{
+          this.toggle();
+        });
       }
+      this.props.dispatch(reseResponTT());
     }
 
-  
+
     return (
       <div>
         <NavbarComponent />
@@ -150,56 +195,29 @@ class TerlambatBertingkatContainer extends Component {
           </Container>
         </div>
         <div className="pl-4">
-          {this.props.getTerlambatBertingkatDetail.length > 0 ? (
-            <ModalExample 
-              buttonLabel="Duplilat ke group jabatan lain" 
-              className="modal-lg"
-              testMethod={this.handleSubmitSalin}
-            />
-          ) : ""}
+          <div>
+            {this.props.getTerlambatBertingkatDetail.length > 0 ? (
+            <Button color="dark" onClick={this.toggle}>Duplilat ke group jabatan lain</Button>) : ("")}
+            <Modal isOpen={this.state.modal} toggle={this.toggle} className="modal-lg">
+              <ModalHeader toggle={this.toggle}>Duplikat Rule ke Group Jabatan lain</ModalHeader>
+              <ModalBody>
+                {this.state.modal ? (
+                  <FormDuplikat
+                    onSubmit={(data) => this.handleSubmitSalin(data)}
+                  />
+                ) : ("")}
 
+              </ModalBody>
+            </Modal>
+          </div>
         </div>
-        <TerlambatBertingkatComponent onEditButtonClick={() => this.getDataForEditing()} />
+        <TerlambatBertingkatComponent
+          onEditButtonClick={() => this.getDataForEditing()}
+          editRow={this.handleEditClick}
+          deleteRow={this.handleDeleteClick} />
       </div>
     );
   }
-}
-
-
-const ModalExample = (props) => {
-  const {
-    buttonLabel,
-    className,
-    testMethod
-  } = props;
-
-  const [modal, setModal] = useState(false);
-
-  const toggle = () => {
-    setModal(!modal);
-  }
-
-  
-  const handleSubmitSalin = (data) =>{
-    testMethod(data)
-  }
-
-  return (
-    <div>
-      <Button color="dark" onClick={toggle}>{buttonLabel}</Button>
-      <Modal isOpen={modal} toggle={toggle} className={className}>
-        <ModalHeader toggle={toggle}>Duplikat Rule ke Group Jabatan lain</ModalHeader>
-        <ModalBody>
-          {modal ? (
-             <FormDuplikat 
-             onSubmit={(data) => handleSubmitSalin(data)} 
-             />
-          ) : ("")}
-
-        </ModalBody>
-      </Modal>
-    </div>
-  );
 }
 
 export default connect(mapStateToProps, null)(TerlambatBertingkatContainer);

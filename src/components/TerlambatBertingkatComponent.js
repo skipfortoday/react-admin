@@ -10,13 +10,10 @@ import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
 import paginationFactory from "react-bootstrap-table2-paginator";
 import { connect } from "react-redux";
 import swal from 'sweetalert';
-import { deleteTerlambatBertingkat, getTerlambatBertingkatDetail, getTerlambatBertingkatDetail2 } from "../actions/TerlambatBertingkatAction";
+import { deleteTerlambatBertingkat, getTerlambatBertingkatDetail } from "../actions/TerlambatBertingkatAction";
 import { Link } from "react-router-dom";
 
 const { SearchBar } = Search;
-
-
-
 
 const defaultSorted = [
   {
@@ -29,7 +26,6 @@ const mapStateToProps = (state) => {
   return {
     getTerlambatBertingkatDetail: state.TerlambatBertingkat.getTerlambatBertingkatDetail,
     errorTerlambatBertingkatList: state.TerlambatBertingkat.errorTerlambatBertingkatList,
-    GroupID : state.form.FormTTComponent.values.GroupJabatan.value
   };
 };
 
@@ -47,7 +43,9 @@ const TerlambatBertingkatComponent = (props) => {
           dispatch(deleteTerlambatBertingkat(RuleTerlambatBertingkatID))
           swal("Data TerlambatBertingkat Sukses dihapus", {
             icon: "success",
-          }).then(()=>{dispatch(getTerlambatBertingkatDetail(props.GroupID))});
+          }).then(()=>{
+            dispatch(getTerlambatBertingkatDetail(props.GroupID))
+          });
         } else {
           swal("Data gagal dihapus");
         }
@@ -121,18 +119,18 @@ const TerlambatBertingkatComponent = (props) => {
       formatter: (rowContent, row) => {
         return (
           <div>
-            {/* <a href={"./"+ row.GroupID+ "/"+ row.RuleTerlambatBertingkatID}>
-              <Button  color="warning" className="mr-2">
-                <FontAwesomeIcon icon={faEdit} />
-              </Button>
-            </a> */}
-            <Link to={"/group/terlambatbertingkat/"+row.GroupID+"/"+row.RuleTerlambatBertingkatID} onClick={() => props.dispatch(getTerlambatBertingkatDetail2(row.RuleTerlambatBertingkatID))}>
+            <Link to={"/group/terlambatbertingkat/"+row.GroupID+"/"+row.RuleTerlambatBertingkatID} onClick={() => props.editRow(row.RuleTerlambatBertingkatID)}>
+              {//dispatch(getTerlambatBertingkatDetail2(row.RuleTerlambatBertingkatID)
+              }
               <Button color="warning" className="mr-2">
                 <FontAwesomeIcon icon={faEdit} />
               </Button>
             </Link>
 
-            <Button color="warning" className="mr-2" onClick={() => handleClick(props.dispatch, row.RuleTerlambatBertingkatID)}>
+            <Button color="warning" className="mr-2" 
+              onClick={() => props.deleteRow(row.RuleTerlambatBertingkatID)}>
+                {//handleClick(props.dispatch, row.RuleTerlambatBertingkatID)
+                }
               <FontAwesomeIcon icon={faTrash} />
             </Button>
           </div>

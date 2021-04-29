@@ -10,7 +10,9 @@ import {
   GET_IZIN_DETAIL_FORM_STATUS,
   RESPONSE_FORM_IZIN,
   RESET_RESPONSE_DI,
-  getIzinDetailForm
+  getIzinDetailForm,
+  ON_SUBMITIING
+
 } from "../actions/izinAction";
 
 let initialState = {
@@ -28,10 +30,16 @@ let initialState = {
   editJamForm: false,
   getIzinDetailFormStatus:false,
   getResponFormIzin:false,
+  isOnSubmitting:false
 };
 
 const Izin = (state = initialState, action) => {
   switch (action.type) {
+    case ON_SUBMITIING :
+      return {
+        ...state,
+        isOnSubmitting:action.payload.data
+      }
     case RESET_RESPONSE_DI :
       return {
         ...state,

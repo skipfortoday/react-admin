@@ -13,6 +13,18 @@ export const GET_IZIN_DETAIL_FORM_STATUS = "GET_IZIN_DETAIL_FORM_STATUS";
 export const EDIT_JAM_FORM = "EDIT_JAM_FORM";
 export const RESET_IZIN_SOLO = "RESET_IZIN_SOLO";
 export const RESET_RESPONSE_DI = "RESET_RESPONSE_DI";
+export const ON_SUBMITIING = "ON_SUMBITTING";
+
+export const setOnSubmitting = (val) => {
+  return (dispatch) => {
+    dispatch({
+      type: ON_SUBMITIING,
+      payload:{
+        data:val
+      }
+    })
+  }
+}
 
 export const resetResponseDataIzin = () => {
   return (dispatch) => {
@@ -144,8 +156,7 @@ export const postIzinGroup= (data) => {
         headers
       )
       .then(function (response) {
-        console.log(response);
-        
+        // console.log(response)
         dispatch({
           type: POST_IZIN_GROUP,
           payload: {
