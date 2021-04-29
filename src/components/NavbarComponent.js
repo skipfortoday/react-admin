@@ -56,7 +56,7 @@ const NavbarComponent = (props) => {
                 <DropdownItem>
                   <Link to="/izin" >
                     {/* <a href={"/izin"}> */}
-                   Status Absensi 
+                   Perorangan
                     {/* </a> */}
                   </Link>
                 </DropdownItem>
@@ -64,7 +64,7 @@ const NavbarComponent = (props) => {
                 <DropdownItem>
                   <Link to="/izin/group" >
                     {/* <a href={"/izin"}> */}
-                      Izin Group & Libur Umum
+                      Pergroup & Libur Umum
                     {/* </a> */}
                   </Link>
                 </DropdownItem>
@@ -72,7 +72,7 @@ const NavbarComponent = (props) => {
                 <DropdownItem>
                   <Link to="/kelengkapanabsensi" >
                     {/* <a href={"/izin"}> */}
-                      Kelengkapan Absensi
+                      Absen Belum Lengkap
                     {/* </a> */}
                   </Link>
                 </DropdownItem>

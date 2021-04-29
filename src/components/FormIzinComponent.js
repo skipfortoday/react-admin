@@ -54,14 +54,15 @@ class FormIzinComponent extends Component {
     this.state = {
       StatusOption: [
         { value: '', label: '-' },
-        { value: 'LIBUR', label: 'LIBUR' },
+        { value: 'OFF', label: 'OFF' },
         { value: 'MASUK', label: 'MASUK' },
         { value: 'CUTI', label: 'CUTI' },
         { value: 'TIDAK MASUK', label: 'TIDAK MASUK' },
         { value: 'SAKIT', label: 'SAKIT' },
         { value: 'DINAS LUAR', label: 'DINAS LUAR' },
         { value: 'CUTI BERSAMA', label: 'CUTI BERSAMA' },
-        { value: 'CUTI KHUSUS', label: 'CUTI KHUSUS' }
+        { value: 'CUTI KHUSUS', label: 'CUTI KHUSUS' },
+        { value: 'LIBUR', label: 'LIBUR' }
       ],
       ShiftOption: [
         { value: '1', label:'Shift 1'},

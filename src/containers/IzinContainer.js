@@ -109,6 +109,9 @@ class IzinContainer extends Component {
           this.props.tglAkhir
         )
       );
+      this.props.dispatch(getLaporanDetail(this.props.userID,
+        this.props.tglAwal,
+        this.props.tglAkhir));
       this.props.dispatch(resetLaporanRespon());
     }
   }
@@ -139,20 +142,10 @@ class IzinContainer extends Component {
         }
       });
     } else {
-      this.props.dispatch(
-        getLaporanDetail(data.Nama.value, data.TglAwal, data.TglAkhir)
-      );
-      this.props.dispatch(getLaporanHead(data.Nama.value));
+      this.props.dispatch(getLaporanDetail(data.Nama.value, data.TglAwal, data.TglAkhir));
       this.props.dispatch(getUserDetail(data.Nama.value));
-      this.props.dispatch(
-        getLaporanRekap(data.Nama.value, data.TglAwal, data.TglAkhir)
-      );
-      this.props.dispatch(
-        getIzinListSolo(data.Nama.value, data.TglAwal, data.TglAkhir)
-      );
-      this.props.dispatch(
-        getIzinDetail(data.Nama.value, data.TglAwal, data.TglAkhir)
-      );
+      this.props.dispatch(getIzinListSolo(data.Nama.value, data.TglAwal, data.TglAkhir));
+      this.props.dispatch(getIzinDetail(data.Nama.value, data.TglAwal, data.TglAkhir));
     }
   }
 
