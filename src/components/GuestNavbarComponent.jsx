@@ -45,6 +45,11 @@ const NavbarComponent = (props) => {
                 <NavLink> Login</NavLink>
               </Link>
             </NavItem>
+            <NavItem>
+              <Link to="/setconfig">
+                <NavLink> Config</NavLink>
+              </Link>
+            </NavItem>
           </Nav>
         </Collapse>
       </Navbar>

@@ -3,6 +3,8 @@ import {
     GET_CABANG_DETAIL,
     POST_CABANG_CREATE,
     PUT_CABANG_EDIT,
+    POST_CONFIG,
+    RESET_POST_CONFIG,
   } from "../actions/cabangAction"
   
   let initialState = {
@@ -12,10 +14,25 @@ import {
     errorCabangDetail: false,
     getResponDataCabang: false,
     errorResponDataCabang: false,
+    getResponseSetConfig:false,
+    errorGetResponseSetConfig:false
   };
   
   const Cabang = (state = initialState, action) => {
     switch (action.type) {
+      case RESET_POST_CONFIG:{
+        return {
+          ...state,
+          getResponseSetConfig:false,
+          errorGetResponseSetConfig:false,
+        }
+      }
+      case POST_CONFIG:
+        return {
+          ...state,
+          getResponseSetConfig:action.payload.data,
+          errorGetResponseSetConfig:action.payload.errorMessage,
+        }
       case GET_CABANG_LIST:
         return {
           ...state,

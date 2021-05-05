@@ -21,6 +21,7 @@ class EditGroupContainer extends Component {
   }
 
   handleSubmit(data) {
+    //console.log(data)
     this.props.dispatch(putGroupUpdate(data, this.props.match.params.GroupID));
   }
 

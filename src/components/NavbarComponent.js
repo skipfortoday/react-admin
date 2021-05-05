@@ -123,7 +123,7 @@ const NavbarComponent = (props) => {
                 <DropdownItem>Profile</DropdownItem>
                 <DropdownItem divider />
                 <DropdownItem>
-                  <div color="dark" onClick={() => localStorage.clear()}>
+                  <div color="dark" onClick={() => localStorage.removeItem('user')}>
                     <a
                       href={"/home"}
                       style={{ textDecoration: "none", color: "unset" }}

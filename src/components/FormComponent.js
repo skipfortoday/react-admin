@@ -78,14 +78,6 @@ class FormComponent extends Component {
     var c = new Date(year + 1, month, day);
     inTglMulaiCuti.value = formatTglYmd(c);
 
-    // this.props.change("formCreateUserx", "TglMulaiCuti", formatTglYmd(c));
-    // this.props.reset();
-    // this.props.dispatch()
-    // this.setState({
-    //   TglMulaiCuti:text
-    // })    
-    //dispatch()
-    //this.props.change("formCreateUser", "TglMulaiCuti", "2023-02-01");
   }
 
   render() {
@@ -313,17 +305,6 @@ class FormComponent extends Component {
     );
   }
 }
-
-// export default reduxForm({
-//   form: "formCreateUserx",
-//   validate: UserValidation,
-//   enableReinitialize: true,
-// })(
-//   connect(
-//     mapStateToProps,
-//     mapDispatchToProps
-//   )(FormComponent)
-// );
 
 FormComponent = reduxForm({
   form: "formCreateUserx",

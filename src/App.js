@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
+import { BrowserRouter, Redirect, Route, Switch ,useLocation } from "react-router-dom";
 import HomeContainer from "./containers/HomeContainer";
 import CreateUserContainer from "./containers/CreateUserContainer";
 import EditUserContainer from "./containers/EditUserContainer";
@@ -33,6 +33,7 @@ import AbsensiManualContainerKembaliKantor from "./containers/AbsensiManualConta
 import HistoryContainer from "./containers/HistoryContainer";
 import TestingContainer from "./containers/TestingContainer";
 import KelengkapanAbsenContainer from "./containers/KelengkapanAbsenContainer";
+import SetConfig from "./containers/SetConfig";
 
 const mapStateToProps = (state) => {
   return {
@@ -41,42 +42,24 @@ const mapStateToProps = (state) => {
 };
 
 class App extends Component {
-  // constructor() {
-  //   super();
-  //   this.state = {
-  //     name: "React",
-  //     isUserAuthenticated: true,
-  //   };
-  // }
-
+  constructor(props) {
+    super(props);
+    let lokasi = location.href.split('/')[location.href.split('/').length-1].toLocaleLowerCase();
+    let config = JSON.parse(localStorage.getItem('config'));
+    console.log(localStorage.getItem('config'));
+    if(!config && lokasi != 'setconfig'){
+      window.location.href= '/setconfig';
+      return;
+    }
+    
+  }
+  
   render() {
+    
     return (
       <BrowserRouter>
         <Switch>
-          {/* <Route
-            exact
-            path="/"
-            render={() =>
-              this.props.errorUsersList ? (
-                <Redirect to="/home" />
-              ) : (
-                <Redirect to="/" />
-              )
-            }
-          /> */}
-          {/* <Route
-            exact
-            path="/"
-            render={() => {
-              return this.props.errorUsersList ? (
-                <Redirect to="/home" />
-              ) : (
-               
-              );
-            }}
-          /> */}
-
-          <Route path="/testing" exact component={TestingContainer} />
+          
           <Route path="/" exact component={HomeContainer}>
             {this.props.errorUsersList ? (
               <Redirect to="/home" />
@@ -84,7 +67,7 @@ class App extends Component {
               <HomeContainer />
             )}
           </Route>
-
+          <Route path="/setconfig" exact component={SetConfig} />    
           <Route path="/login" exact component={LoginContainer} />
 
           <Route path="/create" exact component={CreateUserContainer} />

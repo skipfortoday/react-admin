@@ -18,7 +18,11 @@ const UserValidation = (values) => {
   }
 //console.log(values);
   if (!values.KodeCabang || values.KodeCabang=== undefined) {
-    errors.KodeCabang = "Kode harus diisi";
+    errors.KodeCabang = "Kode Cabang harus diisi";
+  } 
+
+  if (!values.NamaCabang || values.NamaCabang=== undefined) {
+    errors.NamaCabang = "Nama Cabang harus diisi";
   } 
 
   if (!values.TglMasuk || values.TglMasuk=== "") {

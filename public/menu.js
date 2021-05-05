@@ -12,7 +12,7 @@ var template = [
     {
         label: 'Minimize',
         accelerator: 'CmdOrCtrl+M',
-        role: 'minimize'
+        role: 'minimize',
     }
 ]
 
