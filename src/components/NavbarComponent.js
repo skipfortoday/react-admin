@@ -53,27 +53,21 @@ const NavbarComponent = (props) => {
                 Status Absensi
               </DropdownToggle>
               <DropdownMenu right>
-                <DropdownItem>
-                  <Link to="/izin" >
-                    {/* <a href={"/izin"}> */}
+                <DropdownItem style={{paddingLeft:0, paddingRight:0}}>
+                  <Link to="/izin" style={{display:"block", width:"100%", paddingLeft:"1.5em", paddingRight:"1.5em"}}>
                    Perorangan
-                    {/* </a> */}
                   </Link>
                 </DropdownItem>
                 <DropdownItem divider />
-                <DropdownItem>
-                  <Link to="/izin/group" >
-                    {/* <a href={"/izin"}> */}
-                      Pergroup & Libur Umum
-                    {/* </a> */}
+                <DropdownItem style={{paddingLeft:0, paddingRight:0}}>
+                  <Link to="/izin/group" style={{display:"block", width:"100%", paddingLeft:"1.5em", paddingRight:"1.5em"}}>
+                    Pergroup & Libur Umum                    
                   </Link>
                 </DropdownItem>
                 <DropdownItem divider />
-                <DropdownItem>
-                  <Link to="/kelengkapanabsensi" >
-                    {/* <a href={"/izin"}> */}
-                      Absen Belum Lengkap
-                    {/* </a> */}
+                <DropdownItem style={{paddingLeft:0, paddingRight:0}}>
+                  <Link to="/kelengkapanabsensi" style={{display:"block", width:"100%", paddingLeft:"1.5em", paddingRight:"1.5em"}}>
+                    Absen Belum Lengkap
                   </Link>
                 </DropdownItem>
               </DropdownMenu>

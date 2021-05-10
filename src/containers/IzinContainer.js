@@ -55,10 +55,14 @@ const mapStateToProps = (state) => {
 
 class IzinContainer extends Component {
   componentDidMount() {
-    this.props.dispatch(getIzinList());
-    this.props.dispatch(deleteDataIzin());
-    this.props.dispatch(getOptUser());
+    // this.props.dispatch(getIzinList());
+    // this.props.dispatch(deleteDataIzin());
     this.props.dispatch(resetLaporan());
+    this.props.dispatch(getOptUser());
+  }
+
+  componentWillUnmount(){
+    //this.props.dispatch()
   }
 
   handleSubmit2(data) {
