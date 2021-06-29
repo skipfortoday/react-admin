@@ -7,7 +7,9 @@ import {
   RESET_LAPORAN,
   RESET_LAPORAN_RESPON,
   IS_LOADING,
-  GET_LAPORAN_KELENGKAPAN
+  GET_LAPORAN_KELENGKAPAN,
+  RESET_RESPONSE_DATA_LAPORAN,
+  CHECK_BELUM_PULANG_TODAY
 } from "../actions/laporanAction";
 import { formatTglYmd } from '../containers/formatTgl';
 
@@ -24,40 +26,54 @@ let initialState = {
   errorLaporanHead: false,
   getResponDataLaporan: false,
   errorResponDataLaporan: false,
-  getLaporanKelengkapan:false,
-  errorLaporanKelengkapan:false,
-  isLoading:false,
+  getLaporanKelengkapan: false,
+  errorLaporanKelengkapan: false,
+  isLoading: false,
   defTglAwal: formatTglYmd(new Date(
     new Date().getFullYear(),
     new Date().getMonth(),
     new Date().getDate() - 30
   )),
   defTglAkhir: formatTglYmd(new Date()),
+  defNama: {
+    value: 'all',
+    label: 'Semua Karyawan'
+  },
+  checkBelumPulang:{status:false, message:""}
 
 };
 
 const Laporan = (state = initialState, action) => {
   switch (action.type) {
+
+    case CHECK_BELUM_PULANG_TODAY:
+      return {
+        ...state,
+        checkBelumPulang:action.payload.data
+      }
     case IS_LOADING:
       return {
         ...state,
-        isLoading: action.payload.data
+        isLoading: action.payload.data,
       }
 
-    case RESET_LAPORAN :
+    case RESET_LAPORAN:
       return {
         ...state,
         getLaporanHead: false,
         errorLaporanHead: false,
-        getResponDataLaporan:false,
-        errorResponDataLaporan:false
+        getResponDataLaporan: false,
+        errorResponDataLaporan: false,
+        getExpandKey: false,
+        getLaporanDetail: false,
+        getLaporanRekap: false
       };
 
-      case RESET_LAPORAN_RESPON :
+    case RESET_LAPORAN_RESPON:
       return {
         ...state,
-        getResponDataLaporan:false,
-        errorResponDataLaporan:false
+        getResponDataLaporan: false,
+        errorResponDataLaporan: false
       };
 
     case GET_LAPORAN_LIST:
@@ -71,13 +87,12 @@ const Laporan = (state = initialState, action) => {
     case GET_LAPORAN_DETAIL:
       return {
         ...state,
-        
+
         getLaporanDetail: action.payload.data,
         getExpandKey: action.payload.expandKey,
-        errorLaporanDetail: action.payload.errorMessage,
-        isLoading:false,
-        getLaporanRekap: action.payload.data.footer,
         getLaporanHead: action.payload.data.header,
+        errorLaporanDetail: action.payload.errorMessage,
+        getLaporanRekap: action.payload.data.footer,
       };
 
     case GET_LAPORAN_REKAP:
@@ -94,13 +109,13 @@ const Laporan = (state = initialState, action) => {
         errorLaporanHead: action.payload.errorMessage,
       };
 
-      case GET_LAPORAN_KELENGKAPAN:
-        return {
-          ...state,
-          getLaporanKelengkapan: action.payload.data,
-          errorLaporanKelengkapan: action.payload.errorMessage,
-          isLoading:false,
-        };
+    case GET_LAPORAN_KELENGKAPAN:
+      return {
+        ...state,
+        getLaporanKelengkapan: action.payload.data,
+        errorLaporanKelengkapan: action.payload.errorMessage,
+        isLoading: false,
+      };
 
     case POST_LAPORAN_PROSES:
       return {

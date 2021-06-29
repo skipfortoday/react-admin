@@ -24,7 +24,7 @@ import {
 } from "../actions/laporanAction";
 import { getUserDetail } from "../actions/userAction";
 import IzinComponentSolo from "../components/IzinComponentSolo";
-import RekapLeft from "../components/RekapLeft";
+import SummaryLaporan from "../components/SummaryLaporan";
 import NamaCabangLaporan from "../components/NamaCabangLaporan";
 import PrintButton from "../components/PrintButton";
 import { postLaporanProses } from "../actions/laporanAction";
@@ -221,7 +221,7 @@ class CreateIzinContainer extends Component {
           </Row>
           <Row>
             <LaporanDetail />
-            <RekapLeft />
+            <SummaryLaporan />
           </Row>
         </Container>
       </div>

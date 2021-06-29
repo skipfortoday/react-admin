@@ -11,6 +11,7 @@ export const SelectFieldComponentHrz = ({
     disabled,
     options,
     readOnly,
+    isDisabled,
     meta: { touched, error, warning },
 }) => (
     <Row>
@@ -28,6 +29,7 @@ export const SelectFieldComponentHrz = ({
                 readOnly={readOnly}
                 options={options}
                 value={input.value}
+                isDisabled={isDisabled}
                 onChange={(value) => input.onChange(value)}
             //onBlur={() => input.onBlur()}
             />

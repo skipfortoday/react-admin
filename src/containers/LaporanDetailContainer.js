@@ -11,7 +11,7 @@ import NavbarComponent from "../components/NavbarComponent";
 import RekapLaporan from "../components/RekapLaporan";
 import { getUserDetail } from "../actions/userAction";
 import PrintButton from "../components/PrintButton";
-import RekapLeft from "../components/RekapLeft";
+import SummaryLaporan from "../components/SummaryLaporan";
 import NamaCabangLaporan from "../components/NamaCabangLaporan";
 import LengkapiAbsenGuestComponent from "../components/LengkapiAbsenGuestComponent";
 import LengkapiAbsenButton2 from "../components/LengkapiAbsenButton2";
@@ -80,8 +80,8 @@ class LaporanDetailContainer extends Component {
           <RekapLaporan />
         </Row>
         <Row>
-          <Laporan  Detail />
-          <RekapLeft />
+          <LaporanDetail />
+          <SummaryLaporan />
         </Row>
         </Container>
       </div>

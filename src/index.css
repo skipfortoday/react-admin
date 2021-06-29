@@ -11,3 +11,18 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.custom-modal .modal-content{
+  background: none !important;
+  border: 0 !important;
+}
+.nav-item a, .nav-item a:hover{
+  color: unset;
+  text-decoration: none;
+}
+body{
+  padding-top: 55px;
+}
+.table-custom th, .table-custom td{
+  border-top:none !important
+}

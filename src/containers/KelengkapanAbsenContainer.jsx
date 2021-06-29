@@ -5,10 +5,12 @@ import swal from "sweetalert";
 import { Redirect } from "react-router-dom";
 import FormCekKelengkapanAbsensi from "../components/FormCekKelengkapanAbsensi";
 import KelengkapanAbsenComponent from "../components/KelengkapanAbsenComponent";
-import { Col, Container, Row, Spinner } from "reactstrap";
+import { Col, Container, Row, Modal } from "reactstrap";
 import { getKelengkapanAbsen, setLoading } from "../actions/laporanAction";
 import { siteConfig } from "../config";
-
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
+import Loader from "react-loader-spinner";
+import { getOptUser } from "../actions/optAction";
 
 const mapStateToProps = (state) => {
   return {
@@ -21,8 +23,13 @@ const mapStateToProps = (state) => {
 class KelengkapanAbsenContainer extends Component {
 
   handleSubmit(data) {
-    this.props.dispatch(getKelengkapanAbsen(siteConfig.kodeCabang, data.TanggalScan, data.TanggalScanSampai));
+    data.Nama = data.Nama.value;
+    this.props.dispatch(getKelengkapanAbsen(siteConfig.kodeCabang, data.TanggalScan, data.TanggalScanSampai, data.Nama));
     this.props.dispatch(setLoading(true));
+  }
+
+  componentDidMount(){
+    this.props.dispatch(getOptUser());
   }
 
   render() {
@@ -43,10 +50,23 @@ class KelengkapanAbsenContainer extends Component {
             </Row>
           </Container>
         </div>
+        <Modal
+          isOpen={this.props.isLoading}
+          backdropTransition={{ timeout: 0 }}
+          modalTransition={{ timeout: 0 }}
+          fade={false}
+          className="modal-lg custom-modal"
+          centered={true} style={{ textAlign: "center" }}>
+          {/* #00BFFF */}
+          <Loader
+            type="Oval"
+            color="#FFF"
+            height={60}
+            width={60}
+          />
+        </Modal>
         {this.props.isLoading ? (
-          <div style={{textAlign:"center", padding:"50px 0px"}}>
-            <Spinner />
-          </div>
+          ''
         ) : (<KelengkapanAbsenComponent />) }
       </div>
     );

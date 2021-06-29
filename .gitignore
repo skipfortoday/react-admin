@@ -23,3 +23,5 @@ yarn-error.log*
 config.js
 /build
 /dist
+
+/public/node-server/node_modules

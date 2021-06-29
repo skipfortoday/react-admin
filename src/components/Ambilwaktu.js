@@ -15,13 +15,13 @@ const Ambilwaktu = (props) => {
     }
   }, []);;
 
-    const d = today.getDate();
+    const d = today.getDate() < 10 ? '0'+today.getDate() : today.getDate();
     const m = (today.getMonth()+1) < 10 ? '0'+(today.getMonth()+1) : today.getMonth();
     const Y = today.getFullYear();
 
-    const H = today.getHours();
+    const H = today.getHours() < 10 ? '0'+today.getHours() : today.getHours();
     const i = today.getMinutes() < 10 ? '0'+today.getMinutes()  : today.getMinutes();
-    const s = today.getSeconds();
+    const s = today.getSeconds() < 10 ? '0'+today.getSeconds() : today.getSeconds();
 
     const fultime = Y + '/'+m+'/'+d +' '+H+':'+i+':'+s;
     return (

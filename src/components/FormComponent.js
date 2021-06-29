@@ -22,6 +22,15 @@ const opsiAkses = [
   {value:"5", label:"Staff Tidak Bisa Akses"}
 ]
 
+const opsiStatus = [
+  {value:"001", label:"MANUAL"},
+  {value:"010", label:"FINGERPRINT"},
+  {value:"101", label:"HP DAN MANUAL"},
+  {value:"110", label:"HP DAN FINGERPRINT"},
+  {value:"100", label:"HP"},
+  {value:"111", label:"HP, FINGERPRINT DAN MANUAL"},
+]
+
 // Decorate form with dispatchable actions
 const mapDispatchToProps = (dispatch) => ({
   change, reset
@@ -34,6 +43,14 @@ const mapStateToProps = (state) => {
   opsiAkses.map((data) => {
     if(data.value == state.users.getUserDetail.RoleID){
       opsiAksesInit = data;
+      return;
+    }
+  })
+
+  let iniStatus = {};
+  opsiStatus.map((data)=>{
+    if(data.value == state.users.getUserDetail.Status){
+      iniStatus = data;
       return;
     }
   })
@@ -54,7 +71,7 @@ const mapStateToProps = (state) => {
       GroupID: { value: state.users.getUserDetail.GroupID, label: state.users.getUserDetail.Jabatan },
       RoleID: opsiAksesInit,
       KodeCabang: siteConfig.kodeCabang,
-      Status: state.users.getUserDetail.Status,
+      Status: iniStatus,
       Posisi: state.users.getUserDetail.Posisi,
       TampilkanLembur: state.users.getUserDetail.TampilkanLembur,
       TampilkanTerlambat: state.users.getUserDetail.TampilkanTerlambat,
@@ -238,17 +255,26 @@ class FormComponent extends Component {
                 </FormGroup>
               </Col>
 
-              {/* <Col md={2}>
+              <Col md={12}>
                 <FormGroup>
                   <Field
-                    type="password"
-                    name="Pass"
-                    disabled={disabled}
-                    component={InputFieldComponentHrz}
-                    label="PIN Password :"
+                    type="select"
+                    name="Status"
+                    component={SelectFieldComponentHrz}
+                    label="Status Cara Absen :"
+                    options={opsiStatus}
                   />
                 </FormGroup>
-              </Col> */}
+              </Col>
+
+              {/* <FormGroup className="mb-0">
+                      <Field
+                        type="checkbox"
+                        name="Status"
+                        component={CheckboxFieldComponent}
+                        label="Bisa Absen Manual"
+                      />
+                    </FormGroup> */}
 
               <Col md={12}>
                 <Row>
@@ -271,14 +297,7 @@ class FormComponent extends Component {
                         label="Hitung Terlambat"
                       />
                     </FormGroup>
-                    <FormGroup className="mb-0">
-                      <Field
-                        type="checkbox"
-                        name="Status"
-                        component={CheckboxFieldComponent}
-                        label="Bisa Absen Manual"
-                      />
-                    </FormGroup>
+                    
                   </Col>
                 </Row>
               </Col>

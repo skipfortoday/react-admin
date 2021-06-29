@@ -62,7 +62,20 @@ export const getIzinList = () => {
   };
 };
 
-export const getIzinListSolo = (UserID,TglAwal,TglAkhir) => {
+export const getIzinListSolo = (UserID = null,TglAwal = null,TglAkhir = null) => {
+  
+  if(UserID == null){
+    return (dispatch) => {
+      dispatch({
+        type: GET_IZIN_LISTSOLO,
+        payload: {
+          data: false,
+          errorMessage: false,
+        },
+      });
+    }
+  }
+
   return (dispatch) => {
     axios
       .get(
@@ -90,7 +103,18 @@ export const getIzinListSolo = (UserID,TglAwal,TglAkhir) => {
   };
 };
 
-export const getIzinDetail = (UserID) => {
+export const getIzinDetail = (UserID = null) => {
+  if(UserID == null){
+    return (dispatch) => {
+      dispatch({
+        type: GET_IZIN_DETAIL,
+        payload: {
+          data: false,
+          errorMessage: false,
+        },
+      });
+    }
+  }
   return (dispatch) => {
     axios
       .get(
@@ -147,36 +171,6 @@ export const postIzinCreate = (data) => {
   };
 };
 
-export const postIzinGroup= (data) => {
-  return (dispatch) => {
-    axios
-      .post(
-        BASEURL+"/api/pilihizin",
-        data,
-        headers
-      )
-      .then(function (response) {
-        // console.log(response)
-        dispatch({
-          type: POST_IZIN_GROUP,
-          payload: {
-            data: response.data,
-            errorMessage: false,
-          },
-        });
-      })
-      .catch(function (error) {
-        dispatch({
-          type: POST_IZIN_GROUP,
-          payload: {
-            data: false,
-            errorMessage: error.message,
-          },
-        });
-      });
-  };
-};
-
 export const putIzinUpdate = (data, DatangID) => {
   return (dispatch) => {
     axios
@@ -206,6 +200,36 @@ export const putIzinUpdate = (data, DatangID) => {
   };
 };
 
+
+export const postIzinGroup= (data) => {
+  return (dispatch) => {
+    axios
+      .post(
+        BASEURL+"/api/pilihizin",
+        data,
+        headers
+      )
+      .then(function (response) {
+        // console.log(response)
+        dispatch({
+          type: POST_IZIN_GROUP,
+          payload: {
+            data: response.data,
+            errorMessage: false,
+          },
+        });
+      })
+      .catch(function (error) {
+        dispatch({
+          type: POST_IZIN_GROUP,
+          payload: {
+            data: false,
+            errorMessage: error.message,
+          },
+        });
+      });
+  };
+};
 
 export const deleteIzin = (DatangID) => {
   return (dispatch) => {

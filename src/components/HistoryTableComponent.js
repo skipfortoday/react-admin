@@ -13,17 +13,6 @@ const mapStateToProps = (state) => {
 }
 
 const columns = [
-    // {
-    //     dataField: 'id',
-    //     text: 'ID',
-    //     sort: true,
-    //     search:true,
-    //     headerStyle: () => {
-    //         return {
-    //             width: "10%"
-    //         }
-    //     }
-    // },
     {
         dataField: 'TglAbsen',
         text: 'Tgl Absen',

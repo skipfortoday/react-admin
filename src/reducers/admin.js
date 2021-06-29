@@ -32,8 +32,8 @@ const Admin = (state = initialState, action) => {
     case GET_ADMIN_LIST:
       return {
         ...state,
-        getAdminDetail: action.payload.data,
-        errorAdminDetail: action.payload.errorMessage,
+        getAdminList: action.payload.data,
+        errorAdminList: action.payload.errorMessage,
       };
 
     case GET_ADMIN_ONDUTY:

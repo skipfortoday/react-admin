@@ -5,126 +5,104 @@ import { FormGroup, Col, Label, Input, Row, Button } from "reactstrap";
 import CabangValidation from "../validations/CabangValidation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSave } from "@fortawesome/free-solid-svg-icons";
-
-
-const renderField = ({
-  input,
-  type,
-  placeholder,
-  label,
-  disabled,
-  readOnly,
-  meta: { touched, error, warning },
-}) => (
-  <Row>
-    <Col md="12">
-      <Label htmlFor="{input}" className="col-form-label">
-        {label}
-      </Label>
-    </Col>
-    <Col md="12">
-      <Input
-        {...input}
-        type={type}
-        placeholder={placeholder}
-        disabled={disabled}
-        readOnly={readOnly}
-        
-      ></Input>
-      {touched &&
-        ((error && <p style={{ color: "brown" }}>{error}</p>) ||
-          (warning && <p style={{ color: "brown" }}>{warning}</p>))}
-    </Col>
-  </Row>
-);
+import { InputFieldComponentHrz } from "./formController/InputFieldComponentHrz";
 
 const mapStateToProps = (state) => {
 
-  //console.log(optsiterpilih);
-  return {
-    initialValues: {
-      KodeCabang: state.Cabang.getCabangDetail.KodeCabang,
-      NamaCabang: state.Cabang.getCabangDetail.NamaCabang,
-      Alamat: state.Cabang.getCabangDetail.Alamat,
-      NoTelp: state.Cabang.getCabangDetail.NoTelp,
-    },
-  };
+   return {
+      initialValues: {
+         KodeCabang: state.Cabang.getCabangDetail.KodeCabang,
+         NamaCabang: state.Cabang.getCabangDetail.NamaCabang,
+         Alamat: state.Cabang.getCabangDetail.Alamat,
+         NoTelp: state.Cabang.getCabangDetail.NoTelp,
+         IP:state.Cabang.getCabangDetail.IP
+      },
+   };
 };
 
-//let  options = [{ value: 'one', label: 'One' }, { value: 'two', label: 'Two' }];
-
-
 class FormCabangComponent extends Component {
-  render() {
-    return (
-      <form onSubmit={this.props.handleSubmit}>
-   
-        <FormGroup row>
-          <Col md={2}>
-            <FormGroup>
-              <Field
-                type="text"
-                name="KodeCabang"
-                component={renderField}
-                label="Kode Cabang :"
-              />
-            </FormGroup>
-          </Col>
+   render() {
+      return (
+         <form onSubmit={this.props.handleSubmit}>
 
-          <Col md={3}>
-            <FormGroup>
-              <Field
-                type="text"
-                name="NamaCabang"
-                component={renderField}
-                label="Nama Cabang :"
-              />
-            </FormGroup>
-          </Col>
+            <FormGroup row>
+               <Col md={6}>
+                  <FormGroup>
+                     <Field
+                        type="text"
+                        name="KodeCabang"
+                        component={InputFieldComponentHrz}
+                        label="Kode Cabang"
+                     />
+                  </FormGroup>
 
-          <Col md={4}>
-            <FormGroup>
-              <Field
-                type="text"
-                name="Alamat"
-                component={renderField}
-                label="Alamat Cabang :"
-              />
-            </FormGroup>
-          </Col>
+                  <FormGroup>
+                     <Field
+                        type="text"
+                        name="NamaCabang"
+                        component={InputFieldComponentHrz}
+                        label="Nama Cabang"
+                     />
+                  </FormGroup>
 
-          <Col md={2}>
-            <FormGroup>
-              <Field
-                type="text"
-                name="NoTelp"
-                component={renderField}
-                label="Nomor Telepon :"
-              />
+                  <FormGroup>
+                     <Field
+                        type="textarea"
+                        name="Alamat"
+                        component={InputFieldComponentHrz}
+                        label="Alamat Cabang"
+                     />
+                  </FormGroup>
+
+                  <FormGroup>
+                     <Field
+                        type="text"
+                        name="NoTelp"
+                        component={InputFieldComponentHrz}
+                        label="Nomor Telepon"
+                     />
+                  </FormGroup>
+               </Col>
+               <Col md={6}>
+               <FormGroup>
+                     <Field
+                        type="text"
+                        name="IP"
+                        component={InputFieldComponentHrz}
+                        label="IP"
+                     />
+                  </FormGroup>
+                  <FormGroup>
+                     <Field
+                        type="password"
+                        name="Password"
+                        component={InputFieldComponentHrz}
+                        label="Password"
+                     />
+                  </FormGroup>
+               </Col>
             </FormGroup>
-          </Col>
-        </FormGroup>
-        <FormGroup row>
-          <Col md="12">
-            <FormGroup>
-              <Button
-                color="dark"
-                type="submit"
-                disabled={this.props.submitting}
-              >
-                <FontAwesomeIcon icon={faSave} /> SIMPAN
-              </Button>
+            <FormGroup row>
+               <Col md="12">
+                  <FormGroup>
+                     <Button
+                        color="dark"
+                        type="submit"
+                        disabled={this.props.submitting}
+                     >
+                        <FontAwesomeIcon icon={faSave} /> SIMPAN
+                     </Button>
+                  </FormGroup>
+               </Col>
             </FormGroup>
-          </Col>
-        </FormGroup>
-      </form>
-    );
-  }
+         </form>
+      );
+   }
 }
 
 FormCabangComponent = reduxForm({
-  form: "formCreateCabang",
-  validate: CabangValidation,
-  enableReinitialize: true,
+   form: "formCreateCabang",
+   validate: CabangValidation,
+   enableReinitialize: true,
 })(FormCabangComponent);
 export default connect(mapStateToProps, null)(FormCabangComponent);

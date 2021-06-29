@@ -3,139 +3,128 @@ import { reduxForm, Field } from "redux-form";
 import { connect } from "react-redux";
 import { FormGroup, Col, Label, Input, Row, Button } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSave } from "@fortawesome/free-solid-svg-icons";
+import { faFingerprint, faSave } from "@fortawesome/free-solid-svg-icons";
 import AbsensiManualValidation from "../validations/AbsensiManualValidation";
-import Select from 'react-select';
+import { SelectFieldComponent } from "./formController/SelectFieldComponent";
+import { InputFieldComponent } from "./formController/InputFieldComponent";
 
-
-const renderField = ({
-  input,
-  type,
-  placeholder,
-  label,
-  disabled,
-  readOnly,
-  meta: { touched, error, warning },
-}) => (
-  <Row>
-    <Col md="12">
-      <Label htmlFor="{input}" className="col-form-label">
-        {label}
-      </Label>
-    </Col>
-    <Col md="12">
-      <Input
-        {...input}
-        type={type}
-        placeholder={placeholder}
-        disabled={disabled}
-        readOnly={readOnly}
-      
-      >
-           <option value ="">-</option>
-        <option value ="1">Shift 1</option>
-        <option value = "2">Shift 2</option>
-        <option value = "3">Shift 3</option>
-      </Input>
-   
-      {touched &&
-        ((error && <p style={{ color: "brown" }}>{error}</p>) ||
-          (warning && <p style={{ color: "brown" }}>{warning}</p>))}
-    </Col>
-  </Row>
-);
-
-const renderField2 = ({
-  input,
-  name,
-  id,
-  type,
-  placeholder,
-  label,
-  disabled,
-  options,
-  readOnly,
-  meta: { touched, error, warning },
-}) => (
-  <Row>
-    <Col md="12">
-      <Label htmlFor="{input}" className="col-form-label">
-        {label}
-      </Label>
-    </Col>
-    <Col md="12">
-      
-      <Select
-        {...Input}
-        id={id} 
-        name={name} 
-        type={type}
-        placeholder="Pilih Nama"
-        disabled={disabled}
-        readOnly={readOnly}
-        options={options}
-        value={input.value}
-        onChange={(value) => input.onChange(value)}
-        // onBlur={() => input.onBlur()}
-      />
-      {touched &&
-        ((error && <p style={{ color: "red" }}>{error}</p>) ||
-          (warning && <p style={{ color: "brown" }}>{warning}</p>))}
-    </Col>
-  </Row>
-);
 
 const mapStateToProps = (state) => {
 
-  //console.log(optsiterpilih);
+  let initNama = state.Opt.getAfterFinger ?
+    state.Opt.getAfterFinger.status == 1 ?
+      {
+        DatangID: state.Opt.getAfterFinger.DatangID,
+        value: state.Opt.getAfterFinger.UserID,
+        label: state.Opt.getAfterFinger.UserID + " - " + state.Opt.getAfterFinger.Nama
+      }
+      : null : null;
+
   return {
     getOptUserManualPulang: state.Opt.getOptUserManualPulang,
+    initialValues: {
+      Nama: initNama,
+      NormalPulang: state.Opt.getAfterFinger ? state.Opt.getAfterFinger.PulangCepat + "" + state.Opt.getAfterFinger.Lembur : "NN"
+    }
   };
 };
 
-//let  options = [{ value: 'one', label: 'One' }, { value: 'two', label: 'Two' }];
 
 
 class FormAbsensiManual2 extends Component {
   render() {
-    
+
     return (
       <form onSubmit={this.props.handleSubmit}>
-   
-        <FormGroup row>
-          <Col md={5}>
-            <FormGroup>
-              <Field
-                type="text"
-                name="Nama"
-                component={renderField2}
-                options={this.props.getOptUserManualPulang}
-                label="Nama:"
-              />
-            </FormGroup>
-          </Col>
+        <FormGroup>
+          <Row>
+            <Col md={4} className="text-center">
+              <div
+                onClick={this.props.onclick}
+                style={{
+                  cursor: "pointer",
+                  border: "4px solid #FFF",
+                  width: "160px",
+                  height: "180px",
+                  padding: "20px",
+                  margin: "20px auto 10px auto",
+                  position: "relative",
+                  overflow: "hidden",
+                  borderColor: this.props.borderColor
+                }}>
+                <FontAwesomeIcon
+                  style={{
+                    marginTop: "40px",
+                    color: this.props.borderColor,
+                    fontSize: "60px",
+                  }}
+                  icon={faFingerprint} />
+                {this.props.base64 ?
+                  <img
+                    src={`data:image/png;base64,${this.props.base64}`}
+                    style={{
+                      background: "#f00",
+                      width: "120%",
+                      height: "120%",
+                      position: "absolute",
+                      left: "-10%",
+                      top: "-10%"
+                    }}
 
-          <Col md={3}>
-            <FormGroup>
-              <Field
-                type="text"
-                name="KetPulang"
-                component={renderField}
-                label="Keterangan :"
-              />
-            </FormGroup>
-          </Col>
-          <Col md={1}>
-            <FormGroup>
-              <Label>.</Label>
-            <Button
-                color="dark"
-                type="submit"
-                disabled={this.props.submitting}
-              > <FontAwesomeIcon icon={faSave} /> SIMPAN
+                  /> : ''}
+                <div style={{
+                  padding: "5px",
+                  color: "#fff",
+                  fontWeight: "bolder"
+                }}>KLIK DI SINI</div>
+              </div>
+            </Col>
+            <Col md={8}>
+              <FormGroup row>
+                <Col md={12}>
+                  <FormGroup>
+                    <Field
+                      type="text"
+                      name="Nama"
+                      component={SelectFieldComponent}
+                      options={this.props.getOptUserManualPulang}
+                      label="Nama:"
+                      placeholder="Pilih Nama"
+                    />
+                  </FormGroup>
+                </Col>
+                <Col md={12}>
+                  <FormGroup>
+                    <Field
+                      type="text"
+                      name="KetPulang"
+                      placeholder="Keterangan Pulang"
+                      component={InputFieldComponent}
+                      label="Keterangan :"
+                    />
+                  </FormGroup>
+                  <FormGroup hidden>
+                    <Field
+                      type="text"
+                      name="NormalPulang"
+                      component={InputFieldComponent}
+                    />
+                  </FormGroup>
+                </Col>
+                <Col md={4}>
+                  <FormGroup>
+                    <Button
+                      color="dark"
+                      type="submit"
+                      disabled={this.props.submitting}
+                    > <FontAwesomeIcon icon={faSave} /> SIMPAN
               </Button>
-            </FormGroup>
-          </Col>
+                  </FormGroup>
+                </Col>
+
+              </FormGroup>
+            </Col>
+          </Row>
         </FormGroup>
       </form>
     );

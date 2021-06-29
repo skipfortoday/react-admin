@@ -27,8 +27,17 @@ const mapStateToProps = (state) => {
     getOptUser: state.Opt.getOptUser,
     initialValues: {
       Nama: state.Opt.getOptUser,
-      TanggalScan: formatTglYmd(new Date()),
-      TanggalScanSampai: formatTglYmd(new Date())
+      // Nama: [
+      //   {value:"SB1MIT005", label:"M ALI SHODIKIN"},
+      //   {value:"SB1MIT012", label:"DANIEL GLORIO"}
+      // ],
+      // TanggalScan: formatTglYmd(new Date()),
+      // TanggalScanSampai: formatTglYmd(new Date())
+      TanggalScan: state.Laporan.getLaporanRekap ? state.Laporan.getLaporanRekap.TglAwal : state.Laporan.defTglAwal,
+      TanggalScanSampai: state.Laporan.getLaporanRekap ? state.Laporan.getLaporanRekap.TglAkhir : state.Laporan.defTglAkhir,
+      // TanggalScan:"2021-06-25",
+      // TanggalScanSampai:"2021-06-26",
+      // Status:{ value: "LENGKAPI", label: "LENGKAPI ABSEN" }
     },
     isOnSubmitting:state.Izin.isOnSubmitting
   };
@@ -91,7 +100,7 @@ class FormIzinGroup extends Component {
             </FormGroup>
           </Col>
 
-          <Col md={3}>
+          <Col md={4}>
             <FormGroup>
               <Field
                 type="text"
@@ -114,12 +123,7 @@ class FormIzinGroup extends Component {
               </FormGroup>
             
           </Col>
-          <Col md={1} style={{ marginTop: "37px" }}>
-            {
-              this.props.isOnSubmitting ?
-              (<Spinner/>) : ("")
-            }
-          </Col>
+          
         </FormGroup>
       </form>
     );

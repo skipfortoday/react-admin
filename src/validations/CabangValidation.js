@@ -12,6 +12,10 @@ const CabangValidation = (values) => {
     if (!values.Alamat || values.Alamat === "") {
       errors.Alamat = "Alamat harus diisi";
     }
+
+    if (!values.IP || values.IP === "") {
+      errors.IP = "IP harus diisi";
+    }
   
     if (!values.GeneralManagerID || values.GeneralManagerID === "") {
       errors.GeneralManagerID = "ID Manager harus diisi";

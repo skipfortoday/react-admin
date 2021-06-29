@@ -8,9 +8,7 @@ import {
   GET_IZIN_DETAIL_FORM,
   EDIT_JAM_FORM,
   GET_IZIN_DETAIL_FORM_STATUS,
-  RESPONSE_FORM_IZIN,
   RESET_RESPONSE_DI,
-  getIzinDetailForm,
   ON_SUBMITIING
 
 } from "../actions/izinAction";
@@ -74,20 +72,21 @@ const Izin = (state = initialState, action) => {
         errorResponDataIzin: action.payload.errorMessage,
         getResponFormIzin:true
       };
-
-    case POST_IZIN_GROUP:
-      return {
-        ...state,
-        getResponDataIzin: action.payload.data,
-        errorResponDataIzin: action.payload.errorMessage,
-      };
-
+    
     case PUT_IZIN_EDIT:
+      console.log(action.payload.data)
       return {
         ...state,
         getResponDataIzin: action.payload.data,
         errorResponDataIzin: action.payload.errorMessage,
         getResponFormIzin:true
+      };
+      
+    case POST_IZIN_GROUP:
+      return {
+        ...state,
+        getResponDataIzin: action.payload.data,
+        errorResponDataIzin: action.payload.errorMessage,
       };
 
     case GET_IZIN_DETAIL_FORM:

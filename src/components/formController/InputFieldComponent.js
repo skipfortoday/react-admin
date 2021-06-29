@@ -10,6 +10,7 @@ export const InputFieldComponent = ({
     disabled,
     options,
     readOnly,
+    hh,
     meta: { touched, error, warning },
 }) => (
     <Row>
@@ -30,6 +31,7 @@ export const InputFieldComponent = ({
                 options={options}
                 value={input.value}
                 onChange={(value) => input.onChange(value)}
+                style={{height:hh}}
             >
 
             </Input>

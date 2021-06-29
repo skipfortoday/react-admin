@@ -31,9 +31,19 @@ import AbsensiManualContainerIstKembali from "./containers/AbsensiManualContaine
 import AbsensiManualContainerKeluarKantor from "./containers/AbsensiManualContainerKeluarKantor";
 import AbsensiManualContainerKembaliKantor from "./containers/AbsensiManualContainerKembaliKantor";
 import HistoryContainer from "./containers/HistoryContainer";
-import TestingContainer from "./containers/TestingContainer";
 import KelengkapanAbsenContainer from "./containers/KelengkapanAbsenContainer";
 import SetConfig from "./containers/SetConfig";
+import PengumumanContainer from "./containers/PengumumanContainer";
+import PengumumanCreateContainer from "./containers/PengumumanDetailContainer";
+import PengumumanEditContainer from "./containers/PengumumanEditContainer";
+import PengumumanDetailContainer from "./containers/PengumumanDetailContainer";
+import GroupDetailContainer from "./containers/GroupDetailContainer";
+import ScrollIntoView from "./components/ScrollIntoView";
+import FaceScanContainer from "./containers/FaceScanContainer";
+import FingerprintContainer from "./containers/FingerprintContainer";
+import FPEnrollmentContainer from "./containers/FPEnrollmentContainer";
+import LocaldbPegawaiContainer from "./containers/LocaldbPegawaiContainer";
+import TutupPeriodeContainer from "./containers/TutupPeriodeContainer";
 
 const mapStateToProps = (state) => {
     return {
@@ -46,7 +56,6 @@ class App extends Component {
         super(props);
         let lokasi = location.href.split('/')[location.href.split('/').length - 1].toLocaleLowerCase();
         let config = JSON.parse(localStorage.getItem('config'));
-        console.log(localStorage.getItem('config'));
         if (!config && lokasi != 'setconfig') {
             window.location.href = '/setconfig';
             return;
@@ -58,143 +67,167 @@ class App extends Component {
 
         return (
             <BrowserRouter>
-                <Switch>
-                    <Route path="/" exact component={HomeContainer}>
-                        {this.props.errorUsersList ? (
-                            <Redirect to="/home" />
-                        ) : (
-                            <HomeContainer />
-                        )}
-                    </Route>
-                    <Route path="/setconfig" exact component={SetConfig} />
-                    <Route path="/login" exact component={LoginContainer} />
+                <ScrollIntoView>
+                    <Switch>
+                        <Route path="/" exact component={HomeContainer}>
+                            {this.props.errorUsersList ? (
+                                <Redirect to="/home" />
+                            ) : (
+                                <HomeContainer />
+                            )}
+                        </Route>
+                        {/* <Route path="/firebase" exact component={FirebaseContainer} /> */}
+                        
+                        <Route path="/fingerprint" exact component={FingerprintContainer} />
+                        
+                        <Route path="/enrollfp/:UserID" exact component={FPEnrollmentContainer} />
 
-                    <Route path="/create" exact component={CreateUserContainer} />
+                        <Route path="/setconfig" exact component={SetConfig} />
+                        
+                        <Route path="/face-scan" exact component={FaceScanContainer} />
+                        
+                        <Route path="/login" exact component={LoginContainer} />
 
-                    <Route path="/edit/:UserID" exact component={EditUserContainer} />
+                        <Route path="/create" exact component={CreateUserContainer} />
 
-                    <Route path="/laporan" exact component={ListLaporanContainer} />
+                        <Route path="/edit/:UserID" exact component={EditUserContainer} />
 
-                    <Route
-                        path="/laporandetail/:UserID/:TglAwal/:TglAkhir"
-                        exact
-                        component={LaporanDetailContainer}
-                    />
+                        <Route path="/laporan" exact component={ListLaporanContainer} />
 
-                    <Route path="/laporanguest" exact component={LaporanGuestContainer} />
+                        <Route
+                            path="/laporandetail/:UserID/:TglAwal/:TglAkhir"
+                            exact
+                            component={LaporanDetailContainer}
+                        />
 
-                    <Route
-                        path="/laporandetailguest/:UserID/:TglAwal/:TglAkhir"
-                        exact
-                        component={LaporanDetailGuestContainer}
-                    />
+                        <Route path="/laporanguest" exact component={LaporanGuestContainer} />
 
-                    <Route path="/group" exact component={GroupContainer} />
+                        <Route
+                            path="/laporandetailguest/:UserID/:TglAwal/:TglAkhir"
+                            exact
+                            component={LaporanDetailGuestContainer}
+                        />
 
-                    <Route path="/group/create/" exact component={CreateGroupContainer} />
+                        <Route path="/group" exact component={GroupContainer} />
 
-                    <Route
-                        path="/group/edit/:GroupID"
-                        exact
-                        component={EditGroupContainer}
-                    />
+                        <Route path="/group/create/" exact component={CreateGroupContainer} />
 
-                    <Route
-                        path="/group/terlambatbertingkat/:GroupID"
-                        exact
-                        component={TerlambatBertingkatContainer}
-                    />
+                        <Route
+                            path="/group/edit/:GroupID"
+                            exact
+                            component={EditGroupContainer}
+                        />
+                        <Route
+                            path="/group/view/:GroupID"
+                            exact
+                            component={GroupDetailContainer}
+                        />
 
-                    <Route
-                        path="/group/terlambatbertingkat"
-                        exact
-                        component={TerlambatBertingkatContainer}
-                    />
+                        <Route
+                            path="/group/terlambatbertingkat/:GroupID"
+                            exact
+                            component={TerlambatBertingkatContainer}
+                        />
 
-                    {/* <Route path="/group/terlambatbertingkat/:GroupID/:RuleTerlambatBertingkatID" exact component={EditTerlambatBertingkatContainer} /> */}
-                    <Route
-                        path="/group/terlambatbertingkat/:GroupID/:RuleTerlambatBertingkatID"
-                        exact
-                        component={TerlambatBertingkatContainer}
-                    />
+                        <Route
+                            path="/group/terlambatbertingkat"
+                            exact
+                            component={TerlambatBertingkatContainer}
+                        />
 
-                    <Route path="/izin" exact component={IzinContainer} />
+                        {/* <Route path="/group/terlambatbertingkat/:GroupID/:RuleTerlambatBertingkatID" exact component={EditTerlambatBertingkatContainer} /> */}
+                        <Route
+                            path="/group/terlambatbertingkat/:GroupID/:RuleTerlambatBertingkatID"
+                            exact
+                            component={TerlambatBertingkatContainer}
+                        />
 
-                    <Route path="/izin/list" exact component={ListUserIzinContainer} />
+                        <Route path="/izin" exact component={IzinContainer} />
 
-                    <Route
-                        path="/izin/create/:UserID/:TglAwal/:TglAkhir"
-                        exact
-                        component={CreateIzinContainer}
-                    />
+                        <Route path="/izin/list" exact component={ListUserIzinContainer} />
 
-                    <Route path="/izin/group" exact component={CreateIzinGroup} />
+                        <Route
+                            path="/izin/create/:UserID/:TglAwal/:TglAkhir"
+                            exact
+                            component={CreateIzinContainer}
+                        />
 
-                    <Route path="/cabang" exact component={CabangContainer} />
+                        <Route path="/izin/group" exact component={CreateIzinGroup} />
 
-                    <Route
-                        path="/cabang/create"
-                        exact
-                        component={CreateCabangContainer}
-                    />
+                        <Route path="/cabang" exact component={CabangContainer} />
 
-                    <Route
-                        path="/cabang/edit/:KodeCabang"
-                        exact
-                        component={EditCabangContainer}
-                    />
+                        <Route
+                            path="/cabang/create"
+                            exact
+                            component={CreateCabangContainer}
+                        />
 
-                    <Route path="/superadmin" exact component={AdminContainer} />
+                        <Route
+                            path="/cabang/edit/:KodeCabang"
+                            exact
+                            component={EditCabangContainer}
+                        />
 
-                    <Route
-                        path="/superadmin/create"
-                        exact
-                        component={CreateAdminContainer}
-                    />
+                        <Route path="/superadmin" exact component={AdminContainer} />
 
-                    <Route
-                        path="/superadmin/edit/:AdminID"
-                        exact
-                        component={EditAdminContainer}
-                    />
+                        <Route
+                            path="/superadmin/create"
+                            exact
+                            component={CreateAdminContainer}
+                        />
 
-                    <Route
-                        path="/absensimanual"
-                        exact
-                        component={AbsensiManualContainer}
-                    />
-                    <Route
-                        path="/absensimanualpulang"
-                        exact
-                        component={AbsensiManualContainerPulang}
-                    />
+                        <Route
+                            path="/superadmin/edit/:AdminID"
+                            exact
+                            component={EditAdminContainer}
+                        />
 
-                    <Route
-                        path="/absensimanualistirahatkeluar"
-                        exact
-                        component={AbsensiManualContainerIstLuar}
-                    />
-                    <Route
-                        path="/absensimanualistirahatkembali"
-                        exact
-                        component={AbsensiManualContainerIstKembali}
-                    />
-                    <Route
-                        path="/absensimanualkeluarkantor"
-                        exact
-                        component={AbsensiManualContainerKeluarKantor}
-                    />
-                    <Route
-                        path="/absensimanualkembalikantor"
-                        exact
-                        component={AbsensiManualContainerKembaliKantor}
-                    />
+                        <Route
+                            path="/absensimanual"
+                            exact
+                            component={AbsensiManualContainer}
+                        />
+                        <Route
+                            path="/absensimanualpulang"
+                            exact
+                            component={AbsensiManualContainerPulang}
+                        />
 
-                    <Route path="/kelengkapanabsensi" exact component={KelengkapanAbsenContainer} />
-                    <Route path="/home" exact component={LandingPageContainer} />
+                        <Route
+                            path="/absensimanualistirahatkeluar"
+                            exact
+                            component={AbsensiManualContainerIstLuar}
+                        />
+                        <Route
+                            path="/absensimanualistirahatkembali"
+                            exact
+                            component={AbsensiManualContainerIstKembali}
+                        />
+                        <Route
+                            path="/absensimanualkeluarkantor"
+                            exact
+                            component={AbsensiManualContainerKeluarKantor}
+                        />
+                        <Route
+                            path="/absensimanualkembalikantor"
+                            exact
+                            component={AbsensiManualContainerKembaliKantor}
+                        />
 
-                    <Route path="/history" exact component={HistoryContainer} />
-                </Switch>
+                        <Route path="/kelengkapanabsensi" exact component={KelengkapanAbsenContainer} />
+                        <Route path="/home" exact component={LandingPageContainer} />
+
+                        <Route path="/history" exact component={HistoryContainer} />
+                        <Route path="/pengumuman" exact component={PengumumanContainer} />
+                        <Route path="/pengumuman/create" exact component={PengumumanEditContainer} />
+                        <Route path="/pengumuman/edit/:id" exact component={PengumumanEditContainer} />
+                        <Route path="/pengumuman/view/:id" exact component={PengumumanDetailContainer} />
+                    
+                        <Route path="/localdb/pegawai" exact component={LocaldbPegawaiContainer} />
+                        <Route path="/tutup-periode" exact component={TutupPeriodeContainer} />
+
+                    </Switch>
+                </ScrollIntoView>
             </BrowserRouter>
         );
     }

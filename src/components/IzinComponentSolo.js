@@ -43,7 +43,6 @@ const mapStateToProps = (state) => {
 
 
 const IzinComponentSolo = (props) => {
-  console.log(props)
   const handleClick = (dispatch, DatangID) => {
 
     swal({
@@ -154,11 +153,11 @@ const IzinComponentSolo = (props) => {
     },
   ];
 
-  // console.log(props.getIzinListSolo);
+
   return (
     <div>
       
-      { props.getIzinListSolo[0] ? (
+      { props.getIzinListSolo.length > 0 ? (
         <ToolkitProvider
           bootstrap4
           keyField="DatangID"

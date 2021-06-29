@@ -249,14 +249,6 @@ const LaporanDetail = (props) => {
       text: 'OK', value: 100
     }] // A numeric array is also available. the purpose of above example is custom the text
   };
-  
-  /*DatangID: 105
-JamKeluar: "11:31:00"
-JamKembali: "12:31:00"
-KeluarID: 1
-Keterangan: "undefined"
-KeteranganKembali: null
-TotalKeluar: null*/
 
   const expandRow = {
     renderer: (row) => (
@@ -268,7 +260,6 @@ TotalKeluar: null*/
           rowStyle={ {  fontWeight: "bold" , fontFamily: 'TimesNewRoman',  fontSize:"12px",padding : '0px' } } 
           columns={ dtColumns } 
           />
-
       </div>
     ),
     expanded:props.getExpandKey[0],
@@ -288,39 +279,6 @@ TotalKeluar: null*/
       defaultSorted= { defaultSorted }
     />
   );
-  // /*return (
-  //   <Container>
-  //     {props.getLaporanList ? (
-  //       <ToolkitProvider
-  //         bootstrap4
-  //         keyField="UserID"
-  //         data={props.getLaporanList}
-  //         columns={columns}
-  //         defaultSorted={defaultSorted}
-  //         search
-  //       >
-  //         {(props) => (
-  //           <div >
-
-
-  //             <BootstrapTable
-  //               {...props.baseProps}
-  //               pagination={paginationFactory()}
-  //             />
-  //           </div>
-  //         )}
-  //       </ToolkitProvider>
-  //     ) : (
-  //       <div className="text-center">
-  //         {props.errorLaporanList ? (
-  //           <h4>{props.errorLaporanList}</h4>
-  //         ) : (
-  //           <Spinner color="dark" />
-  //         )}
-  //       </div>
-  //     )}
-  //   </Container>
-  // );*/
 };
 
 export default connect(mapStateToProps, null)(LaporanDetail);

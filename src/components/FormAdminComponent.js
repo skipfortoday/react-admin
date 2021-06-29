@@ -5,116 +5,102 @@ import { FormGroup, Col, Label, Input, Row, Button } from "reactstrap";
 import AdminValidation from "../validations/AdminValidation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSave } from "@fortawesome/free-solid-svg-icons";
-
-
-const renderField = ({
-  input,
-  type,
-  placeholder,
-  label,
-  disabled,
-  readOnly,
-  meta: { touched, error, warning },
-}) => (
-  <Row>
-    <Col md="12">
-      <Label htmlFor="{input}" className="col-form-label">
-        {label}
-      </Label>
-    </Col>
-    <Col md="12">
-      <Input
-        {...input}
-        type={type}
-        placeholder={placeholder}
-        disabled={disabled}
-        readOnly={readOnly}
-        
-      ></Input>
-      {touched &&
-        ((error && <p style={{ color: "yellow" }}>{error}</p>) ||
-          (warning && <p style={{ color: "brown" }}>{warning}</p>))}
-    </Col>
-  </Row>
-);
+import { InputFieldComponentHrz } from "./formController/InputFieldComponentHrz";
+import { SelectFieldComponentHrz } from "./formController/SelectFieldComponentHrz";
 
 const mapStateToProps = (state) => {
 
-  //console.log(optsiterpilih);
-  return {
-    getOptUser : state.Opt.getOptUser,
-    initialValues: {
-      AdminID: state.Admin.getAdminDetail.AdminID,
-      TanggalCreate: state.Admin.getAdminDetail.TanggalCreate,
-      Password: state.Admin.getAdminDetail.Password
-    },
-  };
+   let valKodeCabang = null;
+   if(state.Opt.getOptCabang){
+      state.Opt.getOptCabang.map((data) =>{
+         if(data.value == state.Admin.getAdminDetail.KodeCabang){
+            valKodeCabang = data;
+            return;
+         }
+      })
+
+   }
+   // console.log(state.Admin.getAdminDetail);
+   return {
+      getOptUser: state.Opt.getOptUser,
+      getOptCabang: state.Opt.getOptCabang,
+      initialValues: {
+         AdminID: state.Admin.getAdminDetail.AdminID,
+         Username: state.Admin.getAdminDetail.Username,
+         TanggalCreate: state.Admin.getAdminDetail.TanggalCreate,
+         Password: state.Admin.getAdminDetail.Password,
+         KodeCabang: valKodeCabang
+      },
+   };
 };
 
-//let  options = [{ value: 'one', label: 'One' }, { value: 'two', label: 'Two' }];
-
-
 class FormAdminComponent extends Component {
-  render() {
-    return (
-      <form onSubmit={this.props.handleSubmit}>
-   
-        <FormGroup row>
-          <Col md={3}>
-            <FormGroup>
-              <Field
-                type="text"
-                name="AdminID"
-                component={renderField}
-                label="Admin ID :"
-              />
-            </FormGroup>
-          </Col>
+   render() {
+      return (
+         <form onSubmit={this.props.handleSubmit}>
+            <FormGroup row>
+               <Col md={6}>
+                  <FormGroup>
+                     <Field
+                        type="text"
+                        name="KodeCabang"
+                        options={this.props.getOptCabang}
+                        component={SelectFieldComponentHrz}
+                        label="Cabang :"
+                        isDisabled ={this.props.editing}
+                     />
+                  </FormGroup>
+                  <FormGroup>
+                     <Field
+                        type="text"
+                        name="Username"
+                        component={InputFieldComponentHrz}
+                        label="Username :"
+                        
+                     />
+                  </FormGroup>
 
-          <Col md={3}>
-            <FormGroup>
-              <Field
-                type="password"
-                name="Password"
-                component={renderField}
-                label="Password :"
-              />
-            </FormGroup>
-          </Col>
+                  <FormGroup>
+                     <Field
+                        type="password"
+                        name="Password"
+                        component={InputFieldComponentHrz}
+                        label="Password :"
+                     />
+                  </FormGroup>
 
-          <Col md={3}>
-            <FormGroup>
-              <Field
-                type="date"
-                name="TanggalCreate"
-                component={renderField}
-                disabled
-                label="Tanggal Create :"
-              />
+                  <FormGroup>
+                     <Field
+                        type="date"
+                        name="TanggalCreate"
+                        component={InputFieldComponentHrz}
+                        disabled
+                        label="Tanggal Create :"
+                     />
+                  </FormGroup>
+               </Col>
             </FormGroup>
-          </Col>
-        </FormGroup>
-        <FormGroup row>
-          <Col md="12">
-            <FormGroup>
-              <Button
-                color="dark"
-                type="submit"
-                disabled={this.props.submitting}
-              >
-                <FontAwesomeIcon icon={faSave} /> SIMPAN
-              </Button>
+            <FormGroup row>
+               <Col md="12">
+                  <FormGroup>
+                     <Button
+                        color="dark"
+                        type="submit"
+                        disabled={this.props.submitting}
+                     >
+                        <FontAwesomeIcon icon={faSave} /> SIMPAN
+                     </Button>
+                  </FormGroup>
+               </Col>
             </FormGroup>
-          </Col>
-        </FormGroup>
-      </form>
-    );
-  }
+         </form>
+      );
+   }
 }
 
 FormAdminComponent = reduxForm({
-  form: "formCreateAdmin",
-  validate: AdminValidation,
-  enableReinitialize: true,
+   form: "formCreateAdmin",
+   validate: AdminValidation,
+   enableReinitialize: true,
 })(FormAdminComponent);
 export default connect(mapStateToProps, null)(FormAdminComponent);

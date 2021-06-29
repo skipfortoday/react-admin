@@ -104,7 +104,6 @@ export const postCabangCreate = (data) => {
         data, headers
       )
       .then(function (response) {
-        console.log(response);
         
         dispatch({
           type: POST_CABANG_CREATE,

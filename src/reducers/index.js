@@ -10,9 +10,10 @@ import Admin from './admin.js'
 import Manual from './manual.js'
 import Login from './login.js'
 import History from './history.js'
+import Pengumuman from './pengumuman.js'
 import { reducer as formReducer } from 'redux-form'
 
 export default combineReducers({
-    Cabang,Laporan, Izin, Group, users, Opt, Login,Admin,TerlambatBertingkat,Manual,History,
+    Cabang,Laporan, Izin, Group, users, Opt, Login,Admin,TerlambatBertingkat,Manual,History,Pengumuman,
     form: formReducer
 })

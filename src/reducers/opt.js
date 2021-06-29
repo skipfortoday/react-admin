@@ -9,6 +9,7 @@ import {
   GET_OPT_USERMANUALKEMBALI,
   GET_OPT_USERMANUALKELUARIST,
   GET_OPT_USERMANUALKEMBALIIST,
+  AFTER_FINGER
 } from "../actions/optAction";
 
 let initialState = {
@@ -32,10 +33,65 @@ let initialState = {
   errorOptTerlambat: false,
   getOptCabang: false,
   errorOpCabang: false,
+  getAfterFinger: false,
+  errorgetAfterFinger: false,
 };
 
 const Opt = (state = initialState, action) => {
   switch (action.type) {
+    case AFTER_FINGER:
+      if (action.payload.data.status == 1) {
+        return {
+          ...state,
+          getAfterFinger: action.payload.data,
+          errorgetAfterFinger: action.payload.errorMessage,
+          getOptUserManual: [{
+            value: action.payload.data.UserID,
+            label: action.payload.data.UserID + " - " + action.payload.data.Nama
+          }],
+          getOptUserManualPulang: [{
+            DatangID: action.payload.data.DatangID,
+            value: action.payload.data.UserID,
+            label: action.payload.data.UserID + " - " + action.payload.data.Nama
+          }],
+          getOptUserManualKeluar: [
+            {
+              DatangID: action.payload.data.DatangID,
+              value: action.payload.data.UserID,
+              label: action.payload.data.UserID + " - " + action.payload.data.Nama
+            }
+          ],
+          getOptUserManualKembali: [
+            {
+              KeluarID: action.payload.data.KeluarID,
+              value: action.payload.data.UserID,
+              label: action.payload.data.UserID + " - " + action.payload.data.Nama
+            }
+          ],
+          getOptUserManualKeluarIst: [
+            {
+              DatangID: action.payload.data.DatangID,
+              value: action.payload.data.UserID,
+              label: action.payload.data.UserID + " - " + action.payload.data.Nama
+            }
+          ],
+          getOptUserManualKembaliIst: [
+            {
+              DatangID: action.payload.data.DatangID,
+              value: action.payload.data.UserID,
+              label: action.payload.data.UserID + " - " + action.payload.data.Nama
+            }
+          ],
+
+        };
+      } else {
+        return {
+          ...state,
+          getAfterFinger: action.payload.data,
+          errorgetAfterFinger: action.payload.errorMessage
+        };
+      }
+
     case GET_OPT_USER:
       return {
         ...state,

@@ -1,4 +1,5 @@
-import { GET_LIST_HISTORY, SET_FILTER_HISTORY, DEL_LIST_HISTORY } from '../actions/historyAction';
+import { GET_LIST_HISTORY, SET_FILTER_HISTORY, DEL_LIST_HISTORY } 
+from '../actions/historyAction';
 import { formatTglYmd } from '../containers/formatTgl';
 
 

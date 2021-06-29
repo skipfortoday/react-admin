@@ -10,7 +10,7 @@ const mapStateToProps = (state) => {
 };
 
   
-const RekapLeft = (props) => {
+const SummaryLaporan = (props) => {
   let ambil = JSON.parse(localStorage.getItem('user'));
   let nama = ambil.AdminID
   return (
@@ -139,4 +139,4 @@ const RekapLeft = (props) => {
   );
 };
 
-export default connect(mapStateToProps, null)(RekapLeft);
+export default connect(mapStateToProps, null)(SummaryLaporan);

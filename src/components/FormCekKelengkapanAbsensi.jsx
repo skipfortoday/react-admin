@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPaperPlane, faSearch } from "@fortawesome/free-solid-svg-icons";
 import { formatTglYmd } from "../containers/formatTgl";
 import { InputFieldComponent } from "./formController/InputFieldComponent";
+import { SelectRenderComponent } from "./SelectRenderComponent";
 
 const opsi = [
   { value: "OFF", label: "OFF" },
@@ -21,10 +22,15 @@ const opsi = [
 ];
 
 const mapStateToProps = (state) => {
+  var option = [{ value: "all", label: "Semua Karyawan" }];
+  option = option.concat(state.Opt.getOptUser);
+
   return {
+    getOptUser: option,
     initialValues: {
       TanggalScan: state.Laporan.defTglAwal,
       TanggalScanSampai: state.Laporan.defTglAkhir,
+      Nama: state.Laporan.defNama
     },
   };
 };
@@ -43,7 +49,7 @@ class FormCekKelengkapanAbsensi extends Component {
     return (
       <form onSubmit={this.props.handleSubmit}>
         <FormGroup row>
-          <Col md={5}>
+          <Col md={3}>
             <FormGroup>
               <Field
                 type="date"
@@ -55,13 +61,25 @@ class FormCekKelengkapanAbsensi extends Component {
               />
             </FormGroup>
           </Col>
-          <Col md={5}>
+          <Col md={3}>
             <FormGroup>
               <Field
                 type="date"
                 name="TanggalScanSampai"
                 component={InputFieldComponent}
                 label="Tanggal Akhir:"
+              />
+            </FormGroup>
+          </Col>
+
+          <Col md={4}>
+            <FormGroup>
+              <Field
+                type="text"
+                name="Nama"
+                component={SelectRenderComponent}
+                options={this.props.getOptUser}
+                label="Nama :"
               />
             </FormGroup>
           </Col>

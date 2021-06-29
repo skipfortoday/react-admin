@@ -25,6 +25,7 @@ export const resetProps = () => {
 export const postManualMasuk= (data) => {
     data.UserID = data.Nama.value;
     data.NamaUser = data.Nama.label;
+    data.Shift = data.Shift.value;
     return (dispatch) => {
       axios
         .post(

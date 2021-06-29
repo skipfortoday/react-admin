@@ -19,9 +19,15 @@ const mapStateToProps = (state) => {
   return {
     getOptUser: state.Opt.getOptUser,
     initialValues: {
-      Nama: { value: state.users.getUserDetail.UserID, label: state.users.getUserDetail.Nama },
+      Nama: {
+        value: state.users.getUserDetail ? state.users.getUserDetail.UserID : "",
+        label: state.users.getUserDetail ? state.users.getUserDetail.Nama : ""
+      },
       TglAwal: state.Laporan.getLaporanRekap ? state.Laporan.getLaporanRekap.TglAwal : state.Laporan.defTglAwal,
       TglAkhir: state.Laporan.getLaporanRekap ? state.Laporan.getLaporanRekap.TglAkhir : state.Laporan.defTglAkhir
+      // Nama: { value: "SB1MIT005", label: "M ALI SHODIKIN" },
+      // TglAwal: "2021-06-25",
+      // TglAkhir: "2021-06-25"
     },
   };
 };
@@ -72,10 +78,10 @@ class LengkapiAbsen extends Component {
               </Col>
               <Col md={3}>
                 <Row>
-                <FormGroup style={{ marginTop: "37px" , marginRight: "70px" }}>
+                  <FormGroup style={{ marginTop: "37px", marginRight: "70px" }}>
                     <Button
-                      onClick={this.props.handleSubmit(values => 
-                        this.props.onSubmit({ 
+                      onClick={this.props.handleSubmit(values =>
+                        this.props.onSubmit({
                           ...values,
                           type: 'view'
                         }))}
@@ -89,11 +95,11 @@ class LengkapiAbsen extends Component {
 
                   <FormGroup style={{ marginTop: "37px" }}>
                     <Button
-                     onClick={this.props.handleSubmit(values => 
-                      this.props.onSubmit({ 
-                        ...values,
-                        type: 'proses'
-                      }))}
+                      onClick={this.props.handleSubmit((values) =>
+                        this.props.onSubmit({
+                          ...values,
+                          type: 'proses'
+                        }))}
                       color="info"
                       type="submit"
                       disabled={this.props.submitting}
@@ -110,8 +116,6 @@ class LengkapiAbsen extends Component {
     );
   }
 }
-
-
 
 LengkapiAbsen = reduxForm({
   form: "formLengkapiAbsen",

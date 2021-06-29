@@ -50,7 +50,7 @@ class SetConfig extends Component {
     render() {
         return (
             <div>
-                <Navbar color="dark" dark expand="md">
+                <Navbar color="dark" dark expand="md" fixed="top">
                     <Container>
                         <Link to="/">
                             <NavLink style={{textDecoration:"none", color:"#FFF"}}>

@@ -10,32 +10,6 @@ export const GET_ADMIN_DETAIL = "GET_ADMIN_DETAIL";
 export const POST_ADMIN_CREATE = "POST_ADMIN_CREATE";
 export const PUT_ADMIN_EDIT = "PUT_ADMIN_EDIT";
 
-
-// export const getAdminTimeNow = () => {
-//   return (dispatch) => {
-//     setInterval (function() {
-//     axios.get(BASEURL+"/api/gettime2")
-//       .then(function (response) {
-//         dispatch({
-//           type: GET_ADMIN_TIMENOW,
-//           payload: {
-//             data: response.data,
-//             errorMessage: false,
-//           },
-//         });
-//       })
-//       .catch(function (error) {
-//         dispatch({
-//           type: GET_ADMIN_TIMENOW,
-//           payload: {
-//             data: false,
-//             errorMessage: error.message,
-//           },
-//         });
-//       });},1000);
-//   };
-// };
-
 export const getAdminOnDuty = () => {
   return (dispatch) => {
     axios
@@ -87,7 +61,19 @@ export const getAdminList = () => {
   };
 };
 
-export const getAdminDetail = (AdminID) => {
+export const getAdminDetail = (AdminID = null) => {
+  if(AdminID == null){
+    return (dispatch) => {
+      dispatch({
+        type: GET_ADMIN_DETAIL,
+        payload: {
+          data: false,
+          errorMessage: false,
+        },
+      });
+    }
+  }
+
   return (dispatch) => {
     axios
       .get(
@@ -115,15 +101,26 @@ export const getAdminDetail = (AdminID) => {
 };
 
 export const postAdminCreate = (data) => {
+  if(data == null){
+    return (dispatch) => {
+      dispatch({
+        type: POST_ADMIN_CREATE,
+        payload: {
+          data: false,
+          errorMessage: false,
+        },
+      });
+    }
+  }
+
   return (dispatch) => {
     axios
       .post(
-        BASEURL+"/api/superadmin/",
+        BASEURL+"/api/superadmin",
         data, 
         headers
       )
       .then(function (response) {
-        console.log(response);
         
         dispatch({
           type: POST_ADMIN_CREATE,

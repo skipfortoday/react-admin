@@ -58,7 +58,7 @@ class LoginComponent extends Component {
             <FormGroup>
               <Field
                 type="text"
-                name="AdminID"
+                name="Username"
                 component={renderField}
                 label="Username"
               />

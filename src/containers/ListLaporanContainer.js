@@ -9,11 +9,13 @@ import {
 } from "../actions/laporanAction";
 import LengkapiAbsenGuestComponent from "../components/LengkapiAbsenGuestComponent";
 import { getOptUser } from "../actions/optAction";
-import { Container, Row, Spinner } from "reactstrap";
+import { Container, Row, Spinner, Modal } from "reactstrap";
 import NamaCabangLaporan from "../components/NamaCabangLaporan";
 import RekapLaporan from "../components/RekapLaporan";
 import LaporanDetail from "../components/LaporanDetail";
-import RekapLeft from "../components/RekapLeft";
+import SummaryLaporan from "../components/SummaryLaporan";
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
+import Loader from "react-loader-spinner";
 
 const mapStateToProps = (state) => {
   return {
@@ -24,9 +26,14 @@ const mapStateToProps = (state) => {
   };
 };
 
-
-
 class ListLaporanContainer extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      willPrinting:false
+    }
+  }
+
   componentDidMount() {
     this.props.dispatch(getOptUser());
     this.props.dispatch(getUsersList());
@@ -34,27 +41,54 @@ class ListLaporanContainer extends Component {
 
   handleSubmit(data) {
     this.props.dispatch(resetLaporan());
-    this.props.dispatch(
-      getLaporanDetail(data.Nama.value, data.TglAwal, data.TglAkhir)
-    );
-    // this.props.dispatch(getLaporanHead(data.Nama.value));
-    // this.props.dispatch(getUserDetail(data.Nama.value));
-    // this.props.dispatch(
-    //   getLaporanRekap(data.Nama.value, data.TglAwal, data.TglAkhir)
-    // );
+    this.props.dispatch(getLaporanDetail(data.Nama.value, data.TglAwal, data.TglAkhir));
     this.props.dispatch(setLoading(true));
-    if (data.type == "printview") {
-
-      setTimeout(function () {
-        window.print();
-      }, 1000);
+    if(data.type == 'printview'){
+      this.setState({
+        ...this,
+        willPrinting:true,
+      })
     }
-    
+  }
+
+  componentDidUpdate(){
+    if(this.state.willPrinting && !this.props.isLoading){
+      setTimeout(() => {
+        window.print();
+      }, 100);
+      this.setState({
+        ...this,
+        willPrinting:false,
+      })
+    }
+  }
+
+  componentWillUnmount(){
+    this.props.dispatch(resetLaporan())
   }
 
   render() {
+    if(this.props.getLaporanDetail){
+      this.props.dispatch(setLoading(false))
+    }
     return (
-      <div>
+      <div style={{minHeight:900}}>
+        <Modal 
+          isOpen={this.props.isLoading} 
+          backdropTransition={{timeout:0}}
+          modalTransition={{timeout:0}}
+          fade={false}
+          className="modal-lg custom-modal" 
+          centered={true} style={{textAlign:"center"}}>
+            {/* #00BFFF */}
+          <Loader
+            type="Oval"
+            color="#FFF"
+            height={60}
+            width={60}
+          />
+        </Modal>
+
         <NavbarComponent />
         <div style={{ backgroundColor: "#f9a826" }}>
           <tr>
@@ -66,20 +100,20 @@ class ListLaporanContainer extends Component {
             </td>
           </tr>
         </div>
-        {this.props.isLoading ? (
-          <div style={{textAlign:"center", padding:"50px 0px"}}>
-            <Spinner />
-          </div>
-        ) : ("") }
+        
         {this.props.getLaporanDetail ? (
           <Container>
             <Row className="page-header">
+              {/* kop cabang */}
               <NamaCabangLaporan />
+              {/* periode, nama, jabatan  */}
               <RekapLaporan />
             </Row>
             <Row>
+              {/* table list absensi */}
               <LaporanDetail />
-              <RekapLeft />
+              {/* summary absensi */}
+              <SummaryLaporan />
             </Row>
           </Container>
         ) : (

@@ -8,6 +8,8 @@ import {
     faUserPlus,
     faRetweet,
     faUndoAlt,
+    faFingerprint,
+    faTimes,
 } from "@fortawesome/free-solid-svg-icons";
 import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
 import paginationFactory from "react-bootstrap-table2-paginator";
@@ -18,7 +20,8 @@ import {
     deleteUser,
     resetUser,
     resetPasswordUser,
-    getUsersList
+    getUsersList,
+    registerFingerPrint
 } from "../actions/userAction";
 
 const { SearchBar } = Search;
@@ -87,6 +90,9 @@ const defaultSorted = [
 ];
 
 const mapStateToProps = (state) => {
+    let getLocalFp = [];
+    if (state.users.getLocalFp) getLocalFp = state.users.getLocalFp;
+
     return {
         getUsersList: state.users.getUsersList,
         errorUsersList: state.users.errorUsersList,
@@ -94,6 +100,7 @@ const mapStateToProps = (state) => {
 };
 
 const TableUserComponent = (props) => {
+
 
     const [resetDevice, setResetDevice] = useState(false);
     const toggleResetDevice = () => setResetDevice(!resetDevice);
@@ -140,6 +147,40 @@ const TableUserComponent = (props) => {
             style: () => {
                 return { fontWeight: "normal" };
             },
+            formatter: (val, row) => {
+                return (
+                    <Link to={"/group/view/" + row.GroupID} style={{ color: "unset" }}>
+                        {val}
+                    </Link>
+                )
+            }
+        },
+        {
+            dataField: "FPLocal",
+            text: "Fingerprint",
+            sort: true,
+            headerStyle: () => {
+                return { width: "50px", backgroundColor: "#f9a826" };
+            },
+            style: () => {
+                return { fontWeight: "normal" };
+            },
+            formatter: (val, row) => {
+                return val ? (
+                    <div>
+                        Registered &nbsp;
+                        <Button
+                            onClick={() => props.delFingerprint(row.UserID, row.Nama)}
+                            size="sm"
+                            color="danger"
+                            >
+                            <FontAwesomeIcon
+                                icon={faTimes}
+                            />
+                        </Button>
+                    </div>
+                ) : "Not Registered"
+            }
         },
 
         {
@@ -151,6 +192,17 @@ const TableUserComponent = (props) => {
             formatter: (rowContent, row) => {
                 return (
                     <div>
+                        {/* <Link to={"enrollfp/" + row.UserID}> */}
+                            <Button
+                                id="btRegFingerprint"
+                                size="sm"
+                                color="warning"
+                                className="mr-2"
+                            onClick={() => props.regFingerprint(row.UserID)}
+                            >
+                                <FontAwesomeIcon icon={faFingerprint} />
+                            </Button>
+                        {/* </Link> */}
                         <Button
                             id="btResetDevice"
                             size="sm"
@@ -191,7 +243,7 @@ const TableUserComponent = (props) => {
 
     return (
         <div>
-            
+
             {props.getUsersList ? (
                 <ToolkitProvider
                     bootstrap4
@@ -215,6 +267,11 @@ const TableUserComponent = (props) => {
                                                 <FontAwesomeIcon icon={faUserPlus} /> Tambah Pegawai
                                             </Button>
                                         </Link>
+                                        <Link to="/fingerprint">
+                                            <Button color="warning" className="mr-2">
+                                                <FontAwesomeIcon icon={faFingerprint} /> Singkron Data Fingerprint
+                                            </Button>
+                                        </Link>
                                     </Col>
 
                                     <Col>
@@ -226,26 +283,30 @@ const TableUserComponent = (props) => {
                                         </div>
                                     </Col>
                                 </Row>
-                                  
+
                                 <BootstrapTable
                                     {...props.baseProps}
                                     pagination={paginationFactory()}
                                 />
                             </Card>
-                            <div>
-                                <Tooltip placement="auto" isOpen={resetDevice} target="btResetDevice" toggle={toggleResetDevice}>
-                                    Reset Device Pegawai
-                                </Tooltip>
-                                <Tooltip placement="auto" isOpen={editPegawai} target="btEditPegawai" toggle={toggleEditPegawai}>
-                                    Edit Data Pegawai
-                                </Tooltip>
-                                <Tooltip placement="auto" isOpen={resetPassword} target="btResetPassword" toggle={toggleResetPassword}>
-                                    Reset Password
-                                </Tooltip>
-                                <Tooltip placement="auto" isOpen={deletePegawai} target="btDeletePegawai" toggle={toggleDeletePegawai}>
-                                    Hapus Pegawai
-                                </Tooltip>
-                            </div>
+                            {
+                                props.getUsersList ? (
+                                    <div>
+                                        <Tooltip placement="auto" isOpen={resetDevice} target="btResetDevice" toggle={toggleResetDevice}>
+                                            Reset Device Pegawai
+                                        </Tooltip>
+                                        <Tooltip placement="auto" isOpen={editPegawai} target="btEditPegawai" toggle={toggleEditPegawai}>
+                                            Edit Data Pegawai
+                                        </Tooltip>
+                                        <Tooltip placement="auto" isOpen={resetPassword} target="btResetPassword" toggle={toggleResetPassword}>
+                                            Reset Password
+                                        </Tooltip>
+                                        <Tooltip placement="auto" isOpen={deletePegawai} target="btDeletePegawai" toggle={toggleDeletePegawai}>
+                                            Hapus Pegawai
+                                        </Tooltip>
+                                    </div>
+                                ) : ("")
+                            }
                         </div>
                     )}
                 </ToolkitProvider>
@@ -258,7 +319,7 @@ const TableUserComponent = (props) => {
                     )}
                 </div>
             )}
-            
+
         </div>
     );
 };

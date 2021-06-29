@@ -7,6 +7,7 @@ import {Container } from "reactstrap";
 import bgLogin from "../bg_login_page.png"
 import userLogin from "../icon_user_login.png"
 import './LoginStyle.css';
+import { Redirect } from "react-router";
 
 const mapStateToProps = (state) => {
   return {
@@ -32,7 +33,7 @@ class LoginContainer extends Component {
         this.props.errorResponLoginUser ||
         this.props.getResponLoginUser.Login === "false"
       ) {
-        alert(this.props.loginStatusMessage);
+        swal("Gagal", this.props.loginStatusMessage, "error");
       } else {
         if (this.props.getResponLoginUser.RoleAdmin === 99) {
           swal("Sucsess!", this.props.loginStatusMessage, "success")
@@ -53,8 +54,12 @@ class LoginContainer extends Component {
   }
 
   render() {
+    if (localStorage.getItem('user')) {
+      return <Redirect to="/" />;
+    }
+
     return (
-      <div className="mainWrapper" style={{backgroundImage:`url(${bgLogin})`}}>
+      <div className="mainWrapper" style={{backgroundImage:`url(${bgLogin})`, marginTop:-55}}>
         <Container>
           <div className="loginWrapper">
             <div className="loginBox">

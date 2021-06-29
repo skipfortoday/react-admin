@@ -5,14 +5,9 @@ const app = electron.app;
 
 var template = [
     {
-        label: 'Close',
-        accelerator: 'CmdOrCtrl+W',
-        role: 'close'
-    },
-    {
-        label: 'Minimize',
-        accelerator: 'CmdOrCtrl+M',
-        role: 'minimize',
+        label: 'Refresh',
+        accelerator: 'CmdOrCtrl+R',
+        role: 'reload',
     }
 ]
 

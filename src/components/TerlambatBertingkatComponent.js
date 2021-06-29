@@ -61,7 +61,7 @@ const TerlambatBertingkatComponent = (props) => {
         return { width: "5px", backgroundColor: "#f9a826" };
       },
       style: () => {
-        return { fontWeight: "bold" };
+        return { fontWeight: "normal" };
       },
     },
     {
@@ -72,7 +72,7 @@ const TerlambatBertingkatComponent = (props) => {
         return { width: "30px", backgroundColor: "#f9a826" };
       },
       style: () => {
-        return { fontWeight: "bold" };
+        return { fontWeight: "normal" };
       },
     },
     {
@@ -83,7 +83,7 @@ const TerlambatBertingkatComponent = (props) => {
         return { width: "30px", backgroundColor: "#f9a826" };
       },
       style: () => {
-        return { fontWeight: "bold" };
+        return { fontWeight: "normal" };
       },
     },
     {
@@ -94,7 +94,7 @@ const TerlambatBertingkatComponent = (props) => {
         return { width: "100px", backgroundColor: "#f9a826" };
       },
       style: () => {
-        return { fontWeight: "bold" };
+        return { fontWeight: "normal" };
       },
 
     },
@@ -106,7 +106,7 @@ const TerlambatBertingkatComponent = (props) => {
         return { width: "100px", backgroundColor: "#f9a826" };
       },
       style: () => {
-        return { fontWeight: "bold" };
+        return { fontWeight: "normal", textAlign:"right" };
       },
 
     },

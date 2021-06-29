@@ -12,13 +12,12 @@ import {
 import { siteConfig } from "../config";
 const NavbarComponent = (props) => {
   const [collapsed, setCollapsed] = useState(true);
-
   const toggleNavbar = () => setCollapsed(!collapsed);
+  let ambil = JSON.parse(localStorage.getItem("user"));
 
   return (
     <div>
-
-      <Navbar color="dark" dark expand="md">
+      <Navbar color="dark" dark expand="md" fixed="top">
         <img src="/logodarkgold.jpeg" alt="logodarkgold" />
         <NavbarBrand> </NavbarBrand>
         <NavbarBrand> L'viors Attendance System</NavbarBrand>
