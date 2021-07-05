@@ -1,0 +1,44 @@
+{
+  "name": "restful-api",
+  "version": "1.0.0",
+  "description": "restful-api",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "forever start --minUptime 1000 --spinSleepTime 1000 index.js",
+    "stop": "forever stopall",
+    "mulai": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/skipfortoday/restful-api.git"
+  },
+  "author": "Rizqi Tato",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/skipfortoday/restful-api/issues"
+  },
+  "homepage": "https://github.com/skipfortoday/restful-api#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cookie-parser": "^1.4.5",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-session": "^1.17.1",
+    "forever-monitor": "^3.0.3",
+    "install": "^0.13.0",
+    "ip": "^1.1.5",
+    "jsonwebtoken": "^8.5.1",
+    "log4js": "^6.3.0",
+    "md5": "^2.3.0",
+    "moment": "^2.29.1",
+    "morgan": "^1.10.0",
+    "multer": "^1.4.2",
+    "mysql": "^2.18.1",
+    "mysql-promise": "^5.0.0",
+    "nodemon": "^2.0.7",
+    "pdfkit": "^0.11.0",
+    "rotating-file-stream": "^2.1.5"
+  }
+}

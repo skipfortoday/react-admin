@@ -1,0 +1,21 @@
+::ffff:127.0.0.1 - - [14/Jun/2021:03:10:55 +0000] "GET /app/gettime/SB1MIT005 HTTP/1.1" 200 482 "-" "Dart/2.13 (dart:io)"
+::ffff:127.0.0.1 - - [14/Jun/2021:03:10:56 +0000] "GET /app/pengumuman HTTP/1.1" 200 12124 "-" "Dart/2.13 (dart:io)"
+::ffff:127.0.0.1 - - [14/Jun/2021:03:11:00 +0000] "GET /app/gettime/SB1MIT005 HTTP/1.1" 200 482 "-" "Dart/2.13 (dart:io)"
+::ffff:127.0.0.1 - - [14/Jun/2021:03:11:02 +0000] "GET /app/listscanperhari HTTP/1.1" 200 2045 "-" "Dart/2.13 (dart:io)"
+::ffff:127.0.0.1 - - [14/Jun/2021:03:13:26 +0000] "GET /xxx HTTP/1.1" 200 2 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.77 Safari/537.36 Edg/91.0.864.41"
+::ffff:127.0.0.1 - - [14/Jun/2021:03:13:26 +0000] "GET /favicon.ico HTTP/1.1" 404 150 "http://absensi.lviors.com/xxx" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.77 Safari/537.36 Edg/91.0.864.41"
+::ffff:127.0.0.1 - - [14/Jun/2021:03:14:19 +0000] "GET /xxx HTTP/1.1" 200 2 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.77 Safari/537.36 Edg/91.0.864.41"
+::ffff:127.0.0.1 - - [14/Jun/2021:03:14:21 +0000] "GET /xxx HTTP/1.1" 200 2 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.77 Safari/537.36 Edg/91.0.864.41"
+::ffff:127.0.0.1 - - [14/Jun/2021:03:15:20 +0000] "GET /xxx HTTP/1.1" 200 2 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.77 Safari/537.36 Edg/91.0.864.41"
+::ffff:127.0.0.1 - - [14/Jun/2021:03:15:30 +0000] "GET /xxx HTTP/1.1" 200 2 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.77 Safari/537.36 Edg/91.0.864.41"
+::ffff:127.0.0.1 - - [14/Jun/2021:03:16:10 +0000] "GET /xxx HTTP/1.1" 200 2 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.77 Safari/537.36 Edg/91.0.864.41"
+::ffff:127.0.0.1 - - [14/Jun/2021:03:17:24 +0000] "GET /xxx HTTP/1.1" 200 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.77 Safari/537.36 Edg/91.0.864.41"
+::ffff:127.0.0.1 - - [14/Jun/2021:03:19:08 +0000] "GET /xxx HTTP/1.1" 500 1167 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.77 Safari/537.36 Edg/91.0.864.41"
+::ffff:127.0.0.1 - - [14/Jun/2021:03:20:21 +0000] "GET /xxx HTTP/1.1" 500 1167
+[0mGET /xxx [31m500[0m 7.962 ms - 1167[0m
+::ffff:127.0.0.1 - GET /xxx HTTP/1.1 500 1167 - 7.515 ms
+::ffff:127.0.0.1 - GET /log HTTP/1.1 404 142 - 7.724 ms
+::ffff:127.0.0.1 - GET /log/access.loh HTTP/1.1 404 153 - 0.718 ms
+::ffff:127.0.0.1 - GET /log/access.log HTTP/1.1 404 153 - 0.673 ms
+GET /log/access.log 404 153 - 6.809 ms
+GET /xxx 500 1167 - 6.352 ms
