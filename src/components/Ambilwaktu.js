@@ -4,16 +4,21 @@ import React from "react";
 
 const Ambilwaktu = (props) => {
   	const [today, setDate] = React.useState(new Date()); // Save the current date to be able to trigger an update
-
-  	React.useEffect(() => {
+    React.useEffect(() => {
       const timer = setInterval(() => { // Creates an interval which will update the current data every minute
-      // This will trigger a rerender every component that uses the useDate hook.
-      setDate(new Date());
-    }, 1000);
-    return () => {
-      clearInterval(timer); // Return a funtion to clear the timer so that it will stop being called on unmount
+        // This will trigger a rerender every component that uses the useDate hook.
+        setDate(new Date());
+        // setCounter(counter+1)
+      }, 1000);
+      return () => {
+        clearInterval(timer); // Return a funtion to clear the timer so that it will stop being called on unmount
+      }
+    }, []);
+    let sec = today.getSeconds();
+    // console.log(sec, sec > 50 && sec < 52 && !props.isOnline)
+    if(sec%50 === 0 && !props.isOnline) { // cek per menit
+      props.cek()
     }
-  }, []);;
 
     const d = today.getDate() < 10 ? '0'+today.getDate() : today.getDate();
     const m = (today.getMonth()+1) < 10 ? '0'+(today.getMonth()+1) : today.getMonth();

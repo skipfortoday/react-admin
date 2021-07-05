@@ -12,6 +12,24 @@ const webSocketServer = require("websocket").server;
 var W3CWebSocket = require("websocket").w3cwebsocket;
 var client = new W3CWebSocket("ws://localhost:8081/");
 
+const sqlite3 = require('sqlite3').verbose();
+const Database = require('sqlite-async')
+const moment = require("moment");
+
+// const url_endpoint = "https://absensei.lviors.com";
+const url_endpoint = "http://localhost:3009";
+
+
+// , (err) => {
+// 	if (err) {
+// 		console.error(err.message);
+// 	}
+// 	console.log('Connected to the sqlite local database.');
+// });
+
+// const db = require('./asyncdb.js');
+
+
 var app = express();
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -20,14 +38,17 @@ app.use(bodyParser.json());
 let jardir = __dirname + '/../../../jar/Launcher.jar';
 let fpdir = __dirname + '/../../../fp/';
 let ssdir = __dirname + '/../../../ss/';
+let dbdir = __dirname + '/../../../db/';
 
 // cek , jika ada fie dev.txt berarti di develop enviroment
 if (fs.existsSync(__dirname + "/../../dev.txt")) {
 	jardir = __dirname + '/../../dist/win-unpacked/resources/jar/Launcher.jar';
 	fpdir = __dirname + '/../../dist/win-unpacked/resources/fp/';
 	ssdir = __dirname + '/../../dist/win-unpacked/resources/ss/';
+	dbdir = __dirname + '/../../dist/win-unpacked/resources/db/';
 }
 
+let db = new sqlite3.Database(dbdir+'local_db.db');
 const storage = multer.diskStorage({
 	destination: path.join(__dirname + '/../../../fp/'),
 	filename: function (req, file, cb) {
@@ -73,11 +94,11 @@ app.post('/register/result', async (request, response) => {
 		fd.append("file", fs.createReadStream(fpdir + UserID + ".fpt"))
 
 		fd.pipe(concat({ encoding: 'buffer' }, (data) => {
-			axios.post("https://absensi.lviors.com/api/uploadfp", data, {
+			axios.post(url_endpoint+"/api/uploadfp", data, {
 				headers: fd.getHeaders()
 			})
 				.then(function (response) {
-					console.log("respons api server :" + response)
+					// console.log("respons api server :" + response)
 				})
 		}))
 	}
@@ -123,7 +144,7 @@ app.delete("/deletefingerprint/:id", (req, res) => {
 		}
 
 		axios.delete(
-			"https://absensi.lviors.com/api/deletefingerprint/"+UserID
+			url_endpoint+"/api/deletefingerprint/"+UserID
 		)
 		.then( (response) => {
 			res.send({status:true, message:"Berhasil hapus"})
@@ -136,7 +157,7 @@ app.delete("/deletefingerprint/:id", (req, res) => {
 
 const downloadfptolocal=(UserID)=>{
 	return new Promise((resolve, reject) =>{
-		let fpserver = "https://absensi.lviors.com/downloadfp?id="+UserID;
+		let fpserver = url_endpoint+"/downloadfp?id="+UserID;
 		https.get(fpserver, (res) => {
 			let path =  fpdir + UserID+".fpt";
 			const filePath = fs.createWriteStream(path);
@@ -151,7 +172,7 @@ const downloadfptolocal=(UserID)=>{
 
 app.get('/downloadfpt', (req, resp) => {
 
-	let fpt = "https://absensi.lviors.com/testdownload";
+	let fpt = url_endpoint+"/testdownload";
 	let jpg = "https://www.lviors.com/images/sun-gel.jpg";
 	
 	https.get(fpt, (res) => {
@@ -161,7 +182,7 @@ app.get('/downloadfpt', (req, resp) => {
 		res.pipe(filePath);
 		filePath.on('finish', () => {
 			filePath.close();
-			console.log('Download Completed');
+			// console.log('Download Completed');
 			resp.send("ok")
 		})
 	})
@@ -220,7 +241,7 @@ app.get('/register/:id/:key', async function (req, res) {
 			if (err) {
 				console.log(err)
 			}
-			console.log(stdout)
+			// console.log(stdout)
 		})
 	res.send('ok')
 
@@ -235,7 +256,7 @@ app.get('/verifikasi', async function (req, res) {
 				if (err) {
 					console.log(err)
 				}
-				console.log(stdout)
+				// console.log(stdout)
 			})
 	res.send('ok')
 });
@@ -265,7 +286,7 @@ const tgl = () =>{
 
 app.get('/screenshoot/:id', (req, res) => {
 	let filename = ssdir+req.params.id+"_"+tgl()+".jpeg";
-	console.log(filename)
+	// console.log(filename)
 
 	screenshot({filename:filename}).then((img) => {
 		res.send(filename)
@@ -275,9 +296,167 @@ app.get('/screenshoot/:id', (req, res) => {
 	})
 })
 
-// app.get('/users', (req, res) => {
+app.get("/onduty", (req, res)=>{
+	let q = `SELECT Nama, a.ScanMasuk
+	FROM attlog a
+	WHERE a.TanggalScan = CURRENT_DATE
+	`;
 	
-// })
+	db.all(q, [], (err, rows) => {
+		if (err) throw err;
+		res.send(rows)
+	})
+})
+
+app.get("/synctoserver", (req, res)=>{
+	// console.log(req.headers)
+	let sql = `
+		SELECT * FROM attlog 
+		WHERE Status = 0 OR (StatusPulang = 0 AND ScanPulang IS NOT NULL)`;
+	db.all(sql, [], (err, rows) => {
+		if (err) throw err;
+		let postData = {attlogs:rows}
+		let header ={headers:{kodecabang:req.headers.kodecabang}}
+		if(rows.length>0){
+			axios
+			.post(url_endpoint+"/api/synctoserver", postData, header)
+			.then(function (response) {
+				console.log("resplocal",response.data)
+			})
+			.catch(function (error) {
+				console.log('error')
+			});
+		}
+		res.send("OK LOKAL")
+	})
+})
+
+app.post("/synctolocal", async (req, res)=>{
+
+	// let attlogs = [{UserID:"SB1MIT005", TanggalScan:"2021-06-29"}]
+	let arr = [];
+	let attlogs = req.body.attlogs;
+	let i = 0;
+	Promise.all(attlogs.map(async (item, key)=>{
+		let q = `SELECT * FROM attlog WHERE UserID = "`+item.UserID+`"
+			AND TanggalScan = "`+item.TanggalScan+`"`;
+		// let log = await db.get(q, [item.UserID, item.TanggalScan]);
+		// if(log) arr.push(log)
+		db.get(q, [], (err, row) => {
+			// if(row) arr.push(row);
+			if(!row) {
+				let qins = `
+				INSERT INTO attlog(
+					UserID, TanggalScan, DatangID, Nama, 
+					ScanMasuk, ScanPulang, KodeCabang, KodeCabangPulang, Status )
+				VALUES(
+					?, ?, ?, ?,
+					?, ?, ?, ?, ?
+				)`;
+
+				let parms = [
+					item.UserID, item.TanggalScan, item.DatangID, item.Nama, 
+					item.ScanMasuk, item.ScanPulang, item.KodeCabang, item.KodeCabangPulang, 1
+				]
+
+				db.run(qins, parms, function(err) {
+					// if (err) {
+					//   return console.log(err.message);
+					// }
+					
+					console.log("synctolocal", this.lastID, err);
+				});
+			}else{
+				if(row.Status == 0){
+					let qupd = `UPDATE attlog 
+					SET UserID = ?, TanggalScan = ?, 
+					DatangID = ?, Nama = ?, 
+					ScanMasuk = ?, ScanPulang = ?, KodeCabang = ?, KodeCabangPulang = ?, 
+					Status = ?
+					WHERE id = ?`;
+					let parms = [
+						item.UserID, item.TanggalScan, item.DatangID, item.Nama, 
+						item.ScanMasuk, item.ScanPulang, item.KodeCabang, item.KodeCabangPulang, 1,
+						row.id
+					]
+	
+					db.run(qupd, parms, function(err) {
+						if (err) {
+						  return console.log(err.message);
+						}
+					});
+
+				}
+			}
+			// sementara, karena belum dapat fungsi asyncnya
+			if(i == attlogs.length -1) res.send(arr) 
+			i++;
+		})
+	}))
+
+
+	// res.send(arr)
+})
+
+app.get("/cekuserafterfinger/:id/:action",(req, res)=>{
+	let UserID = req.params.id
+	let Action = req.params.action
+
+	if(Action == 'masuk'){
+		let q = `
+			SELECT 
+				u.UserID, u.Nama , 
+				CASE WHEN a.id IS NULL THEN 1 ELSE 0 END status,
+				CASE WHEN a.id IS NULL THEN 'Anda Bisa masuk' ELSE 'Anda Sudah Masuk' END message 
+			FROM user u
+			LEFT JOIN attlog a ON a.UserID = u.UserID AND a.TanggalScan = CURRENT_DATE
+			WHERE u.UserID = '`+UserID+`'
+			LIMIT 1
+		`;
+		// let log = await db.get(q, [item.UserID, item.TanggalScan]);
+		// if(log) arr.push(log)
+		db.get(q, [], (err, row) => {
+			if (err) throw err;
+			res.send(row)
+		});
+	}else{
+		res.send("oooo")
+	}
+})
+
+app.post("/postmasuk", (req, res) => {
+	let data = {
+        Tanggal: moment.parseZone(moment()).format('YYYY-MM-DD'),
+        ScanMasuk: moment.parseZone(moment()).format('HH:mm:ss'),
+        UserID: req.body.UserID,
+        Nama: req.body.NamaUser.split(" - ")[1],
+		DatangID: req.body.DatangID,
+		Status:req.body.Status,
+		Shift:req.body.Shift,
+    }
+    let ket = req.body.Keterangan == undefined ? '' : req.body.Keterangan;
+	let kodeCabang = req.headers.kodecabang;
+	let q = `
+		INSERT INTO attlog (
+			UserID, TanggalScan, DatangID, Nama, ScanMasuk, 
+			KodeCabang, Status, Keterangan, Shift
+		) VALUES(
+			?, ?, ?, ?, ?,
+			?, ?, ?, ?
+		)
+	`;
+
+	let parms = [
+		data.UserID, data.Tanggal, data.DatangID, data.Nama, data.ScanMasuk, 
+		kodeCabang,data.Status,ket, data.Shift];
+	db.run(q, parms, function(err) {
+		// if (err) throw err;
+		console.log("postMasukLokal", this.lastID, err);
+		res.send({UserID:data.UserID, status:1,message:"" })
+	});
+
+	//SELECT P_UserID UserID, ROW_COUNT() `status`, "" message;
+})
 
 var server = app.listen(8081, function () {
 	var host = server.address().address
@@ -321,18 +500,18 @@ const typesDef = {
 
 wsServer.on("request", function (request) {
 	var userID = getUniqueID();
-	console.log(
-		new Date() +
-		" Recieved a new connection from origin " +
-		request.origin +
-		"."
-	);
+	// console.log(
+	// 	new Date() +
+	// 	" Recieved a new connection from origin " +
+	// 	request.origin +
+	// 	"."
+	// );
 	// You can rewrite this part of the code to accept only the requests from allowed origin
 	const connection = request.accept(null, request.origin);
 	clients[userID] = connection;
-	console.log(
-		"connected: " + userID + " in " + Object.getOwnPropertyNames(clients)
-	);
+	// console.log(
+	// 	"connected: " + userID + " in " + Object.getOwnPropertyNames(clients)
+	// );
 	connection.on("message", function (message) {
 		if (message.type === "utf8") {
 			// console.log(message)

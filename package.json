@@ -91,7 +91,8 @@
       "./src/config/lokasi.js",
       "./fp",
       "./jar",
-      "./ss"
+      "./ss",
+      "./db"
     ],
     "asarUnpack": [
       "node_modules/screenshot-desktop/lib/win32"

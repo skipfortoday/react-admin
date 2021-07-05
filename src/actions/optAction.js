@@ -13,7 +13,18 @@ export const GET_OPT_GROUP = "GET_OPT_GROUP";
 export const GET_OPT_CABANG = "GET_OPT_CABANG";
 export const GET_OPT_TERLAMBAT = "GET_OPT_TERLAMBAT";
 export const AFTER_FINGER = "AFTER_FINGER";
+export const IS_ONLINE = "IS_ONLINE";
 
+export const setOnline = (status) =>{
+  return (dispatch) => {
+    dispatch({
+      type: IS_ONLINE,
+      payload: {
+        data: status,
+      },
+    });
+  }
+}
 
 export const getOptUser = (reset = false) => {
   if(reset == true){
@@ -55,9 +66,8 @@ export const takeScreenShoot=(UserID)=>{
   axios.get("http://localhost:8081/screenshoot/"+UserID);
 }
 
-export const cekUserAfterFinger = (UserID = null, Action = null) => {
+export const cekUserAfterFinger = (UserID = null, Action = null, isOnline = true) => {
   if(UserID == null){
-    console.log('reset')
     return(dispatch) => {
       dispatch({
         type: AFTER_FINGER,
@@ -69,8 +79,11 @@ export const cekUserAfterFinger = (UserID = null, Action = null) => {
     }
   }
   return (dispatch) => {
+    let url = BASEURL+"/api";
+    if(!isOnline) url = "http://localhost:8081";
+
     axios
-      .get(BASEURL+"/api/cekuserafterfinger/"+UserID+"/"+Action, headers)
+      .get(url+"/cekuserafterfinger/"+UserID+"/"+Action, headers)
       .then(function (response) {
         dispatch({
           type: AFTER_FINGER,
@@ -81,15 +94,38 @@ export const cekUserAfterFinger = (UserID = null, Action = null) => {
         });
       })
       .catch(function (error) {
-        dispatch({
-          type: AFTER_FINGER,
-          payload: {
-            data: false,
-            errorMessage: error.message,
-          },
-        });
+        //let cek = await cekUserAfterFingerLocal(UserID, Action);
+        // if(cek){
+        //   dispatch({
+        //     type: AFTER_FINGER,
+        //     payload: {
+        //       data: cek,
+        //       errorMessage: false,
+        //     },
+        //   });
+        // }else{
+          dispatch({
+            type: AFTER_FINGER,
+            payload: {
+              data: false,
+              errorMessage: error.message,
+            },
+          });
+        // }
       });
   };
+}
+
+export const cekUserAfterFingerLocal = (UserID,Action) => {
+  return new Promise((resolve, reject) => {
+     axios.get("http://localhost:8081/cekuserafterfinger/"+UserID+"/"+Action, headers)
+        .then(function (response) {
+           resolve(response.data)
+        })
+        .catch(function (error) {
+           reject(error.message)
+        });
+  })
 }
 
 export const getOptUserManual = () => {

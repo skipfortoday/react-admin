@@ -48,7 +48,6 @@ const Pengumuman = (state = initialState, action) => {
             };
 
         case GET_LIST_PENGUMUMAN:
-            console.log(action.payload)
             if(action.payload.data == false){
                 return {
                     ...state,

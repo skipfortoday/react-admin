@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import { reset } from 'redux-form';
 import { connect } from "react-redux";
-import { cekUserAfterFinger, getOptUserManual, takeScreenShoot } from "../actions/optAction";
+import { cekUserAfterFinger, getOptUserManual, setOnline, takeScreenShoot } from "../actions/optAction";
 import FormAbsensiManual from "../components/FormAbsensiManual";
 import GuestNavbarComponentManual from "../components/GuestNavbarComponentManual";
-import { Modal, Col, Container, Row } from "reactstrap";
+import { Modal, Col, Container, Row, Alert, Button } from "reactstrap";
 import Ambilwaktu from "../components/Ambilwaktu";
-import { getAdminOnDuty } from "../actions/adminAction";
+import { getAdminOnDuty, syncToLocal, syncToServer } from "../actions/adminAction";
 import { postManualMasuk, resetProps } from "../actions/manualAction";
 import swal from "sweetalert";
 import LaporanDetail2 from "../components/LaporanDetail2";
@@ -28,7 +28,11 @@ const mapStateToProps = (state) => {
       getResponDataManual: state.Manual.getResponDataManual,
       errorResponDataManual: state.Manual.errorResponDataManual,
       getAfterFinger:state.Opt.getAfterFinger,
-      errorgetAfterFinger:state.Opt.errorgetAfterFinger
+      errorgetAfterFinger:state.Opt.errorgetAfterFinger,
+      getAdminOnDuty: state.Admin.getAdminOnDuty,
+      getOptUserManual: state.Admin.getOptUserManual,
+      errorAdminOnDuty:state.Admin.errorAdminOnDuty,
+      isOnline:state.Opt.isOnline,
    };
 };
 
@@ -43,6 +47,7 @@ class AbsensiManualContainer extends Component {
          key: null,
          base64:null,
          UserID:null,
+         isChecking:false,
       };
    }
 
@@ -52,7 +57,7 @@ class AbsensiManualContainer extends Component {
       this.props.dispatch(getAdminOnDuty());
       this.props.dispatch(resetLaporan())
       this.props.dispatch(getListPengumuman('all'));
-
+      this.props.dispatch(syncToServer())
 
       client.onopen = () => {
          // console.log('WebSocket Client Connected');
@@ -75,13 +80,13 @@ class AbsensiManualContainer extends Component {
             if(result.Status == "done"){
                this.setState({
                   ...this.state,
-                  modal:false,
                   key:null,
                   base64:result.FP,
                   borderColor:"green",
-                  UserID:result.UserID
+                  UserID:result.UserID,
+                  modal:false
                })
-               this.props.dispatch(cekUserAfterFinger(result.UserID, "masuk"))
+               this.props.dispatch(cekUserAfterFinger(result.UserID, "masuk", this.props.isOnline))
                takeScreenShoot(this.state.UserID+"_MASUK_FP")
             }
          }
@@ -107,6 +112,16 @@ class AbsensiManualContainer extends Component {
    }
 
    componentDidUpdate() {
+      if(this.props.errorAdminOnDuty == 'Network Error'){
+         this.props.dispatch(setOnline(false))
+      }else{
+         this.props.dispatch(setOnline(true))
+      }
+
+      // singkron ke local db data absen masuk
+      if(this.props.getAdminOnDuty && !this.props.errorAdminOnDuty){
+         this.props.dispatch(syncToLocal(this.props.getAdminOnDuty))
+      }
 
       if(this.props.getAfterFinger){
          if(this.props.getAfterFinger.status == 0){
@@ -119,9 +134,9 @@ class AbsensiManualContainer extends Component {
                // UserID:this.props.getAfterFinger.UserID
             })
          }
-         setTimeout(() => {
-            takeScreenShoot(this.state.UserID+"_MASUK_OK")
-         }, 0);
+         
+         takeScreenShoot(this.state.UserID+"_MASUK_OK")
+         // this.props.dispatch(cekUserAfterFinger(null))
       }
 
       if(this.props.errorgetAfterFinger){
@@ -135,16 +150,22 @@ class AbsensiManualContainer extends Component {
             swal("Failed!", this.props.errorResponDataManual, "error");
             window.location.reload();
          } else {
-            swal("Berhasil Absen!", "~", "success");
+            swal("Berhasil Absen!", "~", "success")
+            .then(()=>{
+               this.setState({
+                  ...this.state,
+                  disableButton: false,
+                  modal:false
+               })
+            });
             this.props.dispatch(getOptUserManual());
             this.props.dispatch(getAdminOnDuty());
-            this.props.dispatch(getLaporanList(this.props.getResponDataManual.UserID));
-            this.props.dispatch(getLaporanHead(this.props.getResponDataManual.UserID));
             this.props.dispatch(reset('FormAbsensiManual'));  // requires form name
+            if(this.props.getResponDataManual.DatangID){
+               this.props.dispatch(getLaporanList(this.props.getResponDataManual.UserID));
+               this.props.dispatch(getLaporanHead(this.props.getResponDataManual.UserID));
+            }
          }
-         this.setState({
-            disableButton: false
-         })
 
          this.props.dispatch(resetProps())
          this.props.dispatch(cekUserAfterFinger(null))
@@ -158,11 +179,18 @@ class AbsensiManualContainer extends Component {
 
    handleSubmit(data) {
       if (!this.state.disableButton) {
-         this.props.dispatch(postManualMasuk(data));
          this.setState({
+            ...this.state,
+            modal: true,
             disableButton: true
+         },()=>{
+            this.props.dispatch(postManualMasuk(data, this.props.isOnline));
          })
       }
+   }
+
+   cekKoneksi(){
+      this.props.dispatch(getAdminOnDuty());
    }
 
    render() {
@@ -190,6 +218,13 @@ class AbsensiManualContainer extends Component {
                   maxWidth: "100%",
                   marginTop: "6px"
                }}>
+               {!this.props.isOnline ? 
+                  (
+                     <Alert color="danger">
+                        Koneksi ke server / Internet terputus. Anda masih bisa absensi. <Button size="sm" color="success">Cek Ulang Koneksi</Button>
+                     </Alert>
+                  ) : ("")
+               }
                <Row>
                   <Col md={7} style={{ paddingLeft: "5px", paddingRight: "5px" }}>
                      <div style={{ backgroundColor: "#f9a826" }} class="p-2 mb-2">
@@ -200,7 +235,10 @@ class AbsensiManualContainer extends Component {
                               </Col>
                               <Col md={6}>
                                  <h4 class="text-right mt-2 mb-2">
-                                    <Ambilwaktu />
+                                    <Ambilwaktu 
+                                       isOnline={this.props.isOnline} 
+                                       cek={()=>{this.cekKoneksi()}}
+                                       />
                                  </h4>
                               </Col>
                            </Row>

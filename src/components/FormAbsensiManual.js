@@ -18,7 +18,7 @@ const mapStateToProps = (state) => {
          } 
       : null : null;
    let initShift = state.Opt.getAfterFinger ? 
-   state.Opt.getAfterFinger.status == 1 ? 
+   state.Opt.getAfterFinger.status == 1 && state.Opt.getAfterFinger.DefaultShift ? 
       {
          value:state.Opt.getAfterFinger.DefaultShift,
          label:"Shift "+ state.Opt.getAfterFinger.DefaultShift

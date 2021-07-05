@@ -9,7 +9,8 @@ import {
   GET_OPT_USERMANUALKEMBALI,
   GET_OPT_USERMANUALKELUARIST,
   GET_OPT_USERMANUALKEMBALIIST,
-  AFTER_FINGER
+  AFTER_FINGER,
+  IS_ONLINE
 } from "../actions/optAction";
 
 let initialState = {
@@ -35,10 +36,17 @@ let initialState = {
   errorOpCabang: false,
   getAfterFinger: false,
   errorgetAfterFinger: false,
+  isOnline:true,
 };
 
 const Opt = (state = initialState, action) => {
   switch (action.type) {
+    case IS_ONLINE:
+      return {
+        ...state,
+        isOnline:action.payload.data
+      }
+
     case AFTER_FINGER:
       if (action.payload.data.status == 1) {
         return {

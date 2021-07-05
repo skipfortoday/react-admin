@@ -4,6 +4,8 @@ import {
   GET_ADMIN_ONDUTY,
   POST_ADMIN_CREATE,
   PUT_ADMIN_EDIT,
+  SYNC_TO_LOCAL,
+  SYNC_TO_SERVER,
   // GET_ADMIN_TIMENOW,
 } from "../actions/adminAction";
 
@@ -18,6 +20,11 @@ let initialState = {
   errorAdminDetail: false,
   getResponDataAdmin: false,
   errorResponDataAdmin: false,
+
+  syncToLocal:false,
+  errSyncToLocal:false,
+  syncToLocalServer:false,
+  errSyncToServer:false
 };
 
 const Admin = (state = initialState, action) => {
@@ -28,6 +35,18 @@ const Admin = (state = initialState, action) => {
     //     getAdminList: action.payload.data,
     //     errorAdminList action.payload.errorMessage,
     //   };
+    case SYNC_TO_SERVER:
+      return {
+        ...state, 
+        syncToServer:action.payload.data,
+        errSyncToServer:action.payload.errorMessage
+      }
+    case SYNC_TO_LOCAL :
+      return {
+        ...state,
+        syncToLocal:action.payload.data,
+        errSyncToLocal:action.payload.errorMessage
+      }
 
     case GET_ADMIN_LIST:
       return {

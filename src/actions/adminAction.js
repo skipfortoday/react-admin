@@ -9,14 +9,70 @@ export const GET_ADMIN_ONDUTY = "GET_ADMIN_ONDUTY";
 export const GET_ADMIN_DETAIL = "GET_ADMIN_DETAIL";
 export const POST_ADMIN_CREATE = "POST_ADMIN_CREATE";
 export const PUT_ADMIN_EDIT = "PUT_ADMIN_EDIT";
+export const SYNC_TO_LOCAL = "SYNC_TO_LOCAL";
+export const SYNC_TO_SERVER = "SYNC_TO_SERVER";
 
 export const getAdminOnDuty = () => {
   return (dispatch) => {
     axios
       .get(BASEURL+"/api/onduty", headers)
       .then(function (response) {
+        let ress = response.data;
+        ress.online = true;
         dispatch({
           type: GET_ADMIN_ONDUTY,
+          payload: {
+            data: ress,
+            errorMessage: false,
+          },
+        });
+      })
+      .catch(async function (error) {
+
+        // get local attlog
+        let onduty = await getAdminOnDutyLocal();
+        if(onduty){
+          dispatch({
+            type: GET_ADMIN_ONDUTY,
+            payload: {
+              data: onduty,
+              errorMessage: error.message,
+            },
+          });
+        }else{
+          dispatch({
+            type: GET_ADMIN_ONDUTY,
+            payload: {
+              data: false,
+              errorMessage: error.message,
+            },
+          });
+        }
+
+      });
+  };
+};
+
+export const getAdminOnDutyLocal = (data) => {
+  return new Promise((resolve, reject) => {
+     axios.get("http://localhost:8081/onduty", headers)
+        .then(function (response) {
+           resolve(response.data)
+        })
+        .catch(function (error) {
+           reject(error.message)
+        });
+  })
+}
+
+export const syncToServer = ()=>{
+  // ambil data yang perlu disync
+  return (dispatch) => {
+    axios
+      .get("http://localhost:8081/synctoserver", headers)
+      .then(function (response) {
+        dispatch({
+          type: SYNC_TO_SERVER,
           payload: {
             data: response.data,
             errorMessage: false,
@@ -25,16 +81,46 @@ export const getAdminOnDuty = () => {
       })
       .catch(function (error) {
         dispatch({
-          type: GET_ADMIN_ONDUTY,
+          type: SYNC_TO_SERVER,
           payload: {
             data: false,
             errorMessage: error.message,
           },
         });
       });
-  };
-};
+    }
 
+  // kirim
+  // tandai sudah disync di local
+  
+}
+
+
+export const syncToLocal = (data) => {
+  let postData = {attlogs:data}
+  return (dispatch) => {
+    axios
+      .post("http://localhost:8081/synctolocal", postData, headers)
+      .then(function (response) {
+        dispatch({
+          type: SYNC_TO_LOCAL,
+          payload: {
+            data: response.data,
+            errorMessage: false,
+          },
+        });
+      })
+      .catch(function (error) {
+        dispatch({
+          type: SYNC_TO_LOCAL,
+          payload: {
+            data: false,
+            errorMessage: error.message,
+          },
+        });
+      });
+    }
+}
 
 export const getAdminList = () => {
   return (dispatch) => {

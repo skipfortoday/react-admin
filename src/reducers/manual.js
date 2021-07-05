@@ -15,6 +15,7 @@ let initialState = {
 };
 
 const Manual = (state = initialState, action) => {
+
   switch (action.type) {
     case RESET_PROPS :
       return {

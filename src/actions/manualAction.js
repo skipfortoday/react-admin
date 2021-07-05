@@ -22,10 +22,51 @@ export const resetProps = () => {
   }
 }
 
-export const postManualMasuk= (data) => {
+export const postManualMasukLocal = (data) => {
+  return new Promise((resolve, reject) => {
+     axios.post("http://localhost:8081/postmasuk/", data, headers)
+        .then(function (response) {
+           resolve(response.data)
+        })
+        .catch(function (error) {
+           reject(error.message)
+        });
+  })
+}
+
+
+
+export const postManualMasuk= (data, isOnline = true) => {
     data.UserID = data.Nama.value;
     data.NamaUser = data.Nama.label;
     data.Shift = data.Shift.value;
+
+    if(!isOnline){
+      return (dispatch) =>{
+        data.DatangID = null;
+        data.Status = 0;
+        let postMasukLocal = postManualMasukLocal(data);
+
+        if(postMasukLocal){
+          dispatch({
+            type: POST_MANUAL_MASUK,
+            payload: {
+              data: postMasukLocal,
+              errorMessage: false,
+            },
+          });
+        }else{
+          dispatch({
+            type: POST_MANUAL_MASUK,
+            payload: {
+              data: false,
+              errorMessage: error.message,
+            },
+          });
+        }
+      }
+    }
+
     return (dispatch) => {
       axios
         .post(
@@ -33,9 +74,12 @@ export const postManualMasuk= (data) => {
           data,
           headers
         )
-        .then(function (response) {
-          console.log(response.data);
+        .then(async function (response) {
           if(response.data.status == 1){
+            // simpan ke local sqlite
+            data.DatangID = response.data.DatangID;
+            data.Status = 1;
+            let postMasukLocal = await postManualMasukLocal(data);
             dispatch({
               type: POST_MANUAL_MASUK,
               payload: {
@@ -52,17 +96,29 @@ export const postManualMasuk= (data) => {
               },
             });
           }
-          
-          
         })
-        .catch(function (error) {
-          dispatch({
-            type: POST_MANUAL_MASUK,
-            payload: {
-              data: false,
-              errorMessage: error.message,
-            },
-          });
+        .catch(async function (error) {
+          data.DatangID = null;
+          data.Status = 0;
+          let postMasukLocal = await postManualMasukLocal(data);
+          console.log(postMasukLocal)
+          if(postMasukLocal){
+            dispatch({
+              type: POST_MANUAL_MASUK,
+              payload: {
+                data: postMasukLocal,
+                errorMessage: false,
+              },
+            });
+          }else{
+            dispatch({
+              type: POST_MANUAL_MASUK,
+              payload: {
+                data: false,
+                errorMessage: error.message,
+              },
+            });
+          }
         });
     };
   };
