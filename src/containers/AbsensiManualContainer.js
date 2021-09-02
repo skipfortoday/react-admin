@@ -57,7 +57,7 @@ class AbsensiManualContainer extends Component {
       this.props.dispatch(getAdminOnDuty());
       this.props.dispatch(resetLaporan())
       this.props.dispatch(getListPengumuman('all'));
-      this.props.dispatch(syncToServer())
+      //this.props.dispatch(syncToServer())
 
       client.onopen = () => {
          // console.log('WebSocket Client Connected');
@@ -112,16 +112,16 @@ class AbsensiManualContainer extends Component {
    }
 
    componentDidUpdate() {
-      if(this.props.errorAdminOnDuty == 'Network Error'){
-         this.props.dispatch(setOnline(false))
-      }else{
-         this.props.dispatch(setOnline(true))
-      }
+      // if(this.props.errorAdminOnDuty == 'Network Error'){
+      //    this.props.dispatch(setOnline(false))
+      // }else{
+      //    this.props.dispatch(setOnline(true))
+      // }
 
       // singkron ke local db data absen masuk
-      if(this.props.getAdminOnDuty && !this.props.errorAdminOnDuty){
-         this.props.dispatch(syncToLocal(this.props.getAdminOnDuty))
-      }
+      // if(this.props.getAdminOnDuty && !this.props.errorAdminOnDuty){
+      //    this.props.dispatch(syncToLocal(this.props.getAdminOnDuty))
+      // }
 
       if(this.props.getAfterFinger){
          if(this.props.getAfterFinger.status == 0){
@@ -218,13 +218,13 @@ class AbsensiManualContainer extends Component {
                   maxWidth: "100%",
                   marginTop: "6px"
                }}>
-               {!this.props.isOnline ? 
+               {/* {!this.props.isOnline ? 
                   (
                      <Alert color="danger">
                         Koneksi ke server / Internet terputus. Anda masih bisa absensi. <Button size="sm" color="success">Cek Ulang Koneksi</Button>
                      </Alert>
                   ) : ("")
-               }
+               } */}
                <Row>
                   <Col md={7} style={{ paddingLeft: "5px", paddingRight: "5px" }}>
                      <div style={{ backgroundColor: "#f9a826" }} class="p-2 mb-2">

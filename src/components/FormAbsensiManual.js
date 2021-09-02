@@ -31,7 +31,8 @@ const mapStateToProps = (state) => {
          Shift:initShift,
          DefaultShift:state.Opt.getAfterFinger.DefaultShift ? 
          state.Opt.getAfterFinger.DefaultShift : 100,
-         IsFP : state.Opt.getAfterFinger ? 1: 0 
+         IsFP : state.Opt.getAfterFinger ? 1: 0 ,
+         Keterangan: ''
       }
    };
 };

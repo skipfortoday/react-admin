@@ -10,17 +10,18 @@ import {
     faEdit,
 } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
-import { Modal } from "reactstrap";
+import { Col, Modal, Row } from "reactstrap";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import Loader from "react-loader-spinner";
 import PengumumanDetailComponent from "./PengumumanDetailComponent";
 import { Container, Button, Badge } from "reactstrap";
 import { getListPeriode } from "../actions/laporanAction";
 import { siteConfig } from "../config";
+import ListPeriodeAbsensi from "../components/ListPeriodeAbsensi";
 
 const mapStateToProps = (state) => {
     return {
-        getListPeriode : state.Laporan.getListPeriode
+        listPeriode : state.Laporan.listPeriode
     };
 };
 
@@ -39,15 +40,13 @@ class TutupPeriodeContainer extends Component {
         this.props.dispatch(getListPeriode());
     }
 
-
-
     render() {
         if (!localStorage.getItem('user') || localStorage.getItem('user') === "false") {
             swal("Failed!", "Login Dulu Bosq", "error");
             return <Redirect to="/home" />;
         }
 
-      
+        console.log(this.props.listPeriode)
         return (
             <div style={{ minHeight: "900px" }}>
                 <NavbarComponent />
@@ -67,7 +66,15 @@ class TutupPeriodeContainer extends Component {
                     />
                 </Modal>
                 <div className="mt-2" >
-                    
+                    <div style={{paddingLeft:20, paddingRight:20, paddingTop:10}}>
+                        <h3>Periode Absensi</h3>
+                    </div>
+                    <Row>
+                        <Col md={8}>
+                            <ListPeriodeAbsensi listPeriode={this.props.listPeriode} />
+                        </Col>
+                        <Col md={4}></Col>
+                    </Row>
                 </div>
             </div>
         );

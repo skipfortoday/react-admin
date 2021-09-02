@@ -1,6 +1,6 @@
 import axios from "axios";
-import { headers } from "../config";
-import { BASEURL } from "./adminAction";
+import { headers, API_BASEURL } from "../config";
+let BASEURL = API_BASEURL;
 
 export const POST_LOGIN_USER = "POST_LOGIN_USER";
 export const POST_LOGOUT_USER = "POST_LOGOUT_USER";

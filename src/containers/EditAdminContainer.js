@@ -29,9 +29,34 @@ class EditAdminContainer extends Component {
   }
 
   handleSubmit(data) {
+    let kcs = []
+    if(data.KodeCabang){
+      data.KodeCabang.map(item => kcs.push(item.value))
+    }
+    data.KodeCabang = kcs.length > 0 ? kcs.join(",") : ''
+    // console.log(data)
     this.props.dispatch(
       putAdminUpdate(data, this.props.match.params.AdminID)
     );
+  }
+
+  componentDidUpdate(prevProps){
+    if (this.props.getResponDataAdmin || this.props.errorResponDataAdmin) {
+      if (this.props.errorResponDataAdmin) {
+        swal("Failed!", this.props.errorResponDataAdmin, "error");
+      } else {
+        // this.props.dispatch(reset('formCreateAdmin'))
+        this.props.dispatch(putAdminUpdate())
+        this.props.dispatch(getAdminDetail(this.props.match.params.AdminID))
+        swal(
+          "Admin Updated!",
+          "",
+          "success"
+        ).then(()=>{
+          this.props.history.push("/superadmin")
+        });
+      }
+    }
   }
 
   render() {
@@ -47,18 +72,7 @@ class EditAdminContainer extends Component {
       return <Redirect to="/superadmin" />;
     }
 
-    if (this.props.getResponDataAdmin || this.props.errorResponDataAdmin) {
-      if (this.props.errorResponDataAdmin) {
-        swal("Failed!", this.props.errorResponDataAdmin, "error");
-      } else {
-        this.props.dispatch(reset('formCreateAdmin'))
-        swal(
-          "Admin Updated!",
-          "",
-          "success"
-        );
-      }
-    }
+    
     return (
       <div>
         <NavbarComponent />

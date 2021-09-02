@@ -1,6 +1,6 @@
 import axios from "axios";
-import { headers } from "../config";
-import { BASEURL } from "./adminAction";
+import { headers, API_BASEURL } from "../config";
+let BASEURL = API_BASEURL;
 
 export const GET_LIST_PENGUMUMAN = "GET_LIST_PENGUMUMAN";
 export const LIST_CB_CABANG = "LIST_CB_CABANG";

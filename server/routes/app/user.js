@@ -4,6 +4,109 @@ let md5 = require("md5");
 const jwt = require('../../middleware/jwt.js');
 const util = require('util');
 const asyncQuery = util.promisify(conn.query).bind(conn);
+const firebase = require('../../config/fbconfig.js');
+// import { firebase } from '/home/lviors/absensi/config/fbconfig.js'
+
+exports.pushNotification = (req, res) =>{
+
+   if(req.query.action == 'test'){
+      let sql = `
+         SELECT FCMToken FROM user WHERE FCMToken IS NOT NULL
+         AND UserID IN('SB1MIT005', 'SB1MIT021', 'SB1MIT012')`;
+      
+      const notification_options = {
+         priority: "high",
+         timeToLive: 60 * 60 * 24
+      };
+   
+      const options =  notification_options
+      
+      const message = { 
+         notification: {
+               title: 'Muleh.. muleh.... N',
+               body: 'Ingat.. jangan lupa nang muleoo!!!',
+               sound: 'notif',
+         },
+         data: {
+            title: 'Muleh.. muleh.... D',
+            body: 'Data Message Ingat.. jangan lupa nang muleoo!!!',
+            sound: 'default',
+         },
+         // tokens: fcmtokens,
+      }
+      conn.query(sql, (err, results) => {
+         if (err) throw err;
+         let fcmtokens = [];
+         results.map((row)=>{
+            fcmtokens.push(row.FCMToken)
+            firebase.messaging().sendToDevice(row.FCMToken, message, options).then((response) =>{
+               // firebase.messaging().sendMulticast(message).then((response) => {
+               console.log(response)
+               // if (response.failureCount > 0) {
+               //    const failedTokens = [];
+               //    response.responses.forEach((resp, idx) => {
+               //    if (!resp.success) {
+               //       failedTokens.push(fcmtokens[idx]);
+               //    }
+               //    });
+               //    console.log('List of tokens that caused failures: ' + failedTokens);
+               // }
+               // res.send(response);
+            });
+         })
+
+         res.send({status:"ok"})
+
+      });
+   }
+
+//    const notification_options = {
+//       priority: "high",
+//       timeToLive: 60 * 60 * 24
+//    };
+
+//    const  registrationToken = 'fTWoHi20Q6GYEtdV6_KZNz:APA91bEE9rwLvnHk2wnYFOdXz2_37OSqK94dSFJcC5UYE1XFrO_1ewrK-KqnAe2mxZt0fyVN55dpP5ddDU5JWp8ZYxm1jvpeKwRWdYcvyb0eRwy1Px6IZ570BXzLgRW7olO3O85ETLNy';
+//    const options =  notification_options
+   
+//    const message = { 
+//       notification: {
+//           title: 'Muleh.. muleh.... N',
+//           body: 'Ingat.. jangan lupa nang muleoo!!!',
+//           sound: 'pac.wav',
+//       },
+//       data: {
+//          title: 'Muleh.. muleh.... D',
+//           body: 'Data Message Ingat.. jangan lupa nang muleoo!!!',
+//           sound: 'pac',
+//       }
+//   }
+//    // res.send(req.body)
+//    firebase.messaging().sendToDevice(registrationToken, message, options)
+//    .then( response => {
+
+//       res.status(200).send(response)
+      
+//    })
+//    .catch( error => {
+//          console.log(error);
+//    });
+}
+
+exports.putToken = (req, res) => {
+   let UserID = req.body.UserID;
+   let Token = req.body.Token;
+   console.log(req.body);
+   let sql = `UPDATE user SET FCMToken = '`+Token+`' WHERE UserID = '`+UserID+`'`;
+   console.log(sql);
+   conn.query(sql, (err, results) => {
+      if (err) {
+         let pesan = err.sqlMessage;
+         res.json({ message: pesan });
+      } else {
+         res.send({status:true, message:"Token updated"});
+      }
+   });
+}
 
 exports.updateUser = (req, res) => {
    let data = {

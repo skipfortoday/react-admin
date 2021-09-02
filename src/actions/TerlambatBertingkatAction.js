@@ -1,6 +1,6 @@
 import axios from "axios";
-import { headers } from "../config";
-import { BASEURL } from "./adminAction";
+import { headers, siteConfig, API_BASEURL } from "../config";
+let BASEURL = API_BASEURL;
 
 export const GET_TERLAMBATBERTINGKAT_LIST = "GET_TERLAMBATBERTINGKAT_LIST";
 export const GET_TERLAMBATBERTINGKAT_DETAIL = "GET_TERLAMBATBERTINGKAT_DETAIL";

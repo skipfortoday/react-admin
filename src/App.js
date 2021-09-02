@@ -44,6 +44,13 @@ import FingerprintContainer from "./containers/FingerprintContainer";
 import FPEnrollmentContainer from "./containers/FPEnrollmentContainer";
 import LocaldbPegawaiContainer from "./containers/LocaldbPegawaiContainer";
 import TutupPeriodeContainer from "./containers/TutupPeriodeContainer";
+import OfflineMasukContainer from "./containers/OfflineMasukContainer";
+import OfflinePulangContainer from "./containers/OfflinePulangContainer";
+import MutasiPegawaiContainer from "./containers/MutasiPegawaiContainer";
+import DataAbsensiOffline from "./containers/DataAbsensiOffline";
+import ListLaporanContainer2 from "./containers/ListLaporanContainer2";
+import PrintContainer from "./containers/PrintContainer";
+import ProfileContainer from "./containers/ProfileContainer";
 
 const mapStateToProps = (state) => {
     return {
@@ -92,7 +99,9 @@ class App extends Component {
 
                         <Route path="/edit/:UserID" exact component={EditUserContainer} />
 
-                        <Route path="/laporan" exact component={ListLaporanContainer} />
+                        <Route path="/laporan" exact component={ListLaporanContainer2} />
+                        <Route path="/laporan2" exact component={ListLaporanContainer2} />
+                        <Route path="/print-preview" exact component={PrintContainer} />
 
                         <Route
                             path="/laporandetail/:UserID/:TglAwal/:TglAkhir"
@@ -183,6 +192,12 @@ class App extends Component {
                         />
 
                         <Route
+                            path="/profile/:AdminID"
+                            exact
+                            component={ProfileContainer}
+                        />
+
+                        <Route
                             path="/absensimanual"
                             exact
                             component={AbsensiManualContainer}
@@ -225,6 +240,12 @@ class App extends Component {
                     
                         <Route path="/localdb/pegawai" exact component={LocaldbPegawaiContainer} />
                         <Route path="/tutup-periode" exact component={TutupPeriodeContainer} />
+
+                        <Route path="/offlinemasuk" exact component={OfflineMasukContainer} />
+                        <Route path="/offlinepulang" exact component={OfflinePulangContainer} />
+
+                        <Route path="/mutasipegawai" exact component={MutasiPegawaiContainer} />
+                        <Route path="/data-absensi-offline" exact component={DataAbsensiOffline} />
 
                     </Switch>
                 </ScrollIntoView>

@@ -10,6 +10,8 @@ import {
     faUndoAlt,
     faFingerprint,
     faTimes,
+    faDownload,
+    faEye,
 } from "@fortawesome/free-solid-svg-icons";
 import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
 import paginationFactory from "react-bootstrap-table2-paginator";
@@ -21,10 +23,13 @@ import {
     resetUser,
     resetPasswordUser,
     getUsersList,
-    registerFingerPrint
+    registerFingerPrint,
+    downloadUser
 } from "../actions/userAction";
 
 const { SearchBar } = Search;
+
+const user = JSON.parse(localStorage.getItem("user"))
 
 const handleClick = (dispatch, ID) => {
     swal({
@@ -81,6 +86,11 @@ const handleClick3 = (dispatch, ID) => {
         }
     });
 };
+
+const downloadUserx = (dispatch, User) => {
+    // console.log(User)
+    dispatch(downloadUser(User))
+}
 
 const defaultSorted = [
     {
@@ -187,12 +197,12 @@ const TableUserComponent = (props) => {
             dataField: "link",
             text: "Action",
             headerStyle: () => {
-                return { width: "80px", backgroundColor: "#f9a826" };
+                return { width: "100px", backgroundColor: "#f9a826" };
             },
             formatter: (rowContent, row) => {
                 return (
                     <div>
-                        {/* <Link to={"enrollfp/" + row.UserID}> */}
+                        {user.RoleAdmin === 2 ? ("") :
                             <Button
                                 id="btRegFingerprint"
                                 size="sm"
@@ -202,39 +212,60 @@ const TableUserComponent = (props) => {
                             >
                                 <FontAwesomeIcon icon={faFingerprint} />
                             </Button>
-                        {/* </Link> */}
-                        <Button
-                            id="btResetDevice"
-                            size="sm"
-                            color="warning"
-                            className="mr-2"
-                            onClick={() => handleClick2(props.dispatch, row.UserID)}
-                        >
-                            <FontAwesomeIcon icon={faRetweet} />
-                        </Button>
+                        }
+                        {user.RoleAdmin === 2 ? ("") :
+                            <Button
+                                id="btResetDevice"
+                                size="sm"
+                                color="warning"
+                                className="mr-2"
+                                onClick={() => handleClick2(props.dispatch, row.UserID)}
+                            >
+                                <FontAwesomeIcon icon={faRetweet} />
+                            </Button>
+                        }
+                        
                         <Link to={"edit/" + row.UserID}>
                             <Button color="warning" className="mr-2" size="sm" id="btEditPegawai">
-                                <FontAwesomeIcon icon={faEdit} />
+                                <FontAwesomeIcon icon={user.RoleAdmin === 2 ? faEye : faEdit} />
                             </Button>
                         </Link>
-                        <Button
-                            id="btResetPassword"
-                            size="sm"
-                            color="warning"
-                            className="mr-2"
-                            onClick={() => handleClick3(props.dispatch, row.UserID)}
-                        >
-                            <FontAwesomeIcon icon={faUndoAlt} />
-                        </Button>
-                        <Button
-                            id="btDeletePegawai"
-                            size="sm"
-                            color="warning"
-                            className="mr-2"
-                            onClick={() => handleClick(props.dispatch, row.UserID)}
-                        >
-                            <FontAwesomeIcon icon={faTrash} />
-                        </Button>
+                        
+                        {user.RoleAdmin === 2 ? ("") :
+                            <Button
+                                id="btResetPassword"
+                                size="sm"
+                                color="warning"
+                                className="mr-2"
+                                onClick={() => handleClick3(props.dispatch, row.UserID)}
+                            >
+                                <FontAwesomeIcon icon={faUndoAlt} />
+                            </Button>
+                        }
+                        {user.RoleAdmin === 2 ? ("") :
+                            <Button
+                                id="btDeletePegawai"
+                                size="sm"
+                                color="warning"
+                                className="mr-2"
+                                onClick={() => handleClick(props.dispatch, row.UserID)}
+                            >
+                                <FontAwesomeIcon icon={faTrash} />
+                            </Button>
+                        }
+                            
+
+                        {!row.UserLocal ? (
+                            <Button
+                                id="btDownloadPegawai"
+                                size="sm"
+                                color="warning"
+                                className="mr-2"
+                                onClick={() => downloadUserx(props.dispatch, row)}
+                            >
+                                <FontAwesomeIcon icon={faDownload} />
+                            </Button>
+                        ) : ""}
                     </div>
                 );
             },
@@ -262,16 +293,20 @@ const TableUserComponent = (props) => {
                                 style={{ backgroundColor: "#ffffff", borderColor: "#ffffff" }}>
                                 <Row>
                                     <Col>
+                                        {user.RoleAdmin === 2 ? "" : (
                                         <Link to="/create">
                                             <Button color="warning" className="mr-2">
                                                 <FontAwesomeIcon icon={faUserPlus} /> Tambah Pegawai
                                             </Button>
                                         </Link>
+                                        )}
+                                        {user.RoleAdmin === 2 ? "" : (
                                         <Link to="/fingerprint">
                                             <Button color="warning" className="mr-2">
                                                 <FontAwesomeIcon icon={faFingerprint} /> Singkron Data Fingerprint
                                             </Button>
                                         </Link>
+                                        )}
                                     </Col>
 
                                     <Col>

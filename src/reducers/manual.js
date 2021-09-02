@@ -7,16 +7,36 @@ import {
   PUT_MANUAL_PULANG,
   CLEAR_MANUAL,
   RESET_PROPS,
+  POST_MASUK_OFFLINE,
+  PUT_PULANG_OFFLINE,
 } from "../actions/manualAction";
 
 let initialState = {
   getResponDataManual: false,
   errorResponDataManual: false,
+  postMasukOffline:false,
+  errPostMasukOffline:false,
+  putPulangOffline:false,
+  errPutPulangOffline:false,
 };
 
 const Manual = (state = initialState, action) => {
 
   switch (action.type) {
+    case POST_MASUK_OFFLINE :
+      return {
+        ...state,
+        postMasukOffline:action.payload.data,
+        errPostMasukOffline:action.payload.errorMessage,
+      }
+    
+    case PUT_PULANG_OFFLINE : 
+      return {
+        ...state,
+        putPulangOffline:action.payload.data,
+        errPutPulangOffline:action.payload.errorMessage,
+      }
+    
     case RESET_PROPS :
       return {
         ...state,

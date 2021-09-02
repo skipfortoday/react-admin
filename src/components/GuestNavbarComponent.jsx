@@ -26,7 +26,7 @@ const NavbarComponent = (props) => {
           <Nav className="mr-auto" navbar>
             <NavItem>
               <Link to="/absensimanual">
-                <NavLink>Absensi Manual </NavLink>
+                <NavLink>Absensi Manual / Finger </NavLink>
               </Link>
             </NavItem>
             <NavItem>
@@ -40,9 +40,15 @@ const NavbarComponent = (props) => {
               <NavbarBrand> {siteConfig.nama}</NavbarBrand>
             </NavItem>
             <NavItem>
-              <Link to="/Login">
-                <NavLink> Login</NavLink>
-              </Link>
+              {!ambil ? (
+                <Link to="/Login">
+                  <NavLink> Login</NavLink>
+                </Link>  
+              ) : (
+                <Link to="/">
+                  <NavLink> Menu Admin</NavLink>
+                </Link>
+              )}
             </NavItem>
             <NavItem>
               <Link to="/setconfig">

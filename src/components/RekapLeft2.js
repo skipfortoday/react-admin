@@ -29,7 +29,7 @@ const RekapLeft2 = (props) => {
           <td >:</td>
           <td style={{ width : '200px' }}>{props.getLaporanRekap.JumlahLembur}</td>
         </tr> 
-        <tr style={{ lineHeight : '9px' }}>
+        <tr >
           <td >Jumlah Terlambat</td>
           <td >:</td>
           <td style={{color: 'red'}}>{props.getLaporanRekap.JumTerlambat}</td>
@@ -44,7 +44,7 @@ const RekapLeft2 = (props) => {
           <td >:</td>
           <td style={{color: '#017580'}}>{props.getLaporanRekap.TotalJamLembur}</td>
         </tr>
-        <tr style={{ lineHeight : '9px' }}>
+        <tr >
           <td >Ijin Tidak Masuk</td>
           <td >:</td>
           <td style={{color: 'red'}}>{props.getLaporanRekap.JumlahIzinTidakMasuk}</td>
@@ -59,7 +59,7 @@ const RekapLeft2 = (props) => {
           <td ></td>
           <td style={{color: 'red'}}></td>
         </tr>
-        <tr style={{ lineHeight : '9px' }}>
+        <tr >
           <td >Trlmbt Kmbl Istrht</td>
           <td >:</td>
           <td style={{color: 'red'}}>{props.getLaporanRekap.TerlambatKembali}</td>
@@ -74,7 +74,7 @@ const RekapLeft2 = (props) => {
           <td ></td>
           <td style={{color: 'red'}}></td>
         </tr>
-        <tr style={{ lineHeight : '9px' }}>
+        <tr >
           <td ></td>
           <td ></td>
           <td ></td>
@@ -89,7 +89,7 @@ const RekapLeft2 = (props) => {
           <td ></td>
           <td style={{color: 'red'}}></td>
         </tr>
-        <tr style={{ lineHeight : '9px' }}>
+        <tr >
           <td >Total Potongan</td>
           <td ></td>
           <td ></td>
@@ -104,7 +104,7 @@ const RekapLeft2 = (props) => {
           <td >:</td>
           <td >{props.getLaporanRekap.JumlahOFF}</td>
         </tr>
-        <tr style={{ lineHeight : '9px' }}>
+        <tr >
           <td ></td>
           <td ></td>
           <td ></td>
@@ -119,7 +119,7 @@ const RekapLeft2 = (props) => {
           <td >:</td>
           <td >{props.getLaporanRekap.JmlMasukKantor}</td>
         </tr>
-        <tr style={{ lineHeight : '9px' }}>
+        <tr >
           <td colspan='3' style={{fontSize: '14px' , fontWeight: "bold", fontFamily : "TimesNewRoman" , fontStyle : "italic"}} >{props.getLaporanRekap.TglPrint}</td>
            <td></td>
            <td></td>

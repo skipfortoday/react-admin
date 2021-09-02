@@ -1,0 +1,43 @@
+
+.container-table-print{
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+/* .container-table-print{
+ 
+} */
+@media print {
+    html{
+        background-color: tomato;
+        margin: 0;
+        border: initial;
+        border-radius: initial;
+        width: initial;
+        min-height: initial;
+        box-shadow: initial;
+        background: initial;
+        page-break-after: always;
+    }
+    body{
+        background-color: brown;
+        margin:0 !important;
+        padding:0 !important;
+    }
+    .div-table-print{
+        /* background-color: yellow; */
+        padding: 0 !important;
+        margin: 0 !important;
+        margin-top: -55px;
+    }
+    .container-table-print{
+        /* background-color: cyan; */
+        margin: 0 !important;
+        padding: 0 !important;
+        width: 100% !important;
+    }
+    .table-print{
+        width: 100%;
+        /* background-color: #f00; */
+    }
+}

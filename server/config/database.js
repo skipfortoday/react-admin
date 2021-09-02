@@ -15,7 +15,8 @@ const conn = mysql.createConnection({
   user: "root",
   password: "",
   database: "absensi_dev",
-  timezone: "utc"
+  timezone: "utc",
+  port:3307
 });
 
 // open the MySQL connection

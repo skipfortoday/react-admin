@@ -62,7 +62,8 @@ class FormIzinComponent extends Component {
         { value: 'DINAS LUAR', label: 'DINAS LUAR' },
         { value: 'CUTI BERSAMA', label: 'CUTI BERSAMA' },
         { value: 'CUTI KHUSUS', label: 'CUTI KHUSUS' },
-        { value: 'LIBUR', label: 'LIBUR' }
+        { value: 'LIBUR', label: 'LIBUR' },
+        { value: 'ACC LUPA ABSEN', label: 'ACC LUPA ABSEN' }
       ],
       ShiftOption: [
         { value: '1', label:'Shift 1'},

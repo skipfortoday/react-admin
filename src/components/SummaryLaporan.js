@@ -12,11 +12,11 @@ const mapStateToProps = (state) => {
   
 const SummaryLaporan = (props) => {
   let ambil = JSON.parse(localStorage.getItem('user'));
-  let nama = ambil.AdminID
+  let nama = ambil.Username
   return (
     <Table borderless size="sm">
       <tbody style={{fontSize: '14px' , fontWeight: "bold", fontFamily : "Arial"}}>
-        <tr style={{ lineHeight : '9px' }} >
+        <tr  >
           <td style={{ width : '150px' }}>Ijin Terlambat</td>
           <td >:</td>
           <td style={{color: 'red'}}>{props.getLaporanRekap.IjinTerlambat}</td>
@@ -31,7 +31,7 @@ const SummaryLaporan = (props) => {
           <td >:</td>
           <td style={{ width : '200px' }}>{props.getLaporanRekap.JumlahLembur}</td>
         </tr> 
-        <tr style={{ lineHeight : '9px' }}>
+        <tr >
           <td >Jumlah Terlambat</td>
           <td >:</td>
           <td style={{color: 'red'}}>{props.getLaporanRekap.JumTerlambat}</td>
@@ -46,7 +46,7 @@ const SummaryLaporan = (props) => {
           <td >:</td>
           <td style={{color: '#017580'}}>{props.getLaporanRekap.TotalJamLembur}</td>
         </tr>
-        <tr style={{ lineHeight : '9px' }}>
+        <tr >
           <td >Ijin Tidak Masuk</td>
           <td >:</td>
           <td style={{color: 'red'}}>{props.getLaporanRekap.JumlahIzinTidakMasuk}</td>
@@ -61,7 +61,7 @@ const SummaryLaporan = (props) => {
           <td ></td>
           <td style={{color: 'red'}}></td>
         </tr>
-        <tr style={{ lineHeight : '9px' }}>
+        <tr >
           <td >Trlmbt Kmbl Istrht</td>
           <td >:</td>
           <td style={{color: 'red'}}>{props.getLaporanRekap.TerlambatKembali}</td>
@@ -76,7 +76,7 @@ const SummaryLaporan = (props) => {
           <td ></td>
           <td style={{color: 'red'}}></td>
         </tr>
-        <tr style={{ lineHeight : '9px' }}>
+        <tr >
           <td ></td>
           <td ></td>
           <td ></td>
@@ -91,7 +91,7 @@ const SummaryLaporan = (props) => {
           <td ></td>
           <td style={{color: 'red'}}></td>
         </tr>
-        <tr style={{ lineHeight : '9px' }}>
+        <tr >
           <td >Total Potongan</td>
           <td ></td>
           <td ></td>
@@ -106,7 +106,7 @@ const SummaryLaporan = (props) => {
           <td >:</td>
           <td >{props.getLaporanRekap.JumlahOFF}</td>
         </tr>
-        <tr style={{ lineHeight : '9px' }}>
+        <tr >
           <td ></td>
           <td ></td>
           <td ></td>
@@ -121,7 +121,7 @@ const SummaryLaporan = (props) => {
           <td >:</td>
           <td >{props.getLaporanRekap.JmlMasukKantor}</td>
         </tr>
-        <tr style={{ lineHeight : '9px' }}>
+        <tr >
           <td colspan='3' style={{fontSize: '14px' , fontWeight: "bold", fontFamily : "TimesNewRoman" , fontStyle : "italic"}} >{props.getLaporanRekap.TglPrint}{nama}</td>
            <td></td>
            <td></td>
@@ -133,6 +133,12 @@ const SummaryLaporan = (props) => {
           <td >Jumlah Dinas Luar</td>
           <td >:</td>
           <td >{props.getLaporanRekap.JumlahDinasLuar}</td>
+        </tr>
+        <tr>
+          <td colspan="6"></td>
+          <td >Acc Lupa Absen(Sejak Awal Kerja)</td>
+          <td >:</td>
+          <td style={{color: 'red'}}>{props.getLaporanRekap.AccLupaAbsen}</td>
         </tr>
       </tbody>
     </Table>

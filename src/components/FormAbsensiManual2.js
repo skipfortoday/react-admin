@@ -14,6 +14,7 @@ const mapStateToProps = (state) => {
   let initNama = state.Opt.getAfterFinger ?
     state.Opt.getAfterFinger.status == 1 ?
       {
+        id: state.Opt.getAfterFinger.id,
         DatangID: state.Opt.getAfterFinger.DatangID,
         value: state.Opt.getAfterFinger.UserID,
         label: state.Opt.getAfterFinger.UserID + " - " + state.Opt.getAfterFinger.Nama
@@ -24,7 +25,7 @@ const mapStateToProps = (state) => {
     getOptUserManualPulang: state.Opt.getOptUserManualPulang,
     initialValues: {
       Nama: initNama,
-      NormalPulang: state.Opt.getAfterFinger ? state.Opt.getAfterFinger.PulangCepat + "" + state.Opt.getAfterFinger.Lembur : "NN"
+      NormalPulang: state.Opt.getAfterFinger ? state.Opt.getAfterFinger.PulangCepat + "" + state.Opt.getAfterFinger.Lembur : "NN",
     }
   };
 };
@@ -96,6 +97,7 @@ class FormAbsensiManual2 extends Component {
                 <Col md={12}>
                   <FormGroup>
                     <Field
+                      readOnly={this.props.online === false ? true : false}
                       type="text"
                       name="KetPulang"
                       placeholder="Keterangan Pulang"

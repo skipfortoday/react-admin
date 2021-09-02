@@ -24,22 +24,35 @@
     -->
   <style type="text/css">
     @media print {
-
-
-      .page-header-space {
-        height: 210px;
-        border-collapse: collapse !important;
+      .page-break{
+        page-break-after:always
       }
 
-      .page-header {
+      body{
+        padding-top: 0 !important;
+      }
+
+      .table-print{
+        width: "10cm";
+        background-color: "#00f";
+        display: 'none';
+      }
+      .hide-onprint{
+        display: none;
+      }
+      /* .page-header-space {
+        height: 210px;
+        border-collapse: collapse !important;
+      } */
+
+      /* .page-header {
         position: fixed;
         top: 0mm;
         width: 100%;
         border-bottom: 1px solid black;
         background: rgb(255, 255, 255);
-        /* for demo */
-        /* for demo */
-      }
+       
+      } */
 
       thead {
         display: table-header-group;
@@ -116,6 +129,7 @@
 
       .alert-row td {
         /* border:unset !important; */
+        background-color: #00f;
         border-top: 2px solid rgb(255, 0, 0) !important;
         border-bottom: 2px solid rgb(255, 0, 0) !important;
 

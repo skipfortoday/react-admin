@@ -16,19 +16,8 @@ const sqlite3 = require('sqlite3').verbose();
 const Database = require('sqlite-async')
 const moment = require("moment");
 
-// const url_endpoint = "https://absensei.lviors.com";
-const url_endpoint = "http://localhost:3009";
-
-
-// , (err) => {
-// 	if (err) {
-// 		console.error(err.message);
-// 	}
-// 	console.log('Connected to the sqlite local database.');
-// });
-
-// const db = require('./asyncdb.js');
-
+const url_endpoint = "https://absensi.lviors.com";
+// const url_endpoint = "http://localhost:3009";
 
 var app = express();
 app.use(cors());
@@ -296,10 +285,11 @@ app.get('/screenshoot/:id', (req, res) => {
 	})
 })
 
-app.get("/onduty", (req, res)=>{
-	let q = `SELECT Nama, a.ScanMasuk
+app.get("/api/onduty", (req, res)=>{
+	let q = `SELECT UserID, Nama, a.ScanMasuk, ScanPulang, Status, StatusPulang
 	FROM attlog a
 	WHERE a.TanggalScan = CURRENT_DATE
+	AND (ScanMasuk IS NOT NULL OR ScanPulang IS NOT NULL)
 	`;
 	
 	db.all(q, [], (err, rows) => {
@@ -307,6 +297,123 @@ app.get("/onduty", (req, res)=>{
 		res.send(rows)
 	})
 })
+
+app.get("/api/list-offline", (req, res) => {
+	let filter = req.query.filter
+	let q = `
+	SELECT 
+		a.UserID || STRFTIME('%Y%m%d', TanggalScan) k,
+		a.id,
+		a.DatangID,
+		a.UserID,
+		a.UserID || ' - ' || a.Nama as Nama,
+		a.TanggalScan, a.Shift, a.ScanMasuk, a.KodeCabang, a.Status,
+		a.ScanPulang, a.KodeCabangPulang, a.StatusPulang, a.Keterangan, a.KetPulang
+	FROM attlog a
+	ORDER BY a.TanggalScan DESC
+	`;
+	db.all(q, [], (err, rows) => {
+		if (err) throw err;
+		res.send(rows)
+	})
+})
+
+app.post("/api/attlogmanual", (req, res)=>{
+	// res.send(req.body);
+	let data = req.body
+	let nama = data.NamaUser.split(" - ")[1]
+	let sql = `
+	INSERT INTO attlog(
+		UserID, TanggalScan, Shift, 
+		Nama, ScanMasuk, KodeCabang, Keterangan
+	) VALUES(
+		'`+data.UserID+`', DATE(CURRENT_DATE, 'localtime'), `+data.Shift+`, 
+		'`+nama+`', TIME(CURRENT_TIME, 'localtime'), '`+req.headers.kodecabang+`', 'Absen Offline'
+	)`
+	
+	db.run(sql, [], function(err) {
+		if (err) throw err;
+		res.send({status:true, message:"Absens berhasil"})
+	});
+})
+
+app.put('/api/datangmanual/:id', (req, res) => {
+	let id = req.params.id
+	if(id == 0){
+		
+		let data = req.body
+		let nama = data.NamaUser.split(" - ")[1]
+		let sql = `
+		INSERT INTO attlog(
+			UserID, TanggalScan,
+			Nama, ScanPulang, KodeCabangPulang, KetPulang
+		) VALUES(
+			'`+data.UserID+`', DATE(CURRENT_DATE, 'localtime'), 
+			'`+nama+`', TIME(CURRENT_TIME, 'localtime'), '`+req.headers.kodecabang+`', 'Absen Offline'
+		)`;
+
+		db.run(sql, [], function(err) {
+			if (err) {
+			  throw err
+			}
+			res.send({status:true, message:"Berhasil pulang" })
+		});
+
+	}else{
+		let sql = `
+		UPDATE attlog
+		SET ScanPulang = TIME(CURRENT_TIME, 'localtime'), KodeCabangPulang = '`+req.headers.kodecabang+`' , KetPulang = 'Absen Offline'
+		WHERE id = `+req.params.id+``;
+		db.run(sql, [], function(err) {
+			if (err) {
+			  throw err
+			}
+			res.send({status:true, message:"Berhasil pulang" })
+		});
+	}
+})
+
+app.get("/api/optusermanual", (req, res) => {
+	let q = `SELECT
+	DISTINCT UserID AS value, UserID || ' - ' || Nama AS label 
+	FROM user 
+	WHERE  
+	
+	UserID NOT IN ( 
+		SELECT UserID FROM attlog WHERE TanggalScan = DATE(CURRENT_DATE, 'localtime')
+		AND ScanPulang IS NULL
+		AND ScanMasuk IS NOT NULL 
+	) 
+	AND Status IN('001','111','101') 
+	AND KodeCabang = '`+req.headers.kodecabang+`'
+	ORDER BY label ASC`;
+	
+	db.all(q, [], (err, rows) => {
+		if (err) throw err;
+		res.send(rows)
+	})
+})
+
+app.get("/api/optusermanualpulang", (req, res) => {
+	let q = `
+	SELECT 
+		a.id,
+		a.DatangID, 
+		a.UserID value, 
+		a.Nama label 
+	FROM attlog a
+	LEFT JOIN user u ON a.UserID = u.UserID
+	WHERE a.TanggalScan = CURRENT_DATE
+	AND a.ScanPulang IS NULL 
+	AND a.ScanMasuk IS NOT NULL 
+	AND u.Status IN('001','111','101')`;
+	
+	db.all(q, [], (err, rows) => {
+		if (err) throw err;
+		res.send(rows)
+	})
+})
+
 
 app.get("/synctoserver", (req, res)=>{
 	// console.log(req.headers)
@@ -398,30 +505,81 @@ app.post("/synctolocal", async (req, res)=>{
 	// res.send(arr)
 })
 
-app.get("/cekuserafterfinger/:id/:action",(req, res)=>{
+app.get("/api/cekuserafterfinger/:id/:action",(req, res)=>{
 	let UserID = req.params.id
 	let Action = req.params.action
-
 	if(Action == 'masuk'){
 		let q = `
-			SELECT 
-				u.UserID, u.Nama , 
-				CASE WHEN a.id IS NULL THEN 1 ELSE 0 END status,
-				CASE WHEN a.id IS NULL THEN 'Anda Bisa masuk' ELSE 'Anda Sudah Masuk' END message 
-			FROM user u
-			LEFT JOIN attlog a ON a.UserID = u.UserID AND a.TanggalScan = CURRENT_DATE
-			WHERE u.UserID = '`+UserID+`'
-			LIMIT 1
+		SELECT 
+		u.UserID, u.Nama , 
+		CASE WHEN a.id IS NULL THEN 1 ELSE 0 END status,
+		CASE WHEN a.id IS NULL THEN 'Anda Bisa masuk' ELSE 'Anda Sudah Masuk' END message 
+		FROM user u
+		LEFT JOIN attlog a ON a.UserID = u.UserID AND a.TanggalScan = CURRENT_DATE
+		WHERE u.UserID = '`+UserID+`'
+		LIMIT 1
 		`;
 		// let log = await db.get(q, [item.UserID, item.TanggalScan]);
 		// if(log) arr.push(log)
 		db.get(q, [], (err, row) => {
 			if (err) throw err;
+			console.log(row)
 			res.send(row)
 		});
 	}else{
-		res.send("oooo")
+		let q = `
+		SELECT b.id, b.ScanMasuk, b.ScanPulang, u.UserID, u.Nama, 
+			CASE 
+				WHEN b.id IS NULL THEN 1
+				WHEN b.id IS NOT NULL AND b.ScanPulang IS NULL THEN 1 
+				WHEN b.id IS NOT NULL AND b.ScanPulang IS NOT NULL THEN 0
+			END status,
+			CASE 
+				WHEN b.id IS NULL THEN 'Anda bisa absen pulang'
+				WHEN b.id IS NOT NULL AND b.ScanPulang IS NULL THEN 'Anda bisa pulang' 
+				WHEN b.id IS NOT NULL AND b.ScanPulang IS NOT NULL THEN 'Anda sudah pulang'
+			END message
+		FROM (
+			SELECT 1
+		) a
+		LEFT JOIN (
+			SELECT id, ScanMasuk, ScanPulang, UserID, Nama
+			FROM attlog WHERE 
+			TanggalScan = DATE(CURRENT_DATE, 'localtime')
+			AND UserID = '`+UserID+`'
+		) b
+		LEFT JOIN user u ON u.UserID = '`+UserID+`'
+		`;
+
+		db.get(q, [], (err, row) => {
+			if (err) throw err;
+			res.send(row)
+		});
 	}
+})
+
+app.get("/users", async (req, res)=>{
+	let q = "SELECT * FROM user"
+	let users = []
+	db.all(q, [], (err, rows) => {
+		if (err) throw err;
+		//res.send(rows)
+		Promise.all(rows.map((item) => {
+			users.push(item.UserID)
+		}))
+		res.send(users)
+	})
+})
+
+app.post("/download-user", (req, res) => {
+	let q = `INSERT INTO user(UserID, KodeCabang, Nama, GroupID, Status) 
+	VALUES(?, ?, ?, ?, ?)`;
+	let parms = [req.body.UserID, req.body.KodeCabang, req.body.Nama, req.body.GroupID, req.body.Status]
+	db.run(q, parms, function(err) {
+		if (err) throw err;			
+		res.send({status:true, message:req.body.UserID +" berhasil didownload"})
+	})
+	//res.send(req.body)
 })
 
 app.post("/postmasuk", (req, res) => {
@@ -500,18 +658,8 @@ const typesDef = {
 
 wsServer.on("request", function (request) {
 	var userID = getUniqueID();
-	// console.log(
-	// 	new Date() +
-	// 	" Recieved a new connection from origin " +
-	// 	request.origin +
-	// 	"."
-	// );
-	// You can rewrite this part of the code to accept only the requests from allowed origin
 	const connection = request.accept(null, request.origin);
 	clients[userID] = connection;
-	// console.log(
-	// 	"connected: " + userID + " in " + Object.getOwnPropertyNames(clients)
-	// );
 	connection.on("message", function (message) {
 		if (message.type === "utf8") {
 			// console.log(message)
@@ -520,5 +668,4 @@ wsServer.on("request", function (request) {
 			sendMessage(JSON.stringify(json));
 		}
 	});
-
 });

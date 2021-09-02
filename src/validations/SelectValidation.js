@@ -1,6 +1,6 @@
 const SelectValidation = (values) => {
     const errors = {};
-    if (!values.Nama || values.Nama.value === "" || values.Nama.value === undefined) {
+    if (!values.Nama || values.Nama.length == 0) {
       errors.Nama = "Nama harus diisi";
     }
   

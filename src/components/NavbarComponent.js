@@ -32,6 +32,7 @@ const NavbarComponent = (props) => {
                 <NavbarToggler onClick={toggleNavbar} className="mr-2" />
                 <Collapse isOpen={!collapsed} navbar>
                     <Nav className="mr-auto" navbar>
+                        {ambil.RoleAdmin === 2 ? "" : (
                             <NavItem>
                                 <UncontrolledDropdown nav inNavbar>
                                     <DropdownToggle nav caret>
@@ -43,27 +44,44 @@ const NavbarComponent = (props) => {
                                                 Tutup Absensi
                                             </Link>
                                         </DropdownItem>
+                                        {ambil.RoleAdmin === 99 ? (
+                                            <>
+                                            <DropdownItem divider />
+                                            <DropdownItem style={{ paddingLeft: 0, paddingRight: 0 }}>
+                                                <Link to="/superadmin" style={{ display: "block", width: "100%", paddingLeft: "1.5em", paddingRight: "1.5em" }}>
+                                                    Data Admin
+                                                </Link>
+                                            </DropdownItem>
+                                            </>
+                                        ) : "" }
                                         <DropdownItem divider />
                                         <DropdownItem style={{ paddingLeft: 0, paddingRight: 0 }}>
-                                            <Link to="/superadmin" style={{ display: "block", width: "100%", paddingLeft: "1.5em", paddingRight: "1.5em" }}>
-                                                Admin
+                                            <Link to="/data-absensi-offline" style={{ display: "block", width: "100%", paddingLeft: "1.5em", paddingRight: "1.5em" }}>
+                                                Data Absen Offline
                                             </Link>
                                         </DropdownItem>
                                         {ambil.RoleAdmin === 99 ? (
-                                        <div>
-                                        <DropdownItem divider />
-                                        <DropdownItem style={{ paddingLeft: 0, paddingRight: 0 }}>
-                                            <Link to="/cabang" style={{ display: "block", width: "100%", paddingLeft: "1.5em", paddingRight: "1.5em" }}>
-                                                Cabang
-                                            </Link>
-                                        </DropdownItem>
-                                        </div>
+                                            <>
+                                                <DropdownItem divider />
+                                                <DropdownItem style={{ paddingLeft: 0, paddingRight: 0 }}>
+                                                    <Link to="/cabang" style={{ display: "block", width: "100%", paddingLeft: "1.5em", paddingRight: "1.5em" }}>
+                                                        Cabang
+                                                    </Link>
+                                                </DropdownItem>
+                                                <DropdownItem divider />
+                                                <DropdownItem style={{ paddingLeft: 0, paddingRight: 0 }}>
+                                                    <Link to="/mutasipegawai" style={{ display: "block", width: "100%", paddingLeft: "1.5em", paddingRight: "1.5em" }}>
+                                                        Mutasi Pegawai
+                                                    </Link>
+                                                </DropdownItem>
+                                            </>
                                         ) : (
                                             ""
                                         )}
                                     </DropdownMenu>
                                 </UncontrolledDropdown>
                             </NavItem>
+                        )}
                         <NavItem>
                             <Link to="/">
                                 <NavLink> Pegawai </NavLink>
@@ -79,42 +97,52 @@ const NavbarComponent = (props) => {
                                         Perorangan
                                     </Link>
                                 </DropdownItem>
-                                <DropdownItem divider />
-                                <DropdownItem style={{ paddingLeft: 0, paddingRight: 0 }}>
-                                    <Link to="/izin/group" style={{ display: "block", width: "100%", paddingLeft: "1.5em", paddingRight: "1.5em" }}>
-                                        Pergroup & Libur Umum
-                                    </Link>
-                                </DropdownItem>
-                                <DropdownItem divider />
-                                <DropdownItem style={{ paddingLeft: 0, paddingRight: 0 }}>
-                                    <Link to="/kelengkapanabsensi" style={{ display: "block", width: "100%", paddingLeft: "1.5em", paddingRight: "1.5em" }}>
-                                        Absen Belum Lengkap
-                                    </Link>
-                                </DropdownItem>
+                                {ambil.RoleAdmin === 2 ? "" : (
+                                    <>
+                                    <DropdownItem divider />
+                                    <DropdownItem style={{ paddingLeft: 0, paddingRight: 0 }}>
+                                        <Link to="/izin/group" style={{ display: "block", width: "100%", paddingLeft: "1.5em", paddingRight: "1.5em" }}>
+                                            Pergroup & Libur Umum
+                                        </Link>
+                                    </DropdownItem>
+                                    <DropdownItem divider />
+                                    <DropdownItem style={{ paddingLeft: 0, paddingRight: 0 }}>
+                                        <Link to="/kelengkapanabsensi" style={{ display: "block", width: "100%", paddingLeft: "1.5em", paddingRight: "1.5em" }}>
+                                            Absen Belum Lengkap
+                                        </Link>
+                                    </DropdownItem>
+                                    </>
+                                )}
                             </DropdownMenu>
                         </UncontrolledDropdown>
-                        <NavItem>
-                            <Link to="/group">
-                                <NavLink> Group </NavLink>
-                            </Link>
-                        </NavItem>
-
+                        {ambil.RoleAdmin === 2 ? "" : (
+                            <NavItem>
+                                <Link to="/group">
+                                    <NavLink> Group </NavLink>
+                                </Link>
+                            </NavItem>
+                        )}
                         <NavItem>
                             <Link to="/laporan">
                                 <NavLink> Laporan </NavLink>
                             </Link>
                         </NavItem>
 
+                        {ambil.RoleAdmin === 2 ? "" : (
                         <NavItem>
                             <Link to="/history">
                                 <NavLink> History </NavLink>
                             </Link>
                         </NavItem>
+                        )}
+                        {ambil.RoleAdmin === 2 ? "" : (
                         <NavItem>
                             <Link to="/pengumuman">
                                 <NavLink> Pengumuman </NavLink>
                             </Link>
                         </NavItem>
+                        )}
+                        {ambil.RoleAdmin === 2 ? "" : (
                         <UncontrolledDropdown nav inNavbar>
                             <DropdownToggle nav caret>
                                 Manual
@@ -157,6 +185,7 @@ const NavbarComponent = (props) => {
                                 </DropdownItem>
                             </DropdownMenu>
                         </UncontrolledDropdown>
+                        )}
                     </Nav>
                     <Nav navbar>
                         <NavItem>
@@ -169,7 +198,11 @@ const NavbarComponent = (props) => {
                                 &nbsp;{nama}
                             </DropdownToggle>
                             <DropdownMenu right>
-                                <DropdownItem>Profile</DropdownItem>
+                                <DropdownItem>
+                                    <Link to={"/profile/"+ambil.AdminID} style={{ display: "block", width: "100%", paddingLeft: "1.5em", paddingRight: "1.5em" }}>
+                                        Profile
+                                    </Link>
+                                </DropdownItem>
                                 <DropdownItem divider />
                                 <DropdownItem>
                                     <div color="dark" onClick={() => localStorage.removeItem('user')}>

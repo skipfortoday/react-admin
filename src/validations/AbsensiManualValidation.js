@@ -1,6 +1,8 @@
 const AbsensiManualValidation = (values) => {
   const errors = {};
-
+  if (!values.Nama || values.Nama === "") {
+    errors.Nama = "Nama harus dipilih";
+  }
   if (!values.Shift || values.Shift === "") {
     errors.Shift = "Shift harus diisi";
   } else {

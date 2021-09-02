@@ -5,6 +5,7 @@ import {
     PUT_CABANG_EDIT,
     POST_CONFIG,
     RESET_POST_CONFIG,
+    SET_PEGAWAI_SELECT,
   } from "../actions/cabangAction"
   
   let initialState = {
@@ -15,11 +16,21 @@ import {
     getResponDataCabang: false,
     errorResponDataCabang: false,
     getResponseSetConfig:false,
-    errorGetResponseSetConfig:false
+    errorGetResponseSetConfig:false,
+    selectPegawai:false,
+    selectCabangAsal:false
   };
   
   const Cabang = (state = initialState, action) => {
     switch (action.type) {
+      case SET_PEGAWAI_SELECT : {
+        return {
+          ...state,
+          selectPegawai:action.payload.pegawai,
+          selectCabangAsal:action.payload.cabang
+        }
+      }
+
       case RESET_POST_CONFIG:{
         return {
           ...state,

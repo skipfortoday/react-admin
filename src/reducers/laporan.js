@@ -9,7 +9,9 @@ import {
   IS_LOADING,
   GET_LAPORAN_KELENGKAPAN,
   RESET_RESPONSE_DATA_LAPORAN,
-  CHECK_BELUM_PULANG_TODAY
+  CHECK_BELUM_PULANG_TODAY,
+  GET_LAPORAN_DETAIL_BANYAK,
+  GET_LIST_PERIODE
 } from "../actions/laporanAction";
 import { formatTglYmd } from '../containers/formatTgl';
 
@@ -39,12 +41,30 @@ let initialState = {
     value: 'all',
     label: 'Semua Karyawan'
   },
-  checkBelumPulang:{status:false, message:""}
-
+  checkBelumPulang:{status:false, message:""},
+  laporanBanyak:false,
+  listPeriode:false
 };
 
 const Laporan = (state = initialState, action) => {
   switch (action.type) {
+    case GET_LIST_PERIODE : 
+      return {
+        ...state,
+        listPeriode:action.payload.data
+      }
+      
+    case GET_LAPORAN_DETAIL_BANYAK:
+      return {
+        ...state,
+        laporanBanyak: action.payload.data,
+        
+        // getLaporanDetail: action.payload.data,
+        // getExpandKey: action.payload.expandKey,
+        // errorLaporanDetail: action.payload.errorMessage,
+        // getLaporanRekap: action.payload.data.footer,
+      };
+
 
     case CHECK_BELUM_PULANG_TODAY:
       return {
@@ -95,6 +115,7 @@ const Laporan = (state = initialState, action) => {
         getLaporanRekap: action.payload.data.footer,
       };
 
+   
     case GET_LAPORAN_REKAP:
       return {
         ...state,

@@ -28,7 +28,8 @@ exports.newCabang = (req, res) => {
         NoTelp: req.body.NoTelp,
         GeneralManagerID: req.body.GeneralManagerID,
         hrdID: req.body.hrdID,
-        IP: req.body.IP
+        IP: req.body.IP,
+        MaxAccLupaAbsen: req.body.MaxAccLupaAbsen
     };
 
     if (req.body.Password != '') {
@@ -55,7 +56,8 @@ exports.editCabang = (req, res) => {
             NoTelp = "` + req.body.NoTelp + `", 
             GeneralManagerID = "` + req.body.GeneralManagerID + `", 
             hrdID = "` + req.body.hrdID + `" ,
-            IP = "` + req.body.IP + `" 
+            IP = "` + req.body.IP + `" ,
+            MaxAccLupaAbsen = "`+req.body.MaxAccLupaAbsen+`"
             `;
 
 

@@ -30,72 +30,6 @@ exports.masukManual = (req, res) => {
     });
 }
 
-exports.syncToServer = async (req, res) => {
-    let attlogs = req.body.attlogs;
-    let ids = []
-    let id;
-    
-    Promise.all(attlogs.map(async(item)=> {
-        id = 0;
-        if(item.Status == 0){
-            let data = {
-                Tanggal: item.TanggalScan,
-                ScanMasuk: item.ScanMasuk,
-                UserID: item.UserID,
-                Nama: item.Nama,
-                ket: item.Keterangan,
-                caraMasuk:'FP',
-                Shift:item.Shift,
-            }
-
-            let sql =
-                `CALL ProsesMasukManual (
-                '` + data.UserID +`',
-                '` + data.Tanggal +`',
-                '` + data.ScanMasuk + `',
-                '` + data.Shift + `',
-                '` + data.ket +`',  
-                '` + req.headers.kodecabang +`',
-                '` + data.caraMasuk+`' 
-            )`;
-            
-            const masuk = await asyncQuery(sql);
-            id = masuk[0][0].DatangID;
-            if(id) ids.push(id)
-        }
-        // console.log(item.ScanPulang !== null && item.StatusPulang === 0 && id !== 0)
-        if(item.ScanPulang !== null && item.StatusPulang === 0 && id !== 0){
-            let data = {
-                ScanPulang: item.ScanPulang,
-                UserID: item.UserID,
-                KetPulang:item.KetPulang,
-            }
-            let sql =
-                `CALL ProsesPulang (
-                  '` + id + `',
-                  '` + data.ScanPulang + `',
-                  '` + data.KetPulang + `',
-                  '` + req.headers.kodecabang + `'
-                )`;
-            const pulang = await asyncQuery(sql);
-            console.log(pulang)
-        }
-    }))
-    console.log(ids)
-    
-    // let strId = 0;
-    // if(ids.length>0) ids.join(",")
-    // let sql = `
-    //     SELECT 
-    //         UserID, TanggalScan, DatangID, Nama, 
-    //         ScanMasuk, ScanPulang, KodeCabang, KodeCabangPulang, Keterangan, KetPulang
-    //     FROM attlog
-    //     WHERE DatangID IN (`+strId+`)
-    // `;
-    // const rows = await asyncQuery(sql);
-    res.send("OK SERVER")
-}
-
 exports.pulangManual = (req, res) => {
     let parsing = {
         ScanPulang: moment.parseZone(moment()).format('HH:mm:ss'),
@@ -231,4 +165,100 @@ exports.optUserIstirahatKembaliManual = (req, res) => {
         let user = rows[0];
         res.send(user);
     });
+}
+
+exports.syncToServer = async (req, res) => {
+    let attlogs = req.body.attlogs;
+    let ids = []
+    let id;
+
+    /*
+    jika Status == 0 && ScanMasuk && 
+    */
+    Promise.all(
+        attlogs.map(async(item)=>{
+            let UserID = item.UserID;
+            // cek dulu user ini tanggal ini
+            let q = `SELECT * FROM attlog WHERE UserID = '`+UserID+`' 
+            AND TanggalScan = CURRENT_DATE()`
+
+            let OnlScanMasuk = null
+            let OnlScanPulang = null
+
+            let StatusMasuk = item.Status
+            let StatusPulang = item.StatusPulang
+            let ScanMasuk = item.ScanMasuk
+            let ScanPulang = item.ScanPulang
+
+            let log = await asyncQuery(q);
+            // if(log) 
+            console.log(JSON.stringify(log[0]))
+            
+
+        })
+    )
+
+    res.send(attlogs)
+
+
+
+    // Promise.all(attlogs.map(async(item)=> {
+    //     id = 0;
+    //     if(item.Status == 0){
+    //         let data = {
+    //             Tanggal: item.TanggalScan,
+    //             ScanMasuk: item.ScanMasuk,
+    //             UserID: item.UserID,
+    //             Nama: item.Nama,
+    //             ket: item.Keterangan,
+    //             caraMasuk:'FP',
+    //             Shift:item.Shift,
+    //         }
+
+    //         let sql =
+    //             `CALL ProsesMasukManual (
+    //             '` + data.UserID +`',
+    //             '` + data.Tanggal +`',
+    //             '` + data.ScanMasuk + `',
+    //             '` + data.Shift + `',
+    //             '` + data.ket +`',  
+    //             '` + req.headers.kodecabang +`',
+    //             '` + data.caraMasuk+`' 
+    //         )`;
+            
+    //         const masuk = await asyncQuery(sql);
+    //         id = masuk[0][0].DatangID;
+    //         if(id) ids.push(id)
+    //     }
+    //     // console.log(item.ScanPulang !== null && item.StatusPulang === 0 && id !== 0)
+    //     if(item.ScanPulang !== null && item.StatusPulang === 0 && id !== 0){
+    //         let data = {
+    //             ScanPulang: item.ScanPulang,
+    //             UserID: item.UserID,
+    //             KetPulang:item.KetPulang,
+    //         }
+    //         let sql =
+    //             `CALL ProsesPulang (
+    //               '` + id + `',
+    //               '` + data.ScanPulang + `',
+    //               '` + data.KetPulang + `',
+    //               '` + req.headers.kodecabang + `'
+    //             )`;
+    //         const pulang = await asyncQuery(sql);
+    //         console.log(pulang)
+    //     }
+    // }))
+    // console.log(ids)
+    
+    // let strId = 0;
+    // if(ids.length>0) ids.join(",")
+    // let sql = `
+    //     SELECT 
+    //         UserID, TanggalScan, DatangID, Nama, 
+    //         ScanMasuk, ScanPulang, KodeCabang, KodeCabangPulang, Keterangan, KetPulang
+    //     FROM attlog
+    //     WHERE DatangID IN (`+strId+`)
+    // `;
+    // const rows = await asyncQuery(sql);
+    // res.send("OK SERVER")
 }

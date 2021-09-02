@@ -17,7 +17,7 @@ const NamaCabangLaporan = (props) => {
     <Table borderless size="sm">
     
       <tbody
-        style={{ fontSize: "14px", fontWeight: "bold", lineHeight: "70%" , fontFamily : "Arial" }}
+        style={{ fontSize: "14px", fontWeight: "bold", lineHeight: "100%" , fontFamily : "Arial" }}
       >
         <tr >
         <td style={{ width:"50px" }}>

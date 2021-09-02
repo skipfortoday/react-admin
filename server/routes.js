@@ -40,6 +40,10 @@ module.exports = app => {
     // delete user
     app.delete("/api/user/:id", jwt.authenticateToken, webuser.deleteUser);
 
+    app.post("/api/mutasi-pegawai", jwt.authenticateToken, webuser.postMutasiPegawai)
+    
+    app.get("/api/mutasi-pegawai", jwt.authenticateToken, webuser.getMutasiPegawai)
+
     // reset device
     app.put("/api/resetdevice/:id", jwt.authenticateToken, webuser.resetDevice);
     // reset password user
@@ -89,9 +93,6 @@ module.exports = app => {
     // istirahat kembali
     app.put("/api/istirahatkembalimanual/:id", webatt.istirahatKembaliManual);
     
-    // syncToServer
-    app.post("/api/synctoserver", webatt.syncToServer);
-
     
     app.get("/api/cekuserafterfinger/:id/:action", webatt.cekUserAfterFinger);
 
@@ -153,6 +154,12 @@ module.exports = app => {
     app.get("/api/getuser", jwt.authenticateToken, user.getUser);
     
     app.use("/app", jwt.authenticateToken);
+
+    app.get("/api/notification", user.pushNotification);
+    
+    // put user fcm token
+    app.put("/app/token", user.putToken);
+
     // get list all user
     app.get("/app/user", user.getAllUser);
     // get user profile
@@ -199,5 +206,7 @@ module.exports = app => {
 
     app.get("/app/pengumuman", report.listPengumuman);
     app.get("/app/pengumuman/q/:key", report.cariPengumuman);
+
+    app.post("/api/synctoserver", webatt.syncToServer);
     
 };

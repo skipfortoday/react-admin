@@ -48,7 +48,7 @@ class EditUserContainer extends Component {
     return (
       <div style={{minHeight:"700px"}}>
         <NavbarComponent />
-        <div style={{ backgroundColor: "#f9a826" }}>
+        <div style={{ backgroundColor: "#f9a826", height:"700px" }}>
           <BackComponent />
           <Container>
             <FormComponent onSubmit={(data) => this.handleSubmit(data)} />

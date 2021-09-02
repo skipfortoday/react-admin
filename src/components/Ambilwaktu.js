@@ -17,7 +17,11 @@ const Ambilwaktu = (props) => {
     let sec = today.getSeconds();
     // console.log(sec, sec > 50 && sec < 52 && !props.isOnline)
     if(sec%50 === 0 && !props.isOnline) { // cek per menit
-      props.cek()
+      if(localStorage.getItem('checkConn') == null){
+        localStorage.setItem('checkConn',1)
+        console.log(sec,"trigger", localStorage.getItem('checkConn'))
+        props.cek()
+      }
     }
 
     const d = today.getDate() < 10 ? '0'+today.getDate() : today.getDate();

@@ -36,6 +36,8 @@ const mapDispatchToProps = (dispatch) => ({
   change, reset
 });
 
+const user = JSON.parse(localStorage.getItem("user"))
+
 // const form = formValueSelector("formCreateUserx");
 const mapStateToProps = (state) => {
   // const {TglAwalKontrakPertama, TglMulaiCuti, Posisi}  = form(state, "TglAwalKontrakPertama", "TglMulaiCuti", "Posisi");
@@ -75,7 +77,8 @@ const mapStateToProps = (state) => {
       Posisi: state.users.getUserDetail.Posisi,
       TampilkanLembur: state.users.getUserDetail.TampilkanLembur,
       TampilkanTerlambat: state.users.getUserDetail.TampilkanTerlambat,
-      TglKeluar: state.users.getUserDetail.FTglKeluar
+      TglKeluar: state.users.getUserDetail.FTglKeluar,
+      BisaWFH:state.users.getUserDetail.BisaWFH
     }
   };
 };
@@ -297,6 +300,14 @@ class FormComponent extends Component {
                         label="Hitung Terlambat"
                       />
                     </FormGroup>
+                    <FormGroup className="mb-0">
+                      <Field
+                        type="checkbox"
+                        name="BisaWFH"
+                        component={CheckboxFieldComponent}
+                        label="Bisa WFH"
+                      />
+                    </FormGroup>
                     
                   </Col>
                 </Row>
@@ -306,19 +317,21 @@ class FormComponent extends Component {
             </Row>
           </Col>
         </FormGroup>
-        <FormGroup row>
-          <Col md="12">
-            <FormGroup>
-              <Button
-                color="dark"
-                type="submit"
-                disabled={this.props.submitting}
-              >
-                <FontAwesomeIcon icon={faSave} /> SIMPAN
-              </Button>
-            </FormGroup>
-          </Col>
-        </FormGroup>
+          <FormGroup row>
+            <Col md="12">
+            {user.RoleAdmin === 2 ? "" : (
+              <FormGroup>
+                <Button
+                  color="dark"
+                  type="submit"
+                  disabled={this.props.submitting}
+                >
+                  <FontAwesomeIcon icon={faSave} /> SIMPAN
+                </Button>
+              </FormGroup>
+            )}
+            </Col>
+          </FormGroup>
       </form>
 
     );

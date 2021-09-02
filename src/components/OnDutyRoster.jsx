@@ -3,6 +3,9 @@ import BootstrapTable from "react-bootstrap-table-next";
 import { Card, CardBody, CardHeader, CardTitle, Spinner } from "reactstrap";
 import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
 import { connect } from "react-redux";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCheck, faSynagogue, faSync, faSyncAlt, faTimes } from "@fortawesome/free-solid-svg-icons";
+import { Button } from "reactstrap";
 
 
 const { SearchBar } = Search;
@@ -24,7 +27,8 @@ const mapStateToProps = (state) => {
 };
 
 const OnDutyRoster = (props) => {
-   const columns = [
+   let online = props.online;
+   let columns = [
 
       {
          dataField: "Nama",
@@ -37,26 +41,62 @@ const OnDutyRoster = (props) => {
          style: (val, row) => {
             
             if(row.UserID == props.lastUserActive )
-            return {fontWeight: "bold", padding: "10px", backgroundColor:"green", color:"#fff" }
+            return {fontWeight: "bold", padding: "10px", backgroundColor:"", color:"#333" }
             else
             return { fontWeight: "normal", padding: "10px"};
          },
       },
       {
          dataField: "ScanMasuk",
-         text: "Jam",
+         text: "Masuk",
          sort: true,
          headerStyle: () => {
             return { width: "50px", backgroundColor: "#f9a826" };
          },
          style: (val, row) => {
             if(row.UserID == props.lastUserActive )
-            return {fontWeight: "bold", padding: "10px", backgroundColor:"green", color:"#fff" }
+            return {fontWeight: "bold", padding: "10px", backgroundColor:"", color:"#333" }
             else
             return { fontWeight: "normal", padding: "10px"};
          },
+
+         formatter: (val, row) => {
+            return (
+               <div>
+                  {val} {"  "}
+                  {row.Status === 1 ? <FontAwesomeIcon color="green" icon={faCheck} /> : ""} 
+               </div>
+            )
+        }
       },
    ];
+
+   if(props.online === false){
+      columns.push(
+         {
+            dataField: "ScanPulang",
+            text: "Pulang",
+            sort: true,
+            headerStyle: () => {
+               return { width: "50px", backgroundColor: "#f9a826" };
+            },
+            style: (val, row) => {
+               if(row.UserID == props.lastUserActive )
+               return {fontWeight: "bold", padding: "10px", backgroundColor:"", color:"#333" }
+               else
+               return { fontWeight: "normal", padding: "10px"};
+            },
+            formatter: (val, row) => {
+               return (
+                  <div>
+                     {val} {"  "}
+                     {row.StatusPulang === 1 ? <FontAwesomeIcon color="green" icon={faCheck} /> : ""} 
+                  </div>
+               )
+           }
+         }
+      )
+   }
 
    return (
       <div>
@@ -72,10 +112,12 @@ const OnDutyRoster = (props) => {
             >
                {(props) => (
                   <div>
-                     
+                     {/* {online === false ? <Button><FontAwesomeIcon icon={faSync} /> </Button> : "" } */}
                      <Card>
                         <CardHeader>
-                           <CardTitle tag="h6">On Duty Roster </CardTitle>
+                           <CardTitle tag="h6">{online === false ? 'Log Data Offline' : 'On Duty Roster'} 
+                              
+                           </CardTitle>
                         </CardHeader>
                         <CardBody style={{padding:"10px"}}>
                            <SearchBar

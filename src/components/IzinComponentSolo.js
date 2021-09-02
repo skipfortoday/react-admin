@@ -16,7 +16,7 @@ import '../components/IzinComponentSolo.css';
 
 const { SearchBar } = Search;
 
-
+const user = JSON.parse(localStorage.getItem("user"))
 
 const handleEditClick = (dispatch, DatangID) => {
   dispatch(getIzinDetailForm(DatangID))
@@ -139,12 +139,18 @@ const IzinComponentSolo = (props) => {
         return { fontWeight: "normal" };
       },
       formatter: (rowContent, row) => {
+        let disabled = true
+        if(row.ScanMasuk === "-" || row.ScanMasuk === "-") disabled = false
+        if(user.RoleAdmin === 99 || user.RoleAdmin === 1 ) disabled = false // Superadmin dan admin yang boleh 
+
+        // console.log("fall : ", disabled);
+        // console.log("fall : ", row.ScanMasuk, row.ScanPulang,row.ScanMasuk !== "-" && row.ScanPulang !== "-")
         return (
           <span>
-            <Button size="sm" color="danger" className="mr-1" id="TooltipHapus" onClick={() => handleClick(props.dispatch, row.DatangID)}>
+            <Button disabled={disabled} size="sm" color="danger" className="mr-1" id="TooltipHapus" onClick={() => handleClick(props.dispatch, row.DatangID)}>
               <FontAwesomeIcon icon={faTrash} />
             </Button>
-            <Button size="sm" color="warning" className="mr-1" id="TooltipEdit" onClick={() => handleEditClick(props.dispatch, row.DatangID)}>
+            <Button disabled={disabled} size="sm" color="warning" className="mr-1" id="TooltipEdit" onClick={() => handleEditClick(props.dispatch, row.DatangID)}>
               <FontAwesomeIcon icon={faEdit} />
             </Button>
           </span>

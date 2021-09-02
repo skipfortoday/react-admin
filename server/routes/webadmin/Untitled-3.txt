@@ -1,0 +1,7 @@
+jika > max datang 
+
+jam 7:6
+
+jika 7:6 <= 7:5 then 1,
+jika 7:6 <= 8:5 then 2, 
+jika 7:6 <= 10:5 then 3

@@ -1,6 +1,6 @@
-import axios from "axios";
-import { headers } from "../config";
-import { BASEURL } from "./adminAction";
+import axios from "./globalAction";
+import { headers, siteConfig, API_BASEURL } from "../config";
+let BASEURL = API_BASEURL;
 
 export const GET_OPT_USER = "GET_OPT_USER";
 export const GET_OPT_USERMANUAL = "GET_OPT_USERMANUAL";
@@ -14,6 +14,28 @@ export const GET_OPT_CABANG = "GET_OPT_CABANG";
 export const GET_OPT_TERLAMBAT = "GET_OPT_TERLAMBAT";
 export const AFTER_FINGER = "AFTER_FINGER";
 export const IS_ONLINE = "IS_ONLINE";
+
+export const checkConn = () => {
+  return (dispatch) => {
+     axios.get(API_BASEURL+"/time")
+     .then(function(response){
+        dispatch({
+           type: IS_ONLINE,
+           payload: {
+              data: true
+           },
+        });
+     }).catch(function(error){
+      dispatch({
+        type: IS_ONLINE,
+        payload: {
+           data: false
+        },
+     });
+     })
+  }
+}
+
 
 export const setOnline = (status) =>{
   return (dispatch) => {
@@ -79,11 +101,11 @@ export const cekUserAfterFinger = (UserID = null, Action = null, isOnline = true
     }
   }
   return (dispatch) => {
-    let url = BASEURL+"/api";
+    let url = BASEURL;
     if(!isOnline) url = "http://localhost:8081";
 
     axios
-      .get(url+"/cekuserafterfinger/"+UserID+"/"+Action, headers)
+      .get(url+"/api/cekuserafterfinger/"+UserID+"/"+Action, headers)
       .then(function (response) {
         dispatch({
           type: AFTER_FINGER,
@@ -128,7 +150,9 @@ export const cekUserAfterFingerLocal = (UserID,Action) => {
   })
 }
 
-export const getOptUserManual = () => {
+export const getOptUserManual = (online = true) => {
+  BASEURL = API_BASEURL
+  if(!online) BASEURL = 'http://localhost:8081'
   return (dispatch) => {
     axios
       .get(BASEURL+"/api/optusermanual", headers)
@@ -153,7 +177,9 @@ export const getOptUserManual = () => {
   };
 };
 
-export const getOptUserManualPulang = () => {
+export const getOptUserManualPulang = (online = true) => {
+  BASEURL = API_BASEURL
+  if(!online) BASEURL = 'http://localhost:8081'
   return (dispatch) => {
     axios
       .get(BASEURL+"/api/optusermanualpulang", headers)

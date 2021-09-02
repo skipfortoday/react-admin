@@ -1,6 +1,6 @@
 import axios from "axios";
-import { headers } from "../config";
-import { BASEURL } from "./adminAction";
+import { headers, API_BASEURL } from "../config";
+let BASEURL = API_BASEURL;
 
 export const GET_LIST_HISTORY = 'GET_LIST_HISTORY';
 export const SET_FILTER_HISTORY = 'SET_FILTER_HISTORY';

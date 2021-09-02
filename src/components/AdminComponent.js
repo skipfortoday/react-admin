@@ -59,6 +59,17 @@ const AdminComponent = (props) => {
 
    const columns = [
       {
+         dataField: "Nama",
+         text: "Nama",
+         sort: true,
+         headerStyle: () => {
+            return { width: "75px", backgroundColor: "#f9a826" };
+         },
+         style: () => {
+            return { fontWeight: "normal" };
+         },
+      },
+      {
          dataField: "Username",
          text: "Username",
          sort: true,
@@ -71,7 +82,7 @@ const AdminComponent = (props) => {
       },
       {
          dataField: "KodeCabang",
-         text: "Kode Cabang",
+         text: "Akses Cabang",
          sort: true,
          headerStyle: () => {
             return { width: "75px", backgroundColor: "#f9a826" };
@@ -80,12 +91,47 @@ const AdminComponent = (props) => {
             return { fontWeight: "normal" };
          },
       },
+      
+      {
+         dataField: "RoleAdminName",
+         text: "Role Admin",
+         sort: true,
+         headerStyle: () => {
+            return { width: "75px", backgroundColor: "#f9a826" };
+         },
+         style: () => {
+            return { fontWeight: "normal" };
+         },
+      },
+      
       {
          dataField: "TanggalCreate",
-         text: "Tanggal Create",
+         text: "Dibuat",
          sort: true,
          headerStyle: () => {
             return { width: "100px", backgroundColor: "#f9a826" };
+         },
+         style: () => {
+            return { fontWeight: "normal" };
+         },
+      },
+      {
+         dataField: "LastLogin",
+         text: "Last Login",
+         sort: true,
+         headerStyle: () => {
+            return { width: "100px", backgroundColor: "#f9a826" };
+         },
+         style: () => {
+            return { fontWeight: "normal" };
+         },
+      },
+      {
+         dataField: "Status",
+         text: "Status",
+         sort: true,
+         headerStyle: () => {
+            return { width: "75px", backgroundColor: "#f9a826" };
          },
          style: () => {
             return { fontWeight: "normal" };

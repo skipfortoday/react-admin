@@ -1,6 +1,6 @@
 import axios from "axios";
-import { headers } from "../config";
-import { BASEURL } from "./adminAction";
+import { headers, API_BASEURL } from "../config";
+let BASEURL = API_BASEURL;
 
 export const GET_LAPORAN_LIST = "GET_LAPORAN_LIST";
 export const GET_LAPORAN_DETAIL = "GET_LAPORAN_DETAIL";
@@ -15,7 +15,7 @@ export const RESET_RESPONSE_DATA_LAPORAN = "RESET_RESPONSE_DATA_LAPORAN";
 export const CHECK_BELUM_PULANG_TODAY = "CHECK_BELUM_PULANG_TODAY";
 
 export const GET_LIST_PERIODE = "GET_LIST_PERIODE";
-
+export const GET_LAPORAN_DETAIL_BANYAK = "GET_LAPORAN_DETAIL_BANYAK";
 
 
 export const getListPeriode = () => {
@@ -179,6 +179,70 @@ export const checkBelumPulangToday = (UserIDs = null) => {
         .catch(function (error) {
           dispatch({
             type: GET_LAPORAN_DETAIL,
+            payload: {
+              data: false,
+              errorMessage: error.message,
+            },
+          });
+        });
+    };
+  };
+
+
+  
+  export const getLaporanDetail2 = (UserIDs = null, TglAwal, TglAkhir) => {
+    if(UserIDs == null){
+      return (dispatch) =>{
+        dispatch({
+          type: GET_LAPORAN_DETAIL_BANYAK,
+          payload: {
+            data: false,
+            errorMessage: false,
+          },
+        });
+      }
+    }
+    return (dispatch) => {
+      axios
+        .post(BASEURL + "/api/laporandetailbanyak", 
+        {
+          UserIDs : UserIDs,
+          TglAwal : TglAwal,
+          TglAkhir : TglAkhir
+        },
+        headers)
+        .then(function (response) {
+          let allResponse = []
+          response.data.map((item) =>{
+            var res = [];
+            var expand = [];
+            var expandKey = [];
+            var nonExpandKey = [];
+            var body = item.body;
+            for (var row in body) {
+              res.push(body[row]);
+              if (body[row]['detail'].length > 0) expandKey.push(body[row].Tanggal);
+              else nonExpandKey.push(body[row].Tanggal);
+            }
+            expand = [expandKey, nonExpandKey];
+            allResponse.push({
+              data: item,
+              expandKey:expand
+            })
+
+          })
+          dispatch({
+            type: GET_LAPORAN_DETAIL_BANYAK,
+            payload: {
+              data: allResponse,
+              //expandKey: expand,
+              errorMessage: false,
+            },
+          });
+        })
+        .catch(function (error) {
+          dispatch({
+            type: GET_LAPORAN_DETAIL_BANYAK,
             payload: {
               data: false,
               errorMessage: error.message,

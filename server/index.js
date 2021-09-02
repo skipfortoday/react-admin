@@ -400,7 +400,8 @@ app.get("/api/pegawai", (req, res) => {
       c.NamaCabang,
       g.GroupID KodeGroup,
       g.Jabatan,
-      DATE_FORMAT(u.TglMasuk, "%Y-%m-%d") TglMasuk
+      DATE_FORMAT(u.TglMasuk, "%Y-%m-%d") TglMasuk, 
+      DATE_FORMAT(u.LastUpdate, "%Y-%m-%d %H:%i:%s") LastUpdate
    FROM user u 
    LEFT JOIN cabang c ON c.KodeCabang = u.KodeCabang
    LEFT JOIN tblgrupjabatan g ON g.GroupID = u.GroupID AND g.KodeCabang = u.KodeCabang
@@ -414,6 +415,89 @@ app.get("/api/pegawai", (req, res) => {
 
 })
 
-app.listen(3009, () => {
-   console.log("Server started on port 3009...");
-});
+app.get("/api/list-cabang", (req, res)=>{
+	let q = `SELECT KodeCabang, NamaCabang FROM cabang`
+	conn.query(q, (err, result)=>{
+		if (err) throw err;
+      	res.send(result);
+	})
+})
+
+const publicIp = require('public-ip');
+app.get("/test-ip", async (req, res)=>{
+   let ip = await publicIp.v4()
+   // res.send(ip)
+   console.log(req.headers)
+   res.send(req.headers)
+})
+
+var server = app.listen(3009, function () {
+	var host = server.address().address
+	var port = server.address().port
+
+	console.log("Example app listening at http://%s:%s", host, port)
+})
+
+
+app.get("/", (req, res) => {
+   res.send({status:1})
+})
+
+// const webSocketServer = require("websocket").server;
+// var W3CWebSocket = require("websocket").w3cwebsocket;
+// var client = new W3CWebSocket("ws://localhost:3009");
+// const clients = {}
+
+// client.onopen = () => {
+//    // console.log(client)
+//    // sendMessage('test')
+//    console.log('WebSocket Client Connected');
+//    client.send(
+// 		JSON.stringify({
+// 			type: "userevent",
+// 			data: {
+// 				test:"satststs"
+// 			}
+// 		})
+// 	);
+// };
+
+// const sendMessage = (json) => {
+//    // We are sending the current data to all connected clients
+// 	Object.keys(clients).map((client) => {
+//       console.log('sendMessage trigger', client)
+// 		clients['2e0edc0a-4fcd'].sendUTF(json);
+// 	});
+// };
+
+// const wsServer = new webSocketServer({
+//    httpServer: server,
+// });
+
+// const getUniqueID = () => {
+// 	const s4 = () =>
+// 		Math.floor((1 + Math.random()) * 0x10000)
+// 			.toString(16)
+// 			.substring(1);
+// 	return s4() + s4() + "-" + s4();
+// };
+
+// wsServer.on("request", function (request) {
+//    console.log('triggered')
+// 	var userID = getUniqueID();
+// 	const connection = request.accept(null, request.origin);
+// 	clients[userID] = connection;
+// 	connection.on("message", function (message) {
+// 		if (message.type === "utf8") {
+// 			// console.log(message)
+// 			const dataFromClient = JSON.parse(message.utf8Data);
+// 			const json = dataFromClient;
+// 			sendMessage(JSON.stringify(json));
+// 		}
+// 	});
+// });
+
+
+// app.listen(3009, () => {
+//    console.log("Server started on port 3009...");
+// });

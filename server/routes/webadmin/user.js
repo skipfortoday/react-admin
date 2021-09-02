@@ -6,6 +6,60 @@ const helper = require('../../helper.js')
 const fs = require('fs');
 const path = require('path');
 
+exports.getMutasiPegawai = (req, res) => {
+    let sql = `
+    SELECT m.*, 
+        CONCAT(c.KodeCabang, " - ", c.NamaCabang) CabangAsal,
+        CONCAT(ct.KodeCabang, " - ", ct.NamaCabang) CabangTujuan,
+        CONCAT(u.UserID, " - ", u.Nama) Pegawai,
+        DATE_FORMAT(m.CreatedAt,"%d/%m/%Y") Tanggal
+    FROM mutasipegawai m
+    LEFT JOIN cabang c ON c.KodeCabang = m.KodeCabangAsal
+    LEFT JOIN cabang ct ON ct.KodeCabang = m.KodeCabangTujuan
+    LEFT JOIN user u ON u.UserID = m.UserID`;
+
+    conn.query(sql, (err, rows)=>{
+        if (err) {
+            throw err;
+        } else {
+            res.send(rows)
+        }
+    })
+}
+
+exports.postMutasiPegawai = (req, res) => {
+    // res.send(req.body)
+    let CreatedBy = req.user.AdminID
+    let UserID = req.body.pegawai.value
+    let KodeCabangAsal = req.body.kodeCabangAsal.value
+    let KodeCabangTujuan = req.body.kodeCabangTujuan.value
+    
+    let sql = `UPDATE user SET KodeCabang = '`+KodeCabangTujuan+`' 
+    WHERE UserID = '`+UserID+`'`;
+
+    conn.query(sql, function(err, rows) {
+        if (err) {
+            throw err;
+        } else {
+            let sql = `
+            INSERT INTO mutasipegawai(
+                UserID, KodeCabangAsal, KodeCabangTujuan, Status, CreatedAt, CreatedBy
+            ) VALUES(
+                '`+UserID+`', '`+KodeCabangAsal+`', '`+KodeCabangTujuan+`', 'APROVED',
+                NOW(), `+CreatedBy+`
+            )`;
+            
+            conn.query(sql, function (err, rows) {
+                if (err) {
+                    throw err;
+                } else {
+                    res.send({status:true, message:"Mutasi Pegawai Berhasil"})
+                }
+            })
+        }
+    })
+}
+
 exports.login = (req, res) => {
     let data = {
         Password: md5(req.body.Password),
@@ -140,7 +194,8 @@ exports.newUser = (req, res) => {
                 '` + req.body.TampilkanLembur + `',
                 '` + req.body.RoleID +`',
                 '` +req.body.Posisi +`',
-                '` + req.body.TampilkanTerlambat + `'
+                '` + req.body.TampilkanTerlambat + `',
+                `+ req.body.BisaWFH+`
             )`;
             conn.query(sql, (err, results) => {
                 if (err) throw err;
@@ -180,7 +235,8 @@ exports.editUser = (req, res) => {
         '` + req.body.RoleID + `',
         '` + req.body.Posisi + `',
         '` + req.body.TampilkanTerlambat +`',
-        ` + tglKeluar +`
+        ` + tglKeluar +`,
+        `+req.body.BisaWFH+`
     )`;
     
     conn.query(sql, (err, results) => {

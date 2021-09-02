@@ -27,9 +27,35 @@ class CreateAdminContainer extends Component {
   }
 
   handleSubmit(data) {
+    let kocabs = []
+    data.KodeCabang.map((item)=>{
+      kocabs.push(item.value)
+    })
+    data.KodeCabang = {value : kocabs.join(",")}
+    // console.log(data)
     this.props.dispatch(postAdminCreate(data));
   }
 
+  componentDidUpdate(){
+    if (this.props.getResponDataAdmin || this.props.errorResponDataAdmin) {
+      if (this.props.errorResponDataAdmin) {
+        swal("Failed!", this.props.errorResponDataAdmin, "error");
+      } else {
+        this.props.dispatch(reset('formCreateAdmin'))
+        swal(
+          "Admin Created!",
+          "Kode : " +
+          this.props.getResponDataAdmin.AdminID +
+          " , Nama : " +
+          this.props.getResponDataAdmin.TanggalCreate,
+          "success"
+        ).then(()=>{
+          this.props.history.push("/superadmin")
+        });
+      }
+      this.props.dispatch(postAdminCreate(null));
+    }
+  }
 
   render() {
     if (!localStorage.getItem('user') || localStorage.getItem('user') === "false") {
@@ -44,22 +70,7 @@ class CreateAdminContainer extends Component {
         return <Redirect to="/superadmin" />;
     }
 
-    if (this.props.getResponDataAdmin || this.props.errorResponDataAdmin) {
-      if (this.props.errorResponDataAdmin) {
-        swal("Failed!", this.props.errorResponDataAdmin, "error");
-      } else {
-        this.props.dispatch(reset('formCreateAdmin'))
-        swal(
-          "Admin Created!",
-          "Kode : " +
-          this.props.getResponDataAdmin.AdminID +
-          " , Nama : " +
-          this.props.getResponDataAdmin.TanggalCreate,
-          "success"
-        );
-      }
-      this.props.dispatch(postAdminCreate(null));
-    }
+    
     return (
       <div>
         <NavbarComponent />

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 import TableUserComponent from "../components/TableUserComponent";
 import { connect } from "react-redux";
-import { getUsersList, deleteDataUser, getLocalFingerPrint, registerFingerPrint, deleteFingerprint } from "../actions/userAction";
+import { getUsersList, deleteDataUser, getLocalFingerPrint, registerFingerPrint, deleteFingerprint, downloadUser } from "../actions/userAction";
 
 import NavbarComponent from "../components/NavbarComponent";
 import swal from "sweetalert";
@@ -17,7 +17,8 @@ const mapStateToProps = (state) => {
         getResponLoginUser: state.Login.getResponLoginUser,
         getLocalFp: state.users.getLocalFp,
         deleteFp: state.users.deleteFp,
-        errorDeleteFp: state.users.errorDeleteFp
+        errorDeleteFp: state.users.errorDeleteFp,
+        downloadUser: state.users.downloadUser
     };
 };
 
@@ -56,7 +57,7 @@ class HomeContainer extends Component {
 
     componentDidMount() {
         this.props.dispatch(deleteDataUser());
-        this.props.dispatch(getUsersList());
+        this.props.dispatch(getUsersList(false, true));
 
         client.onopen = () => {
             // console.log('WebSocket Client Connected');
@@ -104,6 +105,18 @@ class HomeContainer extends Component {
             swal("Gagal", this.props.errorDeleteFp, "error")
             this.props.dispatch(deleteFingerprint())
         }
+
+        if(this.props.downloadUser){
+            if(this.props.downloadUser.status){
+                swal("Sukses", this.props.downloadUser.message, "success")
+                this.props.dispatch(getUsersList(false, true));
+            }else{
+                swal("Gagal", this.props.downloadUser.message, "error")
+            
+            }
+            this.props.dispatch(downloadUser())
+        }
+
     }
 
     render() {

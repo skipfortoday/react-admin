@@ -15,7 +15,8 @@ const mapStateToProps = (state) => {
          NamaCabang: state.Cabang.getCabangDetail.NamaCabang,
          Alamat: state.Cabang.getCabangDetail.Alamat,
          NoTelp: state.Cabang.getCabangDetail.NoTelp,
-         IP:state.Cabang.getCabangDetail.IP
+         IP:state.Cabang.getCabangDetail.IP,
+         MaxAccLupaAbsen:state.Cabang.getCabangDetail.MaxAccLupaAbsen
       },
    };
 };
@@ -60,6 +61,15 @@ class FormCabangComponent extends Component {
                         name="NoTelp"
                         component={InputFieldComponentHrz}
                         label="Nomor Telepon"
+                     />
+                  </FormGroup>
+
+                  <FormGroup>
+                     <Field
+                        type="text"
+                        name="MaxAccLupaAbsen"
+                        component={InputFieldComponentHrz}
+                        label="Max Acc Lupa Absen"
                      />
                   </FormGroup>
                </Col>

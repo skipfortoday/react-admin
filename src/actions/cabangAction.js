@@ -1,6 +1,6 @@
 import axios from "axios";
-import { headers } from "../config";
-import { BASEURL } from "./adminAction";
+import { headers, API_BASEURL } from "../config";
+let BASEURL = API_BASEURL;
 
 
 export const GET_CABANG_LIST = "GET_CABANG_LIST";
@@ -9,6 +9,25 @@ export const POST_CABANG_CREATE = "POST_CABANG_CREATE";
 export const PUT_CABANG_EDIT = "PUT_CABANG_EDIT";
 export const POST_CONFIG = "POST_CONFIG";
 export const RESET_POST_CONFIG = "RESET_POST_CONFIG";
+export const SET_PEGAWAI_SELECT = "SET_PEGAWAI_SELECT"
+
+export const setPegawaiSelect = (val) => {
+  return (dispatch) => {
+    dispatch({
+      type : SET_PEGAWAI_SELECT,
+      payload :  {
+        pegawai : !val ? null :  {
+          UserID : val.value,
+          Nama : val.label,
+        },
+        cabang : !val ? null : {
+          KodeCabang : val.KodeCabang,
+          NamaCabang : val.NamaCabang,
+        }
+      }
+    })
+  }
+}
 
 export const resetPostConfig = () =>{
   return (dispatch) => {

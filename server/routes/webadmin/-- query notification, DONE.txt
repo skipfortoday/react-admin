@@ -1,0 +1,7 @@
+-- DONE query notification, 
+-- DONE laporan absensi
+-- DONE masuk wfh pulang wfh , status wfh di table user, sudah dibuat di user, tinggal dicoding  
+
+-- mutasi pegawai
+-- ip public (Tunggu WOWRACK) 
+-- absensi offline -> tinggal sync to server saja...

@@ -1,6 +1,6 @@
 import axios from "axios";
-import { headers } from "../config";
-import { BASEURL } from "./adminAction";
+import { headers, siteConfig, API_BASEURL } from "../config";
+let BASEURL = API_BASEURL;
 
 export const GET_IZIN_LIST = "GET_IZIN_LIST";
 export const GET_IZIN_LISTSOLO = "GET_IZIN_LISTSOLO";
