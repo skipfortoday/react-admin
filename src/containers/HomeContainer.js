@@ -11,6 +11,7 @@ const client = new W3CWebSocket('ws://127.0.0.1:8081');
 import { Modal } from "reactstrap";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import Loader from "react-loader-spinner";
+import AddToHomescreen from 'react-add-to-homescreen';
 
 const mapStateToProps = (state) => {
     return {
@@ -119,6 +120,13 @@ class HomeContainer extends Component {
 
     }
 
+    handleAddToHomescreenClick = () => {
+        alert(`
+        1. Open Share menu
+        2. Tap on "Add to Home Screen" button`);
+    };
+
+
     render() {
         if (!localStorage.getItem('user') || localStorage.getItem('user') === "false") {
             swal("Failed!", "Login Dulu", "error");
@@ -126,6 +134,7 @@ class HomeContainer extends Component {
         }
         return (
             <div>
+                {/* <AddToHomescreen onAddToHomescreenClick={this.handleAddToHomescreenClick} > */}
                 <Modal
                     isOpen={this.state.modal}
                     backdropTransition={{ timeout: 0 }}
@@ -147,6 +156,7 @@ class HomeContainer extends Component {
                     delFingerprint={(UserID, Nama) => this.delFingerprint(UserID, Nama)}
                 // setKey={(key) => this.setKey(key)}
                 />
+                {/* </AddToHomescreen> */}
             </div>
         );
     }

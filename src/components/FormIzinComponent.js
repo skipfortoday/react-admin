@@ -58,6 +58,7 @@ class FormIzinComponent extends Component {
         { value: 'MASUK', label: 'MASUK' },
         { value: 'CUTI', label: 'CUTI' },
         { value: 'TIDAK MASUK', label: 'TIDAK MASUK' },
+        { value: 'IZIN TIDAK MASUK', label: 'IZIN TIDAK MASUK' },
         { value: 'SAKIT', label: 'SAKIT' },
         { value: 'DINAS LUAR', label: 'DINAS LUAR' },
         { value: 'CUTI BERSAMA', label: 'CUTI BERSAMA' },

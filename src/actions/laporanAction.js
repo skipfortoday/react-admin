@@ -151,7 +151,8 @@ export const checkBelumPulangToday = (UserIDs = null) => {
 
 
 
-  export const getLaporanDetail = (UserID, TglAwal, TglAkhir) => {
+  export const getLaporanDetail = (UserID, TglAwal, TglAkhir, Status) => {
+    headers.headers['statusAtt'] = Status
     return (dispatch) => {
       axios
         .get(BASEURL + "/api/laporandetail/" + UserID + "&" + TglAwal + "&" + TglAkhir, headers)

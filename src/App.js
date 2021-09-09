@@ -52,6 +52,7 @@ import ListLaporanContainer2 from "./containers/ListLaporanContainer2";
 import PrintContainer from "./containers/PrintContainer";
 import ProfileContainer from "./containers/ProfileContainer";
 
+
 const mapStateToProps = (state) => {
     return {
         errorUsersList: state.users.errorUsersList,
@@ -69,10 +70,11 @@ class App extends Component {
         }
 
     }
-
+    
     render() {
 
         return (
+            
             <BrowserRouter>
                 <ScrollIntoView>
                     <Switch>

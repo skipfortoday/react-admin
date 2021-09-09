@@ -97,6 +97,16 @@ class IzinContainer extends Component {
   }
 
   handleSubmit(data) {
+    let status = []
+    data.status.map((item)=>{
+      if(item.isChecked) status.push(item.id)
+    })
+    data.status = status
+    if(data.status.length == 0) {
+      alert('Status Belum dipilih')
+      return
+    }
+
     this.setState({
       ...this.state,
       data: data
@@ -117,9 +127,9 @@ class IzinContainer extends Component {
     } else {
       this.props.dispatch(resetLaporan());
       this.props.dispatch(getUserDetail(data.Nama.value));
-      this.props.dispatch(getLaporanDetail(data.Nama.value, data.TglAwal, data.TglAkhir));
-      this.props.dispatch(getIzinListSolo(data.Nama.value, data.TglAwal, data.TglAkhir));
-      this.props.dispatch(getIzinDetail(data.Nama.value, data.TglAwal, data.TglAkhir));
+      this.props.dispatch(getLaporanDetail(data.Nama.value, data.TglAwal, data.TglAkhir, data.status));
+      this.props.dispatch(getIzinListSolo(data.Nama.value, data.TglAwal, data.TglAkhir, data.status));
+      this.props.dispatch(getIzinDetail(data.Nama.value, data.TglAwal, data.TglAkhir, data.status));
       this.props.dispatch(setLoading(true));
     }
 

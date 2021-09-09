@@ -62,8 +62,8 @@ export const getIzinList = () => {
   };
 };
 
-export const getIzinListSolo = (UserID = null,TglAwal = null,TglAkhir = null) => {
-  
+export const getIzinListSolo = (UserID = null,TglAwal = null,TglAkhir = null, Status) => {
+  headers.headers['statusAtt'] = Status
   if(UserID == null){
     return (dispatch) => {
       dispatch({
@@ -103,7 +103,8 @@ export const getIzinListSolo = (UserID = null,TglAwal = null,TglAkhir = null) =>
   };
 };
 
-export const getIzinDetail = (UserID = null) => {
+export const getIzinDetail = (UserID = null, Status) => {
+  headers.headers['statusAtt'] = Status
   if(UserID == null){
     return (dispatch) => {
       dispatch({

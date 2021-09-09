@@ -6,7 +6,8 @@ import {
   Col,
   Row,
   Container,
-  Button
+  Button,
+  Label
 } from "reactstrap";
 import SelectValidation from "../validations/SelectValidation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -32,11 +33,86 @@ const mapStateToProps = (state) => {
   };
 };
 
+const CheckBoxItem = (props) => {
+  return (
+     <li style={{ display: "inline-flex", marginRight: "10px" }}>
+        <Label check>
+           <input
+              key={props.id}
+              onClick={props.setChecked}
+              type="checkbox"
+              checked={props.isChecked}
+              name={props.name}
+              disabled={props.disabled}
+              value={props.value} /> {props.label}
+
+        </Label>
+     </li>
+  )
+}
+
 class LengkapiAbsen extends Component {
+
+  constructor(props){
+    super(props)
+    this.state = {
+      CheckAll : true,
+      listStatus : [
+        { id: "MASUK", value: 'MASUK', label: 'Masuk', isChecked:true, name: "Status"},
+        { id: "OFF", value: 'OFF', label: 'OFF', isChecked:true, name: "Status"},
+        { id: "LIBUR", value: 'LIBUR', label: 'LIBUR', isChecked:true, name: "Status"},
+        { id: "TIDAK MASUK", value: 'TIDAK MASUK', label: 'TIDAK MASUK', isChecked:true, name: "Status"},
+        { id: "IZIN TIDAK MASUK", value: 'IZIN TIDAK MASUK', label: 'IZIN TIDAK MASUK', isChecked:true, name: "Status"},
+        { id: "CUTI", value: 'CUTI', label: 'CUTI', isChecked:true, name: "Status"},
+        { id: "CUTI BERSAMA", value: 'CUTI BERSAMA', label: 'CUTI BERSAMA', isChecked:true, name: "Status"},
+        { id: "CUTI KHUSUS", value: 'CUTI KHUSUS', label: 'CUTI KHUSUS', isChecked:true, name: "Status"},
+        { id: "DINAS LUAR", value: 'DINAS LUAR', label: 'DINAS LUAR', isChecked:true, name: "Status"},
+        { id: "SAKIT", value: 'SAKIT', label: 'SAKIT', isChecked:true, name: "Status"},
+        { id: "ACC LUPA ABSEN", value: 'ACC LUPA ABSEN', label: 'ACC LUPA ABSEN', isChecked:true, name: "Status"},
+      ]
+    }
+  }
+
   render() {
     const handleSubmit = (event) => {
       event.preventDefault();
       console.log(event);
+    }
+
+    const setChecked = (event) => {
+      // console.log()
+      let newLists = [];
+      let c = 0;
+      this.state.listStatus.map((data) => {
+         if (data.value === event.target.value) {
+            data.isChecked = event.target.checked
+         }
+         newLists.push(data);
+         c += data.isChecked ? 1 : 0;
+      });
+      
+      console.log(c, this.state.listStatus.length)
+      this.setState({
+        ...this.state,
+        listStatus : newLists,
+        CheckAll : c == this.state.listStatus.length ? true : false
+      })
+      // this.setState((prevState) => ({ counter: prevState.counter + 1 }));
+      // this.props.dispatch(getListCbCabang(this.state.user.RoleAdmin, null, newCb))
+    }
+
+    const setCheckAll =(e)=>{
+      let newLists = [];
+      this.state.listStatus.map((data) => {
+        data.isChecked = e.target.checked
+        newLists.push(data);
+      });
+      
+      this.setState({
+        ...this.state, 
+        CheckAll:e.target.checked,
+        listStatus:newLists
+      })
     }
 
     return (
@@ -44,7 +120,6 @@ class LengkapiAbsen extends Component {
         <Container>
           <FormGroup row>
             <Row>
-
               <Col md={3}>
                 <FormGroup>
                   <Field
@@ -83,7 +158,8 @@ class LengkapiAbsen extends Component {
                       onClick={this.props.handleSubmit(values =>
                         this.props.onSubmit({
                           ...values,
-                          type: 'view'
+                          type: 'view',
+                          status : this.state.listStatus
                         }))}
                       color="dark"
                       type="submit"
@@ -108,6 +184,33 @@ class LengkapiAbsen extends Component {
                     </Button>
                   </FormGroup> &nbsp;
                 </Row>
+              </Col>
+            </Row>
+            <Row>
+              <Col>
+                <Label className="col-form-label">
+                    Status : &nbsp;&nbsp;&nbsp;
+                    <Label check>
+                      <input
+                        checked={this.state.CheckAll}
+                        type="checkbox"
+                        onClick={(e)=>setCheckAll(e)}
+                        value="checkedall" /> Pilih / Tidak Pilih Semua
+                    </Label>
+                  </Label>
+              </Col>
+            </Row>
+            <Row>
+              <Col md={12}>
+                {
+                  this.state.listStatus.map((data) => {
+                    return (
+                       <CheckBoxItem
+                       setChecked={setChecked}
+                          {...data} />
+                    )
+                 })
+                }
               </Col>
             </Row>
           </FormGroup>

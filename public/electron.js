@@ -36,11 +36,11 @@ let mainWindow;
 	// The `-` is just the required hostname
 
 	//mainWindow.webContents.openDevTools();
-	const options = {
-		silent: false, 
-		deviceName : ''
-	  }
-	mainWindow.webContents.print(options, (success, errorType) => {
-		if (!success) console.log(errorType)
-	})
+	// const options = {
+	// 	silent: false, 
+	// 	deviceName : ''
+	//   }
+	// mainWindow.webContents.print(options, (success, errorType) => {
+	// 	if (!success) console.log(errorType)
+	// })
 })();

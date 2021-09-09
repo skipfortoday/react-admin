@@ -192,8 +192,7 @@ const IzinComponentSolo = (props) => {
               </Tooltip>
               <BootstrapTable
                 {...props.baseProps}
-                pagination={paginationFactory()}
-                sizePerPage={50}
+                pagination={paginationFactory({sizePerPage:14})}
               />
 
               {/* </Card> */}

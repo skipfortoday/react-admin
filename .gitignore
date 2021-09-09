@@ -25,3 +25,5 @@ config.js
 /dist
 
 /public/node-server/node_modules
+/server/public
+/server/node_modules
