@@ -152,11 +152,11 @@ export const cekUserAfterFingerLocal = (UserID,Action) => {
 }
 
 export const getOptUserManual = (online = true) => {
-  BASEURL = API_BASEURL
-  if(!online) BASEURL = 'http://localhost:8081'
+  let url = BASEURL;
+  if(!online) url = "http://localhost:8081";
   return (dispatch) => {
     axios
-      .get(BASEURL+"/api/optusermanual", headers)
+      .get(url+"/api/optusermanual", headers)
       .then(function (response) {
         dispatch({
           type: GET_OPT_USERMANUAL,
@@ -179,11 +179,11 @@ export const getOptUserManual = (online = true) => {
 };
 
 export const getOptUserManualPulang = (online = true) => {
-  BASEURL = API_BASEURL
-  if(!online) BASEURL = 'http://localhost:8081'
+  let url = BASEURL;
+  if(!online) url = "http://localhost:8081";
   return (dispatch) => {
     axios
-      .get(BASEURL+"/api/optusermanualpulang", headers)
+      .get(url+"/api/optusermanualpulang", headers)
       .then(function (response) {
         dispatch({
           type: GET_OPT_USERMANUALPULANG,

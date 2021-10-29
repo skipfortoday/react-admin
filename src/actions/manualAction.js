@@ -43,12 +43,12 @@ export const postManualMasuk = (data, online = true) => {
    data.NamaUser = data.Nama.label;
    data.Shift = data.Shift.value;
    
-   BASEURL = API_BASEURL
-   if(!online) BASEURL = 'http://localhost:8081';
+   let url = BASEURL;
+   if(!online) url = "http://localhost:8081";
    return (dispatch) => {
       axios
          .post(
-            BASEURL + "/api/attlogmanual/",
+            url + "/api/attlogmanual/",
             data,
             headers
          )
@@ -118,17 +118,18 @@ export const putManualPulang = (data, online = true) => {
    data.UserID = data.Nama.value;
    let parameter = data.Nama.DatangID;
    
-   BASEURL = API_BASEURL
+   let url = BASEURL;
    if(!online) {
-      BASEURL = 'http://localhost:8081'
+      url = "http://localhost:8081";
       parameter = data.Nama.id
    }
+
    if(parameter == null) parameter = 0
 
    return (dispatch) => {
       axios
          .put(
-            BASEURL + "/api/datangmanual/" + parameter,
+            url + "/api/datangmanual/" + parameter,
             data,
             headers
          )

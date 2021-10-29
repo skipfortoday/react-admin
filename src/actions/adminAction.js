@@ -14,11 +14,11 @@ export const SYNC_TO_SERVER = "SYNC_TO_SERVER";
 
 
 export const getAdminOnDuty = (online = true) => {
-   BASEURL = API_BASEURL
-   if(!online) BASEURL = "http://localhost:8081"
+   let url = BASEURL;
+   if(!online) url = "http://localhost:8081";
    return (dispatch) => {
       axios
-         .get(BASEURL + "/api/onduty", headers)
+         .get(url + "/api/onduty", headers)
          .then(function (response) {
             let ress = response.data;
             ress.online = true;
