@@ -1,0 +1,19 @@
+.coldv{
+    margin: 0px -4px;
+}
+
+.coldv>div{
+    border-top: 1px solid #dee2e6;
+    padding: 0px 4px;
+}
+.coldv>div:first-child{
+    border-top: 0px;
+}
+.gtb{
+    display: inline-block;
+    border-right: 1px solid #dee2e6;
+    padding: 0px 3px;
+}
+.gtb:last-child{
+    border-right: none;
+}

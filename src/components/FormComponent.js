@@ -75,8 +75,8 @@ const mapStateToProps = (state) => {
       KodeCabang: siteConfig.kodeCabang,
       Status: iniStatus,
       Posisi: state.users.getUserDetail.Posisi,
-      TampilkanLembur: state.users.getUserDetail.TampilkanLembur,
-      TampilkanTerlambat: state.users.getUserDetail.TampilkanTerlambat,
+      TampilkanLembur: state.users.getUserDetail.TampilkanLembur == 'true' ? true : false ,
+      TampilkanTerlambat: state.users.getUserDetail.TampilkanTerlambat == 'true' ? true : false,
       TglKeluar: state.users.getUserDetail.FTglKeluar,
       BisaWFH:state.users.getUserDetail.BisaWFH
     }
@@ -92,10 +92,10 @@ class FormComponent extends Component {
     var form = document.getElementById('formEditUser');
     var inTglMulaiCuti = form.querySelector('input[name="TglMulaiCuti"]');
     var d = new Date(TglKontrak);
-    var year = d.getFullYear();
+    var year = d.getFullYear()+1;
     var month = d.getMonth();
     var day = d.getDate();
-    var c = new Date(year + 1, month, day);
+    var c = new Date(year, month, day);
     inTglMulaiCuti.value = formatTglYmd(c);
 
   }
@@ -169,6 +169,7 @@ class FormComponent extends Component {
                     name="TglMasuk"
                     component={InputFieldComponentHrz}
                     label="Tanggal Masuk :"
+                    onChange={this.handleTglKontrakChange}
                   />
                 </FormGroup>
               </Col>
@@ -193,7 +194,6 @@ class FormComponent extends Component {
                     type="date"
                     name="TglAwalKontrakPertama"
                     component={InputFieldComponentHrz}
-                    onChange={this.handleTglKontrakChange}
                     label="Tanggal Awal Kontrak :"
                   />
                 </FormGroup>

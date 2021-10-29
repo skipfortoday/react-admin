@@ -13,10 +13,11 @@ export const SelectMultipleFieldComponentHrz = ({
     isDisabled,
     options,
     readOnly,
+    labelAlign,
     meta: { touched, error, warning },
   }) => (
     <Row>
-      <Label md="4" htmlFor="{input}" className="col-form-label text-right">
+      <Label md="4" htmlFor="{input}" className={"col-form-label " + labelAlign ? labelAlign : "text-right"}>
         {label}
       </Label>
       <Col md="8">

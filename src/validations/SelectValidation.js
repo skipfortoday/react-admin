@@ -1,5 +1,6 @@
 const SelectValidation = (values) => {
     const errors = {};
+    
     if (!values.Nama || values.Nama.length == 0 || values.Nama.value == '') {
       errors.Nama = "Nama harus diisi";
     }

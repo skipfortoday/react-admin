@@ -51,6 +51,8 @@ import DataAbsensiOffline from "./containers/DataAbsensiOffline";
 import ListLaporanContainer2 from "./containers/ListLaporanContainer2";
 import PrintContainer from "./containers/PrintContainer";
 import ProfileContainer from "./containers/ProfileContainer";
+import LogAbsensi from "./containers/LogAbsensi";
+import ProsesWFH from "./containers/ProsesWFH";
 
 
 const mapStateToProps = (state) => {
@@ -248,6 +250,8 @@ class App extends Component {
 
                         <Route path="/mutasipegawai" exact component={MutasiPegawaiContainer} />
                         <Route path="/data-absensi-offline" exact component={DataAbsensiOffline} />
+                        <Route path="/log-absensi" exact component={LogAbsensi} />
+                        <Route path="/proses-wfh" exact component={ProsesWFH} />
 
                     </Switch>
                 </ScrollIntoView>

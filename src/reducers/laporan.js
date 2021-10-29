@@ -1,3 +1,4 @@
+import { act } from "react-dom/test-utils";
 import {
   GET_LAPORAN_LIST,
   GET_LAPORAN_DETAIL,
@@ -11,7 +12,12 @@ import {
   RESET_RESPONSE_DATA_LAPORAN,
   CHECK_BELUM_PULANG_TODAY,
   GET_LAPORAN_DETAIL_BANYAK,
-  GET_LIST_PERIODE
+  GET_LIST_PERIODE,
+  GET_LOG_ATTLOG,
+  WAIT_PRINTING,
+  GET_DTL_PERIODE,
+  POST_PERIODE,
+  PUT_PERIODE
 } from "../actions/laporanAction";
 import { formatTglYmd } from '../containers/formatTgl';
 
@@ -43,17 +49,60 @@ let initialState = {
   },
   checkBelumPulang:{status:false, message:""},
   laporanBanyak:false,
-  listPeriode:false
+  listPeriode:false,
+  logAttlog:false,
+  errLogAttlog:false,
+  waitPrinting:false,
+  dtlPeriode:false,
+  errDtlPeriode:false,
+  postPeriode:false,
+  errPostPeriode:false,
+  putPeriode:false,
+  errPutPeriode:false
 };
 
 const Laporan = (state = initialState, action) => {
   switch (action.type) {
+    case WAIT_PRINTING :
+      return {
+        ...state,
+        waitPrinting:action.payload.data
+      }
+
+    case GET_LOG_ATTLOG :
+      return {
+        ...state,
+        logAttlog:action.payload.data,
+        errLogAttlog: action.payload.errorMessage,
+      }
+
     case GET_LIST_PERIODE : 
       return {
         ...state,
         listPeriode:action.payload.data
       }
-      
+
+    case GET_DTL_PERIODE :
+      return {
+        ...state,
+        dtlPeriode:action.payload.data,
+        errDtlPeriode: action.payload.errorMessage,
+      }
+    
+    case POST_PERIODE : 
+      return {
+        ...state,
+        postPeriode:action.payload.data,
+        errPostPeriode: action.payload.errorMessage,
+      }
+
+    case PUT_PERIODE : 
+      return {
+        ...state,
+        putPeriode:action.payload.data,
+        errPutPeriode: action.payload.errorMessage,
+      }
+
     case GET_LAPORAN_DETAIL_BANYAK:
       return {
         ...state,

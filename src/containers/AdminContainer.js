@@ -5,6 +5,7 @@ import { getAdminList} from "../actions/adminAction";
 import NavbarComponent from "../components/NavbarComponent";
 import swal from "sweetalert";
 import {Redirect} from "react-router-dom";
+import { getOptUser } from "../actions/optAction";
 
 
 class AdminContainer extends Component {

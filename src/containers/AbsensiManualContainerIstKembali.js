@@ -202,7 +202,7 @@ class AbsensiManualContainerIstKembali extends Component {
                            />
                         </Container>
                      </div>
-                     <LaporanDetail2 />
+                     {/* <LaporanDetail2 /> */}
                   </Col>
                   <Col md={3} style={{ paddingLeft: "5px", paddingRight: "5px" }}>
                      <OnDutyRoster />

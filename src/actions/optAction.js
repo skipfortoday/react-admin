@@ -49,6 +49,7 @@ export const setOnline = (status) =>{
 }
 
 export const getOptUser = (reset = false) => {
+  
   if(reset == true){
     return (dispatch) => {
       dispatch({

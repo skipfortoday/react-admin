@@ -1,52 +1,73 @@
 import React, { Component } from "react";
-import { reduxForm, Field } from "redux-form";
+import { reduxForm, Field, FieldArray } from "redux-form";
 import { connect } from "react-redux";
 import { FormGroup, Col, Label, Input, Row, Button } from "reactstrap";
 import GroupValidation from "../validations/GroupValidation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSave } from "@fortawesome/free-solid-svg-icons";
+import { faPlus, faSave, faTimes } from "@fortawesome/free-solid-svg-icons";
+import { CheckboxFieldComponent } from "./formController/CheckboxFieldComponent";
+import { SelectFieldComponentHrz } from "./formController/SelectFieldComponentHrz";
+import { SelectFieldComponent } from "./formController/SelectFieldComponent";
+import { InputFieldComponent } from "./formController/InputFieldComponent";
+import { InputFieldComponentHrz } from "./formController/InputFieldComponentHrz";
+import { GET_GROUP_DETAIL } from "../actions/groupAction";
+import { val } from "dom7";
 
-const renderField = ({
-  input,
-  type,
-  placeholder,
-  label,
-  disabled,
-  readOnly,
-  meta: { touched, error, warning },
-}) => (
-  <Row>
-    <Col md="12">
-      <Label htmlFor="{input}" className="col-form-label">
-        {label}
-      </Label>
-    </Col>
-    <Col md="12">
-      <Input
-        {...input}
-        type={type}
-        placeholder={placeholder}
-        disabled={disabled}
-        readOnly={readOnly}
-      >
-        <option value="0">-</option>
-        <option value="Senin">SENIN</option>
-        <option value="Selasa">SELASA</option>
-        <option value="Rabu">RABU</option>
-        <option value="Kamis">KAMIS</option>
-        <option value="Jumat">JUM'AT</option>
-        <option value="Sabtu">SABTU</option>
-        <option value="Minggu">MINGGU</option>
-      </Input>
-      {touched &&
-        ((error && <p style={{ color: "yellow" }}>{error}</p>) ||
-          (warning && <p style={{ color: "brown" }}>{warning}</p>))}
-    </Col>
-  </Row>
-);
+let opsiDay = [
+  {value:'', label : 'TIDAK ADA LIBUR MINGGUAN'},
+  {value:'Senin', label : 'SENIN'},
+  {value:'Selasa', label : 'SELASA'},
+  {value:'Rabu', label : 'RABU'},
+  {value:'Kamis', label : 'KAMIS'},
+  {value:'Jumat', label : 'JUMAT'},
+  {value:'Sabtu', label : 'SABTU'},
+  {value:'Minggu', label : 'MINGGU'},
+]
 
+let config = JSON.parse(localStorage.getItem('config'))
+let KodeCabang = config.KodeCabang
 const mapStateToProps = (state) => {
+  let initHariLibur = {value:'', label : 'TIDAK ADA LIBUR MINGGUAN'}
+  if(state.Group.getGroupDetail.HariLibur){
+    opsiDay.map((item)=>{
+      if(item.value.toLowerCase() === state.Group.getGroupDetail.HariLibur.toLowerCase()) initHariLibur = item
+    })
+  }
+  
+  let bt1 = []
+  let bt2 = []
+  let bt3 = []
+
+  let mpBertingkat = {1:[],2:[],3:[]}
+  if(state.Group.getGroupDetail.bertingkat){
+    state.Group.getGroupDetail.bertingkat.map(item=>{
+      mpBertingkat[item.Shift].push(item)
+    })
+  }
+  // console.log(mpBertingkat)
+  for(var i=1; i<=3;i++){
+    //if(mpBertingkat[1][0]) console.log(mpBertingkat[1][0])
+    let dv = { 
+      RuleTerlambatBertingkatID:0,
+      KodeCabang:KodeCabang,
+      GroupID:state.Group.getGroupDetail.GroupID,
+      Shift:i,
+      MaxJamDatang:"",
+      RpPotonganTerlambat:""
+    }
+    // console.log('------------------------------------')
+    // console.log(i, 0, mpBertingkat[i][0])
+    // console.log(i, 1, mpBertingkat[i][1])
+    // console.log(i, 2, mpBertingkat[i][2])
+    for(var x=0; x<3;x++){
+      if(i==1) bt1.push(mpBertingkat[i][x] ? mpBertingkat[i][x] : dv )
+      if(i==2) bt2.push(mpBertingkat[i][x] ? mpBertingkat[i][x] : dv )
+      if(i==3) bt3.push(mpBertingkat[i][x] ? mpBertingkat[i][x] : dv )
+    }
+  }
+  
   return {
+    dataGroup : state.Group.getGroupDetail,
     initialValues: {
       GroupID: state.Group.getGroupDetail.GroupID,
       Jabatan: state.Group.getGroupDetail.Jabatan,
@@ -64,7 +85,7 @@ const mapStateToProps = (state) => {
       JamPulangSiang: state.Group.getGroupDetail.JamPulangSiang,
       JamMulaiLemburSiang: state.Group.getGroupDetail.JamMulaiLemburSiang,
       MinJamLemburSiang: state.Group.getGroupDetail.MinJamLemburSiang,
-      HariLibur: state.Group.getGroupDetail.HariLibur,
+      HariLibur: initHariLibur,
       RpPotonganTerlambatKembali: state.Group.getGroupDetail.RpPotonganTerlambatKembali,
       RpPotonganTidakMasuk: state.Group.getGroupDetail.RpPotonganTidakMasuk,
       RpLemburPerJam: state.Group.getGroupDetail.RpLemburPerJam,
@@ -79,397 +100,526 @@ const mapStateToProps = (state) => {
       MaxJamKembaliSiang: state.Group.getGroupDetail.MaxJamKembaliSiang,
       JamMulaiSore: state.Group.getGroupDetail.JamMulaiSore,
       MaxJamKembaliSore: state.Group.getGroupDetail.MaxJamKembaliSore,
+      TBertingkats1:bt1,
+      TBertingkats2:bt2,
+      TBertingkats3:bt3
     },
   };
 };
 
 class FormGroupComponent extends Component {
+  constructor(props){
+    super(props)
+    this.state = {
+      ruleTerlambat:false,
+      shift2:false,
+      shift3:false
+    }
+  }
+
+  componentDidUpdate(prevProps){
+    if(!prevProps.dataGroup && this.props.dataGroup){
+      this.setState(
+        {
+          ...this.state, 
+          ruleTerlambat : this.props.dataGroup.RuleTerlambatBertingkat,
+          shift2: this.props.dataGroup.JamDatangSiang ? true :false,
+          shift3: this.props.dataGroup.JamDatangSore ? true :false
+        }
+      )
+      // if(this.props.dataGroup.JamDatangSiang) this.props.setAdaShift2(true)
+      // if(this.props.dataGroup.JamDatangSore) this.props.setAdaShift2(false)
+    }
+  }
+
+  onRuleTerlambatChange = (value) => {
+    this.setState({...this.state, ruleTerlambat : value.target.checked})
+  }
+
+  renderTBertingkats = ({fields, meta: { touched, error } }) => (
+    <Row>
+      {fields.map((field, index)=>{
+        return (
+          <Col md={4}>
+            <Row>
+              <Col md={5}>
+                <FormGroup style={{marginBottom:"0px"}}>
+                  <Field
+                    type="time"
+                    name={`${field}.MaxJamDatang`}
+                    component={InputFieldComponent}
+                    label="Jam Datang :"
+                  />
+                </FormGroup>
+              </Col>
+              <Col md={6}>
+                <FormGroup style={{marginBottom:"0px"}}>
+                <Field
+                  name={`${field}.RpPotonganTerlambat`}
+                  type="number"
+                  component={InputFieldComponent}
+                  label="Rp Potongan :"/>
+                </FormGroup>
+              </Col>
+            </Row>
+          </Col>
+        )
+      })}
+    </Row>
+  )
+
+  setShift2(val){
+    this.setState({...this.state, shift2:val}) 
+    this.props.setAdaShift2(val)
+  }
+
+  setShift3(val){
+    this.setState({...this.state, shift3:val}) 
+    this.props.setAdaShift3(val)
+  }
+
   render() {
     return (
       <form onSubmit={this.props.handleSubmit}>
         <FormGroup row >
-          <Col md={12}>
-          <div style={{ backgroundColor: "#f9a826" }}>
-              Masukkan Group ID untuk Kode & Nama Group / Nama Jabatan (WAJIB)
-            </div>
-          </Col>
+            <Col md={12}>
+              <Row>
+                {/* <Col md={12}>
+                  <div style={{ backgroundColor: "#f9a826" }}>
+                    Masukkan Group ID untuk Kode & Nama Group / Nama Jabatan (WAJIB)
+                  </div>
+                </Col> */}
 
-          
-          <Col md={4}>
-            <FormGroup>
-              <Field
-                type="text"
-                name="GroupID"
-                readOnly={this.props.dis}
-                component={renderField}
-                label="Group ID :"
-              />
-            </FormGroup>
-          </Col>
+                <Col md={3}>
+                  <FormGroup style={{marginBottom:"0px"}}>
+                    <Field
+                      type="text"
+                      name="GroupID"
+                      readOnly={this.props.dis}
+                      component={InputFieldComponent}
+                      label="Group ID :"
+                      labelAlign="text-left"
+                    />
+                  </FormGroup>
+                </Col>
 
-          <Col md={4}>
-            <FormGroup>
-              <Field
-                type="text"
-                name="Jabatan"
-                readOnly={this.props.dis}
-                component={renderField}
-                label="Nama Group :"
-              />
-            </FormGroup>
-          </Col>
+                <Col md={3}>
+                  <FormGroup style={{marginBottom:"0px"}}>
+                    <Field
+                      type="text"
+                      name="Jabatan"
+                      readOnly={this.props.dis}
+                      component={InputFieldComponent}
+                      label="Nama :"
+                      labelAlign="text-left"
+                    />
+                  </FormGroup>
+                </Col>
+                {/* <Col md={4}></Col> */}
+                {/* <Col md={12}>
+                  <div style={{ backgroundColor: "#363b41" , color:"white"  }}>
+                    Masukkan Hari Libur Dan Komponen Gaji</div>
+                </Col> */}
+                
+                {/* <Col md={2} style={{paddingLeft:"20px"}}>
+                  <FormGroup>
+                    <Field 
+                      type="checkbox" 
+                      name="AdaOff"
+                      label="Ada Hari Libur Mingguan"
+                      component={CheckboxFieldComponent} />
+                  </FormGroup>
+                </Col> */}
+                <Col md={3}>
+                  <FormGroup style={{marginBottom:"0px"}}>
+                    <Field
+                      type="select"
+                      name="HariLibur"
+                      options={opsiDay}
+                      component={SelectFieldComponent}
+                      label="Hari Libur :"
+                      labelAlign="text-left"
+                    />
+                  </FormGroup>
+                </Col>
+                <Col md={3}>
+                  <FormGroup style={{marginBottom:"0px"}}>
+                    <Field
+                      type="number"
+                      name="RpLemburPerJam"
+                      component={InputFieldComponent}
+                      label="Rp Lembur Perjam :"
+                    />
+                  </FormGroup>
+                </Col>
 
-          <Col md={12}>
-          <div style={{ backgroundColor: "#363b41" , color:"white"  }}>
-            Masukkan Hari Libur Dan Komponen Gaji</div>
-          </Col>
+                <Col md={3}>
+                  <FormGroup style={{marginBottom:"0px"}}>
+                    <Field
+                      type="number"
+                      name="RpPotonganTerlambat"
+                      component={InputFieldComponent}
+                      label="Rp Potongan Terlambat :"
+                    />
+                  </FormGroup>
+                </Col>
 
-          <Col md={1}>
-            <FormGroup></FormGroup>
-          </Col>
+                <Col md={3}>
+                  <FormGroup style={{marginBottom:"0px"}}>
+                    <Field
+                      type="number"
+                      name="RpPotonganTerlambatKembali"
+                      component={InputFieldComponent}
+                      label="Rp Pot. Tlmbat Kembali:"
+                    />
+                  </FormGroup>
+                </Col>
 
-          <Col md={2}>
-            <FormGroup>
-              <Field type="checkbox" name="AdaOff" component={renderField} />
-              Ada Hari Libur Mingguan
-            </FormGroup>
-          </Col>
+                <Col md={3}>
+                  <FormGroup style={{marginBottom:"0px"}}>
+                    <Field
+                      type="number"
+                      name="RpPotonganTidakMasuk"
+                      component={InputFieldComponent}
+                      label="Potongan Tidak Masuk :"
+                    />
+                  </FormGroup>
+                </Col>
+                <Col md={1} style={{paddingLeft:"20px"}}>
+                  <FormGroup style={{marginBottom:"0px"}}>
+                    <Field
+                      type="checkbox"
+                      name="CekJamKembali"
+                      component={CheckboxFieldComponent}
+                      label="CekJam Kbl.Istrt"
+                    />
+                  </FormGroup>
+                </Col>
 
-          <Col md={2}>
-            <FormGroup>
-              <Field
-                type="select"
-                name="HariLibur"
-                component={renderField}
-                label="Hari Libur :"
-              />
-            </FormGroup>
-          </Col>
+                <Col md={1}>
+                  <FormGroup style={{marginBottom:"0px"}}>
+                    <Field type="checkbox" 
+                      name="RuleTerlambatBertingkat" 
+                      component={CheckboxFieldComponent} 
+                      label="Terlambat Bertingkat"
+                      onChange={this.onRuleTerlambatChange}
+                      />
+                  </FormGroup>
+                </Col>
+              </Row>
+            </Col>
+            <Col md={12}>
+              <Row>
+                <Col md={12} style={{marginTop:"8px"}}>
+                  <div style={{ backgroundColor: "#363b41" ,color:"white", padding:"3px"}}>
+                    Masukkan Aturan Jadwal Pagi atau Jadwal Shift 1 (WAJIB)
+                  </div>
+                </Col>
 
-          <Col md={1}>
-            <FormGroup></FormGroup>
-          </Col>
+                <Col md={2}>
+                  <FormGroup style={{marginBottom:"0px"}}>
+                    <Field
+                      type="time"
+                      name="JamDatang"
+                      component={InputFieldComponent}
+                      label="Datang:"
+                    />
+                  </FormGroup>
+                </Col>
 
-          <Col md={2}>
-            <FormGroup>
-              <Field
-                type="checkbox"
-                name="CekJamKembali"
-                component={renderField}
-              />
-              Cek Jam Kembali Istirahat
-            </FormGroup>
-          </Col>
+                <Col md={2}>
+                  <FormGroup style={{marginBottom:"0px"}}>
+                    <Field
+                      type="time"
+                      name="JamPulang"
+                      component={InputFieldComponent}
+                      label="Pulang:"
+                    />
+                  </FormGroup>
+                </Col>
 
-          <Col md={2}>
-            <FormGroup>
-              <Field type="checkbox" name="RuleTerlambatBertingkat" component={renderField} />
-              Menggunakan Terlambat Bertingkat
-            </FormGroup>
-          </Col>
-   
+                <Col md={2}>
+                  <FormGroup style={{marginBottom:"0px"}}>
+                    <Field
+                      type="time"
+                      name="MaxJamDatang"
+                      component={InputFieldComponent}
+                      label="Max Datang"
+                    />
+                  </FormGroup>
+                </Col>
+                <Col md={6}>
+                  <Row>
+                    <Col md={3}>
+                      <FormGroup style={{marginBottom:"0px"}}>
+                        <Field
+                          type="time"
+                          name="MinJamLembur"
+                          component={InputFieldComponent}
+                          label="Min Lembur:"
+                        />
+                      </FormGroup>
+                    </Col>
 
-          <Col md={2}>
-            <FormGroup></FormGroup>
-          </Col>
+                    <Col md={3}>
+                      <FormGroup style={{marginBottom:"0px"}}>
+                        <Field
+                          type="time"
+                          name="JamMulaiLembur"
+                          component={InputFieldComponent}
+                          label="Mulai Lmbur:"
+                        />
+                      </FormGroup>
+                    </Col>
 
+                    <Col md={3}>
+                      <FormGroup style={{marginBottom:"0px"}}>
+                        <Field
+                          type="time"
+                          name="JamMulaiPagi"
+                          component={InputFieldComponent}
+                          label="Istirahat:"
+                        />
+                      </FormGroup>
+                    </Col>
 
-          <Col md={3}>
-            <FormGroup>
-              <Field
-                type="number"
-                name="RpLemburPerJam"
-                component={renderField}
-                label="Rupiah Lembur Perjam :"
-              />
-            </FormGroup>
-          </Col>
+                    <Col md={3}>
+                      <FormGroup style={{marginBottom:"0px"}}>
+                        <Field
+                          type="time"
+                          name="MaxJamKembali"
+                          component={InputFieldComponent}
+                          label="Kbl.Istirahat :"
+                        />
+                      </FormGroup>
+                    </Col>
+                  </Row>
+                </Col>
+                {this.state.ruleTerlambat ?
+                  <Col md={12}>
+                    <div style={{marginTop:"10px"}}>Terlambat Bertingkat :</div>
+                    <FieldArray name="TBertingkats1" component={this.renderTBertingkats}/>
+                  </Col>
+                : ""}
+              </Row>
+              {this.state.shift2 ? "" :
+                <Button color="white" type="button" 
+                  onClick={()=>this.setShift2(true)}>
+                  <FontAwesomeIcon icon={faPlus} /> Tambah Shift 2 / Sift Siang {" "+this.state.shift2}
+                </Button>
+              }
+            </Col>
+            
+            <Col md={12} hidden={this.props.adaShift2 || this.state.shift2 ? false : true}>
+              <Row>
+                <Col md={12} style={{marginTop:"8px"}}>
+                  <div style={{ backgroundColor: "#363b41" ,color:"white", padding:"3px"}}>
+                    Masukkan Aturan Jadwal Siang atau Jadwal Shift 2 {"  "} 
+                    {this.state.shift3 ?  "" :
+                    <Button onClick={()=>this.setShift2(false)} 
+                      size="sm" color="danger" type="button">
+                        <FontAwesomeIcon icon={faTimes} /> Batalkan Shift 2</Button> 
+                    }
+                  </div>
+                </Col>
 
-          <Col md={3}>
-            <FormGroup>
-              <Field
-                type="number"
-                name="RpPotonganTerlambat"
-                component={renderField}
-                label="Rupiah Potongan Terlambat :"
-              />
-            </FormGroup>
-          </Col>
+                <Col md={2} style={{paddingRight:"0px"}}>
+                  <FormGroup style={{marginBottom:"0px"}}>
+                    <Field
+                      type="time"
+                      name="JamDatangSiang"
+                      component={InputFieldComponent}
+                      label="Datang:"
+                    />
+                  </FormGroup>
+                </Col>
 
-          <Col md={3}>
-            <FormGroup>
-              <Field
-                type="number"
-                name="RpPotonganTerlambatKembali"
-                component={renderField}
-                label="Rp Potongan Terlambat Kembali:"
-              />
-            </FormGroup>
-          </Col>
+                <Col md={2} style={{paddingRight:"0px"}}>
+                  <FormGroup style={{marginBottom:"0px"}}>
+                    <Field
+                      type="time"
+                      name="JamPulangSiang"
+                      component={InputFieldComponent}
+                      label="Pulang:"
+                    />
+                  </FormGroup>
+                </Col>
 
-          <Col md={3}>
-            <FormGroup>
-              <Field
-                type="number"
-                name="RpPotonganTidakMasuk"
-                component={renderField}
-                label="Potongan Tidak Masuk :"
-              />
-            </FormGroup>
-          </Col>
+                <Col md={2} style={{paddingRight:"0px"}}>
+                  <FormGroup style={{marginBottom:"0px"}}>
+                    <Field
+                      type="time"
+                      name="MaxJamDatangSiang"
+                      component={InputFieldComponent}
+                      label="Max Datang:"
+                    />
+                  </FormGroup>
+                </Col>
+                <Col md={6}>
+                  <Row>
+                    <Col md={3}>
+                      <FormGroup style={{marginBottom:"0px"}}>
+                        <Field
+                          type="time"
+                          name="MinJamLemburSiang"
+                          component={InputFieldComponent}
+                          label="Min Lembur:"
+                        />
+                      </FormGroup>
+                    </Col>
+                    <Col md={3}>
+                      <FormGroup style={{marginBottom:"0px"}}>
+                        <Field
+                          type="time"
+                          name="JamMulaiLemburSiang"
+                          component={InputFieldComponent}
+                          label="Mulai Lmbur:"
+                        />
+                      </FormGroup>
+                    </Col>
+                    <Col md={3}>
+                      <FormGroup style={{marginBottom:"0px"}}>
+                        <Field
+                          type="time"
+                          name="JamMulaiSiang"
+                          component={InputFieldComponent}
+                          label="Istirahat:"
+                        />
+                      </FormGroup>
+                    </Col>
 
-          <Col md={12}>
-          <div style={{ backgroundColor: "#363b41" ,color:"white"}}>
-              Masukkan Aturan Jadwal Pagi atau Jadwal Shift 1 (WAJIB)
-            </div>
-          </Col>
+                    <Col md={3}>
+                      <FormGroup style={{marginBottom:"0px"}}>
+                        <Field
+                          type="time"
+                          name="MaxJamKembaliSiang"
+                          component={InputFieldComponent}
+                          label="Kbl.Istirahat:"
+                        />
+                      </FormGroup>
+                    </Col>
+                  </Row>
+                </Col>
+                {this.state.ruleTerlambat ?
+                  <Col md={12}>
+                    <div style={{marginTop:"10px"}}>Terlambat Bertingkat :</div>
+                    <FieldArray name="TBertingkats2" component={this.renderTBertingkats}/>
+                  </Col>
+                : ""}
+              </Row>
+              {(this.state.shift2 && !this.state.shift3) ?
+                <Button color="white" type="button" 
+                  onClick={()=>this.setShift3(true)}>
+                  <FontAwesomeIcon icon={faPlus} /> Tambah Shift 3 / Sift Sore
+                </Button>
+                : ""
+              }
+            </Col>
+            
+            <Col md={12} hidden={this.props.adaShift3 || this.state.shift3 ? false : true}>
+              <Row>
+                <Col md={12} style={{marginTop:"8px"}}>
+                  <div style={{ backgroundColor: "#363b41",color:"white", padding:"3px"}}>
+                    Masukkan Aturan Jadwal Sore atau Jadwal Shift 3 {"  "}
+                    <Button onClick={()=>this.setShift3(false)} size="sm" color="danger" type="button">
+                      <FontAwesomeIcon icon={faTimes} /> Batalkan Shift 3</Button>
+                  </div>
+                </Col>
 
-          <Col md={3}>
-            <FormGroup>
-              <Field
-                type="time"
-                name="JamDatang"
-                component={renderField}
-                label="Jam Datang Pagi :"
-              />
-            </FormGroup>
-          </Col>
+                <Col md={2} style={{paddingRight:"0px"}}>
+                  <FormGroup style={{marginBottom:"0px"}}>
+                    <Field
+                      type="time"
+                      name="JamDatangSore"
+                      component={InputFieldComponent}
+                      label="Datang:"
+                    />
+                  </FormGroup>
+                </Col>
 
-          <Col md={3}>
-            <FormGroup>
-              <Field
-                type="time"
-                name="JamPulang"
-                component={renderField}
-                label="Jam Pulang Pagi :"
-              />
-            </FormGroup>
-          </Col>
+                <Col md={2} style={{paddingRight:"0px"}}>
+                  <FormGroup style={{marginBottom:"0px"}}>
+                    <Field
+                      type="time"
+                      name="JamPulangSore"
+                      component={InputFieldComponent}
+                      label="Pulang:"
+                    />
+                  </FormGroup>
+                </Col>
 
-          <Col md={2}>
-            <FormGroup>
-              <Field
-                type="time"
-                name="MaxJamDatang"
-                component={renderField}
-                label="Max Jam Datang Pagi :"
-              />
-            </FormGroup>
-          </Col>
+                <Col md={2} style={{paddingRight:"0px"}}>
+                  <FormGroup style={{marginBottom:"0px"}}>
+                    <Field
+                      type="time"
+                      name="MaxJamDatangSore"
+                      component={InputFieldComponent}
+                      label="Max Datang:"
+                    />
+                  </FormGroup>
+                </Col>
+                
+                <Col md={6}>
+                  <Row>
+                    <Col md={3}>
+                      <FormGroup style={{marginBottom:"0px"}}>
+                        <Field
+                          type="time"
+                          name="MinJamLemburSore"
+                          component={InputFieldComponent}
+                          label="Min Lembur:"
+                        />
+                      </FormGroup>
+                    </Col>
 
-          <Col md={2}>
-            <FormGroup>
-              <Field
-                type="time"
-                name="MinJamLembur"
-                component={renderField}
-                label="Min Jam Lembur:"
-              />
-            </FormGroup>
-          </Col>
+                    <Col md={3}>
+                      <FormGroup style={{marginBottom:"0px"}}>
+                        <Field
+                          type="time"
+                          name="JamMulaiLemburSore"
+                          component={InputFieldComponent}
+                          label="Mulai Lmbur:"
+                        />
+                      </FormGroup>
+                    </Col>
 
-          <Col md={2}>
-            <FormGroup>
-              <Field
-                type="time"
-                name="JamMulaiLembur"
-                component={renderField}
-                label="Jam Mulai Lembur :"
-              />
-            </FormGroup>
-          </Col>
+                    <Col md={3}>
+                      <FormGroup style={{marginBottom:"0px"}}>
+                        <Field
+                          type="time"
+                          name="JamMulaiSore"
+                          component={InputFieldComponent}
+                          label="Istirahat:"
+                        />
+                      </FormGroup>
+                    </Col>
 
-          <Col md={3}>
-            <FormGroup>
-              <Field
-                type="time"
-                name="JamMulaiPagi"
-                component={renderField}
-                label="Jam Mulai Istirahat :"
-              />
-            </FormGroup>
-          </Col>
-
-          <Col md={3}>
-            <FormGroup>
-              <Field
-                type="time"
-                name="MaxJamKembali"
-                component={renderField}
-                label="Max Kembali Istirahat :"
-              />
-            </FormGroup>
-          </Col>
-
-          <Col md={12}>
-          <div style={{ backgroundColor: "#363b41" ,color:"white"}}>
-              Masukkan Aturan Jadwal Siang atau Jadwal Shift 2
-            </div>
-          </Col>
-
-          <Col md={3}>
-            <FormGroup>
-              <Field
-                type="time"
-                name="JamDatangSiang"
-                component={renderField}
-                label="Jam Datang Siang  :"
-              />
-            </FormGroup>
-          </Col>
-
-          <Col md={3}>
-            <FormGroup>
-              <Field
-                type="time"
-                name="JamPulangSiang"
-                component={renderField}
-                label="Jam Pulang Siang :"
-              />
-            </FormGroup>
-          </Col>
-
-          <Col md={2}>
-            <FormGroup>
-              <Field
-                type="time"
-                name="MaxJamDatangSiang"
-                component={renderField}
-                label="MaxJam DtngSiang :"
-              />
-            </FormGroup>
-          </Col>
-
-          <Col md={2}>
-            <FormGroup>
-              <Field
-                type="time"
-                name="MinJamLemburSiang"
-                component={renderField}
-                label="MinJam LemburSiang :"
-              />
-            </FormGroup>
-          </Col>
-
-          <Col md={2}>
-            <FormGroup>
-              <Field
-                type="time"
-                name="JamMulaiLemburSiang"
-                component={renderField}
-                label="Jam Mulai Lembur :"
-              />
-            </FormGroup>
-          </Col>
-
-          <Col md={3}>
-            <FormGroup>
-              <Field
-                type="time"
-                name="JamMulaiSiang"
-                component={renderField}
-                label="Jam Mulai Istirahat :"
-              />
-            </FormGroup>
-          </Col>
-
-          <Col md={3}>
-            <FormGroup>
-              <Field
-                type="time"
-                name="MaxJamKembaliSiang"
-                component={renderField}
-                label="Max Kembali Istirahat :"
-              />
-            </FormGroup>
-          </Col>
-
-          <Col md={12}>
-          <div style={{ backgroundColor: "#363b41",color:"white" }}>
-              Masukkan Aturan Jadwal Sore atau Jadwal Shift 3
-           </div>
-          </Col>
-
-          <Col md={3}>
-            <FormGroup>
-              <Field
-                type="time"
-                name="JamDatangSore"
-                component={renderField}
-                label="Jam Datang Sore  :"
-              />
-            </FormGroup>
-          </Col>
-
-          <Col md={3}>
-            <FormGroup>
-              <Field
-                type="time"
-                name="JamPulangSore"
-                component={renderField}
-                label="Jam Pulang Sore :"
-              />
-            </FormGroup>
-          </Col>
-
-          <Col md={2}>
-            <FormGroup>
-              <Field
-                type="time"
-                name="MaxJamDatangSore"
-                component={renderField}
-                label="MaxJam DtgSore:"
-              />
-            </FormGroup>
-          </Col>
-
-          <Col md={2}>
-            <FormGroup>
-              <Field
-                type="time"
-                name="MinJamLemburSore"
-                component={renderField}
-                label="MinJam LemburSore:"
-              />
-            </FormGroup>
-          </Col>
-
-          <Col md={2}>
-            <FormGroup>
-              <Field
-                type="time"
-                name="JamMulaiLemburSore"
-                component={renderField}
-                label="Jam Mulai Lembur :"
-              />
-            </FormGroup>
-          </Col>
-
-          <Col md={3}>
-            <FormGroup>
-              <Field
-                type="time"
-                name="JamMulaiSore"
-                component={renderField}
-                label="Jam Mulai Istirahat :"
-              />
-            </FormGroup>
-          </Col>
-
-          <Col md={3}>
-            <FormGroup>
-              <Field
-                type="time"
-                name="MaxJamKembaliSore"
-                component={renderField}
-                label="Max Kembali Istirahat :"
-              />
-            </FormGroup>
-          </Col>
+                    <Col md={3}>
+                      <FormGroup style={{marginBottom:"0px"}}>
+                        <Field
+                          type="time"
+                          name="MaxJamKembaliSore"
+                          component={InputFieldComponent}
+                          label="Kbl.Istirahat:"
+                        />
+                      </FormGroup>
+                    </Col>
+                  </Row>
+                </Col>
+                {this.state.ruleTerlambat ?
+                  <Col md={12}>
+                    <div style={{marginTop:"10px"}}>Terlambat Bertingkat :</div>
+                    <FieldArray name="TBertingkats3" component={this.renderTBertingkats}/>
+                  </Col>
+                : ""}
+              </Row>
+            </Col>
         </FormGroup>
-
+        
         <FormGroup row>
           <Col md="12">
+            {/* {"sift 2 "+this.props.adaShift2} */}
+            {/* {this.props.adaShift2+" "+ this.props.adaShift3} */}
             <FormGroup>
               <Button
                 color="dark"

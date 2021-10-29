@@ -97,7 +97,7 @@ class FormAbsensiManual2 extends Component {
                 <Col md={12}>
                   <FormGroup>
                     <Field
-                      readOnly={this.props.online === false ? true : false}
+                      // readOnly={this.props.online === false ? true : false}
                       type="text"
                       name="KetPulang"
                       placeholder="Keterangan Pulang"

@@ -1,70 +1,17 @@
 import React, { useState } from "react";
 import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
-import { Card, Col, Row, Spinner } from "reactstrap";
+import { Button, Card, Col, Row, Spinner } from "reactstrap";
 import Select from 'react-select'
 import BootstrapTable from "react-bootstrap-table-next";
 import paginationFactory from "react-bootstrap-table2-paginator";
 import swal from 'sweetalert';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPencilAlt } from "@fortawesome/free-solid-svg-icons";
+import { connect } from "react-redux";
+import { getDetailPeriode } from "../actions/laporanAction";
 const { SearchBar } = Search;
 
 
-const columns = [
-    {
-       dataField: "NamaPeriode",
-       text: "Periode",
-       sort: true,
-       headerStyle: () => {
-          return { width: "120px", backgroundColor: "#f9a826" };
-       },
-       style: () => {
-          return { fontWeight: "normal" };
-       },
-    },
-    {
-        dataField: "TglAwal",
-        text: "Awal Periode",
-        sort: true,
-        headerStyle: () => {
-           return { width: "120px", backgroundColor: "#f9a826" };
-        },
-        style: () => {
-           return { fontWeight: "normal" };
-        },
-     },
-    {
-        dataField: "TglAkhir",
-        text: "Akhir Periode",
-        sort: true,
-        headerStyle: () => {
-           return { width: "120px", backgroundColor: "#f9a826" };
-        },
-        style: () => {
-           return { fontWeight: "normal" };
-        },
-     },
-     {
-        dataField: "TglTutup",
-        text: "Closing",
-        sort: true,
-        headerStyle: () => {
-           return { width: "120px", backgroundColor: "#f9a826" };
-        },
-        style: () => {
-           return { fontWeight: "normal" };
-        },
-     },
-     {
-        dataField: "ac",
-        text: "Aksi",
-        sort: true,
-        headerStyle: () => {
-           return { width: "70px", backgroundColor: "#f9a826" };
-        },
-        style: () => {
-           return { fontWeight: "normal" };
-        },
-     },
-]
 
 const defaultSorted = [
     {
@@ -88,8 +35,82 @@ const customStyles = {
     }
 }
 
+const getDtlPeriode = (dispatch, id) =>{
+   dispatch(getDetailPeriode(id))
+}
+
+const mapStateToProps = (state)=>{
+   return {
+      listPeriode : state.Laporan.listPeriode
+   }
+}
+
 const ListPeriodeAbsensi = (props)=>{
-    console.log(props)
+   //  console.log(props)
+   const columns = [
+      {
+         dataField: "NamaPeriode",
+         text: "Periode",
+         sort: true,
+         headerStyle: () => {
+            return { width: "120px", backgroundColor: "#f9a826" };
+         },
+         style: () => {
+            return { fontWeight: "normal" };
+         },
+      },
+      {
+          dataField: "TglAwal",
+          text: "Awal Periode",
+          sort: true,
+          headerStyle: () => {
+             return { width: "120px", backgroundColor: "#f9a826" };
+          },
+          style: () => {
+             return { fontWeight: "normal" };
+          },
+       },
+      {
+          dataField: "TglAkhir",
+          text: "Akhir Periode",
+          sort: true,
+          headerStyle: () => {
+             return { width: "120px", backgroundColor: "#f9a826" };
+          },
+          style: () => {
+             return { fontWeight: "normal" };
+          },
+       },
+       {
+          dataField: "TglTutup",
+          text: "Closing",
+          sort: true,
+          headerStyle: () => {
+             return { width: "120px", backgroundColor: "#f9a826" };
+          },
+          style: () => {
+             return { fontWeight: "normal" };
+          },
+       },
+       {
+          dataField: "ac",
+          text: "Aksi",
+          sort: true,
+          headerStyle: () => {
+             return { width: "50px", backgroundColor: "#f9a826" };
+          },
+          formatter:(val, row) =>{
+             return (
+                <Button onClick={()=>getDtlPeriode(props.dispatch, row.id)} size={"sm"} color="warning">
+                   <FontAwesomeIcon icon={faPencilAlt} />
+                </Button>
+             )
+          },
+          style: () => {
+             return { fontWeight: "normal" };
+          },
+       },
+  ]
     return (
         <div>
            {props.listPeriode ? (
@@ -103,7 +124,6 @@ const ListPeriodeAbsensi = (props)=>{
                  search
               >
                  {(props) => (
-                    <div>
                        <Card body inverse style={{ backgroundColor: '#ffffff', borderColor: '#ffffff' }}>
                           <Row>
                              {/* <Col md="4">
@@ -130,7 +150,6 @@ const ListPeriodeAbsensi = (props)=>{
                              pagination={paginationFactory()}
                           />
                        </Card>
-                    </div>
                  )}
               </ToolkitProvider>
            ) : (
@@ -143,4 +162,4 @@ const ListPeriodeAbsensi = (props)=>{
 }
  
 
-export default ListPeriodeAbsensi
+export default connect(mapStateToProps) (ListPeriodeAbsensi)

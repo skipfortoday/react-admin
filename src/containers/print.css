@@ -1,12 +1,100 @@
+table td{
+    padding:0 0.2rem!important;
+}
+
+.table-print{
+    width: 100%;
+}
+.tr-head{
+    text-align: center;
+    
+}
+.tr-head th{
+    border: 1px solid #666;
+    border-bottom: 3px double #666;
+}
+
+.tr-row{
+    margin-bottom: 2px;
+}
+.tr-row td{
+    border: 1px solid #666;
+    
+}
+
+.tr-row-red td{
+    border-bottom:2px solid #f00 !important;
+}
+
+.tfoot-print{
+    border-top:3px double #333;
+}
+
+.tf-td{
+    padding: 0 !important;
+    font-size: 14px;
+    font-weight: bold;
+}
+.tf-col{
+    display: inline-block;
+    vertical-align: top;
+    margin-right: 40px;
+    /* border: 1px solid #ccc; */
+}
+.tf-row{
+    display: block;
+    width: 100%;
+    font-size: 14px;
+}
+.tf-row-col{
+    display: inline-block;
+    vertical-align: top;
+    
+}
+
+.tr-row-detail .tf-row-col{
+    text-align: center;
+    border-right: 1px solid #333;
+}
+.tr-row-detail .tf-row-col:last-child{
+    border-right: none;
+}
+
+.tr-row-red>td:first-child{
+    color: #f00;
+}
 
 .container-table-print{
     padding-left: 30px;
     padding-right: 30px;
 }
 
-/* .container-table-print{
- 
-} */
+.tr-row{
+    font-size: 14px !important;
+}
+
+.tf-row{
+    display: table;
+}
+.tf-row-col{
+    display: table-cell;
+}
+
+.tr-head th{
+    background-color: #eee;
+}
+.table-print td, .table-print th{border-color: #999;}
+
+.table-print td {
+    padding-top: 2px !important;
+    padding-bottom: 3px !important;
+}
+
+.tr-keluar td{
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
+}
+
 @media print {
     html{
         background-color: tomato;

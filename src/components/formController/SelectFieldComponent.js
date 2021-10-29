@@ -11,6 +11,7 @@ export const SelectFieldComponent = ({
     disabled,
     options,
     readOnly,
+    isDisabled,
     meta: { touched, error, warning },
   }) => (
     <Row>
@@ -31,6 +32,7 @@ export const SelectFieldComponent = ({
           readOnly={readOnly}
           options={options}
           value={input.value}
+          isDisabled={isDisabled}
           onChange={(value) => input.onChange(value)}
            //onBlur={() => input.onBlur()}
         />

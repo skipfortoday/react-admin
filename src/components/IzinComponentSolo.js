@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import BootstrapTable from "react-bootstrap-table-next";
-import { Button, Row, Col, Spinner, Tooltip } from "reactstrap";
+import { Button, Row, Col, Spinner, Tooltip, Badge } from "reactstrap";
 
 import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
 import paginationFactory from "react-bootstrap-table2-paginator";
@@ -57,7 +57,12 @@ const IzinComponentSolo = (props) => {
           swal("Data Izin Sukses dihapus", {
             icon: "success",
           }).then((value) => {
-             dispatch(getIzinListSolo(props.UserID,props.TglAwal,props.TglAkhir))
+            let listStatus = []
+            props.listStatus.map((item)=>{
+              if(item.isChecked) listStatus.push(item.id)
+            })
+            
+             dispatch(getIzinListSolo(props.UserID,props.TglAwal,props.TglAkhir, listStatus))
           }); 
         } else {
           swal("Data gagal dihapus");
@@ -76,11 +81,19 @@ const IzinComponentSolo = (props) => {
       text: "Tanggal",
       sort: true,
       headerStyle: () => {
-        return { width: "120px", backgroundColor: "#f9a826" };
+        return { width: "150px", backgroundColor: "#f9a826" };
       },
       style: () => {
         return { fontWeight: "normal" };
       },
+      formatter: (rowContent, row) => {
+        return (
+          <>
+            { rowContent }
+            { row.CaraMasuk == 'HPWFH' ? <Badge color="info">wfh</Badge> : ""}
+          </>
+        )
+      }
     },
     {
       dataField: "ScanMasuk",
@@ -128,12 +141,13 @@ const IzinComponentSolo = (props) => {
       style: () => {
         return { fontWeight: "normal" };
       },
+     
     },
     {
       dataField: "link",
       text: "Action",
       headerStyle: () => {
-        return { width: "70px", backgroundColor: "#f9a826" };
+        return { width: "80px", backgroundColor: "#f9a826" };
       },
       style: () => {
         return { fontWeight: "normal" };

@@ -12,14 +12,14 @@ import { SelectMultipleFieldComponentHrz } from "./formController/SelectMultiple
 const mapStateToProps = (state) => {
 
    let RoleAdmins = [
-      {value:99, label:"SUPERADMIN"},
       {value:1, label:"ADMIN"},
-      {value:2, label:"SUPERVISOR"}
+      {value:2, label:"SUPERVISOR"},
+      {value:99, label:"SUPERADMIN"},
    ]
 
    let roleSet = {}
    let cabangSet = []
-   let allCabang = [{value:"PST", label:"PUSAT"}]
+   let allCabang = []
    if(state.Admin.getAdminDetail){
       RoleAdmins.map((item)=>{
          if(item.value === state.Admin.getAdminDetail.RoleAdmin ){
@@ -33,6 +33,10 @@ const mapStateToProps = (state) => {
          allCabang.map((item)=>{
             if(kcs.includes(item.value)) cabangSet.push({value:item.value, label:item.label})
          })
+      }
+   }else{
+      if(state.Opt.getOptCabang){
+         state.Opt.getOptCabang.map(item=>allCabang.push(item))
       }
    }
 
@@ -59,6 +63,8 @@ const mapStateToProps = (state) => {
 
 class FormAdminComponent extends Component {
    render() {
+      let userLogin = JSON.parse(localStorage.getItem('user'))
+
       console.log(this.props.cabangSet)
       return (
          <form onSubmit={this.props.handleSubmit}>
@@ -111,8 +117,11 @@ class FormAdminComponent extends Component {
                         name="KodeCabang"
                         options={this.props.getOptCabang}
                         component={SelectMultipleFieldComponentHrz}
+                        labelAlign="text-left"
                         label="Cabang :"
-                        isDisabled ={this.props.editing || this.props.disabled}
+                        // isDisabled={userLogin.RoleAdmin != 99}
+                        // isDisabled ={this.props.editing || this.props.disabled}
+                        isDisabled={this.props.disabled}
                         
                      />
                   </FormGroup>

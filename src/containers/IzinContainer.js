@@ -18,6 +18,7 @@ import {
   resetLaporan,
   setLoading,
   checkBelumPulangToday,
+  getLaporanDetail2,
 } from "../actions/laporanAction";
 import { Redirect } from "react-router-dom";
 import { Row, Col, Container, Modal } from "reactstrap";
@@ -32,12 +33,14 @@ import PrintButton from "../components/PrintButton";
 import { reset } from "redux-form";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import Loader from "react-loader-spinner";
+import PrintContainer from "./PrintContainer";
 
 const mapStateToProps = (state) => {
+  // console.log(state.form.formLengkapiAbsen);
   return {
     getResponDataLaporan: state.Laporan.getResponDataLaporan,
     errorResponDataLaporan: state.Laporan.errorResponDataLaporan,
-    getLaporanDetail: state.Laporan.getLaporanDetail,
+    getLaporanDetail: state.Laporan.laporanBanyak,
     getResponDataIzin: state.Izin.getResponDataIzin,
     tglAwal: state.form.formLengkapiAbsen
       ? state.form.formLengkapiAbsen.values.TglAwal
@@ -61,7 +64,24 @@ class IzinContainer extends Component {
     this.state = {
       data: null,
       progress:false,
+      lsStatus : [],
+      loading:false,
+      absenWFH:false
     }
+  }
+
+  setStatusChecked (val) {
+    this.setState({
+      ...this.state,
+      lsStatus : val
+    })
+  }
+
+  setAbsenWFH (val){
+    this.setState({
+      ...this.state,
+      absenWFH : val
+    })
   }
 
   componentDidMount() {
@@ -76,14 +96,15 @@ class IzinContainer extends Component {
     this.props.dispatch(getIzinDetail());
     this.props.dispatch(reset("formCreateizin"));
     this.props.dispatch(reset("formLengkapiAbsen"));
-    this.props.dispatch(getOptUser(true));
+    //this.props.dispatch(getOptUser(true));
   }
 
   handleSubmit2(data) {
     const ambil = JSON.parse(localStorage.getItem("user"));
 
     data.ADMIN = ambil.AdminID;
-    this.props.dispatch(setLoading(true));
+    // this.props.dispatch(setLoading(true));
+    this.setState({...this.state, loading:true})
     this.props.dispatch(resetLaporan());
 
     if (!data.DatangID) {
@@ -101,6 +122,7 @@ class IzinContainer extends Component {
     data.status.map((item)=>{
       if(item.isChecked) status.push(item.id)
     })
+    if(this.state.absenWFH) status.push("HPWFH")
     data.status = status
     if(data.status.length == 0) {
       alert('Status Belum dipilih')
@@ -126,11 +148,13 @@ class IzinContainer extends Component {
 
     } else {
       this.props.dispatch(resetLaporan());
-      this.props.dispatch(getUserDetail(data.Nama.value));
-      this.props.dispatch(getLaporanDetail(data.Nama.value, data.TglAwal, data.TglAkhir, data.status));
-      this.props.dispatch(getIzinListSolo(data.Nama.value, data.TglAwal, data.TglAkhir, data.status));
+      //this.props.dispatch(getUserDetail(data.Nama.value));
       this.props.dispatch(getIzinDetail(data.Nama.value, data.TglAwal, data.TglAkhir, data.status));
-      this.props.dispatch(setLoading(true));
+      this.props.dispatch(getIzinListSolo(data.Nama.value, data.TglAwal, data.TglAkhir, data.status));
+      this.props.dispatch(getLaporanDetail2());
+      this.props.dispatch(getLaporanDetail2([data.Nama.value], data.TglAwal, data.TglAkhir, data.status));
+      //this.props.dispatch(setLoading(true));
+      this.setState({...this.state, loading:true})
     }
 
   }
@@ -160,7 +184,8 @@ class IzinContainer extends Component {
           this.props.dispatch(resetLaporan());
           this.props.dispatch(getUserDetail(this.state.data.Nama.value));
           this.props.dispatch(postLaporanProses(this.state.data));
-          this.props.dispatch(setLoading(true));
+          //this.props.dispatch(setLoading(true));
+          this.setState({...this.state, loading:true})
         })
         // setTimeout(() => {
           
@@ -177,7 +202,7 @@ class IzinContainer extends Component {
 
   }
 
-  componentDidUpdate() {
+  componentDidUpdate(prevProps) {
     if (this.props.getResponDataIzin) {
 
       //this.props.dispatch(setLoading(false))
@@ -220,7 +245,8 @@ class IzinContainer extends Component {
     if (this.props.errorResponDataLaporan) {
       swal("Failed!", this.props.errorResponDataLaporan, "error");
       this.props.dispatch(resetLaporanRespon());
-      this.props.dispatch(setLoading(false))
+      // this.props.dispatch(setLoading(false))
+      this.setState({...this.state, loading:false})
     }
 
     if (this.props.getResponDataLaporan) {
@@ -229,7 +255,8 @@ class IzinContainer extends Component {
         "",
         "success"
       );
-      this.props.dispatch(setLoading(false))
+      // this.props.dispatch(setLoading(false))
+      this.setState({...this.state, loading:true})
       this.props.dispatch(resetLaporanRespon());
       this.refreshUi();
       this.props.dispatch(checkBelumPulangToday());
@@ -239,21 +266,35 @@ class IzinContainer extends Component {
         progress:false
       })
     }
+
+    if(!prevProps.getLaporanDetail && this.props.getLaporanDetail){
+      this.setState({...this.state, loading:false})
+    }
   }
 
   refreshUi = () => {
+    let status = []
+    this.state.lsStatus.map((item)=>{
+      if(item.isChecked) status.push(item.id)
+    })
+
+    if(this.state.absenWFH) status.push("HPWFH")
 
     this.props.dispatch(
       getIzinListSolo(
         this.props.userID,
         this.props.tglAwal,
-        this.props.tglAkhir
+        this.props.tglAkhir,
+        status
       )
     );
-    this.props.dispatch(getLaporanDetail(
-      this.props.userID,
+    this.props.dispatch(getLaporanDetail2());
+    this.props.dispatch(getLaporanDetail2(
+      [this.props.userID],
       this.props.tglAwal,
-      this.props.tglAkhir));
+      this.props.tglAkhir,
+      status
+      ));
   }
 
   render() {
@@ -273,13 +314,14 @@ class IzinContainer extends Component {
     };
 
     if (this.props.getLaporanDetail && this.props.isLoading) {
-      this.props.dispatch(setLoading(false))
+      // this.props.dispatch(setLoading(false))
+      this.setState({...this.state, loading:false})
     }
 
     return (
       <div style={{ minHeight: 900 }}>
         <Modal
-          isOpen={this.props.isLoading}
+          isOpen={this.state.loading}
           backdropTransition={{ timeout: 0 }}
           modalTransition={{ timeout: 0 }}
           fade={false}
@@ -298,7 +340,10 @@ class IzinContainer extends Component {
           <Container>
             <Row>
               <Col md="12">
-                <LengkapiAbsen onSubmit={(data) => this.handleSubmit(data)} />
+                <LengkapiAbsen 
+                  onSubmit={(data) => this.handleSubmit(data)} 
+                  setStatusChecked={(val) => this.setStatusChecked(val)}
+                  setAbsenWFH={(val) => this.setAbsenWFH(val)} />
               </Col>
             </Row>
           </Container>
@@ -307,7 +352,7 @@ class IzinContainer extends Component {
           <div class="header-1" style={{ padding: "10px 20px" }}>
             <div className="row">
               <div className="col-lg-8">
-                <IzinComponentSolo />
+                <IzinComponentSolo listStatus={this.state.lsStatus}/>
               </div>
               <div className="col-lg-4">
                 <div style={{ background: "#17a2b7", padding: "0px 10px" }}>
@@ -318,7 +363,8 @@ class IzinContainer extends Component {
               </div>
             </div>
           </div>
-          {this.props.getLaporanDetail ? (
+          <PrintContainer/>
+          {/* {this.props.getLaporanDetail ? (
             this.props.getLaporanDetail.body ? (
               <div>
                 <div class="header-1" style={{ backgroundColor: "#f9a826", paddingTop: 5 }}>
@@ -340,7 +386,7 @@ class IzinContainer extends Component {
                 </Container>
               </div>
             ) : ("")
-          ) : ("")}
+          ) : ("")} */}
         </div>
       </div>
     );

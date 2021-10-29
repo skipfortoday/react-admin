@@ -15,7 +15,7 @@ import swal from 'sweetalert';
 import { deleteAdmin, getAdminList } from "../actions/adminAction";
 
 const { SearchBar } = Search;
-
+let Admin = JSON.parse(localStorage.getItem('user'))
 const handleClick = (dispatch, AdminID) => {
 
    swal({
@@ -30,9 +30,9 @@ const handleClick = (dispatch, AdminID) => {
             swal("Data Admin Sukses dihapus", {
                icon: "success",
             }).then(()=>{
-               
+               dispatch(getAdminList());
                // this.props.dispatch(getAdminList());
-               window.location.reload();
+               // window.location.reload();
             });
          } else {
             swal("Data gagal dihapus");
@@ -141,18 +141,18 @@ const AdminComponent = (props) => {
          dataField: "link",
          text: "Action",
          headerStyle: () => {
-            return { width: "40px", backgroundColor: "#f9a826" };
+            return { width: "50px", backgroundColor: "#f9a826" };
          },
          formatter: (rowContent, row) => {
             return (
                <div>
                   <Link to={"superadmin/edit/" + row.AdminID}>
-                     <Button color="warning" className="mr-2">
+                     <Button color="warning" className="mr-2" size="sm">
                         <FontAwesomeIcon icon={faEdit} />
                      </Button>
                   </Link>
-                  { row.RoleAdmin == 99 ? (
-                     <Button color="warning" className="mr-2" onClick={() => handleClick(props.dispatch, row.AdminID)}>
+                  { Admin.RoleAdmin == 99 ? (
+                     <Button color="danger" className="mr-2" size="sm" onClick={() => handleClick(props.dispatch, row.AdminID)}>
                         <FontAwesomeIcon icon={faTrash} />
                      </Button>
                   ) : ("")}

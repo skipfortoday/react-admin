@@ -14,6 +14,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch, faSpinner } from "@fortawesome/free-solid-svg-icons";
 import { SelectFieldComponent } from "./formController/SelectFieldComponent";
 import { InputFieldComponent } from "./formController/InputFieldComponent";
+import { lsStatus } from "../config";
 
 
 const mapStateToProps = (state) => {
@@ -55,22 +56,13 @@ class LengkapiAbsen extends Component {
 
   constructor(props){
     super(props)
+    
     this.state = {
       CheckAll : true,
-      listStatus : [
-        { id: "MASUK", value: 'MASUK', label: 'Masuk', isChecked:true, name: "Status"},
-        { id: "OFF", value: 'OFF', label: 'OFF', isChecked:true, name: "Status"},
-        { id: "LIBUR", value: 'LIBUR', label: 'LIBUR', isChecked:true, name: "Status"},
-        { id: "TIDAK MASUK", value: 'TIDAK MASUK', label: 'TIDAK MASUK', isChecked:true, name: "Status"},
-        { id: "IZIN TIDAK MASUK", value: 'IZIN TIDAK MASUK', label: 'IZIN TIDAK MASUK', isChecked:true, name: "Status"},
-        { id: "CUTI", value: 'CUTI', label: 'CUTI', isChecked:true, name: "Status"},
-        { id: "CUTI BERSAMA", value: 'CUTI BERSAMA', label: 'CUTI BERSAMA', isChecked:true, name: "Status"},
-        { id: "CUTI KHUSUS", value: 'CUTI KHUSUS', label: 'CUTI KHUSUS', isChecked:true, name: "Status"},
-        { id: "DINAS LUAR", value: 'DINAS LUAR', label: 'DINAS LUAR', isChecked:true, name: "Status"},
-        { id: "SAKIT", value: 'SAKIT', label: 'SAKIT', isChecked:true, name: "Status"},
-        { id: "ACC LUPA ABSEN", value: 'ACC LUPA ABSEN', label: 'ACC LUPA ABSEN', isChecked:true, name: "Status"},
-      ]
+      listStatus : lsStatus,
+      AbsenWFH:false,
     }
+    this.props.setStatusChecked(lsStatus)
   }
 
   render() {
@@ -91,14 +83,14 @@ class LengkapiAbsen extends Component {
          c += data.isChecked ? 1 : 0;
       });
       
-      console.log(c, this.state.listStatus.length)
+      //console.log(c, this.state.listStatus.length)
       this.setState({
         ...this.state,
         listStatus : newLists,
         CheckAll : c == this.state.listStatus.length ? true : false
+      },()=>{
+        this.props.setStatusChecked(newLists)
       })
-      // this.setState((prevState) => ({ counter: prevState.counter + 1 }));
-      // this.props.dispatch(getListCbCabang(this.state.user.RoleAdmin, null, newCb))
     }
 
     const setCheckAll =(e)=>{
@@ -112,12 +104,32 @@ class LengkapiAbsen extends Component {
         ...this.state, 
         CheckAll:e.target.checked,
         listStatus:newLists
+      },()=>{
+        this.props.setStatusChecked(newLists)
+      })
+    }
+
+    const setAbsenWFH = (e)=>{
+    
+      let newLists = [];
+      this.state.listStatus.map((data) => {
+        data.isChecked = !e.target.checked
+        newLists.push(data);
+      });
+      
+      this.setState({
+        ...this.state, 
+        CheckAll:!e.target.checked,
+        listStatus:newLists,
+        AbsenWFH: e.target.checked,
+      },()=>{
+        this.props.setStatusChecked(newLists)
+        this.props.setAbsenWFH(this.state.AbsenWFH)
       })
     }
 
     return (
       <form >
-        <Container>
           <FormGroup row>
             <Row>
               <Col md={3}>
@@ -174,7 +186,8 @@ class LengkapiAbsen extends Component {
                       onClick={this.props.handleSubmit((values) =>
                         this.props.onSubmit({
                           ...values,
-                          type: 'proses'
+                          type: 'proses',
+                          status : this.state.listStatus
                         }))}
                       color="info"
                       type="submit"
@@ -186,8 +199,8 @@ class LengkapiAbsen extends Component {
                 </Row>
               </Col>
             </Row>
-            <Row>
-              <Col>
+            <Row style={{width:"100%"}}>
+              <Col md={5}>
                 <Label className="col-form-label">
                     Status : &nbsp;&nbsp;&nbsp;
                     <Label check>
@@ -196,6 +209,17 @@ class LengkapiAbsen extends Component {
                         type="checkbox"
                         onClick={(e)=>setCheckAll(e)}
                         value="checkedall" /> Pilih / Tidak Pilih Semua
+                    </Label>
+                  </Label>
+              </Col>
+              <Col md={5}>
+                <Label className="col-form-label">
+                    <Label check>
+                      <input
+                        checked={this.state.AbsenWFH}
+                        type="checkbox"
+                        onClick={(e)=>setAbsenWFH(e)}
+                        value="checkedall" /> Absensi dari luar kantor (WFH)
                     </Label>
                   </Label>
               </Col>
@@ -214,7 +238,6 @@ class LengkapiAbsen extends Component {
               </Col>
             </Row>
           </FormGroup>
-        </Container>
       </form>
     );
   }

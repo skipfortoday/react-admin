@@ -11,10 +11,12 @@ export const InputFieldComponentHrz = ({
     disabled,
     readOnly,
     hh,
+    labelAlign,
     meta: { touched, error, warning },
 }) => (
     <Row style={{border:"0px solid #f00"}}>
-        <Label md="4" htmlFor="{input}" className="col-form-label text-right">
+        <Label md="4" htmlFor="{input}" 
+            className={"col-form-label "+ labelAlign? labelAlign : "text-right"}>
             {label}
         </Label>
         <Col md="8" style={type=='date' ? colDateStyle : {}}>

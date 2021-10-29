@@ -6,7 +6,7 @@ import swal from "sweetalert";
 import { Redirect } from "react-router-dom";
 import ListMutasiPegawai from "../components/ListMutasiPegawai";
 import FormMutasiComponent from "../components/FormMutasiComponent";
-import { getListMutasiPegawai, getUsersList, postMutasiPegawai } from "../actions/userAction";
+import { getListMutasiPegawai, getUserListServer, getUsersList, postMutasiPegawai } from "../actions/userAction";
 
 const mapStateToProps = (state) => {
     return{

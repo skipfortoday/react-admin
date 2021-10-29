@@ -1,5 +1,6 @@
 import React from "react";
 import BootstrapTable from "react-bootstrap-table-next";
+import { getCabangList } from "../actions/cabangAction";
 import { Button, Row, Col, Spinner, Card } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -30,7 +31,8 @@ const handleClick = (dispatch, KodeCabang) => {
             swal("Data Cabang Sukses dihapus", {
                icon: "success",
             }).then(()=>{
-               window.location.reload();
+               // window.location.reload();
+               dispatch(getCabangList());
             }); 
          } else {
             swal("Data gagal dihapus");

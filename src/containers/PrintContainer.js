@@ -19,7 +19,7 @@ export default function PrintContainer() {
                     };
                     let footer = item.data.footer
                     let ambil = JSON.parse(localStorage.getItem('user'));
-                    let nama = ambil.Username
+                    let nama = ambil ? ambil.Username : ''
                     return(
                         <div className="container-table-print">
                             
@@ -70,7 +70,7 @@ export default function PrintContainer() {
                                     </td>
                                     </tr>
                                     <tr>
-                                    <th colspan="12" style={{height:"30px", borderTop:"2px solid #333", marginTop:"5px"}}></th>
+                                    <th colspan="12" style={{height:"10px", borderTop:"2px solid #333", marginTop:"5px"}}></th>
                                     </tr>
                                     <tr className="tr-head" style={{fontSize:"12px"}}>
                                     <th>Tanggal</th>
@@ -87,7 +87,7 @@ export default function PrintContainer() {
                                     <th>Ket.Pulang</th>
                                     </tr>
                                 </thead>
-                                {/* <tbody> */}
+                                <tbody>
                                     {
                                     rowsLaporan.map((row)=>{
                                         let trrow = "tr-row";
@@ -95,59 +95,49 @@ export default function PrintContainer() {
                                         let colorRed = row.Terlambat != null ? "#f00" : "#333"
                                         
                                         return(
-                                        <tbody>
-                                            <tr className={trrow}>
-                                            <td style={{textAlign:"right", width:"145px"}}>{row.Tanggal}</td>
-                                            <td style={{textAlign:"center", width:"60px", fontWeight:"bold", color:colorRed}}>{row.ScanMasuk}</td>
-                                            <td style={{textAlign:"center", width:"60px", fontWeight:"bold"}}>{row.ScanPulang}</td>
-                                            <td style={{textAlign:"center", width:"60px", fontWeight:"bold", color:"#f00"}}>{row.Terlambat}</td>
-                                            <td style={{textAlign:"center", width:"60px", fontWeight:"bold", color:"teal"}}>{row.Lembur}</td>
-                                            <td style={{textAlign:"center", width:"50px"}}>{row.Shift}</td>
-                                            <td style={{textAlign:"center", width:"60px"}}>{row.IstirahatKeluar}</td>
-                                            <td style={{textAlign:"center", width:"60px"}}>{row.IstirahatKembali}</td>
-                                            <td style={{textAlign:"center", width:"60px"}}>{row.TerlambatIstirahat}</td>
-                                            <td style={{textAlign:"center", width:"160px"}}>{row.Status}</td>
-                                            <td style={{textAlign:"center", width:"215px"}}>{row.Keterangan}</td>
-                                            <td style={{textAlign:"center", width:"140px"}}>{row.KetPulang}</td>
-                                            </tr>
-                                            {
-                                            row.detail.length > 0 ? (
-                                                <tr className="tr-row tr-row-detail">
-                                                <td colspan="12">
-                                                    {row.detail.map((dt)=>{
-                                                    return(
-                                                        <div className="tf-row">
-                                                        <div className="tf-row-col" style={{width:"130px"}}>Keluar Kantor</div>
-                                                        <div className="tf-row-col" style={{width:"150px"}}>{dt.KelKan}</div>
-                                                        <div className="tf-row-col" style={{width:"150px"}}>{dt.Durasi}</div>
-                                                        <div className="tf-row-col" style={{width:"200px"}}>{dt.Ket}</div>
-                                                        <div className="tf-row-col" style={{width:"200px"}}>{dt.KetKembali}</div>
-                                                        </div>
-                                                    )  
-                                                    })}
-                                                </td>
+                                            <>
+                                                <tr className={trrow}>
+                                                    <td style={{textAlign:"right", width:"145px"}}>{row.Tanggal}</td>
+                                                    <td style={{textAlign:"center", whiteSpace:"nowrap", fontWeight:"bold", color:colorRed}}>{row.ScanMasuk}</td>
+                                                    <td style={{textAlign:"center", whiteSpace:"nowrap", fontWeight:"bold"}}>{row.ScanPulang}</td>
+                                                    <td style={{textAlign:"center", width:"60px", fontWeight:"bold", color:"#f00"}}>{row.Terlambat}</td>
+                                                    <td style={{textAlign:"center", width:"60px", fontWeight:"bold", color:"teal"}}>{row.Lembur}</td>
+                                                    <td style={{textAlign:"center", width:"50px"}}>{row.Shift}</td>
+                                                    <td style={{textAlign:"center", width:"60px"}}>{row.IstirahatKeluar}</td>
+                                                    <td style={{textAlign:"center", width:"60px"}}>{row.IstirahatKembali}</td>
+                                                    <td style={{textAlign:"center", width:"60px"}}>{row.TerlambatIstirahat}</td>
+                                                    <td style={{textAlign:"center", width:"160px"}}>{row.CaraMasuk === 'HPWFH' ? 'WFH' : row.Status}</td>
+                                                    <td style={{textAlign:"center", width:"215px"}}>{row.Keterangan}</td>
+                                                    <td style={{textAlign:"center", width:"140px"}}>{row.KetPulang}</td>
                                                 </tr>
-                                            ) : ""
-                                            }
-                                        </tbody>
+                                                {
+                                                    row.detail.length == 0 ? "" :
+                                                    row.detail.map((dt)=>{
+                                                        return (
+                                                            <tr className="tr-row tr-row-detail tr-keluar" style={{color:"#333"}}>
+                                                                <td style={{textAlign:"right", width:"145px", fontWeight:"bold"}}>Keluar Kantor</td>
+                                                                <td style={{textAlign:"center", whiteSpace:"nowrap", fontWeight:"bold"}} colspan="2">{dt.KelKan}</td>
+                                                                <td style={{textAlign:"left", whiteSpace:"nowrap", fontWeight:"bold"}} colspan="2">{dt.Durasi}</td>
+                                                                <td style={{textAlign:"left", whiteSpace:"nowrap"}} colspan="5"><b>Ket :</b>{dt.Ket.replace("Ket. :","")}</td>
+                                                                <td style={{textAlign:"left", whiteSpace:"nowrap"}} colspan="2"><b>Ket. Kembali :</b> {dt.KetKembali.replace("Ket. Kembali :","")}</td>
+                                                            </tr>
+                                                        )
+                                                    })
+                                                }
+                                            </>
                                         )
                                     })
                                     }
-                                {/* </tbody> */}
+                                </tbody>
                                 
                                 <tbody className="tfoot-print">
                                     
-                                    <tr>
-                                    <td colspan="12">
-                                        <div style={{height:"10px"}}></div>
-                                        {/* <div style={{borderTop:"2px solid #333", marginTop:"4px"}}></div> */}
-                                    </td>
-                                    </tr>
+                                    
                                     <tr>
                                     <td colspan="12" className="tf-td">
                                         <div className="tf-col" style={{width:"270px"}}>
                                         <div className="tf-row">
-                                            <div className="tf-row-col" style={{width:"130px"}}>Ijin Terlambat</div>
+                                            <div className="tf-row-col" style={{width:"135px"}}>Ijin Terlambat</div>
                                             <div className="tf-row-col" style={{width:"20px"}}>:</div>
                                             <div className="tf-row-col">{footer.IjinTerlambat}</div>
                                         </div>
@@ -186,95 +176,97 @@ export default function PrintContainer() {
                                             <div className="tf-row-col" style={{width:"20px"}}>=</div>
                                             <div className="tf-row-col" style={{width:"60px", textAlign:"right", color:"#f00"}}>{footer.TotalPotongan}</div>
                                         </div>
+                                        <div className="tf-row" style={{ marginTop:"20px"}}>
+                                            <div className="tf-row-col" style={{width:"130px", fontSize:"12px", fontStyle:"italic"}}>{footer.TglPrint} {nama}</div>
+                                        </div>
+                                        
                                         </div>
                                         <div className="tf-col" style={{width:"250px"}}>
                                         <div className="tf-row">
-                                            <div className="tf-row-col" style={{width:"160px"}}>Jml Sakit Bulan Ini</div>
+                                            <div className="tf-row-col" style={{width:"300px"}}>Jml Sakit Bulan Ini</div>
                                             <div className="tf-row-col" style={{width:"20px"}}>:</div>
-                                            <div className="tf-row-col" style={{width:"40px", textAlign:"right"}}>{footer.JumlahSakit}</div>
+                                            <div className="tf-row-col" style={{width:"40px", textAlign:"left"}}>{footer.JumlahSakit}</div>
                                         </div>
                                         <div className="tf-row">
-                                            <div className="tf-row-col" style={{width:"160px"}}>Jml Cuti Bulan Ini</div>
+                                            <div className="tf-row-col" style={{width:"300px"}}>Jml Cuti Bulan Ini</div>
                                             <div className="tf-row-col" style={{width:"20px"}}>:</div>
-                                            <div className="tf-row-col" style={{width:"40px", textAlign:"right"}}>{footer.JumlahCuti}</div>
+                                            <div className="tf-row-col" style={{width:"40px", textAlign:"left"}}>{footer.JumlahCuti}</div>
                                         </div>
                                         <div className="tf-row">
-                                            <div className="tf-row-col" style={{width:"160px"}}>Ijin Tidak Masuk</div>
+                                            <div className="tf-row-col" style={{width:"300px"}}>Ijin Tidak Masuk</div>
                                             <div className="tf-row-col" style={{width:"20px"}}>:</div>
-                                            <div className="tf-row-col" style={{width:"40px", textAlign:"right"}}>{footer.JumlahIzinTidakMasuk}</div>
+                                            <div className="tf-row-col" style={{width:"40px", textAlign:"left"}}>{footer.JumlahIzinTidakMasuk}</div>
                                         </div>
                                         <div className="tf-row">
-                                            <div className="tf-row-col" style={{width:"160px"}}></div>
-                                            <div className="tf-row-col" style={{width:"20px"}}></div>
-                                            <div className="tf-row-col" style={{width:"40px", textAlign:"right"}}>-------</div>
+                                            <div className="tf-row-col" style={{width:"300px"}}></div>
+                                            <div className="tf-row-col" style={{width:"20px"}}><span style={{borderBottom:"1px solid #000", display:"block", width:"50px", height:"20px", marginRight:"-20px"}}></span></div>
+                                            <div className="tf-row-col" style={{width:"40px", textAlign:"right"}}>+</div>
                                         </div>
                                         <div className="tf-row">
-                                            <div className="tf-row-col" style={{width:"160px"}}>Total Tidak Masuk</div>
+                                            <div className="tf-row-col" style={{width:"300px"}}>Total Tidak Masuk</div>
                                             <div className="tf-row-col" style={{width:"20px"}}>:</div>
-                                            <div className="tf-row-col" style={{width:"40px", textAlign:"right"}}>{footer.TotalTidakMasuk}</div>
+                                            <div className="tf-row-col" style={{width:"40px", textAlign:"left"}}>{footer.TotalTidakMasuk}</div>
                                         </div>
                                         <div className="tf-row">
-                                            <div className="tf-row-col" style={{width:"160px"}}>Total Cuti Tahun Ini</div>
+                                            <div className="tf-row-col" style={{width:"300px"}}>Total Cuti Tahun Ini</div>
                                             <div className="tf-row-col" style={{width:"20px"}}>:</div>
-                                            <div className="tf-row-col" style={{width:"40px", textAlign:"right"}}>{footer.TotalCutiThnIni}</div>
+                                            <div className="tf-row-col" style={{width:"40px", textAlign:"left"}}>{footer.TotalCutiThnIni}</div>
                                         </div>
                                         <div className="tf-row">
-                                            <div className="tf-row-col" style={{width:"160px"}}>Sisa Cuti</div>
+                                            <div className="tf-row-col" style={{width:"300px"}}>Sisa Cuti</div>
                                             <div className="tf-row-col" style={{width:"20px"}}>:</div>
-                                            <div className="tf-row-col" style={{width:"40px", textAlign:"right"}}>{footer.SisaCuti}</div>
+                                            <div className="tf-row-col" style={{width:"40px", textAlign:"left"}}>{footer.SisaCuti}</div>
                                         </div>
                                         <div className="tf-row">
-                                            <div className="tf-row-col" style={{width:"160px"}}>Cuti Khusus Bulan Ini</div>
+                                            <div className="tf-row-col" style={{width:"300px"}}>Cuti Khusus Bulan Ini</div>
                                             <div className="tf-row-col" style={{width:"20px"}}>:</div>
-                                            <div className="tf-row-col" style={{width:"40px", textAlign:"right", color:"#f00"}}>{footer.JumlahCutiKhusus}</div>
+                                            <div className="tf-row-col" style={{width:"40px", textAlign:"left", color:"#f00"}}>{footer.JumlahCutiKhusus}</div>
                                         </div>
-                                        <div className="tf-row">
-                                            <div className="tf-row-col" style={{width:"160px"}}>ACC Lupa Absen (Dari Awal Kerja)</div>
-                                            <div className="tf-row-col" style={{width:"20px"}}>:</div>
-                                            <div className="tf-row-col" style={{width:"40px", textAlign:"right", color:"#f00"}}>{footer.AccLupaAbsen}</div>
-                                        </div>
+                                        
                                         </div>
                                         <div className="tf-col" style={{width:"300px"}}>
                                         <div className="tf-row">
                                             <div className="tf-row-col" style={{width:"140px"}}>Jml Lembur</div>
                                             <div className="tf-row-col" style={{width:"20px"}}>:</div>
-                                            <div className="tf-row-col" style={{textAlign:"right"}}>{footer.JumlahLembur}</div>
+                                            <div className="tf-row-col" style={{textAlign:"left"}}>{footer.JumlahLembur}</div>
                                         </div>
                                         <div className="tf-row">
                                             <div className="tf-row-col" style={{width:"140px"}}>Total Lembur</div>
                                             <div className="tf-row-col" style={{width:"20px"}}>:</div>
-                                            <div className="tf-row-col" style={{textAlign:"right"}}>{footer.TotalJamLembur}</div>
+                                            <div className="tf-row-col" style={{textAlign:"left"}}>{footer.TotalJamLembur}</div>
                                         </div>
-                                        <div className="tf-row" style={{marginTop:"50px"}}>
+                                        <div className="tf-row" style={{marginTop:"00px"}}>
                                             <div className="tf-row-col" style={{width:"140px"}}>OFF</div>
                                             <div className="tf-row-col" style={{width:"20px"}}>:</div>
-                                            <div className="tf-row-col" style={{textAlign:"right"}}>{footer.JumlahOFF}</div>
+                                            <div className="tf-row-col" style={{textAlign:"left"}}>{footer.JumlahOFF}</div>
                                         </div>
                                         <div className="tf-row">
                                             <div className="tf-row-col" style={{width:"140px"}}>Jml Masuk Kantor</div>
                                             <div className="tf-row-col" style={{width:"20px"}}>:</div>
-                                            <div className="tf-row-col" style={{textAlign:"right"}}>{footer.JmlMasukKantor}</div>
+                                            <div className="tf-row-col" style={{textAlign:"left"}}>{footer.JmlMasukKantor}</div>
                                         </div>
                                         <div className="tf-row">
                                             <div className="tf-row-col" style={{width:"140px"}}>Jml Dinas Luar</div>
                                             <div className="tf-row-col" style={{width:"20px"}}>:</div>
-                                            <div className="tf-row-col" style={{textAlign:"right"}}>{footer.JumlahDinasLuar}</div>
+                                            <div className="tf-row-col" style={{textAlign:"left"}}>{footer.JumlahDinasLuar}</div>
+                                        </div>
+                                        <div className="tf-row">
+                                            <div className="tf-row-col" style={{width:"300px", whiteSpace:"nowrap"}}>ACC Lupa Absen (Dari Awal Kerja)</div>
+                                            <div className="tf-row-col" style={{width:"20px"}}>:</div>
+                                            <div className="tf-row-col" style={{width:"40px", textAlign:"left", color:"#f00"}}>{footer.AccLupaAbsen}</div>
                                         </div>
                                         </div>
                                     </td>
                                     </tr>
                                     <tr>
-                                    <td colspan="10" style={{fontSize:"12px", fontStyle:"italic"}}>{footer.TglPrint} {nama}</td>
+                                    
                                     {/* <td colspan="2" style={{textAlign:"right", fontSize:"12px", fontStyle:"italic"}}>Halaman 1</td> */}
                                     </tr>
                                     
                                 </tbody>
                                 </table>
                             }
-                            {/* <LaporanDetailBanyak data={item} /> */}
-                            {/* summary absensi */}
-                            {/* <SummaryLaporan2 data={item.data.footer} style={{pageBreakInside:"avoid"}}  /> */}
-                            {/* <div style="page-break-after:always"></div> */}
+                           
                             <div className="page-break"></div>
                         </div>
                     )      

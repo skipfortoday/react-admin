@@ -18,6 +18,7 @@ const mapStateToProps = (state) => {
   };
 };
 
+// let admin = JSON.parse(localStorage.getItem('user'))
 
 class CreateAdminContainer extends Component {
   componentDidMount() {
@@ -43,14 +44,15 @@ class CreateAdminContainer extends Component {
       } else {
         this.props.dispatch(reset('formCreateAdmin'))
         swal(
-          "Admin Created!",
-          "Kode : " +
-          this.props.getResponDataAdmin.AdminID +
-          " , Nama : " +
-          this.props.getResponDataAdmin.TanggalCreate,
+          "Sukses!",
+          "Admin berhasil dibuat",
+          // "Kode : " +
+          // this.props.getResponDataAdmin.AdminID +
+          // " , Nama : " +
+          // this.props.getResponDataAdmin.TanggalCreate,
           "success"
         ).then(()=>{
-          this.props.history.push("/superadmin")
+          this.props.history.replace("/superadmin")
         });
       }
       this.props.dispatch(postAdminCreate(null));

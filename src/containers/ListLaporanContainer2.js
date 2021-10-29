@@ -5,11 +5,14 @@ import NavbarComponent from "../components/NavbarComponent";
 import {
   getLaporanDetail,
   getLaporanDetail2,
+  postPrint,
   resetLaporan,
-  setLoading
+  setLoading,
+  startPrintServer,
+  stopPrintServer
 } from "../actions/laporanAction";
 import { getOptUser } from "../actions/optAction";
-import { Container, Row, Spinner, Modal } from "reactstrap";
+import { Container, Row, Spinner, Modal, Button } from "reactstrap";
 import NamaCabangLaporan from "../components/NamaCabangLaporan";
 import RekapLaporan from "../components/RekapLaporan";
 import LaporanDetail from "../components/LaporanDetail";
@@ -26,11 +29,8 @@ import PrintContainer from "./PrintContainer";
 
 const mapStateToProps = (state) => {
   return {
-    // getLaporanDetail: state.Laporan.getLaporanDetail,
-    // getLaporanHead: state.Laporan.getLaporanHead,
-    // errorLaporanDetail: state.Laporan.errorLaporanDetail,
     allLaporan:state.Laporan.laporanBanyak,
-    isLoading:state.Laporan.isLoading
+    waitPrinting: state.Laporan.waitPrinting
   };
 };
 
@@ -38,7 +38,8 @@ class ListLaporanContainer2 extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      willPrinting:false
+      willPrinting:false,
+      loading:false,
     }
     this.myRef = React.createRef();
   }
@@ -46,61 +47,49 @@ class ListLaporanContainer2 extends Component {
   componentDidMount() {
     this.props.dispatch(getOptUser());
     this.props.dispatch(getUsersList());
+    this.props.dispatch(startPrintServer())
   }
 
   handleSubmit(data) {
-
-    if(this.props.allLaporan && data.type == 'printview'){
-      if(data.type == 'printview'){
-        this.setState({
-          ...this,
-          willPrinting:true,
-        })
-      }
-    }else{
-      let Nama = [];
-      data.Nama.map((item)=>{
-        Nama.push(item.value)
+    let Nama = [];
+    data.Nama.map((item)=>{
+      Nama.push(item.value)
+    })
+    
+    this.props.dispatch(resetLaporan());
+    this.props.dispatch(getLaporanDetail2())
+    this.props.dispatch(getLaporanDetail2(Nama, data.TglAwal, data.TglAkhir))
+    if(data.type == 'printview'){
+      this.setState({
+        ...this,
+        willPrinting:true
       })
-      
-      this.props.dispatch(getLaporanDetail2())
-      this.props.dispatch(getLaporanDetail2(Nama, data.TglAwal, data.TglAkhir));
-      // this.props.dispatch(getLaporanDetail2(['SB1MIT005', 'SB1MIT012'], data.TglAwal, data.TglAkhir));
-      this.props.dispatch(setLoading(true));
-      if(data.type == 'printview'){
-        this.setState({
-          ...this,
-          willPrinting:true,
-        })
-      }
-
     }
 
+    this.setState({
+      ...this,
+      loading:true,
+    })
+    this.props.dispatch(postPrint(null))
   }
   
 
   componentDidUpdate(prevProps, prevState){
-    if(this.state.willPrinting && !this.props.isLoading){
-      setTimeout(() => {
-        window.print();
-        // this.myRef.current.print()
-        // console.log(this.myRef.current)
-        // history.push("/print-preview")
-        // this.props.history.push('/print-preview')
-      }, 100);
+    if(!prevProps.allLaporan && this.props.allLaporan){
+      if(this.state.willPrinting) this.props.dispatch(postPrint(this.props.allLaporan))
+      
       this.setState({
-        ...this,
-        willPrinting:false,
+          ...this.state,
+          loading:!this.state.willPrinting && this.props.waitPrinting,
+          willPrinting:false
       })
-    }
-
-    if(!prevProps.allLaporan && this.props.allLaporan ){
-      if(this.props.isLoading) this.props.dispatch(setLoading(false))
     }
   }
 
+
   componentWillUnmount(){
     this.props.dispatch(resetLaporan())
+    this.props.dispatch(stopPrintServer())
   }
 
   render() {
@@ -111,7 +100,7 @@ class ListLaporanContainer2 extends Component {
     return (
       <div style={{minHeight:900}}  ref={this.myRef}>
         <Modal 
-          isOpen={this.props.isLoading} 
+          isOpen={this.state.loading} 
           backdropTransition={{timeout:0}}
           modalTransition={{timeout:0}}
           fade={false}

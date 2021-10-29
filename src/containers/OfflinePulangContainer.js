@@ -51,7 +51,7 @@ class OfflinePulangContainer extends Component {
    componentDidMount() {
       this.props.dispatch(setOnline(false))
       localStorage.setItem('checkConn',1)
-      this.cekKoneksi()
+      // this.cekKoneksi()
       
       this.props.dispatch(cekUserAfterFinger(null))
       this.props.dispatch(getAdminOnDuty(false));

@@ -25,6 +25,7 @@ let mainWindow;
 			nodeIntegration: true,
 			preload: path.join(__dirname, './node-server/index.js')
 		  }
+		
 	});
 
 	//await mainWindow.setMenu(menu);

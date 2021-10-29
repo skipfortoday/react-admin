@@ -92,8 +92,6 @@ class AbsensiManualContainer extends Component {
          }
 
       };
-
-
    }
 
    openFingerForm() {

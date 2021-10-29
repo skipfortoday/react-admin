@@ -23,7 +23,17 @@ const mapStateToProps = (state) => {
 const KelengkapanAbsenComponent = (props) => {
 
   const columns = [
-    
+    {
+      dataField: "Hari",
+      text: "Hari",
+      sort: true,
+      headerStyle: () => {
+        return { width: "100px", backgroundColor:"#f9a826" };
+      },
+      style: () => {
+        return { fontWeight : "normal" };
+      },
+    },
     {
       dataField: "Tanggal",
       text: "Tanggal",

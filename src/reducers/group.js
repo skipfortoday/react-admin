@@ -6,6 +6,8 @@ import {
   GET_GROUP_TERLAMBAT1,
   GET_GROUP_TERLAMBAT2,
   GET_GROUP_TERLAMBAT3,
+  DELETE_GROUP,
+
 } from "../actions/groupAction";
 
 let initialState = {
@@ -21,10 +23,18 @@ let initialState = {
   errorGroupTerlambat3: false,
   getResponDataGroup: false,
   errorResponDataGroup: false,
+  deleteGroup:false,
+  errDeleteGroup:false,
 };
 
 const Group = (state = initialState, action) => {
   switch (action.type) {
+    case DELETE_GROUP : 
+      return {
+        ...state,
+        deleteGroup: action.payload.data,
+        errDeleteGroup: action.payload.errorMessage,
+      }
     case GET_GROUP_LIST:
       return {
         ...state,

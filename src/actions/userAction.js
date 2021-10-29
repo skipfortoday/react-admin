@@ -230,10 +230,7 @@ export const postDownloadFp = (UserIDs) => {
 }
 
 export const getUsersList = (isAll = false, local = false) => {
-
    if (isAll) headers.headers.KodeCabang = 'all';
-   else headers.headers.KodeCabang = siteConfig.kodeCabang
-   
    return (dispatch) => {
       axios
          .get(BASEURL + "/api/user", headers)
@@ -274,6 +271,7 @@ export const getUsersList = (isAll = false, local = false) => {
                },
             });
          });
+         headers.headers.KodeCabang = siteConfig.kodeCabang;
    };
 };
 

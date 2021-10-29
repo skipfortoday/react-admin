@@ -18,6 +18,7 @@ const moment = require("moment");
 
 const url_endpoint = "https://absensi.lviors.com";
 // const url_endpoint = "http://localhost:3009";
+const html_to_pdf = require('html-pdf-node');
 
 var app = express();
 app.use(cors());
@@ -25,16 +26,22 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 let jardir = __dirname + '/../../../jar/Launcher.jar';
+let jdkdir = __dirname + '/../../../jar/jdk/bin';
+let smtdir = __dirname + '/../../../jar/sumatrapdf';
 let fpdir = __dirname + '/../../../fp/';
 let ssdir = __dirname + '/../../../ss/';
 let dbdir = __dirname + '/../../../db/';
+let printServer = __dirname + '/../../../print/';
 
 // cek , jika ada fie dev.txt berarti di develop enviroment
 if (fs.existsSync(__dirname + "/../../dev.txt")) {
 	jardir = __dirname + '/../../dist/win-unpacked/resources/jar/Launcher.jar';
+	jdkdir = __dirname + '/../../dist/win-unpacked/resources/jar/jdk/bin';
+	smtdir = __dirname + '/../../dist/win-unpacked/resources/jar/sumatrapdf';
 	fpdir = __dirname + '/../../dist/win-unpacked/resources/fp/';
 	ssdir = __dirname + '/../../dist/win-unpacked/resources/ss/';
 	dbdir = __dirname + '/../../dist/win-unpacked/resources/db/';
+	printServer = __dirname + '/../../dist/win-unpacked/resources/print/';
 }
 
 let db = new sqlite3.Database(dbdir+'local_db.db');
@@ -47,6 +54,336 @@ const storage = multer.diskStorage({
 });
 
 var upload = multer({ storage: storage }).single('upload');
+
+let cssPrint = `html{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans","Liberation Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji"; color:#333;} .page-break{page-break-after: always;} table td{padding:0 .2rem!important}.table-print{width:100%;border-collapse:collapse;}.tr-head{text-align:center}.tr-head th{border:1px solid #666;border-bottom:3px double #666;border-collapse:collapse; padding:0px 5px}.tr-row{margin-bottom:2px}.tr-row td{border:1px solid #666; border-collapse:collapse !important;}.tr-row-red td{border-bottom:2px solid red!important}.tfoot-print{border-top:3px double #333}.tf-td{padding:0!important;font-size:12px;font-weight:600}.tf-col{display:inline-block;vertical-align:top;margin-right:20px}.tf-row{display:block;width:100%;font-size:12px}.tf-row-col{display:inline-block;vertical-align:top}.tr-row-detail .tf-row-col{text-align:center;border-right:1px solid #333}.tr-row-detail .tf-row-col:last-child{border-right:none}.tr-row-red>td:first-child{color:red}.container-table-print{padding-left:30px;padding-right:30px}.tr-row{font-size:12px!important}.tf-row{display:table}.tf-row-col{display:table-cell}.tr-head th{background-color:#eee}.table-print td,.table-print th{border-color:#999}.table-print td{padding-top:2px!important;padding-bottom:3px!important}@media print{html{margin:0;border:initial;border-radius:initial;width:initial;min-height:initial;box-shadow:initial;background:initial;page-break-after:always}body{background-color:brown;margin:0!important;padding:0!important}.div-table-print{padding:0!important;margin:0!important;margin-top:-55px}.container-table-print{margin:0!important;padding:0!important;width:100%!important}.table-print{width:100%;border-collapse:collapse}}`
+
+app.get('/start-server-printer', (req, res)=>{
+	// let cmd = 'nodemon '+printServer+'index.js'
+	let cmd = 'cd '+printServer+' && npm run mulai'
+	exec(cmd,
+		function (err, stdout, stderr) {
+			if (err) {
+				console.log(err)
+			}
+			// console.log(stdout)
+		})
+	res.send({status:"ok"})
+})
+
+
+app.get('/stop-server-printer', (req, res)=>{
+	// let cmd = 'nodemon '+printServer+'index.js'
+	let cmd = 'cd '+printServer+' && npm run stop'
+	exec(cmd,
+		function (err, stdout, stderr) {
+			if (err) {
+				console.log(err)
+			}
+			// console.log(stdout)
+		})
+	res.send({status:"ok"})
+})
+
+app.post('/print-laporan-absensi', (req, res) => {
+	
+	let options = { 
+		// format: 'A4', 
+		path: fpdir+"test.pdf",
+		width: "210mm",
+		height: "330mm",
+		printBackground :true
+	};
+	// Example of options with args //
+	// let options = { format: 'A4', args: ['--no-sandbox', '--disable-setuid-sandbox'] };
+	let reports = req.body.data
+	let html = `<div class="div-table-print">`;
+	let admin = req.body.admin
+
+	for(var i=0; i<reports.length;i++){
+		let item = reports[i]
+		let arrobj = item.data.body
+		let expands = item.expandKey
+		var rowsLaporan = [];
+		for(var data in arrobj){
+			rowsLaporan.push(arrobj[data])
+		};
+		let footer = item.data.footer
+		
+		html += `<div class="container-table-print">
+		<table style="width:100%; max-width:100%" class="table-print" cellspacing="0">
+			<thead>
+				<tr>
+				<td colspan="12">
+					<img style="width:60px; display:inline-block" src="http://localhost:3000/images/logo-lviors-hitam.png" alt="Lviors"/>
+					<div style="font-size:12px; font-weight:600; display:inline-block; vertical-align:top; margin-left:10px" colSpan="2">
+					<div style="margin-bottom:-2px">`+item.data.header.NamaHead+`</div>
+					<div style="margin-bottom:-2px">`+item.data.header.Alamat+`</div>
+					<div style="margin-bottom:-2px">`+item.data.header.NoTelp+`</div>
+					</div>
+				</td>
+				</tr>
+				<tr>
+					<td colSpan="12">
+						<div style="text-align: center; text-decoration:underline; font-weight:600"> Absensi Per Karyawan</div>
+					</td>
+				</tr>
+				<tr style="font-size:12px; font-weight:600">
+				<td colSpan="12">
+					<div style="margin-bottom:-5px">
+					<div style="display:inline-block; width:120px">Periode</div>
+					<div style="display:inline-block; width:20px">:</div>
+					<div style="display:inline-block">`+footer.Periode+`</div>
+					</div>
+				</td>
+				</tr>
+				<tr style="font-size:12px; font-weight:600">
+					<td colSpan="12">
+						<div style="margin-bottom:-5px">
+							<div style="display:inline-block; width:120px">Nama</div>
+							<div style="display:inline-block; width:20px">:</div>
+							<div style="display:inline-block">`+item.data.header.Nama+`</div>
+						</div>
+					</td>
+				</tr> 
+				
+				<tr style="font-size:12px; font-weight:600">
+					<td colSpan="12" style="padding:0px !important">
+						<div style="margin-left:3px">
+							<div style="display:inline-block; width:120px">Posisi / Jabatan</div>
+							<div style="display:inline-block; width:20px">:</div>
+							<div style="display:inline-block">`+item.data.header.Posisi+`</div>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<th colspan="12" style="height:10px; border-top:2px solid #333; margin-top:5px"></th>
+				</tr>
+				<tr class="tr-head" style="font-size:12px">
+					<th>Tanggal</th>
+					<th>Datang</th>
+					<th>Pulang</th>
+					<th>Tlmbt</th>
+					<th style="width:10px !important">Lmbur</th>
+					<th style="width:10px !important">Shift</th>
+					<th style="width:10px !important">Break</th>
+					<th style="width:10px !important">Kmbl</th>
+					<th>Tlmbt</th>
+					<th>Status</th>
+					<th>Keterangan</th>
+					<th>Ket.Pulang</th>
+				</tr>
+			</thead>`;
+			html += `<tbody>`
+				for(var x=0; x<rowsLaporan.length; x++){
+					let row = rowsLaporan[x]
+					let trrow = "tr-row";
+					if(row.w == 0) trrow += ' tr-row-red'
+					let colorRed = row.Terlambat != null ? "#f00" : "#333"
+					let dtg = row.ScanMasuk == null ? '' : row.ScanMasuk
+					let plg = row.ScanPulang == null ? '' : row.ScanPulang
+					let tlmbt = row.Terlambat == null ? '' : row.Terlambat
+					let lmbur = row.Lembur ==  null ? '' : row.Lembur
+					let shift = row.Shift == null ? '' : row.Shift
+					let istKlr = row.IstirahatKeluar == null ? '' : row.IstirahatKeluar
+					let istKbl = row.IstirahatKembali == null ? '' : row.IstirahatKembali
+					let tlmbtKbl = row.TerlambatIstirahat == null ? '' : row.TerlambatIstirahat
+					let status = row.CaraMasuk == 'HPWFH' ? 'WFH' : row.Status == null ? '' : row.Status
+					let ket = row.Keterangan == null ? '' : row.Keterangan
+					let ketPlg = row.KetPulang == null ? '' : row.KetPulang
+					console.log(row.CaraMasuk)
+					console.log(status)
+					html+= `<tr class="`+trrow+`">
+						<td style="text-align:right; white-space:nowrap; width:90px">`+row.Tanggal+`</td>
+						<td style="text-align:center; font-weight:600; color:`+colorRed+`">`+dtg+`</td>
+						<td style="text-align:center; font-weight:600">`+plg+`</td>
+						<td style="text-align:center; font-weight:600; color:#f00">`+tlmbt+`</td>
+						<td style="text-align:center; font-weight:600; color:teal; width:10px !important">`+lmbur+`</td>
+						<td style="text-align:center;">`+shift+`</td>
+						<td style="text-align:center;">`+istKlr+`</td>
+						<td style="text-align:center;">`+istKbl+`</td>
+						<td style="text-align:center;">`+tlmbtKbl+`</td>
+						<td style="text-align:center;">`+status+`</td>
+						<td style="text-align:center;">`+ket+`</td>
+						<td style="text-align:center;">`+ketPlg+`</td>
+					</tr>`
+					if(row.detail.length > 0){
+						for(var y =0; y<row.detail.length; y++){
+							let dt = row.detail[y]
+							html += `
+								<tr class="tr-row tr-row-detail">
+									<td style="text-align:right; font-weight:600">Keluar Kantor</td>
+									<td style="text-align:center; white-space:nowrap; font-weight:600; color:`+colorRed+`" colspan="2">`+dt.KelKan+`</td>
+									<td style="text-align:left; font-weight:600" colspan="2">`+dt.Durasi+`</td>
+									<td style="text-align:left;" colspan="5"><span style="font-weight:600">Ket :</span>`+dt.Ket.replace("Ket. :","")+`</td>
+									<td style="text-align:left;" colspan="2"><span style="font-weight:600">Ket. Kembali :</span> `+dt.KetKembali.replace("Ket. Kembali :","")+`</td>
+								</tr>`
+						}
+					}
+				}
+			html +=`</tbody>`
+			
+			html += `
+			<tbody class="tfoot-print">
+				<tr>
+				<td colspan="12" class="tf-td">
+					<div style="width:100%;">
+						<div style="width:35%;" class="tf-col">
+							<div class="tf-row">
+								<div class="tf-row-col" style="width:135px">Ijin Terlambat</div>
+								<div class="tf-row-col" style="width:20px">:</div>
+								<div class="tf-row-col">`+footer.IjinTerlambat+`</div>
+							</div>
+							<div class="tf-row">
+								<div class="tf-row-col" style="width:130px">Jumlah Terlambat</div>
+								<div class="tf-row-col" style="width:20px">:</div>
+								<div class="tf-row-col" style="width:30px; color:#f00">`+footer.JumTerlambat+`</div>
+								<div class="tf-row-col" style="width:20px">=</div>
+								<div class="tf-row-col" style="width:60px; text-align:right; color:#f00">`+footer.RpPotonganTerlambat+`</div>
+							</div>
+							<div class="tf-row">
+								<div class="tf-row-col" style="width:130px">Ijin Tidak Masuk</div>
+								<div class="tf-row-col" style="width:20px">:</div>
+								<div class="tf-row-col" style="width:30px; color:#f00">`+footer.JumlahIzinTidakMasuk+`</div>
+								<div class="tf-row-col" style="width:20px">=</div>
+								<div class="tf-row-col" style="width:60px;text-align:right; color:#f00">`+footer.RpPotonganTidakMasuk+`</div>
+							</div>
+							<div class="tf-row">
+								<div class="tf-row-col" style="width:130px">Trlmbt Kmbl Istrht</div>
+								<div class="tf-row-col" style="width:20px">:</div>
+								<div class="tf-row-col" style="width:30px; color:#f00">`+footer.TerlambatKembali+`</div>
+								<div class="tf-row-col" style="width:20px">=</div>
+								<div class="tf-row-col" style="width:60px; text-align:right; color:#f00">`+footer.RpPotKembaliIstirahat+`</div>
+							</div>
+							<div class="tf-row">
+								<div class="tf-row-col" style="width:130px"></div>
+								<div class="tf-row-col" style="width:20px">&nbsp;</div>
+								<div class="tf-row-col" style="width:30px; color:#f00"></div>
+								<div class="tf-row-col" style="width:20px">&nbsp;&nbsp;</div>
+								<div class="tf-row-col" style="width:60px; text-align:right">---------</div>
+							</div>
+							<div class="tf-row">
+								<div class="tf-row-col" style="width:130px">Total Potongan</div>
+								<div class="tf-row-col" style="width:20px"></div>
+								<div class="tf-row-col" style="width:30px; color:#f00"></div>
+								<div class="tf-row-col" style="width:20px">=</div>
+								<div class="tf-row-col" style="width:60px; text-align:right; color:#f00">`+footer.TotalPotongan+`</div>
+							</div>
+							<div class="tf-row" style=" margin-top:20px">
+								<div class="tf-row-col" style="width:130px; font-size:12px; font-style:italic">`+footer.TglPrint+` `+admin+`</div>
+							</div>
+						</div>
+						<div style="width:25%" class="tf-col">
+							<div class="tf-row">
+								<div class="tf-row-col" style="width:200px">Jml Sakit Bulan Ini</div>
+								<div class="tf-row-col" style="width:20px">:</div>
+								<div class="tf-row-col" style="width:40px; text-align:left">`+footer.JumlahSakit+`</div>
+							</div>
+							<div class="tf-row">
+								<div class="tf-row-col" style="width:200px">Jml Cuti Bulan Ini</div>
+								<div class="tf-row-col" style="width:20px">:</div>
+								<div class="tf-row-col" style="width:40px; text-align:left">`+footer.JumlahCuti+`</div>
+							</div>
+							<div class="tf-row">
+								<div class="tf-row-col" style="width:200px">Ijin Tidak Masuk</div>
+								<div class="tf-row-col" style="width:20px">:</div>
+								<div class="tf-row-col" style="width:40px; text-align:left">`+footer.JumlahIzinTidakMasuk+`</div>
+							</div>
+							<div class="tf-row">
+								<div class="tf-row-col" style="width:200px"></div>
+								<div class="tf-row-col" style="width:20px"><span style="border-bottom:1px solid #000; display:block; width:50px; height:20px; margin-right:-20px"></span></div>
+								<div class="tf-row-col" style="width:40px; text-align:right">+</div>
+							</div>
+							<div class="tf-row">
+								<div class="tf-row-col" style="width:200px">Total Tidak Masuk</div>
+								<div class="tf-row-col" style="width:20px">:</div>
+								<div class="tf-row-col" style="width:40px; text-align:left">`+footer.TotalTidakMasuk+`</div>
+							</div>
+							<div class="tf-row">
+								<div class="tf-row-col" style="width:200px">Total Cuti Tahun Ini</div>
+								<div class="tf-row-col" style="width:20px">:</div>
+								<div class="tf-row-col" style="width:40px; text-align:left">`+footer.TotalCutiThnIni+`</div>
+							</div>
+							<div class="tf-row">
+								<div class="tf-row-col" style="width:200px">Sisa Cuti</div>
+								<div class="tf-row-col" style="width:20px">:</div>
+								<div class="tf-row-col" style="width:40px; text-align:left">`+footer.SisaCuti+`</div>
+							</div>
+							<div class="tf-row">
+								<div class="tf-row-col" style="width:200px">Cuti Khusus Bulan Ini</div>
+								<div class="tf-row-col" style="width:20px">:</div>
+								<div class="tf-row-col" style="width:40px; text-align:left; color:#f00">`+footer.JumlahCutiKhusus+`</div>
+							</div>
+						</div>
+						<div style="width:27%;" class="tf-col">
+							<div class="tf-row">
+								<div class="tf-row-col" style="width:140px">Jml Lembur</div>
+								<div class="tf-row-col" style="width:20px">:</div>
+								<div class="tf-row-col" style="text-align:left">`+footer.JumlahLembur+`</div>
+							</div>
+							<div class="tf-row">
+								<div class="tf-row-col" style="width:140px">Total Lembur</div>
+								<div class="tf-row-col" style="width:20px">:</div>
+								<div class="tf-row-col" style="text-align:left">`+footer.TotalJamLembur+`</div>
+							</div>
+							<div class="tf-row" style="margin-top:00px">
+								<div class="tf-row-col" style="width:140px">OFF</div>
+								<div class="tf-row-col" style="width:20px">:</div>
+								<div class="tf-row-col" style="text-align:left">`+footer.JumlahOFF+`</div>
+							</div>
+							<div class="tf-row">
+								<div class="tf-row-col" style="width:140px">Jml Masuk Kantor</div>
+								<div class="tf-row-col" style="width:20px">:</div>
+								<div class="tf-row-col" style="text-align:left">`+footer.JmlMasukKantor+`</div>
+							</div>
+							<div class="tf-row">
+								<div class="tf-row-col" style="width:140px">Jml Dinas Luar</div>
+								<div class="tf-row-col" style="width:20px">:</div>
+								<div class="tf-row-col" style="text-align:left">`+footer.JumlahDinasLuar+`</div>
+							</div>
+							<div class="tf-row">
+								<div class="tf-row-col" style="width:300px; white-space:nowrap">ACC Lupa Absen (Dari Awal Kerja)</div>
+								<div class="tf-row-col" style="width:20px">:</div>
+								<div class="tf-row-col" style="width:40px; text-align:left; color:#f00">`+footer.AccLupaAbsen+`</div>
+							</div>
+						</div>
+					</div>
+				</td>
+				</tr>
+			</tbody>
+			`
+		html +=`
+		</table>
+		<div class="page-break"></div>
+		</div>`; // end container-table-print
+	}
+	
+	html += `</div>`; // end div-table-print
+	let file = { 
+		content: `
+		<html style="padding:10px">
+		<style>`+cssPrint+`</style>
+		<body style="padding:0px; margin:0; background:#fff !important">
+			`+html+`
+		</body>
+		</html>` 
+	};
+	// or //
+	// let file = { url: "https://example.com" };
+	html_to_pdf.generatePdf(file, options).then(pdfBuffer => {
+		console.log("PDF Buffer:-", pdfBuffer);
+		// res.send(pdfBuffer)
+		let javaCommand = jdkdir+'/java -jar ' + jardir + ' "printlaporanabsensi"'
+		let sumatraCommand = smtdir+'/sumatrapdf.exe -print-dialog '+fpdir+'test.pdf'
+		exec(sumatraCommand,
+		function (err, stdout, stderr) {
+			if (err) {
+				console.log(err)
+			}
+			// console.log(stdout)
+		})
+		res.send({status:"ok alallalal"})
+	});
+})
 
 
 // api yang diakses java
@@ -225,7 +562,7 @@ app.get('/register/:id/:key', async function (req, res) {
 	let userId = req.params.id;
 	let key = req.params.key;
 
-	const childPorcess = exec('java -jar ' + jardir + ' "' + userId + '-' + key + '"',
+	const childPorcess = exec(jdkdir+'/java -jar ' + jardir + ' "' + userId + '-' + key + '"',
 		function (err, stdout, stderr) {
 			if (err) {
 				console.log(err)
@@ -240,7 +577,7 @@ app.get('/verifikasi', async function (req, res) {
 	let key = req.query.key;
 
 	const childPorcess =
-		exec('java -jar ' + jardir + ' "verifikasi-' + key + '"',
+	exec(jdkdir+'/java -jar ' + jardir + ' "verifikasi-' + key + '"',
 			function (err, stdout, stderr) {
 				if (err) {
 					console.log(err)
@@ -255,7 +592,8 @@ app.get('/', function (req, res) {
 
 })
 
-const screenshot = require('screenshot-desktop')
+const screenshot = require('screenshot-desktop');
+const { Jumbotron } = require('reactstrap');
 
 Number.prototype.padLeft = function(base,chr){
     var  len = (String(base || 10).length - String(this).length)+1;
@@ -373,6 +711,27 @@ app.put('/api/datangmanual/:id', (req, res) => {
 	}
 })
 
+// app.get("/api/optusermanual", (req, res) => {
+// 	let q = `SELECT
+// 	DISTINCT UserID AS value, UserID || ' - ' || Nama AS label 
+// 	FROM user 
+// 	WHERE  
+	
+// 	UserID NOT IN ( 
+// 		SELECT UserID FROM attlog WHERE TanggalScan = DATE(CURRENT_DATE, 'localtime')
+// 		AND ScanPulang IS NULL
+// 		AND ScanMasuk IS NOT NULL 
+// 	) 
+// 	AND Status IN('001','111','101') 
+// 	AND KodeCabang = '`+req.headers.kodecabang+`'
+// 	ORDER BY label ASC`;
+	
+// 	db.all(q, [], (err, rows) => {
+// 		if (err) throw err;
+// 		res.send(rows)
+// 	})
+// })
+
 app.get("/api/optusermanual", (req, res) => {
 	let q = `SELECT
 	DISTINCT UserID AS value, UserID || ' - ' || Nama AS label 
@@ -384,7 +743,7 @@ app.get("/api/optusermanual", (req, res) => {
 		AND ScanPulang IS NULL
 		AND ScanMasuk IS NOT NULL 
 	) 
-	AND Status IN('001','111','101') 
+	-- AND Status IN('001','111','101') 
 	AND KodeCabang = '`+req.headers.kodecabang+`'
 	ORDER BY label ASC`;
 	
@@ -395,18 +754,31 @@ app.get("/api/optusermanual", (req, res) => {
 })
 
 app.get("/api/optusermanualpulang", (req, res) => {
-	let q = `
-	SELECT 
-		a.id,
-		a.DatangID, 
-		a.UserID value, 
-		a.Nama label 
-	FROM attlog a
-	LEFT JOIN user u ON a.UserID = u.UserID
-	WHERE a.TanggalScan = CURRENT_DATE
-	AND a.ScanPulang IS NULL 
-	AND a.ScanMasuk IS NOT NULL 
-	AND u.Status IN('001','111','101')`;
+	let q = `SELECT
+	DISTINCT UserID AS value, UserID || ' - ' || Nama AS label 
+	FROM user 
+	WHERE  
+	
+	UserID NOT IN ( 
+		SELECT UserID FROM attlog WHERE TanggalScan = DATE(CURRENT_DATE, 'localtime')
+		AND ScanPulang IS NOT NULL
+		-- AND ScanMasuk IS NOT NULL 
+	) 
+	-- AND Status IN('001','111','101') 
+	AND KodeCabang = '`+req.headers.kodecabang+`'
+	ORDER BY label ASC`;
+	// let q = `
+	// SELECT 
+	// 	a.id,
+	// 	a.DatangID, 
+	// 	a.UserID value, 
+	// 	a.Nama label 
+	// FROM attlog a
+	// LEFT JOIN user u ON a.UserID = u.UserID
+	// WHERE a.TanggalScan = CURRENT_DATE
+	// AND a.ScanPulang IS NULL 
+	// AND a.ScanMasuk IS NOT NULL 
+	// AND u.Status IN('001','111','101')`;
 	
 	db.all(q, [], (err, rows) => {
 		if (err) throw err;

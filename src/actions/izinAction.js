@@ -14,6 +14,32 @@ export const EDIT_JAM_FORM = "EDIT_JAM_FORM";
 export const RESET_IZIN_SOLO = "RESET_IZIN_SOLO";
 export const RESET_RESPONSE_DI = "RESET_RESPONSE_DI";
 export const ON_SUBMITIING = "ON_SUMBITTING";
+export const LIST_ATT_WFH = "LIST_ATT_WFH"
+
+// export const listAttWfh = (data) => {
+//   return dispatch(
+//     axios
+//     .post(BASEURL+"/api/list-wfh", data, headers)
+//     .then((response)=>{
+//       dispatch({
+//         type: GET_IZIN_LIST,
+//         payload: {
+//           data: response.data,
+//           errorMessage: false,
+//         },
+//       })
+//     })
+//     .catch((error)=>{
+//       dispatch({
+//         type: GET_IZIN_LIST,
+//         payload: {
+//           data: false,
+//           errorMessage: error.message,
+//         },
+//       })
+//     })
+//   )
+// }
 
 export const setOnSubmitting = (val) => {
   return (dispatch) => {

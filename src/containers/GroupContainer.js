@@ -20,8 +20,8 @@ class GroupContainer extends Component {
     } 
     return (
       <div>
-      <NavbarComponent /> 
-      <GroupComponent />
+        <NavbarComponent /> 
+        <GroupComponent />
       </div>
     );
   }

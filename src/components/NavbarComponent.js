@@ -60,6 +60,12 @@ const NavbarComponent = (props) => {
                                                 Data Absen Offline
                                             </Link>
                                         </DropdownItem>
+                                        <DropdownItem divider />
+                                        <DropdownItem style={{ paddingLeft: 0, paddingRight: 0 }}>
+                                            <Link to="/log-absensi" style={{ display: "block", width: "100%", paddingLeft: "1.5em", paddingRight: "1.5em" }}>
+                                                Log Absensi
+                                            </Link>
+                                        </DropdownItem>
                                         {ambil.RoleAdmin === 99 ? (
                                             <>
                                                 <DropdownItem divider />
@@ -111,6 +117,12 @@ const NavbarComponent = (props) => {
                                             Absen Belum Lengkap
                                         </Link>
                                     </DropdownItem>
+                                    {/* <DropdownItem divider />
+                                    <DropdownItem style={{ paddingLeft: 0, paddingRight: 0 }}>
+                                        <Link to="/proses-wfh" style={{ display: "block", width: "100%", paddingLeft: "1.5em", paddingRight: "1.5em" }}>
+                                            Proses WFH
+                                        </Link>
+                                    </DropdownItem> */}
                                     </>
                                 )}
                             </DropdownMenu>

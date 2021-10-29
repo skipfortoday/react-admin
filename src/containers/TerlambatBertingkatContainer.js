@@ -54,7 +54,8 @@ class TerlambatBertingkatContainer extends Component {
   }
 
   componentDidMount() {
-    this.props.dispatch(getGroupDetail(this.props.match.params.GroupID));
+    // console.log(this.props.match.params.GroupID)
+    if(this.props.match.params.GroupID) this.props.dispatch(getGroupDetail(this.props.match.params.GroupID));
     this.props.dispatch(getOptTerlambat(this.props.match.params.GroupID));
 
     // // list table 
@@ -196,8 +197,8 @@ class TerlambatBertingkatContainer extends Component {
         </div>
         <div className="pl-4">
           <div>
-            {this.props.getTerlambatBertingkatDetail.length > 0 ? (
-            <Button color="dark" onClick={this.toggle}>Duplilat ke group jabatan lain</Button>) : ("")}
+            {/* {this.props.getTerlambatBertingkatDetail.length > 0 ? 
+            (<Button color="dark" onClick={this.toggle}>Duplilat ke group jabatan lain</Button>) : ("")} */}
             <Modal isOpen={this.state.modal} toggle={this.toggle} className="modal-lg">
               <ModalHeader toggle={this.toggle}>Duplikat Rule ke Group Jabatan lain</ModalHeader>
               <ModalBody>

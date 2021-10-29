@@ -17,7 +17,49 @@ const mapStateToProps = (state) => {
 };
 
 class CreateGroupContainer extends Component {
+   constructor(props){
+      super(props)
+      this.state = {
+         adaShift2 : false,
+         adaShift3 : false,
+      }
+   }
+
+   setAdaShift2(val) {this.setState({...this.state, adaShift2:val})}
+   setAdaShift3(val) {this.setState({...this.state, adaShift3:val})}
+
    handleSubmit(data) {
+      data['AdaOff'] = data.HariLibur.value === "" ? false : true
+      data.HariLibur = data.HariLibur.value
+
+      if(!this.state.adaShift2){
+         data.JamDatangSiang = 'undefined'
+         data.JamMulaiLemburSiang = 'undefined'
+         data.JamMulaiSiang = 'undefined'
+         data.JamPulangSiang = 'undefined'
+         data.MaxJamDatangSiang = 'undefined'
+         data.MaxJamKembaliSiang = 'undefined'
+         data.MinJamLemburSiang = 'undefined'
+         data.TBertingkats2 = []
+      }
+      
+      if(!this.state.adaShift3){
+         data.JamDatangSore = 'undefined'
+         data.JamMulaiLemburSore = 'undefined'
+         data.JamMulaiSore = 'undefined'
+         data.JamPulangSore = 'undefined'
+         data.MaxJamDatangSore = 'undefined'
+         data.MaxJamKembaliSore = 'undefined'
+         data.MinJamLemburSore = 'undefined'
+         data.TBertingkats3 = []
+      }
+
+      if(!data.RuleTerlambatBertingkat){
+         data.TBertingkats1 = []
+         data.TBertingkats2 = []
+         data.TBertingkats3 = []
+      }
+
       this.props.dispatch(postGroupCreate(data));
    }
 
@@ -34,25 +76,35 @@ class CreateGroupContainer extends Component {
          if (this.props.errorResponDataGroup) {
             swal("Failed!", this.props.errorResponDataGroup, "error");
          } else {
-            swal(
-               "Group Created!",
-               "ID : " +
-               this.props.getResponDataGroup.data.GroupID +
-               " , Jabatan : " +
-               this.props.getResponDataGroup.data.Jabatan,
-               "success"
-            ).then((value) => {
-               window.location.reload();
-            });
+            // swal(
+            //    "Group Created!",
+            //    "ID : " +
+            //    this.props.getResponDataGroup.data.GroupID +
+            //    " , Jabatan : " +
+            //    this.props.getResponDataGroup.data.Jabatan,
+            //    "success"
+            // ).then((value) => {
+            //    // // window.location.reload();
+            //    // this.props.history.goBack();
+            //    this.props.dispatch(postGroupCreate(null));
+            // });
+            this.props.history.replace('/group/edit/'+this.props.getResponDataGroup.data.GroupID)
          }
       }
       return (
          <div>
             <NavbarComponent />
-            <div style={{ backgroundColor: '#f9a826', padding: "20px" }} >
+            <div style={{ backgroundColor: '#fff', padding: "20px" }} >
                <GoBackComponent title="Tambah Group Jabatan"
                   functionClick={() => this.goBackClick()} />
-               <FormGroupComponent onSubmit={(data) => this.handleSubmit(data)} />
+               {/* {"adaShift2 "+this.state.adaShift2 +" | adaShift3 "+this.state.adaShift3} */}
+               <FormGroupComponent 
+                  onSubmit={(data) => this.handleSubmit(data)}
+                  adaShift2={this.state.adaShift2}
+                  adaShift3={this.state.adaShift3}
+                  setAdaShift2={(val) => this.setAdaShift2(val)}
+                  setAdaShift3={(val) => this.setAdaShift3(val)}
+                  />
             </div>
 
             {/* <div style={{ backgroundColor: '#f9a826' }}>

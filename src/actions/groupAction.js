@@ -9,8 +9,10 @@ export const GET_GROUP_TERLAMBAT2 = "GET_GROUP_TERLAMBAT2";
 export const GET_GROUP_TERLAMBAT3 = "GET_GROUP_TERLAMBAT3";
 export const POST_GROUP_CREATE = "POST_GROUP_CREATE";
 export const PUT_GROUP_EDIT = "PUT_GROUP_EDIT";
+export const DELETE_GROUP = "DELETE_GROUP"
 
 export const getGroupList = () => {
+  console.log(headers)
   return (dispatch) => {
     axios
       .get(BASEURL+"/api/group", headers)
@@ -145,6 +147,17 @@ export const getGroupTerLambat3 = (GroupID) => {
 };
 
 export const postGroupCreate = (data) => {
+  if(data == null){
+    return (dispatch) => {
+      dispatch({
+        type: POST_GROUP_CREATE,
+        payload: {
+          data: false,
+          errorMessage: false,
+        },
+      });
+    }
+  }
   return (dispatch) => {
     axios
       .post(
@@ -176,6 +189,17 @@ export const postGroupCreate = (data) => {
 };
 
 export const putGroupUpdate = (data, GroupID) => {
+  if(data == null){
+    return (dispatch) => {
+      dispatch({
+        type: POST_GROUP_CREATE,
+        payload: {
+          data: false,
+          errorMessage: false,
+        },
+      });
+    }
+  }
   return (dispatch) => {
     axios
       .put(
@@ -216,11 +240,24 @@ export const deleteGroup = (GroupID) => {
       )
       .then(function (response) {
         console.log(response);
+        dispatch({
+          type: DELETE_GROUP,
+          payload: {
+            data: response.data,
+            errorMessage: false,
+          },
+        });
         
       })
       .catch(function (error) {
         console.log(error);
-        
+        dispatch({
+          type: DELETE_GROUP,
+          payload: {
+            data: false,
+            errorMessage: error.message,
+          },
+        });
       });
   };
 };

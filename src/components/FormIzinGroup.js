@@ -9,18 +9,25 @@ import { formatTglYmd } from "../containers/formatTgl";
 import { SelectMultipleFieldComponent } from "./formController/SelectMultipleFieldComponent";
 import { InputFieldComponent } from "./formController/InputFieldComponent";
 import { SelectFieldComponent } from "./formController/SelectFieldComponent";
+import { lsStatus } from "../config";
 
-const opsi = [
-  { value: "OFF", label: "OFF" },
-  { value: "CUTI", label: "CUTI" },
-  { value: "TIDAK MASUK", label: "IZIN TIDAK MASUK" },
-  { value: "SAKIT", label: "SAKIT" },
-  { value: "DINAS LUAR", label: "DINAS LUAR" },
-  { value: "CUTI BERSAMA", label: "CUTI BERSAMA" },
-  { value: "CUTI KHUSUS", label: "CUTI KHUSUS" },
-  { value: "LIBUR", label: "LIBUR" },
-  { value: "LENGKAPI", label: "LENGKAPI ABSEN" }
-]
+// const opsi = [
+//   { value: "OFF", label: "OFF" },
+//   { value: "CUTI", label: "CUTI" },
+//   { value: "TIDAK MASUK", label: "IZIN TIDAK MASUK" },
+//   { value: "SAKIT", label: "SAKIT" },
+//   { value: "DINAS LUAR", label: "DINAS LUAR" },
+//   { value: "CUTI BERSAMA", label: "CUTI BERSAMA" },
+//   { value: "CUTI KHUSUS", label: "CUTI KHUSUS" },
+//   { value: "LIBUR", label: "LIBUR" },
+//   { value: "LENGKAPI", label: "LENGKAPI ABSEN" }
+// ]
+
+const opsi = []
+lsStatus.map((item)=>{
+  opsi.push(item)
+})
+opsi.push({ value: "LENGKAPI", label: "LENGKAPI ABSEN" })
 
 const mapStateToProps = (state) => {
   return {

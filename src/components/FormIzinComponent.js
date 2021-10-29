@@ -10,6 +10,7 @@ import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 import { InputFieldComponent } from "../components/formController/InputFieldComponent";
 import { SelectFieldComponent } from "../components/formController/SelectFieldComponent";
 import { CheckboxFieldComponent } from "../components/formController/CheckboxFieldComponent";
+import { lsStatus } from "../config";
 
 
 const mapStateToProps = (state) => {
@@ -52,20 +53,21 @@ class FormIzinComponent extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      StatusOption: [
-        { value: '', label: '-' },
-        { value: 'OFF', label: 'OFF' },
-        { value: 'MASUK', label: 'MASUK' },
-        { value: 'CUTI', label: 'CUTI' },
-        { value: 'TIDAK MASUK', label: 'TIDAK MASUK' },
-        { value: 'IZIN TIDAK MASUK', label: 'IZIN TIDAK MASUK' },
-        { value: 'SAKIT', label: 'SAKIT' },
-        { value: 'DINAS LUAR', label: 'DINAS LUAR' },
-        { value: 'CUTI BERSAMA', label: 'CUTI BERSAMA' },
-        { value: 'CUTI KHUSUS', label: 'CUTI KHUSUS' },
-        { value: 'LIBUR', label: 'LIBUR' },
-        { value: 'ACC LUPA ABSEN', label: 'ACC LUPA ABSEN' }
-      ],
+      StatusOption : lsStatus,
+      // StatusOption: [
+      //   { value: '', label: '-' },
+      //   { value: 'OFF', label: 'OFF' },
+      //   { value: 'MASUK', label: 'MASUK' },
+      //   { value: 'CUTI', label: 'CUTI' },
+      //   { value: 'TIDAK MASUK', label: 'TIDAK MASUK' },
+      //   { value: 'IZIN TIDAK MASUK', label: 'IZIN TIDAK MASUK' },
+      //   { value: 'SAKIT', label: 'SAKIT' },
+      //   { value: 'DINAS LUAR', label: 'DINAS LUAR' },
+      //   { value: 'CUTI BERSAMA', label: 'CUTI BERSAMA' },
+      //   { value: 'CUTI KHUSUS', label: 'CUTI KHUSUS' },
+      //   { value: 'LIBUR', label: 'LIBUR' },
+      //   { value: 'ACC LUPA ABSEN', label: 'ACC LUPA ABSEN' }
+      // ],
       ShiftOption: [
         { value: '1', label:'Shift 1'},
         { value: '2', label:'Shift 2'},

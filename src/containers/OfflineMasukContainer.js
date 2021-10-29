@@ -53,7 +53,7 @@ class OfflineMasukContainer extends Component {
    componentDidMount() {
       this.props.dispatch(setOnline(false))
       localStorage.setItem('checkConn',1)
-      this.cekKoneksi()
+      // this.cekKoneksi()
       // localStorage.removeItem('checkConn')
       this.props.dispatch(getAdminOnDuty(false));
       this.props.dispatch(getOptUserManual(false));
